@@ -1,0 +1,148 @@
+#!/usr/bin/env bash
+
+# exit immediately if a command exits with a non-zero status
+set -e
+# get base dir regardless of execution location
+SOURCE="${BASH_SOURCE[0]}"
+while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symlink
+    DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+    SOURCE="$(readlink "$SOURCE")"
+    [[ "$SOURCE" != /* ]] && SOURCE="$DIR/$SOURCE" # if $SOURCE was a relative symlink, we need to resolve it relative to the path where the symlink file was located
+done
+SOURCE=$([[ "$SOURCE" = /* ]] && echo "$SOURCE" || echo "$PWD/${SOURCE#./}")
+basedir=$(dirname "$SOURCE")
+gitcmd="git -c commit.gpgsign=false"
+. "$basedir"/scripts/init.sh
+
+paperstash() {
+    STASHED=$(git stash)
+}
+
+paperunstash() {
+    if [[ "$STASHED" != "No local changes to save" ]] ; then
+        git stash pop
+    fi
+}
+
+case "$1" in
+    "rb" | "rbp" | "rebuild")
+    (
+        set -e
+        cd "$basedir"
+        scripts/rebuildpatches.sh "$basedir"
+    )
+    ;;
+    "p" | "patch" | "apply")
+    (
+        set -e
+        cd "$basedir"
+        if [ "$2" != "fast" ]; then
+          scripts/upstream.sh
+        fi
+        scripts/apply.sh "$basedir"
+    )
+    ;;
+    "b" | "bu" | "build")
+    (
+        basedir
+        mvn -N install
+        cd ${FORK_NAME}-API && mvn -e clean install
+    )
+    ;;
+    "up" | "upstream")
+    (
+        cd "$basedir"
+        scripts/upstream.sh "$2"
+    )
+    ;;
+    "cu" | "commitup" | "commitupstream" | "upc" | "upcommit" | "upstreamcommit")
+    (
+        cd "$basedir"
+        shift
+        scripts/upstreamCommit.sh "$@"
+    )
+    ;;
+    "r" | "root")
+        cd "$basedir"
+    ;;
+    "a" | "api")
+        cd "$basedir/Daydream-API"
+    ;;
+    "c" | "clean")
+        rm -rf Daydream-API
+        echo "Cleaned build files"
+    ;;
+    "e" | "edit")
+        case "$2" in
+            "a" | "api")
+            cd "$basedir/Daydream-API"
+            (
+                set -e
+
+                paperstash
+                $gitcmd rebase -i upstream/upstream
+                paperunstash
+            )
+            ;;
+            "c" | "continue")
+            cd "$basedir/Daydream-API"
+            (
+                set -e
+
+                $gitcmd add .
+                $gitcmd commit --amend
+                $gitcmd rebase --continue
+
+                cd "$basedir"
+                scripts/rebuildPatches.sh "$basedir"
+            )
+            ;;
+            *)
+                echo "You must edit either the api."
+            ;;
+        esac
+    ;;
+    "setup")
+        if [[ -f ~/.bashrc ]] ; then
+            NAME="ec"
+            if [[ ! -z "${2+x}" ]] ; then
+                NAME="$2"
+            fi
+            (grep "alias $NAME=" ~/.bashrc > /dev/null) && (sed -i "s|alias $NAME=.*|alias $NAME='. $SOURCE'|g" ~/.bashrc) || (echo "alias $NAME='. $SOURCE'" >> ~/.bashrc)
+            alias "$NAME=. $SOURCE"
+            echo "You can now just type '$NAME' at any time to access the paper tool."
+        fi
+    ;;
+    *)
+        echo "Daydream build tool command. This provides a variety of commands to build and manage the PaperMC build"
+        echo "environment. For all of the functionality of this command to be available, you must first run the"
+        echo "'setup' command. View below for details. For essential building and patching, you do not need to do the setup."
+        echo ""
+        echo " Normal commands:"
+        echo "  * rb, rebuild         | Rebuild patches, can be called from anywhere."
+        echo "  * p, patch            | Apply API patches to top of Daydream without building it. Can be run from anywhere."
+        echo "  * upc, upstreamcommit | Creates the correctly-formatted upstream commit after updating upstream."
+        echo "  * up, upstream        | Build Paper upstream, pass arg up to update paper. Can be run from anywhere."
+        echo "  * c, clean            | Removes all generated files, Daydream-API."
+        echo "  * b, build            | Build API but no deploy. Can be ran anywhere."
+        echo "  * d, deploy           | Build and Deploy API jar and build Server. Can be ran anywhere."
+        echo ""
+        echo " These commands require the setup command before use:"
+        echo "  * r, root             | Change directory to the root of the project."
+        echo "  * a. api              | Move to the Daydream-API directory."
+        echo "  * e, edit             | Use to edit a specific patch, give it the argument \"api\""
+        echo "                        | respectively to edit the correct project. Use the argument \"continue\" after"
+        echo "                        | the changes have been made to finish and rebuild patches. Can be called from anywhere."
+        echo ""
+        echo "  * setup               | Add an alias to .bashrc to allow full functionality of this script. Run as:"
+        echo "                        |     . ./daydream setup"
+        echo "                        | After you run this command you'll be able to just run 'daydream' from anywhere."
+        echo "                        | The default name for the resulting alias is 'tuinidaydreamty', you can give an argument to override"
+        echo "                        | this default, such as:"
+        echo "                        |     . ./daydream setup example"
+        echo "                        | Which will allow you to run 'example' instead."
+    ;;
+esac
+
+unset -f paperstash
+unset -f paperunstash

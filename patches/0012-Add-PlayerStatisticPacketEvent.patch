@@ -1,0 +1,57 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: LemonCaramel <admin@caramel.moe>
+Date: Thu, 22 Jul 2021 16:23:41 +0900
+Subject: [PATCH] Add PlayerStatisticPacketEvent
+
+
+diff --git a/src/main/java/moe/caramel/daydream/event/player/PlayerStatisticPacketEvent.java b/src/main/java/moe/caramel/daydream/event/player/PlayerStatisticPacketEvent.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..b89bcc521a576c21ea9ed12662f8b012acff4006
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/event/player/PlayerStatisticPacketEvent.java
+@@ -0,0 +1,45 @@
++package moe.caramel.daydream.event.player;
++
++import org.bukkit.entity.Player;
++import org.bukkit.event.Cancellable;
++import org.bukkit.event.HandlerList;
++import org.bukkit.event.player.PlayerEvent;
++import org.jetbrains.annotations.NotNull;
++
++public class PlayerStatisticPacketEvent extends PlayerEvent implements Cancellable {
++
++    private static final HandlerList HANDLER_LIST = new HandlerList();
++    private boolean cancelled;
++
++    public PlayerStatisticPacketEvent(@NotNull Player player) {
++        super(player);
++    }
++
++    @Override
++    public boolean isCancelled() {
++        return this.cancelled;
++    }
++
++    /**
++     * 통계 패킷을 전송하지 않습니다.
++     *
++     * 주의: 클라이언트에는 통계 로드 화면이 계속 출력됩니다.
++     * 인벤토리를 출력하고, 닫는 방식으로 통계 로드 화면을 제거할 수 있습니다.
++     *
++     * @param cancel true if you wish to cancel this event
++     */
++    @Override
++    public void setCancelled(boolean cancel) {
++        this.cancelled = cancel;
++    }
++
++    @Override
++    public @NotNull HandlerList getHandlers() {
++        return HANDLER_LIST;
++    }
++
++    @NotNull
++    public static HandlerList getHandlerList() {
++        return HANDLER_LIST;
++    }
++}
