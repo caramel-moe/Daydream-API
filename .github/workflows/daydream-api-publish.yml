@@ -40,6 +40,6 @@ jobs:
       - name: Publish package
         run: |
          cd Daydream-API/
-         mvn --batch-mode deploy
+         mvn -B javadoc:jar source:jar deploy
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
