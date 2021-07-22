@@ -1,0 +1,23 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: LemonCaramel <admin@caramel.moe>
+Date: Thu, 22 Jul 2021 16:34:32 +0900
+Subject: [PATCH] Add PlayerTeleportEvent Cause - STOP_RIDING
+
+
+diff --git a/src/main/java/org/bukkit/event/player/PlayerTeleportEvent.java b/src/main/java/org/bukkit/event/player/PlayerTeleportEvent.java
+index 553d7740489fe729166c8ca8ef8c7834db3663ad..0d6a52ed150c980d5b767822ab1b0658c8c0152d 100644
+--- a/src/main/java/org/bukkit/event/player/PlayerTeleportEvent.java
++++ b/src/main/java/org/bukkit/event/player/PlayerTeleportEvent.java
+@@ -73,6 +73,12 @@ public class PlayerTeleportEvent extends PlayerMoveEvent {
+          * fruit
+          */
+         CHORUS_FRUIT,
++        // Daydream start
++        /**
++         * Stop Riding
++         */
++        STOP_RIDING,
++        // Daydream end
+         /**
+          * Indicates the teleportation was caused by an event not covered by
+          * this enum

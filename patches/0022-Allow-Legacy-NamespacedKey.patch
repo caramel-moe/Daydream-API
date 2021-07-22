@@ -1,0 +1,56 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: LemonCaramel <admin@caramel.moe>
+Date: Thu, 22 Jul 2021 16:43:42 +0900
+Subject: [PATCH] Allow Legacy NamespacedKey
+
+
+diff --git a/src/main/java/org/bukkit/NamespacedKey.java b/src/main/java/org/bukkit/NamespacedKey.java
+index 30f66a7feefa307749336033fe3bdd2fb9105206..dd45a13a46d3dfcee58c2b7498878187fc39a3ff 100644
+--- a/src/main/java/org/bukkit/NamespacedKey.java
++++ b/src/main/java/org/bukkit/NamespacedKey.java
+@@ -32,7 +32,7 @@ public final class NamespacedKey implements net.kyori.adventure.key.Key, com.des
+     public static final String BUKKIT = "daydream";
+     //
+     private static final Pattern VALID_NAMESPACE = Pattern.compile("[a-z0-9._-]+");
+-    private static final Pattern VALID_KEY = Pattern.compile("[a-z0-9/._-]+");
++    private static final Pattern VALID_KEY = Pattern.compile("[a-zA-Z0-9/._-]+"); // Daydream - Legacy
+     //
+     private final String namespace;
+     private final String key;
+diff --git a/src/test/java/org/bukkit/NamespacedKeyTest.java b/src/test/java/org/bukkit/NamespacedKeyTest.java
+index 9f57889cbb5b805a640597d44ee45ab0a1fdbf2a..e168c31197518bce48c7371efaf3db76426663e7 100644
+--- a/src/test/java/org/bukkit/NamespacedKeyTest.java
++++ b/src/test/java/org/bukkit/NamespacedKeyTest.java
+@@ -22,10 +22,10 @@ public class NamespacedKeyTest {
+         Assert.assertEquals(expected, NamespacedKey.fromString("minecraft:foo"));
+         Assert.assertEquals(new NamespacedKey("foo", "bar"), NamespacedKey.fromString("foo:bar"));
+ 
+-        Assert.assertNull(NamespacedKey.fromString("fOO"));
+-        Assert.assertNull(NamespacedKey.fromString(":Foo"));
+-        Assert.assertNull(NamespacedKey.fromString("fOO:bar"));
+-        Assert.assertNull(NamespacedKey.fromString("minecraft:fOO"));
++        //Assert.assertNull(NamespacedKey.fromString("fOO")); // Daydream - Legacy
++        //Assert.assertNull(NamespacedKey.fromString(":Foo")); // Daydream - Legacy
++        //Assert.assertNull(NamespacedKey.fromString("fOO:bar")); // Daydream - Legacy
++        //Assert.assertNull(NamespacedKey.fromString("minecraft:fOO")); // Daydream - Legacy
+         Assert.assertNull(NamespacedKey.fromString("foo:bar:bazz"));
+     }
+ 
+@@ -59,7 +59,7 @@ public class NamespacedKeyTest {
+         new NamespacedKey("Minecraft", "foo").toString();
+     }
+ 
+-    @Test(expected = IllegalArgumentException.class)
++    /*@Test(expected = IllegalArgumentException.class)
+     public void testInvalidKeyCasing() {
+         new NamespacedKey("minecraft", "Foo").toString();
+     }
+@@ -67,7 +67,7 @@ public class NamespacedKeyTest {
+     @Test(expected = IllegalArgumentException.class)
+     public void testInvalidKey() {
+         new NamespacedKey("minecraft", "foo!").toString();
+-    }
++    }*/ // Daydream - Legacy
+ 
+     @Test
+     public void testBelowLength() {

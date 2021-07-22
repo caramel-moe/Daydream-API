@@ -1,0 +1,108 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: LemonCaramel <admin@caramel.moe>
+Date: Thu, 22 Jul 2021 16:35:38 +0900
+Subject: [PATCH] Allow cancellation of chunk packets
+
+
+diff --git a/src/main/java/io/papermc/paper/event/packet/PlayerChunkLoadEvent.java b/src/main/java/io/papermc/paper/event/packet/PlayerChunkLoadEvent.java
+index 2c1cda1126e577a88f19071e958eddb5a38785af..7013315fddbed1d214d4552cb34c44fcb4b6a964 100644
+--- a/src/main/java/io/papermc/paper/event/packet/PlayerChunkLoadEvent.java
++++ b/src/main/java/io/papermc/paper/event/packet/PlayerChunkLoadEvent.java
+@@ -2,6 +2,7 @@ package io.papermc.paper.event.packet;
+ 
+ import org.bukkit.Chunk;
+ import org.bukkit.entity.Player;
++import org.bukkit.event.Cancellable; // Daydream
+ import org.bukkit.event.HandlerList;
+ import org.bukkit.event.world.ChunkEvent;
+ import org.jetbrains.annotations.NotNull;
+@@ -14,16 +15,37 @@ import org.jetbrains.annotations.NotNull;
+  * Should only be used for packet/clientside related stuff.
+  * Not intended for modifying server side state.
+  */
+-public class PlayerChunkLoadEvent extends ChunkEvent {
++public class PlayerChunkLoadEvent extends ChunkEvent implements Cancellable { // Daydream
+ 
+     private static final HandlerList handlers = new HandlerList();
+     private final Player player;
++    private boolean cancelled; // Daydream
+ 
+     public PlayerChunkLoadEvent(@NotNull Chunk chunk, @NotNull Player player) {
+         super(chunk);
+         this.player = player;
+     }
+ 
++    // Daydream start
++    /**
++     * 청크 로드 패킷이 차단 되었는지의 여부입니다.
++     * @return 청크 로드 패킷이 차단 되었는지의 여부
++     */
++    @Override
++    public boolean isCancelled() {
++        return cancelled;
++    }
++
++    /**
++     * 주의! - 해당 패킷을 차단하게 되면, 플레이어의 움직임에 제한이 생길 수도 있습니다.
++     * @param cancel 청크 로드 패킷을 차단할 것인가?
++     */
++    @Override
++    public void setCancelled(boolean cancel) {
++        this.cancelled = cancel;
++    }
++    // Daydream end
++
+     @NotNull
+     @Override
+     public HandlerList getHandlers() {
+diff --git a/src/main/java/io/papermc/paper/event/packet/PlayerChunkUnloadEvent.java b/src/main/java/io/papermc/paper/event/packet/PlayerChunkUnloadEvent.java
+index 12163a7b0591a7d022dc7eb9ee6608a1b6c39d9b..4577e7ed9ce0d49d069d670d53a2571cf707cc9b 100644
+--- a/src/main/java/io/papermc/paper/event/packet/PlayerChunkUnloadEvent.java
++++ b/src/main/java/io/papermc/paper/event/packet/PlayerChunkUnloadEvent.java
+@@ -2,6 +2,7 @@ package io.papermc.paper.event.packet;
+ 
+ import org.bukkit.Chunk;
+ import org.bukkit.entity.Player;
++import org.bukkit.event.Cancellable; // Daydream
+ import org.bukkit.event.HandlerList;
+ import org.bukkit.event.world.ChunkEvent;
+ import org.jetbrains.annotations.NotNull;
+@@ -12,16 +13,37 @@ import org.jetbrains.annotations.NotNull;
+  * Should only be used for packet/clientside related stuff.
+  * Not intended for modifying server side.
+  */
+-public class PlayerChunkUnloadEvent extends ChunkEvent {
++public class PlayerChunkUnloadEvent extends ChunkEvent implements Cancellable { // Daydream
+ 
+     private static final HandlerList handlers = new HandlerList();
+     private final Player player;
++    private boolean cancelled; // Daydream
+ 
+     public PlayerChunkUnloadEvent(@NotNull Chunk chunk, @NotNull Player player) {
+         super(chunk);
+         this.player = player;
+     }
+ 
++    // Daydream start
++    /**
++     * 청크 언로드 패킷이 차단 되었는지의 여부입니다.
++     * @return 청크 언로드 패킷이 차단 되었는지의 여부
++     */
++    @Override
++    public boolean isCancelled() {
++        return cancelled;
++    }
++
++    /**
++     * 청크 언로드 패킷의 차단 여부를 결정합니다.
++     * @param cancel 청크 언로드 패킷을 차단할 것인가?
++     */
++    @Override
++    public void setCancelled(boolean cancel) {
++        this.cancelled = cancel;
++    }
++    // Daydream end
++
+     @NotNull
+     @Override
+     public HandlerList getHandlers() {

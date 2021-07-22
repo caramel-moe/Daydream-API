@@ -1,0 +1,75 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: LemonCaramel <admin@caramel.moe>
+Date: Thu, 22 Jul 2021 16:24:05 +0900
+Subject: [PATCH] Add PlayerLimitExceededPacketEvent
+
+
+diff --git a/src/main/java/moe/caramel/daydream/event/player/PlayerLimitExceededPacketEvent.java b/src/main/java/moe/caramel/daydream/event/player/PlayerLimitExceededPacketEvent.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..c7226df1f5fc3107432fb32e026a8662dcec3470
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/event/player/PlayerLimitExceededPacketEvent.java
+@@ -0,0 +1,63 @@
++package moe.caramel.daydream.event.player;
++
++import net.kyori.adventure.text.Component;
++import org.bukkit.entity.Player;
++import org.bukkit.event.Cancellable;
++import org.bukkit.event.HandlerList;
++import org.bukkit.event.player.PlayerEvent;
++import org.jetbrains.annotations.NotNull;
++
++public class PlayerLimitExceededPacketEvent extends PlayerEvent implements Cancellable {
++
++    private static final HandlerList HANDLER_LIST = new HandlerList();
++
++    private Component message;
++    private final int limit;
++    private final float amount;
++    private boolean cancelled;
++
++    public PlayerLimitExceededPacketEvent(@NotNull Player player, @NotNull Component message, int limit, float amount) {
++        super(player);
++        this.message = message;
++        this.limit = limit;
++        this.amount = amount;
++    }
++
++    public float getAmount() {
++        return this.amount;
++    }
++
++    public int getLimit() {
++        return this.limit;
++    }
++
++    @NotNull
++    public Component getMessage() {
++        return this.message;
++    }
++
++    public void setMessage(@NotNull Component message) {
++        this.message = message;
++    }
++
++    @Override
++    public boolean isCancelled() {
++        return this.cancelled;
++    }
++
++    @Override
++    public void setCancelled(boolean cancel) {
++        this.cancelled = cancel;
++    }
++
++    @Override
++    public @NotNull HandlerList getHandlers() {
++        return HANDLER_LIST;
++    }
++
++    @NotNull
++    public static HandlerList getHandlerList() {
++        return HANDLER_LIST;
++    }
++
++}

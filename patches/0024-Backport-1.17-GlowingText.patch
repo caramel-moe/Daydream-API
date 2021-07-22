@@ -1,0 +1,31 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: LemonCaramel <admin@caramel.moe>
+Date: Thu, 22 Jul 2021 16:50:28 +0900
+Subject: [PATCH] Backport 1.17 GlowingText
+
+
+diff --git a/src/main/java/org/bukkit/block/Sign.java b/src/main/java/org/bukkit/block/Sign.java
+index 18b48bdbc41a06d0685079683b0322f6a3492da9..18a6e28d101cc500ef19b20a5a17e4d34b24b9a7 100644
+--- a/src/main/java/org/bukkit/block/Sign.java
++++ b/src/main/java/org/bukkit/block/Sign.java
+@@ -100,4 +100,20 @@ public interface Sign extends TileState, Colorable {
+      * @param editable if this sign is currently editable
+      */
+     public void setEditable(boolean editable);
++
++    // Daydream start
++    /**
++     * Gets whether this sign has glowing text.
++     *
++     * @return if this sign has glowing text
++     */
++    public boolean isGlowingText();
++
++    /**
++     * Sets whether this sign has glowing text.
++     *
++     * @param glowing if this sign has glowing text
++     */
++    public void setGlowingText(boolean glowing);
++    // Daydream end
+ }

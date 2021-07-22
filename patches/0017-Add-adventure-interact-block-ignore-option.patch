@@ -1,0 +1,62 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: LemonCaramel <admin@caramel.moe>
+Date: Thu, 22 Jul 2021 16:30:55 +0900
+Subject: [PATCH] Add adventure interact block ignore option
+
+
+diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
+index e8414592b3afeb1e5db2b817b8fb7c13e073b9aa..55704bb89716aa388265afd7d422d4af2f62d34e 100644
+--- a/src/main/java/org/bukkit/Bukkit.java
++++ b/src/main/java/org/bukkit/Bukkit.java
+@@ -1959,6 +1959,26 @@ public final class Bukkit {
+     }
+     // Paper end
+ 
++    // Daydream start
++    /**
++     * Adventure 모드에서 클릭 상호작용 이벤트를 작동하였을 때 블록 무시의 여부
++     *
++     * @return 블록을 무시하도록 설정이 되어있다면 true 를 반환합니다.
++     */
++    public static boolean isAdventureInteractBlockIgnore() {
++        return server.isAdventureInteractBlockIgnore();
++    }
++
++    /**
++     * Adventure 모드에서 클릭 상호작용 이벤트를 작동하였을 때 블록 무시의 여부를 설정합니다
++     *
++     * @param ignore 블록을 무시하도록 설정하려면 true
++     */
++    public static void setAdventureInteractBlockIgnore(boolean ignore) {
++        server.setAdventureInteractBlockIgnore(ignore);
++    }
++    // Daydream end
++
+     @NotNull
+     public static Server.Spigot spigot() {
+         return server.spigot();
+diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
+index 1aa2e0384ac3b1e48ebf442d1ec9f075d8341c68..724915c7a3a0c79d668759172099f97acaa15eca 100644
+--- a/src/main/java/org/bukkit/Server.java
++++ b/src/main/java/org/bukkit/Server.java
+@@ -1732,4 +1732,20 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
+     @NotNull
+     io.papermc.paper.datapack.DatapackManager getDatapackManager();
+     // Paper end
++
++    // Daydream start
++    /**
++     * Adventure 모드에서 클릭 상호작용 이벤트를 작동하였을 때 블록 무시의 여부
++     *
++     * @return 블록을 무시하도록 설정이 되어있다면 true 를 반환합니다.
++     */
++    boolean isAdventureInteractBlockIgnore();
++
++    /**
++     * Adventure 모드에서 클릭 상호작용 이벤트를 작동하였을 때 블록 무시의 여부를 설정합니다
++     *
++     * @param ignore 블록을 무시하도록 설정하려면 true
++     */
++    void setAdventureInteractBlockIgnore(boolean ignore);
++    // Daydream end
+ }

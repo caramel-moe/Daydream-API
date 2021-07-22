@@ -1,0 +1,62 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: LemonCaramel <admin@caramel.moe>
+Date: Thu, 22 Jul 2021 16:24:20 +0900
+Subject: [PATCH] Add PlayerAdvancementPacketEvent
+
+
+diff --git a/src/main/java/moe/caramel/daydream/event/player/PlayerAdvancementPacketEvent.java b/src/main/java/moe/caramel/daydream/event/player/PlayerAdvancementPacketEvent.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..f3869288ea0caf3dc916408006a8c74a180d08f2
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/event/player/PlayerAdvancementPacketEvent.java
+@@ -0,0 +1,50 @@
++package moe.caramel.daydream.event.player;
++
++import org.bukkit.entity.Player;
++import org.bukkit.event.Cancellable;
++import org.bukkit.event.HandlerList;
++import org.bukkit.event.player.PlayerEvent;
++import org.jetbrains.annotations.NotNull;
++
++public class PlayerAdvancementPacketEvent extends PlayerEvent implements Cancellable {
++
++    private static final HandlerList HANDLER_LIST = new HandlerList();
++    private final Action action;
++    private boolean cancelled;
++
++    public PlayerAdvancementPacketEvent(@NotNull Player player, @NotNull Action action) {
++        super(player);
++        this.action = action;
++    }
++
++    @Override
++    public boolean isCancelled() {
++        return this.cancelled;
++    }
++
++    @Override
++    public void setCancelled(boolean cancel) {
++        this.cancelled = cancel;
++    }
++
++    @Override
++    public @NotNull HandlerList getHandlers() {
++        return HANDLER_LIST;
++    }
++
++    @NotNull
++    public static HandlerList getHandlerList() {
++        return HANDLER_LIST;
++    }
++
++    @NotNull
++    public Action getAction() {
++        return action;
++    }
++
++    public enum Action {
++        OPENED_TAB,
++        CLOSED_SCREEN
++    }
++
++}

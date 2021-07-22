@@ -1,0 +1,54 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: LemonCaramel <admin@caramel.moe>
+Date: Thu, 22 Jul 2021 16:36:55 +0900
+Subject: [PATCH] Bring back Server#getServerName()
+
+
+diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
+index 55704bb89716aa388265afd7d422d4af2f62d34e..f3480f140784def3e0b87f4610faec9377b8475e 100644
+--- a/src/main/java/org/bukkit/Bukkit.java
++++ b/src/main/java/org/bukkit/Bukkit.java
+@@ -212,6 +212,20 @@ public final class Bukkit {
+         return server.getIp();
+     }
+ 
++    // Daydream start
++    /**
++     * Get the IP that this server is bound to, or empty string if not
++     * specified.
++     *
++     * @return the IP string that this server is bound to, otherwise empty
++     *     string
++     */
++    @NotNull
++    public static String getServerName() {
++        return server.getServerName();
++    }
++    // Daydream end
++
+     /**
+      * Get world type (level-type setting) for default world.
+      *
+diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
+index 724915c7a3a0c79d668759172099f97acaa15eca..919f8c8b3d59dc5016061a7b260d086c46a7b38a 100644
+--- a/src/main/java/org/bukkit/Server.java
++++ b/src/main/java/org/bukkit/Server.java
+@@ -177,6 +177,18 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
+     @NotNull
+     public String getIp();
+ 
++    // Daydream start
++    /**
++     * Get the IP that this server is bound to, or empty string if not
++     * specified.
++     *
++     * @return the IP string that this server is bound to, otherwise empty
++     *     string
++     */
++    @NotNull
++    public String getServerName();
++    // Daydream end
++
+     /**
+      * Get world type (level-type setting) for default world.
+      *
