@@ -21,6 +21,12 @@
 
 Maven 에서 "Daydream-API" 를 사용하는 경우:
 ```xml
+<repository>
+   <id>github</id>
+   <name>GitHub Apache Maven Daydream-API Packages</name>
+   <url>https://maven.pkg.github.com/LemonCaramel/Daydream-API</url>
+   <releases><enabled>true</enabled></releases>
+</repository>
 
 <dependency>
     <groupId>moe.caramel</groupId>
@@ -29,14 +35,18 @@ Maven 에서 "Daydream-API" 를 사용하는 경우:
     <scope>provided</scope>
 </dependency>
 ```
----
-Gradle (Kotlin DSL) 에서 "Daydream-API" 를 사용하는 경우:
-```kotlin
-repositories {
-    mavenLocal()
-}
 
-dependencies {
-    implementation("moe.caramel", "daydream-api", "1.16.5-R0.1-SNAPSHOT")
-}
+위 저장소를 사용할 경우 `{USER_HOME}/.m2/setting.xml` 의 설정이 필요합니다.
+```xml
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 https://maven.apache.org/xsd/settings-1.0.0.xsd">
+    <servers>
+        <server>
+            <id>github</id>
+            <username>유저 이름</username>
+            <password>토큰</password>
+        </server>
+    </servers>
+</settings>
 ```
+자세한 설명은 [여기](https://github.com/TobseF/github-plugin-registry-example#enable-authentication)를 참고해주세요.
