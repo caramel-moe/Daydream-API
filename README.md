@@ -36,7 +36,7 @@ Maven 에서 "Daydream-API" 를 사용하는 경우:
 </dependency>
 ```
 
-위 저장소를 사용할 경우 `{USER_HOME}/.m2/setting.xml` 의 설정이 필요합니다.
+위 저장소를 사용할 경우 `{USER_HOME}/.m2/settings.xml` 의 설정이 필요합니다.
 ```xml
 <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 https://maven.apache.org/xsd/settings-1.0.0.xsd">
