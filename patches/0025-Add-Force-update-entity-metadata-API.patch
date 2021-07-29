@@ -1,0 +1,22 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: LemonCaramel <admin@caramel.moe>
+Date: Thu, 29 Jul 2021 23:31:21 +0900
+Subject: [PATCH] Add Force update entity metadata API
+
+
+diff --git a/src/main/java/org/bukkit/entity/Entity.java b/src/main/java/org/bukkit/entity/Entity.java
+index 46985eaea3d3b00d1dd88c2dd5a2bc53d518c64f..4513041d4a67e7480b553cc80c30fd41c7146162 100644
+--- a/src/main/java/org/bukkit/entity/Entity.java
++++ b/src/main/java/org/bukkit/entity/Entity.java
+@@ -704,4 +704,11 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
+      */
+     public boolean isTicking();
+     // Paper end
++
++    // Daydream start
++    /**
++     * Send updated Entity Metadata packet to tracked player.
++     */
++    public void updateMetadata();
++    // Daydream end
+ }
