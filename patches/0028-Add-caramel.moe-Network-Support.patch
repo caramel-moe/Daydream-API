@@ -21,13 +21,15 @@ index 0000000000000000000000000000000000000000..705398836f0a82320e08a7b9deefb54a
 +}
 diff --git a/src/main/java/moe/caramel/daydream/user/CaramelUserData.java b/src/main/java/moe/caramel/daydream/user/CaramelUserData.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..a3a2fce6b155bf6f8d7bf350c271b69a18876282
+index 0000000000000000000000000000000000000000..70733077e3e596580016299b0a0c6704c6fc0260
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/user/CaramelUserData.java
-@@ -0,0 +1,179 @@
+@@ -0,0 +1,200 @@
 +package moe.caramel.daydream.user;
 +
 +import com.google.gson.JsonElement;
++import it.unimi.dsi.fastutil.ints.Int2ObjectArrayMap;
++import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 +import moe.caramel.daydream.user.json.DiscordVerificationDataLegacy;
 +import org.jetbrains.annotations.NotNull;
 +import org.jetbrains.annotations.Nullable;
@@ -188,6 +190,9 @@ index 0000000000000000000000000000000000000000..a3a2fce6b155bf6f8d7bf350c271b69a
 +     * Rank ENUMS
 +     */
 +    enum Rank {
++        UNKNOWN(-1, "Unknown"), // Error
++
++        /* Rank */
 +        GUEST(0, "Guest"),
 +        UNRANK(1, "Unrank"),
 +        // Undetermined
@@ -195,12 +200,28 @@ index 0000000000000000000000000000000000000000..a3a2fce6b155bf6f8d7bf350c271b69a
 +        DEV(8, "Developer"),
 +        ADMIN(9, "Admin");
 +
-+        public int id;
-+        public String name;
++        private final int id;
++        private final String name;
++        private final static Int2ObjectMap<Rank> RANK_MAP = new Int2ObjectArrayMap<>();
++        static { for (Rank rank : Rank.values()) RANK_MAP.put(rank.id, rank); }
 +
 +        Rank(int id, String name) {
 +            this.id = id;
 +            this.name = name;
++        }
++
++        public int getId() {
++            return id;
++        }
++
++        @NotNull
++        public String getName() {
++            return name;
++        }
++
++        @NotNull
++        public static Rank getRank(int id) {
++            return RANK_MAP.getOrDefault(id, UNKNOWN);
 +        }
 +    }
 +}
