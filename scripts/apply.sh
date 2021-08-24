@@ -34,7 +34,6 @@ function applyPatch {
     branch=$3
 
     cd "$basedir/$what"
-    git fetch --all
     git branch -f upstream "$branch" >/dev/null
 
     cd "$basedir"

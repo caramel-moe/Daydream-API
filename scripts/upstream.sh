@@ -19,9 +19,9 @@ if [[ "$1" == up* ]]; then
     )
 fi
 
+cd "$basedir/scripts/"
+./applyPaperPatches.sh "$basedir/Paper/"
 cd "$basedir/Paper/"
-
-./paper patch
 
 function tag {
 (
@@ -38,4 +38,4 @@ echo -e "$version"
 tag Paper-API 0
 
 pushRepo Paper-API $PAPER_API_REPO $tag
-
+cd "$basedir"
