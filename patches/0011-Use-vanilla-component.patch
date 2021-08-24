@@ -1,0 +1,21 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: LemonCaramel <admin@caramel.moe>
+Date: Fri, 6 Aug 2021 20:18:42 +0900
+Subject: [PATCH] Use vanilla component
+
+
+diff --git a/src/main/java/org/bukkit/command/Command.java b/src/main/java/org/bukkit/command/Command.java
+index c10fc8d2386301bc2caddcdb1cd18566bcaa8689..ae5e40934fe37c1d934941daadbdbbd9db540263 100644
+--- a/src/main/java/org/bukkit/command/Command.java
++++ b/src/main/java/org/bukkit/command/Command.java
+@@ -185,6 +185,10 @@ public abstract class Command {
+         }
+ 
+         if (permissionMessage == null) {
++            // Daydream start
++            if (Bukkit.getPermissionMessage().length() == 0) {
++                target.sendMessage(net.kyori.adventure.text.Component.translatable("command.failed", net.kyori.adventure.text.format.NamedTextColor.RED));
++            } else // Daydream end
+             target.sendMessage(Bukkit.getPermissionMessage()); // Paper
+         } else if (permissionMessage.length() != 0) {
+             for (String line : permissionMessage.replace("<permission>", permission).split("\n")) {

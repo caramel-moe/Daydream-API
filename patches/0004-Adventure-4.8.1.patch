@@ -1,11 +1,11 @@
 From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: LemonCaramel <admin@caramel.moe>
-Date: Thu, 22 Jul 2021 15:58:26 +0900
-Subject: [PATCH] Backport Adventure
+Date: Thu, 5 Aug 2021 18:04:37 +0900
+Subject: [PATCH] Adventure 4.8.1
 
 
 diff --git a/pom.xml b/pom.xml
-index e5e4fea964bb59f15173bdb46123208afe55f97d..adbfeb5d14d28e5932f6a3a745b023c77f142f4b 100644
+index 86730132610d35af497803de07e4a3156ecd2ef6..39034c21db024305ff28614aeab63bc94ae48bcc 100644
 --- a/pom.xml
 +++ b/pom.xml
 @@ -22,7 +22,7 @@
@@ -418,7 +418,7 @@ index c6bcf0dc3f77c631aa7eeb9b1e88b5bbfe445fc6..eb179aae1e1d2ce842442e49fe275827
      @Override
      public HandlerList getHandlers() {
 diff --git a/src/main/java/org/bukkit/SoundCategory.java b/src/main/java/org/bukkit/SoundCategory.java
-index ac5e263d737973af077e3406a84a84baca4370db..56f131d284d31ddd86cc55a7e281712ecb0e9488 100644
+index ac5e263d737973af077e3406a84a84baca4370db..5b7f544c3aa6697cad8c8289450b5644e9905376 100644
 --- a/src/main/java/org/bukkit/SoundCategory.java
 +++ b/src/main/java/org/bukkit/SoundCategory.java
 @@ -3,7 +3,7 @@ package org.bukkit;
@@ -436,9 +436,9 @@ index ac5e263d737973af077e3406a84a84baca4370db..56f131d284d31ddd86cc55a7e281712e
      VOICE;
 +
 +    // Daydream start - implement Sound.Source.Provider
-+    // caramel comment - 1.16.5 서버 구동기의 Java 16 호환성 확인 후 Java 14 모듈형 switch 로 다시 변경
++    // caramel comment - Java 14 Style -> Legacy Style
 +    @Override
-+    public net.kyori.adventure.sound.Sound.@org.jetbrains.annotations.NotNull Source soundSource() {
++    public @org.jetbrains.annotations.NotNull net.kyori.adventure.sound.Sound.Source soundSource() {
 +        switch (this) {
 +            case MASTER:
 +                return net.kyori.adventure.sound.Sound.Source.MASTER;
@@ -478,6 +478,34 @@ index 6ea9b54d95d80070c01a612c0ce2ab37f0b4ad41..18b48bdbc41a06d0685079683b0322f6
       * @return Text on the given line
 +     * @throws IndexOutOfBoundsException Thrown when the line does not exist
       * @deprecated in favour of {@link #line(int)}
+      */
+     @NotNull
+diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
+index 27848ad0eee667e515685a5f1cef3e9bfc7a3f53..08c46516740e125b7a2c687d2340d05a8b3f8293 100644
+--- a/src/main/java/org/bukkit/entity/Player.java
++++ b/src/main/java/org/bukkit/entity/Player.java
+@@ -104,7 +104,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+      *
+      * @return the player list name
+      */
+-    @Nullable net.kyori.adventure.text.Component playerListName();
++    @NotNull net.kyori.adventure.text.Component playerListName();
+ 
+     /**
+      * Gets the currently displayed player list header for this player.
+diff --git a/src/main/java/org/bukkit/event/player/PlayerLocaleChangeEvent.java b/src/main/java/org/bukkit/event/player/PlayerLocaleChangeEvent.java
+index 84521186404b8e43c81a2f9513dce2be40d27840..ebd499c1a2d11ea068e8c374edbc3967e4cece3d 100644
+--- a/src/main/java/org/bukkit/event/player/PlayerLocaleChangeEvent.java
++++ b/src/main/java/org/bukkit/event/player/PlayerLocaleChangeEvent.java
+@@ -31,9 +31,8 @@ public class PlayerLocaleChangeEvent extends PlayerEvent {
+     }
+ 
+     /**
+-     * @see Player#getLocale()
+-     *
+      * @return the player's new locale
++     * @see Player#getLocale()
+      * @deprecated in favour of {@link #locale()}
       */
      @NotNull
 diff --git a/src/test/java/org/bukkit/AnnotationTest.java b/src/test/java/org/bukkit/AnnotationTest.java

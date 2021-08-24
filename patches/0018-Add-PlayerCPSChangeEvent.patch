@@ -1,15 +1,15 @@
 From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: LemonCaramel <admin@caramel.moe>
-Date: Thu, 22 Jul 2021 16:25:36 +0900
-Subject: [PATCH] Add Player CPS & KPS limit option with event
+Date: Sun, 8 Aug 2021 21:36:50 +0900
+Subject: [PATCH] Add PlayerCPSChangeEvent
 
 
 diff --git a/src/main/java/moe/caramel/daydream/event/player/PlayerCPSChangeEvent.java b/src/main/java/moe/caramel/daydream/event/player/PlayerCPSChangeEvent.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..36c611927b9c6b6edf2ebe7323d6edc3582e3d37
+index 0000000000000000000000000000000000000000..d33325615793fceba08d631e159ea324e9fe9548
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/event/player/PlayerCPSChangeEvent.java
-@@ -0,0 +1,54 @@
+@@ -0,0 +1,53 @@
 +package moe.caramel.daydream.event.player;
 +
 +import org.bukkit.entity.Player;
@@ -62,22 +62,17 @@ index 0000000000000000000000000000000000000000..36c611927b9c6b6edf2ebe7323d6edc3
 +        LEFT_CLICK,
 +        DROP_KEY
 +    }
-+
 +}
+\ No newline at end of file
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index d667137301e830b761ba179dcbd0b51ee3277633..6ab3291cc0db3198179829b0d9d8fc715d48b5d5 100644
+index 24b1559c1770bb7933354c21e9bc06bd9323798c..b911275c79fa2e0fe5140712d82eee8e3ad02527 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
-@@ -2044,6 +2044,53 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+@@ -2033,6 +2033,38 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      Set<Player> getTrackedPlayers();
      // Paper end
  
 +    // Daydream start
-+    /**
-+     * @param maxTick set Player's max allow flying tick
-+     */
-+    void setMaxAllowFlyingTick(int maxTick);
-+
 +    /**
 +     * @param maxCPS set Player's max left click KPS
 +     */
@@ -87,16 +82,6 @@ index d667137301e830b761ba179dcbd0b51ee3277633..6ab3291cc0db3198179829b0d9d8fc71
 +     * @param maxKPS set Player's max Drop key KPS
 +     */
 +    void setMaxDropKeyKPS(int maxKPS);
-+
-+    /**
-+     * @return Return Player's current flying tick
-+     */
-+    int getAboveGroundTick();
-+
-+    /**
-+     * @return Return Player's max allow flying tick
-+     */
-+    int getMaxAllowFlyingTick();
 +
 +    /**
 +     * @return Return Player's max left click CPS

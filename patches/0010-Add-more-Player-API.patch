@@ -1,0 +1,97 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: LemonCaramel <admin@caramel.moe>
+Date: Fri, 6 Aug 2021 20:08:04 +0900
+Subject: [PATCH] Add more Player API
+
+
+diff --git a/pom.xml b/pom.xml
+index 39034c21db024305ff28614aeab63bc94ae48bcc..adbfeb5d14d28e5932f6a3a745b023c77f142f4b 100644
+--- a/pom.xml
++++ b/pom.xml
+@@ -30,6 +30,12 @@
+             <id>sonatype</id>
+             <url>https://oss.sonatype.org/content/groups/public/</url>
+         </repository>
++        <!-- Daydream - Add Authlib for Profile API -->
++        <repository>
++            <id>minecraft-repo</id>
++            <url>https://libraries.minecraft.net/</url>
++        </repository>
++        <!-- Daydream end -->
+     </repositories>
+ 
+     <!-- Paper start -->
+@@ -71,6 +77,14 @@
+             <version>8.2.2</version>
+             <scope>provided</scope>
+         </dependency>
++        <!-- Daydream - Add Authlib for Profile API -->
++        <dependency>
++            <groupId>com.mojang</groupId>
++            <artifactId>authlib</artifactId>
++            <version>2.1.28</version> <!-- keep in sync with major MC versions -->
++            <scope>compile</scope> <!-- expose to Plugins -->
++        </dependency>
++        <!-- Daydream end -->
+         <dependency>
+             <groupId>commons-lang</groupId>
+             <artifactId>commons-lang</artifactId>
+diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
+index 08c46516740e125b7a2c687d2340d05a8b3f8293..24b1559c1770bb7933354c21e9bc06bd9323798c 100644
+--- a/src/main/java/org/bukkit/entity/Player.java
++++ b/src/main/java/org/bukkit/entity/Player.java
+@@ -1872,6 +1872,24 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+         return net.kyori.adventure.text.event.HoverEvent.showEntity(op.apply(net.kyori.adventure.text.event.HoverEvent.ShowEntity.of(this.getType().getKey(), this.getUniqueId(), this.displayName())));
+     }
+ 
++    // Daydream start
++    /**
++     * Send a change game state packet to this player
++     *
++     * @param reason Reason Value
++     * @param value Value
++     */
++    void sendChangeGameState(int reason, int value);
++
++    /**
++     * Send a CustomPayload packet to this player
++     *
++     * @param channel channel Value
++     * @param value Value
++     */
++    void sendCustomPayload(@NotNull org.bukkit.NamespacedKey channel, @NotNull String value);
++    // Daydream end
++
+     /**
+      * Request that the player's client download and switch resource packs.
+      * <p>
+@@ -1910,6 +1928,13 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+     @Nullable
+     org.bukkit.event.player.PlayerResourcePackStatusEvent.Status getResourcePackStatus();
+ 
++    // Daydream start
++    /**
++     * @param status resource pack status
++     */
++    void setResourcePackStatus(@NotNull org.bukkit.event.player.PlayerResourcePackStatusEvent.Status status);
++    // Daydream end
++
+     /**
+      * @return the most recent resource pack hash received from the player,
+      *         or null if no hash has ever been received from this player.
+@@ -1933,6 +1958,15 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+     @NotNull
+     PlayerProfile getPlayerProfile();
+ 
++    // Daydream start
++    /**
++     * Gets this players profile
++     * @return The players profile object
++     */
++    @NotNull
++    com.mojang.authlib.GameProfile getProfile();
++    // Daydream end
++
+     /**
+      * Changes the PlayerProfile for this player. This will cause this player
+      * to be reregistered to all clients that can currently see this player

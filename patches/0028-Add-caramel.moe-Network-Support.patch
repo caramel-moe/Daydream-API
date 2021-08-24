@@ -1,0 +1,345 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: LemonCaramel <admin@caramel.moe>
+Date: Tue, 24 Aug 2021 00:10:34 +0900
+Subject: [PATCH] Add caramel.moe Network Support
+
+
+diff --git a/src/main/java/moe/caramel/daydream/DaydreamConstants.java b/src/main/java/moe/caramel/daydream/DaydreamConstants.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..705398836f0a82320e08a7b9deefb54a7b8909ca
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/DaydreamConstants.java
+@@ -0,0 +1,9 @@
++package moe.caramel.daydream;
++
++public final class DaydreamConstants {
++
++    /* caramel.moe Network Data */
++    private static boolean USE_CARAMEL_NETWORK_DATA = false;
++    public static void enableCaramelNetworkData() { USE_CARAMEL_NETWORK_DATA = true; }
++    public static boolean useCaramelNetworkData() { return USE_CARAMEL_NETWORK_DATA; }
++}
+diff --git a/src/main/java/moe/caramel/daydream/user/CaramelUserData.java b/src/main/java/moe/caramel/daydream/user/CaramelUserData.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..a3a2fce6b155bf6f8d7bf350c271b69a18876282
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/user/CaramelUserData.java
+@@ -0,0 +1,179 @@
++package moe.caramel.daydream.user;
++
++import com.google.gson.JsonElement;
++import moe.caramel.daydream.user.json.DiscordVerificationDataLegacy;
++import org.jetbrains.annotations.NotNull;
++import org.jetbrains.annotations.Nullable;
++
++import java.util.Date;
++import java.util.UUID;
++
++public interface CaramelUserData {
++
++    /**
++     * 플레이어 데이터 및 API 버전을 가져옵니다.
++     *
++     * @return 유저 데이터 및 API 버전
++     */
++    default int getVersion() {
++        return 1;
++    }
++
++    /**
++     * 이 플레이어 데이터가 caramel.moe 네트워크에서 가져온 정보인지 확인합니다.
++     *
++     * @return 만약 {@code true}를 반환 시 공인 데이터입니다.
++     * 로컬 서버 또는 외부 프로그램에 의해 데이터가 생성된 경우 {@code false}를 반환합니다.
++     */
++    boolean isCertifiedData();
++
++    /**
++     * 플레이어의 고유 ID를 가져옵니다.
++     *
++     * @return 플레이어의 고유 ID
++     */
++    int getId();
++
++    /**
++     * 플레이어의 고유 UUID를 가져옵니다.
++     *
++     * @return 플레이어의 고유 UUID
++     */
++    @NotNull
++    UUID getUUID();
++
++    /**
++     * 플레이어의 닉네임을 가져옵니다.
++     *
++     * @return 플레이어의 닉네임
++     */
++    @NotNull
++    String getName();
++
++    /**
++     * 플레이어의 네트워크 랭크를 가져옵니다.
++     *
++     * @return 플레이어의 네트워크 랭크
++     */
++    @NotNull
++    Rank getRank();
++
++    /**
++     * 플레이어의 네트워크 경험치를 가져옵니다.
++     *
++     * @deprecated 자동 레벨 계산 시스템과 함께 시스템 재구축이 예정되어 있습니다.
++     * @return 플레이어의 네트워크 경험치
++     */
++    @Deprecated
++    int getExperience();
++
++    /**
++     * 플레이어의 네트워크 경험치를 추가합니다.
++     *
++     * @param experience 추가할 경험치
++     * @param reason 추가 이유
++     * @deprecated 자동 레벨 계산 시스템과 함께 시스템 재구축이 예정되어 있습니다.
++     * @return 플레이어의 이전 네트워크 경험치
++     */
++    @Deprecated
++    int addExperience(int experience, String reason);
++
++    /**
++     * 플레이어가 소유하고 있는 캐시를 가져옵니다.
++     *
++     * @return 플레이어의 캐시
++     */
++    int getCash();
++
++    /**
++     * 플레이어가 소유하고 있는 캐시를 추가합니다.
++     *
++     * @param cash 추가할 캐시
++     * @param reason 추가 이유
++     * @return 플레이어의 이전 캐시
++     */
++    @Deprecated
++    int increaseCash(int cash, String reason);
++
++    /**
++     * 플레이어가 소유하고 있는 캐시를 차감합니다.
++     *
++     * @param cash 차감할 캐시
++     * @param reason 차감 이유
++     * @return 플레이어의 이전 캐시
++     */
++    @Deprecated
++    int decreaseCash(int cash, String reason);
++
++    /**
++     * 플레이어의 치장품 데이터를 가져옵니다.
++     *
++     * @deprecated 시스템 재구축이 예정되어 있습니다.
++     * @return 플레이어의 치장 데이터
++     */
++    @NotNull
++    @Deprecated
++    JsonElement getEmbellishment();
++
++    /**
++     * 플레이어의 Discord 데이터를 가져옵니다.
++     *
++     * @deprecated 시스템 재구축이 예정되어 있습니다.
++     * @return 플레이어의 Discord 데이터
++     */
++    @NotNull
++    @Deprecated
++    DiscordVerificationDataLegacy getDiscordVerificationLegacy();
++
++    /**
++     * 플레이어의 Mute 데이터를 가져옵니다.
++     *
++     * @return 플레이어의 Mute 데이터
++     */
++    @Nullable
++    Date getMute();
++
++    /**
++     * 플레이어의 가입 날짜를 가져옵니다.
++     *
++     * @return 플레이어의 가입 날짜
++     */
++    @NotNull
++    Date getRegisterTime();
++
++    /**
++     * 플레이어의 마지막 업데이트 날짜 가져옵니다.
++     *
++     * @return 플레이어의 마지막 업데이트 날짜
++     */
++    @NotNull
++    Date getLastUpdateTime();
++
++    /**
++     * 플레이어의 접속 시간을 가져옵니다.
++     *
++     * @return 플레이어의 접속 시간
++     */
++    @NotNull
++    Date getJoinTime();
++
++    /**
++     * Rank ENUMS
++     */
++    enum Rank {
++        GUEST(0, "Guest"),
++        UNRANK(1, "Unrank"),
++        // Undetermined
++        STAFF(7, "Staff"),
++        DEV(8, "Developer"),
++        ADMIN(9, "Admin");
++
++        public int id;
++        public String name;
++
++        Rank(int id, String name) {
++            this.id = id;
++            this.name = name;
++        }
++    }
++}
+diff --git a/src/main/java/moe/caramel/daydream/user/json/DiscordVerificationDataLegacy.java b/src/main/java/moe/caramel/daydream/user/json/DiscordVerificationDataLegacy.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..da9c9caba5cce9a109a79ddc0ecf26913350e8aa
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/user/json/DiscordVerificationDataLegacy.java
+@@ -0,0 +1,75 @@
++package moe.caramel.daydream.user.json;
++
++import org.jetbrains.annotations.Nullable;
++
++import java.util.Date;
++
++public class DiscordVerificationDataLegacy {
++
++    private String ID, RequestIP;
++    private Date VerificateDate, RequestDate;
++    private int PIN;
++    private boolean Leave, Force;
++
++    /**
++     * Discord ID를 반환합니다.
++     *
++     * @return Discord ID
++     */
++    @Nullable
++    public String getID() {
++        return ID;
++    }
++
++    /**
++     * 인증에 사용 된 PIN 번호를 반환합니다.
++     *
++     * @return 인증 PIN
++     */
++    public int getPIN() {
++        return PIN;
++    }
++
++    /**
++     * 인증을 요청한 날짜를 반환합니다.
++     *
++     * @return 인증을 요청한 날짜
++     */
++    @Nullable
++    public Date getRequestDate() {
++        return RequestDate;
++    }
++
++    /**
++     * 인증을 요청한 IP를 반환합니다.
++     *
++     * @return 인증을 요청한 IP
++     */
++    @Nullable
++    public String getRequestIP() {
++        return RequestIP;
++    }
++
++    /**
++     * 인증에 성공한 날짜를 반환합니다.
++     *
++     * @return 인증에 성공한 날짜
++     */
++    @Nullable
++    public Date getVerificateDate() {
++        return VerificateDate;
++    }
++
++    /**
++     * Discord 커뮤니티 퇴장 여부를 반환합니다.
++     *
++     * @return 만약 {@code true}인 경우 Discord 커뮤니티 퇴장
++     */
++    public boolean isLeft() {
++        return Leave;
++    }
++
++    public boolean isForce() {
++        return Force;
++    }
++}
+diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
+index b911275c79fa2e0fe5140712d82eee8e3ad02527..65964b81ccdaa5ba1e8e90a04208cc4e9ae5022e 100644
+--- a/src/main/java/org/bukkit/entity/Player.java
++++ b/src/main/java/org/bukkit/entity/Player.java
+@@ -41,6 +41,10 @@ import org.jetbrains.annotations.Nullable;
+  */
+ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginMessageRecipient, net.kyori.adventure.identity.Identified, com.destroystokyo.paper.network.NetworkClient { // Paper
+ 
++    // Daydream start
++    @NotNull moe.caramel.daydream.user.CaramelUserData getUserData();
++    // Daydream end
++
+     // Paper start
+     @Override
+     default @NotNull net.kyori.adventure.identity.Identity identity() {
+diff --git a/src/main/java/org/bukkit/event/player/AsyncPlayerPreLoginEvent.java b/src/main/java/org/bukkit/event/player/AsyncPlayerPreLoginEvent.java
+index 77aefda5aac4602bf5bf71c29600e7450defdd4e..a75387ecf35d91bbb61695f0c0343ab4e99172d7 100644
+--- a/src/main/java/org/bukkit/event/player/AsyncPlayerPreLoginEvent.java
++++ b/src/main/java/org/bukkit/event/player/AsyncPlayerPreLoginEvent.java
+@@ -4,6 +4,7 @@ import java.net.InetAddress;
+ import java.util.UUID;
+ 
+ import com.destroystokyo.paper.profile.PlayerProfile;
++import moe.caramel.daydream.user.CaramelUserData; // Daydream
+ import org.bukkit.Bukkit;
+ import org.bukkit.event.Event;
+ import org.bukkit.event.HandlerList;
+@@ -22,6 +23,7 @@ public class AsyncPlayerPreLoginEvent extends Event {
+     private final InetAddress ipAddress;
+     private final InetAddress rawAddress; // Paper
+     //private UUID uniqueId; // Paper - Not used anymore
++    private CaramelUserData userData; // Daydream
+ 
+     @Deprecated
+     public AsyncPlayerPreLoginEvent(@NotNull final String name, @NotNull final InetAddress ipAddress) {
+@@ -231,6 +233,22 @@ public class AsyncPlayerPreLoginEvent extends Event {
+         this.message = org.bukkit.Bukkit.getUnsafe().legacyComponentSerializer().deserialize(message); // Paper
+     }
+ 
++    // Daydream start
++    @NotNull
++    public CaramelUserData getUserData() {
++        return userData;
++    }
++
++    /**
++     * caramel.moe 네트워크 유저 데이터
++     *
++     * @param userData caramel.moe 네트워크 유저 데이터
++     */
++    public void setUserData(@NotNull CaramelUserData userData) {
++        this.userData = userData;
++    }
++    // Daydream end
++
+     /**
+      * Gets the player's name.
+      *

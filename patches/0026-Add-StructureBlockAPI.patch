@@ -1,7 +1,7 @@
 From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: LemonCaramel <admin@caramel.moe>
-Date: Thu, 22 Jul 2021 16:46:59 +0900
-Subject: [PATCH] Add Structure API
+Date: Sun, 8 Aug 2021 23:28:55 +0900
+Subject: [PATCH] Add StructureBlockAPI
 
 https://github.com/Shynixn/StructureBlockLib
 
@@ -1478,60 +1478,67 @@ index 0000000000000000000000000000000000000000..b34976f127490376866fce50e4deadc7
 +public interface StructureSaver extends StructureSaverAbstract<Location, Vector> {
 +}
 diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
-index f3480f140784def3e0b87f4610faec9377b8475e..ac89ee9ec90160b063d826f0e37cafd187111b5f 100644
+index f3480f140784def3e0b87f4610faec9377b8475e..e7808e232d30ea97048ddab3839618849c9cf68e 100644
 --- a/src/main/java/org/bukkit/Bukkit.java
 +++ b/src/main/java/org/bukkit/Bukkit.java
-@@ -50,12 +50,14 @@ import org.bukkit.util.CachedServerIcon;
- import org.jetbrains.annotations.Contract;
- import org.jetbrains.annotations.NotNull;
- import org.jetbrains.annotations.Nullable;
+@@ -13,6 +13,7 @@ import java.util.Set;
+ import java.util.UUID;
+ import java.util.function.Consumer;
+ import java.util.logging.Logger;
 +import moe.caramel.daydream.structure.bukkit.api.StructureAPI; // Daydream
- 
- /**
-  * Represents the Bukkit core, for version and Server singleton handling
-  */
- public final class Bukkit {
-     private static Server server;
-+    private static StructureAPI structureAPI; // Daydream
- 
-     /**
-      * Static class cannot be initialized.
-@@ -88,6 +90,33 @@ public final class Bukkit {
-         server.getLogger().info("This server is running " + getName() + " version " + getVersion() + " (Implementing API version " + getBukkitVersion() + ")");
+ import org.bukkit.Warning.WarningState;
+ import org.bukkit.advancement.Advancement;
+ import org.bukkit.block.data.BlockData;
+@@ -130,6 +131,18 @@ public final class Bukkit {
      }
+     // Paper end
  
 +    // Daydream start
 +    /**
-+     * Gets the current {@link StructureAPI} singleton
++     * Gets the {@link StructureAPI}
 +     *
 +     * @return StructureAPI instance being ran
 +     */
 +    @NotNull
 +    public static StructureAPI getStructureAPI() {
-+        return structureAPI;
-+    }
-+
-+    /**
-+     * Attempts to set the {@link StructureAPI} singleton.
-+     * <p>
-+     * This cannot be done if the StructureAPI is already set.
-+     *
-+     * @param structureAPI Server instance
-+     */
-+    public static void setStructureAPI(@NotNull StructureAPI structureAPI) {
-+        if (Bukkit.structureAPI != null) {
-+            throw new UnsupportedOperationException("Cannot redefine singleton setStructureAPI");
-+        }
-+
-+        Bukkit.structureAPI = structureAPI;
++        return server.getStructureAPI();
 +    }
 +    // Daydream end
 +
      /**
-      * Gets the name of this server implementation.
-      *
+      * Gets a view of all currently logged in players. This {@linkplain
+      * Collections#unmodifiableCollection(Collection) view} is a reused
+diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
+index 919f8c8b3d59dc5016061a7b260d086c46a7b38a..38e63ad7b26759944c190e2d649321099a8d9d7b 100644
+--- a/src/main/java/org/bukkit/Server.java
++++ b/src/main/java/org/bukkit/Server.java
+@@ -13,6 +13,7 @@ import java.util.Set;
+ import java.util.UUID;
+ import java.util.function.Consumer;
+ import java.util.logging.Logger;
++import moe.caramel.daydream.structure.bukkit.api.StructureAPI; // Daydream
+ import org.bukkit.Warning.WarningState;
+ import org.bukkit.advancement.Advancement;
+ import org.bukkit.block.data.BlockData;
+@@ -107,6 +108,16 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
+     String getMinecraftVersion();
+     // Paper end
+ 
++    // Daydream start
++    /**
++     * Gets the current {@link StructureAPI} singleton
++     *
++     * @return StructureAPI instance
++     */
++    @NotNull
++    public StructureAPI getStructureAPI();
++    // Daydream end
++
+     /**
+      * Gets a view of all currently logged in players. This {@linkplain
+      * Collections#unmodifiableCollection(Collection) view} is a reused
 diff --git a/src/test/java/org/bukkit/AnnotationTest.java b/src/test/java/org/bukkit/AnnotationTest.java
-index bd723b22ca8b9cadd5b88751f2cccf1fca7beb70..c6a2798f2c1568419a7f775c66ab8f63a37d00cd 100644
+index bd723b22ca8b9cadd5b88751f2cccf1fca7beb70..72398d786b23bca36098deccc60bd33c46fd39c7 100644
 --- a/src/test/java/org/bukkit/AnnotationTest.java
 +++ b/src/test/java/org/bukkit/AnnotationTest.java
 @@ -57,8 +57,18 @@ public class AnnotationTest {
@@ -1539,7 +1546,7 @@ index bd723b22ca8b9cadd5b88751f2cccf1fca7beb70..c6a2798f2c1568419a7f775c66ab8f63
          "co/aikar/timings/TimingHistory$3",
          "co/aikar/timings/TimingHistory$4",
 -        "co/aikar/timings/TimingHistoryEntry$1"
-+        "co/aikar/timings/TimingHistoryEntry$1",
++        "co/aikar/timings/TimingHistoryEntry$1", // Daydream
          // Paper end
 +        // Daydream start
 +        "moe/caramel/daydream/structure/api/entity/ProgressToken",

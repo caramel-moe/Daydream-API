@@ -1,16 +1,16 @@
 From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: LemonCaramel <admin@caramel.moe>
-Date: Thu, 22 Jul 2021 16:23:41 +0900
-Subject: [PATCH] Add PlayerStatisticPacketEvent
+Date: Sun, 8 Aug 2021 15:45:15 +0900
+Subject: [PATCH] Add PlayerStatisticOpenEvent
 
 
-diff --git a/src/main/java/moe/caramel/daydream/event/player/PlayerStatisticPacketEvent.java b/src/main/java/moe/caramel/daydream/event/player/PlayerStatisticPacketEvent.java
+diff --git a/src/main/java/moe/caramel/daydream/event/packet/PlayerStatisticOpenEvent.java b/src/main/java/moe/caramel/daydream/event/packet/PlayerStatisticOpenEvent.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..b89bcc521a576c21ea9ed12662f8b012acff4006
+index 0000000000000000000000000000000000000000..d5cf91ec356b9171597c0aae876ea15cf061a129
 --- /dev/null
-+++ b/src/main/java/moe/caramel/daydream/event/player/PlayerStatisticPacketEvent.java
++++ b/src/main/java/moe/caramel/daydream/event/packet/PlayerStatisticOpenEvent.java
 @@ -0,0 +1,45 @@
-+package moe.caramel.daydream.event.player;
++package moe.caramel.daydream.event.packet;
 +
 +import org.bukkit.entity.Player;
 +import org.bukkit.event.Cancellable;
@@ -18,12 +18,12 @@ index 0000000000000000000000000000000000000000..b89bcc521a576c21ea9ed12662f8b012
 +import org.bukkit.event.player.PlayerEvent;
 +import org.jetbrains.annotations.NotNull;
 +
-+public class PlayerStatisticPacketEvent extends PlayerEvent implements Cancellable {
++public class PlayerStatisticOpenEvent extends PlayerEvent implements Cancellable {
 +
 +    private static final HandlerList HANDLER_LIST = new HandlerList();
 +    private boolean cancelled;
 +
-+    public PlayerStatisticPacketEvent(@NotNull Player player) {
++    public PlayerStatisticOpenEvent(@NotNull Player player) {
 +        super(player);
 +    }
 +
@@ -55,3 +55,4 @@ index 0000000000000000000000000000000000000000..b89bcc521a576c21ea9ed12662f8b012
 +        return HANDLER_LIST;
 +    }
 +}
+\ No newline at end of file

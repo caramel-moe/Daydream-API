@@ -1,16 +1,16 @@
 From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: LemonCaramel <admin@caramel.moe>
-Date: Thu, 22 Jul 2021 16:24:20 +0900
-Subject: [PATCH] Add PlayerAdvancementPacketEvent
+Date: Sun, 8 Aug 2021 21:16:23 +0900
+Subject: [PATCH] Add PlayerAdvancementScreenEvent
 
 
-diff --git a/src/main/java/moe/caramel/daydream/event/player/PlayerAdvancementPacketEvent.java b/src/main/java/moe/caramel/daydream/event/player/PlayerAdvancementPacketEvent.java
+diff --git a/src/main/java/moe/caramel/daydream/event/packet/PlayerAdvancementScreenEvent.java b/src/main/java/moe/caramel/daydream/event/packet/PlayerAdvancementScreenEvent.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..f3869288ea0caf3dc916408006a8c74a180d08f2
+index 0000000000000000000000000000000000000000..8af4668a917a4f6e410a89de3e42b71da435f649
 --- /dev/null
-+++ b/src/main/java/moe/caramel/daydream/event/player/PlayerAdvancementPacketEvent.java
-@@ -0,0 +1,50 @@
-+package moe.caramel.daydream.event.player;
++++ b/src/main/java/moe/caramel/daydream/event/packet/PlayerAdvancementScreenEvent.java
+@@ -0,0 +1,49 @@
++package moe.caramel.daydream.event.packet;
 +
 +import org.bukkit.entity.Player;
 +import org.bukkit.event.Cancellable;
@@ -18,13 +18,13 @@ index 0000000000000000000000000000000000000000..f3869288ea0caf3dc916408006a8c74a
 +import org.bukkit.event.player.PlayerEvent;
 +import org.jetbrains.annotations.NotNull;
 +
-+public class PlayerAdvancementPacketEvent extends PlayerEvent implements Cancellable {
++public class PlayerAdvancementScreenEvent extends PlayerEvent implements Cancellable {
 +
 +    private static final HandlerList HANDLER_LIST = new HandlerList();
 +    private final Action action;
 +    private boolean cancelled;
 +
-+    public PlayerAdvancementPacketEvent(@NotNull Player player, @NotNull Action action) {
++    public PlayerAdvancementScreenEvent(@NotNull Player player, @NotNull Action action) {
 +        super(player);
 +        this.action = action;
 +    }
@@ -58,5 +58,5 @@ index 0000000000000000000000000000000000000000..f3869288ea0caf3dc916408006a8c74a
 +        OPENED_TAB,
 +        CLOSED_SCREEN
 +    }
-+
 +}
+\ No newline at end of file

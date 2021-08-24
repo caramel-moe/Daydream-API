@@ -1,16 +1,16 @@
 From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: LemonCaramel <admin@caramel.moe>
-Date: Thu, 22 Jul 2021 16:24:05 +0900
-Subject: [PATCH] Add PlayerLimitExceededPacketEvent
+Date: Sun, 8 Aug 2021 21:46:01 +0900
+Subject: [PATCH] Add PlayerPacketExceededEvent
 
 
-diff --git a/src/main/java/moe/caramel/daydream/event/player/PlayerLimitExceededPacketEvent.java b/src/main/java/moe/caramel/daydream/event/player/PlayerLimitExceededPacketEvent.java
+diff --git a/src/main/java/moe/caramel/daydream/event/packet/PlayerPacketExceededEvent.java b/src/main/java/moe/caramel/daydream/event/packet/PlayerPacketExceededEvent.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..c7226df1f5fc3107432fb32e026a8662dcec3470
+index 0000000000000000000000000000000000000000..f43a5ec9ec5bfc631b0695c846b0f4653903e222
 --- /dev/null
-+++ b/src/main/java/moe/caramel/daydream/event/player/PlayerLimitExceededPacketEvent.java
-@@ -0,0 +1,63 @@
-+package moe.caramel.daydream.event.player;
++++ b/src/main/java/moe/caramel/daydream/event/packet/PlayerPacketExceededEvent.java
+@@ -0,0 +1,62 @@
++package moe.caramel.daydream.event.packet;
 +
 +import net.kyori.adventure.text.Component;
 +import org.bukkit.entity.Player;
@@ -19,7 +19,7 @@ index 0000000000000000000000000000000000000000..c7226df1f5fc3107432fb32e026a8662
 +import org.bukkit.event.player.PlayerEvent;
 +import org.jetbrains.annotations.NotNull;
 +
-+public class PlayerLimitExceededPacketEvent extends PlayerEvent implements Cancellable {
++public class PlayerPacketExceededEvent extends PlayerEvent implements Cancellable {
 +
 +    private static final HandlerList HANDLER_LIST = new HandlerList();
 +
@@ -28,7 +28,7 @@ index 0000000000000000000000000000000000000000..c7226df1f5fc3107432fb32e026a8662
 +    private final float amount;
 +    private boolean cancelled;
 +
-+    public PlayerLimitExceededPacketEvent(@NotNull Player player, @NotNull Component message, int limit, float amount) {
++    public PlayerPacketExceededEvent(@NotNull Player player, @NotNull Component message, int limit, float amount) {
 +        super(player);
 +        this.message = message;
 +        this.limit = limit;
@@ -71,5 +71,5 @@ index 0000000000000000000000000000000000000000..c7226df1f5fc3107432fb32e026a8662
 +    public static HandlerList getHandlerList() {
 +        return HANDLER_LIST;
 +    }
-+
 +}
+\ No newline at end of file
