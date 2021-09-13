@@ -402,7 +402,7 @@ index 0000000000000000000000000000000000000000..583d1b068870dac7c03da2326fed16bd
 +}
 diff --git a/src/main/java/moe/caramel/daydream/scoreboard/common/EntryBuilder.java b/src/main/java/moe/caramel/daydream/scoreboard/common/EntryBuilder.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..ce3c2896ab25288a4d89a2c74cd4ae219f202bce
+index 0000000000000000000000000000000000000000..375ce4bba3ff324eebc0d1bfb339ae0d57774e35
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/scoreboard/common/EntryBuilder.java
 @@ -0,0 +1,49 @@
@@ -451,7 +451,7 @@ index 0000000000000000000000000000000000000000..ce3c2896ab25288a4d89a2c74cd4ae21
 +
 +    @NotNull
 +    private String adapt(@NotNull String entry) {
-+        if (entry.length() > 16) entry = entry.substring(0, 15);
++        if (entry.length() > 40) entry = entry.substring(0, 39);
 +        return org.bukkit.ChatColor.translateAlternateColorCodes('&', entry);
 +    }
 +}
