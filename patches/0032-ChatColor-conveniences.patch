@@ -1,0 +1,117 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: William Blake Galbreath <Blake.Galbreath@GMail.com>
+Date: Fri, 10 Jul 2020 12:43:25 -0500
+Subject: [PATCH] ChatColor conveniences
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+The MIT License (MIT)
+=====================
+
+Permission is hereby granted, free of charge, to any person
+obtaining a copy of this software and associated documentation
+files (the “Software”), to deal in the Software without
+restriction, including without limitation the rights to use,
+copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the
+Software is furnished to do so, subject to the following
+conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+OTHER DEALINGS IN THE SOFTWARE.
+
+diff --git a/src/main/java/org/bukkit/ChatColor.java b/src/main/java/org/bukkit/ChatColor.java
+index 4594701d77c5d0f744bece871b98d9f6f73eb5a7..0aa79a9fbd5861d217a877a36e985e18fba6256f 100644
+--- a/src/main/java/org/bukkit/ChatColor.java
++++ b/src/main/java/org/bukkit/ChatColor.java
+@@ -2,6 +2,7 @@ package org.bukkit;
+ 
+ import com.google.common.collect.Maps;
+ import java.util.Map;
++import java.util.regex.Matcher;
+ import java.util.regex.Pattern;
+ import org.apache.commons.lang.Validate;
+ import org.jetbrains.annotations.Contract;
+@@ -413,4 +414,72 @@ public enum ChatColor {
+             BY_CHAR.put(color.code, color);
+         }
+     }
++
++    // Purpur start
++    /**
++     * Convert legacy string into a string ready to be parsed by MiniMessage
++     *
++     * @param str Legacy string
++     * @return MiniMessage ready string
++     */
++    @NotNull
++    public static String toMM(@NotNull String str) {
++        StringBuilder sb = new StringBuilder(str);
++        Matcher m = STRIP_COLOR_PATTERN.matcher(sb);
++        while (m.find()) {
++            sb.replace(m.start(), m.end(), sb.substring(m.start(), m.end()).toLowerCase());
++        }
++        return sb.toString()
++                .replace("&0", "<black>")
++                .replace("&1", "<dark_blue>")
++                .replace("&2", "<dark_green>")
++                .replace("&3", "<dark_aqua>")
++                .replace("&4", "<dark_red>")
++                .replace("&5", "<dark_purple>")
++                .replace("&6", "<gold>")
++                .replace("&7", "<grey>")
++                .replace("&8", "<dark_grey>")
++                .replace("&9", "<blue>")
++                .replace("&a", "<green>")
++                .replace("&b", "<aqua>")
++                .replace("&c", "<red>")
++                .replace("&d", "<light_purple>")
++                .replace("&e", "<yellow>")
++                .replace("&f", "<white>")
++                .replace("&k", "<obf>")
++                .replace("&l", "<b>")
++                .replace("&m", "<st>")
++                .replace("&n", "<u>")
++                .replace("&o", "<i>")
++                .replace("&r", "<r>");
++    }
++
++    @Deprecated
++    public static final Pattern HEX_PATTERN = Pattern.compile("(#[A-Fa-f0-9]{6})");
++
++    @Deprecated
++    @Nullable
++    public static String replaceHex(@Nullable String str) {
++        if (str != null) {
++            java.util.regex.Matcher matcher = HEX_PATTERN.matcher(str);
++            while (matcher.find()) {
++                String group = matcher.group(1);
++                str = str.replace(group, net.md_5.bungee.api.ChatColor.of(group).toString());
++            }
++        }
++        return str;
++    }
++
++    @Deprecated
++    @Nullable
++    public static String color(@Nullable String str) {
++        return color(str, true);
++    }
++
++    @Deprecated
++    @Nullable
++    public static String color(@Nullable String str, boolean parseHex) {
++        return str != null ? net.md_5.bungee.api.ChatColor.translateAlternateColorCodes('&', parseHex ? replaceHex(str) : str) : str;
++    }
++    // Purpur end
+ }
