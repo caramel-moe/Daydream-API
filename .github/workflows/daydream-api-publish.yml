@@ -12,19 +12,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Cache
-        uses: actions/cache@v2
-        with:
-          # A list of files, directories, and wildcard patterns to cache and restore
-          path: |
-            ~/.m2
-          # An explicit key for restoring and saving the cache
-          key: ${{ runner.os }}-daydream
-
+      - name: Set up JDK 8
       - uses: actions/setup-java@v2
         with:
           java-version: '8'
-          distribution: 'adopt'
+          distribution: 'zulu'
 
       - name: Setup git config
         run: |
