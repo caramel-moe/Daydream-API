@@ -21,12 +21,13 @@ index 0000000000000000000000000000000000000000..705398836f0a82320e08a7b9deefb54a
 +}
 diff --git a/src/main/java/moe/caramel/daydream/user/CaramelUserData.java b/src/main/java/moe/caramel/daydream/user/CaramelUserData.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..70733077e3e596580016299b0a0c6704c6fc0260
+index 0000000000000000000000000000000000000000..c43abda24802a7c56e1954d850dffc4c6e2499ad
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/user/CaramelUserData.java
-@@ -0,0 +1,200 @@
+@@ -0,0 +1,212 @@
 +package moe.caramel.daydream.user;
 +
++import com.google.gson.Gson;
 +import com.google.gson.JsonElement;
 +import it.unimi.dsi.fastutil.ints.Int2ObjectArrayMap;
 +import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
@@ -38,6 +39,7 @@ index 0000000000000000000000000000000000000000..70733077e3e596580016299b0a0c6704
 +import java.util.UUID;
 +
 +public interface CaramelUserData {
++    Gson GSON = new Gson(); // private static final
 +
 +    /**
 +     * 플레이어 데이터 및 API 버전을 가져옵니다.
@@ -187,6 +189,16 @@ index 0000000000000000000000000000000000000000..70733077e3e596580016299b0a0c6704
 +    Date getJoinTime();
 +
 +    /**
++     * 데이터를 직렬화합니다.
++     *
++     * @return Json 직렬화 데이터
++     */
++    @NotNull
++    default String serialize() {
++        return GSON.toJson(this);
++    };
++
++    /**
 +     * Rank ENUMS
 +     */
 +    enum Rank {
@@ -197,7 +209,7 @@ index 0000000000000000000000000000000000000000..70733077e3e596580016299b0a0c6704
 +        UNRANK(1, "Unrank"),
 +        // Undetermined
 +        STAFF(7, "Staff"),
-+        DEV(8, "Developer"),
++        DEVELOPER(8, "Developer"),
 +        ADMIN(9, "Admin");
 +
 +        private final int id;
@@ -364,3 +376,37 @@ index 77aefda5aac4602bf5bf71c29600e7450defdd4e..a75387ecf35d91bbb61695f0c0343ab4
      /**
       * Gets the player's name.
       *
+diff --git a/src/main/java/org/bukkit/event/server/ServerLoadEvent.java b/src/main/java/org/bukkit/event/server/ServerLoadEvent.java
+index c9a252d7e2f8c82b8ce10c02a92ada4529495f71..c97ad1e723245a724e4f4d8afea05829823fbdee 100644
+--- a/src/main/java/org/bukkit/event/server/ServerLoadEvent.java
++++ b/src/main/java/org/bukkit/event/server/ServerLoadEvent.java
+@@ -37,6 +37,29 @@ public class ServerLoadEvent extends ServerEvent {
+         return type;
+     }
+ 
++    // Daydream start
++    private Class<? extends moe.caramel.daydream.user.CaramelUserData> deserializeClass;
++
++    /**
++     * Returns a class for deserialization.
++     *
++     * @return a class for deserialize
++     */
++    @org.jetbrains.annotations.Nullable
++    public Class<? extends moe.caramel.daydream.user.CaramelUserData> getDeserializeClass() {
++        return deserializeClass;
++    }
++
++    /**
++     * Sets the class for deserialization.
++     *
++     * @param deserializeClass class for deserialize.
++     */
++    public void setDeserializeClass(@NotNull Class<? extends moe.caramel.daydream.user.CaramelUserData> deserializeClass) {
++        this.deserializeClass = deserializeClass;
++    }
++    // Daydream end
++
+     @NotNull
+     @Override
+     public HandlerList getHandlers() {
