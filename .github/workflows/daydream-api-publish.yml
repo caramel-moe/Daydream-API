@@ -28,6 +28,15 @@ jobs:
          chmod -R +x scripts && chmod +x ./daydream
          ./daydream patch
 
+      - name: Delete Previous version (Parent)
+        uses: actions/delete-package-versions@v1
+        with:
+          package-name: 'moe.caramel.daydream-parent'
+      - name: Delete Previous version (API)
+        uses: actions/delete-package-versions@v1
+        with:
+          package-name: 'moe.caramel.daydream-api'
+
       - name: Publish package
         run: mvn -B javadoc:jar source:jar deploy
         env:
