@@ -4,8 +4,8 @@
    <a href="https://caramel.moe">
       <img alt="caramel.moe" src="https://img.shields.io/badge/made%20by.-caramel.moe-red">
    </a>   
-   <a href="https://travis-ci.com/github/LemonCaramel/Daydream">
-      <img alt="Build Status" src="https://travis-ci.com/LemonCaramel/Daydream.svg?token=FA7tLT8syADyxHiV9ek4&branch=ver/1.15.2">
+   <a href="https://github.com/LemonCaramel/Daydream-API/actions/workflows/daydream-api-build.yml">
+      <img alt="Build Status" src="https://img.shields.io/github/workflow/status/LemonCaramel/Daydream-API/Build%20Daydream%20API">
    </a>
    <a href="https://discord.gg/f9qGtYF">
       <img alt="Discord" src="https://img.shields.io/badge/discord-discord.gg%2Ff9qGtYF-%237289da">
