@@ -5,7 +5,7 @@ Subject: [PATCH] Add more Player API
 
 
 diff --git a/pom.xml b/pom.xml
-index 3373c88cf258c76666cd14f0063965d1bd579dbc..b7c4c27ce624325f871556f08f6ce4d685a06a87 100644
+index 53c583d159de612dc427c28950073ec0b58bfceb..d9e742bf5185b0c94af0aa8b91ad301e565aa5c6 100644
 --- a/pom.xml
 +++ b/pom.xml
 @@ -30,6 +30,12 @@
@@ -21,7 +21,7 @@ index 3373c88cf258c76666cd14f0063965d1bd579dbc..b7c4c27ce624325f871556f08f6ce4d6
      </repositories>
  
      <!-- Paper start -->
-@@ -75,6 +81,14 @@
+@@ -83,6 +89,14 @@
              <version>8.2.2</version>
              <scope>provided</scope>
          </dependency>
@@ -34,13 +34,13 @@ index 3373c88cf258c76666cd14f0063965d1bd579dbc..b7c4c27ce624325f871556f08f6ce4d6
 +        </dependency>
 +        <!-- Daydream end -->
          <dependency>
-             <groupId>org.checkerframework</groupId>
-             <artifactId>checker-qual</artifactId>
+             <groupId>commons-lang</groupId>
+             <artifactId>commons-lang</artifactId>
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index 08c46516740e125b7a2c687d2340d05a8b3f8293..24b1559c1770bb7933354c21e9bc06bd9323798c 100644
+index 4abbc042e9f75440a0d0d4d6cabdb329432ff028..7a180d815bb1e90759129f3508eb863e458e09d7 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
-@@ -1872,6 +1872,24 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+@@ -1874,6 +1874,24 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
          return net.kyori.adventure.text.event.HoverEvent.showEntity(op.apply(net.kyori.adventure.text.event.HoverEvent.ShowEntity.of(this.getType().getKey(), this.getUniqueId(), this.displayName())));
      }
  
@@ -65,7 +65,7 @@ index 08c46516740e125b7a2c687d2340d05a8b3f8293..24b1559c1770bb7933354c21e9bc06bd
      /**
       * Request that the player's client download and switch resource packs.
       * <p>
-@@ -1910,6 +1928,13 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+@@ -1912,6 +1930,13 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      @Nullable
      org.bukkit.event.player.PlayerResourcePackStatusEvent.Status getResourcePackStatus();
  
@@ -79,7 +79,7 @@ index 08c46516740e125b7a2c687d2340d05a8b3f8293..24b1559c1770bb7933354c21e9bc06bd
      /**
       * @return the most recent resource pack hash received from the player,
       *         or null if no hash has ever been received from this player.
-@@ -1933,6 +1958,15 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+@@ -1935,6 +1960,15 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      @NotNull
      PlayerProfile getPlayerProfile();
  
