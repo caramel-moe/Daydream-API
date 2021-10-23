@@ -49,6 +49,12 @@ case "$1" in
         cd ${FORK_NAME}-API && mvn -e clean install
     )
     ;;
+    "d" | "de" | "deploy")
+    (
+        basedir
+        mvn javadoc:jar source:jar deploy
+    )
+    ;;
     "up" | "upstream")
     (
         cd "$basedir"
