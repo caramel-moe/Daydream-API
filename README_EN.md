@@ -2,34 +2,34 @@
 
 ## Daydream
 
-<p>Daydream은 Tuinity의 Fork로 높은 성능 및 다양한 API 사용을 목표로 제작되었습니다.</p>
+<p>Daydream is Tuinity's Fork with the aim of high performance and using various API.</p>
 
 [![caramel.moe](https://img.shields.io/badge/made%20by.-caramel.moe-red)](https://caramel.moe)
 [![Build Status](https://img.shields.io/github/workflow/status/LemonCaramel/Daydream-API/Build%20Daydream%20API%20(1.16))](https://github.com/LemonCaramel/Daydream-API/actions/workflows/daydream-api-build-1.16.yml)
 [![Discord](https://img.shields.io/discord/534586842079821824.svg?label=use%20server&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/f9qGtYF)
 
-KOREAN, [ENGLISH](README_EN.md)
+[KOREAN](README.md), ENGLISH
 
 </div>
 
-- 모든 패치에는 `// Daydream` 주석이 필요합니다.
-    - 필요에 따라 `// Daydream start` 와 `// Daydream end` 를 사용할 수도 있습니다.
-- 새로운 패치는 브랜치 생성(또는 포크) 후에 추가하여 Pull Request를 열고 검수 받아야합니다.
-- 이 저장소는 API만 포함되므로, 서버 측 패치는 Daydream Repository 에서 Pull Request 해야합니다.
+- All patches require `// Daydream` annotations.
+    - You can also use `// Daydream start` and `// Daydream end` as needed.
+- New patches should be added after branch creation (or fork) to open the Pull Request and be inspected.
+- Since this repository contains only APIs, server-side patches must be requested in the Daydream Repository.
 
 ---
 
-## 라이선스
+## License
 
-모든 API 패치는 Patch 헤더에 라이선스가 명시되어 있지 않는 한, MIT 라이선스가 부여됩니다.
+All API patches are licensed under the MIT license, unless otherwise noted in the patch headers.
 
-Daydream은 Upstream 프로젝트로부터 라이선스를 상속받습니다.
+Daydream inherits its licensing from upstream projects.
 
 [PaperMC/Paper](https://github.com/PaperMC/Paper), [Tuinity](https://github.com/Tuinity/Tuinity)
 
 ## API
 
-### Dependency 정보
+### Dependency Information
 Maven
 ```xml
 <repository>
