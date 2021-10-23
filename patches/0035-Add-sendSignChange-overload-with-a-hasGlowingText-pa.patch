@@ -1,0 +1,97 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: LemonCaramel <admin@caramel.moe>
+Date: Wed, 6 Oct 2021 22:16:13 +0900
+Subject: [PATCH] Add sendSignChange overload with a hasGlowingText parameter
+
+
+diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
+index 8e66a9a061bd99bbba3ffc929ed4bcb420ec2212..ca7fba257f703bfdcd54beeff5557067b1d38261 100644
+--- a/src/main/java/org/bukkit/entity/Player.java
++++ b/src/main/java/org/bukkit/entity/Player.java
+@@ -566,7 +566,12 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+      * @throws IllegalArgumentException if location is null
+      * @throws IllegalArgumentException if lines is non-null and has a length less than 4
+      */
+-    void sendSignChange(@NotNull Location loc, @Nullable java.util.List<net.kyori.adventure.text.Component> lines) throws IllegalArgumentException;
++    // Daydream start
++    default void sendSignChange(@NotNull Location loc, @Nullable java.util.List<net.kyori.adventure.text.Component> lines) throws IllegalArgumentException {
++        this.sendSignChange(loc, lines, DyeColor.BLACK);
++    }
++    // Daydream end
++
+     /**
+      * Send a sign change. This fakes a sign change packet for a user at
+      * a certain location. This will not actually change the world in any way.
+@@ -579,13 +584,39 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+      *
+      * @param loc the location of the sign
+      * @param lines the new text on the sign or null to clear it
+-     * @param  dyeColor the color of the sign
++     * @param dyeColor the color of the sign
++     * @throws IllegalArgumentException if location is null
++     * @throws IllegalArgumentException if dyeColor is null
++     * @throws IllegalArgumentException if lines is non-null and has a length less than 4
++     */
++    // Daydream start
++    default void sendSignChange(@NotNull Location loc, @Nullable java.util.List<net.kyori.adventure.text.Component> lines, @NotNull DyeColor dyeColor) throws IllegalArgumentException {
++        this.sendSignChange(loc, lines, dyeColor, false);
++    }
++
++    /**
++     * Send a sign change. This fakes a sign change packet for a user at
++     * a certain location. This will not actually change the world in any way.
++     * This method will use a sign at the location's block or a faked sign
++     * sent via
++     * {@link #sendBlockChange(org.bukkit.Location, org.bukkit.Material, byte)}.
++     * <p>
++     * If the client does not have a sign at the given location it will
++     * display an error message to the user.
++     *
++     * @param loc the location of the sign
++     * @param lines the new text on the sign or null to clear it
++     * @param dyeColor the color of the sign
++     * @param hasGlowingText whether the text of the sign should glow as if dyed with a glowing ink sac
+      * @throws IllegalArgumentException if location is null
+      * @throws IllegalArgumentException if dyeColor is null
+      * @throws IllegalArgumentException if lines is non-null and has a length less than 4
+      */
+-    void sendSignChange(@NotNull Location loc, @Nullable java.util.List<net.kyori.adventure.text.Component> lines, @NotNull DyeColor dyeColor) throws IllegalArgumentException;
++    void sendSignChange(@NotNull Location loc, @Nullable java.util.List<net.kyori.adventure.text.Component> lines, @NotNull DyeColor dyeColor, boolean hasGlowingText)
++            throws IllegalArgumentException;
++    // Daydream end
+     // Paper end
++
+     /**
+      * Send a sign change. This fakes a sign change packet for a user at
+      * a certain location. This will not actually change the world in any way.
+@@ -627,6 +658,30 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+     @Deprecated // Paper
+     public void sendSignChange(@NotNull Location loc, @Nullable String[] lines, @NotNull DyeColor dyeColor) throws IllegalArgumentException;
+ 
++    // Daydream start
++    /**
++     * Send a sign change. This fakes a sign change packet for a user at
++     * a certain location. This will not actually change the world in any way.
++     * This method will use a sign at the location's block or a faked sign
++     * sent via
++     * {@link #sendBlockChange(org.bukkit.Location, org.bukkit.Material, byte)}.
++     * <p>
++     * If the client does not have a sign at the given location it will
++     * display an error message to the user.
++     *
++     * @param loc the location of the sign
++     * @param lines the new text on the sign or null to clear it
++     * @param dyeColor the color of the sign
++     * @param hasGlowingText if the sign's text should be glowing
++     * @throws IllegalArgumentException if location is null
++     * @throws IllegalArgumentException if dyeColor is null
++     * @throws IllegalArgumentException if lines is non-null and has a length less than 4
++     * @deprecated Deprecated in favour of {@link #sendSignChange(Location, java.util.List, DyeColor, boolean)}
++     */
++    @Deprecated // Paper
++    public void sendSignChange(@NotNull Location loc, @Nullable String[] lines, @NotNull DyeColor dyeColor, boolean hasGlowingText) throws IllegalArgumentException;
++    // Daydream end
++
+     /**
+      * Render a map and send it to the player in its entirety. This may be
+      * used when streaming the map in the normal manner is not desirable.

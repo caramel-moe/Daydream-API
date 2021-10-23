@@ -1,11 +1,11 @@
 From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: LemonCaramel <admin@caramel.moe>
 Date: Thu, 5 Aug 2021 18:04:37 +0900
-Subject: [PATCH] Adventure 4.9.1
+Subject: [PATCH] Adventure 4.9.2
 
 
 diff --git a/pom.xml b/pom.xml
-index b0eb72c75462224bb01776cdc65ef548c1ae1223..53c583d159de612dc427c28950073ec0b58bfceb 100644
+index b0eb72c75462224bb01776cdc65ef548c1ae1223..cb4cec59ee605a0584e5592a0574535173bfab38 100644
 --- a/pom.xml
 +++ b/pom.xml
 @@ -22,7 +22,7 @@
@@ -13,7 +13,7 @@ index b0eb72c75462224bb01776cdc65ef548c1ae1223..53c583d159de612dc427c28950073ec0
          <maven.compiler.target>1.8</maven.compiler.target>
          <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 -        <adventure.version>4.7.0</adventure.version> <!-- Paper - When updating this make sure to update the linked JavaDocs on the homepage as well! -->
-+        <adventure.version>4.9.1</adventure.version> <!-- Paper - When updating this make sure to update the linked JavaDocs on the homepage as well! -->
++        <adventure.version>4.9.2</adventure.version> <!-- Paper - When updating this make sure to update the linked JavaDocs on the homepage as well! -->
      </properties>
  
      <repositories>
@@ -749,6 +749,49 @@ index 08e6f1741685f54506c8a4ff29bbd30f62cf8e45..66d43ee8e0a7fe032a0b4adb283d7e35
      String getTranslationKey();
  
      /**
+diff --git a/src/main/java/org/bukkit/block/CommandBlock.java b/src/main/java/org/bukkit/block/CommandBlock.java
+index 372c0bd5a4d7800a11c24c95e39fe376a96232bf..73dce588d1f7a5048300073bf8c2b14d6da1e857 100644
+--- a/src/main/java/org/bukkit/block/CommandBlock.java
++++ b/src/main/java/org/bukkit/block/CommandBlock.java
+@@ -33,7 +33,9 @@ public interface CommandBlock extends TileState {
+      * by default is "@".
+      *
+      * @return Name of this CommandBlock.
++     * @deprecated in favour of {@link #name()}
+      */
++    @Deprecated // Paper
+     @NotNull
+     public String getName();
+ 
+@@ -43,6 +45,28 @@ public interface CommandBlock extends TileState {
+      * same as setting it to "@".
+      *
+      * @param name New name for this CommandBlock.
++     * @deprecated in favour of {@link #name(net.kyori.adventure.text.Component)}
+      */
++    @Deprecated // Paper
+     public void setName(@Nullable String name);
++
++    // Paper start
++    /**
++     * Gets the name of this CommandBlock.  The name is used with commands
++     * that this CommandBlock executes.  This name will never be null, and
++     * by default is a {@link net.kyori.adventure.text.TextComponent} containing {@code @}.
++     *
++     * @return Name of this CommandBlock.
++     */
++    public @NotNull net.kyori.adventure.text.Component name();
++
++    /**
++     * Sets the name of this CommandBlock.  The name is used with commands
++     * that this CommandBlock executes.  Setting the name to null is the
++     * same as setting it to a {@link net.kyori.adventure.text.TextComponent} containing {@code @}.
++     *
++     * @param name New name for this CommandBlock.
++     */
++    public void name(@Nullable net.kyori.adventure.text.Component name);
++    // Paper end
+ }
 diff --git a/src/main/java/org/bukkit/block/Sign.java b/src/main/java/org/bukkit/block/Sign.java
 index 6ea9b54d95d80070c01a612c0ce2ab37f0b4ad41..18b48bdbc41a06d0685079683b0322f6a3492da9 100644
 --- a/src/main/java/org/bukkit/block/Sign.java
@@ -763,6 +806,90 @@ index 6ea9b54d95d80070c01a612c0ce2ab37f0b4ad41..18b48bdbc41a06d0685079683b0322f6
       * @deprecated in favour of {@link #line(int)}
       */
      @NotNull
+diff --git a/src/main/java/org/bukkit/command/Command.java b/src/main/java/org/bukkit/command/Command.java
+index c10fc8d2386301bc2caddcdb1cd18566bcaa8689..bb637eb3ce16c6b1286b322833acbe5e3838a801 100644
+--- a/src/main/java/org/bukkit/command/Command.java
++++ b/src/main/java/org/bukkit/command/Command.java
+@@ -32,7 +32,7 @@ public abstract class Command {
+     protected String description;
+     protected String usageMessage;
+     private String permission;
+-    private String permissionMessage;
++    private net.kyori.adventure.text.Component permissionMessage; // Paper
+     public co.aikar.timings.Timing timings; // Paper
+     @NotNull public String getTimingName() {return getName();} // Paper
+ 
+@@ -184,12 +184,11 @@ public abstract class Command {
+             return true;
+         }
+ 
+-        if (permissionMessage == null) {
+-            target.sendMessage(Bukkit.getPermissionMessage()); // Paper
+-        } else if (permissionMessage.length() != 0) {
+-            for (String line : permissionMessage.replace("<permission>", permission).split("\n")) {
+-                target.sendMessage(line);
+-            }
++            // Paper start - use components for permissionMessage
++        net.kyori.adventure.text.Component permissionMessage = this.permissionMessage != null ? this.permissionMessage : io.papermc.paper.text.PaperComponents.legacySectionSerializer().deserialize(Bukkit.getPermissionMessage());
++        if (!permissionMessage.equals(net.kyori.adventure.text.Component.empty())) {
++            target.sendMessage(permissionMessage.replaceText(net.kyori.adventure.text.TextReplacementConfig.builder().matchLiteral("<permission>").replacement(permission).build()));
++            // Paper end
+         }
+ 
+         return false;
+@@ -316,10 +315,12 @@ public abstract class Command {
+      * command
+      *
+      * @return Permission check failed message
++     * @deprecated use {@link #permissionMessage()}
+      */
+     @Nullable
++    @Deprecated // Paper
+     public String getPermissionMessage() {
+-        return permissionMessage;
++        return io.papermc.paper.text.PaperComponents.legacySectionSerializer().serializeOrNull(permissionMessage); // Paper
+     }
+ 
+     /**
+@@ -380,10 +381,12 @@ public abstract class Command {
+      * @param permissionMessage new permission message, null to indicate
+      *     default message, or an empty string to indicate no message
+      * @return this command object, for chaining
++     * @deprecated use {@link #permissionMessage(net.kyori.adventure.text.Component)}
+      */
+     @NotNull
++    @Deprecated // Paper
+     public Command setPermissionMessage(@Nullable String permissionMessage) {
+-        this.permissionMessage = permissionMessage;
++        this.permissionMessage = io.papermc.paper.text.PaperComponents.legacySectionSerializer().deserializeOrNull(permissionMessage); // Paper
+         return this;
+     }
+ 
+@@ -398,6 +401,24 @@ public abstract class Command {
+         this.usageMessage = (usage == null) ? "" : usage;
+         return this;
+     }
++    // Paper start
++    /**
++     * Gets the permission message.
++     *
++     * @return the permission message
++     */
++    public @Nullable net.kyori.adventure.text.Component permissionMessage() {
++        return this.permissionMessage;
++    }
++
++    /**
++     * Sets the permission message.
++     * @param permissionMessage the permission message
++     */
++    public void permissionMessage(@Nullable net.kyori.adventure.text.Component permissionMessage) {
++        this.permissionMessage = permissionMessage;
++    }
++    // Paper end
+ 
+     public static void broadcastCommandMessage(@NotNull CommandSender source, @NotNull String message) {
+         broadcastCommandMessage(source, message, true);
 diff --git a/src/main/java/org/bukkit/command/CommandSender.java b/src/main/java/org/bukkit/command/CommandSender.java
 index fb0e608fa92dae99b9eee8fc1cbdf4b91a33e620..900209afd409c6080a67520d09a1ed4ae2c978d7 100644
 --- a/src/main/java/org/bukkit/command/CommandSender.java
@@ -799,6 +926,19 @@ index a7ef1f51c2b96617a32e6e7b1723e8770ba8a6a8..06678997b9089a4dfa9fd630b67ef540
  
      @Override
      default boolean isOp() {
+diff --git a/src/main/java/org/bukkit/command/PluginCommandYamlParser.java b/src/main/java/org/bukkit/command/PluginCommandYamlParser.java
+index a542c4bb3c973bbe4b976642feccde6a4d90cb7b..614cba22c0997dbb45576f800675db4053a9831c 100644
+--- a/src/main/java/org/bukkit/command/PluginCommandYamlParser.java
++++ b/src/main/java/org/bukkit/command/PluginCommandYamlParser.java
+@@ -67,7 +67,7 @@ public class PluginCommandYamlParser {
+             }
+ 
+             if (permissionMessage != null) {
+-                newCmd.setPermissionMessage(permissionMessage.toString());
++                newCmd.permissionMessage(io.papermc.paper.text.PaperComponents.legacySectionSerializer().deserialize(permissionMessage.toString())); // Paper
+             }
+ 
+             pluginCmds.add(newCmd);
 diff --git a/src/main/java/org/bukkit/enchantments/Enchantment.java b/src/main/java/org/bukkit/enchantments/Enchantment.java
 index 799813410f40589ba1d7d530a47d87f609764705..05f516eb488124a86dcd31a52ffa1f4b847545ac 100644
 --- a/src/main/java/org/bukkit/enchantments/Enchantment.java
