@@ -1,0 +1,379 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: LemonCaramel <admin@caramel.moe>
+Date: Tue, 12 Oct 2021 20:40:48 +0900
+Subject: [PATCH] Add Brigadier Command Registerer
+
+
+diff --git a/pom.xml b/pom.xml
+index 5af467989cb8c659fdfd0ffeed01991507028b71..7477da645959f639ec34001dc736c05d3686d45d 100644
+--- a/pom.xml
++++ b/pom.xml
+@@ -30,6 +30,12 @@
+             <id>sonatype</id>
+             <url>https://oss.sonatype.org/content/groups/public/</url>
+         </repository>
++        <!-- Daydream start -->
++        <repository>
++            <id>papermc</id>
++            <url>https://papermc.io/repo/repository/maven-public/</url>
++        </repository>
++        <!-- Daydream end -->
+     </repositories>
+ 
+     <!-- Paper start -->
+@@ -76,6 +82,12 @@
+             <version>3.18.0</version>
+             <scope>compile</scope>
+         </dependency>
++        <dependency>
++            <groupId>com.destroystokyo.paper</groupId>
++            <artifactId>paper-mojangapi</artifactId>
++            <version>${project.version}</version>
++            <scope>compile</scope>
++        </dependency>
+         <!-- Daydream end -->
+         <dependency>
+             <groupId>it.unimi.dsi</groupId>
+@@ -83,6 +95,14 @@
+             <version>8.2.2</version>
+             <scope>provided</scope>
+         </dependency>
++        <!-- Daydream start -->
++        <dependency>
++            <groupId>com.mojang</groupId>
++            <artifactId>brigadier</artifactId>
++            <version>1.0.18</version>
++            <scope>provided</scope>
++        </dependency>
++        <!-- Daydream end -->
+         <dependency>
+             <groupId>commons-lang</groupId>
+             <artifactId>commons-lang</artifactId>
+diff --git a/src/main/java/moe/caramel/daydream/brigadier/AbstractCommand.java b/src/main/java/moe/caramel/daydream/brigadier/AbstractCommand.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..5c3182ced70c5d8677b66e9fa547f544bc26f755
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/brigadier/AbstractCommand.java
+@@ -0,0 +1,276 @@
++package moe.caramel.daydream.brigadier;
++
++import com.destroystokyo.paper.brigadier.BukkitBrigadierCommandSource;
++import com.mojang.brigadier.LiteralMessage;
++import com.mojang.brigadier.arguments.ArgumentType;
++import com.mojang.brigadier.builder.LiteralArgumentBuilder;
++import com.mojang.brigadier.builder.RequiredArgumentBuilder;
++import com.mojang.brigadier.suggestion.SuggestionProvider;
++import com.mojang.brigadier.suggestion.Suggestions;
++import com.mojang.brigadier.suggestion.SuggestionsBuilder;
++import net.kyori.adventure.text.Component;
++import org.jetbrains.annotations.NotNull;
++import org.jetbrains.annotations.Nullable;
++import java.util.Arrays;
++import java.util.Collection;
++import java.util.Locale;
++import java.util.Map;
++import java.util.concurrent.CompletableFuture;
++
++public abstract class AbstractCommand {
++
++    private String[] aliases;
++    private Component permissionMessage;
++    private String description, permission, usageMessage;
++
++    /**
++     * Make a command!
++     *
++     * @param builder Make it freely using the builder.
++     */
++    public abstract void createCommand(@NotNull LiteralArgumentBuilder<BukkitBrigadierCommandSource> builder);
++
++
++    /*
++        Aliases
++     */
++
++    /**
++     * Returns array of active aliases of this command.
++     *
++     * @return Array of aliases
++     */
++    @Nullable
++    public String[] getAliases() {
++        return aliases;
++    }
++
++    /**
++     * Sets the list of aliases to request on registration for this command.
++     *
++     * @param aliases aliases to register to this command
++     * @return this command object, for chaining
++     */
++    @NotNull
++    public AbstractCommand setAliases(@NotNull String... aliases) {
++        this.aliases = aliases;
++        return this;
++    }
++
++
++    /*
++        Description
++     */
++
++    /**
++     * Gets a brief description of this command.
++     *
++     * @return Description of this command
++     */
++    @Nullable
++    public String getDescription() {
++        return description;
++    }
++
++    /**
++     * Sets a brief description of this command.
++     *
++     * @param description command description
++     * @return this command object, for chaining
++     */
++    @NotNull
++    public AbstractCommand setDescription(@NotNull String description) {
++        this.description = description;
++        return this;
++    }
++
++
++    /*
++        Permission
++     */
++
++    /**
++     * Gets the permission required by users to be able to perform this command.
++     *
++     * @return Permission name, or null if none
++     */
++    @Nullable
++    public String getPermission() {
++        return permission;
++    }
++
++    /**
++     * Sets the permission required by users to be able to perform this command.
++     *
++     * @param permission Permission name or null
++     * @return this command object, for chaining
++     */
++    @NotNull
++    public AbstractCommand setPermission(@Nullable String permission) {
++        this.permission = permission;
++        return this;
++    }
++
++
++    /*
++        PermissionMessage
++     */
++
++    /**
++     * Gets the permission message.
++     *
++     * @return the permission message
++     */
++    public @Nullable Component permissionMessage() {
++        return this.permissionMessage;
++    }
++
++    /**
++     * Returns a message to be displayed on a failed permission check for this command
++     *
++     * @return Permission check failed message
++     * @deprecated use {@link #permissionMessage()}
++     */
++    @Nullable
++    @Deprecated
++    public String getPermissionMessage() {
++        return io.papermc.paper.text.PaperComponents.legacySectionSerializer().serializeOrNull(permissionMessage);
++    }
++
++    /**
++     * Sets the permission message.
++     *
++     * @param permissionMessage the permission message
++     */
++    @NotNull
++    public AbstractCommand permissionMessage(@Nullable Component permissionMessage) {
++        this.permissionMessage = permissionMessage;
++        return this;
++    }
++
++    /**
++     * Sets the message sent when a permission check fails.
++     *
++     * @param permissionMessage new permission message, null to indicate default message, or an empty string to indicate no message
++     * @return this command object, for chaining
++     * @deprecated use {@link #permissionMessage(Component)}
++     */
++    @NotNull
++    @Deprecated
++    public AbstractCommand setPermissionMessage(@Nullable String permissionMessage) {
++        this.permissionMessage = io.papermc.paper.text.PaperComponents.legacySectionSerializer().deserializeOrNull(permissionMessage);
++        return this;
++    }
++
++
++    /*
++       Usage
++     */
++
++    /**
++     * Gets an example usage of this command
++     *
++     * @return One or more example usages
++     */
++    @Nullable
++    public String getUsage() {
++        return usageMessage;
++    }
++
++    /**
++     * Sets the example usage of this command
++     *
++     * @param usage new example usage
++     * @return this command object, for chaining
++     */
++    @NotNull
++    public AbstractCommand setUsage(@NotNull String usage) {
++        this.usageMessage = usage;
++        return this;
++    }
++
++
++    /*
++       Utilities
++     */
++
++    /**
++     * Creating a required argument
++     *
++     * @param name The name of the argument
++     * @param type The ArgumentType for the type
++     * @param <T>  The type
++     * @return A required argument for the type
++     */
++    @NotNull
++    protected <T> RequiredArgumentBuilder<BukkitBrigadierCommandSource, T> argument(@NotNull String name, @NotNull ArgumentType<T> type) {
++        return RequiredArgumentBuilder.argument(name, type);
++    }
++
++    /**
++     * Utility method for creating custom suggestions quickly
++     *
++     * @param strings The string to suggest
++     * @return The suggestion provider of the inputted strings
++     */
++    @NotNull
++    protected SuggestionProvider<BukkitBrigadierCommandSource> suggest(@NotNull String... strings) {
++        return suggest(Arrays.asList(strings));
++    }
++
++    /**
++     * Creating custom suggestions
++     *
++     * @param strings The strings to suggest
++     * @return The SuggestionProvider of the inputted string collection
++     */
++    @NotNull
++    protected SuggestionProvider<BukkitBrigadierCommandSource> suggest(@NotNull Collection<String> strings) {
++        return (c, b) -> suggestMatching(b, strings);
++    }
++
++    /**
++     * Creating suggestions with tooltips
++     *
++     * @param suggestions The map of suggestions
++     * @return The suggestion provider for the inputted map
++     */
++    @NotNull
++    protected SuggestionProvider<BukkitBrigadierCommandSource> suggest(@NotNull Map<String, String> suggestions) {
++        return (c, b) -> suggestMatching(b, suggestions);
++    }
++
++    /**
++     * Suggest all matching strings into the given SuggestionsBuilder
++     *
++     * @param builder     The builder to give suggestions to
++     * @param suggestions The suggestions to pick from
++     * @return The built suggestions
++     */
++    @NotNull
++    private static CompletableFuture<Suggestions> suggestMatching(@NotNull SuggestionsBuilder builder, @NotNull Iterable<String> suggestions) {
++        String token = builder.getRemainingLowerCase();
++        for (String s : suggestions) if (s.toLowerCase().startsWith(token)) builder.suggest(s);
++
++        return builder.buildFuture();
++    }
++
++    /**
++     * Suggest all matching strings into the given SuggestionsBuilder and add a Message tooltip
++     *
++     * @param builder     The builder to give suggestions to
++     * @param suggestions The suggestions to pick from
++     * @return The built suggestions
++     */
++    @NotNull
++    private static CompletableFuture<Suggestions> suggestMatching(@NotNull SuggestionsBuilder builder, @NotNull Map<String, String> suggestions) {
++        String token = builder.getRemainingLowerCase();
++
++        for (Map.Entry<String, String> entry : suggestions.entrySet()) {
++            if (entry.getKey().toLowerCase().startsWith(token))
++                builder.suggest(entry.getKey(), new LiteralMessage(entry.getValue()));
++        }
++
++        return builder.buildFuture();
++    }
++}
+diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
+index e8414592b3afeb1e5db2b817b8fb7c13e073b9aa..94c8b4c118c8f7fe73f0a44ccc0b367786251c99 100644
+--- a/src/main/java/org/bukkit/Bukkit.java
++++ b/src/main/java/org/bukkit/Bukkit.java
+@@ -755,6 +755,19 @@ public final class Bukkit {
+         return server.getPluginCommand(name);
+     }
+ 
++    // Daydream start
++    /**
++     * Register command using Brigadier.
++     *
++     * @param plugin Plugin
++     * @param label command label
++     * @param command Command node to register
++     */
++    public static void registerCommand(@NotNull org.bukkit.plugin.Plugin plugin, @NotNull String label, @NotNull moe.caramel.daydream.brigadier.AbstractCommand command) {
++        server.registerCommand(plugin, label, command);
++    }
++    // Daydream end
++
+     /**
+      * Writes loaded players to disk.
+      */
+diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
+index 1aa2e0384ac3b1e48ebf442d1ec9f075d8341c68..aeca69ac96441bc64aaa1f85cec1a3c1bc05616f 100644
+--- a/src/main/java/org/bukkit/Server.java
++++ b/src/main/java/org/bukkit/Server.java
+@@ -639,6 +639,17 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
+     @Nullable
+     public PluginCommand getPluginCommand(@NotNull String name);
+ 
++    // Daydream start
++    /**
++     * Register command using Brigadier.
++     *
++     * @param plugin Plugin
++     * @param label command label
++     * @param command Command node to register
++     */
++    public void registerCommand(@NotNull org.bukkit.plugin.Plugin plugin, @NotNull String label, @NotNull moe.caramel.daydream.brigadier.AbstractCommand command);
++    // Daydream end
++
+     /**
+      * Writes loaded players to disk.
+      */

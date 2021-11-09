@@ -1,14 +1,14 @@
 From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: LemonCaramel <admin@caramel.moe>
 Date: Wed, 6 Oct 2021 22:38:25 +0900
-Subject: [PATCH] Backport "Add Crafting methods to API"
+Subject: [PATCH] Add Crafting methods to API
 
 
 diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
-index e7808e232d30ea97048ddab3839618849c9cf68e..62646de2165168a2088bf5ae9438e6f361b2e420 100644
+index 7b688c6b897cf0d19e3ec8c16bd6a70fa47c31f5..9fbe6d82c93e03d18fc4b36430ea41846ff2fff4 100644
 --- a/src/main/java/org/bukkit/Bukkit.java
 +++ b/src/main/java/org/bukkit/Bukkit.java
-@@ -838,6 +838,63 @@ public final class Bukkit {
+@@ -851,6 +851,63 @@ public final class Bukkit {
          return server.getRecipe(recipeKey);
      }
  
@@ -73,10 +73,10 @@ index e7808e232d30ea97048ddab3839618849c9cf68e..62646de2165168a2088bf5ae9438e6f3
       * Get an iterator through the list of crafting recipes.
       *
 diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
-index 38e63ad7b26759944c190e2d649321099a8d9d7b..b2cfbdc7a0a841be2d3dc614af85351d0d875309 100644
+index b562f5ee625802aeb521f4199ed07d782bff82df..b0ed69dbf95a3c6ab34cc1847f36b260bef25e68 100644
 --- a/src/main/java/org/bukkit/Server.java
 +++ b/src/main/java/org/bukkit/Server.java
-@@ -708,6 +708,59 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
+@@ -719,6 +719,59 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
      @Nullable
      public Recipe getRecipe(@NotNull NamespacedKey recipeKey);
  

@@ -1,0 +1,24 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: LemonCaramel <admin@caramel.moe>
+Date: Sun, 7 Nov 2021 05:02:32 +0900
+Subject: [PATCH] Backport "Add Player#stopAllSounds"
+
+
+diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
+index c129384cb6e83ccfedde3b625db2c7b6858aba88..011566c4c2537063034eef2992c0c6f17ac60297 100644
+--- a/src/main/java/org/bukkit/entity/Player.java
++++ b/src/main/java/org/bukkit/entity/Player.java
+@@ -477,6 +477,13 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+      */
+     public void stopSound(@NotNull String sound, @Nullable SoundCategory category);
+ 
++    // Daydream start
++    /**
++     * Stop all sounds from playing.
++     */
++    public void stopAllSounds();
++    // Daydream end
++
+     /**
+      * Plays an effect to just this player.
+      *

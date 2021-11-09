@@ -5,10 +5,10 @@ Subject: [PATCH] Remove VersionFetcher
 
 
 diff --git a/src/main/java/org/bukkit/command/defaults/VersionCommand.java b/src/main/java/org/bukkit/command/defaults/VersionCommand.java
-index 4c2ddc722a9dc4011906ad9530b13fa9be1d3ff9..15d10e96390985a2d48211a47a2c158e8488b451 100644
+index 4c2ddc722a9dc4011906ad9530b13fa9be1d3ff9..edc9d8ff9eeff227c615f3ef8e0fc375945e4dab 100644
 --- a/src/main/java/org/bukkit/command/defaults/VersionCommand.java
 +++ b/src/main/java/org/bukkit/command/defaults/VersionCommand.java
-@@ -1,23 +1,9 @@
+@@ -1,23 +1,13 @@
  package org.bukkit.command.defaults;
  
 -import com.destroystokyo.paper.util.VersionFetcher; // Paper - version supplier
@@ -30,10 +30,14 @@ index 4c2ddc722a9dc4011906ad9530b13fa9be1d3ff9..15d10e96390985a2d48211a47a2c158e
 -import java.util.Set;
 -import java.util.concurrent.locks.ReentrantLock;
 -import net.kyori.adventure.text.Component; // Paper
++import net.kyori.adventure.text.Component; // Daydream
++import net.kyori.adventure.text.event.ClickEvent; // Daydream
++import net.kyori.adventure.text.format.NamedTextColor; // Daydream
++import net.kyori.adventure.text.format.TextColor; // Daydream
  import org.apache.commons.lang.Validate;
  import org.bukkit.Bukkit;
  import org.bukkit.ChatColor;
-@@ -28,14 +14,7 @@ import org.bukkit.util.StringUtil;
+@@ -28,14 +18,7 @@ import org.bukkit.util.StringUtil;
  import org.jetbrains.annotations.NotNull;
  
  public class VersionCommand extends BukkitCommand {
@@ -49,7 +53,7 @@ index 4c2ddc722a9dc4011906ad9530b13fa9be1d3ff9..15d10e96390985a2d48211a47a2c158e
  
      public VersionCommand(@NotNull String name) {
          super(name);
-@@ -43,16 +22,13 @@ public class VersionCommand extends BukkitCommand {
+@@ -43,16 +26,23 @@ public class VersionCommand extends BukkitCommand {
          this.description = "Gets the version of this server including any plugins in use";
          this.usageMessage = "/version [plugin name]";
          this.setPermission("bukkit.command.version");
@@ -65,11 +69,21 @@ index 4c2ddc722a9dc4011906ad9530b13fa9be1d3ff9..15d10e96390985a2d48211a47a2c158e
 -            //sender.sendMessage("This server is running " + Bukkit.getName() + " version " + Bukkit.getVersion() + " (Implementing API version " + Bukkit.getBukkitVersion() + ")"); // Paper - moved to setVersionMessage
 -            sendVersion(sender);
 +        if (args.length == 0 || !testPermissionSilent(sender)) { // Daydream
-+            sender.sendMessage("This server is running " + Bukkit.getName() + " version " + Bukkit.getVersion() + " (Impl API version " + Bukkit.getBukkitVersion() + ")"); // Paper - moved to setVersionMessage // Daydream - Yee
++            // Daydream start
++            sender.sendMessage(Component.text().append(
++                    Component.text(" Daydream ✿", TextColor.fromHexString("#f788d4"), net.kyori.adventure.text.format.TextDecoration.BOLD).append(Component.space()),
++                    Component.text("Server Platform (running on Minecraft " + Bukkit.getMinecraftVersion() + ")"), Component.newline(),
++                    Component.text("   Implementing API version: ", NamedTextColor.GRAY), Component.text(Bukkit.getBukkitVersion()), Component.newline(),
++                    Component.text("   Software version: ", NamedTextColor.GRAY), Component.text(Bukkit.getVersion()),
++                    Component.newline(),
++                    Component.text("   Powered by ", NamedTextColor.GRAY),
++                    Component.text("caramel.moe").clickEvent(ClickEvent.openUrl("https://caramel.moe/"))
++            ).build());
++            // Daydream end
          } else {
              StringBuilder name = new StringBuilder();
  
-@@ -155,133 +131,5 @@ public class VersionCommand extends BukkitCommand {
+@@ -155,133 +145,5 @@ public class VersionCommand extends BukkitCommand {
          return ImmutableList.of();
      }
  

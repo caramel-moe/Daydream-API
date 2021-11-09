@@ -5,42 +5,76 @@ Subject: [PATCH] Add more Player API
 
 
 diff --git a/pom.xml b/pom.xml
-index cb4cec59ee605a0584e5592a0574535173bfab38..b166f296a1252b4d1e55d924b3fa72d3f0608ed6 100644
+index 7477da645959f639ec34001dc736c05d3686d45d..bda76b4b9f183c7515b3cd8bc7c13a4133ade37e 100644
 --- a/pom.xml
 +++ b/pom.xml
-@@ -30,6 +30,12 @@
-             <id>sonatype</id>
+@@ -31,6 +31,10 @@
              <url>https://oss.sonatype.org/content/groups/public/</url>
          </repository>
-+        <!-- Daydream - Add Authlib for Profile API -->
+         <!-- Daydream start -->
 +        <repository>
 +            <id>minecraft-repo</id>
 +            <url>https://libraries.minecraft.net/</url>
 +        </repository>
-+        <!-- Daydream end -->
-     </repositories>
- 
-     <!-- Paper start -->
-@@ -83,6 +89,14 @@
-             <version>8.2.2</version>
+         <repository>
+             <id>papermc</id>
+             <url>https://papermc.io/repo/repository/maven-public/</url>
+@@ -102,6 +106,12 @@
+             <version>1.0.18</version>
              <scope>provided</scope>
          </dependency>
-+        <!-- Daydream - Add Authlib for Profile API -->
 +        <dependency>
 +            <groupId>com.mojang</groupId>
 +            <artifactId>authlib</artifactId>
 +            <version>2.1.28</version> <!-- keep in sync with major MC versions -->
 +            <scope>compile</scope> <!-- expose to Plugins -->
 +        </dependency>
-+        <!-- Daydream end -->
+         <!-- Daydream end -->
          <dependency>
              <groupId>commons-lang</groupId>
-             <artifactId>commons-lang</artifactId>
+diff --git a/src/main/java/moe/caramel/daydream/network/PlayerInfoTypes.java b/src/main/java/moe/caramel/daydream/network/PlayerInfoTypes.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..00b548c05d21bb0d898ebb39439d68c982b1cdbc
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/network/PlayerInfoTypes.java
+@@ -0,0 +1,13 @@
++package moe.caramel.daydream.network;
++
++/**
++ * This is the enum type used for PlayerInfo packets.
++ */
++public enum PlayerInfoTypes {
++
++    ADD_PLAYER,
++    UPDATE_GAME_MODE,
++    UPDATE_LATENCY,
++    UPDATE_DISPLAY_NAME,
++    REMOVE_PLAYER
++}
+\ No newline at end of file
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index 4abbc042e9f75440a0d0d4d6cabdb329432ff028..7a180d815bb1e90759129f3508eb863e458e09d7 100644
+index 4abbc042e9f75440a0d0d4d6cabdb329432ff028..37d0777e2d4b8c6af9389402c09f9d21b5a891c0 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
-@@ -1874,6 +1874,24 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+@@ -1228,6 +1228,17 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+      */
+     public void showPlayer(@NotNull Plugin plugin, @NotNull Player player);
+ 
++    // Daydream start
++    /**
++     * Resend the target's info packet to this player.
++     * It's useful when changing a player's skin.
++     *
++     * @param type The type of packet
++     * @param targets Target players
++     */
++    public void sendPlayerInfo(@NotNull moe.caramel.daydream.network.PlayerInfoTypes type, @NotNull java.util.List<Player> targets);
++    // Daydream end
++
+     /**
+      * Checks to see if a player has been hidden from this player
+      *
+@@ -1874,6 +1885,24 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
          return net.kyori.adventure.text.event.HoverEvent.showEntity(op.apply(net.kyori.adventure.text.event.HoverEvent.ShowEntity.of(this.getType().getKey(), this.getUniqueId(), this.displayName())));
      }
  
@@ -65,7 +99,7 @@ index 4abbc042e9f75440a0d0d4d6cabdb329432ff028..7a180d815bb1e90759129f3508eb863e
      /**
       * Request that the player's client download and switch resource packs.
       * <p>
-@@ -1912,6 +1930,13 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+@@ -1912,6 +1941,13 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      @Nullable
      org.bukkit.event.player.PlayerResourcePackStatusEvent.Status getResourcePackStatus();
  
@@ -79,7 +113,7 @@ index 4abbc042e9f75440a0d0d4d6cabdb329432ff028..7a180d815bb1e90759129f3508eb863e
      /**
       * @return the most recent resource pack hash received from the player,
       *         or null if no hash has ever been received from this player.
-@@ -1935,6 +1960,15 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+@@ -1935,6 +1971,15 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      @NotNull
      PlayerProfile getPlayerProfile();
  
