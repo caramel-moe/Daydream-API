@@ -4,47 +4,26 @@ Date: Thu, 5 Aug 2021 15:44:59 +0900
 Subject: [PATCH] Rebrand to Daydream
 
 
-diff --git a/pom.xml b/pom.xml
-index 6fd6066b16d4dbf8695be16ec8b2d135d4d04901..b0eb72c75462224bb01776cdc65ef548c1ae1223 100644
---- a/pom.xml
-+++ b/pom.xml
-@@ -3,18 +3,18 @@
-          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-     <modelVersion>4.0.0</modelVersion>
-     <parent>
--        <groupId>com.tuinity</groupId>
--        <artifactId>tuinity-parent</artifactId>
-+        <groupId>moe.caramel</groupId>
-+        <artifactId>daydream-parent</artifactId>
-         <version>dev-SNAPSHOT</version>
-         <relativePath>../pom.xml</relativePath>
-     </parent>
+diff --git a/build.gradle.kts b/build.gradle.kts
+index 92b612126a6bac0b89198a92bbb73b742ec9d064..a70ae9269da647d050bf87ee8860f6e4062f47f9 100644
+--- a/build.gradle.kts
++++ b/build.gradle.kts
+@@ -39,6 +39,7 @@ dependencies {
+     apiAndDocs("net.kyori:adventure-text-serializer-plain")
+     api("org.apache.logging.log4j:log4j-api:2.14.1") // Paper
+     api("org.slf4j:slf4j-api:1.7.30") // Paper
++    api("net.kyori:adventure-text-minimessage:4.1.0-SNAPSHOT") // Daydream
  
--    <artifactId>tuinity-api</artifactId>
-+    <artifactId>daydream-api</artifactId>
-     <version>1.16.5-R0.1-SNAPSHOT</version>
-     <packaging>jar</packaging>
- 
--    <name>Tuinity-API</name>
--    <url>https://github.com/Spottedleaf/Tuinity</url>
-+    <name>Daydream-API</name>
-+    <url>https://github.com/LemonCaramel/Daydream</url>
-     <description>An enhanced plugin API for Minecraft servers.</description>
- 
-     <properties>
-@@ -71,6 +71,12 @@
-             <version>8.2.2</version>
-             <scope>provided</scope>
-         </dependency>
-+        <dependency>
-+            <groupId>org.checkerframework</groupId>
-+            <artifactId>checker-qual</artifactId>
-+            <version>3.6.1</version>
-+            <scope>provided</scope>
-+        </dependency>
-         <dependency>
-             <groupId>commons-lang</groupId>
-             <artifactId>commons-lang</artifactId>
+     implementation("org.ow2.asm:asm:9.1")
+     implementation("org.ow2.asm:asm-commons:9.1")
+@@ -95,6 +96,7 @@ tasks.withType<Javadoc> {
+         .ignoreEmptyDirectories()
+         .withPropertyName(apiAndDocs.name + "-configuration")
+     doFirst {
++        options.encoding = "UTF-8" // Daydream
+         (options as CoreJavadocOptions).addStringOption(
+             "sourcepath",
+             apiAndDocs.resolvedConfiguration.files.joinToString(separator = File.pathSeparator, transform = File::getPath)
 diff --git a/src/main/java/org/bukkit/NamespacedKey.java b/src/main/java/org/bukkit/NamespacedKey.java
 index 01bcb3a1bdb5accdf844d0178cec3d25746b3eaa..ed6c7819c5c42e4259acc11f188595b7e09941a6 100644
 --- a/src/main/java/org/bukkit/NamespacedKey.java

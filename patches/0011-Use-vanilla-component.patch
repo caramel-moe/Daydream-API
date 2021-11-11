@@ -1,0 +1,19 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: LemonCaramel <admin@caramel.moe>
+Date: Fri, 6 Aug 2021 20:18:42 +0900
+Subject: [PATCH] Use vanilla component
+
+
+diff --git a/src/main/java/org/bukkit/command/Command.java b/src/main/java/org/bukkit/command/Command.java
+index 95847fcb1ac2e430ee192f4f7ac94e981151c5db..9f1b4141aae7f745083a73a4e204a473d3d0ff8f 100644
+--- a/src/main/java/org/bukkit/command/Command.java
++++ b/src/main/java/org/bukkit/command/Command.java
+@@ -185,7 +185,7 @@ public abstract class Command {
+         }
+ 
+             // Paper start - use components for permissionMessage
+-        net.kyori.adventure.text.Component permissionMessage = this.permissionMessage != null ? this.permissionMessage : io.papermc.paper.text.PaperComponents.legacySectionSerializer().deserialize(Bukkit.getPermissionMessage());
++        net.kyori.adventure.text.Component permissionMessage = this.permissionMessage != null ? this.permissionMessage : (Bukkit.getPermissionMessage().length() == 0 ? net.kyori.adventure.text.Component.translatable("command.failed", net.kyori.adventure.text.format.NamedTextColor.RED) : io.papermc.paper.text.PaperComponents.legacySectionSerializer().deserialize(Bukkit.getPermissionMessage())); // Daydream
+         if (!permissionMessage.equals(net.kyori.adventure.text.Component.empty())) {
+             target.sendMessage(permissionMessage.replaceText(net.kyori.adventure.text.TextReplacementConfig.builder().matchLiteral("<permission>").replacement(permission).build()));
+             // Paper end

@@ -1,0 +1,1567 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: LemonCaramel <admin@caramel.moe>
+Date: Sun, 8 Aug 2021 23:28:55 +0900
+Subject: [PATCH] Add StructureBlockAPI
+
+https://github.com/Shynixn/StructureBlockLib
+
+diff --git a/src/main/java/moe/caramel/daydream/structure/api/block/StructureBlockAbstract.java b/src/main/java/moe/caramel/daydream/structure/api/block/StructureBlockAbstract.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..8ee7ca106ed618e669dfc1dbf386e246827b31f7
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/structure/api/block/StructureBlockAbstract.java
+@@ -0,0 +1,21 @@
++package moe.caramel.daydream.structure.api.block;
++
++import moe.caramel.daydream.structure.api.enumeration.StructureMode;
++import org.jetbrains.annotations.NotNull;
++
++public interface StructureBlockAbstract {
++    /**
++     * Changes the type of the structureBlock.
++     *
++     * @param structureMode structureMode.
++     */
++    void setStructureMode(@NotNull StructureMode structureMode);
++
++    /**
++     * Returns the type of the structureBlock.
++     *
++     * @return structureMode.
++     */
++    @NotNull
++    StructureMode getStructureMode();
++}
+diff --git a/src/main/java/moe/caramel/daydream/structure/api/block/StructureBlockConstructionAbstract.java b/src/main/java/moe/caramel/daydream/structure/api/block/StructureBlockConstructionAbstract.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..52724c9697125a332a30d3b45b0ecffd0dea9f96
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/structure/api/block/StructureBlockConstructionAbstract.java
+@@ -0,0 +1,94 @@
++package moe.caramel.daydream.structure.api.block;
++
++import org.jetbrains.annotations.Nullable;
++
++public interface StructureBlockConstructionAbstract<L> extends StructureBlockCornerAbstract {
++    /**
++     * Sets the author of the structure.
++     *
++     * @param author author.
++     */
++    void setAuthor(@Nullable String author);
++
++    /**
++     * Returns the author of the structure.
++     *
++     * @return author.
++     */
++    @Nullable
++    String getAuthor();
++
++    /**
++     * Changes the location of the structure.
++     *
++     * @param location location.
++     */
++    void setStructureLocation(@Nullable L location);
++
++    /**
++     * Returns the location of the structure.
++     *
++     * @return location.
++     */
++    @Nullable L getStructureLocation();
++
++    /**
++     * Should entities which may or may not be included in the
++     * saved file be included in the loaded/saved structure.
++     * Default false.
++     *
++     * @param flag flag.
++     */
++    void setIncludeEntities(boolean flag);
++
++    /**
++     * Should entities which may or may not be included in the
++     * saved file be included in the loaded/saved structure.
++     * Default false.
++     *
++     * @return false.
++     */
++    boolean isIncludeEntitiesEnabled();
++
++    /**
++     * Changes the size of the structure in X direction.
++     *
++     * @param sizeX sizeX.
++     */
++    void setSizeX(int sizeX);
++
++    /**
++     * Changes the size of the structure in Y direction.
++     *
++     * @param sizeY sizeY.
++     */
++    void setSizeY(int sizeY);
++
++    /**
++     * Changes the size of the structure in Z direction.
++     *
++     * @param sizeZ sizeZ.
++     */
++    void setSizeZ(int sizeZ);
++
++    /**
++     * Returns the size of the structure in X direction.
++     *
++     * @return xSize.
++     */
++    int getSizeX();
++
++    /**
++     * Returns the size of the structure in Y direction.
++     *
++     * @return ySize.
++     */
++    int getSizeY();
++
++    /**
++     * Returns the size of the structure in Z direction.
++     *
++     * @return zSize.
++     */
++    int getSizeZ();
++}
+diff --git a/src/main/java/moe/caramel/daydream/structure/api/block/StructureBlockCornerAbstract.java b/src/main/java/moe/caramel/daydream/structure/api/block/StructureBlockCornerAbstract.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..66871c2f2107c674fce08a15305616536a521738
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/structure/api/block/StructureBlockCornerAbstract.java
+@@ -0,0 +1,20 @@
++package moe.caramel.daydream.structure.api.block;
++
++import org.jetbrains.annotations.Nullable;
++
++public interface StructureBlockCornerAbstract extends StructureBlockAbstract {
++    /**
++     * Sets the name of the save.
++     *
++     * @param name name.
++     */
++    void setSaveName(@Nullable String name);
++
++    /**
++     * Returns the name of the save.
++     *
++     * @return name.
++     */
++    @Nullable
++    String getSaveName();
++}
+diff --git a/src/main/java/moe/caramel/daydream/structure/api/block/StructureBlockDataAbstract.java b/src/main/java/moe/caramel/daydream/structure/api/block/StructureBlockDataAbstract.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..fbf71d1ee16571c174717d368b93aca47e9397cf
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/structure/api/block/StructureBlockDataAbstract.java
+@@ -0,0 +1,20 @@
++package moe.caramel.daydream.structure.api.block;
++
++import org.jetbrains.annotations.Nullable;
++
++public interface StructureBlockDataAbstract extends StructureBlockAbstract {
++    /**
++     * Sets custom meta data. Please use the minecraft documentation to find out more.
++     *
++     * @param blockNameMetaData customMeta.
++     */
++    void setBlockNameMetaData(@Nullable String blockNameMetaData);
++
++    /**
++     * Returns the custom meta data.
++     *
++     * @return customMeta
++     */
++    @Nullable
++    String getBlockNameMetaData();
++}
+diff --git a/src/main/java/moe/caramel/daydream/structure/api/block/StructureBlockLoadAbstract.java b/src/main/java/moe/caramel/daydream/structure/api/block/StructureBlockLoadAbstract.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..2577edd0ea1247ee0747210f7f84e8e173bf5d3e
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/structure/api/block/StructureBlockLoadAbstract.java
+@@ -0,0 +1,89 @@
++package moe.caramel.daydream.structure.api.block;
++
++import moe.caramel.daydream.structure.api.entity.StructureLoaderAbstract;
++import moe.caramel.daydream.structure.api.enumeration.StructureMirror;
++import moe.caramel.daydream.structure.api.enumeration.StructureRotation;
++import org.jetbrains.annotations.NotNull;
++
++public interface StructureBlockLoadAbstract<L, V> extends StructureBlockConstructionAbstract<L> {
++    /**
++     * Sets the mirrorType of the structure when getting load.
++     *
++     * @param mirrorType mirrorType.
++     */
++    void setMirrorType(@NotNull StructureMirror mirrorType);
++
++    /**
++     * Sets the rotation of the structure when getting load.
++     *
++     * @param rotation rotation.
++     */
++    void setRotationType(@NotNull StructureRotation rotation);
++
++    /**
++     * Returns the rotation of the structure when getting load.
++     *
++     * @return rotation.
++     */
++    @NotNull
++    StructureRotation getRotationType();
++
++    /**
++     * Returns the mirrorType of the structure when getting load.
++     *
++     * @return mirrorType.
++     */
++    @NotNull
++    StructureMirror getMirrorType();
++
++    /**
++     * Sets the boundingBoxVisibility.
++     *
++     * @param visible visible.
++     */
++    void setBoundingBoxVisible(boolean visible);
++
++    /**
++     * Returns if the boundingBox is visible.
++     *
++     * @return visible.
++     */
++    boolean isBoundingBoxVisible();
++
++    /**
++     * Sets the integrity of the structure.
++     *
++     * @param integrity integrity.
++     */
++    void setIntegrity(float integrity);
++
++    /**
++     * Returns the integrity of the structure.
++     *
++     * @return integrity.
++     */
++    float getIntegrity();
++
++    /**
++     * Sets the seed of the structure.
++     *
++     * @param seed seed.
++     */
++    void setSeed(long seed);
++
++    /**
++     * Returns the seed of the structure.
++     *
++     * @return seed.
++     */
++    long getSeed();
++
++    /**
++     * Gets the associated {@link StructureLoaderAbstract} instance which
++     * contains the current block properties.
++     *
++     * @return Loader.
++     */
++    @NotNull
++    StructureLoaderAbstract<L, V> loadStructure();
++}
+diff --git a/src/main/java/moe/caramel/daydream/structure/api/block/StructureBlockSaveAbstract.java b/src/main/java/moe/caramel/daydream/structure/api/block/StructureBlockSaveAbstract.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..bcedeb67b0d23b312bf9908ca0442171773c389a
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/structure/api/block/StructureBlockSaveAbstract.java
+@@ -0,0 +1,29 @@
++package moe.caramel.daydream.structure.api.block;
++
++import moe.caramel.daydream.structure.api.entity.StructureSaverAbstract;
++import org.jetbrains.annotations.NotNull;
++
++public interface StructureBlockSaveAbstract<L, V> extends StructureBlockConstructionAbstract<L> {
++    /**
++     * Sets if invisibleBlocks should be visible.
++     *
++     * @param flag flag.
++     */
++    void setInvisibleBlocksEnabled(boolean flag);
++
++    /**
++     * Returns if invisibleBlocks are visible.
++     *
++     * @return visible
++     */
++    boolean isInvisibleBlocksEnabled();
++
++    /**
++     * Gets the associated {@link StructureSaverAbstract} instance which
++     * contains the current block properties.
++     *
++     * @return Saver.
++     */
++    @NotNull
++    StructureSaverAbstract<L, V> saveStructure();
++}
+diff --git a/src/main/java/moe/caramel/daydream/structure/api/entity/Position.java b/src/main/java/moe/caramel/daydream/structure/api/entity/Position.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..9437c15e25d12933d041f8041271606b185cea3e
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/structure/api/entity/Position.java
+@@ -0,0 +1,65 @@
++package moe.caramel.daydream.structure.api.entity;
++
++import org.jetbrains.annotations.Nullable;
++
++/**
++ * Vector Util.
++ */
++public interface Position {
++    /**
++     * Gets the x coordinate.
++     *
++     * @return x.
++     */
++    double getX();
++
++    /**
++     * Gets the y coordinate.
++     *
++     * @return y.
++     */
++    double getY();
++
++    /**
++     * Gets the z coordinate.
++     *
++     * @return z.
++     */
++    double getZ();
++
++    /**
++     * Gets the world name.
++     *
++     * @return name.
++     */
++    @Nullable
++    String getWorldName();
++
++    /**
++     * Sets the world name.
++     *
++     * @param world world.
++     */
++    void setWorldName(@Nullable String world);
++
++    /**
++     * Sets the x coordinate.
++     *
++     * @param x coordinate.
++     */
++    void setX(double x);
++
++    /**
++     * Sets the y coordinate.
++     *
++     * @param y coordinate.
++     */
++    void setY(double y);
++
++    /**
++     * Sets the z coordinate.
++     *
++     * @param z coordinate.
++     */
++    void setZ(double z);
++}
+diff --git a/src/main/java/moe/caramel/daydream/structure/api/entity/ProgressToken.java b/src/main/java/moe/caramel/daydream/structure/api/entity/ProgressToken.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..ce63de2c223c94f78ce73d3ee68449230c139ec5
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/structure/api/entity/ProgressToken.java
+@@ -0,0 +1,60 @@
++package moe.caramel.daydream.structure.api.entity;
++
++import java.util.concurrent.CompletionStage;
++import java.util.function.Consumer;
++
++/*
++ * ProgressToken to manage a long running task.
++ *
++ * @param <T> Type of result.
++ */
++public interface ProgressToken<T> {
++    /**
++     * Gets the already started {@link CompletionStage} which completes with the result.
++     * This instance can be used to execute calls after the progress has finished
++     * and listens to exceptions thrown during the progress.
++     *
++     * @return NotNull instance of {@link CompletionStage}.
++     */
++    CompletionStage<T> getCompletionStage();
++
++    /**
++     * Adds a new consumer to the progressToken which gets called each time the
++     * progress percentage from 0.0(0%) to 1.0 (100%) changes. Is at least called
++     * once for 0.0 and once for 1.0.
++     *
++     * @param progress {@link Consumer}.
++     * @return This instance.
++     */
++    ProgressToken<T> onProgress(Consumer<Double> progress);
++
++    /**
++     * Adds a new consumer to the progressToken which gets called if the
++     * the progress fails with an exception.
++     *
++     * @param exception {@link Consumer}.
++     * @return This instance.
++     */
++    ProgressToken<T> onException(Consumer<Throwable> exception);
++
++    /**
++     * Adds a new consumer to the progressToken which gets called once the
++     * the progress completes.
++     *
++     * @param result{@link Consumer}.
++     * @return This instance.
++     */
++    ProgressToken<T> onResult(Consumer<T> result);
++
++    /**
++     * Is the progress cancelled or not.
++     *
++     * @return True if cancelled. False if not.
++     */
++    boolean isCancelled();
++
++    /**
++     * Cancels the progress if it has not finished yet.
++     */
++    void cancel();
++}
+diff --git a/src/main/java/moe/caramel/daydream/structure/api/entity/StructureLoaderAbstract.java b/src/main/java/moe/caramel/daydream/structure/api/entity/StructureLoaderAbstract.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..214b5e5749232ed71b33b2dd3a2ee989b8cb99aa
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/structure/api/entity/StructureLoaderAbstract.java
+@@ -0,0 +1,209 @@
++package moe.caramel.daydream.structure.api.entity;
++
++import moe.caramel.daydream.structure.api.enumeration.StructureMirror;
++import moe.caramel.daydream.structure.api.enumeration.StructureRotation;
++import org.jetbrains.annotations.NotNull;
++import org.jetbrains.annotations.Nullable;
++
++import java.io.File;
++import java.io.InputStream;
++import java.nio.file.Path;
++
++/**
++ * Interface fluent API to load structures from sources into
++ * the world
++ */
++public interface StructureLoaderAbstract<L, V> {
++    /**
++     * Gets the target Location.
++     *
++     * @return location.
++     */
++    @Nullable
++    L getLocation();
++
++    /**
++     * Should entities which may or may not be included in the
++     * saved file be included in the loaded structure.
++     * Default false.
++     *
++     * @return flag.
++     */
++    boolean isIncludeEntitiesEnabled();
++
++    /**
++     * Gets the target mirror type.
++     * Default StructureMirror.NONE.
++     *
++     * @return {@link StructureMirror}.
++     */
++    StructureMirror getMirrorType();
++
++    /**
++     * Gets the target rotation type.
++     * Default StructureRotation.NONE.
++     *
++     * @return {@link StructureRotation}.
++     */
++    StructureRotation getRotationType();
++
++    /**
++     * Gets the target integrity.
++     * Default 1.0.
++     * 1.0 Every block which is present in the structure file is placed in the world.
++     * 1.0 Blocks get randomly removed by loading depending on the given {@code getSeed}.
++     *
++     * @return integrity.
++     */
++    float getIntegrity();
++
++    /**
++     * Gets the target seed.
++     * Default 0L.
++     * The seed is used to randomly remove blocks if the integrity {@code getIntegrity} is less than 1.0.
++     *
++     * @return seed.
++     */
++    long getSeed();
++
++    /**
++     * Sets the target Location corner where the
++     * blocks start to get placed.
++     * Required parameter.
++     *
++     * @param location Location.
++     * @return This instance.
++     */
++    @NotNull
++    StructureLoaderAbstract<L, V> at(@Nullable L location);
++
++    /**
++     * Should entities which may or may not be included in the
++     * saved file be included in the loaded structure.
++     * Default false.
++     *
++     * @param enabled Flag.
++     * @return This instance.
++     */
++    StructureLoaderAbstract<L, V> includeEntities(boolean enabled);
++
++    /**
++     * Sets the target mirror type.
++     * Default StructureMirror.NONE.
++     *
++     * @param mirror Mirror.
++     * @return This instance.
++     */
++    StructureLoaderAbstract<L, V> mirror(StructureMirror mirror);
++
++    /**
++     * Sets the target rotation type.
++     * Default StructureRotation.NONE.
++     *
++     * @param rotation Rotation.
++     * @return This instance.
++     */
++    StructureLoaderAbstract<L, V> rotation(StructureRotation rotation);
++
++    /**
++     * Sets the target integrity.
++     * Default 1.0.
++     * 1.0 Every block which is present in the structure file is placed in the world.
++     * 1.0 Blocks get randomly removed by loading depending on the given {@code setSeed}.
++     *
++     * @param integrity Integrity.
++     * @return This instance.
++     */
++    StructureLoaderAbstract<L, V> integrity(float integrity);
++
++    /**
++     * Sets the target seed.
++     * Default 0L.
++     * The seed is used to randomly remove blocks if the integrity {@code setIntegrity} is less than 1.0.
++     *
++     * @param seed Seed.
++     * @return This instance.
++     */
++    StructureLoaderAbstract<L, V> seed(long seed);
++
++    /**
++     * Loads the structure blocks and entities from the given source and places
++     * the blocks at the defined position.
++     * <p>
++     * This call does not block and finishes in the future. Use
++     * {@link ProgressToken} ()} for cancellation or callbacks.
++     *
++     * @param source Existing Structure in world defined by {@link StructureSaverAbstract}.
++     * @return NotNull instance of {@link ProgressToken}.
++     */
++    @NotNull
++    ProgressToken<Void> loadFromSaver(@NotNull StructureSaverAbstract<L, V> source);
++
++    /**
++     * Loads the structure blocks and entities from the structure storage
++     * inside each world folder of Minecraft and places
++     * the blocks at the defined position.
++     * <p>
++     * This call does not block and finishes in the future. Use
++     * {@link ProgressToken} ()} for cancellation or callbacks.
++     *
++     * @param worldName World where the structure file is stored.
++     * @param author    Name of the structure author.
++     * @param name      Name of the stored structure.
++     * @return NotNull instance of {@link ProgressToken}.
++     */
++    @NotNull
++    ProgressToken<Void> loadFromWorld(@NotNull String worldName, @NotNull String author, @NotNull String name);
++
++    /**
++     * Loads the structure blocks and entities from the given source and places
++     * the blocks at the defined position.
++     * <p>
++     * This call does not block and finishes in the future. Use
++     * {@link ProgressToken} ()} for cancellation or callbacks.
++     *
++     * @param source Base64 encoded Structure binary.
++     * @return NotNull instance of {@link ProgressToken}.
++     */
++    @NotNull
++    ProgressToken<Void> loadFromString(@NotNull String source);
++
++    /**
++     * Loads the structure blocks and entities from the given source and places
++     * the blocks at the defined position.
++     * <p>
++     * This call does not block and finishes in the future. Use
++     * {@link ProgressToken} ()} for cancellation or callbacks.
++     *
++     * @param source Existing Path.
++     * @return NotNull instance of {@link ProgressToken}.
++     */
++    @NotNull
++    ProgressToken<Void> loadFromPath(@NotNull Path source);
++
++    /**
++     * Loads the structure blocks and entities from the given source and places
++     * the blocks at the defined position.
++     * <p>
++     * This call does not block and finishes in the future. Use
++     * {@link ProgressToken} ()} for cancellation or callbacks.
++     *
++     * @param source Existing File.
++     * @return NotNull instance of {@link ProgressToken}.
++     */
++    @NotNull
++    ProgressToken<Void> loadFromFile(@NotNull File source);
++
++    /**
++     * Loads the structure blocks and entities from the given source and places
++     * the blocks at the defined position.
++     * <p>
++     * This call does not block and finishes in the future. Use
++     * {@link ProgressToken} ()} for cancellation or callbacks.
++     *
++     * @param source Open binary inputStream. Does not close the inputStream.
++     * @return NotNull instance of {@link ProgressToken}.
++     */
++    @NotNull
++    ProgressToken<Void> loadFromInputStream(@NotNull InputStream source);
++}
+diff --git a/src/main/java/moe/caramel/daydream/structure/api/entity/StructurePlaceMeta.java b/src/main/java/moe/caramel/daydream/structure/api/entity/StructurePlaceMeta.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..def08bc9310ffc5dfec01a663dc81ce982619ada
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/structure/api/entity/StructurePlaceMeta.java
+@@ -0,0 +1,58 @@
++package moe.caramel.daydream.structure.api.entity;
++
++import moe.caramel.daydream.structure.api.enumeration.StructureMirror;
++import moe.caramel.daydream.structure.api.enumeration.StructureRotation;
++import org.jetbrains.annotations.NotNull;
++
++public interface StructurePlaceMeta {
++    /**
++     * Gets the source Location.
++     *
++     * @return location.
++     */
++    @NotNull
++    Position getLocation();
++
++    /**
++     * Should entities be loaded.
++     * Default false.
++     *
++     * @return flag.
++     */
++    boolean isIncludeEntitiesEnabled();
++
++    /**
++     * Gets the target mirror type.
++     * Default StructureMirror.NONE.
++     *
++     * @return {@link StructureMirror}.
++     */
++    StructureMirror getMirrorType();
++
++    /**
++     * Gets the target rotation type.
++     * Default StructureRotation.NONE.
++     *
++     * @return {@link StructureRotation}.
++     */
++    StructureRotation getRotationType();
++
++    /**
++     * Gets the target integrity.
++     * Default 1.0.
++     * 1.0  Every block which is present in the structure file is placed in the world.
++     * 1.0 Blocks get randomly removed by loading depending on the given {@code getSeed}.
++     *
++     * @return integrity.
++     */
++    float getIntegrity();
++
++    /**
++     * Gets the target seed.
++     * Default 0L.
++     * The seed is used to randomly remove blocks if the integrity {@code getIntegrity} is less than 1.0.
++     *
++     * @return seed.
++     */
++    long getSeed();
++}
+diff --git a/src/main/java/moe/caramel/daydream/structure/api/entity/StructureReadMeta.java b/src/main/java/moe/caramel/daydream/structure/api/entity/StructureReadMeta.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..60c763e48f71bdacc006dd67280573b1bcd853d6
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/structure/api/entity/StructureReadMeta.java
+@@ -0,0 +1,52 @@
++package moe.caramel.daydream.structure.api.entity;
++
++import org.jetbrains.annotations.NotNull;
++
++public interface StructureReadMeta {
++    /**
++     * Gets the source Location.
++     *
++     * @return location.
++     */
++    @NotNull
++    Position getLocation();
++
++    /**
++     * Gets the offset of the selection.
++     *
++     * @return offset.
++     */
++    @NotNull
++    Position getOffset();
++
++    /**
++     * Gets the author.
++     * The author is a optional meta data in the final
++     * structure file.
++     *
++     * @return author.
++     */
++    @NotNull String getAuthor();
++
++    /**
++     * Should entities included in the saved file.
++     * Default false.
++     *
++     * @return flag.
++     */
++    boolean isIncludeEntitiesEnabled();
++
++    /**
++     * Gets the name of the block type
++     * which is being used as a Structure_Void.
++     * <p>
++     * Default STRUCTURE_VOID in 1.10 - Latest, BARRIER_BLOCK in 1.9.
++     * <p>
++     * If the selected structure contains blocks with this typename.
++     * They are going to get ignored.
++     *
++     * @return Name of the block type.
++     */
++    @NotNull
++    String getStructureVoidTypeName();
++}
+diff --git a/src/main/java/moe/caramel/daydream/structure/api/entity/StructureSaverAbstract.java b/src/main/java/moe/caramel/daydream/structure/api/entity/StructureSaverAbstract.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..284e10f3e3354700eb31e879769c3d94a69419a8
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/structure/api/entity/StructureSaverAbstract.java
+@@ -0,0 +1,233 @@
++package moe.caramel.daydream.structure.api.entity;
++
++import moe.caramel.daydream.structure.api.enumeration.StructureRestriction;
++import org.jetbrains.annotations.NotNull;
++import org.jetbrains.annotations.Nullable;
++
++import java.io.File;
++import java.io.OutputStream;
++import java.nio.file.Path;
++
++/**
++ * Interface fluent API to save structures from the world into
++ * different targets.
++ */
++public interface StructureSaverAbstract<L, V> {
++    /**
++     * Gets the source Location.
++     *
++     * @return location.
++     */
++    @Nullable
++    L getLocation();
++
++    /**
++     * Gets the offset of the selection.
++     * Has to be smaller or equal to {@link StructureRestriction}.
++     *
++     * @return offset.
++     */
++    @Nullable
++    V getOffset();
++
++    /**
++     * Gets the author.
++     * The author is a optional meta data in the final
++     * structure file.
++     *
++     * @return author.
++     */
++    @Nullable
++    String getAuthor();
++
++    /**
++     * Should entities included in the saved file.
++     * Default false.
++     *
++     * @return flag.
++     */
++    boolean isIncludeEntitiesEnabled();
++
++    /**
++     * Gets the size restriction.
++     * <p>
++     * Default StructureRestriction.SINGLE_32.
++     *
++     * @return restriction.
++     */
++    @NotNull
++    StructureRestriction getRestriction();
++
++    /**
++     * Gets the name of the block type
++     * which is being used as a Structure_Void.
++     * <p>
++     * Default STRUCTURE_VOID in 1.10 - Latest, BARRIER_BLOCK in 1.9.
++     * <p>
++     * If the selected structure contains blocks with this typename.
++     * They are going to get ignored.
++     *
++     * @return Name of the block type.
++     */
++    @NotNull
++    String getStructureVoidTypeName();
++
++    /**
++     * Sets the source Location corner where the
++     * blocks start to get saved.
++     * Required parameter.
++     *
++     * @param location Location.
++     * @return This instance.
++     */
++    @NotNull
++    StructureSaverAbstract<L, V> at(@Nullable L location);
++
++    /**
++     * Sets the source Vector offset where the
++     * blocks reach to get saved.
++     * Required parameter.
++     *
++     * @param vector Vector.
++     * @return This instance.
++     */
++    @NotNull
++    StructureSaverAbstract<L, V> offSet(@Nullable V vector);
++
++    /**
++     * Sets the offset in x coordinate.
++     *
++     * @param x offset.
++     * @return This instance.
++     */
++    @NotNull
++    StructureSaverAbstract<L, V> sizeX(int x);
++
++    /**
++     * Sets the offset in y coordinate.
++     *
++     * @param y offset.
++     * @return This instance.
++     */
++    @NotNull
++    StructureSaverAbstract<L, V> sizeY(int y);
++
++    /**
++     * Sets the offset in z coordinate.
++     *
++     * @param z offset.
++     * @return This instance.
++     */
++    @NotNull
++    StructureSaverAbstract<L, V> sizeZ(int z);
++
++    /**
++     * Sets the author.
++     * The author is a optional meta data in the final
++     * structure file.
++     *
++     * @param author name.
++     * @return This instance.
++     */
++    StructureSaverAbstract<L, V> author(@Nullable String author);
++
++    /**
++     * Should entities be included in the save file.
++     * Default false.
++     *
++     * @param enabled Flag.
++     * @return This instance.
++     */
++    StructureSaverAbstract<L, V> includeEntities(boolean enabled);
++
++    /**
++     * Restricts the structure to a certain size if a larger
++     * area is selected with offset.
++     * Default StructureRestriction.SINGLE_32.
++     *
++     * @param structureRestriction Restriction.
++     * @return This instance.
++     */
++    @NotNull
++    StructureSaverAbstract<L, V> restriction(@NotNull StructureRestriction structureRestriction);
++
++    /**
++     * Sets the name of the block type
++     * which is being used as a Structure_Void.
++     * Default STRUCTURE_VOID in 1.10 - Latest, BARRIER_BLOCK in 1.9.
++     *
++     * @param name Name of the block type.
++     * @return This instance.
++     */
++    @NotNull
++    StructureSaverAbstract<L, V> structureVoidTypeName(String name);
++
++    /**
++     * Saves the blocks and entities from the world into
++     * into a structure.nbt file located in the world folder,
++     * author folder. Overrides existing files.
++     * This allows to use the structure in Vanilla Structure Blocks.
++     *
++     * <p>
++     * This call does not block and finishes in the future. Use
++     * {@link ProgressToken} ()} for cancellation or callbacks.
++     *
++     * @param worldName World where the structure file is stored.
++     * @param author    Author of the structure.
++     * @param name      Name of the stored structure.
++     * @return Instance of {@link ProgressToken}.
++     */
++    @NotNull
++    ProgressToken<Void> saveToWorld(@NotNull String worldName, @NotNull String author, @NotNull String name);
++
++    /**
++     * Saves the blocks and entities from the world into
++     * into a structure.nbt binary as Base64 encoded string.
++     * <p>
++     * This call does not block and finishes in the future. Use
++     * {@link ProgressToken} ()} for cancellation or callbacks.
++     *
++     * @return Instance of {@link ProgressToken} with Base64EncodedString result.
++     */
++    @NotNull
++    ProgressToken<String> saveToString();
++
++    /**
++     * Saves the blocks and entities from the world into
++     * into a structure.nbt file.
++     * <p>
++     * This call does not block and finishes in the future. Use
++     * {@link ProgressToken} ()} for cancellation or callbacks.
++     *
++     * @param target Non existing or existing file. Overrides existing files.
++     * @return Instance of {@link ProgressToken}.
++     */
++    @NotNull
++    ProgressToken<Void> saveToPath(@NotNull Path target);
++
++    /**
++     * Saves the blocks and entities from the world into
++     * into a structure.nbt file.
++     * <p>
++     * This call does not block and finishes in the future. Use
++     * {@link ProgressToken} ()} for cancellation or callbacks.
++     *
++     * @param target Non existing or existing file. Overrides existing files.
++     * @return Instance of {@link ProgressToken}.
++     */
++    @NotNull
++    ProgressToken<Void> saveToFile(@NotNull File target);
++
++    /**
++     * Saves the blocks and entities from the world into
++     * into a structure.nbt binary stream.
++     * <p>
++     * This call does not block and finishes in the future. Use
++     * {@link ProgressToken} ()} for cancellation or callbacks.
++     *
++     * @param target Open binary outputStream. Does not close the outputStream.
++     * @return Instance of {@link ProgressToken}.
++     */
++    @NotNull
++    ProgressToken<Void> saveToOutputStream(@NotNull OutputStream target);
++}
+diff --git a/src/main/java/moe/caramel/daydream/structure/api/enumeration/StructureMirror.java b/src/main/java/moe/caramel/daydream/structure/api/enumeration/StructureMirror.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..699079fda35282e34d0f98ea159f4db76121ebaa
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/structure/api/enumeration/StructureMirror.java
+@@ -0,0 +1,8 @@
++package moe.caramel.daydream.structure.api.enumeration;
++
++/**
++ * Type of mirror.
++ */
++public enum StructureMirror {
++    NONE, LEFT_RIGHT, FRONT_BACK
++}
+diff --git a/src/main/java/moe/caramel/daydream/structure/api/enumeration/StructureMode.java b/src/main/java/moe/caramel/daydream/structure/api/enumeration/StructureMode.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..8f39c4db8097f1562850c42c3f775d00b9a5f29f
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/structure/api/enumeration/StructureMode.java
+@@ -0,0 +1,8 @@
++package moe.caramel.daydream.structure.api.enumeration;
++
++/**
++ * Type of structureBlocks.
++ */
++public enum StructureMode {
++    SAVE, LOAD, CORNER, DATA
++}
+diff --git a/src/main/java/moe/caramel/daydream/structure/api/enumeration/StructureRestriction.java b/src/main/java/moe/caramel/daydream/structure/api/enumeration/StructureRestriction.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..217803f8e2317fa704fb4da923e506a7c5da320b
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/structure/api/enumeration/StructureRestriction.java
+@@ -0,0 +1,41 @@
++package moe.caramel.daydream.structure.api.enumeration;
++
++/**
++ * Size restriction of the target structure.
++ */
++public enum StructureRestriction {
++    /**
++     * (Default in all operations)
++     * Traditional size from 1.9.0 - latest.
++     * Restricts the structure to single structure of a max size of 32x32x32.
++     */
++    SINGLE_32(32),
++
++    /**
++     * Larger size from 1.16 - latest.
++     * Restricts the structure to single structure of a max size of 48x48x48.
++     */
++    SINGLE_48(48),
++
++    /**
++     * No size restrictions. This may cause
++     * incompatibility to other programs.
++     * Restricts the structure to single structure of unlimited size..
++     */
++    UNLIMITED(Integer.MAX_VALUE);
++
++    private final int maxSize;
++
++    StructureRestriction(int maxSize) {
++        this.maxSize = maxSize;
++    }
++
++    /**
++     * Gets the max size value.
++     *
++     * @return maxSize.
++     */
++    public int getMaxSize() {
++        return maxSize;
++    }
++}
+diff --git a/src/main/java/moe/caramel/daydream/structure/api/enumeration/StructureRotation.java b/src/main/java/moe/caramel/daydream/structure/api/enumeration/StructureRotation.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..31d1d7b9388761c149dd9507f459efcfa3f6954d
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/structure/api/enumeration/StructureRotation.java
+@@ -0,0 +1,8 @@
++package moe.caramel.daydream.structure.api.enumeration;
++
++/**
++ * Types of rotations.
++ */
++public enum StructureRotation {
++    NONE, ROTATION_90, ROTATION_180, ROTATION_270
++}
+diff --git a/src/main/java/moe/caramel/daydream/structure/api/service/ProxyService.java b/src/main/java/moe/caramel/daydream/structure/api/service/ProxyService.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..45b90b8252ed10c08593bd3378fb6d527dc069a6
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/structure/api/service/ProxyService.java
+@@ -0,0 +1,51 @@
++package moe.caramel.daydream.structure.api.service;
++
++import moe.caramel.daydream.structure.api.entity.Position;
++import org.jetbrains.annotations.NotNull;
++import org.jetbrains.annotations.Nullable;
++
++/**
++ * Proxies small framework specific actions.
++ */
++public interface ProxyService {
++    /**
++     * Converts the given position to a location.
++     *
++     * @param position position.
++     * @param <L>      Location Type.
++     * @return location.
++     */
++    @Nullable <L> L toLocation(@Nullable Position position);
++
++    /**
++     * Converts the given position to a vector.
++     *
++     * @param position position.
++     * @param <V>      Vector Type.
++     * @return vector.
++     */
++    @Nullable <V> V toVector(@Nullable Position position);
++
++    /**
++     * Converts the given location to a position.
++     *
++     * @param location Location.
++     * @param <L>      Location Type.
++     * @return position.
++     */
++    @Nullable <L> Position toPosition(@Nullable L location);
++
++    /**
++     * Runs an async task.
++     *
++     * @param runnable Runnable.
++     */
++    void runAsyncTask(@NotNull Runnable runnable);
++
++    /**
++     * Runs a sync task.
++     *
++     * @param runnable Runnable.
++     */
++    void runSyncTask(@NotNull Runnable runnable);
++}
+diff --git a/src/main/java/moe/caramel/daydream/structure/api/service/StructureSerializationService.java b/src/main/java/moe/caramel/daydream/structure/api/service/StructureSerializationService.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..9cd041f45374d4dde6ea2e79e4967c1dd1e83ba6
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/structure/api/service/StructureSerializationService.java
+@@ -0,0 +1,28 @@
++package moe.caramel.daydream.structure.api.service;
++
++import java.io.IOException;
++import java.io.InputStream;
++import java.io.OutputStream;
++
++/**
++ * Serialization service.
++ */
++public interface StructureSerializationService {
++    /**
++     * Deserializes the {@link InputStream} to an NMS handle of DefinedStructure.
++     * This call is blocking.
++     *
++     * @param inputStream Opened inputStream. Does not close the stream after processing.
++     * @return A new NMS instance of DefinedStructure.
++     */
++    Object deSerialize(InputStream inputStream) throws IOException;
++
++    /**
++     * Serializes the NMS handle of DefinedStructure to an {@link OutputStream}.
++     * This call is blocking.
++     *
++     * @param definedStructure NMS handle.
++     * @param outputStream     Opened outputStream. Does not close the stream after processing.
++     */
++    void serialize(Object definedStructure, OutputStream outputStream) throws IOException;
++}
+diff --git a/src/main/java/moe/caramel/daydream/structure/api/service/StructureWorldService.java b/src/main/java/moe/caramel/daydream/structure/api/service/StructureWorldService.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..a64c13346b3a9d55dc6e7b891cda5c424029b1d6
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/structure/api/service/StructureWorldService.java
+@@ -0,0 +1,22 @@
++package moe.caramel.daydream.structure.api.service;
++
++import moe.caramel.daydream.structure.api.entity.StructurePlaceMeta;
++import moe.caramel.daydream.structure.api.entity.StructureReadMeta;
++
++public interface StructureWorldService {
++    /**
++     * Places the blocks in the world defined by the given structure.
++     *
++     * @param meta      Meta data to describe the placement.
++     * @param structure NMS structure.
++     */
++    void placeStructureToWorld(StructurePlaceMeta meta, Object structure) throws Exception;
++
++    /**
++     * Reads the blocks in the world into an NMS Structure definition.
++     *
++     * @param meta Meta data to describe the block selection.
++     * @return A new NMS Structure definition.
++     */
++    Object readStructureFromWorld(StructureReadMeta meta) throws Exception;
++}
+diff --git a/src/main/java/moe/caramel/daydream/structure/api/service/TypeConversionService.java b/src/main/java/moe/caramel/daydream/structure/api/service/TypeConversionService.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..f430ac5bb5a279afff0d150a8ccff4375db1eca6
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/structure/api/service/TypeConversionService.java
+@@ -0,0 +1,55 @@
++package moe.caramel.daydream.structure.api.service;
++
++import moe.caramel.daydream.structure.api.enumeration.StructureMirror;
++import moe.caramel.daydream.structure.api.enumeration.StructureMode;
++import moe.caramel.daydream.structure.api.enumeration.StructureRotation;
++
++public interface TypeConversionService {
++    /**
++     * Converts the given handle to a {@link StructureMode}.
++     *
++     * @param handle NMS handle.
++     * @return {@link StructureMode}.
++     */
++    StructureMode convertToStructureMode(Object handle);
++
++    /**
++     * Converts the given handle to a {@link StructureMirror}.
++     *
++     * @param handle NMS handle.
++     * @return {@link StructureMirror}.
++     */
++    StructureMirror convertToStructureMirror(Object handle);
++
++    /**
++     * Converts the given handle to a {@link StructureRotation}.
++     *
++     * @param handle NMS handle.
++     * @return {@link StructureRotation}.
++     */
++    StructureRotation convertToStructureRotation(Object handle);
++
++    /**
++     * Converts the given {@link StructureMode} to a handle.
++     *
++     * @param mode {@link StructureMode}.
++     * @return NMS handle.
++     */
++    Object convertToStructureModeHandle(StructureMode mode);
++
++    /**
++     * Converts the given {@link StructureMirror} to a handle.
++     *
++     * @param mirror {@link StructureMirror}.
++     * @return NMS handle.
++     */
++    Object convertToMirrorHandle(StructureMirror mirror);
++
++    /**
++     * Converts the given {@link StructureRotation} to a handle.
++     *
++     * @param rotation {@link StructureRotation}.
++     * @return NMS handle.
++     */
++    Object convertToRotationHandle(StructureRotation rotation);
++}
+diff --git a/src/main/java/moe/caramel/daydream/structure/bukkit/api/StructureAPI.java b/src/main/java/moe/caramel/daydream/structure/bukkit/api/StructureAPI.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..92cbf84fcf26dacf124f5d106fc5f153661a44f5
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/structure/bukkit/api/StructureAPI.java
+@@ -0,0 +1,44 @@
++package moe.caramel.daydream.structure.bukkit.api;
++
++import moe.caramel.daydream.structure.bukkit.api.block.StructureBlock;
++import moe.caramel.daydream.structure.bukkit.api.entity.StructureLoader;
++import moe.caramel.daydream.structure.bukkit.api.entity.StructureSaver;
++import org.bukkit.Location;
++import org.bukkit.plugin.Plugin;
++
++/**
++ * Api Bukkit implementation.
++ */
++public interface StructureAPI {
++
++    /**
++     * Gets or creates a {@link StructureBlock} at the given location.
++     * This instance hides all structure modes and can be access via simple type casting.
++     * StructureBlockSave save = (StructureBlockSave) structureBlock;
++     * etc.
++     *
++     * @param location Location of the block in the world.
++     * @param plugin   Plugin instance using this API.
++     * @param <T>      Type extending structure block.
++     * @return A new instance of the {@link StructureBlock}.
++     */
++    <T extends StructureBlock> T getStructureBlockAt(Plugin plugin, Location location);
++
++    /**
++     * Creates a new instance of the {@link StructureSaver} for saving
++     * structures from a minecraft world into a target.
++     *
++     * @param plugin Plugin instance using this API.
++     * @return A new instance of the {@link StructureSaver}.
++     */
++    StructureSaver saveStructure(Plugin plugin);
++
++    /**
++     * Creates a new instance of the {@link StructureLoader} for loading
++     * structures from a source into the minecraft world.
++     *
++     * @param plugin Plugin instance using this API.
++     * @return A new instance of the {@link StructureLoader}.
++     */
++    StructureLoader loadStructure(Plugin plugin);
++}
+diff --git a/src/main/java/moe/caramel/daydream/structure/bukkit/api/block/StructureBlock.java b/src/main/java/moe/caramel/daydream/structure/bukkit/api/block/StructureBlock.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..fb91413e0e7d603e5ca619a8e7656fa9539b0d18
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/structure/bukkit/api/block/StructureBlock.java
+@@ -0,0 +1,11 @@
++package moe.caramel.daydream.structure.bukkit.api.block;
++
++import moe.caramel.daydream.structure.api.block.StructureBlockAbstract;
++import org.bukkit.block.BlockState;
++
++/**
++ * Bukkit Wrapper for the StructureBlock.
++ */
++public interface StructureBlock extends BlockState, StructureBlockAbstract {
++
++}
+diff --git a/src/main/java/moe/caramel/daydream/structure/bukkit/api/block/StructureBlockConstruction.java b/src/main/java/moe/caramel/daydream/structure/bukkit/api/block/StructureBlockConstruction.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..68dddd259159d5b3bd12d851e8a1174bd42693b8
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/structure/bukkit/api/block/StructureBlockConstruction.java
+@@ -0,0 +1,10 @@
++package moe.caramel.daydream.structure.bukkit.api.block;
++
++import moe.caramel.daydream.structure.api.block.StructureBlockConstructionAbstract;
++import org.bukkit.Location;
++
++/**
++ * Bukkit Wrapper for the StructureBlock.
++ */
++public interface StructureBlockConstruction extends StructureBlockConstructionAbstract<Location>, StructureBlockCorner {
++}
+diff --git a/src/main/java/moe/caramel/daydream/structure/bukkit/api/block/StructureBlockCorner.java b/src/main/java/moe/caramel/daydream/structure/bukkit/api/block/StructureBlockCorner.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..2ff15122992ce0bad754801fe0fdb7f5cea2d3fb
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/structure/bukkit/api/block/StructureBlockCorner.java
+@@ -0,0 +1,9 @@
++package moe.caramel.daydream.structure.bukkit.api.block;
++
++import moe.caramel.daydream.structure.api.block.StructureBlockCornerAbstract;
++
++/**
++ * Bukkit Wrapper for the StructureBlock.
++ */
++public interface StructureBlockCorner extends StructureBlockCornerAbstract, StructureBlock {
++}
+diff --git a/src/main/java/moe/caramel/daydream/structure/bukkit/api/block/StructureBlockData.java b/src/main/java/moe/caramel/daydream/structure/bukkit/api/block/StructureBlockData.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..5840ebecfd910a7176c90064844ffbf774ebc6ab
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/structure/bukkit/api/block/StructureBlockData.java
+@@ -0,0 +1,9 @@
++package moe.caramel.daydream.structure.bukkit.api.block;
++
++import moe.caramel.daydream.structure.api.block.StructureBlockDataAbstract;
++
++/**
++ * Bukkit Wrapper for the StructureBlock.
++ */
++public interface StructureBlockData extends StructureBlockDataAbstract, StructureBlock {
++}
+diff --git a/src/main/java/moe/caramel/daydream/structure/bukkit/api/block/StructureBlockLoad.java b/src/main/java/moe/caramel/daydream/structure/bukkit/api/block/StructureBlockLoad.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..219e1c5ef0a67b6b7ddf1e901fb05d774b72afe3
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/structure/bukkit/api/block/StructureBlockLoad.java
+@@ -0,0 +1,11 @@
++package moe.caramel.daydream.structure.bukkit.api.block;
++
++import moe.caramel.daydream.structure.api.block.StructureBlockLoadAbstract;
++import org.bukkit.Location;
++import org.bukkit.util.Vector;
++
++/**
++ * Bukkit Wrapper for the StructureBlock.
++ */
++public interface StructureBlockLoad extends StructureBlockLoadAbstract<Location, Vector>, StructureBlockConstruction {
++}
+diff --git a/src/main/java/moe/caramel/daydream/structure/bukkit/api/block/StructureBlockSave.java b/src/main/java/moe/caramel/daydream/structure/bukkit/api/block/StructureBlockSave.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..dc0cbf5439099397d4135441af4edadede7def36
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/structure/bukkit/api/block/StructureBlockSave.java
+@@ -0,0 +1,11 @@
++package moe.caramel.daydream.structure.bukkit.api.block;
++
++import moe.caramel.daydream.structure.api.block.StructureBlockSaveAbstract;
++import org.bukkit.Location;
++import org.bukkit.util.Vector;
++
++/**
++ * Bukkit Wrapper for the StructureBlock.
++ */
++public interface StructureBlockSave extends StructureBlockSaveAbstract<Location, Vector>, StructureBlockConstruction {
++}
+diff --git a/src/main/java/moe/caramel/daydream/structure/bukkit/api/entity/StructureLoader.java b/src/main/java/moe/caramel/daydream/structure/bukkit/api/entity/StructureLoader.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..a9b169eb34e3b0652d6f898f06ed5de29120a0f1
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/structure/bukkit/api/entity/StructureLoader.java
+@@ -0,0 +1,11 @@
++package moe.caramel.daydream.structure.bukkit.api.entity;
++
++import moe.caramel.daydream.structure.api.entity.StructureLoaderAbstract;
++import org.bukkit.Location;
++import org.bukkit.util.Vector;
++
++/**
++ * Bukkit Wrapper for StructureLoader.
++ */
++public interface StructureLoader extends StructureLoaderAbstract<Location, Vector> {
++}
+diff --git a/src/main/java/moe/caramel/daydream/structure/bukkit/api/entity/StructureSaver.java b/src/main/java/moe/caramel/daydream/structure/bukkit/api/entity/StructureSaver.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..b34976f127490376866fce50e4deadc7f06bd07b
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/structure/bukkit/api/entity/StructureSaver.java
+@@ -0,0 +1,11 @@
++package moe.caramel.daydream.structure.bukkit.api.entity;
++
++import moe.caramel.daydream.structure.api.entity.StructureSaverAbstract;
++import org.bukkit.Location;
++import org.bukkit.util.Vector;
++
++/**
++ * Bukkit Wrapper for the StructureSaver.
++ */
++public interface StructureSaver extends StructureSaverAbstract<Location, Vector> {
++}
+diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
+index be7efc91f22ce7f9dcb1bd84958875c22c8f9814..aeacd319964756e71cc1279c6d135599ec6df4f7 100644
+--- a/src/main/java/org/bukkit/Bukkit.java
++++ b/src/main/java/org/bukkit/Bukkit.java
+@@ -13,6 +13,7 @@ import java.util.Set;
+ import java.util.UUID;
+ import java.util.function.Consumer;
+ import java.util.logging.Logger;
++import moe.caramel.daydream.structure.bukkit.api.StructureAPI; // Daydream
+ import org.bukkit.Warning.WarningState;
+ import org.bukkit.advancement.Advancement;
+ import org.bukkit.block.data.BlockData;
+@@ -150,6 +151,20 @@ public final class Bukkit {
+     }
+     // Paper end
+ 
++    // Daydream start
++    /**
++     * Gets the {@link StructureAPI}
++     *
++     * @return StructureAPI instance being ran
++     * @deprecated {@link Server#getStructureManager()}과 기능이 동일한 경우 Bukkit API를 사용해주세요.
++     */
++    @NotNull
++    @Deprecated
++    public static StructureAPI getStructureAPI() {
++        return server.getStructureAPI();
++    }
++    // Daydream end
++
+     /**
+      * Gets a view of all currently logged in players. This {@linkplain
+      * Collections#unmodifiableCollection(Collection) view} is a reused
+diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
+index 7fbfe5b558a5d58027b1e8cab7b9efb1b40079ed..14a897fddad0425257920098b9e3ab6304de9914 100644
+--- a/src/main/java/org/bukkit/Server.java
++++ b/src/main/java/org/bukkit/Server.java
+@@ -13,6 +13,7 @@ import java.util.Set;
+ import java.util.UUID;
+ import java.util.function.Consumer;
+ import java.util.logging.Logger;
++import moe.caramel.daydream.structure.bukkit.api.StructureAPI; // Daydream
+ import org.bukkit.Warning.WarningState;
+ import org.bukkit.advancement.Advancement;
+ import org.bukkit.block.data.BlockData;
+@@ -108,6 +109,18 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
+     String getMinecraftVersion();
+     // Paper end
+ 
++    // Daydream start
++    /**
++     * Gets the current {@link StructureAPI} singleton
++     *
++     * @return StructureAPI instance
++     * @deprecated {@link Server#getStructureManager()}과 기능이 동일한 경우 Bukkit API를 사용해주세요.
++     */
++    @NotNull
++    @Deprecated
++    public StructureAPI getStructureAPI();
++    // Daydream end
++
+     /**
+      * Gets a view of all currently logged in players. This {@linkplain
+      * Collections#unmodifiableCollection(Collection) view} is a reused
+diff --git a/src/test/java/org/bukkit/AnnotationTest.java b/src/test/java/org/bukkit/AnnotationTest.java
+index dc881ffaa947eac4ba34a9ea0c089eaaf06278c5..0189075cfe368d3401161af9f31f95a280a75484 100644
+--- a/src/test/java/org/bukkit/AnnotationTest.java
++++ b/src/test/java/org/bukkit/AnnotationTest.java
+@@ -57,8 +57,18 @@ public class AnnotationTest {
+         "co/aikar/timings/TimingHistory$2$1$2",
+         "co/aikar/timings/TimingHistory$3",
+         "co/aikar/timings/TimingHistory$4",
+-        "co/aikar/timings/TimingHistoryEntry$1"
++        "co/aikar/timings/TimingHistoryEntry$1", // Daydream
+         // Paper end
++        // Daydream start
++        "moe/caramel/daydream/structure/api/entity/ProgressToken",
++        "moe/caramel/daydream/structure/api/entity/StructureLoaderAbstract",
++        "moe/caramel/daydream/structure/api/entity/StructurePlaceMeta",
++        "moe/caramel/daydream/structure/api/entity/StructureSaverAbstract",
++        "moe/caramel/daydream/structure/api/service/StructureSerializationService",
++        "moe/caramel/daydream/structure/api/service/StructureWorldService",
++        "moe/caramel/daydream/structure/api/service/TypeConversionService",
++        "moe/caramel/daydream/structure/bukkit/api/StructureAPI"
++        // Daydream end
+     };
+ 
+     @Test

@@ -1,0 +1,115 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: LemonCaramel <admin@caramel.moe>
+Date: Fri, 6 Aug 2021 20:08:04 +0900
+Subject: [PATCH] Add more Player API
+
+
+diff --git a/build.gradle.kts b/build.gradle.kts
+index 20c57430b34bd880bbbb560b451f52aeb72af96e..1e82e361be4b81c18964a5fadf8f57efeee53ad5 100644
+--- a/build.gradle.kts
++++ b/build.gradle.kts
+@@ -41,6 +41,7 @@ dependencies {
+     api("org.slf4j:slf4j-api:1.7.30") // Paper
+     api("net.kyori:adventure-text-minimessage:4.1.0-SNAPSHOT") // Daydream
+     api("io.papermc.paper:paper-mojangapi:1.17.1-R0.1-SNAPSHOT") // Daydream
++    api("com.mojang:authlib:2.3.31") // Daydream - Mojang Authlib (keep in sync with major MC versions)
+ 
+     implementation("org.ow2.asm:asm:9.1")
+     implementation("org.ow2.asm:asm-commons:9.1")
+diff --git a/src/main/java/moe/caramel/daydream/network/PlayerInfoTypes.java b/src/main/java/moe/caramel/daydream/network/PlayerInfoTypes.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..00b548c05d21bb0d898ebb39439d68c982b1cdbc
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/network/PlayerInfoTypes.java
+@@ -0,0 +1,13 @@
++package moe.caramel.daydream.network;
++
++/**
++ * This is the enum type used for PlayerInfo packets.
++ */
++public enum PlayerInfoTypes {
++
++    ADD_PLAYER,
++    UPDATE_GAME_MODE,
++    UPDATE_LATENCY,
++    UPDATE_DISPLAY_NAME,
++    REMOVE_PLAYER
++}
+\ No newline at end of file
+diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
+index 9a6e410206852029f1fea0c4409352d5743dcf64..642f46fae89096c16046672fa24593880b8abd2d 100644
+--- a/src/main/java/org/bukkit/entity/Player.java
++++ b/src/main/java/org/bukkit/entity/Player.java
+@@ -1328,6 +1328,17 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+      */
+     public void showPlayer(@NotNull Plugin plugin, @NotNull Player player);
+ 
++    // Daydream start
++    /**
++     * Resend the target's info packet to this player.
++     * It's useful when changing a player's skin.
++     *
++     * @param type The type of packet
++     * @param targets Target players
++     */
++    public void sendPlayerInfo(@NotNull moe.caramel.daydream.network.PlayerInfoTypes type, @NotNull java.util.List<Player> targets);
++    // Daydream end
++
+     /**
+      * Checks to see if a player has been hidden from this player
+      *
+@@ -1968,6 +1979,24 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+         return net.kyori.adventure.text.event.HoverEvent.showEntity(op.apply(net.kyori.adventure.text.event.HoverEvent.ShowEntity.of(this.getType().getKey(), this.getUniqueId(), this.displayName())));
+     }
+ 
++    // Daydream start
++    /**
++     * Send a change game state packet to this player
++     *
++     * @param reason Reason Value
++     * @param value Value
++     */
++    void sendChangeGameState(int reason, int value);
++
++    /**
++     * Send a CustomPayload packet to this player
++     *
++     * @param channel channel Value
++     * @param value Value
++     */
++    void sendCustomPayload(@NotNull org.bukkit.NamespacedKey channel, @NotNull String value);
++    // Daydream end
++
+     /**
+      * Request that the player's client download and switch resource packs.
+      * <p>
+@@ -2070,6 +2099,13 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+     @Nullable
+     org.bukkit.event.player.PlayerResourcePackStatusEvent.Status getResourcePackStatus();
+ 
++    // Daydream start
++    /**
++     * @param status resource pack status
++     */
++    void setResourcePackStatus(@NotNull org.bukkit.event.player.PlayerResourcePackStatusEvent.Status status);
++    // Daydream end
++
+     /**
+      * @return the most recent resource pack hash received from the player,
+      *         or null if no hash has ever been received from this player.
+@@ -2093,6 +2129,15 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+     @NotNull
+     PlayerProfile getPlayerProfile();
+ 
++    // Daydream start
++    /**
++     * Gets this players profile
++     * @return The players profile object
++     */
++    @NotNull
++    com.mojang.authlib.GameProfile getProfile();
++    // Daydream end
++
+     /**
+      * Changes the PlayerProfile for this player. This will cause this player
+      * to be reregistered to all clients that can currently see this player

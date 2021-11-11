@@ -1,0 +1,199 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: LemonCaramel <admin@caramel.moe>
+Date: Fri, 6 Aug 2021 17:47:12 +0900
+Subject: [PATCH] Setting Daydream command
+
+
+diff --git a/src/main/java/co/aikar/timings/TimingsManager.java b/src/main/java/co/aikar/timings/TimingsManager.java
+index a92925d41110226f7fda055b71ce7be60eedd038..45c7400e3f2d34b9b16ecadcde376e7251bf81ac 100644
+--- a/src/main/java/co/aikar/timings/TimingsManager.java
++++ b/src/main/java/co/aikar/timings/TimingsManager.java
+@@ -150,8 +150,7 @@ public final class TimingsManager {
+         Plugin plugin = null;
+         final Server server = Bukkit.getServer();
+         if (!(  server == null || pluginName == null ||
+-                "minecraft".equals(pluginName) || "bukkit".equals(pluginName) ||
+-                "spigot".equalsIgnoreCase(pluginName) || "paper".equals(pluginName)
++                "minecraft".equals(pluginName) || "daydream".equals(pluginName) // Daydream
+         )) {
+             plugin = server.getPluginManager().getPlugin(pluginName);
+         }
+diff --git a/src/main/java/org/bukkit/command/defaults/ReloadCommand.java b/src/main/java/moe/caramel/daydream/command/ReloadCommand.java
+similarity index 92%
+rename from src/main/java/org/bukkit/command/defaults/ReloadCommand.java
+rename to src/main/java/moe/caramel/daydream/command/ReloadCommand.java
+index 61b26d60912fedead2e80f6ffe300ca1e558460c..e93a213fc373bfd7815c00304fabb7679bed1b58 100644
+--- a/src/main/java/org/bukkit/command/defaults/ReloadCommand.java
++++ b/src/main/java/moe/caramel/daydream/command/ReloadCommand.java
+@@ -1,11 +1,11 @@
+-package org.bukkit.command.defaults;
++package moe.caramel.daydream.command;
+ 
+-import java.util.Arrays;
+ import java.util.List;
+ import org.bukkit.Bukkit;
+ import org.bukkit.ChatColor;
+ import org.bukkit.command.Command;
+ import org.bukkit.command.CommandSender;
++import org.bukkit.command.defaults.BukkitCommand;
+ import org.jetbrains.annotations.NotNull;
+ 
+ public class ReloadCommand extends BukkitCommand {
+@@ -13,8 +13,7 @@ public class ReloadCommand extends BukkitCommand {
+         super(name);
+         this.description = "Reloads the server configuration and plugins";
+         this.usageMessage = "/reload [permissions|confirm]"; // Paper // Daydream
+-        this.setPermission("bukkit.command.reload");
+-        this.setAliases(Arrays.asList("rl"));
++        this.setPermission("daydream.command.reload"); // Daydream
+     }
+ 
+     @Override
+@@ -52,6 +51,6 @@ public class ReloadCommand extends BukkitCommand {
+     @NotNull
+     @Override
+     public List<String> tabComplete(@NotNull CommandSender sender, @NotNull String alias, @NotNull String[] args) throws IllegalArgumentException {
+-        return com.google.common.collect.Lists.newArrayList("permissions"); // Paper // Daydream
++        return com.google.common.collect.Lists.newArrayList("permissions", "confirm"); // Paper // Daydream
+     }
+ }
+diff --git a/src/main/java/org/bukkit/command/defaults/VersionCommand.java b/src/main/java/moe/caramel/daydream/command/VersionCommand.java
+similarity index 97%
+rename from src/main/java/org/bukkit/command/defaults/VersionCommand.java
+rename to src/main/java/moe/caramel/daydream/command/VersionCommand.java
+index 19157f5e162473258b4fca8fb5f9c636f0d631fd..f303122c5c82fad17e1209fb4f46119a971ee53f 100644
+--- a/src/main/java/org/bukkit/command/defaults/VersionCommand.java
++++ b/src/main/java/moe/caramel/daydream/command/VersionCommand.java
+@@ -1,4 +1,4 @@
+-package org.bukkit.command.defaults;
++package moe.caramel.daydream.command;
+ 
+ import com.google.common.collect.ImmutableList;
+ import java.util.ArrayList;
+@@ -12,6 +12,7 @@ import org.apache.commons.lang.Validate;
+ import org.bukkit.Bukkit;
+ import org.bukkit.ChatColor;
+ import org.bukkit.command.CommandSender;
++import org.bukkit.command.defaults.BukkitCommand;
+ import org.bukkit.plugin.Plugin;
+ import org.bukkit.plugin.PluginDescriptionFile;
+ import org.bukkit.util.StringUtil;
+@@ -25,7 +26,7 @@ public class VersionCommand extends BukkitCommand {
+ 
+         this.description = "Gets the version of this server including any plugins in use";
+         this.usageMessage = "/version [plugin name]";
+-        this.setPermission("bukkit.command.version");
++        this.setPermission("daydream.command.version"); // Daydream
+         this.setAliases(Collections.singletonList("ver")); // Daydream
+     }
+ 
+diff --git a/src/main/java/org/bukkit/command/SimpleCommandMap.java b/src/main/java/org/bukkit/command/SimpleCommandMap.java
+index 50d0bf6eb37d8cad8c62dd7a808d11a9f184291f..e903953cb98d2c42905fc8e377063e00b47e76b0 100644
+--- a/src/main/java/org/bukkit/command/SimpleCommandMap.java
++++ b/src/main/java/org/bukkit/command/SimpleCommandMap.java
+@@ -16,9 +16,8 @@ import org.apache.commons.lang.Validate;
+ import org.bukkit.Location;
+ import org.bukkit.Server;
+ import org.bukkit.command.defaults.BukkitCommand;
+-import org.bukkit.command.defaults.PluginsCommand;
+-import org.bukkit.command.defaults.ReloadCommand;
+-import org.bukkit.command.defaults.VersionCommand;
++import moe.caramel.daydream.command.ReloadCommand; // Daydream
++import moe.caramel.daydream.command.VersionCommand; // Daydream
+ import org.bukkit.entity.Player;
+ import org.bukkit.util.StringUtil;
+ import org.jetbrains.annotations.NotNull;
+@@ -34,10 +33,9 @@ public class SimpleCommandMap implements CommandMap {
+     }
+ 
+     private void setDefaultCommands() {
+-        register("bukkit", new VersionCommand("version"));
+-        register("bukkit", new ReloadCommand("reload"));
+-        register("bukkit", new PluginsCommand("plugins"));
+-        register("bukkit", new co.aikar.timings.TimingsCommand("timings")); // Paper
++        register("daydream", new VersionCommand("version")); // Daydream
++        register("daydream", new ReloadCommand("reload")); // Daydream
++        register("daydream", new co.aikar.timings.TimingsCommand("timings")); // Paper // Daydream
+     }
+ 
+     public void setFallbackCommands() {} // Daydream - for API Compatibility
+diff --git a/src/main/java/org/bukkit/command/defaults/PluginsCommand.java b/src/main/java/org/bukkit/command/defaults/PluginsCommand.java
+deleted file mode 100644
+index 1aa58c59e1e8738bbdc77752885ff3b18b29de42..0000000000000000000000000000000000000000
+--- a/src/main/java/org/bukkit/command/defaults/PluginsCommand.java
++++ /dev/null
+@@ -1,74 +0,0 @@
+-package org.bukkit.command.defaults;
+-
+-import java.util.Arrays;
+-import java.util.Collections;
+-import java.util.List;
+-import java.util.Map;
+-import java.util.TreeMap;
+-
+-import org.bukkit.Bukkit;
+-import org.bukkit.ChatColor;
+-import org.bukkit.command.CommandSender;
+-import org.bukkit.plugin.Plugin;
+-import org.jetbrains.annotations.NotNull;
+-
+-public class PluginsCommand extends BukkitCommand {
+-    public PluginsCommand(@NotNull String name) {
+-        super(name);
+-        this.description = "Gets a list of plugins running on the server";
+-        this.usageMessage = "/plugins";
+-        this.setPermission("bukkit.command.plugins");
+-        this.setAliases(Arrays.asList("pl"));
+-    }
+-
+-    @Override
+-    public boolean execute(@NotNull CommandSender sender, @NotNull String currentAlias, @NotNull String[] args) {
+-        if (!testPermission(sender)) return true;
+-
+-        sender.sendMessage("Plugins " + getPluginList());
+-        return true;
+-    }
+-
+-    @NotNull
+-    @Override
+-    public List<String> tabComplete(@NotNull CommandSender sender, @NotNull String alias, @NotNull String[] args) throws IllegalArgumentException {
+-        return Collections.emptyList();
+-    }
+-
+-    @NotNull
+-    private String getPluginList() {
+-        // Paper start
+-        TreeMap<String, Plugin> plugins = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
+-
+-        for (Plugin plugin : Bukkit.getPluginManager().getPlugins()) {
+-            plugins.put(plugin.getDescription().getName(), plugin);
+-        }
+-
+-        StringBuilder pluginList = new StringBuilder();
+-        for (Map.Entry<String, Plugin> entry : plugins.entrySet()) {
+-            if (pluginList.length() > 0) {
+-                pluginList.append(ChatColor.WHITE);
+-                pluginList.append(", ");
+-            }
+-
+-            Plugin plugin = entry.getValue();
+-
+-            pluginList.append(plugin.isEnabled() ? ChatColor.GREEN : ChatColor.RED);
+-            // Paper start - Add an asterisk to legacy plugins (so admins are aware)
+-            String pluginName = plugin.getDescription().getName();
+-            if (org.bukkit.UnsafeValues.isLegacyPlugin(plugin)) {
+-                pluginName += "*";
+-            }
+-            pluginList.append(pluginName);
+-            // Paper end
+-
+-            if (plugin.getDescription().getProvides().size() > 0) {
+-                pluginList.append(" (").append(String.join(", ", plugin.getDescription().getProvides())).append(")");
+-            }
+-        }
+-
+-        return "(" + plugins.size() + "): " + pluginList.toString();
+-        // Paper end
+-    }
+-
+-}

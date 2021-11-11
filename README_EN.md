@@ -2,10 +2,10 @@
 
 ## Daydream
 
-<p>Daydream is Tuinity's Fork with the aim of high performance and using various API.</p>
+<p>Daydream is Paper and Airplane's Fork with the aim of high performance and using various API.</p>
 
 [![caramel.moe](https://img.shields.io/badge/made%20by.-caramel.moe-red)](https://caramel.moe)
-[![Build Status](https://img.shields.io/github/workflow/status/LemonCaramel/Daydream-API/Build%20Daydream%20API%20(1.16))](https://github.com/LemonCaramel/Daydream-API/actions/workflows/daydream-api-build-1.16.yml)
+[![Build Status](https://img.shields.io/github/workflow/status/LemonCaramel/Daydream-API/Build%20Daydream%20API%20(1.17))](https://github.com/LemonCaramel/Daydream-API/actions/workflows/daydream-api-build-1.17.yml)
 [![Discord](https://img.shields.io/discord/534586842079821824.svg?label=use%20server&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/f9qGtYF)
 
 [KOREAN](README.md), ENGLISH
@@ -25,7 +25,7 @@ All API patches are licensed under the MIT license, unless otherwise noted in th
 
 Daydream inherits its licensing from upstream projects.
 
-[PaperMC/Paper](https://github.com/PaperMC/Paper), [Tuinity](https://github.com/Tuinity/Tuinity)
+[PaperMC/Paper](https://github.com/PaperMC/Paper), [Airplane](https://github.com/TECHNOVE/Airplane)
 
 ## API
 
@@ -40,7 +40,7 @@ Maven
 <dependency>
     <groupId>moe.caramel</groupId>
     <artifactId>daydream-api</artifactId>
-    <version>1.16.5-R0.1-SNAPSHOT</version>
+    <version>1.17.1-R0.1-SNAPSHOT</version>
     <scope>provided</scope>
 </dependency>
 ```
@@ -54,6 +54,6 @@ repositories {
 
 dependencies {
     // Daydream API
-    compileOnly("moe.caramel", "daydream-api", "1.16.5-R0.1-SNAPSHOT")
+    compileOnly("moe.caramel", "daydream-api", "1.17.1-R0.1-SNAPSHOT")
 }
 ```

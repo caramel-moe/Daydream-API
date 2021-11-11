@@ -4,57 +4,24 @@ Date: Tue, 12 Oct 2021 20:40:48 +0900
 Subject: [PATCH] Add Brigadier Command Registerer
 
 
-diff --git a/pom.xml b/pom.xml
-index 5af467989cb8c659fdfd0ffeed01991507028b71..7477da645959f639ec34001dc736c05d3686d45d 100644
---- a/pom.xml
-+++ b/pom.xml
-@@ -30,6 +30,12 @@
-             <id>sonatype</id>
-             <url>https://oss.sonatype.org/content/groups/public/</url>
-         </repository>
-+        <!-- Daydream start -->
-+        <repository>
-+            <id>papermc</id>
-+            <url>https://papermc.io/repo/repository/maven-public/</url>
-+        </repository>
-+        <!-- Daydream end -->
-     </repositories>
+diff --git a/build.gradle.kts b/build.gradle.kts
+index cb2baebcdf8a0289f1a0337d6570aef8f654b359..20c57430b34bd880bbbb560b451f52aeb72af96e 100644
+--- a/build.gradle.kts
++++ b/build.gradle.kts
+@@ -40,6 +40,7 @@ dependencies {
+     api("org.apache.logging.log4j:log4j-api:2.14.1") // Paper
+     api("org.slf4j:slf4j-api:1.7.30") // Paper
+     api("net.kyori:adventure-text-minimessage:4.1.0-SNAPSHOT") // Daydream
++    api("io.papermc.paper:paper-mojangapi:1.17.1-R0.1-SNAPSHOT") // Daydream
  
-     <!-- Paper start -->
-@@ -76,6 +82,12 @@
-             <version>3.18.0</version>
-             <scope>compile</scope>
-         </dependency>
-+        <dependency>
-+            <groupId>com.destroystokyo.paper</groupId>
-+            <artifactId>paper-mojangapi</artifactId>
-+            <version>${project.version}</version>
-+            <scope>compile</scope>
-+        </dependency>
-         <!-- Daydream end -->
-         <dependency>
-             <groupId>it.unimi.dsi</groupId>
-@@ -83,6 +95,14 @@
-             <version>8.2.2</version>
-             <scope>provided</scope>
-         </dependency>
-+        <!-- Daydream start -->
-+        <dependency>
-+            <groupId>com.mojang</groupId>
-+            <artifactId>brigadier</artifactId>
-+            <version>1.0.18</version>
-+            <scope>provided</scope>
-+        </dependency>
-+        <!-- Daydream end -->
-         <dependency>
-             <groupId>commons-lang</groupId>
-             <artifactId>commons-lang</artifactId>
+     implementation("org.ow2.asm:asm:9.1")
+     implementation("org.ow2.asm:asm-commons:9.1")
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/AbstractCommand.java b/src/main/java/moe/caramel/daydream/brigadier/AbstractCommand.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..5c3182ced70c5d8677b66e9fa547f544bc26f755
+index 0000000000000000000000000000000000000000..3e8960461e312cd08379812a4983cda9e1da0229
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/brigadier/AbstractCommand.java
-@@ -0,0 +1,276 @@
+@@ -0,0 +1,275 @@
 +package moe.caramel.daydream.brigadier;
 +
 +import com.destroystokyo.paper.brigadier.BukkitBrigadierCommandSource;
@@ -70,7 +37,6 @@ index 0000000000000000000000000000000000000000..5c3182ced70c5d8677b66e9fa547f544
 +import org.jetbrains.annotations.Nullable;
 +import java.util.Arrays;
 +import java.util.Collection;
-+import java.util.Locale;
 +import java.util.Map;
 +import java.util.concurrent.CompletableFuture;
 +
@@ -332,10 +298,10 @@ index 0000000000000000000000000000000000000000..5c3182ced70c5d8677b66e9fa547f544
 +    }
 +}
 diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
-index e8414592b3afeb1e5db2b817b8fb7c13e073b9aa..94c8b4c118c8f7fe73f0a44ccc0b367786251c99 100644
+index c551010f84ac5d3ebc626c253a8f8282924152c4..e5bba7b80bc577ace301b77900f49d8ef2a97108 100644
 --- a/src/main/java/org/bukkit/Bukkit.java
 +++ b/src/main/java/org/bukkit/Bukkit.java
-@@ -755,6 +755,19 @@ public final class Bukkit {
+@@ -820,6 +820,19 @@ public final class Bukkit {
          return server.getPluginCommand(name);
      }
  
@@ -356,10 +322,10 @@ index e8414592b3afeb1e5db2b817b8fb7c13e073b9aa..94c8b4c118c8f7fe73f0a44ccc0b3677
       * Writes loaded players to disk.
       */
 diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
-index 1aa2e0384ac3b1e48ebf442d1ec9f075d8341c68..aeca69ac96441bc64aaa1f85cec1a3c1bc05616f 100644
+index 72b82efe67c4917216407e9aad86ba9e7e9efce5..c4d8e3fee567a378d0a44b351a0d0fb407439abd 100644
 --- a/src/main/java/org/bukkit/Server.java
 +++ b/src/main/java/org/bukkit/Server.java
-@@ -639,6 +639,17 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
+@@ -680,6 +680,17 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
      @Nullable
      public PluginCommand getPluginCommand(@NotNull String name);
  

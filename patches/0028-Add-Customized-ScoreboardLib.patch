@@ -1,0 +1,478 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: LemonCaramel <admin@caramel.moe>
+Date: Tue, 24 Aug 2021 12:02:16 +0900
+Subject: [PATCH] Add Customized ScoreboardLib
+
+
+diff --git a/src/main/java/moe/caramel/daydream/scoreboard/Scoreboard.java b/src/main/java/moe/caramel/daydream/scoreboard/Scoreboard.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..208f6df40c3fb57c79a5bbe26c20c582d5e89864
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/scoreboard/Scoreboard.java
+@@ -0,0 +1,62 @@
++package moe.caramel.daydream.scoreboard;
++
++import org.bukkit.plugin.Plugin;
++import org.jetbrains.annotations.NotNull;
++import org.jetbrains.annotations.Nullable;
++
++/**
++ * 주의!
++ * <p>
++ * 해당 기능을 사용하기 전에 "Intializing..." 이름의 Entry를 Bukkit 스코어보드에 추가해주세요.
++ */
++public interface Scoreboard {
++
++    /**
++     * 스코어보드를 활성화합니다.
++     */
++    void activate(@NotNull Plugin plugin);
++
++    /**
++     * 스코어보드를 비활성화합니다.
++     */
++    void deactivate();
++
++    /**
++     * 스코어보드가 활성화 되어있는지 확인합니다.
++     *
++     * @return 활성화 된 경우 {@code true}를 반환합니다.
++     */
++    boolean isActivated();
++
++    /**
++     * 이 스코어보드에 대한 핸들러를 반환합니다.
++     *
++     * @return handler
++     */
++    @Nullable
++    ScoreboardHandler getHandler();
++
++    /**
++     * 이 스코어보드의 핸들러를 설정합니다.
++     *
++     * @param handler handler
++     */
++    @NotNull
++    Scoreboard setHandler(@NotNull ScoreboardHandler handler);
++
++    /**
++     * 업데이트 간격을 반환합니다 (기본 값 = 10L).
++     *
++     * @return 업데이트 간격
++     */
++    long getUpdateInterval();
++
++    /**
++     * 업데이트 간격을 설정합니다.
++     *
++     * @param updateInterval 업데이트 간격
++     * @return this
++     */
++    @NotNull
++    Scoreboard setUpdateInterval(long updateInterval);
++}
+\ No newline at end of file
+diff --git a/src/main/java/moe/caramel/daydream/scoreboard/ScoreboardHandler.java b/src/main/java/moe/caramel/daydream/scoreboard/ScoreboardHandler.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..768ba6b4b7fd1f63403aacdd089ec8066834ed65
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/scoreboard/ScoreboardHandler.java
+@@ -0,0 +1,29 @@
++package moe.caramel.daydream.scoreboard;
++
++import moe.caramel.daydream.scoreboard.common.Entry;
++import org.bukkit.entity.Player;
++import org.jetbrains.annotations.NotNull;
++import org.jetbrains.annotations.Nullable;
++
++public interface ScoreboardHandler {
++
++    /**
++     * 해당 플레이어에 대해 표시할 Title을 결정합니다.
++     * null을 리턴 받았을 때 Title이 빈 줄로 표시됩니다.
++     *
++     * @param player 플레이어 객체
++     * @return 타이틀
++     */
++    @Nullable
++    String getTitle(@NotNull Player player);
++
++    /**
++     * 해당 플레이어에 대해 표시할 항목을 결정합니다.
++     * null을 리턴 받았을 때 항목을 업데이트하지 않습니다.
++     *
++     * @param player 플레이어 객체
++     * @return Entry 리스트
++     */
++    @Nullable
++    java.util.List<Entry> getEntries(@NotNull Player player);
++}
+diff --git a/src/main/java/moe/caramel/daydream/scoreboard/animate/AnimatableString.java b/src/main/java/moe/caramel/daydream/scoreboard/animate/AnimatableString.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..b3ab4172a08382639d88d475b51f7795bbbdb64a
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/scoreboard/animate/AnimatableString.java
+@@ -0,0 +1,12 @@
++package moe.caramel.daydream.scoreboard.animate;
++
++import org.jetbrains.annotations.NotNull;
++
++public interface AnimatableString {
++
++    @NotNull String current();
++
++    @NotNull String next();
++
++    @NotNull String previous();
++}
+diff --git a/src/main/java/moe/caramel/daydream/scoreboard/animate/FrameAnimatedString.java b/src/main/java/moe/caramel/daydream/scoreboard/animate/FrameAnimatedString.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..1628ffa0060c3f4df7c7921532f4215f393ac251
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/scoreboard/animate/FrameAnimatedString.java
+@@ -0,0 +1,70 @@
++package moe.caramel.daydream.scoreboard.animate;
++
++import it.unimi.dsi.fastutil.objects.ObjectArrayList;
++import it.unimi.dsi.fastutil.objects.ObjectList;
++import org.jetbrains.annotations.NotNull;
++
++public class FrameAnimatedString implements AnimatableString {
++
++    protected ObjectList<String> frames = new ObjectArrayList<>();
++    protected int currentFrame = -1;
++
++    public FrameAnimatedString() {}
++
++    public FrameAnimatedString(@NotNull String... frames) {
++        this.frames = new ObjectArrayList<>(frames);
++    }
++
++    public FrameAnimatedString(@NotNull ObjectList<String> frames) {
++        this.frames = frames;
++    }
++
++    public void addFrame(@NotNull String string) {
++        frames.add(string);
++    }
++
++    public void setFrame(int frame, @NotNull String string) {
++        frames.set(frame, string);
++    }
++
++    public void removeFrame(@NotNull String string) {
++        frames.remove(string);
++    }
++
++    public int getCurrentFrame() {
++        return currentFrame;
++    }
++
++    public void setCurrentFrame(int currentFrame) {
++        this.currentFrame = currentFrame;
++    }
++
++    public int getTotalLength() {
++        return frames.size();
++    }
++
++    @NotNull
++    public String getString(int frame) {
++        return frames.get(frame);
++    }
++
++    @Override
++    public @NotNull String current() {
++        if (currentFrame == -1) return null;
++        return frames.get(currentFrame);
++    }
++
++    @Override
++    public @NotNull String next() {
++        currentFrame++;
++        if (currentFrame == frames.size()) currentFrame = 0;
++        return frames.get(currentFrame);
++    }
++
++    @Override
++    public @NotNull String previous() {
++        currentFrame--;
++        if (currentFrame == -1) currentFrame = frames.size() - 1;
++        return frames.get(currentFrame);
++    }
++}
+diff --git a/src/main/java/moe/caramel/daydream/scoreboard/animate/HighlightedString.java b/src/main/java/moe/caramel/daydream/scoreboard/animate/HighlightedString.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..efeb4be81b6891fb8afac9f44ec5900e60e9f807
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/scoreboard/animate/HighlightedString.java
+@@ -0,0 +1,44 @@
++package moe.caramel.daydream.scoreboard.animate;
++
++import org.jetbrains.annotations.NotNull;
++
++public class HighlightedString extends FrameAnimatedString {
++
++    protected String context;
++    protected String normalFormat;
++    protected String highlightFormat;
++
++    public HighlightedString(@NotNull String context, @NotNull String normalFormat, @NotNull String highlightFormat) {
++        super();
++        this.context = context;
++        this.normalFormat = normalFormat;
++        this.highlightFormat = highlightFormat;
++        generateFrames();
++    }
++
++    protected void generateFrames() {
++        int index = 0;
++        while (index < context.length()) {
++            if (context.charAt(index) != ' ') {
++                String highlighted = normalFormat + context.substring(0, index) +
++                        highlightFormat + context.charAt(index) + normalFormat + context.substring(index + 1);
++                addFrame(highlighted);
++            } else {
++                addFrame(normalFormat + context);
++            }
++            index++;
++        }
++    }
++
++    public @NotNull String getContext() {
++        return context;
++    }
++
++    public @NotNull String getNormalColor() {
++        return normalFormat;
++    }
++
++    public @NotNull String getHighlightColor() {
++        return highlightFormat;
++    }
++}
+diff --git a/src/main/java/moe/caramel/daydream/scoreboard/animate/ScrollableString.java b/src/main/java/moe/caramel/daydream/scoreboard/animate/ScrollableString.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..2c9df33f0c7c1b53151389bdf2bfbd709f7672c7
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/scoreboard/animate/ScrollableString.java
+@@ -0,0 +1,72 @@
++package moe.caramel.daydream.scoreboard.animate;
++
++import it.unimi.dsi.fastutil.objects.ObjectArrayList;
++import it.unimi.dsi.fastutil.objects.ObjectList;
++import org.bukkit.ChatColor;
++import org.jetbrains.annotations.NotNull;
++
++/**
++ * 문자열을 스크롤합니다.
++ */
++public class ScrollableString extends FrameAnimatedString {
++
++    private int position;
++    private final ObjectList<String> list;
++    private ChatColor color = ChatColor.RESET;
++
++    public ScrollableString(@NotNull String message, int width, int spaceBetween) {
++        list = new ObjectArrayList<>();
++        if (message.length() < width) {
++            StringBuilder sb = new StringBuilder(message);
++            while (sb.length() < width)
++                sb.append(" ");
++            message = sb.toString();
++        }
++        // Allow for colours which add 2 to the width
++        width -= 2;
++        // Invalid width/space size
++        if (width < 1) width = 1;
++        if (spaceBetween < 0) spaceBetween = 0;
++        // Add substrings
++        for (int i = 0; i < message.length() - width; i++)
++            list.add(message.substring(i, i + width));
++        // Add space between repeats
++        StringBuilder space = new StringBuilder();
++        for (int i = 0; i < spaceBetween; ++i) {
++            list.add(message.substring(message.length() - width + (i > width ? width : i)) + space);
++            if (space.length() < width)
++                space.append(" ");
++        }
++        // Wrap
++        for (int i = 0; i < width - spaceBetween; ++i)
++            list.add(message.substring(message.length() - width + spaceBetween + i) + space + message.substring(0, i));
++        // Join up
++        for (int i = 0; i < spaceBetween; i++) {
++            if (i > space.length())
++                break;
++            list.add(space.substring(0, space.length() - i) + message.substring(0, width - (Math.min(spaceBetween, width)) + i));
++        }
++    }
++
++    @Override
++    public @NotNull String next() {
++        StringBuilder sb = getNext();
++        if (sb.charAt(sb.length() - 1) == ChatColor.COLOR_CHAR)
++            sb.setCharAt(sb.length() - 1, ' ');
++        if (sb.charAt(0) == ChatColor.COLOR_CHAR) {
++            ChatColor c = ChatColor.getByChar(sb.charAt(1));
++            if (c != null) {
++                color = c;
++                sb = getNext();
++                if (sb.charAt(0) != ' ')
++                    sb.setCharAt(0, ' ');
++            }
++        }
++        return color + sb.toString();
++    }
++
++    private @NotNull StringBuilder getNext() {
++        return new StringBuilder(list.get(position++ % list.size()));
++    }
++
++}
+diff --git a/src/main/java/moe/caramel/daydream/scoreboard/animate/StaticString.java b/src/main/java/moe/caramel/daydream/scoreboard/animate/StaticString.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..70e36af0b4a92ea2bdcdad565721596c8682d0d8
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/scoreboard/animate/StaticString.java
+@@ -0,0 +1,27 @@
++package moe.caramel.daydream.scoreboard.animate;
++
++import org.jetbrains.annotations.NotNull;
++
++public class StaticString implements AnimatableString {
++
++    private final String string;
++
++    public StaticString(@NotNull String string) {
++        this.string = string;
++    }
++
++    @Override
++    public @NotNull String current() {
++        return string;
++    }
++
++    @Override
++    public @NotNull String previous() {
++        return string;
++    }
++
++    @Override
++    public @NotNull String next() {
++        return string;
++    }
++}
+diff --git a/src/main/java/moe/caramel/daydream/scoreboard/common/Entry.java b/src/main/java/moe/caramel/daydream/scoreboard/common/Entry.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..583d1b068870dac7c03da2326fed16bd30e97a55
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/scoreboard/common/Entry.java
+@@ -0,0 +1,31 @@
++package moe.caramel.daydream.scoreboard.common;
++
++import org.jetbrains.annotations.NotNull;
++
++public class Entry {
++
++    private String name;
++    private int position;
++
++    public Entry(@NotNull String name, int position) {
++        this.name = org.bukkit.ChatColor.translateAlternateColorCodes('&', name);
++        this.position = position;
++    }
++
++    @NotNull
++    public String getName() {
++        return name;
++    }
++
++    public void setName(@NotNull String name) {
++        this.name = name;
++    }
++
++    public int getPosition() {
++        return position;
++    }
++
++    public void setPosition(int position) {
++        this.position = position;
++    }
++}
+diff --git a/src/main/java/moe/caramel/daydream/scoreboard/common/EntryBuilder.java b/src/main/java/moe/caramel/daydream/scoreboard/common/EntryBuilder.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..375ce4bba3ff324eebc0d1bfb339ae0d57774e35
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/scoreboard/common/EntryBuilder.java
+@@ -0,0 +1,49 @@
++package moe.caramel.daydream.scoreboard.common;
++
++import org.jetbrains.annotations.NotNull;
++
++public final class EntryBuilder {
++
++    private final java.util.LinkedList<Entry> entries = new java.util.LinkedList<>();
++
++    /**
++     * 빈 줄을 추가합니다.
++     *
++     * @return 빌더
++     */
++    @NotNull
++    public EntryBuilder blank() {
++        return next("");
++    }
++
++    /**
++     * 제공한 텍스트를 사용하여 새 줄을 추가합니다.
++     *
++     * @param string 텍스트
++     * @return 빌더
++     */
++    @NotNull
++    public EntryBuilder next(@NotNull String string) {
++        entries.add(new Entry(adapt(string), entries.size()));
++        return this;
++    }
++
++    /**
++     * Entry 맵을 반환합니다.
++     *
++     * @return 최종 리스트
++     */
++    @NotNull
++    public java.util.List<Entry> build() {
++        for (Entry entry : entries) {
++            entry.setPosition(entries.size() - entry.getPosition());
++        }
++        return entries;
++    }
++
++    @NotNull
++    private String adapt(@NotNull String entry) {
++        if (entry.length() > 40) entry = entry.substring(0, 39);
++        return org.bukkit.ChatColor.translateAlternateColorCodes('&', entry);
++    }
++}
+diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
+index 7b7de22f83824e5b44bf3fdc1f00db32cc7af089..c0034a822ac4e9c99a2decee0b582ab0a2f7f40e 100644
+--- a/src/main/java/org/bukkit/entity/Player.java
++++ b/src/main/java/org/bukkit/entity/Player.java
+@@ -1517,6 +1517,16 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+     @NotNull
+     public Scoreboard getScoreboard();
+ 
++    // Daydream start
++    /**
++     * Scoreboard API를 반환합니다.
++     *
++     * @return Scoreboard API
++     */
++    @NotNull
++    moe.caramel.daydream.scoreboard.Scoreboard getScoreboardAPI(@NotNull org.bukkit.scoreboard.Objective objective);
++    // Daydream end
++
+     /**
+      * Sets the player's visible Scoreboard.
+      *

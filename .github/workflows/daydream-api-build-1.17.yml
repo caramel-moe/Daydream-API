@@ -1,0 +1,30 @@
+name: Build Daydream API (1.17)
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2.3.5
+
+      - name: Set up JDK
+        uses: actions/setup-java@v2.3.1
+        with:
+          java-version: '16'
+          distribution: 'zulu'
+          cache: 'gradle'
+
+      - name: Setup git config
+        run: |
+         git config --global user.email "no-reply@github.com"
+         git config --global user.name "Github Action"
+  
+      - name : Build with Gradle
+        run: |
+         chmod -R +x ./gradlew
+         ./gradlew applyApiPatches
+         ./gradlew build
