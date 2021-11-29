@@ -1,0 +1,30 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: LemonCaramel <admin@caramel.moe>
+Date: Tue, 23 Nov 2021 04:12:52 +0900
+Subject: [PATCH] Backport "Add Player#sendEquipmentChange"
+
+
+diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
+index c0034a822ac4e9c99a2decee0b582ab0a2f7f40e..71dab46589ffd83f0384efad5a0f6eba6327c37a 100644
+--- a/src/main/java/org/bukkit/entity/Player.java
++++ b/src/main/java/org/bukkit/entity/Player.java
+@@ -529,6 +529,19 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+      */
+     public boolean breakBlock(@NotNull Block block);
+ 
++    // Daydream start
++    /**
++     * Send the equipment change of an entity. This fakes the equipment change
++     * of an entity for a user. This will not actually change the inventory of
++     * the specified entity in any way.
++     *
++     * @param entity The entity that the player will see the change for
++     * @param slot The slot of the spoofed equipment change
++     * @param item The ItemStack to display for the player
++     */
++    public void sendEquipmentChange(@NotNull LivingEntity entity, @NotNull org.bukkit.inventory.EquipmentSlot slot, @NotNull ItemStack item);
++    // Daydream end
++
+     /**
+      * Send a block change. This fakes a block change packet for a user at a
+      * certain location. This will not actually change the world in any way.

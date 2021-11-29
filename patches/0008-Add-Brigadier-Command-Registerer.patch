@@ -5,7 +5,7 @@ Subject: [PATCH] Add Brigadier Command Registerer
 
 
 diff --git a/build.gradle.kts b/build.gradle.kts
-index cb2baebcdf8a0289f1a0337d6570aef8f654b359..20c57430b34bd880bbbb560b451f52aeb72af96e 100644
+index a70ae9269da647d050bf87ee8860f6e4062f47f9..2147e5e50f997baa5d2a7c1b29f5477ffb1d0d7d 100644
 --- a/build.gradle.kts
 +++ b/build.gradle.kts
 @@ -40,6 +40,7 @@ dependencies {
@@ -18,10 +18,10 @@ index cb2baebcdf8a0289f1a0337d6570aef8f654b359..20c57430b34bd880bbbb560b451f52ae
      implementation("org.ow2.asm:asm-commons:9.1")
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/AbstractCommand.java b/src/main/java/moe/caramel/daydream/brigadier/AbstractCommand.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..3e8960461e312cd08379812a4983cda9e1da0229
+index 0000000000000000000000000000000000000000..d71ffa1b304c1ba42f089982b991378cadd600c1
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/brigadier/AbstractCommand.java
-@@ -0,0 +1,275 @@
+@@ -0,0 +1,411 @@
 +package moe.caramel.daydream.brigadier;
 +
 +import com.destroystokyo.paper.brigadier.BukkitBrigadierCommandSource;
@@ -35,11 +35,16 @@ index 0000000000000000000000000000000000000000..3e8960461e312cd08379812a4983cda9
 +import net.kyori.adventure.text.Component;
 +import org.jetbrains.annotations.NotNull;
 +import org.jetbrains.annotations.Nullable;
++import java.util.ArrayList;
 +import java.util.Arrays;
 +import java.util.Collection;
++import java.util.HashMap;
 +import java.util.Map;
 +import java.util.concurrent.CompletableFuture;
++import java.util.function.Function;
++import java.util.function.Supplier;
 +
++@SuppressWarnings("unused")
 +public abstract class AbstractCommand {
 +
 +    private String[] aliases;
@@ -216,6 +221,16 @@ index 0000000000000000000000000000000000000000..3e8960461e312cd08379812a4983cda9
 +    /*
 +       Utilities
 +     */
++    /**
++     * Creating a literal argument
++     *
++     * @param literal The name of the literal argument
++     * @return A literal argument
++     */
++    @NotNull
++    protected LiteralArgumentBuilder<BukkitBrigadierCommandSource> literal(@NotNull String literal) {
++        return LiteralArgumentBuilder.literal(literal);
++    }
 +
 +    /**
 +     * Creating a required argument
@@ -242,6 +257,45 @@ index 0000000000000000000000000000000000000000..3e8960461e312cd08379812a4983cda9
 +    }
 +
 +    /**
++     * Utility method for creating custom suggestions quickly (multiple)
++     * <p>
++     * IMPORTANT!
++     * This suggestion only works when Argument is {@link com.mojang.brigadier.arguments.StringArgumentType#greedyString()}.
++     *
++     * @param strings The string to suggest
++     * @return The suggestion provider of the inputted strings
++     */
++    @NotNull
++    protected SuggestionProvider<BukkitBrigadierCommandSource> multipleSuggest(@NotNull String... strings) {
++        return suggest(Arrays.asList(strings));
++    }
++
++    /**
++     * Utility method for creating custom mutable suggestions quickly
++     *
++     * @param strings The mutable string to suggest
++     * @return The suggestion provider of the inputted strings
++     */
++    @NotNull
++    protected SuggestionProvider<BukkitBrigadierCommandSource> mutableSuggestArray(@NotNull Supplier<String[]> strings) {
++        return suggest(strings.get());
++    }
++
++    /**
++     * Utility method for creating custom mutable suggestions quickly
++     * <p>
++     * IMPORTANT!
++     * This suggestion only works when Argument is {@link com.mojang.brigadier.arguments.StringArgumentType#greedyString()}.
++     *
++     * @param strings The mutable string to suggest
++     * @return The suggestion provider of the inputted strings
++     */
++    @NotNull
++    protected SuggestionProvider<BukkitBrigadierCommandSource> mutableMultipleSuggestArray(@NotNull Supplier<String[]> strings) {
++        return multipleSuggest(Arrays.asList(strings.get()));
++    }
++
++    /**
 +     * Creating custom suggestions
 +     *
 +     * @param strings The strings to suggest
@@ -249,7 +303,46 @@ index 0000000000000000000000000000000000000000..3e8960461e312cd08379812a4983cda9
 +     */
 +    @NotNull
 +    protected SuggestionProvider<BukkitBrigadierCommandSource> suggest(@NotNull Collection<String> strings) {
-+        return (c, b) -> suggestMatching(b, strings);
++        return (c, b) -> suggestMatching(b, strings, false);
++    }
++
++    /**
++     * Creating custom suggestions (multiple)
++     * <p>
++     * IMPORTANT!
++     * This suggestion only works when Argument is {@link com.mojang.brigadier.arguments.StringArgumentType#greedyString()}.
++     *
++     * @param strings The strings to suggest
++     * @return The SuggestionProvider of the inputted string collection
++     */
++    @NotNull
++    protected SuggestionProvider<BukkitBrigadierCommandSource> multipleSuggest(@NotNull Collection<String> strings) {
++        return (c, b) -> suggestMatching(b, strings, true);
++    }
++
++    /**
++     * Creating custom mutable suggestions
++     *
++     * @param strings The mutable strings to suggest
++     * @return The SuggestionProvider of the inputted string collection
++     */
++    @NotNull
++    protected SuggestionProvider<BukkitBrigadierCommandSource> mutableSuggestCollection(@NotNull Function<Collection<String>, Collection<String>> strings) {
++        return (c, b) -> suggestMatching(b, strings.apply(new ArrayList<>()), false);
++    }
++
++    /**
++     * Creating custom mutable suggestions (multiple)
++     * <p>
++     * IMPORTANT!
++     * This suggestion only works when Argument is {@link com.mojang.brigadier.arguments.StringArgumentType#greedyString()}.
++     *
++     * @param strings The mutable strings to suggest
++     * @return The SuggestionProvider of the inputted string collection
++     */
++    @NotNull
++    protected SuggestionProvider<BukkitBrigadierCommandSource> mutableMultipleSuggestCollection(@NotNull Function<Collection<String>, Collection<String>> strings) {
++        return (c, b) -> suggestMatching(b, strings.apply(new ArrayList<>()), true);
 +    }
 +
 +    /**
@@ -260,7 +353,46 @@ index 0000000000000000000000000000000000000000..3e8960461e312cd08379812a4983cda9
 +     */
 +    @NotNull
 +    protected SuggestionProvider<BukkitBrigadierCommandSource> suggest(@NotNull Map<String, String> suggestions) {
-+        return (c, b) -> suggestMatching(b, suggestions);
++        return (c, b) -> suggestMatching(b, suggestions, false);
++    }
++
++    /**
++     * Creating suggestions with tooltips (multiple)
++     * <p>
++     * IMPORTANT!
++     * This suggestion only works when Argument is {@link com.mojang.brigadier.arguments.StringArgumentType#greedyString()}.
++     *
++     * @param suggestions The map of suggestions
++     * @return The suggestion provider for the inputted map
++     */
++    @NotNull
++    protected SuggestionProvider<BukkitBrigadierCommandSource> multipleSuggest(@NotNull Map<String, String> suggestions) {
++        return (c, b) -> suggestMatching(b, suggestions, true);
++    }
++
++    /**
++     * Creating mutable suggestions with tooltips
++     *
++     * @param suggestions The map of mutable suggestions
++     * @return The suggestion provider for the inputted map
++     */
++    @NotNull
++    protected SuggestionProvider<BukkitBrigadierCommandSource> mutableSuggestMap(@NotNull Function<Map<String, String>, Map<String, String>> suggestions) {
++        return (c, b) -> suggestMatching(b, suggestions.apply(new HashMap<>()), false);
++    }
++
++    /**
++     * Creating mutable suggestions with tooltips (multiple)
++     * <p>
++     * IMPORTANT!
++     * This suggestion only works when Argument is {@link com.mojang.brigadier.arguments.StringArgumentType#greedyString()}.
++     *
++     * @param suggestions The map of mutable suggestions
++     * @return The suggestion provider for the inputted map
++     */
++    @NotNull
++    protected SuggestionProvider<BukkitBrigadierCommandSource> mutableMultipleSuggestMap(@NotNull Function<Map<String, String>, Map<String, String>> suggestions) {
++        return (c, b) -> suggestMatching(b, suggestions.apply(new HashMap<>()), true);
 +    }
 +
 +    /**
@@ -268,10 +400,12 @@ index 0000000000000000000000000000000000000000..3e8960461e312cd08379812a4983cda9
 +     *
 +     * @param builder     The builder to give suggestions to
 +     * @param suggestions The suggestions to pick from
++     * @param multiple    is Multiple?
 +     * @return The built suggestions
 +     */
 +    @NotNull
-+    private static CompletableFuture<Suggestions> suggestMatching(@NotNull SuggestionsBuilder builder, @NotNull Iterable<String> suggestions) {
++    private static CompletableFuture<Suggestions> suggestMatching(@NotNull SuggestionsBuilder builder, @NotNull Iterable<String> suggestions, boolean multiple) {
++        if (multiple) builder = builder.createOffset(builder.getInput().lastIndexOf(' ') + 1);
 +        String token = builder.getRemainingLowerCase();
 +        for (String s : suggestions) if (s.toLowerCase().startsWith(token)) builder.suggest(s);
 +
@@ -283,10 +417,12 @@ index 0000000000000000000000000000000000000000..3e8960461e312cd08379812a4983cda9
 +     *
 +     * @param builder     The builder to give suggestions to
 +     * @param suggestions The suggestions to pick from
++     * @param multiple    is Multiple?
 +     * @return The built suggestions
 +     */
 +    @NotNull
-+    private static CompletableFuture<Suggestions> suggestMatching(@NotNull SuggestionsBuilder builder, @NotNull Map<String, String> suggestions) {
++    private static CompletableFuture<Suggestions> suggestMatching(@NotNull SuggestionsBuilder builder, @NotNull Map<String, String> suggestions, boolean multiple) {
++        if (multiple) builder = builder.createOffset(builder.getInput().lastIndexOf(' ') + 1);
 +        String token = builder.getRemainingLowerCase();
 +
 +        for (Map.Entry<String, String> entry : suggestions.entrySet()) {

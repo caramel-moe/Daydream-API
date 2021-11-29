@@ -1,0 +1,24 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: LemonCaramel <admin@caramel.moe>
+Date: Tue, 23 Nov 2021 23:41:32 +0900
+Subject: [PATCH] Add more Packet API
+
+
+diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
+index 71dab46589ffd83f0384efad5a0f6eba6327c37a..bb8f1d8182e707eda1c6e6f0033ce37753c1f637 100644
+--- a/src/main/java/org/bukkit/entity/Player.java
++++ b/src/main/java/org/bukkit/entity/Player.java
+@@ -540,6 +540,13 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+      * @param item The ItemStack to display for the player
+      */
+     public void sendEquipmentChange(@NotNull LivingEntity entity, @NotNull org.bukkit.inventory.EquipmentSlot slot, @NotNull ItemStack item);
++
++    /**
++     * Send packet
++     *
++     * @param packet The packet instance
++     */
++    public void sendPacket(@NotNull Object packet);
+     // Daydream end
+ 
+     /**

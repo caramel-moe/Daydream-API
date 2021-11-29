@@ -1,0 +1,151 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: LemonCaramel <admin@caramel.moe>
+Date: Tue, 23 Nov 2021 03:59:14 +0900
+Subject: [PATCH] Add SendEntityEquipmentEvent
+
+
+diff --git a/src/main/java/moe/caramel/daydream/event/packet/SendEntityEquipmentEvent.java b/src/main/java/moe/caramel/daydream/event/packet/SendEntityEquipmentEvent.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..937206d8adbf7ae03e380bc5e54499f030d86d4b
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/event/packet/SendEntityEquipmentEvent.java
+@@ -0,0 +1,114 @@
++package moe.caramel.daydream.event.packet;
++
++import moe.caramel.daydream.util.Pair;
++import org.bukkit.entity.Entity;
++import org.bukkit.entity.Player;
++import org.bukkit.event.Cancellable;
++import org.bukkit.event.HandlerList;
++import org.bukkit.event.entity.EntityEvent;
++import org.bukkit.inventory.EquipmentSlot;
++import org.bukkit.inventory.ItemStack;
++import org.jetbrains.annotations.NotNull;
++
++import java.util.ArrayList;
++import java.util.List;
++
++/**
++ * Entity Equipment 패킷이 전송될 때 호출되는 이벤트
++ */
++public class SendEntityEquipmentEvent extends EntityEvent implements Cancellable {
++
++    private static final HandlerList HANDLER_LIST = new HandlerList();
++
++    private final Reason reason;
++    private final Player target;
++    private final List<Pair<EquipmentSlot, ItemStack>> origin;
++    private List<Pair<EquipmentSlot, ItemStack>> edit;
++    private boolean cancelled;
++
++    public SendEntityEquipmentEvent(@NotNull Entity source, @NotNull Reason reason, @NotNull Player target, @NotNull List<Pair<EquipmentSlot, ItemStack>> origin) {
++        super(source);
++        this.reason = reason;
++        this.target = target;
++        this.origin = origin;
++        this.edit = null;
++    }
++
++    /**
++     * 이벤트 호출 사유를 가져옵니다.
++     *
++     * @return 이벤트 호출 사유
++     */
++    @NotNull
++    public Reason getReason() {
++        return reason;
++    }
++
++    /**
++     * 이 패킷의 전송 대상을 반환합니다.
++     *
++     * @return 패킷 전송 대상
++     */
++    @NotNull
++    public Player getTarget() {
++        return target;
++    }
++
++    /**
++     * 전송 예정인 장비 리스트를 반환합니다.
++     * <p>
++     * 주의!
++     * 이 리스트는 절대로 수정하지 마세요. {@link SendEntityEquipmentEvent#getEdit()}에서 수정해 주세요.
++     * <br>
++     * 이 리스트를 수정하게 된다면 싱크 오류로 같은 패킷이 틱 단위로 계속 전송될 수도 있으며,
++     * 패킷이 수정되지 말아야 할 대상에게도 변경된 정보가 전송됩니다.
++     *
++     * @return 원본 장비 리스트
++     */
++    @NotNull
++    public List<Pair<EquipmentSlot, ItemStack>> getOrigin() {
++        return origin;
++    }
++
++    /**
++     * 수정해야 할 장비 리스트를 반환합니다.
++     * <p>
++     * 주의!
++     * 이 리스트를 수정하지 않는다면, 절대로 호출하지 마세요.
++     *
++     * @return 빈 장비 리스트
++     */
++    @NotNull
++    public List<Pair<EquipmentSlot, ItemStack>> getEdit() {
++        if (edit == null) this.edit = new ArrayList<>();
++        return edit;
++    }
++
++    public boolean isEmpty() {
++        return edit == null;
++    }
++
++    @Override
++    public boolean isCancelled() {
++        return cancelled;
++    }
++
++    @Override
++    public void setCancelled(boolean cancelled) {
++        this.cancelled = cancelled;
++    }
++
++    @Override
++    public @NotNull HandlerList getHandlers() {
++        return HANDLER_LIST;
++    }
++
++    @NotNull
++    public static HandlerList getHandlerList() {
++        return HANDLER_LIST;
++    }
++
++    public enum Reason {
++        PAIRING, UPDATE_EQUIPMENT
++    }
++}
+diff --git a/src/main/java/moe/caramel/daydream/util/Pair.java b/src/main/java/moe/caramel/daydream/util/Pair.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..5ac11954acc7b7a05bf72dfa0d22d1c357dde31e
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/util/Pair.java
+@@ -0,0 +1,18 @@
++package moe.caramel.daydream.util;
++
++import org.jetbrains.annotations.Nullable;
++
++public record Pair<K, V>(@Nullable K key, @Nullable V value) {
++
++    @Override
++    @Nullable
++    public K key() {
++        return key;
++    }
++
++    @Override
++    @Nullable
++    public V value() {
++        return value;
++    }
++}
+\ No newline at end of file
