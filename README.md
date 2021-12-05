@@ -36,6 +36,14 @@ Maven
     <id>caramel-repo</id>
     <url>https://repo.caramel.moe/repository/maven-public/</url>
 </repository>
+<repository>
+    <id>papermc</id>
+    <url>https://papermc.io/repo/repository/maven-public/</url>
+</repository>
+<repository>
+    <id>minecraft</id>
+    <url>https://libraries.minecraft.net/</url>
+</repository>
 
 <dependency>
     <groupId>moe.caramel</groupId>
@@ -50,6 +58,10 @@ Gradle KTS
 repositories {
     // caramel.moe Repository
     maven("https://repo.caramel.moe/repository/maven-public/")
+    // PaperMC Repository
+    maven("https://papermc.io/repo/repository/maven-public/")
+    // Minecraft Repository
+    maven("https://libraries.minecraft.net/")
 }
 
 dependencies {
