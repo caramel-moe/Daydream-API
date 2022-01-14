@@ -1,15 +1,15 @@
+import io.papermc.paperweight.util.constants.PAPERCLIP_CONFIG
+
 plugins {
     java
-    id("com.github.johnrengelman.shadow") version "7.1.0" apply false
-    id("io.papermc.paperweight.patcher") version "1.1.14"
+    id("com.github.johnrengelman.shadow") version "7.1.2" apply false
+    id("io.papermc.paperweight.patcher") version "1.2.0"
 }
 
 repositories {
     mavenCentral()
     maven("https://papermc.io/repo/repository/maven-public/") {
-        content {
-            onlyForConfigurations("paperclip")
-        }
+        content { onlyForConfigurations(PAPERCLIP_CONFIG) }
     }
 }
 
@@ -31,6 +31,12 @@ subprojects {
     tasks.withType<JavaCompile>().configureEach {
         options.encoding = "UTF-8"
         options.release.set(16)
+    }
+    tasks.withType<Javadoc> {
+        options.encoding = Charsets.UTF_8.name()
+    }
+    tasks.withType<ProcessResources> {
+        filteringCharset = Charsets.UTF_8.name()
     }
 
     repositories {

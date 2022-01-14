@@ -1,0 +1,32 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: LemonCaramel <admin@caramel.moe>
+Date: Thu, 5 Aug 2021 19:26:25 +0900
+Subject: [PATCH] Disable VersionFetcher
+
+
+diff --git a/src/main/java/org/bukkit/command/defaults/VersionCommand.java b/src/main/java/org/bukkit/command/defaults/VersionCommand.java
+index 57a21495843f3a144cd73473cdc8781d6129b7ca..2f58de226594b2f0811458ceb5345b8e85bdb8eb 100644
+--- a/src/main/java/org/bukkit/command/defaults/VersionCommand.java
++++ b/src/main/java/org/bukkit/command/defaults/VersionCommand.java
+@@ -51,8 +51,20 @@ public class VersionCommand extends BukkitCommand {
+         if (!testPermission(sender)) return true;
+ 
+         if (args.length == 0) {
+-            //sender.sendMessage("This server is running " + Bukkit.getName() + " version " + Bukkit.getVersion() + " (Implementing API version " + Bukkit.getBukkitVersion() + ")"); // Paper - moved to setVersionMessage
++            // Daydream start
++            /*
+             sendVersion(sender);
++            */
++            sender.sendMessage(Component.text().append(
++                Component.text(" Daydream ✿", net.kyori.adventure.text.format.TextColor.fromHexString("#f788d4"), net.kyori.adventure.text.format.TextDecoration.BOLD).append(Component.space()),
++                Component.text("Server Platform (running on Minecraft " + Bukkit.getMinecraftVersion() + ")"), Component.newline(),
++                Component.text("   Implementing API version: ", net.kyori.adventure.text.format.NamedTextColor.GRAY), Component.text(Bukkit.getBukkitVersion()), Component.newline(),
++                Component.text("   Software version: ", net.kyori.adventure.text.format.NamedTextColor.GRAY), Component.text(Bukkit.getVersion()),
++                Component.newline(),
++                Component.text("   Powered by ", net.kyori.adventure.text.format.NamedTextColor.GRAY),
++                Component.text("caramel.moe").clickEvent(net.kyori.adventure.text.event.ClickEvent.openUrl("https://caramel.moe/"))
++            ).build());
++            // Daydream end
+         } else {
+             StringBuilder name = new StringBuilder();
+ 

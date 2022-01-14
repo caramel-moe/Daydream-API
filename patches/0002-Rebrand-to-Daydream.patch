@@ -5,25 +5,20 @@ Subject: [PATCH] Rebrand to Daydream
 
 
 diff --git a/build.gradle.kts b/build.gradle.kts
-index 92b612126a6bac0b89198a92bbb73b742ec9d064..a70ae9269da647d050bf87ee8860f6e4062f47f9 100644
+index 92b612126a6bac0b89198a92bbb73b742ec9d064..ea6c1b996f0df109dcb71428c21b81c6a80011f0 100644
 --- a/build.gradle.kts
 +++ b/build.gradle.kts
-@@ -39,6 +39,7 @@ dependencies {
+@@ -37,8 +37,9 @@ dependencies {
+     apiAndDocs("net.kyori:adventure-text-serializer-gson")
+     apiAndDocs("net.kyori:adventure-text-serializer-legacy")
      apiAndDocs("net.kyori:adventure-text-serializer-plain")
-     api("org.apache.logging.log4j:log4j-api:2.14.1") // Paper
+-    api("org.apache.logging.log4j:log4j-api:2.14.1") // Paper
++    api("org.apache.logging.log4j:log4j-api:2.17.1") // Paper // Daydream
      api("org.slf4j:slf4j-api:1.7.30") // Paper
-+    api("net.kyori:adventure-text-minimessage:4.1.0-SNAPSHOT") // Daydream
++    api("net.kyori:adventure-text-minimessage:4.2.0-SNAPSHOT") // Daydream
  
      implementation("org.ow2.asm:asm:9.1")
      implementation("org.ow2.asm:asm-commons:9.1")
-@@ -95,6 +96,7 @@ tasks.withType<Javadoc> {
-         .ignoreEmptyDirectories()
-         .withPropertyName(apiAndDocs.name + "-configuration")
-     doFirst {
-+        options.encoding = "UTF-8" // Daydream
-         (options as CoreJavadocOptions).addStringOption(
-             "sourcepath",
-             apiAndDocs.resolvedConfiguration.files.joinToString(separator = File.pathSeparator, transform = File::getPath)
 diff --git a/src/main/java/org/bukkit/NamespacedKey.java b/src/main/java/org/bukkit/NamespacedKey.java
 index 01bcb3a1bdb5accdf844d0178cec3d25746b3eaa..ed6c7819c5c42e4259acc11f188595b7e09941a6 100644
 --- a/src/main/java/org/bukkit/NamespacedKey.java
@@ -37,3 +32,22 @@ index 01bcb3a1bdb5accdf844d0178cec3d25746b3eaa..ed6c7819c5c42e4259acc11f188595b7
      //
      private static final Pattern VALID_NAMESPACE = Pattern.compile("[a-z0-9._-]+");
      private static final Pattern VALID_KEY = Pattern.compile("[a-z0-9/._-]+");
+diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
+index c34cfba8f9ed7e9dbd0b6b8ffef9fba46abff046..72b82efe67c4917216407e9aad86ba9e7e9efce5 100644
+--- a/src/main/java/org/bukkit/Server.java
++++ b/src/main/java/org/bukkit/Server.java
+@@ -1715,6 +1715,14 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
+         }
+         // Paper end
+ 
++        // Daydream start - add config to timings report
++        @NotNull
++        public org.bukkit.configuration.file.YamlConfiguration getDaydreamConfig()
++        {
++            throw new UnsupportedOperationException("Not supported yet.");
++        }
++        // Daydream end - add config to timings report
++
+         /**
+          * Sends the component to the player
+          *

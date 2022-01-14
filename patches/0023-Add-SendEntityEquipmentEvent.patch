@@ -126,26 +126,12 @@ index 0000000000000000000000000000000000000000..937206d8adbf7ae03e380bc5e54499f0
 +}
 diff --git a/src/main/java/moe/caramel/daydream/util/Pair.java b/src/main/java/moe/caramel/daydream/util/Pair.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..5ac11954acc7b7a05bf72dfa0d22d1c357dde31e
+index 0000000000000000000000000000000000000000..f7a8e8f3899f1bf6c606a644a9fcf21afa30ab11
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/util/Pair.java
-@@ -0,0 +1,18 @@
+@@ -0,0 +1,5 @@
 +package moe.caramel.daydream.util;
 +
 +import org.jetbrains.annotations.Nullable;
 +
-+public record Pair<K, V>(@Nullable K key, @Nullable V value) {
-+
-+    @Override
-+    @Nullable
-+    public K key() {
-+        return key;
-+    }
-+
-+    @Override
-+    @Nullable
-+    public V value() {
-+        return value;
-+    }
-+}
-\ No newline at end of file
++public record Pair<K, V>(@Nullable K key, @Nullable V value) { }

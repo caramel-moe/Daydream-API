@@ -5,10 +5,10 @@ Subject: [PATCH] Add fixed no damage tick option
 
 
 diff --git a/src/main/java/org/bukkit/entity/LivingEntity.java b/src/main/java/org/bukkit/entity/LivingEntity.java
-index 31353bd20404a8c2acf6bf0df524dc3cae324272..32677555cd9e3fed1fb83df666df30858e942b79 100644
+index 31353bd20404a8c2acf6bf0df524dc3cae324272..cf09d3819a9ac456983bd0dac2db4c950df8d1d0 100644
 --- a/src/main/java/org/bukkit/entity/LivingEntity.java
 +++ b/src/main/java/org/bukkit/entity/LivingEntity.java
-@@ -415,6 +415,16 @@ public interface LivingEntity extends Attributable, Damageable, ProjectileSource
+@@ -415,6 +415,17 @@ public interface LivingEntity extends Attributable, Damageable, ProjectileSource
       */
      public void setNoDamageTicks(int ticks);
  
@@ -19,6 +19,7 @@ index 31353bd20404a8c2acf6bf0df524dc3cae324272..32677555cd9e3fed1fb83df666df3085
 +     * @param ticks amount of no damage ticks
 +     * @param force is force?
 +     */
++    @Deprecated
 +    public void setNoDamageTicks(int ticks, boolean force);
 +    // Daydream end
 +

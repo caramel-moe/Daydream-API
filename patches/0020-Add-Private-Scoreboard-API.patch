@@ -1,12 +1,12 @@
 From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: LemonCaramel <admin@caramel.moe>
 Date: Tue, 24 Aug 2021 12:02:16 +0900
-Subject: [PATCH] Add Customized ScoreboardLib
+Subject: [PATCH] Add Private Scoreboard API
 
 
 diff --git a/src/main/java/moe/caramel/daydream/scoreboard/Scoreboard.java b/src/main/java/moe/caramel/daydream/scoreboard/Scoreboard.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..208f6df40c3fb57c79a5bbe26c20c582d5e89864
+index 0000000000000000000000000000000000000000..1523c289c139bc7b23d84ff6d12d918303c91255
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/scoreboard/Scoreboard.java
 @@ -0,0 +1,62 @@
@@ -72,7 +72,6 @@ index 0000000000000000000000000000000000000000..208f6df40c3fb57c79a5bbe26c20c582
 +    @NotNull
 +    Scoreboard setUpdateInterval(long updateInterval);
 +}
-\ No newline at end of file
 diff --git a/src/main/java/moe/caramel/daydream/scoreboard/ScoreboardHandler.java b/src/main/java/moe/caramel/daydream/scoreboard/ScoreboardHandler.java
 new file mode 100644
 index 0000000000000000000000000000000000000000..768ba6b4b7fd1f63403aacdd089ec8066834ed65
@@ -456,10 +455,10 @@ index 0000000000000000000000000000000000000000..375ce4bba3ff324eebc0d1bfb339ae0d
 +    }
 +}
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index 7b7de22f83824e5b44bf3fdc1f00db32cc7af089..c0034a822ac4e9c99a2decee0b582ab0a2f7f40e 100644
+index 0bcaa4d16c2962fabda053d8252cc74d6f89a0a7..0c4425ce42c8960b24bafa37200fd9cafd30a25e 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
-@@ -1517,6 +1517,16 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+@@ -1526,6 +1526,16 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      @NotNull
      public Scoreboard getScoreboard();
  

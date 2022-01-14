@@ -5,14 +5,14 @@ Subject: [PATCH] Backport "Add Player#sendEquipmentChange"
 
 
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index c0034a822ac4e9c99a2decee0b582ab0a2f7f40e..71dab46589ffd83f0384efad5a0f6eba6327c37a 100644
+index 0c4425ce42c8960b24bafa37200fd9cafd30a25e..99cdbe8164d3f04ef0c7ea9f9313ac1bbe8b7662 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
-@@ -529,6 +529,19 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+@@ -536,6 +536,17 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+      * @param packet The packet instance
       */
-     public boolean breakBlock(@NotNull Block block);
- 
-+    // Daydream start
+     public void sendPacket(@NotNull Object packet);
++
 +    /**
 +     * Send the equipment change of an entity. This fakes the equipment change
 +     * of an entity for a user. This will not actually change the inventory of
@@ -23,8 +23,6 @@ index c0034a822ac4e9c99a2decee0b582ab0a2f7f40e..71dab46589ffd83f0384efad5a0f6eba
 +     * @param item The ItemStack to display for the player
 +     */
 +    public void sendEquipmentChange(@NotNull LivingEntity entity, @NotNull org.bukkit.inventory.EquipmentSlot slot, @NotNull ItemStack item);
-+    // Daydream end
-+
+     // Daydream end
+ 
      /**
-      * Send a block change. This fakes a block change packet for a user at a
-      * certain location. This will not actually change the world in any way.

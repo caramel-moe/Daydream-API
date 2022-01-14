@@ -5,20 +5,20 @@ Subject: [PATCH] Add more Player API
 
 
 diff --git a/build.gradle.kts b/build.gradle.kts
-index 20c57430b34bd880bbbb560b451f52aeb72af96e..1e82e361be4b81c18964a5fadf8f57efeee53ad5 100644
+index 2f67716a3bdb82c96fc7e6541f8a07b5daa42da0..9be8981d930323a9f88be2f13b6e1b0d98b34c0d 100644
 --- a/build.gradle.kts
 +++ b/build.gradle.kts
-@@ -41,6 +41,7 @@ dependencies {
-     api("org.slf4j:slf4j-api:1.7.30") // Paper
-     api("net.kyori:adventure-text-minimessage:4.1.0-SNAPSHOT") // Daydream
-     api("io.papermc.paper:paper-mojangapi:1.17.1-R0.1-SNAPSHOT") // Daydream
+@@ -45,6 +45,7 @@ dependencies {
+         exclude("io.papermc.paper", "paper-api")
+     }
+     // Daydream end
 +    api("com.mojang:authlib:2.3.31") // Daydream - Mojang Authlib (keep in sync with major MC versions)
  
      implementation("org.ow2.asm:asm:9.1")
      implementation("org.ow2.asm:asm-commons:9.1")
 diff --git a/src/main/java/moe/caramel/daydream/network/PlayerInfoTypes.java b/src/main/java/moe/caramel/daydream/network/PlayerInfoTypes.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..00b548c05d21bb0d898ebb39439d68c982b1cdbc
+index 0000000000000000000000000000000000000000..0f6fdaa64bf4b23998b5303b8daa664003e41079
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/network/PlayerInfoTypes.java
 @@ -0,0 +1,13 @@
@@ -35,12 +35,27 @@ index 0000000000000000000000000000000000000000..00b548c05d21bb0d898ebb39439d68c9
 +    UPDATE_DISPLAY_NAME,
 +    REMOVE_PLAYER
 +}
-\ No newline at end of file
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index 9a6e410206852029f1fea0c4409352d5743dcf64..642f46fae89096c16046672fa24593880b8abd2d 100644
+index 9a6e410206852029f1fea0c4409352d5743dcf64..4ca6e77638391a2d0491bb8a09f41bcaca1ac7fa 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
-@@ -1328,6 +1328,17 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+@@ -525,6 +525,15 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+      */
+     public boolean breakBlock(@NotNull Block block);
+ 
++    // Daydream start
++    /**
++     * Send packet
++     *
++     * @param packet The packet instance
++     */
++    public void sendPacket(@NotNull Object packet);
++    // Daydream end
++
+     /**
+      * Send a block change. This fakes a block change packet for a user at a
+      * certain location. This will not actually change the world in any way.
+@@ -1328,6 +1337,17 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
       */
      public void showPlayer(@NotNull Plugin plugin, @NotNull Player player);
  
@@ -58,7 +73,7 @@ index 9a6e410206852029f1fea0c4409352d5743dcf64..642f46fae89096c16046672fa2459388
      /**
       * Checks to see if a player has been hidden from this player
       *
-@@ -1968,6 +1979,24 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+@@ -1968,6 +1988,24 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
          return net.kyori.adventure.text.event.HoverEvent.showEntity(op.apply(net.kyori.adventure.text.event.HoverEvent.ShowEntity.of(this.getType().getKey(), this.getUniqueId(), this.displayName())));
      }
  
@@ -83,7 +98,7 @@ index 9a6e410206852029f1fea0c4409352d5743dcf64..642f46fae89096c16046672fa2459388
      /**
       * Request that the player's client download and switch resource packs.
       * <p>
-@@ -2070,6 +2099,13 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+@@ -2070,6 +2108,13 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      @Nullable
      org.bukkit.event.player.PlayerResourcePackStatusEvent.Status getResourcePackStatus();
  
@@ -97,7 +112,7 @@ index 9a6e410206852029f1fea0c4409352d5743dcf64..642f46fae89096c16046672fa2459388
      /**
       * @return the most recent resource pack hash received from the player,
       *         or null if no hash has ever been received from this player.
-@@ -2093,6 +2129,15 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+@@ -2093,6 +2138,15 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      @NotNull
      PlayerProfile getPlayerProfile();
  

@@ -6,7 +6,7 @@ Subject: [PATCH] Add PlayerCPSChangeEvent
 
 diff --git a/src/main/java/moe/caramel/daydream/event/player/PlayerCPSChangeEvent.java b/src/main/java/moe/caramel/daydream/event/player/PlayerCPSChangeEvent.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..d33325615793fceba08d631e159ea324e9fe9548
+index 0000000000000000000000000000000000000000..7aa507be636132660bd8735c855306cdc7b7cefe
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/event/player/PlayerCPSChangeEvent.java
 @@ -0,0 +1,53 @@
@@ -63,12 +63,11 @@ index 0000000000000000000000000000000000000000..d33325615793fceba08d631e159ea324
 +        DROP_KEY
 +    }
 +}
-\ No newline at end of file
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index 642f46fae89096c16046672fa24593880b8abd2d..098a055ae76ab78866e4280a7d18a37dcde33434 100644
+index 4ca6e77638391a2d0491bb8a09f41bcaca1ac7fa..46f24bc2bd526b888fc9d3aef4f0591551f533a8 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
-@@ -2196,6 +2196,38 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+@@ -2205,6 +2205,38 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      void sendOpLevel(byte level);
      // Paper end
  

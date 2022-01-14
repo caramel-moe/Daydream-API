@@ -1,9 +1,28 @@
 From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: LemonCaramel <admin@caramel.moe>
 Date: Sun, 8 Aug 2021 22:10:59 +0900
-Subject: [PATCH] Add more Block API
+Subject: [PATCH] Add more World Block API
 
 
+diff --git a/src/main/java/org/bukkit/World.java b/src/main/java/org/bukkit/World.java
+index 4f673e9123145dc78564dc3eef0edf75795dafc2..1da1a24bfdf6840ebcbf56efae9fa08b7a989448 100644
+--- a/src/main/java/org/bukkit/World.java
++++ b/src/main/java/org/bukkit/World.java
+@@ -84,6 +84,14 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
+     public boolean lineOfSightExists(@NotNull Location from, @NotNull Location to);
+     // Paper end
+ 
++    // Daydream start
++    /**
++     * @param boundingBox BoundingBox to be checked
++     * @return Returns {@code false} if a block exists within the {@code boundingBox} range.
++     */
++    boolean boundingBoxNoBlocksAround(@NotNull BoundingBox boundingBox);
++    // Daydream end
++
+     /**
+      * Gets the {@link Block} at the given coordinates
+      *
 diff --git a/src/main/java/org/bukkit/block/Block.java b/src/main/java/org/bukkit/block/Block.java
 index 70caaf05be813ba390412714ba0a39981edc2475..c3f8054a1bdf66a8b8005323b819ea8fd91fe56d 100644
 --- a/src/main/java/org/bukkit/block/Block.java

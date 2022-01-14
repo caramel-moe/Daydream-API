@@ -1,0 +1,50 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: LemonCaramel <admin@caramel.moe>
+Date: Wed, 25 Aug 2021 00:49:47 +0900
+Subject: [PATCH] Add Protocol Constant
+
+
+diff --git a/src/main/java/moe/caramel/daydream/constants/ProtocolConstants.java b/src/main/java/moe/caramel/daydream/constants/ProtocolConstants.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..82a57b6ca0fd8240ecf160cc563866dfe9cda816
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/constants/ProtocolConstants.java
+@@ -0,0 +1,38 @@
++package moe.caramel.daydream.constants;
++
++import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
++import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
++import org.jetbrains.annotations.NotNull;
++import org.jetbrains.annotations.Nullable;
++
++public enum ProtocolConstants {
++
++    MINECRAFT_1_16_5(754, "1.16.4/5"),
++    MINECRAFT_1_17(755, "1.17"),
++    MINECRAFT_1_17_1(756, "1.17.1"),
++    MINECRAFT_1_18(757, "1.18/1.18.1");
++
++    final int protocolId;
++    final String name;
++    static final Int2ObjectMap<ProtocolConstants> MAP = new Int2ObjectOpenHashMap<>();
++    static { for (ProtocolConstants constants : ProtocolConstants.values()) MAP.put(constants.protocolId, constants); }
++
++    ProtocolConstants(int protocolId, String name) {
++        this.protocolId = protocolId;
++        this.name = name;
++    }
++
++    public int getProtocolId() {
++        return protocolId;
++    }
++
++    @NotNull
++    public String getName() {
++        return name;
++    }
++
++    @Nullable
++    public static ProtocolConstants getVersion(int protocolId) {
++        return MAP.get(protocolId);
++    }
++}
