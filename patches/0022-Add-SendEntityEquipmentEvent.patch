@@ -6,10 +6,10 @@ Subject: [PATCH] Add SendEntityEquipmentEvent
 
 diff --git a/src/main/java/moe/caramel/daydream/event/packet/SendEntityEquipmentEvent.java b/src/main/java/moe/caramel/daydream/event/packet/SendEntityEquipmentEvent.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..937206d8adbf7ae03e380bc5e54499f030d86d4b
+index 0000000000000000000000000000000000000000..d555b6d953afe9316b59a2c0e60ab4fd4655161d
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/event/packet/SendEntityEquipmentEvent.java
-@@ -0,0 +1,114 @@
+@@ -0,0 +1,110 @@
 +package moe.caramel.daydream.event.packet;
 +
 +import moe.caramel.daydream.util.Pair;
@@ -69,11 +69,7 @@ index 0000000000000000000000000000000000000000..937206d8adbf7ae03e380bc5e54499f0
 +    /**
 +     * 전송 예정인 장비 리스트를 반환합니다.
 +     * <p>
-+     * 주의!
-+     * 이 리스트는 절대로 수정하지 마세요. {@link SendEntityEquipmentEvent#getEdit()}에서 수정해 주세요.
-+     * <br>
-+     * 이 리스트를 수정하게 된다면 싱크 오류로 같은 패킷이 틱 단위로 계속 전송될 수도 있으며,
-+     * 패킷이 수정되지 말아야 할 대상에게도 변경된 정보가 전송됩니다.
++     * @throws UnsupportedOperationException 이 리스트는 수정할 수 없습니다. {@link SendEntityEquipmentEvent#getEdit()}에서 수정해 주세요.
 +     *
 +     * @return 원본 장비 리스트
 +     */

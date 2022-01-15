@@ -5,10 +5,10 @@ Subject: [PATCH] Add AdventureMode interact event & block ignore option
 
 
 diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
-index bc2517a7b8524087659eb6ef281e24e857c7198a..be7efc91f22ce7f9dcb1bd84958875c22c8f9814 100644
+index e0c3355e2ce93e6a6f682526967aaae75358661c..58f4e6254cba5034b7d431344533e7e9cedd71db 100644
 --- a/src/main/java/org/bukkit/Bukkit.java
 +++ b/src/main/java/org/bukkit/Bukkit.java
-@@ -2141,6 +2141,26 @@ public final class Bukkit {
+@@ -2139,6 +2139,26 @@ public final class Bukkit {
      }
      // Paper end
  
@@ -36,10 +36,10 @@ index bc2517a7b8524087659eb6ef281e24e857c7198a..be7efc91f22ce7f9dcb1bd84958875c2
      public static Server.Spigot spigot() {
          return server.spigot();
 diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
-index d220fda28a204ed76468d2ae0237d1c59a9239ed..7fbfe5b558a5d58027b1e8cab7b9efb1b40079ed 100644
+index b8a2283123822dccb8b7d7228413000d043287f5..41ae6a7e1200e0010c78a6c9c8d6e7037d70b80d 100644
 --- a/src/main/java/org/bukkit/Server.java
 +++ b/src/main/java/org/bukkit/Server.java
-@@ -1868,4 +1868,20 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
+@@ -1866,4 +1866,20 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
      @NotNull
      io.papermc.paper.datapack.DatapackManager getDatapackManager();
      // Paper end

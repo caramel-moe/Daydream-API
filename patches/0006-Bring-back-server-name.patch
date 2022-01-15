@@ -5,20 +5,18 @@ Subject: [PATCH] Bring back server name
 
 
 diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
-index e5bba7b80bc577ace301b77900f49d8ef2a97108..bc2517a7b8524087659eb6ef281e24e857c7198a 100644
+index e5bba7b80bc577ace301b77900f49d8ef2a97108..e0c3355e2ce93e6a6f682526967aaae75358661c 100644
 --- a/src/main/java/org/bukkit/Bukkit.java
 +++ b/src/main/java/org/bukkit/Bukkit.java
-@@ -232,6 +232,20 @@ public final class Bukkit {
+@@ -232,6 +232,18 @@ public final class Bukkit {
          return server.getIp();
      }
  
 +    // Daydream start
 +    /**
-+     * Get the IP that this server is bound to, or empty string if not
-+     * specified.
++     * Get the name of this server.
 +     *
-+     * @return the IP string that this server is bound to, otherwise empty
-+     *     string
++     * @return the name of this server
 +     */
 +    @NotNull
 +    public static String getServerName() {
@@ -30,20 +28,18 @@ index e5bba7b80bc577ace301b77900f49d8ef2a97108..bc2517a7b8524087659eb6ef281e24e8
       * Get world type (level-type setting) for default world.
       *
 diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
-index c4d8e3fee567a378d0a44b351a0d0fb407439abd..d220fda28a204ed76468d2ae0237d1c59a9239ed 100644
+index c4d8e3fee567a378d0a44b351a0d0fb407439abd..b8a2283123822dccb8b7d7228413000d043287f5 100644
 --- a/src/main/java/org/bukkit/Server.java
 +++ b/src/main/java/org/bukkit/Server.java
-@@ -178,6 +178,18 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
+@@ -178,6 +178,16 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
      @NotNull
      public String getIp();
  
 +    // Daydream start
 +    /**
-+     * Get the IP that this server is bound to, or empty string if not
-+     * specified.
++     * Get the name of this server.
 +     *
-+     * @return the IP string that this server is bound to, otherwise empty
-+     *     string
++     * @return the name of this server
 +     */
 +    @NotNull
 +    public String getServerName();
