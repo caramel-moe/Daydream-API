@@ -1,0 +1,39 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: LemonCaramel <admin@caramel.moe>
+Date: Mon, 17 Jan 2022 02:35:40 +0900
+Subject: [PATCH] Add GeoIP Support
+
+
+diff --git a/build.gradle.kts b/build.gradle.kts
+index 9be8981d930323a9f88be2f13b6e1b0d98b34c0d..7c8bd98ed3c1c52b56436e5305a5b8c966973cf9 100644
+--- a/build.gradle.kts
++++ b/build.gradle.kts
+@@ -46,6 +46,7 @@ dependencies {
+     }
+     // Daydream end
+     api("com.mojang:authlib:2.3.31") // Daydream - Mojang Authlib (keep in sync with major MC versions)
++    api("com.neovisionaries:nv-i18n:1.29") // Daydream - add GeoIP
+ 
+     implementation("org.ow2.asm:asm:9.1")
+     implementation("org.ow2.asm:asm-commons:9.1")
+diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
+index 99cdbe8164d3f04ef0c7ea9f9313ac1bbe8b7662..3bf0aa9f48988e11a6ae0c7737f9713c573c4724 100644
+--- a/src/main/java/org/bukkit/entity/Player.java
++++ b/src/main/java/org/bukkit/entity/Player.java
+@@ -45,6 +45,16 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+ 
+     // Daydream start
+     @NotNull moe.caramel.daydream.user.CaramelUserData getUserData();
++
++    /**
++     * Get the player's country.
++     *
++     * @return In the case below, return {@link com.neovisionaries.i18n.CountryCode#UNDEFINED}.
++     * <p><strong>1.</strong> if the server is not connected to the caramel.moe network.</p>
++     * <p><strong>2.</strong> if the player join the server with a local IP.</p>
++     * <p><strong>3.</strong> if Endless or Sunflower misinterpreted the player's IP.</p>
++     */
++    @NotNull com.neovisionaries.i18n.CountryCode getCountry();
+     // Daydream end
+ 
+     // Paper start
