@@ -5,13 +5,13 @@ Subject: [PATCH] Backport "Add Player#sendEquipmentChange"
 
 
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index 0c4425ce42c8960b24bafa37200fd9cafd30a25e..99cdbe8164d3f04ef0c7ea9f9313ac1bbe8b7662 100644
+index b99b6c32dd03535ea943d8e0bcffc6cfcdf9762f..17bc1aaecc45c58a9ec9ed46a30e26d4f954c52a 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
-@@ -536,6 +536,17 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
-      * @param packet The packet instance
+@@ -548,6 +548,17 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+      * @param item The ItemStack to display for the player
       */
-     public void sendPacket(@NotNull Object packet);
+     public void sendSetSlot(int containerId, int revision, int slot, @NotNull ItemStack item);
 +
 +    /**
 +     * Send the equipment change of an entity. This fakes the equipment change
