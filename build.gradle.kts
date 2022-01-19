@@ -58,7 +58,10 @@ project(":Daydream-API") {
         repositories.maven {
             name = "maven"
             url = uri("https://repo.caramel.moe/repository/maven-snapshots/")
-            credentials(PasswordCredentials::class)
+            credentials {
+                username = System.getenv("DEPLOY_ID")
+                password = System.getenv("DEPLOY_PW")
+            }
         }
     }
 }

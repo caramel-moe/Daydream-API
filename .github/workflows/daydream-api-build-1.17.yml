@@ -39,3 +39,11 @@ jobs:
         with:
           branch: gh-pages
           folder: Daydream-API/build/docs/javadoc
+
+      - name: Publish package
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: publishAllPublicationsToMavenRepository
+        env:
+          DEPLOY_ID: ${{ secrets.DEPLOY_ID }}
+          DEPLOY_PW: ${{ secrets.DEPLOY_PW }}
