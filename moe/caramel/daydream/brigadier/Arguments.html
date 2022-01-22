@@ -43,13 +43,13 @@ loadScripts(document, 'script');</script>
 <li>Summary:&nbsp;</li>
 <li>Nested&nbsp;|&nbsp;</li>
 <li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
-<li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
+<li>Constr&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
 </ul>
 <ul class="sub-nav-list">
 <li>Detail:&nbsp;</li>
 <li><a href="#field.detail">Field</a>&nbsp;|&nbsp;</li>
-<li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
+<li>Constr&nbsp;|&nbsp;</li>
 <li>Method</li>
 </ul>
 </div>
@@ -75,13 +75,9 @@ loadScripts(document, 'script');</script>
 </div>
 <section class="description">
 <hr>
-<div class="type-signature"><span class="modifiers">public final class </span><span class="element-name type-name-label">Arguments</span>
+<div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">Arguments</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
-<div class="block">WARNING!
- <p>
- This is intended API design.
- It was designed in this way for internal debugging.
- Don't ever change the value.</div>
+<div class="block">Brigadier Vanilla Arguments</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -96,122 +92,180 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color"><code>static <a href="argument/SimpleArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgument</a>&lt;<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Float.html" title="class or interface in java.lang" class="external-link">Float</a>&gt;</code></div>
 <div class="col-second even-row-color"><code><span class="member-name-link"><a href="#ANGLE">ANGLE</a></span></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Example: "0", "~", "~-5"</div>
+</div>
 <div class="col-first odd-row-color"><code>static <a href="argument/BlockPosArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">BlockPosArgument</a></code></div>
 <div class="col-second odd-row-color"><code><span class="member-name-link"><a href="#BLOCK_POS">BLOCK_POS</a></span></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-last odd-row-color">
+<div class="block">Example: "0 0 0", "~ ~ ~", "^ ^ ^", "^1 ^ ^-5", "~0.5 ~1 ~-5"</div>
+</div>
 <div class="col-first even-row-color"><code>static <a href="argument/SimpleArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgument</a>&lt;<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/function/Predicate.html" title="class or interface in java.util.function" class="external-link">Predicate</a>&lt;<a href="../../../../org/bukkit/block/Block.html" title="interface in org.bukkit.block">Block</a>&gt;&gt;</code></div>
 <div class="col-second even-row-color"><code><span class="member-name-link"><a href="#BLOCK_PREDICATE">BLOCK_PREDICATE</a></span></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Example: "stone", "minecraft:stone", "stone[foo=bar]", "#stone", "#stone[foo=bar]{baz=nbt}"</div>
+</div>
 <div class="col-first odd-row-color"><code>static <a href="argument/BlockStateArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">BlockStateArgument</a></code></div>
 <div class="col-second odd-row-color"><code><span class="member-name-link"><a href="#BLOCK_STATE">BLOCK_STATE</a></span></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-last odd-row-color">
+<div class="block">Example: "stone", "minecraft:stone", "stone[foo=bar]", "foo{bar=baz}"</div>
+</div>
 <div class="col-first even-row-color"><code>static <a href="argument/SimpleArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgument</a>&lt;<a href="https://jd.adventure.kyori.net/api/4.9.3/net/kyori/adventure/text/format/TextColor.html" title="class or interface in net.kyori.adventure.text.format" class="external-link">TextColor</a>&gt;</code></div>
 <div class="col-second even-row-color"><code><span class="member-name-link"><a href="#COLOR">COLOR</a></span></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Example: "red", "green"</div>
+</div>
 <div class="col-first odd-row-color"><code>static <a href="argument/SimpleArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgument</a>&lt;<a href="data/Position.html" title="interface in moe.caramel.daydream.brigadier.data">Position</a>&lt;com.destroystokyo.paper.brigadier.BukkitBrigadierCommandSource&gt;&gt;</code></div>
 <div class="col-second odd-row-color"><code><span class="member-name-link"><a href="#COLUMN_POS">COLUMN_POS</a></span></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-last odd-row-color">
+<div class="block">Example: "0 0", "~ ~", "~1 ~-2", "^ ^", "^-1 ^0"</div>
+</div>
 <div class="col-first even-row-color"><code>static <a href="argument/SimpleArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgument</a>&lt;<a href="https://jd.adventure.kyori.net/api/4.9.3/net/kyori/adventure/text/Component.html" title="class or interface in net.kyori.adventure.text" class="external-link">Component</a>&gt;</code></div>
 <div class="col-second even-row-color"><code><span class="member-name-link"><a href="#COMPONENT">COMPONENT</a></span></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Example: "\"hello world\"", "\"\"", "\"{\"text\":\"hello world\"}", "[\"\"]"</div>
+</div>
 <div class="col-first odd-row-color"><code>static <a href="argument/SimpleArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgument</a>&lt;<a href="https://jd.adventure.kyori.net/api/4.9.3/net/kyori/adventure/nbt/api/BinaryTagHolder.html" title="class or interface in net.kyori.adventure.nbt.api" class="external-link">BinaryTagHolder</a>&gt;</code></div>
 <div class="col-second odd-row-color"><code><span class="member-name-link"><a href="#COMPOUND_TAG">COMPOUND_TAG</a></span></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-last odd-row-color">
+<div class="block">Example: "{}", "{foo=bar}"</div>
+</div>
 <div class="col-first even-row-color"><code>static <a href="argument/SimpleArgumentSuggestion.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgumentSuggestion</a>&lt;<a href="../../../../org/bukkit/World.html" title="interface in org.bukkit">World</a>&gt;</code></div>
 <div class="col-second even-row-color"><code><span class="member-name-link"><a href="#DIMENSION">DIMENSION</a></span></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Example: "minecraft:overworld", "minecraft:the_nether"
+ Please use this API's suggestion.</div>
+</div>
 <div class="col-first odd-row-color"><code>static <a href="argument/EntityArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">EntityArgument</a></code></div>
 <div class="col-second odd-row-color"><code><span class="member-name-link"><a href="#ENTITY">ENTITY</a></span></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-last odd-row-color">
+<div class="block">Example: "Player", "0123", "@e", "@e[type=foo]", "dd12be42-52a9-4a91-a8a1-11c01849e498"</div>
+</div>
 <div class="col-first even-row-color"><code>static <a href="argument/SimpleArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgument</a>&lt;<a href="argument/EntityAnchorArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">EntityAnchorArgument</a>&gt;</code></div>
 <div class="col-second even-row-color"><code><span class="member-name-link"><a href="#ENTITY_ANCHOR">ENTITY_ANCHOR</a></span></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Example: "eyes", "feet"</div>
+</div>
 <div class="col-first odd-row-color"><code>static <a href="argument/SimpleArgumentSuggestion.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgumentSuggestion</a>&lt;<a href="../../../../org/bukkit/entity/EntityType.html" title="enum class in org.bukkit.entity">EntityType</a>&gt;</code></div>
 <div class="col-second odd-row-color"><code><span class="member-name-link"><a href="#ENTITY_SUMMON">ENTITY_SUMMON</a></span></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-last odd-row-color">
+<div class="block">Example: "minecraft:pig", "cow"</div>
+</div>
 <div class="col-first even-row-color"><code>static <a href="argument/SimpleArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgument</a>&lt;<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/Collection.html" title="class or interface in java.util" class="external-link">Collection</a>&lt;com.mojang.authlib.GameProfile&gt;&gt;</code></div>
 <div class="col-second even-row-color"><code><span class="member-name-link"><a href="#GAME_PROFILES">GAME_PROFILES</a></span></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Example: "Player", "0123", "dd12be42-52a9-4a91-a8a1-11c01849e498", "@e"</div>
+</div>
 <div class="col-first odd-row-color"><code>static <a href="argument/ItemArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">ItemArgument</a></code></div>
 <div class="col-second odd-row-color"><code><span class="member-name-link"><a href="#ITEM">ITEM</a></span></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-last odd-row-color">
+<div class="block">Example: "stick", "minecraft:stick", "stick{foo=bar}"</div>
+</div>
 <div class="col-first even-row-color"><code>static <a href="argument/SimpleArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgument</a>&lt;<a href="../../../../org/bukkit/enchantments/Enchantment.html" title="class in org.bukkit.enchantments">Enchantment</a>&gt;</code></div>
 <div class="col-second even-row-color"><code><span class="member-name-link"><a href="#ITEM_ENCHANTMENT">ITEM_ENCHANTMENT</a></span></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Example: "unbreaking", "silk_touch"</div>
+</div>
 <div class="col-first odd-row-color"><code>static <a href="argument/SimpleArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgument</a>&lt;<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/function/Predicate.html" title="class or interface in java.util.function" class="external-link">Predicate</a>&lt;<a href="../../../../org/bukkit/inventory/ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&gt;&gt;</code></div>
 <div class="col-second odd-row-color"><code><span class="member-name-link"><a href="#ITEM_PREDICATE">ITEM_PREDICATE</a></span></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-last odd-row-color">
+<div class="block">Example: "stick", "minecraft:stick", "#stick", "#stick{foo=bar}"</div>
+</div>
 <div class="col-first even-row-color"><code>static <a href="argument/SimpleArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgument</a>&lt;<a href="https://jd.adventure.kyori.net/api/4.9.3/net/kyori/adventure/text/Component.html" title="class or interface in net.kyori.adventure.text" class="external-link">Component</a>&gt;</code></div>
 <div class="col-second even-row-color"><code><span class="member-name-link"><a href="#MESSAGE">MESSAGE</a></span></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Example: "Hello world!", "foo", "@e", "Hello @p :)"</div>
+</div>
 <div class="col-first odd-row-color"><code>static <a href="argument/SimpleArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgument</a>&lt;<a href="../../../../org/bukkit/potion/PotionEffectType.html" title="class in org.bukkit.potion">PotionEffectType</a>&gt;</code></div>
 <div class="col-second odd-row-color"><code><span class="member-name-link"><a href="#MOB_EFFECT">MOB_EFFECT</a></span></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-last odd-row-color">
+<div class="block">Example: "spooky", "effect"</div>
+</div>
 <div class="col-first even-row-color"><code>static <a href="argument/SimpleArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgument</a>&lt;<a href="../../../../org/bukkit/scoreboard/Objective.html" title="interface in org.bukkit.scoreboard">Objective</a>&gt;</code></div>
 <div class="col-second even-row-color"><code><span class="member-name-link"><a href="#OBJECTIVE">OBJECTIVE</a></span></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Example: "foo", "*", "012"</div>
+</div>
 <div class="col-first odd-row-color"><code>static <a href="argument/SimpleArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgument</a>&lt;<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;</code></div>
 <div class="col-second odd-row-color"><code><span class="member-name-link"><a href="#OBJECTIVE_CRITERIA">OBJECTIVE_CRITERIA</a></span></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-last odd-row-color">
+<div class="block">Example: "foo", "foo.bar.baz", "minecraft:foo"</div>
+</div>
 <div class="col-first even-row-color"><code>static <a href="argument/SimpleArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgument</a>&lt;<a href="data/Operation.html" title="interface in moe.caramel.daydream.brigadier.data">Operation</a>&gt;</code></div>
 <div class="col-second even-row-color"><code><span class="member-name-link"><a href="#OPERATION">OPERATION</a></span></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Example: "=", "&gt;", "&lt;"</div>
+</div>
 <div class="col-first odd-row-color"><code>static <a href="argument/SimpleArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgument</a>&lt;<a href="../../../../org/bukkit/Particle.html" title="enum class in org.bukkit">Particle</a>&gt;</code></div>
 <div class="col-second odd-row-color"><code><span class="member-name-link"><a href="#PARTICLE">PARTICLE</a></span></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-last odd-row-color">
+<div class="block">Example: "foo", "foo:bar", "particle with options"</div>
+</div>
 <div class="col-first even-row-color"><code>static <a href="argument/SimpleArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgument</a>&lt;<a href="../util/NumberRange.html" title="class in moe.caramel.daydream.util">NumberRange</a>&lt;<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Double.html" title="class or interface in java.lang" class="external-link">Double</a>&gt;&gt;</code></div>
 <div class="col-second even-row-color"><code><span class="member-name-link"><a href="#RANGE_FLOATS">RANGE_FLOATS</a></span></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Example: "0..5.2", "0", "-5.4", "-100.76..", "..100"</div>
+</div>
 <div class="col-first odd-row-color"><code>static <a href="argument/SimpleArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgument</a>&lt;<a href="../util/NumberRange.html" title="class in moe.caramel.daydream.util">NumberRange</a>&lt;<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&gt;&gt;</code></div>
 <div class="col-second odd-row-color"><code><span class="member-name-link"><a href="#RANGE_INTEGER">RANGE_INTEGER</a></span></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-last odd-row-color">
+<div class="block">Example: "0..5", "0", "-5", "-100..", "..100"</div>
+</div>
 <div class="col-first even-row-color"><code>static <a href="argument/ResourceLocationArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">ResourceLocationArgument</a>&lt;<a href="../../../../org/bukkit/NamespacedKey.html" title="class in org.bukkit">NamespacedKey</a>&gt;</code></div>
 <div class="col-second even-row-color"><code><span class="member-name-link"><a href="#RESOURCE_LOCATION">RESOURCE_LOCATION</a></span></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Example: "0..5", "0", "-5", "-100..", "..100"</div>
+</div>
 <div class="col-first odd-row-color"><code>static <a href="argument/SimpleArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgument</a>&lt;<a href="data/Position.html" title="interface in moe.caramel.daydream.brigadier.data">Position</a>&lt;com.destroystokyo.paper.brigadier.BukkitBrigadierCommandSource&gt;&gt;</code></div>
 <div class="col-second odd-row-color"><code><span class="member-name-link"><a href="#ROTATION">ROTATION</a></span></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-last odd-row-color">
+<div class="block">Example: "0 0", "~ ~", "~-5 ~5"</div>
+</div>
 <div class="col-first even-row-color"><code>static <a href="argument/ScoreHolderArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">ScoreHolderArgument</a></code></div>
 <div class="col-second even-row-color"><code><span class="member-name-link"><a href="#SCORE_HOLDER">SCORE_HOLDER</a></span></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Example: "Player", "0123", "*", "@e"</div>
+</div>
 <div class="col-first odd-row-color"><code>static <a href="argument/SimpleArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgument</a>&lt;<a href="../../../../org/bukkit/scoreboard/DisplaySlot.html" title="enum class in org.bukkit.scoreboard">DisplaySlot</a>&gt;</code></div>
 <div class="col-second odd-row-color"><code><span class="member-name-link"><a href="#SCOREBOARD_SLOT">SCOREBOARD_SLOT</a></span></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-last odd-row-color">
+<div class="block">Example: "sidebar", "sidebar.team.light_purple"</div>
+</div>
 <div class="col-first even-row-color"><code>static <a href="argument/SimpleArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgument</a>&lt;<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&gt;</code></div>
 <div class="col-second even-row-color"><code><span class="member-name-link"><a href="#SLOT">SLOT</a></span></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Example: "container.5", "12", "weapon"</div>
+</div>
 <div class="col-first odd-row-color"><code>static <a href="argument/SimpleArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgument</a>&lt;<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/EnumSet.html" title="class or interface in java.util" class="external-link">EnumSet</a>&lt;<a href="../../../../org/bukkit/Axis.html" title="enum class in org.bukkit">Axis</a>&gt;&gt;</code></div>
 <div class="col-second odd-row-color"><code><span class="member-name-link"><a href="#SWIZZLE">SWIZZLE</a></span></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-last odd-row-color">
+<div class="block">Example: "xyz", "x"</div>
+</div>
 <div class="col-first even-row-color"><code>static <a href="argument/SimpleArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgument</a>&lt;<a href="../../../../org/bukkit/scoreboard/Team.html" title="interface in org.bukkit.scoreboard">Team</a>&gt;</code></div>
 <div class="col-second even-row-color"><code><span class="member-name-link"><a href="#TEAM">TEAM</a></span></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Example: "foo", "123"</div>
+</div>
 <div class="col-first odd-row-color"><code>static <a href="argument/SimpleArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgument</a>&lt;<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&gt;</code></div>
 <div class="col-second odd-row-color"><code><span class="member-name-link"><a href="#TIME">TIME</a></span></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-last odd-row-color">
+<div class="block">Example: "0d", "0s", "0t", "0"</div>
+</div>
 <div class="col-first even-row-color"><code>static <a href="argument/SimpleArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgument</a>&lt;<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&gt;</code></div>
 <div class="col-second even-row-color"><code><span class="member-name-link"><a href="#UUID">UUID</a></span></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Example: "dd12be42-52a9-4a91-a8a1-11c01849e498"</div>
+</div>
 <div class="col-first odd-row-color"><code>static <a href="argument/VecArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">VecArgument</a></code></div>
 <div class="col-second odd-row-color"><code><span class="member-name-link"><a href="#VEC2">VEC2</a></span></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-last odd-row-color">
+<div class="block">Example: "0 0", "~ ~", "0.1 -0.5", "~1 ~-2"</div>
+</div>
 <div class="col-first even-row-color"><code>static <a href="argument/VecArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">VecArgument</a></code></div>
 <div class="col-second even-row-color"><code><span class="member-name-link"><a href="#VEC3">VEC3</a></span></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Example: "0 0 0", "~ ~ ~", "^ ^ ^", "^1 ^ ^-5", "0.1 -0.5 .9", "~0.5 ~1 ~-5"</div>
 </div>
-</section>
-</li>
-<!-- ======== CONSTRUCTOR SUMMARY ======== -->
-<li>
-<section class="constructor-summary" id="constructor.summary">
-<h2>Constructor Summary</h2>
-<div class="caption"><span>Constructors</span></div>
-<div class="summary-table two-column-summary">
-<div class="table-header col-first">Constructor</div>
-<div class="table-header col-last">Description</div>
-<div class="col-constructor-name even-row-color"><code><span class="member-name-link"><a href="#%3Cinit%3E()">Arguments</a></span>()</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
 </div>
 </section>
 </li>
@@ -236,225 +290,247 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="ENTITY">
 <h3>ENTITY</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="argument/EntityArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">EntityArgument</a></span>&nbsp;<span class="element-name">ENTITY</span></div>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="argument/EntityArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">EntityArgument</a></span>&nbsp;<span class="element-name">ENTITY</span></div>
+<div class="block">Example: "Player", "0123", "@e", "@e[type=foo]", "dd12be42-52a9-4a91-a8a1-11c01849e498"</div>
 </section>
 </li>
 <li>
 <section class="detail" id="GAME_PROFILES">
 <h3>GAME_PROFILES</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="argument/SimpleArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgument</a>&lt;<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/Collection.html" title="class or interface in java.util" class="external-link">Collection</a>&lt;com.mojang.authlib.GameProfile&gt;&gt;</span>&nbsp;<span class="element-name">GAME_PROFILES</span></div>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="argument/SimpleArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgument</a>&lt;<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/Collection.html" title="class or interface in java.util" class="external-link">Collection</a>&lt;com.mojang.authlib.GameProfile&gt;&gt;</span>&nbsp;<span class="element-name">GAME_PROFILES</span></div>
+<div class="block">Example: "Player", "0123", "dd12be42-52a9-4a91-a8a1-11c01849e498", "@e"</div>
 </section>
 </li>
 <li>
 <section class="detail" id="BLOCK_POS">
 <h3>BLOCK_POS</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="argument/BlockPosArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">BlockPosArgument</a></span>&nbsp;<span class="element-name">BLOCK_POS</span></div>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="argument/BlockPosArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">BlockPosArgument</a></span>&nbsp;<span class="element-name">BLOCK_POS</span></div>
+<div class="block">Example: "0 0 0", "~ ~ ~", "^ ^ ^", "^1 ^ ^-5", "~0.5 ~1 ~-5"</div>
 </section>
 </li>
 <li>
 <section class="detail" id="COLUMN_POS">
 <h3>COLUMN_POS</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="argument/SimpleArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgument</a>&lt;<a href="data/Position.html" title="interface in moe.caramel.daydream.brigadier.data">Position</a>&lt;com.destroystokyo.paper.brigadier.BukkitBrigadierCommandSource&gt;&gt;</span>&nbsp;<span class="element-name">COLUMN_POS</span></div>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="argument/SimpleArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgument</a>&lt;<a href="data/Position.html" title="interface in moe.caramel.daydream.brigadier.data">Position</a>&lt;com.destroystokyo.paper.brigadier.BukkitBrigadierCommandSource&gt;&gt;</span>&nbsp;<span class="element-name">COLUMN_POS</span></div>
+<div class="block">Example: "0 0", "~ ~", "~1 ~-2", "^ ^", "^-1 ^0"</div>
 </section>
 </li>
 <li>
 <section class="detail" id="VEC3">
 <h3>VEC3</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="argument/VecArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">VecArgument</a></span>&nbsp;<span class="element-name">VEC3</span></div>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="argument/VecArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">VecArgument</a></span>&nbsp;<span class="element-name">VEC3</span></div>
+<div class="block">Example: "0 0 0", "~ ~ ~", "^ ^ ^", "^1 ^ ^-5", "0.1 -0.5 .9", "~0.5 ~1 ~-5"</div>
 </section>
 </li>
 <li>
 <section class="detail" id="VEC2">
 <h3>VEC2</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="argument/VecArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">VecArgument</a></span>&nbsp;<span class="element-name">VEC2</span></div>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="argument/VecArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">VecArgument</a></span>&nbsp;<span class="element-name">VEC2</span></div>
+<div class="block">Example: "0 0", "~ ~", "0.1 -0.5", "~1 ~-2"</div>
 </section>
 </li>
 <li>
 <section class="detail" id="BLOCK_STATE">
 <h3>BLOCK_STATE</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="argument/BlockStateArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">BlockStateArgument</a></span>&nbsp;<span class="element-name">BLOCK_STATE</span></div>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="argument/BlockStateArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">BlockStateArgument</a></span>&nbsp;<span class="element-name">BLOCK_STATE</span></div>
+<div class="block">Example: "stone", "minecraft:stone", "stone[foo=bar]", "foo{bar=baz}"</div>
 </section>
 </li>
 <li>
 <section class="detail" id="BLOCK_PREDICATE">
 <h3>BLOCK_PREDICATE</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="argument/SimpleArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgument</a>&lt;<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/function/Predicate.html" title="class or interface in java.util.function" class="external-link">Predicate</a>&lt;<a href="../../../../org/bukkit/block/Block.html" title="interface in org.bukkit.block">Block</a>&gt;&gt;</span>&nbsp;<span class="element-name">BLOCK_PREDICATE</span></div>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="argument/SimpleArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgument</a>&lt;<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/function/Predicate.html" title="class or interface in java.util.function" class="external-link">Predicate</a>&lt;<a href="../../../../org/bukkit/block/Block.html" title="interface in org.bukkit.block">Block</a>&gt;&gt;</span>&nbsp;<span class="element-name">BLOCK_PREDICATE</span></div>
+<div class="block">Example: "stone", "minecraft:stone", "stone[foo=bar]", "#stone", "#stone[foo=bar]{baz=nbt}"</div>
 </section>
 </li>
 <li>
 <section class="detail" id="ITEM">
 <h3>ITEM</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="argument/ItemArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">ItemArgument</a></span>&nbsp;<span class="element-name">ITEM</span></div>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="argument/ItemArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">ItemArgument</a></span>&nbsp;<span class="element-name">ITEM</span></div>
+<div class="block">Example: "stick", "minecraft:stick", "stick{foo=bar}"</div>
 </section>
 </li>
 <li>
 <section class="detail" id="ITEM_PREDICATE">
 <h3>ITEM_PREDICATE</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="argument/SimpleArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgument</a>&lt;<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/function/Predicate.html" title="class or interface in java.util.function" class="external-link">Predicate</a>&lt;<a href="../../../../org/bukkit/inventory/ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&gt;&gt;</span>&nbsp;<span class="element-name">ITEM_PREDICATE</span></div>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="argument/SimpleArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgument</a>&lt;<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/function/Predicate.html" title="class or interface in java.util.function" class="external-link">Predicate</a>&lt;<a href="../../../../org/bukkit/inventory/ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&gt;&gt;</span>&nbsp;<span class="element-name">ITEM_PREDICATE</span></div>
+<div class="block">Example: "stick", "minecraft:stick", "#stick", "#stick{foo=bar}"</div>
 </section>
 </li>
 <li>
 <section class="detail" id="COLOR">
 <h3>COLOR</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="argument/SimpleArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgument</a>&lt;<a href="https://jd.adventure.kyori.net/api/4.9.3/net/kyori/adventure/text/format/TextColor.html" title="class or interface in net.kyori.adventure.text.format" class="external-link">TextColor</a>&gt;</span>&nbsp;<span class="element-name">COLOR</span></div>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="argument/SimpleArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgument</a>&lt;<a href="https://jd.adventure.kyori.net/api/4.9.3/net/kyori/adventure/text/format/TextColor.html" title="class or interface in net.kyori.adventure.text.format" class="external-link">TextColor</a>&gt;</span>&nbsp;<span class="element-name">COLOR</span></div>
+<div class="block">Example: "red", "green"</div>
 </section>
 </li>
 <li>
 <section class="detail" id="COMPONENT">
 <h3>COMPONENT</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="argument/SimpleArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgument</a>&lt;<a href="https://jd.adventure.kyori.net/api/4.9.3/net/kyori/adventure/text/Component.html" title="class or interface in net.kyori.adventure.text" class="external-link">Component</a>&gt;</span>&nbsp;<span class="element-name">COMPONENT</span></div>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="argument/SimpleArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgument</a>&lt;<a href="https://jd.adventure.kyori.net/api/4.9.3/net/kyori/adventure/text/Component.html" title="class or interface in net.kyori.adventure.text" class="external-link">Component</a>&gt;</span>&nbsp;<span class="element-name">COMPONENT</span></div>
+<div class="block">Example: "\"hello world\"", "\"\"", "\"{\"text\":\"hello world\"}", "[\"\"]"</div>
 </section>
 </li>
 <li>
 <section class="detail" id="MESSAGE">
 <h3>MESSAGE</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="argument/SimpleArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgument</a>&lt;<a href="https://jd.adventure.kyori.net/api/4.9.3/net/kyori/adventure/text/Component.html" title="class or interface in net.kyori.adventure.text" class="external-link">Component</a>&gt;</span>&nbsp;<span class="element-name">MESSAGE</span></div>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="argument/SimpleArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgument</a>&lt;<a href="https://jd.adventure.kyori.net/api/4.9.3/net/kyori/adventure/text/Component.html" title="class or interface in net.kyori.adventure.text" class="external-link">Component</a>&gt;</span>&nbsp;<span class="element-name">MESSAGE</span></div>
+<div class="block">Example: "Hello world!", "foo", "@e", "Hello @p :)"</div>
 </section>
 </li>
 <li>
 <section class="detail" id="COMPOUND_TAG">
 <h3>COMPOUND_TAG</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="argument/SimpleArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgument</a>&lt;<a href="https://jd.adventure.kyori.net/api/4.9.3/net/kyori/adventure/nbt/api/BinaryTagHolder.html" title="class or interface in net.kyori.adventure.nbt.api" class="external-link">BinaryTagHolder</a>&gt;</span>&nbsp;<span class="element-name">COMPOUND_TAG</span></div>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="argument/SimpleArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgument</a>&lt;<a href="https://jd.adventure.kyori.net/api/4.9.3/net/kyori/adventure/nbt/api/BinaryTagHolder.html" title="class or interface in net.kyori.adventure.nbt.api" class="external-link">BinaryTagHolder</a>&gt;</span>&nbsp;<span class="element-name">COMPOUND_TAG</span></div>
+<div class="block">Example: "{}", "{foo=bar}"</div>
 </section>
 </li>
 <li>
 <section class="detail" id="OBJECTIVE">
 <h3>OBJECTIVE</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="argument/SimpleArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgument</a>&lt;<a href="../../../../org/bukkit/scoreboard/Objective.html" title="interface in org.bukkit.scoreboard">Objective</a>&gt;</span>&nbsp;<span class="element-name">OBJECTIVE</span></div>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="argument/SimpleArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgument</a>&lt;<a href="../../../../org/bukkit/scoreboard/Objective.html" title="interface in org.bukkit.scoreboard">Objective</a>&gt;</span>&nbsp;<span class="element-name">OBJECTIVE</span></div>
+<div class="block">Example: "foo", "*", "012"</div>
 </section>
 </li>
 <li>
 <section class="detail" id="OBJECTIVE_CRITERIA">
 <h3>OBJECTIVE_CRITERIA</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="argument/SimpleArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgument</a>&lt;<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;</span>&nbsp;<span class="element-name">OBJECTIVE_CRITERIA</span></div>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="argument/SimpleArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgument</a>&lt;<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;</span>&nbsp;<span class="element-name">OBJECTIVE_CRITERIA</span></div>
+<div class="block">Example: "foo", "foo.bar.baz", "minecraft:foo"</div>
 </section>
 </li>
 <li>
 <section class="detail" id="OPERATION">
 <h3>OPERATION</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="argument/SimpleArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgument</a>&lt;<a href="data/Operation.html" title="interface in moe.caramel.daydream.brigadier.data">Operation</a>&gt;</span>&nbsp;<span class="element-name">OPERATION</span></div>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="argument/SimpleArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgument</a>&lt;<a href="data/Operation.html" title="interface in moe.caramel.daydream.brigadier.data">Operation</a>&gt;</span>&nbsp;<span class="element-name">OPERATION</span></div>
+<div class="block">Example: "=", "&gt;", "&lt;"</div>
 </section>
 </li>
 <li>
 <section class="detail" id="PARTICLE">
 <h3>PARTICLE</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="argument/SimpleArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgument</a>&lt;<a href="../../../../org/bukkit/Particle.html" title="enum class in org.bukkit">Particle</a>&gt;</span>&nbsp;<span class="element-name">PARTICLE</span></div>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="argument/SimpleArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgument</a>&lt;<a href="../../../../org/bukkit/Particle.html" title="enum class in org.bukkit">Particle</a>&gt;</span>&nbsp;<span class="element-name">PARTICLE</span></div>
+<div class="block">Example: "foo", "foo:bar", "particle with options"</div>
 </section>
 </li>
 <li>
 <section class="detail" id="ANGLE">
 <h3>ANGLE</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="argument/SimpleArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgument</a>&lt;<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Float.html" title="class or interface in java.lang" class="external-link">Float</a>&gt;</span>&nbsp;<span class="element-name">ANGLE</span></div>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="argument/SimpleArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgument</a>&lt;<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Float.html" title="class or interface in java.lang" class="external-link">Float</a>&gt;</span>&nbsp;<span class="element-name">ANGLE</span></div>
+<div class="block">Example: "0", "~", "~-5"</div>
 </section>
 </li>
 <li>
 <section class="detail" id="ROTATION">
 <h3>ROTATION</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="argument/SimpleArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgument</a>&lt;<a href="data/Position.html" title="interface in moe.caramel.daydream.brigadier.data">Position</a>&lt;com.destroystokyo.paper.brigadier.BukkitBrigadierCommandSource&gt;&gt;</span>&nbsp;<span class="element-name">ROTATION</span></div>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="argument/SimpleArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgument</a>&lt;<a href="data/Position.html" title="interface in moe.caramel.daydream.brigadier.data">Position</a>&lt;com.destroystokyo.paper.brigadier.BukkitBrigadierCommandSource&gt;&gt;</span>&nbsp;<span class="element-name">ROTATION</span></div>
+<div class="block">Example: "0 0", "~ ~", "~-5 ~5"</div>
 </section>
 </li>
 <li>
 <section class="detail" id="SCOREBOARD_SLOT">
 <h3>SCOREBOARD_SLOT</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="argument/SimpleArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgument</a>&lt;<a href="../../../../org/bukkit/scoreboard/DisplaySlot.html" title="enum class in org.bukkit.scoreboard">DisplaySlot</a>&gt;</span>&nbsp;<span class="element-name">SCOREBOARD_SLOT</span></div>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="argument/SimpleArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgument</a>&lt;<a href="../../../../org/bukkit/scoreboard/DisplaySlot.html" title="enum class in org.bukkit.scoreboard">DisplaySlot</a>&gt;</span>&nbsp;<span class="element-name">SCOREBOARD_SLOT</span></div>
+<div class="block">Example: "sidebar", "sidebar.team.light_purple"</div>
 </section>
 </li>
 <li>
 <section class="detail" id="SCORE_HOLDER">
 <h3>SCORE_HOLDER</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="argument/ScoreHolderArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">ScoreHolderArgument</a></span>&nbsp;<span class="element-name">SCORE_HOLDER</span></div>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="argument/ScoreHolderArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">ScoreHolderArgument</a></span>&nbsp;<span class="element-name">SCORE_HOLDER</span></div>
+<div class="block">Example: "Player", "0123", "*", "@e"</div>
 </section>
 </li>
 <li>
 <section class="detail" id="SWIZZLE">
 <h3>SWIZZLE</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="argument/SimpleArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgument</a>&lt;<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/EnumSet.html" title="class or interface in java.util" class="external-link">EnumSet</a>&lt;<a href="../../../../org/bukkit/Axis.html" title="enum class in org.bukkit">Axis</a>&gt;&gt;</span>&nbsp;<span class="element-name">SWIZZLE</span></div>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="argument/SimpleArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgument</a>&lt;<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/EnumSet.html" title="class or interface in java.util" class="external-link">EnumSet</a>&lt;<a href="../../../../org/bukkit/Axis.html" title="enum class in org.bukkit">Axis</a>&gt;&gt;</span>&nbsp;<span class="element-name">SWIZZLE</span></div>
+<div class="block">Example: "xyz", "x"</div>
 </section>
 </li>
 <li>
 <section class="detail" id="TEAM">
 <h3>TEAM</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="argument/SimpleArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgument</a>&lt;<a href="../../../../org/bukkit/scoreboard/Team.html" title="interface in org.bukkit.scoreboard">Team</a>&gt;</span>&nbsp;<span class="element-name">TEAM</span></div>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="argument/SimpleArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgument</a>&lt;<a href="../../../../org/bukkit/scoreboard/Team.html" title="interface in org.bukkit.scoreboard">Team</a>&gt;</span>&nbsp;<span class="element-name">TEAM</span></div>
+<div class="block">Example: "foo", "123"</div>
 </section>
 </li>
 <li>
 <section class="detail" id="SLOT">
 <h3>SLOT</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="argument/SimpleArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgument</a>&lt;<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&gt;</span>&nbsp;<span class="element-name">SLOT</span></div>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="argument/SimpleArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgument</a>&lt;<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&gt;</span>&nbsp;<span class="element-name">SLOT</span></div>
+<div class="block">Example: "container.5", "12", "weapon"</div>
 </section>
 </li>
 <li>
 <section class="detail" id="RESOURCE_LOCATION">
 <h3>RESOURCE_LOCATION</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="argument/ResourceLocationArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">ResourceLocationArgument</a>&lt;<a href="../../../../org/bukkit/NamespacedKey.html" title="class in org.bukkit">NamespacedKey</a>&gt;</span>&nbsp;<span class="element-name">RESOURCE_LOCATION</span></div>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="argument/ResourceLocationArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">ResourceLocationArgument</a>&lt;<a href="../../../../org/bukkit/NamespacedKey.html" title="class in org.bukkit">NamespacedKey</a>&gt;</span>&nbsp;<span class="element-name">RESOURCE_LOCATION</span></div>
+<div class="block">Example: "0..5", "0", "-5", "-100..", "..100"</div>
 </section>
 </li>
 <li>
 <section class="detail" id="MOB_EFFECT">
 <h3>MOB_EFFECT</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="argument/SimpleArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgument</a>&lt;<a href="../../../../org/bukkit/potion/PotionEffectType.html" title="class in org.bukkit.potion">PotionEffectType</a>&gt;</span>&nbsp;<span class="element-name">MOB_EFFECT</span></div>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="argument/SimpleArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgument</a>&lt;<a href="../../../../org/bukkit/potion/PotionEffectType.html" title="class in org.bukkit.potion">PotionEffectType</a>&gt;</span>&nbsp;<span class="element-name">MOB_EFFECT</span></div>
+<div class="block">Example: "spooky", "effect"</div>
 </section>
 </li>
 <li>
 <section class="detail" id="ENTITY_ANCHOR">
 <h3>ENTITY_ANCHOR</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="argument/SimpleArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgument</a>&lt;<a href="argument/EntityAnchorArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">EntityAnchorArgument</a>&gt;</span>&nbsp;<span class="element-name">ENTITY_ANCHOR</span></div>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="argument/SimpleArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgument</a>&lt;<a href="argument/EntityAnchorArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">EntityAnchorArgument</a>&gt;</span>&nbsp;<span class="element-name">ENTITY_ANCHOR</span></div>
+<div class="block">Example: "eyes", "feet"</div>
 </section>
 </li>
 <li>
 <section class="detail" id="RANGE_INTEGER">
 <h3>RANGE_INTEGER</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="argument/SimpleArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgument</a>&lt;<a href="../util/NumberRange.html" title="class in moe.caramel.daydream.util">NumberRange</a>&lt;<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&gt;&gt;</span>&nbsp;<span class="element-name">RANGE_INTEGER</span></div>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="argument/SimpleArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgument</a>&lt;<a href="../util/NumberRange.html" title="class in moe.caramel.daydream.util">NumberRange</a>&lt;<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&gt;&gt;</span>&nbsp;<span class="element-name">RANGE_INTEGER</span></div>
+<div class="block">Example: "0..5", "0", "-5", "-100..", "..100"</div>
 </section>
 </li>
 <li>
 <section class="detail" id="RANGE_FLOATS">
 <h3>RANGE_FLOATS</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="argument/SimpleArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgument</a>&lt;<a href="../util/NumberRange.html" title="class in moe.caramel.daydream.util">NumberRange</a>&lt;<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Double.html" title="class or interface in java.lang" class="external-link">Double</a>&gt;&gt;</span>&nbsp;<span class="element-name">RANGE_FLOATS</span></div>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="argument/SimpleArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgument</a>&lt;<a href="../util/NumberRange.html" title="class in moe.caramel.daydream.util">NumberRange</a>&lt;<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Double.html" title="class or interface in java.lang" class="external-link">Double</a>&gt;&gt;</span>&nbsp;<span class="element-name">RANGE_FLOATS</span></div>
+<div class="block">Example: "0..5.2", "0", "-5.4", "-100.76..", "..100"</div>
 </section>
 </li>
 <li>
 <section class="detail" id="ITEM_ENCHANTMENT">
 <h3>ITEM_ENCHANTMENT</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="argument/SimpleArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgument</a>&lt;<a href="../../../../org/bukkit/enchantments/Enchantment.html" title="class in org.bukkit.enchantments">Enchantment</a>&gt;</span>&nbsp;<span class="element-name">ITEM_ENCHANTMENT</span></div>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="argument/SimpleArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgument</a>&lt;<a href="../../../../org/bukkit/enchantments/Enchantment.html" title="class in org.bukkit.enchantments">Enchantment</a>&gt;</span>&nbsp;<span class="element-name">ITEM_ENCHANTMENT</span></div>
+<div class="block">Example: "unbreaking", "silk_touch"</div>
 </section>
 </li>
 <li>
 <section class="detail" id="ENTITY_SUMMON">
 <h3>ENTITY_SUMMON</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="argument/SimpleArgumentSuggestion.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgumentSuggestion</a>&lt;<a href="../../../../org/bukkit/entity/EntityType.html" title="enum class in org.bukkit.entity">EntityType</a>&gt;</span>&nbsp;<span class="element-name">ENTITY_SUMMON</span></div>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="argument/SimpleArgumentSuggestion.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgumentSuggestion</a>&lt;<a href="../../../../org/bukkit/entity/EntityType.html" title="enum class in org.bukkit.entity">EntityType</a>&gt;</span>&nbsp;<span class="element-name">ENTITY_SUMMON</span></div>
+<div class="block">Example: "minecraft:pig", "cow"</div>
 </section>
 </li>
 <li>
 <section class="detail" id="DIMENSION">
 <h3>DIMENSION</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="argument/SimpleArgumentSuggestion.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgumentSuggestion</a>&lt;<a href="../../../../org/bukkit/World.html" title="interface in org.bukkit">World</a>&gt;</span>&nbsp;<span class="element-name">DIMENSION</span></div>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="argument/SimpleArgumentSuggestion.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgumentSuggestion</a>&lt;<a href="../../../../org/bukkit/World.html" title="interface in org.bukkit">World</a>&gt;</span>&nbsp;<span class="element-name">DIMENSION</span></div>
+<div class="block">Example: "minecraft:overworld", "minecraft:the_nether"
+ Please use this API's suggestion.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="TIME">
 <h3>TIME</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="argument/SimpleArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgument</a>&lt;<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&gt;</span>&nbsp;<span class="element-name">TIME</span></div>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="argument/SimpleArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgument</a>&lt;<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&gt;</span>&nbsp;<span class="element-name">TIME</span></div>
+<div class="block">Example: "0d", "0s", "0t", "0"</div>
 </section>
 </li>
 <li>
 <section class="detail" id="UUID">
 <h3>UUID</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="argument/SimpleArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgument</a>&lt;<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&gt;</span>&nbsp;<span class="element-name">UUID</span></div>
-</section>
-</li>
-</ul>
-</section>
-</li>
-<!-- ========= CONSTRUCTOR DETAIL ======== -->
-<li>
-<section class="constructor-details" id="constructor.detail">
-<h2>Constructor Details</h2>
-<ul class="member-list">
-<li>
-<section class="detail" id="&lt;init&gt;()">
-<h3>Arguments</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Arguments</span>()</div>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="argument/SimpleArgument.html" title="interface in moe.caramel.daydream.brigadier.argument">SimpleArgument</a>&lt;<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&gt;</span>&nbsp;<span class="element-name">UUID</span></div>
+<div class="block">Example: "dd12be42-52a9-4a91-a8a1-11c01849e498"</div>
 </section>
 </li>
 </ul>
