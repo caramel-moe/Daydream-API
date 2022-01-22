@@ -439,10 +439,10 @@ index 0000000000000000000000000000000000000000..d71ffa1b304c1ba42f089982b991378c
 +}
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/Arguments.java b/src/main/java/moe/caramel/daydream/brigadier/Arguments.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..ced403e9eb90c969abb175166ad3d330e0f3e66f
+index 0000000000000000000000000000000000000000..1923a18c7b562c074c4b6be75b620fb40d93ce61
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/brigadier/Arguments.java
-@@ -0,0 +1,123 @@
+@@ -0,0 +1,234 @@
 +package moe.caramel.daydream.brigadier;
 +
 +import com.destroystokyo.paper.brigadier.BukkitBrigadierCommandSource;
@@ -482,89 +482,200 @@ index 0000000000000000000000000000000000000000..ced403e9eb90c969abb175166ad3d330
 +import java.util.function.Predicate;
 +
 +/**
-+ * WARNING!
-+ * <p>
-+ * This is intended API design.
-+ * It was designed in this way for internal debugging.
-+ * Don't ever change the value.
++ * Brigadier Vanilla Arguments
++ *
++ * @author LemonCaramel
 + */
-+public final class Arguments {
++public class Arguments {
 +
-+    public static EntityArgument ENTITY; // "Player", "0123", "@e", "@e[type=foo]", "dd12be42-52a9-4a91-a8a1-11c01849e498"
++    /**
++     * It's a utility class.
++     * Don't create instances.
++     */
++    Arguments() { throw new UnsupportedOperationException(); }
 +
-+    public static SimpleArgument<Collection<GameProfile>> GAME_PROFILES; // "Player", "0123", "dd12be42-52a9-4a91-a8a1-11c01849e498", "@e"
 +
-+    public static BlockPosArgument BLOCK_POS; // "0 0 0", "~ ~ ~", "^ ^ ^", "^1 ^ ^-5", "~0.5 ~1 ~-5"
++    /**
++     * @apiNote Example: "Player", "0123", "@e", "@e[type=foo]", "dd12be42-52a9-4a91-a8a1-11c01849e498"
++     */
++    public static final EntityArgument ENTITY = null;
 +
-+    public static SimpleArgument<Position<BukkitBrigadierCommandSource>> COLUMN_POS; // "0 0", "~ ~", "~1 ~-2", "^ ^", "^-1 ^0"
++    /**
++     * @apiNote Example: "Player", "0123", "dd12be42-52a9-4a91-a8a1-11c01849e498", "@e"
++     */
++    public static final SimpleArgument<Collection<GameProfile>> GAME_PROFILES = null;
 +
-+    public static VecArgument VEC3; // "0 0 0", "~ ~ ~", "^ ^ ^", "^1 ^ ^-5", "0.1 -0.5 .9", "~0.5 ~1 ~-5"
++    /**
++     * @apiNote Example: "0 0 0", "~ ~ ~", "^ ^ ^", "^1 ^ ^-5", "~0.5 ~1 ~-5"
++     */
++    public static final BlockPosArgument BLOCK_POS = null;
 +
-+    public static VecArgument VEC2; // "0 0", "~ ~", "0.1 -0.5", "~1 ~-2"
++    /**
++     * @apiNote Example: "0 0", "~ ~", "~1 ~-2", "^ ^", "^-1 ^0"
++     */
++    public static final SimpleArgument<Position<BukkitBrigadierCommandSource>> COLUMN_POS = null;
 +
-+    public static BlockStateArgument BLOCK_STATE; // "stone", "minecraft:stone", "stone[foo=bar]", "foo{bar=baz}"
++    /**
++     * @apiNote Example: "0 0 0", "~ ~ ~", "^ ^ ^", "^1 ^ ^-5", "0.1 -0.5 .9", "~0.5 ~1 ~-5"
++     */
++    public static final VecArgument VEC3 = null;
 +
-+    public static SimpleArgument<Predicate<Block>> BLOCK_PREDICATE; // "stone", "minecraft:stone", "stone[foo=bar]", "#stone", "#stone[foo=bar]{baz=nbt}"
++    /**
++     * @apiNote Example: "0 0", "~ ~", "0.1 -0.5", "~1 ~-2"
++     */
++    public static final VecArgument VEC2 = null;
 +
-+    public static ItemArgument ITEM; // "stick", "minecraft:stick", "stick{foo=bar}"
++    /**
++     * @apiNote Example: "stone", "minecraft:stone", "stone[foo=bar]", "foo{bar=baz}"
++     */
++    public static final BlockStateArgument BLOCK_STATE = null;
 +
-+    public static SimpleArgument<Predicate<ItemStack>> ITEM_PREDICATE; // "stick", "minecraft:stick", "#stick", "#stick{foo=bar}"
++    /**
++     * @apiNote Example: "stone", "minecraft:stone", "stone[foo=bar]", "#stone", "#stone[foo=bar]{baz=nbt}"
++     */
++    public static final SimpleArgument<Predicate<Block>> BLOCK_PREDICATE = null;
 +
-+    public static SimpleArgument<TextColor> COLOR; // "red", "green"
++    /**
++     * @apiNote Example: "stick", "minecraft:stick", "stick{foo=bar}"
++     */
++    public static final ItemArgument ITEM = null;
 +
-+    public static SimpleArgument<Component> COMPONENT; // "\"hello world\"", "\"\"", "\"{\"text\":\"hello world\"}", "[\"\"]"
++    /**
++     * @apiNote Example: "stick", "minecraft:stick", "#stick", "#stick{foo=bar}"
++     */
++    public static final SimpleArgument<Predicate<ItemStack>> ITEM_PREDICATE = null;
 +
-+    public static SimpleArgument<Component> MESSAGE; // "Hello world!", "foo", "@e", "Hello @p :)"
++    /**
++     * @apiNote Example: "red", "green"
++     */
++    public static final SimpleArgument<TextColor> COLOR = null;
 +
-+    public static SimpleArgument<BinaryTagHolder> COMPOUND_TAG; // "{}", "{foo=bar}"
++    /**
++     * @apiNote Example: "\"hello world\"", "\"\"", "\"{\"text\":\"hello world\"}", "[\"\"]"
++     */
++    public static final SimpleArgument<Component> COMPONENT = null;
++
++    /**
++     * @apiNote Example: "Hello world!", "foo", "@e", "Hello @p :)"
++     */
++    public static final SimpleArgument<Component> MESSAGE = null;
++
++    /**
++     * @apiNote Example: "{}", "{foo=bar}"
++     */
++    public static final SimpleArgument<BinaryTagHolder> COMPOUND_TAG = null;
 +
 +    // NbtTagArgument
 +
 +    // NbtPathArgument
 +
-+    public static SimpleArgument<Objective> OBJECTIVE; // "foo", "*", "012"
++    /**
++     * @apiNote Example: "foo", "*", "012"
++     */
++    public static final SimpleArgument<Objective> OBJECTIVE = null;
 +
-+    public static SimpleArgument<String> OBJECTIVE_CRITERIA; // "foo", "foo.bar.baz", "minecraft:foo"
++    /**
++     * @apiNote Example: "foo", "foo.bar.baz", "minecraft:foo"
++     */
++    public static final SimpleArgument<String> OBJECTIVE_CRITERIA = null;
 +
-+    public static SimpleArgument<Operation> OPERATION; // "=", ">", "<"
++    /**
++     * @apiNote Example: "=", ">", "<"
++     */
++    public static final SimpleArgument<Operation> OPERATION = null;
 +
-+    public static SimpleArgument<Particle> PARTICLE; // "foo", "foo:bar", "particle with options"
++    /**
++     * @apiNote Example: "foo", "foo:bar", "particle with options"
++     */
++    public static final SimpleArgument<Particle> PARTICLE = null;
 +
-+    public static SimpleArgument<Float> ANGLE; // "0", "~", "~-5"
++    /**
++     * @apiNote Example: "0", "~", "~-5"
++     */
++    public static final SimpleArgument<Float> ANGLE = null;
 +
-+    public static SimpleArgument<Position<BukkitBrigadierCommandSource>> ROTATION; // "0 0", "~ ~", "~-5 ~5"
++    /**
++     * @apiNote Example: "0 0", "~ ~", "~-5 ~5"
++     */
++    public static final SimpleArgument<Position<BukkitBrigadierCommandSource>> ROTATION = null;
 +
-+    public static SimpleArgument<DisplaySlot> SCOREBOARD_SLOT; // "sidebar", "sidebar.team.light_purple"
++    /**
++     * @apiNote Example: "sidebar", "sidebar.team.light_purple"
++     */
++    public static final SimpleArgument<DisplaySlot> SCOREBOARD_SLOT = null;
 +
-+    public static ScoreHolderArgument SCORE_HOLDER; // "Player", "0123", "*", "@e"
++    /**
++     * @apiNote Example: "Player", "0123", "*", "@e"
++     */
++    public static final ScoreHolderArgument SCORE_HOLDER = null;
 +
-+    public static SimpleArgument<EnumSet<Axis>> SWIZZLE; // "xyz", "x"
++    /**
++     * @apiNote Example: "xyz", "x"
++     */
++    public static final SimpleArgument<EnumSet<Axis>> SWIZZLE = null;
 +
-+    public static SimpleArgument<Team> TEAM; // "foo", "123"
++    /**
++     * @apiNote Example: "foo", "123"
++     */
++    public static final SimpleArgument<Team> TEAM = null;
 +
-+    public static SimpleArgument<Integer> SLOT; // "container.5", "12", "weapon"
++    /**
++     * @apiNote Example: "container.5", "12", "weapon"
++     */
++    public static final SimpleArgument<Integer> SLOT = null;
 +
-+    public static ResourceLocationArgument<NamespacedKey> RESOURCE_LOCATION; // "0..5", "0", "-5", "-100..", "..100"
++    /**
++     * @apiNote Example: "0..5", "0", "-5", "-100..", "..100"
++     */
++    public static final ResourceLocationArgument<NamespacedKey> RESOURCE_LOCATION = null;
 +
-+    public static SimpleArgument<PotionEffectType> MOB_EFFECT; // "spooky", "effect"
++    /**
++     * @apiNote Example: "spooky", "effect"
++     */
++    public static final SimpleArgument<PotionEffectType> MOB_EFFECT = null;
 +
 +    // FunctionArgument
 +
-+    public static SimpleArgument<EntityAnchorArgument> ENTITY_ANCHOR; // "eyes", "feet"
++    /**
++     * @apiNote Example: "eyes", "feet"
++     */
++    public static final SimpleArgument<EntityAnchorArgument> ENTITY_ANCHOR = null;
 +
-+    public static SimpleArgument<NumberRange<Integer>> RANGE_INTEGER; // "0..5", "0", "-5", "-100..", "..100"
++    /**
++     * @apiNote Example: "0..5", "0", "-5", "-100..", "..100"
++     */
++    public static final SimpleArgument<NumberRange<Integer>> RANGE_INTEGER = null;
 +
-+    public static SimpleArgument<NumberRange<Double>> RANGE_FLOATS; // "0..5.2", "0", "-5.4", "-100.76..", "..100"
++    /**
++     * @apiNote Example: "0..5.2", "0", "-5.4", "-100.76..", "..100"
++     */
++    public static final SimpleArgument<NumberRange<Double>> RANGE_FLOATS = null;
 +
-+    public static SimpleArgument<Enchantment> ITEM_ENCHANTMENT; // "unbreaking", "silk_touch"
++    /**
++     * @apiNote Example: "unbreaking", "silk_touch"
++     */
++    public static final SimpleArgument<Enchantment> ITEM_ENCHANTMENT = null;
 +
-+    public static SimpleArgumentSuggestion<EntityType> ENTITY_SUMMON; // "minecraft:pig", "cow"
++    /**
++     * @apiNote Example: "minecraft:pig", "cow"
++     */
++    public static final SimpleArgumentSuggestion<EntityType> ENTITY_SUMMON = null;
 +
-+    public static SimpleArgumentSuggestion<World> DIMENSION; // "minecraft:overworld", "minecraft:the_nether"
++    /**
++     * @apiNote Example: "minecraft:overworld", "minecraft:the_nether"
++     * @implNote Please use this API's suggestion.
++     */
++    public static final SimpleArgumentSuggestion<World> DIMENSION = null;
 +
-+    public static SimpleArgument<Integer> TIME; // "0d", "0s", "0t", "0"
++    /**
++     * @apiNote Example: "0d", "0s", "0t", "0"
++     */
++    public static final SimpleArgument<Integer> TIME = null;
 +
-+    public static SimpleArgument<UUID> UUID; // "dd12be42-52a9-4a91-a8a1-11c01849e498"
++    /**
++     * @apiNote Example: "dd12be42-52a9-4a91-a8a1-11c01849e498"
++     */
++    public static final SimpleArgument<UUID> UUID = null;
 +}
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/Suggestions.java b/src/main/java/moe/caramel/daydream/brigadier/Suggestions.java
 new file mode 100644
