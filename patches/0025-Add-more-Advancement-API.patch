@@ -1,0 +1,506 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: LemonCaramel <admin@caramel.moe>
+Date: Fri, 4 Feb 2022 11:18:12 +0900
+Subject: [PATCH] Add more Advancement API
+
+
+diff --git a/src/main/java/moe/caramel/daydream/advancement/AdvancementBuilder.java b/src/main/java/moe/caramel/daydream/advancement/AdvancementBuilder.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..58cad714be43b4fed2c506a226dcd65f9a891169
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/advancement/AdvancementBuilder.java
+@@ -0,0 +1,179 @@
++package moe.caramel.daydream.advancement;
++
++import io.papermc.paper.advancement.AdvancementDisplay;
++import net.kyori.adventure.text.Component;
++import org.bukkit.Material;
++import org.bukkit.NamespacedKey;
++import org.bukkit.advancement.Advancement;
++import org.bukkit.inventory.ItemStack;
++import org.jetbrains.annotations.NotNull;
++import org.jetbrains.annotations.Nullable;
++
++import java.util.function.Function;
++
++/**
++ * Advancement builder.
++ */
++public interface AdvancementBuilder {
++
++    /**
++     * Sets the Advancement parent.
++     *
++     * @param advancement the parent advancement
++     * @return the builder
++     */
++    @NotNull
++    AdvancementBuilder parent(@NotNull Advancement advancement);
++
++    /**
++     * Call this method if this advancement is root, and it is visible by default.
++     *
++     * @return the builder
++     */
++    @NotNull
++    AdvancementBuilder visibleRoot();
++
++    /**
++     * Set the display info of this advancement.
++     *
++     * @param icon the icon show in the frame in the advancements screen
++     * @param title the advancement title
++     * @param description the advancement description
++     * @param background the texture display behind the advancement tree when selected (root only)
++     * @param frame the {@link AdvancementDisplay.Frame}
++     * @param showToast {@code true} if a toast should be shown
++     * @param announceToChat {@code true} if a message should be sent
++     * @param hidden {@code true} if hidden
++     * @return the builder
++     */
++    @NotNull
++    default AdvancementBuilder display(
++            @NotNull Material icon, @NotNull Component title, @Nullable Component description,
++            @Nullable NamespacedKey background, @NotNull AdvancementDisplay.Frame frame,
++            boolean showToast, boolean announceToChat, boolean hidden
++    ) {
++        return this.display(icon, title, description, background, frame, 0, 0, showToast, announceToChat, hidden);
++    }
++
++    /**
++     * Set the display info of this advancement.
++     *
++     * @param icon the icon show in the frame in the advancements screen
++     * @param title the advancement title
++     * @param description the advancement description
++     * @param background the texture display behind the advancement tree when selected (root only)
++     * @param frame the {@link AdvancementDisplay.Frame}
++     * @param showToast {@code true} if a toast should be shown
++     * @param announceToChat {@code true} if a message should be sent
++     * @param hidden {@code true} if hidden
++     * @return the builder
++     */
++    @NotNull
++    default AdvancementBuilder display(
++            @NotNull ItemStack icon, @NotNull Component title, @Nullable Component description,
++            @Nullable NamespacedKey background, @NotNull AdvancementDisplay.Frame frame,
++            boolean showToast, boolean announceToChat, boolean hidden
++    ) {
++        return this.display(icon, title, description, background, frame, 0, 0, showToast, announceToChat, hidden);
++    }
++
++    /**
++     * Set the display info of this advancement.
++     *
++     * @param icon the icon show in the frame in the advancements screen
++     * @param title the advancement title
++     * @param description the advancement description
++     * @param background the texture display behind the advancement tree when selected (root only)
++     * @param frame the {@link AdvancementDisplay.Frame}
++     * @param x the x-axis of icon
++     * @param y the y-axis of icon
++     * @param showToast {@code true} if a toast should be shown
++     * @param announceToChat {@code true} if a message should be sent
++     * @param hidden {@code true} if hidden
++     * @return the builder
++     */
++    @NotNull
++    default AdvancementBuilder display(
++            @NotNull Material icon, @NotNull Component title, @Nullable Component description,
++            @Nullable NamespacedKey background, @NotNull AdvancementDisplay.Frame frame,
++            float x, float y, boolean showToast, boolean announceToChat, boolean hidden
++    ) {
++        return this.display(new ItemStack(icon), title, description, background, frame, x, y, showToast, announceToChat, hidden);
++    }
++
++    /**
++     * Set the display info of this advancement.
++     *
++     * @param icon the icon show in the frame in the advancements screen
++     * @param title the advancement title
++     * @param description the advancement description
++     * @param background the texture display behind the advancement tree when selected (root only)
++     * @param frame the {@link AdvancementDisplay.Frame}
++     * @param x the x-axis of icon
++     * @param y the y-axis of icon
++     * @param showToast {@code true} if a toast should be shown
++     * @param announceToChat {@code true} if a message should be sent
++     * @param hidden {@code true} if hidden
++     * @return the builder
++     */
++    @NotNull
++    AdvancementBuilder display(
++            @NotNull ItemStack icon, @NotNull Component title, @Nullable Component description,
++            @Nullable NamespacedKey background, @NotNull AdvancementDisplay.Frame frame,
++            float x, float y, boolean showToast, boolean announceToChat, boolean hidden
++    );
++
++    /**
++     * Add a criterion.
++     * <br>
++     * Trigger is currently unavailable.
++     *
++     * @param name criterion name
++     * @return the builder
++     */
++    @NotNull
++    AdvancementBuilder addImpossibleCriterion(@NotNull String name);
++
++    /**
++     * Set the requirements criteria player need to complete the advancement.
++     *
++     * @param and if {@code true}, player have to complete all the criteria. (if {@code false}, OR)
++     * @return this builder
++     */
++    @NotNull
++    AdvancementBuilder requirements(boolean and);
++
++    /**
++     * Set the requirements criteria player need to complete the advancement.
++     *
++     * @param requirements the requirements
++     * @return this builder
++     */
++    @NotNull
++    AdvancementBuilder requirements(@NotNull String[][] requirements);
++
++    /**
++     * Use counts for this advancement. You don't need to set the criteria.
++     *
++     * @param count max count
++     * @return this builder
++     */
++    @NotNull
++    AdvancementBuilder useCount(int count);
++
++    /**
++     * Returns whether you can build this advancement or not.
++     *
++     * @param parentProvider the parent provider
++     * @return this builder
++     */
++    boolean canBuild(@NotNull Function<NamespacedKey, Advancement> parentProvider);
++
++    /**
++     * Build it!
++     *
++     * @return the advancement
++     */
++    @NotNull
++    Advancement build();
++}
+diff --git a/src/main/java/moe/caramel/daydream/event/player/PlayerAdvancementPreLoadEvent.java b/src/main/java/moe/caramel/daydream/event/player/PlayerAdvancementPreLoadEvent.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..a9884a347afc906f2782d4da4f7c3815c147713f
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/event/player/PlayerAdvancementPreLoadEvent.java
+@@ -0,0 +1,81 @@
++package moe.caramel.daydream.event.player;
++
++import com.google.gson.JsonElement;
++import org.bukkit.entity.Player;
++import org.bukkit.event.Cancellable;
++import org.bukkit.event.HandlerList;
++import org.bukkit.event.player.PlayerEvent;
++import org.jetbrains.annotations.NotNull;
++import org.jetbrains.annotations.Nullable;
++
++/**
++ * Called when just before load the player's Advancement data.
++ * <br>
++ * It's usually called earlier than {@link org.bukkit.event.player.PlayerJoinEvent}.
++ */
++public class PlayerAdvancementPreLoadEvent extends PlayerEvent implements Cancellable {
++    private static final HandlerList handlers = new HandlerList();
++    private JsonElement jsonElement;
++    private boolean cancel, useDataFixer = true;
++
++    public PlayerAdvancementPreLoadEvent(@NotNull Player who) {
++        super(who);
++    }
++
++    @Override
++    public boolean isCancelled() {
++        return this.cancel;
++    }
++
++    @Override
++    public void setCancelled(boolean cancel) {
++        this.cancel = cancel;
++    }
++
++    /**
++     * Returns the Advancement json to be load.
++     *
++     * @return the Advancement json
++     */
++    @Nullable
++    public JsonElement getJsonElement() {
++        return jsonElement;
++    }
++
++    /**
++     * Sets the Advancement json to be load.
++     *
++     * @param jsonElement the Advancement json
++     */
++    public void setJsonElement(@NotNull JsonElement jsonElement) {
++        this.jsonElement = jsonElement;
++    }
++
++    /**
++     * Returns whether to use Mojang's DataFixer or not.
++     *
++     * @return if {@code true}, use Mojang's DataFixer.
++     */
++    public boolean isUseDataFixer() {
++        return this.useDataFixer;
++    }
++
++    /**
++     * Sets whether to use Mojang's DataFixer or not.
++     *
++     * @param useDataFixer if {@code true}, use Mojang's DataFixer.
++     */
++    public void setUseDataFixer(boolean useDataFixer) {
++        this.useDataFixer = useDataFixer;
++    }
++
++    @Override
++    public @NotNull HandlerList getHandlers() {
++        return handlers;
++    }
++
++    @NotNull
++    public static HandlerList getHandlerList() {
++        return handlers;
++    }
++}
+diff --git a/src/main/java/moe/caramel/daydream/event/player/PlayerAdvancementSaveEvent.java b/src/main/java/moe/caramel/daydream/event/player/PlayerAdvancementSaveEvent.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..09ebe8da1cdd8158f755ee24b2eb0cc8a65cb962
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/event/player/PlayerAdvancementSaveEvent.java
+@@ -0,0 +1,82 @@
++package moe.caramel.daydream.event.player;
++
++import com.google.gson.JsonElement;
++import org.bukkit.entity.Player;
++import org.bukkit.event.Cancellable;
++import org.bukkit.event.HandlerList;
++import org.bukkit.event.player.PlayerEvent;
++import org.jetbrains.annotations.NotNull;
++
++/**
++ * Called when player Advancement data is saved.
++ */
++public class PlayerAdvancementSaveEvent extends PlayerEvent implements Cancellable {
++    private static final HandlerList handlers = new HandlerList();
++    private final JsonElement jsonElement;
++    private final int dataVersion;
++    private boolean cancel, saveDataVersion = true;
++
++    public PlayerAdvancementSaveEvent(@NotNull Player who, @NotNull JsonElement jsonElement, int dataVersion) {
++        super(who);
++        this.jsonElement = jsonElement;
++        this.dataVersion = dataVersion;
++    }
++
++    @Override
++    public boolean isCancelled() {
++        return this.cancel;
++    }
++
++    @Override
++    public void setCancelled(boolean cancel) {
++        this.cancel = cancel;
++    }
++
++    /**
++     * Returns the Advancement json to be saved.
++     *
++     * @return the Advancement json
++     */
++    @NotNull
++    public JsonElement getJsonElement() {
++        if (this.isSaveDataVersion()) jsonElement.getAsJsonObject().addProperty("DataVersion", dataVersion);
++        return jsonElement;
++    }
++
++    /**
++     * Returns the server's data version.
++     *
++     * @return the server's data version
++     */
++    public int getDataVersion() {
++        return dataVersion;
++    }
++
++    /**
++     * Returns whether to include the data version in json.
++     *
++     * @return if {@code true}, include the data version in json.
++     */
++    public boolean isSaveDataVersion() {
++        return this.saveDataVersion;
++    }
++
++    /**
++     * Sets whether to include the data version in json.
++     *
++     * @param saveDataVersion if {@code true}, include the data version in json.
++     */
++    public void setSaveDataVersion(boolean saveDataVersion) {
++        this.saveDataVersion = saveDataVersion;
++    }
++
++    @Override
++    public @NotNull HandlerList getHandlers() {
++        return handlers;
++    }
++
++    @NotNull
++    public static HandlerList getHandlerList() {
++        return handlers;
++    }
++}
+diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
+index 58f4e6254cba5034b7d431344533e7e9cedd71db..4b2b9751435c3963f091aa72aed0305418ec17e5 100644
+--- a/src/main/java/org/bukkit/Bukkit.java
++++ b/src/main/java/org/bukkit/Bukkit.java
+@@ -1850,6 +1850,19 @@ public final class Bukkit {
+         return server.getAdvancement(key);
+     }
+ 
++    // Daydream start
++    /**
++     * Create the advancement specified by this key.
++     *
++     * @param key unique advancement key
++     * @return advancement builder
++     */
++    @NotNull
++    public static moe.caramel.daydream.advancement.AdvancementBuilder createAdvancement(@NotNull NamespacedKey key) {
++        return server.createAdvancement(key);
++    }
++    // Daydream end
++
+     /**
+      * Get an iterator through all advancements. Advancements cannot be removed
+      * from this iterator,
+diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
+index 41ae6a7e1200e0010c78a6c9c8d6e7037d70b80d..62c1c5385b052f2c776b57cc73cfe3b0efc90835 100644
+--- a/src/main/java/org/bukkit/Server.java
++++ b/src/main/java/org/bukkit/Server.java
+@@ -1565,6 +1565,17 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
+     @Nullable
+     Advancement getAdvancement(@NotNull NamespacedKey key);
+ 
++    // Daydream start
++    /**
++     * Create the advancement specified by this key.
++     *
++     * @param key unique advancement key
++     * @return advancement builder
++     */
++    @NotNull
++    moe.caramel.daydream.advancement.AdvancementBuilder createAdvancement(@NotNull NamespacedKey key);
++    // Daydream end
++
+     /**
+      * Get an iterator through all advancements. Advancements cannot be removed
+      * from this iterator,
+diff --git a/src/main/java/org/bukkit/UnsafeValues.java b/src/main/java/org/bukkit/UnsafeValues.java
+index 014c9984018ad5e51a26228a137e1ba4eb3e80c8..3418918531cb3c7fa70788fadb783ec0405047eb 100644
+--- a/src/main/java/org/bukkit/UnsafeValues.java
++++ b/src/main/java/org/bukkit/UnsafeValues.java
+@@ -65,6 +65,20 @@ public interface UnsafeValues {
+      */
+     Advancement loadAdvancement(NamespacedKey key, String advancement);
+ 
++    // Daydream start
++    /**
++     * Load an advancement represented by the specified builder into the server.
++     * <br>
++     * Loaded advancements will be deleted upon server restart and reload.
++     * <br>
++     * Callers should be prepared for {@link Exception} to be thrown.
++     *
++     * @param builder representation of the advancement
++     * @return the loaded advancement or null if an error occurred
++     */
++    Advancement loadAdvancement(moe.caramel.daydream.advancement.AdvancementBuilder builder);
++    // Daydream end
++
+     /**
+      * Delete an advancement which was loaded and saved by
+      * {@link #loadAdvancement(org.bukkit.NamespacedKey, java.lang.String)}.
+diff --git a/src/main/java/org/bukkit/advancement/Advancement.java b/src/main/java/org/bukkit/advancement/Advancement.java
+index 3bbc7dffc36fa31099a8794ceeec77aeae0c49cb..e875658e2c7ab928c9117fbebead54dc6139dfd0 100644
+--- a/src/main/java/org/bukkit/advancement/Advancement.java
++++ b/src/main/java/org/bukkit/advancement/Advancement.java
+@@ -54,4 +54,19 @@ public interface Advancement extends Keyed {
+     @NotNull
+     Advancement getRoot();
+     // Paper end
++    // Daydream start
++    /**
++     * Get the advancement uses the count.
++     *
++     * @return if the advancement uses the count, it returns {@code true}.
++     */
++    boolean useCount();
++
++    /**
++     * Get the advancement's max count.
++     *
++     * @return advancement's max count.
++     */
++    int maxCount();
++    // Daydream end
+ }
+diff --git a/src/main/java/org/bukkit/advancement/AdvancementProgress.java b/src/main/java/org/bukkit/advancement/AdvancementProgress.java
+index f9bc179da071e7bd57cefc50d6763317fb643b74..532f51a1d537a342c0251d650cd503b100876201 100644
+--- a/src/main/java/org/bukkit/advancement/AdvancementProgress.java
++++ b/src/main/java/org/bukkit/advancement/AdvancementProgress.java
+@@ -67,4 +67,40 @@ public interface AdvancementProgress {
+      */
+     @NotNull
+     Collection<String> getAwardedCriteria();
++
++    // Daydream start
++    /**
++     * Increase the Advancement Progress.
++     *
++     * @throws UnsupportedOperationException This AdvancementProgress
++     * doesn't use counts.
++     * @return true if increased, false if already reached the
++     * maximum count.
++     */
++    boolean increaseCount();
++
++    /**
++     * Decrease the Advancement Progress.
++     *
++     * @throws UnsupportedOperationException This AdvancementProgress
++     * doesn't use counts.
++     * @return true if decreased, false if already reached the
++     * minimum count.
++     */
++    boolean decreaseCount();
++
++    /**
++     * Get the advancement uses the count.
++     *
++     * @return if the advancement uses the count, it returns {@code true}.
++     */
++    boolean useCount();
++
++    /**
++     * Get the advancement's count.
++     *
++     * @return advancement's count.
++     */
++    int count();
++    // Daydream end
+ }
