@@ -98,6 +98,16 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3">
 <div class="block">Mark the specified criteria as awarded at the current time.</div>
 </div>
+<div class="col-first odd-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3"><code>int</code></div>
+<div class="col-second odd-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3"><code><span class="member-name-link"><a href="#count()">count</a></span>()</code></div>
+<div class="col-last odd-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3">
+<div class="block">Get the advancement's count.</div>
+</div>
+<div class="col-first even-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3"><code>boolean</code></div>
+<div class="col-second even-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3"><code><span class="member-name-link"><a href="#decreaseCount()">decreaseCount</a></span>()</code></div>
+<div class="col-last even-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3">
+<div class="block">Decrease the Advancement Progress.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/21.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Advancement.html" title="interface in org.bukkit.advancement">Advancement</a></code></div>
 <div class="col-second odd-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3"><code><span class="member-name-link"><a href="#getAdvancement()">getAdvancement</a></span>()</code></div>
 <div class="col-last odd-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3">
@@ -119,14 +129,24 @@ loadScripts(document, 'script');</script>
 <div class="block">Get the criteria which have not been awarded.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3"><code>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3"><code><span class="member-name-link"><a href="#isDone()">isDone</a></span>()</code></div>
+<div class="col-second odd-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3"><code><span class="member-name-link"><a href="#increaseCount()">increaseCount</a></span>()</code></div>
 <div class="col-last odd-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3">
-<div class="block">Check if all criteria for this advancement have been met.</div>
+<div class="block">Increase the Advancement Progress.</div>
 </div>
 <div class="col-first even-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3"><code>boolean</code></div>
-<div class="col-second even-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3"><code><span class="member-name-link"><a href="#revokeCriteria(java.lang.String)">revokeCriteria</a></span>&#8203;(<a href="https://javadoc.io/doc/org.jetbrains/annotations/21.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;criteria)</code></div>
+<div class="col-second even-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3"><code><span class="member-name-link"><a href="#isDone()">isDone</a></span>()</code></div>
 <div class="col-last even-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3">
+<div class="block">Check if all criteria for this advancement have been met.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3"><code>boolean</code></div>
+<div class="col-second odd-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3"><code><span class="member-name-link"><a href="#revokeCriteria(java.lang.String)">revokeCriteria</a></span>&#8203;(<a href="https://javadoc.io/doc/org.jetbrains/annotations/21.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;criteria)</code></div>
+<div class="col-last odd-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3">
 <div class="block">Mark the specified criteria as uncompleted.</div>
+</div>
+<div class="col-first even-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3"><code>boolean</code></div>
+<div class="col-second even-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3"><code><span class="member-name-link"><a href="#useCount()">useCount</a></span>()</code></div>
+<div class="col-last even-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3">
+<div class="block">Get the advancement uses the count.</div>
 </div>
 </div>
 </div>
@@ -230,6 +250,58 @@ loadScripts(document, 'script');</script>
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>unmodifiable copy of criteria awarded</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="increaseCount()">
+<h3>increaseCount</h3>
+<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">increaseCount</span>()</div>
+<div class="block">Increase the Advancement Progress.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>true if increased, false if already reached the
+ maximum count.</dd>
+<dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html" title="class or interface in java.lang" class="external-link">UnsupportedOperationException</a></code> - This AdvancementProgress
+ doesn't use counts.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="decreaseCount()">
+<h3>decreaseCount</h3>
+<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">decreaseCount</span>()</div>
+<div class="block">Decrease the Advancement Progress.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>true if decreased, false if already reached the
+ minimum count.</dd>
+<dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/UnsupportedOperationException.html" title="class or interface in java.lang" class="external-link">UnsupportedOperationException</a></code> - This AdvancementProgress
+ doesn't use counts.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="useCount()">
+<h3>useCount</h3>
+<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">useCount</span>()</div>
+<div class="block">Get the advancement uses the count.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>if the advancement uses the count, it returns <code>true</code>.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="count()">
+<h3>count</h3>
+<div class="member-signature"><span class="return-type">int</span>&nbsp;<span class="element-name">count</span>()</div>
+<div class="block">Get the advancement's count.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>advancement's count.</dd>
 </dl>
 </section>
 </li>
