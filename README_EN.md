@@ -21,7 +21,7 @@
 
 ## License
 
-All API patches are licensed under the MIT license, unless otherwise noted in the patch headers.
+All API patches are licensed under the MIT license, unless otherwise noted in the patch headers. (Server is GPL-3.0)
 
 Daydream inherits its licensing from upstream projects.
 
@@ -40,10 +40,6 @@ Maven
     <id>papermc</id>
     <url>https://papermc.io/repo/repository/maven-public/</url>
 </repository>
-<repository>
-    <id>minecraft</id>
-    <url>https://libraries.minecraft.net/</url>
-</repository>
 
 
 <dependency>
@@ -61,8 +57,6 @@ repositories {
     maven("https://repo.caramel.moe/repository/maven-public/")
     // PaperMC Repository
     maven("https://papermc.io/repo/repository/maven-public/")
-    // Minecraft Repository
-    maven("https://libraries.minecraft.net/")
 }
 
 dependencies {
