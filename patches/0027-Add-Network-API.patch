@@ -1,0 +1,286 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: LemonCaramel <admin@caramel.moe>
+Date: Mon, 18 Apr 2022 21:05:06 +0900
+Subject: [PATCH] Add Network API
+
+
+diff --git a/build.gradle.kts b/build.gradle.kts
+index 45193307da7a02f297f23bfd87c0b486355843ff..b9eba93bfe5a848245a3f5bb08be9ac552e476e3 100644
+--- a/build.gradle.kts
++++ b/build.gradle.kts
+@@ -48,6 +48,7 @@ dependencies {
+     api("com.mojang:authlib:2.3.31") // Daydream - Mojang Authlib (keep in sync with major MC versions)
+     api("moe.caramel:acacia-user:1.0.1-proto") // Daydream - caramel.moe Network
+     api("com.neovisionaries:nv-i18n:1.29") // Daydream - add GeoIP
++    api("io.netty:netty-all:4.1.76.Final") // Daydream - add Network API
+ 
+     implementation("org.ow2.asm:asm:9.1")
+     implementation("org.ow2.asm:asm-commons:9.1")
+diff --git a/src/main/java/moe/caramel/daydream/network/MojangByteBuf.java b/src/main/java/moe/caramel/daydream/network/MojangByteBuf.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..21fde661e12417b1af155cfcb747140b249e4c63
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/network/MojangByteBuf.java
+@@ -0,0 +1,158 @@
++package moe.caramel.daydream.network;
++
++import io.netty.buffer.ByteBuf;
++import it.unimi.dsi.fastutil.ints.IntList;
++import net.kyori.adventure.text.Component;
++import org.bukkit.NamespacedKey;
++import org.bukkit.inventory.ItemStack;
++import org.jetbrains.annotations.NotNull;
++import org.jetbrains.annotations.Nullable;
++import java.util.BitSet;
++import java.util.Collection;
++import java.util.Date;
++import java.util.List;
++import java.util.Map;
++import java.util.Optional;
++import java.util.UUID;
++import java.util.function.BiConsumer;
++import java.util.function.Consumer;
++import java.util.function.Function;
++import java.util.function.IntFunction;
++
++/**
++ * Mojang's ByteBuf wrapper class.
++ *
++ * Doesn't provide Javadoc; because the method name is specific.
++ */
++public abstract class MojangByteBuf extends ByteBuf {
++
++    public static final short MAX_STRING_LENGTH = 32767;
++    public static final int MAX_COMPONENT_STRING_LENGTH = 262144;
++
++    @NotNull
++    public abstract <T, C extends Collection<T>> C readCollection(@NotNull IntFunction<C> collectionFactory, @NotNull Function<MojangByteBuf, T> entryParser);
++
++    @NotNull
++    public abstract <T> MojangByteBuf writeCollection(@NotNull Collection<T> collection, @NotNull BiConsumer<MojangByteBuf, T> entrySerializer);
++
++    @NotNull
++    public abstract <T> List<T> readList(@NotNull Function<MojangByteBuf, T> entryParser);
++
++    @NotNull
++    public abstract IntList readIntIdList();
++
++    @NotNull
++    public abstract MojangByteBuf writeIntIdList(@NotNull IntList list);
++
++    @NotNull
++    public abstract <K, V, M extends Map<K, V>> M readMap(@NotNull IntFunction<M> mapFactory, @NotNull Function<MojangByteBuf, K> keyParser, @NotNull Function<MojangByteBuf, V> valueParser);
++
++    @NotNull
++    public abstract <K, V> Map<K, V> readMap(@NotNull Function<MojangByteBuf, K> keyParser, @NotNull Function<MojangByteBuf, V> valueParser);
++
++    @NotNull
++    public abstract <K, V> MojangByteBuf writeMap(@NotNull Map<K, V> map, @NotNull BiConsumer<MojangByteBuf, K> keySerializer, @NotNull BiConsumer<MojangByteBuf, V> valueSerializer);
++
++    @NotNull
++    public abstract void readWithCount(@NotNull Consumer<MojangByteBuf> consumer);
++
++    @NotNull
++    public abstract <T> MojangByteBuf writeOptional(@NotNull Optional<T> value, @NotNull BiConsumer<MojangByteBuf, T> serializer);
++
++    @NotNull
++    public abstract <T> Optional<T> readOptional(@NotNull Function<MojangByteBuf, T> parser);
++
++    @NotNull
++    public abstract byte[] readByteArray();
++
++    @NotNull
++    public abstract byte[] readByteArray(int maxSize);
++
++    @NotNull
++    public abstract MojangByteBuf writeByteArray(@NotNull byte[] array);
++
++    @NotNull
++    public abstract int[] readVarIntArray();
++
++    @NotNull
++    public abstract int[] readVarIntArray(int maxSize);
++
++    @NotNull
++    public abstract MojangByteBuf writeVarIntArray(@NotNull int[] array);
++
++    @NotNull
++    public abstract long[] readLongArray();
++
++    @NotNull
++    public abstract long[] readLongArray(@Nullable long[] toArray);
++
++    @NotNull
++    public abstract long[] readLongArray(@Nullable long[] toArray, int maxSize);
++
++    @NotNull
++    public abstract MojangByteBuf writeLongArray(@NotNull long[] array);
++
++    @NotNull
++    public abstract Component readComponent();
++
++    @NotNull
++    public abstract MojangByteBuf writeComponent(@NotNull Component component);
++
++    @NotNull
++    public abstract <E extends Enum<E>> E readEnum(@NotNull Class<E> enumClass);
++
++    @NotNull
++    public abstract MojangByteBuf writeEnum(@NotNull Enum<?> instance);
++
++    public abstract int readVarInt();
++
++    @NotNull
++    public abstract MojangByteBuf writeVarInt(int value);
++
++    public abstract long readVarLong();
++
++    @NotNull
++    public abstract MojangByteBuf writeVarLong(long value);
++
++    @NotNull
++    public abstract UUID readUUID();
++
++    @NotNull
++    public abstract MojangByteBuf writeUUID(@NotNull UUID uuid);
++
++    @NotNull
++    public abstract ItemStack readItem();
++
++    @NotNull
++    public abstract MojangByteBuf writeItem(@NotNull ItemStack stack);
++
++    @NotNull
++    public abstract String readUtf();
++
++    @NotNull
++    public abstract String readUtf(int maxLength);
++
++    @NotNull
++    public abstract MojangByteBuf writeUtf(@NotNull String string);
++
++    @NotNull
++    public abstract MojangByteBuf writeUtf(@NotNull String string, int maxLength);
++
++    @NotNull
++    public abstract NamespacedKey readResourceLocation();
++
++    @NotNull
++    public abstract MojangByteBuf writeResourceLocation(@NotNull NamespacedKey key);
++
++    @NotNull
++    public abstract Date readDate();
++
++    @NotNull
++    public abstract MojangByteBuf writeDate(@NotNull Date date);
++
++    @NotNull
++    public abstract BitSet readBitSet();
++
++    @NotNull
++    public abstract MojangByteBuf writeBitSet(@NotNull BitSet bitSet);
++}
+diff --git a/src/main/java/moe/caramel/daydream/network/PlayerInfoTypes.java b/src/main/java/moe/caramel/daydream/network/PlayerInfoTypes.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..0f6fdaa64bf4b23998b5303b8daa664003e41079
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/network/PlayerInfoTypes.java
+@@ -0,0 +1,13 @@
++package moe.caramel.daydream.network;
++
++/**
++ * This is the enum type used for PlayerInfo packets.
++ */
++public enum PlayerInfoTypes {
++
++    ADD_PLAYER,
++    UPDATE_GAME_MODE,
++    UPDATE_LATENCY,
++    UPDATE_DISPLAY_NAME,
++    REMOVE_PLAYER
++}
+diff --git a/src/main/java/org/bukkit/UnsafeValues.java b/src/main/java/org/bukkit/UnsafeValues.java
+index 3418918531cb3c7fa70788fadb783ec0405047eb..4b13c7c5442f718342fa60fd0bad0094bdb36f8a 100644
+--- a/src/main/java/org/bukkit/UnsafeValues.java
++++ b/src/main/java/org/bukkit/UnsafeValues.java
+@@ -232,4 +232,15 @@ public interface UnsafeValues {
+      */
+     boolean isCollidable(@org.jetbrains.annotations.NotNull Material material);
+     // Paper end
++
++    // Daydream start
++    /**
++     * Create a Mojang's ByteBuf wrapper.
++     *
++     * @param buf byteBuf object to be wrapped
++     * @return the Wrapped ByteBuf object
++     */
++    @org.jetbrains.annotations.NotNull
++    moe.caramel.daydream.network.MojangByteBuf createByteBuf(@org.jetbrains.annotations.NotNull io.netty.buffer.ByteBuf buf);
++    // Daydream end
+ }
+diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
+index 669a5361a9f08efe40bb35a868b769ec8cbab19b..466e00c45e2c974754fe49889316e46ba415aafb 100644
+--- a/src/main/java/org/bukkit/entity/Player.java
++++ b/src/main/java/org/bukkit/entity/Player.java
+@@ -582,6 +582,60 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+      * @param item The ItemStack to display for the player
+      */
+     public void sendEquipmentChange(@NotNull LivingEntity entity, @NotNull org.bukkit.inventory.EquipmentSlot slot, @NotNull ItemStack item);
++
++    /**
++     * Send packet to this player
++     *
++     * @param packet The packet instance
++     * @deprecated new API to be released
++     */
++    @Deprecated
++    public void sendPacket(@NotNull Object packet);
++
++    /**
++     * Send the slot item change. This fakes the user's slot
++     * change. This will not actually change the inventory of
++     * the specified entity in any way.
++     *
++     * @param containerId The window which is being updated
++     * @param revision The last received State ID from either a Set Slot or a Window Items packet
++     * @param slot The slot that should be updated
++     * @param item The ItemStack to display for the player
++     */
++    public void sendSetSlot(int containerId, int revision, int slot, @NotNull ItemStack item);
++
++    /**
++     * Send a change game state packet to this player
++     *
++     * @param reason Reason Value
++     * @param value Value
++     */
++    public void sendChangeGameState(int reason, int value);
++
++    /**
++     * Send a custom query payload packet to this player
++     *
++     * @param channel The channel name
++     * @param value value
++     */
++    public void sendCustomPayload(@NotNull org.bukkit.NamespacedKey channel, @NotNull byte[] value);
++
++    /**
++     * Send a custom query payload packet to this player
++     *
++     * @param channel The channel name
++     * @param buf byte buf object
++     */
++    public void sendCustomPayload(@NotNull org.bukkit.NamespacedKey channel, @NotNull moe.caramel.daydream.network.MojangByteBuf buf);
++
++    /**
++     * Resend the target's info packet to this player.
++     * It's useful when changing a player's skin.
++     *
++     * @param type The type of packet
++     * @param targets Target players
++     */
++    public void sendPlayerInfo(@NotNull moe.caramel.daydream.network.PlayerInfoTypes type, @NotNull java.util.List<Player> targets);
+     // Daydream end
+ 
+     /**

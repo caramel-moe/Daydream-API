@@ -5,14 +5,14 @@ Subject: [PATCH] Backport "Add Player#sendEquipmentChange"
 
 
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index b99b6c32dd03535ea943d8e0bcffc6cfcdf9762f..17bc1aaecc45c58a9ec9ed46a30e26d4f954c52a 100644
+index cbb4395d6861afec07a1126b450b76a556b3b302..5f9a8dc4e2518c050aec7f23a16fd9e650558711 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
-@@ -548,6 +548,17 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
-      * @param item The ItemStack to display for the player
+@@ -561,6 +561,19 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
       */
-     public void sendSetSlot(int containerId, int revision, int slot, @NotNull ItemStack item);
-+
+     public void sendBlockDamage(@NotNull Location loc, float progress);
+ 
++    // Daydream start
 +    /**
 +     * Send the equipment change of an entity. This fakes the equipment change
 +     * of an entity for a user. This will not actually change the inventory of
@@ -23,6 +23,8 @@ index b99b6c32dd03535ea943d8e0bcffc6cfcdf9762f..17bc1aaecc45c58a9ec9ed46a30e26d4
 +     * @param item The ItemStack to display for the player
 +     */
 +    public void sendEquipmentChange(@NotNull LivingEntity entity, @NotNull org.bukkit.inventory.EquipmentSlot slot, @NotNull ItemStack item);
-     // Daydream end
- 
++    // Daydream end
++
      /**
+      * Send a chunk change. This fakes a chunk change packet for a user at a
+      * certain location. The updated cuboid must be entirely within a single

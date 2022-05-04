@@ -16,101 +16,11 @@ index 2f67716a3bdb82c96fc7e6541f8a07b5daa42da0..9be8981d930323a9f88be2f13b6e1b0d
  
      implementation("org.ow2.asm:asm:9.1")
      implementation("org.ow2.asm:asm-commons:9.1")
-diff --git a/src/main/java/moe/caramel/daydream/network/PlayerInfoTypes.java b/src/main/java/moe/caramel/daydream/network/PlayerInfoTypes.java
-new file mode 100644
-index 0000000000000000000000000000000000000000..0f6fdaa64bf4b23998b5303b8daa664003e41079
---- /dev/null
-+++ b/src/main/java/moe/caramel/daydream/network/PlayerInfoTypes.java
-@@ -0,0 +1,13 @@
-+package moe.caramel.daydream.network;
-+
-+/**
-+ * This is the enum type used for PlayerInfo packets.
-+ */
-+public enum PlayerInfoTypes {
-+
-+    ADD_PLAYER,
-+    UPDATE_GAME_MODE,
-+    UPDATE_LATENCY,
-+    UPDATE_DISPLAY_NAME,
-+    REMOVE_PLAYER
-+}
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index 9a6e410206852029f1fea0c4409352d5743dcf64..db81a52b2be54595ab4b52226f9563143895aa79 100644
+index 9a6e410206852029f1fea0c4409352d5743dcf64..2f5892ffd03ad5a20e2612c01192a358d673877b 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
-@@ -525,6 +525,27 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
-      */
-     public boolean breakBlock(@NotNull Block block);
- 
-+    // Daydream start
-+    /**
-+     * Send packet
-+     *
-+     * @param packet The packet instance
-+     */
-+    public void sendPacket(@NotNull Object packet);
-+
-+    /**
-+     * Send the slot item change. This fakes the user's slot
-+     * change. This will not actually change the inventory of
-+     * the specified entity in any way.
-+     *
-+     * @param containerId The window which is being updated
-+     * @param revision The last received State ID from either a Set Slot or a Window Items packet
-+     * @param slot The slot that should be updated
-+     * @param item The ItemStack to display for the player
-+     */
-+    public void sendSetSlot(int containerId, int revision, int slot, @NotNull ItemStack item);
-+    // Daydream end
-+
-     /**
-      * Send a block change. This fakes a block change packet for a user at a
-      * certain location. This will not actually change the world in any way.
-@@ -1328,6 +1349,17 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
-      */
-     public void showPlayer(@NotNull Plugin plugin, @NotNull Player player);
- 
-+    // Daydream start
-+    /**
-+     * Resend the target's info packet to this player.
-+     * It's useful when changing a player's skin.
-+     *
-+     * @param type The type of packet
-+     * @param targets Target players
-+     */
-+    public void sendPlayerInfo(@NotNull moe.caramel.daydream.network.PlayerInfoTypes type, @NotNull java.util.List<Player> targets);
-+    // Daydream end
-+
-     /**
-      * Checks to see if a player has been hidden from this player
-      *
-@@ -1968,6 +2000,24 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
-         return net.kyori.adventure.text.event.HoverEvent.showEntity(op.apply(net.kyori.adventure.text.event.HoverEvent.ShowEntity.of(this.getType().getKey(), this.getUniqueId(), this.displayName())));
-     }
- 
-+    // Daydream start
-+    /**
-+     * Send a change game state packet to this player
-+     *
-+     * @param reason Reason Value
-+     * @param value Value
-+     */
-+    void sendChangeGameState(int reason, int value);
-+
-+    /**
-+     * Send a CustomPayload packet to this player
-+     *
-+     * @param channel channel Value
-+     * @param value Value
-+     */
-+    void sendCustomPayload(@NotNull org.bukkit.NamespacedKey channel, @NotNull String value);
-+    // Daydream end
-+
-     /**
-      * Request that the player's client download and switch resource packs.
-      * <p>
-@@ -2070,6 +2120,13 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+@@ -2070,6 +2070,13 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      @Nullable
      org.bukkit.event.player.PlayerResourcePackStatusEvent.Status getResourcePackStatus();
  
@@ -124,7 +34,7 @@ index 9a6e410206852029f1fea0c4409352d5743dcf64..db81a52b2be54595ab4b52226f956314
      /**
       * @return the most recent resource pack hash received from the player,
       *         or null if no hash has ever been received from this player.
-@@ -2093,6 +2150,15 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+@@ -2093,6 +2100,15 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      @NotNull
      PlayerProfile getPlayerProfile();
  
