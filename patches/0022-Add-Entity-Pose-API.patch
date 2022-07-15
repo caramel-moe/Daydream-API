@@ -1,0 +1,51 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: LoaiDev <lolyakram11@gmail.com>
+Date: Tue, 11 Jan 2022 18:01:33 +0200
+Subject: [PATCH] Add Entity Pose API
+
+
+diff --git a/src/main/java/org/bukkit/entity/Entity.java b/src/main/java/org/bukkit/entity/Entity.java
+index 8bc6876c82935988436597161fa0ec94c032174b..c9f341b88e2ead4eb1ae13e69b1f613826e60acf 100644
+--- a/src/main/java/org/bukkit/entity/Entity.java
++++ b/src/main/java/org/bukkit/entity/Entity.java
+@@ -687,6 +687,40 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
+     @NotNull
+     Pose getPose();
+ 
++    // Daydream start - Add Entity Pose API
++    /**
++     * Sets the entity's current pose.
++     *
++     * <b>Note that changing the pose only has a visual effect and doesn't
++     * change other attributes such as speed, etc.</b>
++     *
++     * @param pose New {@link Pose}
++     */
++    default void setPose(@NotNull Pose pose) {
++        setPose(pose, false);
++    }
++
++    /**
++     * Sets the entity's current pose.
++     *
++     * <b>Note that changing the pose only has a visual effect and doesn't
++     * change other attributes such as speed, etc.</b>
++     *
++     * @param pose New {@link Pose}
++     * @param fixed Whether or not allow the entity to change its own pose (e.g. sleeping).<br>
++     * But plugins can still change it.
++     */
++    void setPose(@NotNull Pose pose, boolean fixed);
++
++    /**
++     * Whether or not the entity can change its own pose (e.g. sleeping).
++     *
++     * @return if entity has fixed pose
++     */
++    boolean hasFixedPose();
++    // Daydream end - Add Entity Pose API
++
++
+     /**
+      * Get the category of spawn to which this entity belongs.
+      *

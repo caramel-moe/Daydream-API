@@ -1,0 +1,208 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: LemonCaramel <admin@caramel.moe>
+Date: Sun, 8 Aug 2021 13:37:09 +0900
+Subject: [PATCH] Add PlayerInteractManager
+
+
+diff --git a/src/main/java/moe/caramel/daydream/event/player/PlayerIPSChangeEvent.java b/src/main/java/moe/caramel/daydream/event/player/PlayerIPSChangeEvent.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..c8aed0e9fdf27d87646cdea7603d294a19105c8d
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/event/player/PlayerIPSChangeEvent.java
+@@ -0,0 +1,64 @@
++package moe.caramel.daydream.event.player;
++
++import moe.caramel.daydream.player.InteractManager.Key;
++import org.bukkit.entity.Player;
++import org.bukkit.event.HandlerList;
++import org.bukkit.event.player.PlayerEvent;
++import org.jetbrains.annotations.NotNull;
++
++/**
++ * 플레이어의 IPS(Interacts Per Second)가 변경되었을 때 호출됩니다.
++ */
++public final class PlayerIPSChangeEvent extends PlayerEvent {
++
++    private static final HandlerList HANDLER_LIST = new HandlerList();
++    public @NotNull HandlerList getHandlers() { return HANDLER_LIST; }
++    public static @NotNull HandlerList getHandlerList() { return HANDLER_LIST; }
++
++    private final int current, max;
++    private final Key key;
++
++    public PlayerIPSChangeEvent(@NotNull Player player, @NotNull Key key, int current, int max) {
++        super(player);
++        this.current = current;
++        this.max = max;
++        this.key = key;
++    }
++
++    /**
++     * 현재 IPS를 가져옵니다.
++     *
++     * @return 현재 IPS
++     */
++    public int getCurrent() {
++        return this.current;
++    }
++
++    /**
++     * 시스템이 설정한 최대 IPS를 가져옵니다.
++     *
++     * @return 최대 IPS
++     */
++    public int getMax() {
++        return max;
++    }
++
++    /**
++     * 현재 최대 IPS 상태인지 반환합니다.
++     *
++     * @return 최대 IPS인 경우 {@code true}
++     */
++    public boolean isMax() {
++        return (this.current == this.max);
++    }
++
++    /**
++     * 플레이어가 상호작용에 사용한 키를 가져옵니다.
++     *
++     * @return 상호작용에 사용한 키
++     */
++    @NotNull
++    public Key getKey() {
++        return this.key;
++    }
++}
+diff --git a/src/main/java/moe/caramel/daydream/player/InteractManager.java b/src/main/java/moe/caramel/daydream/player/InteractManager.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..b8acc4f1d9b313842772a56d239ba03e153ad8eb
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/player/InteractManager.java
+@@ -0,0 +1,105 @@
++package moe.caramel.daydream.player;
++
++import org.jetbrains.annotations.NotNull;
++
++/**
++ * 플레이어의 상호작용을 제어합니다.
++ */
++public interface InteractManager {
++
++    /*
++        INTERACT OPTION
++     */
++
++    /**
++     * 플레이어가 {@link org.bukkit.GameMode#ADVENTURE} 상태일 때,
++     * {@link Key#LEFT_CLICK} 상호작용 시 엔티티를 무시하고 상호작용할 지의 여부를 가져옵니다.
++     *
++     * @return {@code true}인 경우 플레이어가 {@link Key#LEFT_CLICK}
++     * 상호작용 시에도 앞에 있는 엔티티를 통과하여 상호작용을 수행합니다.
++     */
++    boolean interactCanIgnoreEntityInAdventure();
++
++    /**
++     * 플레이어가 {@link org.bukkit.GameMode#ADVENTURE} 상태일 때,
++     * {@link Key#LEFT_CLICK} 상호작용 시 엔티티를 무시하고 상호작용할 지의 여부를 설정합니다.
++     *
++     * @param ignore {@code true}인 경우 플레이어가 {@link Key#LEFT_CLICK}
++     * 상호작용 시에도 앞에 있는 엔티티를 통과하여 상호작용을 수행합니다.
++     */
++    void interactCanIgnoreEntityInAdventure(boolean ignore);
++
++
++    /*
++        INTERACTS PER SECOND
++     */
++
++    /**
++     * 초(second) 당 상호작용 횟수를 제한합니다.
++     *
++     * @param key 제한할 {@link Key}
++     * @param max 최대 횟수 (0 이하일 경우 비활성화)
++     */
++    void maxInteractsPerSecond(@NotNull Key key, int max);
++
++    /**
++     * 초(second) 당 상호작용 횟수 제한을 가져옵니다.
++     *
++     * @param key 가져올 {@link Key}
++     * @return 제한된 횟수 (0 이하일 경우 비활성화)
++     */
++    int maxInteractsPerSecond(@NotNull Key key);
++
++    /**
++     * 기본 초(second) 당 상호작용 횟수 제한을 가져옵니다.
++     *
++     * @param key 가져올 {@link Key}
++     * @return 기본 제한 횟수 (0 이하일 경우 비활성화)
++     */
++    int defaultMaxInteractsPerSecond(@NotNull Key key);
++
++
++    /*
++        KEY DELAY
++     */
++
++    /**
++     * Swap Key(기본 F)의 딜레이를 설정합니다.
++     *
++     * @param delay 딜레이 (0 이하일 경우 비활성화)
++     */
++    void swapKeyDelay(int delay);
++
++    /**
++     * Swap Key(기본 F)의 딜레이를 가져옵니다.
++     *
++     * @return 딜레이 (0 이하일 경우 비활성화)
++     */
++    int swapKeyDelay();
++
++    /**
++     * 기본 Swap Key(기본 F)의 딜레이를 가져옵니다.
++     *
++     * @return 기본 딜레이 (0 이하일 경우 비활성화)
++     */
++    int defaultSwapKeyDelay();
++
++
++    /*
++        KEY
++     */
++
++    /**
++     * Key
++     */
++    enum Key {
++        /**
++         * 왼쪽 클릭 (Attack Key)
++         */
++        LEFT_CLICK,
++        /**
++         * 버리기 키 (Drop Key)
++         */
++        DROP_KEY
++    }
++}
+diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
+index 8a62980878fa687c8675e4fa56b8a7f33a3a5861..edc6e3f653a3ec7a6a2ad568b5c2b6d6c07b95ac 100644
+--- a/src/main/java/org/bukkit/entity/Player.java
++++ b/src/main/java/org/bukkit/entity/Player.java
+@@ -42,6 +42,16 @@ import org.jetbrains.annotations.Nullable;
+  */
+ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginMessageRecipient, net.kyori.adventure.identity.Identified, com.destroystokyo.paper.network.NetworkClient { // Paper
+ 
++    // Daydream start
++    /**
++     * Gets this player's interact manager.
++     *
++     * @return player's interact manager object
++     */
++    @NotNull
++    moe.caramel.daydream.player.InteractManager getInteractManager();
++    // Daydream end
++
+     // Paper start
+     @Override
+     default @NotNull net.kyori.adventure.identity.Identity identity() {

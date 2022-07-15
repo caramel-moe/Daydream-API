@@ -1,0 +1,137 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: LemonCaramel <admin@caramel.moe>
+Date: Fri, 6 Aug 2021 17:47:12 +0900
+Subject: [PATCH] Daydream command
+
+
+diff --git a/src/main/java/co/aikar/timings/TimingsManager.java b/src/main/java/co/aikar/timings/TimingsManager.java
+index a92925d41110226f7fda055b71ce7be60eedd038..45c7400e3f2d34b9b16ecadcde376e7251bf81ac 100644
+--- a/src/main/java/co/aikar/timings/TimingsManager.java
++++ b/src/main/java/co/aikar/timings/TimingsManager.java
+@@ -150,8 +150,7 @@ public final class TimingsManager {
+         Plugin plugin = null;
+         final Server server = Bukkit.getServer();
+         if (!(  server == null || pluginName == null ||
+-                "minecraft".equals(pluginName) || "bukkit".equals(pluginName) ||
+-                "spigot".equalsIgnoreCase(pluginName) || "paper".equals(pluginName)
++                "minecraft".equals(pluginName) || "daydream".equals(pluginName) // Daydream
+         )) {
+             plugin = server.getPluginManager().getPlugin(pluginName);
+         }
+diff --git a/src/main/java/org/bukkit/command/SimpleCommandMap.java b/src/main/java/org/bukkit/command/SimpleCommandMap.java
+index 74252236b138969560e6513f24e7ecc6dc4a4127..04c8affc6b4518ac584f77071d4042fc6bc1e35a 100644
+--- a/src/main/java/org/bukkit/command/SimpleCommandMap.java
++++ b/src/main/java/org/bukkit/command/SimpleCommandMap.java
+@@ -35,6 +35,12 @@ public class SimpleCommandMap implements CommandMap {
+     }
+ 
+     private void setDefaultCommands() {
++        // Daydream start
++        register("daydream", new VersionCommand("version"));
++        register("daydream", new ReloadCommand("reload"));
++        register("daydream", new co.aikar.timings.TimingsCommand("timings"));
++        if (true) return;
++        // Daydream end
+         register("bukkit", new VersionCommand("version"));
+         register("bukkit", new ReloadCommand("reload"));
+         register("bukkit", new PluginsCommand("plugins"));
+@@ -42,6 +48,7 @@ public class SimpleCommandMap implements CommandMap {
+     }
+ 
+     public void setFallbackCommands() {
++        if (true) return; // Daydream - Disable unused help command
+         register("bukkit", new HelpCommand());
+     }
+ 
+@@ -257,6 +264,7 @@ public class SimpleCommandMap implements CommandMap {
+     }
+ 
+     public void registerServerAliases() {
++        if (true) return; // Daydream - Disable unused command aliases
+         Map<String, String[]> values = server.getCommandAliases();
+ 
+         for (Map.Entry<String, String[]> entry : values.entrySet()) {
+diff --git a/src/main/java/org/bukkit/command/defaults/ReloadCommand.java b/src/main/java/org/bukkit/command/defaults/ReloadCommand.java
+index 3ec32b46264cfff857b50129b5e0fa5584943ec6..918f3f6f120ea3853ddf5c2d501fa28f680b8a50 100644
+--- a/src/main/java/org/bukkit/command/defaults/ReloadCommand.java
++++ b/src/main/java/org/bukkit/command/defaults/ReloadCommand.java
+@@ -16,6 +16,11 @@ public class ReloadCommand extends BukkitCommand {
+         this.usageMessage = "/reload [permissions|commands|confirm]"; // Paper
+         this.setPermission("bukkit.command.reload");
+         this.setAliases(Arrays.asList("rl"));
++        // Daydream start
++        this.usageMessage = "/reload [permissions|confirm]";
++        this.setPermission("daydream.command.reload");
++        this.setAliases(new java.util.ArrayList<>());
++        // Daydream end
+     }
+ 
+     @Override
+@@ -29,6 +34,8 @@ public class ReloadCommand extends BukkitCommand {
+                 Bukkit.getServer().reloadPermissions();
+                 Command.broadcastCommandMessage(sender, net.kyori.adventure.text.Component.text("Permissions successfully reloaded.", net.kyori.adventure.text.format.NamedTextColor.GREEN));
+                 return true;
++            // Daydream start
++            /*
+             } else if ("commands".equalsIgnoreCase(args[0])) {
+                 if (Bukkit.getServer().reloadCommandAliases()) {
+                     Command.broadcastCommandMessage(sender, net.kyori.adventure.text.Component.text("Command aliases successfully reloaded.", net.kyori.adventure.text.format.NamedTextColor.GREEN));
+@@ -36,6 +43,8 @@ public class ReloadCommand extends BukkitCommand {
+                     Command.broadcastCommandMessage(sender, net.kyori.adventure.text.Component.text("An error occurred while trying to reload command aliases.", net.kyori.adventure.text.format.NamedTextColor.RED));
+                 }
+                 return true;
++            */
++            // Daydream end
+             } else if ("confirm".equalsIgnoreCase(args[0])) {
+                 confirmed = true;
+             } else {
+@@ -60,6 +69,7 @@ public class ReloadCommand extends BukkitCommand {
+     @NotNull
+     @Override
+     public List<String> tabComplete(@NotNull CommandSender sender, @NotNull String alias, @NotNull String[] args) throws IllegalArgumentException {
++        if (true) return com.google.common.collect.Lists.newArrayList("permissions", "confirm"); // Daydream
+         return com.google.common.collect.Lists.newArrayList("permissions", "commands"); // Paper
+     }
+ }
+diff --git a/src/main/java/org/bukkit/command/defaults/VersionCommand.java b/src/main/java/org/bukkit/command/defaults/VersionCommand.java
+index 57a21495843f3a144cd73473cdc8781d6129b7ca..609f817ebefcd2cd6edf755aa75bb93beeda1193 100644
+--- a/src/main/java/org/bukkit/command/defaults/VersionCommand.java
++++ b/src/main/java/org/bukkit/command/defaults/VersionCommand.java
+@@ -44,13 +44,17 @@ public class VersionCommand extends BukkitCommand {
+         this.usageMessage = "/version [plugin name]";
+         this.setPermission("bukkit.command.version");
+         this.setAliases(Arrays.asList("ver", "about"));
++        // Daydream start
++        this.setPermission(null);
++        this.setAliases(Arrays.asList("ver"));
++        // Daydream end
+     }
+ 
+     @Override
+     public boolean execute(@NotNull CommandSender sender, @NotNull String currentAlias, @NotNull String[] args) {
+         if (!testPermission(sender)) return true;
+ 
+-        if (args.length == 0) {
++        if (args.length == 0 || !sender.hasPermission("daydream.command.version")) {
+             //sender.sendMessage("This server is running " + Bukkit.getName() + " version " + Bukkit.getVersion() + " (Implementing API version " + Bukkit.getBukkitVersion() + ")"); // Paper - moved to setVersionMessage
+             sendVersion(sender);
+         } else {
+@@ -163,6 +167,18 @@ public class VersionCommand extends BukkitCommand {
+     private long lastCheck = 0;
+ 
+     private void sendVersion(@NotNull CommandSender sender) {
++        // Daydream start
++        sender.sendMessage(Component.text().append(
++            Component.text(" Daydream ✿", net.kyori.adventure.text.format.TextColor.fromHexString("#f788d4"), net.kyori.adventure.text.format.TextDecoration.BOLD).append(Component.space()),
++            Component.text("Server Platform (running on Minecraft " + Bukkit.getMinecraftVersion() + ")"), Component.newline(),
++            Component.text("   Implementing API version: ", net.kyori.adventure.text.format.NamedTextColor.GRAY), Component.text(Bukkit.getBukkitVersion()), Component.newline(),
++            Component.text("   Software version: ", net.kyori.adventure.text.format.NamedTextColor.GRAY), Component.text(Bukkit.getVersion()),
++            Component.newline(),
++            Component.text("   Powered by ", net.kyori.adventure.text.format.NamedTextColor.GRAY),
++            Component.text("caramel.moe").clickEvent(net.kyori.adventure.text.event.ClickEvent.openUrl("https://caramel.moe/"))
++        ).build());
++        if (true) return;
++        // Daydream end
+         if (hasVersion) {
+             if (System.currentTimeMillis() - lastCheck > getVersionFetcher().getCacheTime()) { // Paper - use version supplier
+                 lastCheck = System.currentTimeMillis();

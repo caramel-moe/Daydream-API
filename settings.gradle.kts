@@ -1,3 +1,5 @@
+import java.util.Locale
+
 pluginManagement {
     repositories {
         gradlePluginPortal()
@@ -5,6 +7,9 @@ pluginManagement {
     }
 }
 
-rootProject.name = "Daydream"
-include("Daydream-API")
-include("Daydream-Dummy")
+rootProject.name = "daydream"
+for (name in listOf("Daydream-API", "Daydream-Dummy")) {
+    val projName = name.toLowerCase(Locale.ENGLISH)
+    include(projName)
+    findProject(":$projName")!!.projectDir = file(name)
+}

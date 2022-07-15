@@ -1,0 +1,75 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: LemonCaramel <admin@caramel.moe>
+Date: Sun, 8 Aug 2021 03:05:54 +0900
+Subject: [PATCH] Add no damage tick API for EntityDamageEvent
+
+
+diff --git a/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java b/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java
+index 07538e1b94921429ddb277c154e5d5c83d095b3e..4999ba01fe58593efc1971e5337d26f5bbebbdb1 100644
+--- a/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java
++++ b/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java
+@@ -25,12 +25,23 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
+     private final Map<DamageModifier, Double> originals;
+     private boolean cancelled;
+     private final DamageCause cause;
++    // Daydream start - Add no damage tick API for EntityDamageEvent
++    public static final int UNKNOWN_NO_DAMAGE_TICK = -1;
++    private boolean noDamageTickModified;
++    private int noDamageTick;
++    // Daydream end - Add no damage tick API for EntityDamageEvent
+ 
+     public EntityDamageEvent(@NotNull final Entity damagee, @NotNull final DamageCause cause, final double damage) {
+         this(damagee, cause, new EnumMap<DamageModifier, Double>(ImmutableMap.of(DamageModifier.BASE, damage)), new EnumMap<DamageModifier, Function<? super Double, Double>>(ImmutableMap.of(DamageModifier.BASE, ZERO)));
+     }
+ 
+     public EntityDamageEvent(@NotNull final Entity damagee, @NotNull final DamageCause cause, @NotNull final Map<DamageModifier, Double> modifiers, @NotNull final Map<DamageModifier, ? extends Function<? super Double, Double>> modifierFunctions) {
++        // Daydream start - Add no damage tick API for EntityDamageEvent
++        this(damagee, cause, modifiers, modifierFunctions, (damagee instanceof org.bukkit.entity.LivingEntity living) ? living.getMaximumNoDamageTicks() : UNKNOWN_NO_DAMAGE_TICK);
++    }
++
++    public EntityDamageEvent(@NotNull final Entity damagee, @NotNull final DamageCause cause, @NotNull final Map<DamageModifier, Double> modifiers, @NotNull final Map<DamageModifier, ? extends Function<? super Double, Double>> modifierFunctions, int noDamageTick) {
++        // Daydream end - Add no damage tick API for EntityDamageEvent
+         super(damagee);
+         Validate.isTrue(modifiers.containsKey(DamageModifier.BASE), "BASE DamageModifier missing");
+         Validate.isTrue(!modifiers.containsKey(null), "Cannot have null DamageModifier");
+@@ -41,6 +52,40 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
+         this.cause = cause;
+         this.modifiers = modifiers;
+         this.modifierFunctions = modifierFunctions;
++        // Daydream start - Add no damage tick API for EntityDamageEvent
++        this.noDamageTick = noDamageTick;
++    }
++
++    /**
++     * Returns whether no damage ticks have been modified.
++     *
++     * @return if {@code ture}, this has been modified.
++     */
++    public boolean isNoDamageTickModified() {
++        return noDamageTickModified;
++    }
++
++    /**
++     * Returns the no damage ticks of the living entity to be set after the
++     * event is processed.
++     *
++     * @return living entity's no damage ticks.
++     * if the return value is -1, it is not living entity
++     */
++    public int getNoDamageTick() {
++        return noDamageTick;
++    }
++
++    /**
++     * Sets the no damage ticks of the living entity to be set after the
++     * event is processed.
++     *
++     * @param ticks amount of no damage ticks
++     */
++    public void setNoDamageTick(int ticks) {
++        this.noDamageTick = Math.max(0, ticks);
++        this.noDamageTickModified = true;
++        // Daydream end - Add no damage tick API for EntityDamageEvent
+     }
+ 
+     @Override

@@ -5,71 +5,58 @@ Subject: [PATCH] Add caramel.moe Network Support
 
 
 diff --git a/build.gradle.kts b/build.gradle.kts
-index 9be8981d930323a9f88be2f13b6e1b0d98b34c0d..1b25de66742066c9ce3b7767c460e7ce0e6828c8 100644
+index 90282b4598c4483fbdecdb50eefd90cc81f4234a..4f2b9285a6c60cd69a3b8d668f39f6d35f7e9133 100644
 --- a/build.gradle.kts
 +++ b/build.gradle.kts
-@@ -46,6 +46,7 @@ dependencies {
+@@ -52,6 +52,7 @@ dependencies {
      }
-     // Daydream end
-     api("com.mojang:authlib:2.3.31") // Daydream - Mojang Authlib (keep in sync with major MC versions)
+     // Daydream end - Add Brigadier Command API
+     api("com.mojang:authlib:3.3.39") // Daydream - Mojang Authlib (keep in sync with major MC versions)
 +    api("moe.caramel:acacia-user:1.0.1-proto") // Daydream - caramel.moe Network
  
-     implementation("org.ow2.asm:asm:9.1")
-     implementation("org.ow2.asm:asm-commons:9.1")
-diff --git a/src/main/java/moe/caramel/daydream/DaydreamConstants.java b/src/main/java/moe/caramel/daydream/DaydreamConstants.java
-new file mode 100644
-index 0000000000000000000000000000000000000000..705398836f0a82320e08a7b9deefb54a7b8909ca
---- /dev/null
-+++ b/src/main/java/moe/caramel/daydream/DaydreamConstants.java
-@@ -0,0 +1,9 @@
-+package moe.caramel.daydream;
-+
-+public final class DaydreamConstants {
-+
-+    /* caramel.moe Network Data */
-+    private static boolean USE_CARAMEL_NETWORK_DATA = false;
-+    public static void enableCaramelNetworkData() { USE_CARAMEL_NETWORK_DATA = true; }
-+    public static boolean useCaramelNetworkData() { return USE_CARAMEL_NETWORK_DATA; }
-+}
+     compileOnly("org.apache.maven:maven-resolver-provider:3.8.4")
+     compileOnly("org.apache.maven.resolver:maven-resolver-connector-basic:1.7.2")
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index 5b165f922de0d8bdf8fee9f81c3634008325c2ea..4f0555bacbbbf201489f6ed0b6c324167f28b22e 100644
+index edc6e3f653a3ec7a6a2ad568b5c2b6d6c07b95ac..de7567937d85d7b896c0ac06caa794d05badc7b3 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
-@@ -43,6 +43,10 @@ import org.jetbrains.annotations.Nullable;
-  */
- public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginMessageRecipient, net.kyori.adventure.identity.Identified, com.destroystokyo.paper.network.NetworkClient { // Paper
- 
-+    // Daydream start
-+    @NotNull moe.caramel.acacia.user.User getUserData();
-+    // Daydream end
+@@ -50,6 +50,13 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+      */
+     @NotNull
+     moe.caramel.daydream.player.InteractManager getInteractManager();
 +
++    /**
++     * caramel.moe Network 유저 데이터를 가져옵니다.
++     *
++     * @return caramel.moe Network 유저 데이터
++     */
++    @NotNull moe.caramel.acacia.user.User getUserData();
+     // Daydream end
+ 
      // Paper start
-     @Override
-     default @NotNull net.kyori.adventure.identity.Identity identity() {
 diff --git a/src/main/java/org/bukkit/event/player/AsyncPlayerPreLoginEvent.java b/src/main/java/org/bukkit/event/player/AsyncPlayerPreLoginEvent.java
-index 694a81769076ea58aae9f14f076ab80c9952c957..9dc629f9e107e8b6fa97145498d6eee2bc15cb6a 100644
+index 635b8787fc235b61c0d5677def034656e4ec4cef..f9b83e5e53d1190869f9bf6f16b2cb08119baedf 100644
 --- a/src/main/java/org/bukkit/event/player/AsyncPlayerPreLoginEvent.java
 +++ b/src/main/java/org/bukkit/event/player/AsyncPlayerPreLoginEvent.java
-@@ -22,6 +22,7 @@ public class AsyncPlayerPreLoginEvent extends Event {
-     private final InetAddress ipAddress;
-     private final InetAddress rawAddress; // Paper
-     //private UUID uniqueId; // Paper - Not used anymore
-+    private moe.caramel.acacia.user.User userData; // Daydream
- 
-     @Deprecated
-     public AsyncPlayerPreLoginEvent(@NotNull final String name, @NotNull final InetAddress ipAddress) {
-@@ -231,6 +232,22 @@ public class AsyncPlayerPreLoginEvent extends Event {
-         this.message = org.bukkit.Bukkit.getUnsafe().legacyComponentSerializer().deserialize(message); // Paper
+@@ -240,6 +240,29 @@ public class AsyncPlayerPreLoginEvent extends Event {
+         this.message = net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer.legacySection().deserialize(message); // Paper
      }
  
 +    // Daydream start
++    private moe.caramel.acacia.user.User userData;
++
++    /**
++     * caramel.moe 네트워크 유저 데이터를 가져옵니다.
++     *
++     * @return caramel.moe 네트워크 유저 데이터
++     */
 +    @NotNull
 +    public moe.caramel.acacia.user.User getUserData() {
 +        return userData;
 +    }
 +
 +    /**
-+     * caramel.moe 네트워크 유저 데이터
++     * caramel.moe 네트워크 유저 데이터를 설정합니다.
 +     *
 +     * @param userData caramel.moe 네트워크 유저 데이터
 +     */

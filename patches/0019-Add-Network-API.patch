@@ -5,17 +5,17 @@ Subject: [PATCH] Add Network API
 
 
 diff --git a/build.gradle.kts b/build.gradle.kts
-index 45193307da7a02f297f23bfd87c0b486355843ff..b9eba93bfe5a848245a3f5bb08be9ac552e476e3 100644
+index 997ce2f408fee37bb38d2bff4e401878baac00cf..53a249043025ac64a03623030667dbf68ea0db2e 100644
 --- a/build.gradle.kts
 +++ b/build.gradle.kts
-@@ -48,6 +48,7 @@ dependencies {
-     api("com.mojang:authlib:2.3.31") // Daydream - Mojang Authlib (keep in sync with major MC versions)
+@@ -54,6 +54,7 @@ dependencies {
+     api("com.mojang:authlib:3.3.39") // Daydream - Mojang Authlib (keep in sync with major MC versions)
      api("moe.caramel:acacia-user:1.0.1-proto") // Daydream - caramel.moe Network
      api("com.neovisionaries:nv-i18n:1.29") // Daydream - add GeoIP
-+    api("io.netty:netty-all:4.1.76.Final") // Daydream - add Network API
++    api("io.netty:netty-all:4.1.79.Final") // Daydream - add Network API
  
-     implementation("org.ow2.asm:asm:9.1")
-     implementation("org.ow2.asm:asm-commons:9.1")
+     compileOnly("org.apache.maven:maven-resolver-provider:3.8.4")
+     compileOnly("org.apache.maven.resolver:maven-resolver-connector-basic:1.7.2")
 diff --git a/src/main/java/moe/caramel/daydream/network/MojangByteBuf.java b/src/main/java/moe/caramel/daydream/network/MojangByteBuf.java
 new file mode 100644
 index 0000000000000000000000000000000000000000..21fde661e12417b1af155cfcb747140b249e4c63
@@ -180,30 +180,11 @@ index 0000000000000000000000000000000000000000..21fde661e12417b1af155cfcb747140b
 +    @NotNull
 +    public abstract MojangByteBuf writeBitSet(@NotNull BitSet bitSet);
 +}
-diff --git a/src/main/java/moe/caramel/daydream/network/PlayerInfoTypes.java b/src/main/java/moe/caramel/daydream/network/PlayerInfoTypes.java
-new file mode 100644
-index 0000000000000000000000000000000000000000..0f6fdaa64bf4b23998b5303b8daa664003e41079
---- /dev/null
-+++ b/src/main/java/moe/caramel/daydream/network/PlayerInfoTypes.java
-@@ -0,0 +1,13 @@
-+package moe.caramel.daydream.network;
-+
-+/**
-+ * This is the enum type used for PlayerInfo packets.
-+ */
-+public enum PlayerInfoTypes {
-+
-+    ADD_PLAYER,
-+    UPDATE_GAME_MODE,
-+    UPDATE_LATENCY,
-+    UPDATE_DISPLAY_NAME,
-+    REMOVE_PLAYER
-+}
 diff --git a/src/main/java/org/bukkit/UnsafeValues.java b/src/main/java/org/bukkit/UnsafeValues.java
-index 3418918531cb3c7fa70788fadb783ec0405047eb..4b13c7c5442f718342fa60fd0bad0094bdb36f8a 100644
+index eb3397c45d37e5236155156cf3cdd49ea5e0a491..2fcae464aa3b036fa637a87742772aa0d1078362 100644
 --- a/src/main/java/org/bukkit/UnsafeValues.java
 +++ b/src/main/java/org/bukkit/UnsafeValues.java
-@@ -232,4 +232,15 @@ public interface UnsafeValues {
+@@ -257,4 +257,15 @@ public interface UnsafeValues {
       */
      boolean isCollidable(@org.jetbrains.annotations.NotNull Material material);
      // Paper end
@@ -220,43 +201,14 @@ index 3418918531cb3c7fa70788fadb783ec0405047eb..4b13c7c5442f718342fa60fd0bad0094
 +    // Daydream end
  }
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index 669a5361a9f08efe40bb35a868b769ec8cbab19b..466e00c45e2c974754fe49889316e46ba415aafb 100644
+index d2a1c4ab984e713b1f1769d17bf01e01bea0bcb9..e9a5b81ba15e1a94e647a748c3ae198975530e32 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
-@@ -582,6 +582,60 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
-      * @param item The ItemStack to display for the player
+@@ -645,6 +645,24 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
       */
-     public void sendEquipmentChange(@NotNull LivingEntity entity, @NotNull org.bukkit.inventory.EquipmentSlot slot, @NotNull ItemStack item);
-+
-+    /**
-+     * Send packet to this player
-+     *
-+     * @param packet The packet instance
-+     * @deprecated new API to be released
-+     */
-+    @Deprecated
-+    public void sendPacket(@NotNull Object packet);
-+
-+    /**
-+     * Send the slot item change. This fakes the user's slot
-+     * change. This will not actually change the inventory of
-+     * the specified entity in any way.
-+     *
-+     * @param containerId The window which is being updated
-+     * @param revision The last received State ID from either a Set Slot or a Window Items packet
-+     * @param slot The slot that should be updated
-+     * @param item The ItemStack to display for the player
-+     */
-+    public void sendSetSlot(int containerId, int revision, int slot, @NotNull ItemStack item);
-+
-+    /**
-+     * Send a change game state packet to this player
-+     *
-+     * @param reason Reason Value
-+     * @param value Value
-+     */
-+    public void sendChangeGameState(int reason, int value);
-+
+     public void sendEquipmentChange(@NotNull LivingEntity entity, @NotNull EquipmentSlot slot, @NotNull ItemStack item);
+ 
++    // Daydream start
 +    /**
 +     * Send a custom query payload packet to this player
 +     *
@@ -272,15 +224,8 @@ index 669a5361a9f08efe40bb35a868b769ec8cbab19b..466e00c45e2c974754fe49889316e46b
 +     * @param buf byte buf object
 +     */
 +    public void sendCustomPayload(@NotNull org.bukkit.NamespacedKey channel, @NotNull moe.caramel.daydream.network.MojangByteBuf buf);
++    // Daydream end
 +
-+    /**
-+     * Resend the target's info packet to this player.
-+     * It's useful when changing a player's skin.
-+     *
-+     * @param type The type of packet
-+     * @param targets Target players
-+     */
-+    public void sendPlayerInfo(@NotNull moe.caramel.daydream.network.PlayerInfoTypes type, @NotNull java.util.List<Player> targets);
-     // Daydream end
- 
+     // Paper start
      /**
+      * Send a sign change. This fakes a sign change packet for a user at

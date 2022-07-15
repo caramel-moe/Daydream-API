@@ -1,49 +1,50 @@
 From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: LemonCaramel <admin@caramel.moe>
 Date: Tue, 24 Aug 2021 12:02:16 +0900
-Subject: [PATCH] Add Private Scoreboard API
+Subject: [PATCH] Add Mutable Scoreboard API
 
 
 diff --git a/src/main/java/moe/caramel/daydream/scoreboard/Scoreboard.java b/src/main/java/moe/caramel/daydream/scoreboard/Scoreboard.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..1523c289c139bc7b23d84ff6d12d918303c91255
+index 0000000000000000000000000000000000000000..38d44d0828bb410a2291617b538c8f9ac1c31d2c
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/scoreboard/Scoreboard.java
-@@ -0,0 +1,62 @@
+@@ -0,0 +1,63 @@
 +package moe.caramel.daydream.scoreboard;
 +
-+import org.bukkit.plugin.Plugin;
 +import org.jetbrains.annotations.NotNull;
 +import org.jetbrains.annotations.Nullable;
 +
 +/**
-+ * 주의!
-+ * <p>
-+ * 해당 기능을 사용하기 전에 "Intializing..." 이름의 Entry를 Bukkit 스코어보드에 추가해주세요.
++ * Scoreboard API Interface
 + */
 +public interface Scoreboard {
 +
 +    /**
-+     * 스코어보드를 활성화합니다.
++     * Scoreboard API를 활성화합니다.
++     * <br>
++     * 플러그인이 비활성화되어도 Scoreboard API가 비활성화되지 않으므로
++     * {@link org.bukkit.plugin.Plugin#onDisable()}가 호출되었을 때
++     * {@link Scoreboard#deactivate()}를 호출해주세요.
 +     */
-+    void activate(@NotNull Plugin plugin);
++    void activate();
 +
 +    /**
-+     * 스코어보드를 비활성화합니다.
++     * Scoreboard API를 비활성화합니다.
 +     */
 +    void deactivate();
 +
 +    /**
-+     * 스코어보드가 활성화 되어있는지 확인합니다.
++     * Scoreboard API가 활성화되어있는지 확인합니다.
 +     *
-+     * @return 활성화 된 경우 {@code true}를 반환합니다.
++     * @return 활성화된 경우 {@code true}를 반환합니다.
 +     */
 +    boolean isActivated();
 +
 +    /**
-+     * 이 스코어보드에 대한 핸들러를 반환합니다.
++     * 이 스코어보드의 핸들러를 가져옵니다.
 +     *
-+     * @return handler
++     * @return 스코어보드의 핸들러
 +     */
 +    @Nullable
 +    ScoreboardHandler getHandler();
@@ -51,22 +52,22 @@ index 0000000000000000000000000000000000000000..1523c289c139bc7b23d84ff6d12d9183
 +    /**
 +     * 이 스코어보드의 핸들러를 설정합니다.
 +     *
-+     * @param handler handler
++     * @param handler 스코어보드의 핸들러
 +     */
 +    @NotNull
 +    Scoreboard setHandler(@NotNull ScoreboardHandler handler);
 +
 +    /**
-+     * 업데이트 간격을 반환합니다 (기본 값 = 10L).
++     * 스코어보드 업데이트 간격을 반환합니다 (기본 값 = 10L).
 +     *
-+     * @return 업데이트 간격
++     * @return 스코어보드 업데이트 간격
 +     */
 +    long getUpdateInterval();
 +
 +    /**
-+     * 업데이트 간격을 설정합니다.
++     * 스코어보드 업데이트 간격을 설정합니다.
 +     *
-+     * @param updateInterval 업데이트 간격
++     * @param updateInterval 스코어보드 업데이트 간격
 +     * @return this
 +     */
 +    @NotNull
@@ -74,13 +75,14 @@ index 0000000000000000000000000000000000000000..1523c289c139bc7b23d84ff6d12d9183
 +}
 diff --git a/src/main/java/moe/caramel/daydream/scoreboard/ScoreboardHandler.java b/src/main/java/moe/caramel/daydream/scoreboard/ScoreboardHandler.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..768ba6b4b7fd1f63403aacdd089ec8066834ed65
+index 0000000000000000000000000000000000000000..db23b07f792de98a894a84f4a32f3ff5bb53c480
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/scoreboard/ScoreboardHandler.java
-@@ -0,0 +1,29 @@
+@@ -0,0 +1,30 @@
 +package moe.caramel.daydream.scoreboard;
 +
 +import moe.caramel.daydream.scoreboard.common.Entry;
++import net.kyori.adventure.text.Component;
 +import org.bukkit.entity.Player;
 +import org.jetbrains.annotations.NotNull;
 +import org.jetbrains.annotations.Nullable;
@@ -89,19 +91,19 @@ index 0000000000000000000000000000000000000000..768ba6b4b7fd1f63403aacdd089ec806
 +
 +    /**
 +     * 해당 플레이어에 대해 표시할 Title을 결정합니다.
-+     * null을 리턴 받았을 때 Title이 빈 줄로 표시됩니다.
++     * {@code null}을 리턴 받았을 때 Title이 빈 줄로 표시됩니다.
 +     *
-+     * @param player 플레이어 객체
++     * @param player 플레이어
 +     * @return 타이틀
 +     */
 +    @Nullable
-+    String getTitle(@NotNull Player player);
++    Component getTitle(@NotNull Player player);
 +
 +    /**
 +     * 해당 플레이어에 대해 표시할 항목을 결정합니다.
-+     * null을 리턴 받았을 때 항목을 업데이트하지 않습니다.
++     * {@code null}을 리턴 받았을 때 항목을 업데이트하지 않습니다.
 +     *
-+     * @param player 플레이어 객체
++     * @param player 플레이어
 +     * @return Entry 리스트
 +     */
 +    @Nullable
@@ -401,10 +403,10 @@ index 0000000000000000000000000000000000000000..583d1b068870dac7c03da2326fed16bd
 +}
 diff --git a/src/main/java/moe/caramel/daydream/scoreboard/common/EntryBuilder.java b/src/main/java/moe/caramel/daydream/scoreboard/common/EntryBuilder.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..375ce4bba3ff324eebc0d1bfb339ae0d57774e35
+index 0000000000000000000000000000000000000000..9cee271bf096fbcd24f65783949f9c621245d9df
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/scoreboard/common/EntryBuilder.java
-@@ -0,0 +1,49 @@
+@@ -0,0 +1,48 @@
 +package moe.caramel.daydream.scoreboard.common;
 +
 +import org.jetbrains.annotations.NotNull;
@@ -450,15 +452,14 @@ index 0000000000000000000000000000000000000000..375ce4bba3ff324eebc0d1bfb339ae0d
 +
 +    @NotNull
 +    private String adapt(@NotNull String entry) {
-+        if (entry.length() > 40) entry = entry.substring(0, 39);
 +        return org.bukkit.ChatColor.translateAlternateColorCodes('&', entry);
 +    }
 +}
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index 375e19ecab2b10d726b6ad631d3bb9bcc50f3b48..cbb4395d6861afec07a1126b450b76a556b3b302 100644
+index de7567937d85d7b896c0ac06caa794d05badc7b3..fcffe6de89ed2ec930ef0b3092bf9933ff860d2f 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
-@@ -1506,6 +1506,16 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+@@ -1839,6 +1839,16 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      @NotNull
      public Scoreboard getScoreboard();
  

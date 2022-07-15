@@ -191,10 +191,10 @@ index 0000000000000000000000000000000000000000..58cad714be43b4fed2c506a226dcd65f
 +}
 diff --git a/src/main/java/moe/caramel/daydream/event/player/PlayerAdvancementPreLoadEvent.java b/src/main/java/moe/caramel/daydream/event/player/PlayerAdvancementPreLoadEvent.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..a9884a347afc906f2782d4da4f7c3815c147713f
+index 0000000000000000000000000000000000000000..bc71837fb7837c3b0274c041a8404a1dca4ae347
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/event/player/PlayerAdvancementPreLoadEvent.java
-@@ -0,0 +1,81 @@
+@@ -0,0 +1,75 @@
 +package moe.caramel.daydream.event.player;
 +
 +import com.google.gson.JsonElement;
@@ -210,8 +210,12 @@ index 0000000000000000000000000000000000000000..a9884a347afc906f2782d4da4f7c3815
 + * <br>
 + * It's usually called earlier than {@link org.bukkit.event.player.PlayerJoinEvent}.
 + */
-+public class PlayerAdvancementPreLoadEvent extends PlayerEvent implements Cancellable {
-+    private static final HandlerList handlers = new HandlerList();
++public final class PlayerAdvancementPreLoadEvent extends PlayerEvent implements Cancellable {
++
++    private static final HandlerList HANDLER_LIST = new HandlerList();
++    public @NotNull HandlerList getHandlers() { return HANDLER_LIST; }
++    public static @NotNull HandlerList getHandlerList() { return HANDLER_LIST; }
++
 +    private JsonElement jsonElement;
 +    private boolean cancel, useDataFixer = true;
 +
@@ -265,23 +269,13 @@ index 0000000000000000000000000000000000000000..a9884a347afc906f2782d4da4f7c3815
 +    public void setUseDataFixer(boolean useDataFixer) {
 +        this.useDataFixer = useDataFixer;
 +    }
-+
-+    @Override
-+    public @NotNull HandlerList getHandlers() {
-+        return handlers;
-+    }
-+
-+    @NotNull
-+    public static HandlerList getHandlerList() {
-+        return handlers;
-+    }
 +}
 diff --git a/src/main/java/moe/caramel/daydream/event/player/PlayerAdvancementSaveEvent.java b/src/main/java/moe/caramel/daydream/event/player/PlayerAdvancementSaveEvent.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..09ebe8da1cdd8158f755ee24b2eb0cc8a65cb962
+index 0000000000000000000000000000000000000000..42a3f72a73d258aa378f407c460ae05e704905e4
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/event/player/PlayerAdvancementSaveEvent.java
-@@ -0,0 +1,82 @@
+@@ -0,0 +1,76 @@
 +package moe.caramel.daydream.event.player;
 +
 +import com.google.gson.JsonElement;
@@ -294,8 +288,12 @@ index 0000000000000000000000000000000000000000..09ebe8da1cdd8158f755ee24b2eb0cc8
 +/**
 + * Called when player Advancement data is saved.
 + */
-+public class PlayerAdvancementSaveEvent extends PlayerEvent implements Cancellable {
-+    private static final HandlerList handlers = new HandlerList();
++public final class PlayerAdvancementSaveEvent extends PlayerEvent implements Cancellable {
++
++    private static final HandlerList HANDLER_LIST = new HandlerList();
++    public @NotNull HandlerList getHandlers() { return HANDLER_LIST; }
++    public static @NotNull HandlerList getHandlerList() { return HANDLER_LIST; }
++
 +    private final JsonElement jsonElement;
 +    private final int dataVersion;
 +    private boolean cancel, saveDataVersion = true;
@@ -353,22 +351,12 @@ index 0000000000000000000000000000000000000000..09ebe8da1cdd8158f755ee24b2eb0cc8
 +    public void setSaveDataVersion(boolean saveDataVersion) {
 +        this.saveDataVersion = saveDataVersion;
 +    }
-+
-+    @Override
-+    public @NotNull HandlerList getHandlers() {
-+        return handlers;
-+    }
-+
-+    @NotNull
-+    public static HandlerList getHandlerList() {
-+        return handlers;
-+    }
 +}
 diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
-index 58f4e6254cba5034b7d431344533e7e9cedd71db..4b2b9751435c3963f091aa72aed0305418ec17e5 100644
+index 50614f4afd86f6d818d346ada252126cbf260f9c..3a69bb804583b6302b0d6572b79975f0079a109e 100644
 --- a/src/main/java/org/bukkit/Bukkit.java
 +++ b/src/main/java/org/bukkit/Bukkit.java
-@@ -1850,6 +1850,19 @@ public final class Bukkit {
+@@ -2050,6 +2050,19 @@ public final class Bukkit {
          return server.getAdvancement(key);
      }
  
@@ -389,10 +377,10 @@ index 58f4e6254cba5034b7d431344533e7e9cedd71db..4b2b9751435c3963f091aa72aed03054
       * Get an iterator through all advancements. Advancements cannot be removed
       * from this iterator,
 diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
-index 41ae6a7e1200e0010c78a6c9c8d6e7037d70b80d..62c1c5385b052f2c776b57cc73cfe3b0efc90835 100644
+index ef6d650ba46b3f6add3902b17d68bce936cfa74e..47e22cec93f3c1c6d12f25a3456ef5617e7a02bb 100644
 --- a/src/main/java/org/bukkit/Server.java
 +++ b/src/main/java/org/bukkit/Server.java
-@@ -1565,6 +1565,17 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
+@@ -1737,6 +1737,17 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
      @Nullable
      Advancement getAdvancement(@NotNull NamespacedKey key);
  
@@ -411,10 +399,10 @@ index 41ae6a7e1200e0010c78a6c9c8d6e7037d70b80d..62c1c5385b052f2c776b57cc73cfe3b0
       * Get an iterator through all advancements. Advancements cannot be removed
       * from this iterator,
 diff --git a/src/main/java/org/bukkit/UnsafeValues.java b/src/main/java/org/bukkit/UnsafeValues.java
-index 014c9984018ad5e51a26228a137e1ba4eb3e80c8..3418918531cb3c7fa70788fadb783ec0405047eb 100644
+index 4fcafddf3792b66c618f91e04d102f374de565a8..eb3397c45d37e5236155156cf3cdd49ea5e0a491 100644
 --- a/src/main/java/org/bukkit/UnsafeValues.java
 +++ b/src/main/java/org/bukkit/UnsafeValues.java
-@@ -65,6 +65,20 @@ public interface UnsafeValues {
+@@ -71,6 +71,20 @@ public interface UnsafeValues {
       */
      Advancement loadAdvancement(NamespacedKey key, String advancement);
  
@@ -436,10 +424,10 @@ index 014c9984018ad5e51a26228a137e1ba4eb3e80c8..3418918531cb3c7fa70788fadb783ec0
       * Delete an advancement which was loaded and saved by
       * {@link #loadAdvancement(org.bukkit.NamespacedKey, java.lang.String)}.
 diff --git a/src/main/java/org/bukkit/advancement/Advancement.java b/src/main/java/org/bukkit/advancement/Advancement.java
-index 3bbc7dffc36fa31099a8794ceeec77aeae0c49cb..e875658e2c7ab928c9117fbebead54dc6139dfd0 100644
+index 792d5ab90e9252b4f660434f72f004fade14a84c..00b2b9d119c5f8b2e69baefcfe594e09f2e93ed7 100644
 --- a/src/main/java/org/bukkit/advancement/Advancement.java
 +++ b/src/main/java/org/bukkit/advancement/Advancement.java
-@@ -54,4 +54,19 @@ public interface Advancement extends Keyed {
+@@ -56,4 +56,19 @@ public interface Advancement extends Keyed {
      @NotNull
      Advancement getRoot();
      // Paper end
@@ -505,10 +493,10 @@ index f9bc179da071e7bd57cefc50d6763317fb643b74..532f51a1d537a342c0251d650cd503b1
 +    // Daydream end
  }
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index 790d1d83ff44d197e9a13ec2509406a8a9919dea..669a5361a9f08efe40bb35a868b769ec8cbab19b 100644
+index 0ea96be7c18da2c7ab06b34ff0d13843536e71c5..d2a1c4ab984e713b1f1769d17bf01e01bea0bcb9 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
-@@ -1862,6 +1862,16 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+@@ -2229,6 +2229,16 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      @NotNull
      public AdvancementProgress getAdvancementProgress(@NotNull Advancement advancement);
  

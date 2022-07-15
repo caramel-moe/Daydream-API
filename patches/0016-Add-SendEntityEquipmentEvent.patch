@@ -6,10 +6,10 @@ Subject: [PATCH] Add SendEntityEquipmentEvent
 
 diff --git a/src/main/java/moe/caramel/daydream/event/packet/SendEntityEquipmentEvent.java b/src/main/java/moe/caramel/daydream/event/packet/SendEntityEquipmentEvent.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..d555b6d953afe9316b59a2c0e60ab4fd4655161d
+index 0000000000000000000000000000000000000000..6e26b70ea8bd536f5cf8a208ac9e93387f3cf743
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/event/packet/SendEntityEquipmentEvent.java
-@@ -0,0 +1,110 @@
+@@ -0,0 +1,112 @@
 +package moe.caramel.daydream.event.packet;
 +
 +import moe.caramel.daydream.util.Pair;
@@ -28,9 +28,11 @@ index 0000000000000000000000000000000000000000..d555b6d953afe9316b59a2c0e60ab4fd
 +/**
 + * Entity Equipment 패킷이 전송될 때 호출되는 이벤트
 + */
-+public class SendEntityEquipmentEvent extends EntityEvent implements Cancellable {
++public final class SendEntityEquipmentEvent extends EntityEvent implements Cancellable {
 +
 +    private static final HandlerList HANDLER_LIST = new HandlerList();
++    public @NotNull HandlerList getHandlers() { return HANDLER_LIST; }
++    public static @NotNull HandlerList getHandlerList() { return HANDLER_LIST; }
 +
 +    private final Reason reason;
 +    private final Player target;
@@ -106,28 +108,63 @@ index 0000000000000000000000000000000000000000..d555b6d953afe9316b59a2c0e60ab4fd
 +        this.cancelled = cancelled;
 +    }
 +
-+    @Override
-+    public @NotNull HandlerList getHandlers() {
-+        return HANDLER_LIST;
-+    }
-+
-+    @NotNull
-+    public static HandlerList getHandlerList() {
-+        return HANDLER_LIST;
-+    }
-+
++    /**
++     * 이벤트 호출 사유
++     */
 +    public enum Reason {
-+        PAIRING, UPDATE_EQUIPMENT
++        /**
++         * 대상 엔티티를 추적하기 시작했을 때
++         */
++        PAIRING,
++        /**
++         * 엔티티가 장비를 업데이트했을 때
++         */
++        UPDATE_EQUIPMENT
 +    }
 +}
 diff --git a/src/main/java/moe/caramel/daydream/util/Pair.java b/src/main/java/moe/caramel/daydream/util/Pair.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..f7a8e8f3899f1bf6c606a644a9fcf21afa30ab11
+index 0000000000000000000000000000000000000000..95904452632d2818a09e9a5efcb8a3823a9cc05b
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/util/Pair.java
-@@ -0,0 +1,5 @@
+@@ -0,0 +1,40 @@
 +package moe.caramel.daydream.util;
 +
 +import org.jetbrains.annotations.Nullable;
 +
-+public record Pair<K, V>(@Nullable K key, @Nullable V value) { }
++/**
++ * Pair 클래스
++ *
++ * @param <K> Key 값의 타입
++ * @param <V> Value 값의 타입
++ */
++public final class Pair<K, V> {
++
++    private final K key;
++    private final V value;
++
++    public Pair(@Nullable K key, @Nullable V value) {
++        this.key = key;
++        this.value = value;
++    }
++
++    /**
++     * Key를 가져옵니다.
++     *
++     * @return key
++     */
++    @Nullable
++    public K key() {
++        return key;
++    }
++
++    /**
++     * Value를 가져옵니다.
++     *
++     * @return value
++     */
++    @Nullable
++    public V value() {
++        return value;
++    }
++}

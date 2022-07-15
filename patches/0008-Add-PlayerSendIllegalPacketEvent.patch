@@ -1,0 +1,94 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: LemonCaramel <admin@caramel.moe>
+Date: Sun, 8 Aug 2021 14:54:35 +0900
+Subject: [PATCH] Add PlayerSendIllegalPacketEvent
+
+
+diff --git a/src/main/java/moe/caramel/daydream/event/packet/PlayerSendIllegalPacketEvent.java b/src/main/java/moe/caramel/daydream/event/packet/PlayerSendIllegalPacketEvent.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..b6b491fe5de86d6818c1b696bf4ca2c19b1747f6
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/event/packet/PlayerSendIllegalPacketEvent.java
+@@ -0,0 +1,82 @@
++package moe.caramel.daydream.event.packet;
++
++import org.bukkit.entity.Player;
++import org.bukkit.event.HandlerList;
++import org.bukkit.event.player.PlayerEvent;
++import org.jetbrains.annotations.NotNull;
++import org.jetbrains.annotations.Nullable;
++
++/**
++ * 플레이어가 잘못된 채팅 패킷을 서버에 전송했을 때 호출됩니다.
++ * <br>
++ * Async일 수도 있습니다.
++ */
++public final class PlayerSendIllegalPacketEvent extends PlayerEvent {
++
++    private static final HandlerList HANDLER_LIST = new HandlerList();
++    public @NotNull HandlerList getHandlers() { return HANDLER_LIST; }
++    public static @NotNull HandlerList getHandlerList() { return HANDLER_LIST; }
++
++    private final Action action;
++    private final String value;
++
++    public PlayerSendIllegalPacketEvent(@NotNull Player player, boolean async, @NotNull Action action, @Nullable String value) {
++        super(player, async);
++        this.action = action;
++        this.value = value;
++    }
++
++    /**
++     * 잘못된 패킷 타입을 가져옵니다.
++     *
++     * @return 잘못된 패킷 타입
++     */
++    @NotNull
++    public Action getAction() {
++        return action;
++    }
++
++    /**
++     * 패킷에 데이터가 포함될 수 있는 경우, 데이터를 가져옵니다.
++     *
++     * @return 패킷 데이터
++     */
++    @Nullable
++    public String getValue() {
++        return value;
++    }
++
++    /**
++     * 패킷 타입 목록
++     */
++    public enum Action {
++        /**
++         * Player Action 패킷
++         *
++         * 패킷의 Action 범위에 벗어나는 enum을 수신할 경우
++         */
++        PLAYER_ACTION,
++        /**
++         * Difficulty Change 패킷
++         *
++         * 일반적인 클라이언트에서는 보낼 수 없음
++         */
++        DIFFICULTY_CHANGE,
++        /**
++         * Difficulty Lock 패킷
++         *
++         * 일반적인 클라이언트에서는 보낼 수 없음
++         */
++        DIFFICULTY_LOCK,
++        /**
++         * 비정상적인 Tab Complete 요청이 들어올 경우
++         *
++         * 일반적인 클라이언트에서는 보낼 수 없음 (채팅 클라이언트 주의)
++         */
++        TAB_COMPLETE,
++        /**
++         * 비정상적인 Pitch 값이 수신될 경우
++         */
++        MOVE
++    }
++}

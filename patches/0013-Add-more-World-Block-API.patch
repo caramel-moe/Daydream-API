@@ -5,11 +5,11 @@ Subject: [PATCH] Add more World Block API
 
 
 diff --git a/src/main/java/org/bukkit/World.java b/src/main/java/org/bukkit/World.java
-index 4f673e9123145dc78564dc3eef0edf75795dafc2..1da1a24bfdf6840ebcbf56efae9fa08b7a989448 100644
+index 7ad1cabe05277c1f3238da6e121c35d8a9f0d952..bd35cb298972ec1bc586ba25d155ee24c5b27327 100644
 --- a/src/main/java/org/bukkit/World.java
 +++ b/src/main/java/org/bukkit/World.java
-@@ -84,6 +84,14 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
-     public boolean lineOfSightExists(@NotNull Location from, @NotNull Location to);
+@@ -72,6 +72,14 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
+     int getPlayerCount();
      // Paper end
  
 +    // Daydream start
@@ -24,10 +24,10 @@ index 4f673e9123145dc78564dc3eef0edf75795dafc2..1da1a24bfdf6840ebcbf56efae9fa08b
       * Gets the {@link Block} at the given coordinates
       *
 diff --git a/src/main/java/org/bukkit/block/Block.java b/src/main/java/org/bukkit/block/Block.java
-index 70caaf05be813ba390412714ba0a39981edc2475..c3f8054a1bdf66a8b8005323b819ea8fd91fe56d 100644
+index e405c279f6135c94c775a856ab88fd3cace6bd5c..eca12743999c94aa4fbb76ec59652502cfa74b6d 100644
 --- a/src/main/java/org/bukkit/block/Block.java
 +++ b/src/main/java/org/bukkit/block/Block.java
-@@ -542,6 +542,19 @@ public interface Block extends Metadatable, net.kyori.adventure.translation.Tran
+@@ -564,6 +564,19 @@ public interface Block extends Metadatable, net.kyori.adventure.translation.Tran
      boolean breakNaturally(@NotNull ItemStack tool, boolean triggerEffect);
      // Paper end
  

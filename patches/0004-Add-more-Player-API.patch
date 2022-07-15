@@ -5,28 +5,30 @@ Subject: [PATCH] Add more Player API
 
 
 diff --git a/build.gradle.kts b/build.gradle.kts
-index 2f67716a3bdb82c96fc7e6541f8a07b5daa42da0..9be8981d930323a9f88be2f13b6e1b0d98b34c0d 100644
+index 1bd6143bd4c061224e53f8123874f855d0fc7bc5..90282b4598c4483fbdecdb50eefd90cc81f4234a 100644
 --- a/build.gradle.kts
 +++ b/build.gradle.kts
-@@ -45,6 +45,7 @@ dependencies {
+@@ -51,6 +51,7 @@ dependencies {
          exclude("io.papermc.paper", "paper-api")
      }
-     // Daydream end
-+    api("com.mojang:authlib:2.3.31") // Daydream - Mojang Authlib (keep in sync with major MC versions)
+     // Daydream end - Add Brigadier Command API
++    api("com.mojang:authlib:3.3.39") // Daydream - Mojang Authlib (keep in sync with major MC versions)
  
-     implementation("org.ow2.asm:asm:9.1")
-     implementation("org.ow2.asm:asm-commons:9.1")
+     compileOnly("org.apache.maven:maven-resolver-provider:3.8.4")
+     compileOnly("org.apache.maven.resolver:maven-resolver-connector-basic:1.7.2")
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index 9a6e410206852029f1fea0c4409352d5743dcf64..2f5892ffd03ad5a20e2612c01192a358d673877b 100644
+index 6cd0b10d1dc4506cfb1e4db5e1260cb705566cec..8a62980878fa687c8675e4fa56b8a7f33a3a5861 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
-@@ -2070,6 +2070,13 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+@@ -2477,6 +2477,15 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      @Nullable
      org.bukkit.event.player.PlayerResourcePackStatusEvent.Status getResourcePackStatus();
  
 +    // Daydream start
 +    /**
-+     * @param status resource pack status
++     * Sets the player's resource pack status.
++     *
++     * @param status new resource pack status
 +     */
 +    void setResourcePackStatus(@NotNull org.bukkit.event.player.PlayerResourcePackStatusEvent.Status status);
 +    // Daydream end
@@ -34,14 +36,15 @@ index 9a6e410206852029f1fea0c4409352d5743dcf64..2f5892ffd03ad5a20e2612c01192a358
      /**
       * @return the most recent resource pack hash received from the player,
       *         or null if no hash has ever been received from this player.
-@@ -2093,6 +2100,15 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+@@ -2500,6 +2509,16 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      @NotNull
-     PlayerProfile getPlayerProfile();
+     com.destroystokyo.paper.profile.PlayerProfile getPlayerProfile();
  
 +    // Daydream start
 +    /**
-+     * Gets this players profile
-+     * @return The players profile object
++     * Gets this player's game profile.
++     *
++     * @return player's game profile object
 +     */
 +    @NotNull
 +    com.mojang.authlib.GameProfile getProfile();

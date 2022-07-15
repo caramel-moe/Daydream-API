@@ -1,0 +1,39 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: LemonCaramel <admin@caramel.moe>
+Date: Fri, 15 Jul 2022 20:31:29 +0900
+Subject: [PATCH] Add Player Rotation API
+
+
+diff --git a/src/main/java/org/bukkit/entity/Entity.java b/src/main/java/org/bukkit/entity/Entity.java
+index c9f341b88e2ead4eb1ae13e69b1f613826e60acf..2b4ca69037aa1ff66e2fe351cfcb99c595b58671 100644
+--- a/src/main/java/org/bukkit/entity/Entity.java
++++ b/src/main/java/org/bukkit/entity/Entity.java
+@@ -121,7 +121,6 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
+      *
+      * @param yaw the yaw
+      * @param pitch the pitch
+-     * @throws UnsupportedOperationException if used for players
+      */
+     public void setRotation(float yaw, float pitch);
+ 
+diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
+index d47ca991d9592060c62a4d3dc827b5eefbf47fb3..f24bc9e6bebcac54c3850a50ce357ac647355fd5 100644
+--- a/src/main/java/org/bukkit/entity/Player.java
++++ b/src/main/java/org/bukkit/entity/Player.java
+@@ -397,6 +397,16 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+      */
+     public void setBedSpawnLocation(@Nullable Location location, boolean force);
+ 
++    // Daydream start - Add Player Rotation API
++    /**
++     * Sets the player's rotation.
++     *
++     * @param yaw the relative yaw
++     * @param pitch the relative pitch
++     */
++    public void setRelativeRotation(float yaw, float pitch);
++    // Daydream end - Add Player Rotation API
++
+     /**
+      * Play a note for a player at a location. This requires a note block
+      * at the particular location (as far as the client is concerned). This

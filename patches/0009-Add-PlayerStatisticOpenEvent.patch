@@ -6,10 +6,10 @@ Subject: [PATCH] Add PlayerStatisticOpenEvent
 
 diff --git a/src/main/java/moe/caramel/daydream/event/packet/PlayerStatisticOpenEvent.java b/src/main/java/moe/caramel/daydream/event/packet/PlayerStatisticOpenEvent.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..fa9b5a15137c1e8264951272a6f34dd47f546572
+index 0000000000000000000000000000000000000000..6302e1833fa569142eb786c9bb78f2924a893650
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/event/packet/PlayerStatisticOpenEvent.java
-@@ -0,0 +1,45 @@
+@@ -0,0 +1,46 @@
 +package moe.caramel.daydream.event.packet;
 +
 +import org.bukkit.entity.Player;
@@ -18,15 +18,26 @@ index 0000000000000000000000000000000000000000..fa9b5a15137c1e8264951272a6f34dd4
 +import org.bukkit.event.player.PlayerEvent;
 +import org.jetbrains.annotations.NotNull;
 +
-+public class PlayerStatisticOpenEvent extends PlayerEvent implements Cancellable {
++/**
++ * 플레이어가 통계 스크린을 오픈했을 경우 호출됩니다.
++ */
++public final class PlayerStatisticOpenEvent extends PlayerEvent implements Cancellable {
 +
 +    private static final HandlerList HANDLER_LIST = new HandlerList();
++    public @NotNull HandlerList getHandlers() { return HANDLER_LIST; }
++    public static @NotNull HandlerList getHandlerList() { return HANDLER_LIST; }
++
 +    private boolean cancelled;
 +
 +    public PlayerStatisticOpenEvent(@NotNull Player player) {
 +        super(player);
 +    }
 +
++    /**
++     * 통계 패킷을 전송할지의 여부를 가져옵니다.
++     *
++     * @return 통계 패킷을 전송할지의 여부
++     */
 +    @Override
 +    public boolean isCancelled() {
 +        return this.cancelled;
@@ -34,24 +45,14 @@ index 0000000000000000000000000000000000000000..fa9b5a15137c1e8264951272a6f34dd4
 +
 +    /**
 +     * 통계 패킷을 전송하지 않습니다.
++     * <br><br>
++     * 주의: 이벤트를 취소해도 클라이언트에는 통계 로드 화면이 계속 출력됩니다.
++     * 인벤토리를 오픈하고 닫는 방식으로 통계 로드 화면을 제거할 수 있습니다.
 +     *
-+     * 주의: 클라이언트에는 통계 로드 화면이 계속 출력됩니다.
-+     * 인벤토리를 출력하고, 닫는 방식으로 통계 로드 화면을 제거할 수 있습니다.
-+     *
-+     * @param cancel true if you wish to cancel this event
++     * @param cancel {@code true}인 경우 통계 패킷을 전송하지 않습니다.
 +     */
 +    @Override
 +    public void setCancelled(boolean cancel) {
 +        this.cancelled = cancel;
-+    }
-+
-+    @Override
-+    public @NotNull HandlerList getHandlers() {
-+        return HANDLER_LIST;
-+    }
-+
-+    @NotNull
-+    public static HandlerList getHandlerList() {
-+        return HANDLER_LIST;
 +    }
 +}

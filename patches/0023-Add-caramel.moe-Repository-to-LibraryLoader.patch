@@ -1,0 +1,19 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: LemonCaramel <admin@caramel.moe>
+Date: Fri, 15 Jul 2022 19:20:09 +0900
+Subject: [PATCH] Add caramel.moe Repository to LibraryLoader
+
+
+diff --git a/src/main/java/org/bukkit/plugin/java/LibraryLoader.java b/src/main/java/org/bukkit/plugin/java/LibraryLoader.java
+index 6d634b0ea813ccb19f1562a7d0e5a59cea4eab21..d0dfacd1767e26403458abcfef4c744819bb7d5e 100644
+--- a/src/main/java/org/bukkit/plugin/java/LibraryLoader.java
++++ b/src/main/java/org/bukkit/plugin/java/LibraryLoader.java
+@@ -67,7 +67,7 @@ class LibraryLoader
+         } );
+         session.setReadOnly();
+ 
+-        this.repositories = repository.newResolutionRepositories( session, Arrays.asList( new RemoteRepository.Builder( "central", "default", "https://repo.maven.apache.org/maven2" ).build() ) );
++        this.repositories = repository.newResolutionRepositories( session, Arrays.asList( new RemoteRepository.Builder( "central", "default", "https://repo.maven.apache.org/maven2" ).build(), new RemoteRepository.Builder( "caramel-repo", "default", "https://repo.caramel.moe/repository/maven-public" ).build() ) ); // Daydream - add caramel.moe Repository
+     }
+ 
+     @Nullable

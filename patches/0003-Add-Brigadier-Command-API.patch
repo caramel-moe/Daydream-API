@@ -1,31 +1,31 @@
 From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: LemonCaramel <admin@caramel.moe>
 Date: Tue, 12 Oct 2021 20:40:48 +0900
-Subject: [PATCH] Add Brigadier Command Registerer
+Subject: [PATCH] Add Brigadier Command API
 
 
 diff --git a/build.gradle.kts b/build.gradle.kts
-index ea6c1b996f0df109dcb71428c21b81c6a80011f0..2f67716a3bdb82c96fc7e6541f8a07b5daa42da0 100644
+index 46016bd1a2403c9f449ba92ec942cd349da747ac..1bd6143bd4c061224e53f8123874f855d0fc7bc5 100644
 --- a/build.gradle.kts
 +++ b/build.gradle.kts
-@@ -40,6 +40,11 @@ dependencies {
-     api("org.apache.logging.log4j:log4j-api:2.17.1") // Paper // Daydream
-     api("org.slf4j:slf4j-api:1.7.30") // Paper
-     api("net.kyori:adventure-text-minimessage:4.2.0-SNAPSHOT") // Daydream
-+    // Daydream start
-+    api("io.papermc.paper:paper-mojangapi:1.17.1-R0.1-SNAPSHOT") {
+@@ -46,6 +46,11 @@ dependencies {
+     implementation("org.ow2.asm:asm:9.2")
+     implementation("org.ow2.asm:asm-commons:9.2")
+     // Paper end
++    // Daydream start - Add Brigadier Command API
++    api("io.papermc.paper:paper-mojangapi:1.18.2-R0.1-SNAPSHOT") {
 +        exclude("io.papermc.paper", "paper-api")
 +    }
-+    // Daydream end
++    // Daydream end - Add Brigadier Command API
  
-     implementation("org.ow2.asm:asm:9.1")
-     implementation("org.ow2.asm:asm-commons:9.1")
+     compileOnly("org.apache.maven:maven-resolver-provider:3.8.4")
+     compileOnly("org.apache.maven.resolver:maven-resolver-connector-basic:1.7.2")
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/AbstractCommand.java b/src/main/java/moe/caramel/daydream/brigadier/AbstractCommand.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..d71ffa1b304c1ba42f089982b991378cadd600c1
+index 0000000000000000000000000000000000000000..b3dca81432152a560f88cb3a34ca071531b03add
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/brigadier/AbstractCommand.java
-@@ -0,0 +1,411 @@
+@@ -0,0 +1,387 @@
 +package moe.caramel.daydream.brigadier;
 +
 +import com.destroystokyo.paper.brigadier.BukkitBrigadierCommandSource;
@@ -149,48 +149,24 @@ index 0000000000000000000000000000000000000000..d71ffa1b304c1ba42f089982b991378c
 +     */
 +
 +    /**
-+     * Gets the permission message.
-+     *
-+     * @return the permission message
-+     */
-+    public @Nullable Component permissionMessage() {
-+        return this.permissionMessage;
-+    }
-+
-+    /**
 +     * Returns a message to be displayed on a failed permission check for this command
 +     *
 +     * @return Permission check failed message
-+     * @deprecated use {@link #permissionMessage()}
 +     */
 +    @Nullable
-+    @Deprecated
-+    public String getPermissionMessage() {
-+        return io.papermc.paper.text.PaperComponents.legacySectionSerializer().serializeOrNull(permissionMessage);
-+    }
-+
-+    /**
-+     * Sets the permission message.
-+     *
-+     * @param permissionMessage the permission message
-+     */
-+    @NotNull
-+    public AbstractCommand permissionMessage(@Nullable Component permissionMessage) {
-+        this.permissionMessage = permissionMessage;
-+        return this;
++    public Component getPermissionMessage() {
++        return this.permissionMessage;
 +    }
 +
 +    /**
 +     * Sets the message sent when a permission check fails.
 +     *
-+     * @param permissionMessage new permission message, null to indicate default message, or an empty string to indicate no message
++     * @param permissionMessage the permission message
 +     * @return this command object, for chaining
-+     * @deprecated use {@link #permissionMessage(Component)}
 +     */
 +    @NotNull
-+    @Deprecated
-+    public AbstractCommand setPermissionMessage(@Nullable String permissionMessage) {
-+        this.permissionMessage = io.papermc.paper.text.PaperComponents.legacySectionSerializer().deserializeOrNull(permissionMessage);
++    public AbstractCommand setPermissionMessage(@Nullable Component permissionMessage) {
++        this.permissionMessage = permissionMessage;
 +        return this;
 +    }
 +
@@ -257,7 +233,7 @@ index 0000000000000000000000000000000000000000..d71ffa1b304c1ba42f089982b991378c
 +     */
 +    @NotNull
 +    protected SuggestionProvider<BukkitBrigadierCommandSource> suggest(@NotNull String... strings) {
-+        return suggest(Arrays.asList(strings));
++        return this.suggest(Arrays.asList(strings));
 +    }
 +
 +    /**
@@ -271,7 +247,7 @@ index 0000000000000000000000000000000000000000..d71ffa1b304c1ba42f089982b991378c
 +     */
 +    @NotNull
 +    protected SuggestionProvider<BukkitBrigadierCommandSource> multipleSuggest(@NotNull String... strings) {
-+        return suggest(Arrays.asList(strings));
++        return this.multipleSuggest(Arrays.asList(strings));
 +    }
 +
 +    /**
@@ -296,7 +272,7 @@ index 0000000000000000000000000000000000000000..d71ffa1b304c1ba42f089982b991378c
 +     */
 +    @NotNull
 +    protected SuggestionProvider<BukkitBrigadierCommandSource> mutableMultipleSuggestArray(@NotNull Supplier<String[]> strings) {
-+        return multipleSuggest(Arrays.asList(strings.get()));
++        return this.multipleSuggest(Arrays.asList(strings.get()));
 +    }
 +
 +    /**
@@ -439,10 +415,10 @@ index 0000000000000000000000000000000000000000..d71ffa1b304c1ba42f089982b991378c
 +}
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/Arguments.java b/src/main/java/moe/caramel/daydream/brigadier/Arguments.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..d6f32db2675a43a2b725b8455099c82b77bc259b
+index 0000000000000000000000000000000000000000..8ff3213b6eb2b324add1ea7f91ce274ed0bfd46b
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/brigadier/Arguments.java
-@@ -0,0 +1,234 @@
+@@ -0,0 +1,246 @@
 +package moe.caramel.daydream.brigadier;
 +
 +import com.destroystokyo.paper.brigadier.BukkitBrigadierCommandSource;
@@ -676,13 +652,25 @@ index 0000000000000000000000000000000000000000..d6f32db2675a43a2b725b8455099c82b
 +     * Example: "dd12be42-52a9-4a91-a8a1-11c01849e498"
 +     */
 +    public static final SimpleArgument<UUID> UUID = null;
++
++    /*
++     * Example: "foo", "foo:bar", "012"
++     * @since Minecraft 1.18.2
++     * RESOURCE_KEY
++     */
++
++    /*
++     * Example: "foo", "foo:bar", "012", "#skeletons", "#minecraft:skeletons"
++     * @since Minecraft 1.18.2
++     * RESOURCE_OR_TAG_LOCATION
++     */
 +}
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/Suggestions.java b/src/main/java/moe/caramel/daydream/brigadier/Suggestions.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..bfac782a59b64b851515e7307a9d0926e6fbd67f
+index 0000000000000000000000000000000000000000..b37308a8f1af3c508402d41b96ac8678ade7086f
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/brigadier/Suggestions.java
-@@ -0,0 +1,21 @@
+@@ -0,0 +1,22 @@
 +package moe.caramel.daydream.brigadier;
 +
 +import moe.caramel.daydream.brigadier.suggestion.SimpleSuggestion;
@@ -700,16 +688,17 @@ index 0000000000000000000000000000000000000000..bfac782a59b64b851515e7307a9d0926
 +
 +    public static SimpleSuggestion AVAILABLE_SOUNDS;
 +
++    @Deprecated
 +    public static SimpleSuggestion AVAILABLE_BIOMES;
 +
 +    public static SimpleSuggestion SUMMONABLE_ENTITIES;
 +}
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/argument/ArgumentInf.java b/src/main/java/moe/caramel/daydream/brigadier/argument/ArgumentInf.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..e3009743cec0a4d233628b754f619354570525ef
+index 0000000000000000000000000000000000000000..ad361b4b2f019e02c35ae92f06e8cb6e9bf31d2e
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/brigadier/argument/ArgumentInf.java
-@@ -0,0 +1,9 @@
+@@ -0,0 +1,14 @@
 +package moe.caramel.daydream.brigadier.argument;
 +
 +import com.mojang.brigadier.arguments.ArgumentType;
@@ -717,6 +706,11 @@ index 0000000000000000000000000000000000000000..e3009743cec0a4d233628b754f619354
 +
 +public interface ArgumentInf {
 +
++    /**
++     * Get Argument Type.
++     *
++     * @return argument type
++     */
 +    @NotNull ArgumentType<?> get();
 +}
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/argument/BlockPosArgument.java b/src/main/java/moe/caramel/daydream/brigadier/argument/BlockPosArgument.java
@@ -848,10 +842,10 @@ index 0000000000000000000000000000000000000000..0bcfb4a2118d2c2743bcd86d77b52802
 +}
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/argument/ResourceLocationArgument.java b/src/main/java/moe/caramel/daydream/brigadier/argument/ResourceLocationArgument.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..ce65655aa3f3192ed12f6d0f52d00fbff72edc51
+index 0000000000000000000000000000000000000000..882bb34b91eda90594418aa3585b88d9353e2421
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/brigadier/argument/ResourceLocationArgument.java
-@@ -0,0 +1,30 @@
+@@ -0,0 +1,31 @@
 +package moe.caramel.daydream.brigadier.argument;
 +
 +import com.destroystokyo.paper.brigadier.BukkitBrigadierCommandSource;
@@ -875,6 +869,7 @@ index 0000000000000000000000000000000000000000..ce65655aa3f3192ed12f6d0f52d00fbf
 +     */
 +
 +    @NotNull
++    @Deprecated
 +    Attribute getAttribute(final @NotNull CommandContext<? extends BukkitBrigadierCommandSource> context, @NotNull String name) throws CommandSyntaxException;
 +
 +    /*
@@ -1025,20 +1020,59 @@ index 0000000000000000000000000000000000000000..01496ae337322cd91fe42444554a2ca3
 +}
 diff --git a/src/main/java/moe/caramel/daydream/util/NumberRange.java b/src/main/java/moe/caramel/daydream/util/NumberRange.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..068c6ed9299935b24cafe5b826bcd9f9822ac4af
+index 0000000000000000000000000000000000000000..facc2182e0920c9b71e44e8686f97b2afe461401
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/util/NumberRange.java
-@@ -0,0 +1,5 @@
+@@ -0,0 +1,44 @@
 +package moe.caramel.daydream.util;
 +
 +import org.jetbrains.annotations.NotNull;
 +
-+public record NumberRange<T extends Number>(@NotNull T min, @NotNull T max) {}
++/**
++ * 숫자 범위를 지정합니다.
++ *
++ * @param <T> 숫자 타입 (Integer, Double ...)
++ */
++public final class NumberRange<T extends Number> {
++
++    private final T min, max;
++
++    /**
++     * 숫자 범위를 생성합니다.
++     *
++     * @param min 최솟값
++     * @param max 최댓값
++     */
++    public NumberRange(@NotNull T min, @NotNull T max) {
++        this.min = min;
++        this.max = max;
++    }
++
++    /**
++     * 최솟값을 가져옵니다.
++     *
++     * @return 최솟값
++     */
++    @NotNull
++    public T getMin() {
++        return min;
++    }
++
++    /**
++     * 최댓값을 가져옵니다.
++     *
++     * @return 최댓값
++     */
++    @NotNull
++    public T getMax() {
++        return max;
++    }
++}
 diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
-index c551010f84ac5d3ebc626c253a8f8282924152c4..e5bba7b80bc577ace301b77900f49d8ef2a97108 100644
+index a87399fa4838d4b2c1ff9cc35d433ae76cc149bf..50614f4afd86f6d818d346ada252126cbf260f9c 100644
 --- a/src/main/java/org/bukkit/Bukkit.java
 +++ b/src/main/java/org/bukkit/Bukkit.java
-@@ -820,6 +820,19 @@ public final class Bukkit {
+@@ -938,6 +938,19 @@ public final class Bukkit {
          return server.getPluginCommand(name);
      }
  
@@ -1059,10 +1093,10 @@ index c551010f84ac5d3ebc626c253a8f8282924152c4..e5bba7b80bc577ace301b77900f49d8e
       * Writes loaded players to disk.
       */
 diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
-index 72b82efe67c4917216407e9aad86ba9e7e9efce5..c4d8e3fee567a378d0a44b351a0d0fb407439abd 100644
+index d5af4edbc7b209421a67bb304de86f4e7c675d2c..ef6d650ba46b3f6add3902b17d68bce936cfa74e 100644
 --- a/src/main/java/org/bukkit/Server.java
 +++ b/src/main/java/org/bukkit/Server.java
-@@ -680,6 +680,17 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
+@@ -781,6 +781,17 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
      @Nullable
      public PluginCommand getPluginCommand(@NotNull String name);
  
@@ -1081,15 +1115,38 @@ index 72b82efe67c4917216407e9aad86ba9e7e9efce5..c4d8e3fee567a378d0a44b351a0d0fb4
       * Writes loaded players to disk.
       */
 diff --git a/src/main/java/org/bukkit/command/Command.java b/src/main/java/org/bukkit/command/Command.java
-index 95847fcb1ac2e430ee192f4f7ac94e981151c5db..9f1b4141aae7f745083a73a4e204a473d3d0ff8f 100644
+index 4c608818a797c12cba6aa91643a915cf0bae77f5..dae4345a6ed4a071e7f250b14f470cef4aa61d36 100644
 --- a/src/main/java/org/bukkit/command/Command.java
 +++ b/src/main/java/org/bukkit/command/Command.java
 @@ -185,7 +185,7 @@ public abstract class Command {
          }
  
              // Paper start - use components for permissionMessage
--        net.kyori.adventure.text.Component permissionMessage = this.permissionMessage != null ? this.permissionMessage : io.papermc.paper.text.PaperComponents.legacySectionSerializer().deserialize(Bukkit.getPermissionMessage());
-+        net.kyori.adventure.text.Component permissionMessage = this.permissionMessage != null ? this.permissionMessage : (Bukkit.getPermissionMessage().length() == 0 ? net.kyori.adventure.text.Component.translatable("command.failed", net.kyori.adventure.text.format.NamedTextColor.RED) : io.papermc.paper.text.PaperComponents.legacySectionSerializer().deserialize(Bukkit.getPermissionMessage())); // Daydream
+-        net.kyori.adventure.text.Component permissionMessage = this.permissionMessage != null ? this.permissionMessage : net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer.legacySection().deserialize(Bukkit.getPermissionMessage());
++        net.kyori.adventure.text.Component permissionMessage = this.permissionMessage != null ? this.permissionMessage : (Bukkit.getPermissionMessage().isEmpty() ? net.kyori.adventure.text.Component.translatable("command.failed", net.kyori.adventure.text.format.NamedTextColor.RED) : net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer.legacySection().deserialize(Bukkit.getPermissionMessage())); // Daydream
          if (!permissionMessage.equals(net.kyori.adventure.text.Component.empty())) {
              target.sendMessage(permissionMessage.replaceText(net.kyori.adventure.text.TextReplacementConfig.builder().matchLiteral("<permission>").replacement(permission).build()));
              // Paper end
+diff --git a/src/main/java/org/bukkit/plugin/java/JavaPlugin.java b/src/main/java/org/bukkit/plugin/java/JavaPlugin.java
+index c943bd801b54519ba6cf5d45aec593d7b7438f99..074b434813ecc428df882ab6ccebc312619bcdbe 100644
+--- a/src/main/java/org/bukkit/plugin/java/JavaPlugin.java
++++ b/src/main/java/org/bukkit/plugin/java/JavaPlugin.java
+@@ -325,6 +325,18 @@ public abstract class JavaPlugin extends PluginBase {
+         }
+     }
+ 
++    // Daydream start
++    /**
++     * Register command using Brigadier.
++     *
++     * @param label command label
++     * @param command Command node to register
++     */
++    public void registerCommand(@NotNull String label, @NotNull moe.caramel.daydream.brigadier.AbstractCommand command) {
++        this.getServer().registerCommand(this, label, command);
++    }
++    // Daydream end
++
+     @Override
+     public void onLoad() {}
+ 
