@@ -4,6 +4,191 @@ Date: Sat, 16 Jul 2022 00:04:33 +0900
 Subject: [PATCH] Add Packet API
 
 
+diff --git a/src/main/java/moe/caramel/daydream/event/network/PacketType.java b/src/main/java/moe/caramel/daydream/event/network/PacketType.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..b2e79d611160879693643fd42a9254c5b82f42ae
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/event/network/PacketType.java
+@@ -0,0 +1,16 @@
++package moe.caramel.daydream.event.network;
++
++/**
++ * Packet Lists
++ */
++public final class PacketType {
++
++    private PacketType() { throw new UnsupportedOperationException(); }
++
++    /**
++     * [Client -> Server] Packets
++     */
++    public enum Client {
++        PLAYER_INPUT
++    }
++}
+diff --git a/src/main/java/moe/caramel/daydream/event/network/ReceivePacketEvent.java b/src/main/java/moe/caramel/daydream/event/network/ReceivePacketEvent.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..159f0bd553535a6e893a7e96ea13e5563d24d97e
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/event/network/ReceivePacketEvent.java
+@@ -0,0 +1,45 @@
++package moe.caramel.daydream.event.network;
++
++import org.bukkit.entity.Player;
++import org.bukkit.event.Cancellable;
++import org.bukkit.event.HandlerList;
++import org.bukkit.event.player.PlayerEvent;
++import org.jetbrains.annotations.NotNull;
++
++/**
++ * 서버가 클라이언트로부터 패킷을 전달받았을 때 호출됩니다.
++ */
++public class ReceivePacketEvent extends PlayerEvent implements Cancellable {
++
++    private static final HandlerList HANDLER_LIST = new HandlerList();
++    public @NotNull HandlerList getHandlers() { return HANDLER_LIST; }
++    public static @NotNull HandlerList getHandlerList() { return HANDLER_LIST; }
++
++    private final PacketType.Client packetType;
++    private boolean cancelled;
++
++    public ReceivePacketEvent(@NotNull Player who, @NotNull PacketType.Client packetType) {
++        super(who);
++        this.packetType = packetType;
++    }
++
++    /**
++     * 클라이언트가 보낸 패킷의 종류를 가져옵니다.
++     *
++     * @return 클라이언트가 보낸 패킷의 종류
++     */
++    @NotNull
++    public PacketType.Client getPacketType() {
++        return packetType;
++    }
++
++    @Override
++    public boolean isCancelled() {
++        return this.cancelled;
++    }
++
++    @Override
++    public void setCancelled(boolean cancel) {
++        this.cancelled = cancel;
++    }
++}
+diff --git a/src/main/java/moe/caramel/daydream/event/network/ReceivePlayerInputPacketEvent.java b/src/main/java/moe/caramel/daydream/event/network/ReceivePlayerInputPacketEvent.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..0745c1744fc6ad02812b19bd2fcbcbfbfe9db4c2
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/event/network/ReceivePlayerInputPacketEvent.java
+@@ -0,0 +1,106 @@
++package moe.caramel.daydream.event.network;
++
++import org.bukkit.entity.Player;
++import org.jetbrains.annotations.NotNull;
++
++/**
++ * 서버가 클라이언트로부터 {@link PacketType.Client#PLAYER_INPUT}패킷을 전달받았을 때 호출됩니다.
++ */
++public final class ReceivePlayerInputPacketEvent extends ReceivePacketEvent {
++
++    private float sideways, forward;
++    private boolean jumping, shiftKeyDown;
++
++    public ReceivePlayerInputPacketEvent(@NotNull Player who, float sideways, float forward, boolean jumping, boolean shiftKeyDown) {
++        super(who, PacketType.Client.PLAYER_INPUT);
++        this.sideways = sideways;
++        this.forward = forward;
++        this.jumping = jumping;
++        this.shiftKeyDown = shiftKeyDown;
++    }
++
++    /**
++     * Gets sideways value.
++     *
++     * @return sideways value
++     */
++    public float getSideways() {
++        return sideways;
++    }
++
++    /**
++     * Sets sideways value.
++     *
++     * @param sideways new sideways value
++     */
++    public void setSideways(float sideways) {
++        this.sideways = sideways;
++    }
++
++    /**
++     * Gets forward value.
++     *
++     * @return forward value
++     */
++    public float getForward() {
++        return forward;
++    }
++
++    /**
++     * Sets forward value.
++     *
++     * @param forward new forward value
++     */
++    public void setForward(float forward) {
++        this.forward = forward;
++    }
++
++    /**
++     * Gets jumping value.
++     *
++     * @return jumping value
++     */
++    public boolean isJumping() {
++        return jumping;
++    }
++
++    /**
++     * Sets jumping value.
++     *
++     * @param jumping new jumping value
++     */
++    public void setJumping(boolean jumping) {
++        this.jumping = jumping;
++    }
++
++    /**
++     * Gets shiftKeyDown value.
++     *
++     * @return shiftKeyDown value
++     */
++    public boolean isShiftKeyDown() {
++        return shiftKeyDown;
++    }
++
++    /**
++     * Sets shiftKeyDown value.
++     *
++     * @param shiftKeyDown new shiftKeyDown value
++     */
++    public void setShiftKeyDown(boolean shiftKeyDown) {
++        this.shiftKeyDown = shiftKeyDown;
++    }
++
++    @Override
++    public String toString() {
++        return "ReceivePlayerInputPacketEvent{" +
++            "packetType=" + this.getPacketType() +
++            ", player=" + this.getPlayer() +
++            ", sideways=" + sideways +
++            ", forward=" + forward +
++            ", jumping=" + jumping +
++            ", shiftKeyDown=" + shiftKeyDown +
++            ", cancelled=" + this.isCancelled() +
++            '}';
++    }
++}
 diff --git a/src/main/java/moe/caramel/daydream/network/Packet.java b/src/main/java/moe/caramel/daydream/network/Packet.java
 new file mode 100644
 index 0000000000000000000000000000000000000000..6eef5e86697ff2b9dcb8a5a48cc8dfd590cdf6d6
