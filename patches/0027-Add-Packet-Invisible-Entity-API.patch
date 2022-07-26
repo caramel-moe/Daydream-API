@@ -4,6 +4,37 @@ Date: Tue, 26 Jul 2022 10:27:57 +0900
 Subject: [PATCH] Add Packet Invisible Entity API
 
 
+diff --git a/src/main/java/org/bukkit/World.java b/src/main/java/org/bukkit/World.java
+index bd35cb298972ec1bc586ba25d155ee24c5b27327..397d847dcf7f77fa907045d1600008eade7ad82c 100644
+--- a/src/main/java/org/bukkit/World.java
++++ b/src/main/java/org/bukkit/World.java
+@@ -2284,6 +2284,26 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
+     @NotNull
+     public FallingBlock spawnFallingBlock(@NotNull Location location, @NotNull BlockData data) throws IllegalArgumentException;
+ 
++    // Daydream start
++    /**
++     * Spawn a {@link FallingBlock} entity at the given {@link Location} of
++     * the specified {@link Material}. The material dictates what is falling.
++     * When the FallingBlock hits the ground, it will place that block.
++     * <p>
++     * The Material must be a block type, check with {@link Material#isBlock()
++     * material.isBlock()}. The Material may not be air.
++     *
++     * @param location The {@link Location} to spawn the FallingBlock
++     * @param data The block data
++     * @param function The function to be run before the entity is spawned.
++     * @return The spawned {@link FallingBlock} instance
++     * @throws IllegalArgumentException if {@link Location} or {@link
++     *     BlockData} are null
++     */
++    @NotNull
++    public FallingBlock spawnFallingBlock(@NotNull Location location, @NotNull BlockData data, @NotNull Consumer<FallingBlock> function) throws IllegalArgumentException;
++    // Daydream end
++
+     /**
+      * Spawn a {@link FallingBlock} entity at the given {@link Location} of the
+      * specified {@link Material}. The material dictates what is falling.
 diff --git a/src/main/java/org/bukkit/entity/Entity.java b/src/main/java/org/bukkit/entity/Entity.java
 index 2b4ca69037aa1ff66e2fe351cfcb99c595b58671..20091ade52b75688f42199e01194be38f9f9fbb0 100644
 --- a/src/main/java/org/bukkit/entity/Entity.java
