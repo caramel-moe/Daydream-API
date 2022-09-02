@@ -94,7 +94,7 @@ index 3ec32b46264cfff857b50129b5e0fa5584943ec6..918f3f6f120ea3853ddf5c2d501fa28f
      }
  }
 diff --git a/src/main/java/org/bukkit/command/defaults/VersionCommand.java b/src/main/java/org/bukkit/command/defaults/VersionCommand.java
-index 57a21495843f3a144cd73473cdc8781d6129b7ca..609f817ebefcd2cd6edf755aa75bb93beeda1193 100644
+index 57a21495843f3a144cd73473cdc8781d6129b7ca..da1fbfff5a577d124035fe9278ed3953896b06b1 100644
 --- a/src/main/java/org/bukkit/command/defaults/VersionCommand.java
 +++ b/src/main/java/org/bukkit/command/defaults/VersionCommand.java
 @@ -44,13 +44,17 @@ public class VersionCommand extends BukkitCommand {
@@ -112,10 +112,19 @@ index 57a21495843f3a144cd73473cdc8781d6129b7ca..609f817ebefcd2cd6edf755aa75bb93b
          if (!testPermission(sender)) return true;
  
 -        if (args.length == 0) {
-+        if (args.length == 0 || !sender.hasPermission("daydream.command.version")) {
++        if (args.length == 0 || !sender.hasPermission("daydream.command.version")) { // Daydream
              //sender.sendMessage("This server is running " + Bukkit.getName() + " version " + Bukkit.getVersion() + " (Implementing API version " + Bukkit.getBukkitVersion() + ")"); // Paper - moved to setVersionMessage
              sendVersion(sender);
          } else {
+@@ -142,7 +146,7 @@ public class VersionCommand extends BukkitCommand {
+         Validate.notNull(args, "Arguments cannot be null");
+         Validate.notNull(alias, "Alias cannot be null");
+ 
+-        if (args.length == 1) {
++        if (args.length == 1 && sender.hasPermission("daydream.command.version")) { // Daydream
+             List<String> completions = new ArrayList<String>();
+             String toComplete = args[0].toLowerCase(java.util.Locale.ENGLISH);
+             for (Plugin plugin : Bukkit.getPluginManager().getPlugins()) {
 @@ -163,6 +167,18 @@ public class VersionCommand extends BukkitCommand {
      private long lastCheck = 0;
  

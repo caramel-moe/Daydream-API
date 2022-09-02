@@ -279,16 +279,17 @@ index 0000000000000000000000000000000000000000..091f30773662c104a6e5017209febee2
 +}
 diff --git a/src/main/java/moe/caramel/daydream/network/packet/PlayerInfoPacket.java b/src/main/java/moe/caramel/daydream/network/packet/PlayerInfoPacket.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..273018b2a80c6f027440260f36f4c9b27b4da8c5
+index 0000000000000000000000000000000000000000..871264afd7094c2d8dd1ec627bb26a8baf7ef7e0
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/network/packet/PlayerInfoPacket.java
-@@ -0,0 +1,139 @@
+@@ -0,0 +1,165 @@
 +package moe.caramel.daydream.network.packet;
 +
 +import com.mojang.authlib.GameProfile;
 +import moe.caramel.daydream.network.Packet;
 +import net.kyori.adventure.text.Component;
 +import org.bukkit.GameMode;
++import org.bukkit.entity.Player;
 +import org.jetbrains.annotations.NotNull;
 +import org.jetbrains.annotations.Nullable;
 +import java.util.Collection;
@@ -349,6 +350,20 @@ index 0000000000000000000000000000000000000000..273018b2a80c6f027440260f36f4c9b2
 +    }
 +
 +    /**
++     * for Add Player Action
++     *
++     * @param player 대상 플레이어
++     * @return 플레이어 데이터
++     */
++    @NotNull
++    static PlayerData addPlayer(@NotNull Player player) {
++        return PlayerInfoPacket.addPlayer(
++            player.getProfile(), player.getPing(),
++            player.getGameMode(), player.displayName()
++        );
++    }
++
++    /**
 +     * for Update GameMode Action
 +     *
 +     * @param uuid 플레이어의 UUID
@@ -393,6 +408,17 @@ index 0000000000000000000000000000000000000000..273018b2a80c6f027440260f36f4c9b2
 +    @NotNull
 +    static PlayerData removePlayer(@NotNull UUID uuid) {
 +        return new PlayerData(new GameProfile(uuid, null), 0, null, null);
++    }
++
++    /**
++     * for Remove Player Action
++     *
++     * @param player 대상 플레이어
++     * @return 플레이어 데이터
++     */
++    @NotNull
++    static PlayerData removePlayer(@NotNull Player player) {
++        return new PlayerData(player.getProfile(), 0, null, null);
 +    }
 +
 +

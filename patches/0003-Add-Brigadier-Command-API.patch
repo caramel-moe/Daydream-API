@@ -820,10 +820,10 @@ index 0000000000000000000000000000000000000000..1f343e849551acae44fbd1b6922ec65a
 +}
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/argument/ItemArgument.java b/src/main/java/moe/caramel/daydream/brigadier/argument/ItemArgument.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..0bcfb4a2118d2c2743bcd86d77b528021c1769e4
+index 0000000000000000000000000000000000000000..201ff85ff4fac3531a5c3a37336ff2922fc336e0
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/brigadier/argument/ItemArgument.java
-@@ -0,0 +1,16 @@
+@@ -0,0 +1,18 @@
 +package moe.caramel.daydream.brigadier.argument;
 +
 +import com.destroystokyo.paper.brigadier.BukkitBrigadierCommandSource;
@@ -835,7 +835,9 @@ index 0000000000000000000000000000000000000000..0bcfb4a2118d2c2743bcd86d77b52802
 +public interface ItemArgument extends ArgumentInf {
 +
 +    @NotNull
-+    ItemStack getItem(final @NotNull CommandContext<? extends BukkitBrigadierCommandSource> context, @NotNull String name) throws CommandSyntaxException;
++    default ItemStack getItem(final @NotNull CommandContext<? extends BukkitBrigadierCommandSource> context, @NotNull String name) throws CommandSyntaxException {
++        return this.createItemStack(context, name, 1, false);
++    }
 +
 +    @NotNull
 +    ItemStack createItemStack(final @NotNull CommandContext<? extends BukkitBrigadierCommandSource> context, @NotNull String name, int amount, boolean checkOverstack) throws CommandSyntaxException;

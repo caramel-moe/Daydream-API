@@ -1,0 +1,71 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: LemonCaramel <admin@caramel.moe>
+Date: Sat, 3 Sep 2022 00:28:40 +0900
+Subject: [PATCH] Add PlayerBottleIntoItemEvent
+
+
+diff --git a/src/main/java/moe/caramel/daydream/event/player/PlayerBottleIntoItemEvent.java b/src/main/java/moe/caramel/daydream/event/player/PlayerBottleIntoItemEvent.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..7463c9f8520106f22649ff03e913122a268aa197
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/event/player/PlayerBottleIntoItemEvent.java
+@@ -0,0 +1,59 @@
++package moe.caramel.daydream.event.player;
++
++import org.bukkit.entity.Player;
++import org.bukkit.event.Cancellable;
++import org.bukkit.event.HandlerList;
++import org.bukkit.event.player.PlayerEvent;
++import org.jetbrains.annotations.NotNull;
++
++/**
++ * 플레이어가 병에 무언가를 담았을 때 호출됩니다.
++ */
++public final class PlayerBottleIntoItemEvent extends PlayerEvent implements Cancellable {
++
++    private static final HandlerList HANDLER_LIST = new HandlerList();
++    public @NotNull HandlerList getHandlers() { return HANDLER_LIST; }
++    public static @NotNull HandlerList getHandlerList() { return HANDLER_LIST; }
++
++    private final ItemType type;
++    private boolean cancel;
++
++    public PlayerBottleIntoItemEvent(@NotNull Player player, @NotNull ItemType type) {
++        super(player);
++        this.type = type;
++    }
++
++    @Override
++    public boolean isCancelled() {
++        return cancel;
++    }
++
++    @Override
++    public void setCancelled(boolean cancel) {
++        this.cancel = cancel;
++    }
++
++    /**
++     * 병에 담길 아이템의 타입을 가져옵니다.
++     *
++     * @return 병에 담길 아이템의 타입
++     */
++    @NotNull
++    public ItemType getType() {
++        return type;
++    }
++
++    /**
++     * 병에 담길 아이템의 타입
++     */
++    public enum ItemType {
++        /**
++         * 드래곤의 숨결
++         */
++        DRAGON_BREATH,
++        /**
++         * 물
++         */
++        WATER
++    }
++}
