@@ -1,0 +1,26 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: LemonCaramel <admin@caramel.moe>
+Date: Wed, 3 Aug 2022 12:47:42 +0900
+Subject: [PATCH] Add More Explode Source API
+
+
+diff --git a/src/main/java/org/bukkit/entity/EnderCrystal.java b/src/main/java/org/bukkit/entity/EnderCrystal.java
+index febc7b3f4c9a402d74d2bcf27e89578fc6d7d6a3..5fc135b1f32e2e5e7dccadbd347ef8a80b8f8d74 100644
+--- a/src/main/java/org/bukkit/entity/EnderCrystal.java
++++ b/src/main/java/org/bukkit/entity/EnderCrystal.java
+@@ -40,4 +40,15 @@ public interface EnderCrystal extends Entity {
+      * @throws IllegalArgumentException for differing worlds
+      */
+     void setBeamTarget(@Nullable Location location);
++
++    // Daydream start - Add More Explode Source API
++    /**
++     * 엔더 수정 폭발에 대한 책임이 있는 엔티티를 가져옵니다.
++     *
++     * @return 아직 폭발되지 않았거나 엔티티가 공격하여 폭발된 것이 아닌 경우
++     * {@code null}을 반환하며, 엔티티가 공격해 폭발한 경우 해당 엔티티를 반환합니다.
++     */
++    @Nullable
++    Entity getSource();
++    // Daydream end - Add More Explode Source API
+ }
