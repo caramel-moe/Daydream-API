@@ -665,6 +665,35 @@ index 0000000000000000000000000000000000000000..8ff3213b6eb2b324add1ea7f91ce274e
 +     * RESOURCE_OR_TAG_LOCATION
 +     */
 +}
+diff --git a/src/main/java/moe/caramel/daydream/brigadier/PluginIdentifiableCommand.java b/src/main/java/moe/caramel/daydream/brigadier/PluginIdentifiableCommand.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..2d6c8e74b5605d425a46ae69800287813ffd6736
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/brigadier/PluginIdentifiableCommand.java
+@@ -0,0 +1,23 @@
++package moe.caramel.daydream.brigadier;
++
++import org.bukkit.plugin.Plugin;
++import org.jetbrains.annotations.NotNull;
++
++/**
++ * This interface is used by the help system to group commands into
++ * sub-indexes based on the {@link Plugin} they are a part of. Custom command
++ * implementations will need to implement this interface to have a sub-index
++ * automatically generated on the plugin's behalf.
++ *
++ * @deprecated I HATE PLUGMAN
++ */
++public interface PluginIdentifiableCommand {
++
++    /**
++     * Gets the owner of this PluginIdentifiableCommand.
++     *
++     * @return Plugin that owns this PluginIdentifiableCommand.
++     */
++    @NotNull
++    public Plugin getPlugin();
++}
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/Suggestions.java b/src/main/java/moe/caramel/daydream/brigadier/Suggestions.java
 new file mode 100644
 index 0000000000000000000000000000000000000000..b37308a8f1af3c508402d41b96ac8678ade7086f
@@ -1071,10 +1100,10 @@ index 0000000000000000000000000000000000000000..facc2182e0920c9b71e44e8686f97b2a
 +    }
 +}
 diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
-index a87399fa4838d4b2c1ff9cc35d433ae76cc149bf..50614f4afd86f6d818d346ada252126cbf260f9c 100644
+index a87399fa4838d4b2c1ff9cc35d433ae76cc149bf..51102225ad101381f29eb963cd99c11616f17f17 100644
 --- a/src/main/java/org/bukkit/Bukkit.java
 +++ b/src/main/java/org/bukkit/Bukkit.java
-@@ -938,6 +938,19 @@ public final class Bukkit {
+@@ -938,6 +938,42 @@ public final class Bukkit {
          return server.getPluginCommand(name);
      }
  
@@ -1089,16 +1118,39 @@ index a87399fa4838d4b2c1ff9cc35d433ae76cc149bf..50614f4afd86f6d818d346ada252126c
 +    public static void registerCommand(@NotNull org.bukkit.plugin.Plugin plugin, @NotNull String label, @NotNull moe.caramel.daydream.brigadier.AbstractCommand command) {
 +        server.registerCommand(plugin, label, command);
 +    }
++
++    /**
++     * Unregister commands using Brigadier.
++     *
++     * @param plugin Plugin
++     * @param commands commands
++     * @return unregistered command list
++     */
++    @NotNull
++    public static List<String> unregisterCommands(@NotNull org.bukkit.plugin.Plugin plugin, @NotNull String... commands) {
++        return server.unregisterCommands(plugin, commands);
++    }
++
++    /**
++     * Unregister all commands using Brigadier.
++     *
++     * @param plugin Plugin
++     * @return unregistered command list
++     */
++    @NotNull
++    public static List<String> unregisterAllCommands(@NotNull org.bukkit.plugin.Plugin plugin) {
++        return server.unregisterAllCommands(plugin);
++    }
 +    // Daydream end
 +
      /**
       * Writes loaded players to disk.
       */
 diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
-index d5af4edbc7b209421a67bb304de86f4e7c675d2c..ef6d650ba46b3f6add3902b17d68bce936cfa74e 100644
+index d5af4edbc7b209421a67bb304de86f4e7c675d2c..070ea79ef65489c2cd5d493e9cea45a7d644de96 100644
 --- a/src/main/java/org/bukkit/Server.java
 +++ b/src/main/java/org/bukkit/Server.java
-@@ -781,6 +781,17 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
+@@ -781,6 +781,36 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
      @Nullable
      public PluginCommand getPluginCommand(@NotNull String name);
  
@@ -1111,16 +1163,46 @@ index d5af4edbc7b209421a67bb304de86f4e7c675d2c..ef6d650ba46b3f6add3902b17d68bce9
 +     * @param command Command node to register
 +     */
 +    public void registerCommand(@NotNull org.bukkit.plugin.Plugin plugin, @NotNull String label, @NotNull moe.caramel.daydream.brigadier.AbstractCommand command);
++
++    /**
++     * Unregister commands using Brigadier.
++     *
++     * @param plugin Plugin
++     * @param commands commands
++     * @return unregistered command list
++     */
++    @NotNull
++    public List<String> unregisterCommands(@NotNull org.bukkit.plugin.Plugin plugin, @NotNull String... commands);
++
++    /**
++     * Unregister all commands using Brigadier.
++     *
++     * @param plugin Plugin
++     * @return unregistered command list
++     */
++    @NotNull
++    public List<String> unregisterAllCommands(@NotNull org.bukkit.plugin.Plugin plugin);
 +    // Daydream end
 +
      /**
       * Writes loaded players to disk.
       */
 diff --git a/src/main/java/org/bukkit/command/Command.java b/src/main/java/org/bukkit/command/Command.java
-index 4c608818a797c12cba6aa91643a915cf0bae77f5..dae4345a6ed4a071e7f250b14f470cef4aa61d36 100644
+index 4c608818a797c12cba6aa91643a915cf0bae77f5..0f09138449ae6eaa64f51d8c7042f9245aab8512 100644
 --- a/src/main/java/org/bukkit/command/Command.java
 +++ b/src/main/java/org/bukkit/command/Command.java
-@@ -185,7 +185,7 @@ public abstract class Command {
+@@ -35,6 +35,10 @@ public abstract class Command {
+     private net.kyori.adventure.text.Component permissionMessage; // Paper
+     public co.aikar.timings.Timing timings; // Paper
+     @NotNull public String getTimingName() {return getName();} // Paper
++    // Daydream start
++    protected boolean brigadierCommand;
++    public boolean isBrigadierCommand() { return brigadierCommand; }
++    // Daydream end
+ 
+     protected Command(@NotNull String name) {
+         this(name, "", "/" + name, new ArrayList<String>());
+@@ -185,7 +189,7 @@ public abstract class Command {
          }
  
              // Paper start - use components for permissionMessage
@@ -1129,11 +1211,84 @@ index 4c608818a797c12cba6aa91643a915cf0bae77f5..dae4345a6ed4a071e7f250b14f470cef
          if (!permissionMessage.equals(net.kyori.adventure.text.Component.empty())) {
              target.sendMessage(permissionMessage.replaceText(net.kyori.adventure.text.TextReplacementConfig.builder().matchLiteral("<permission>").replacement(permission).build()));
              // Paper end
+diff --git a/src/main/java/org/bukkit/command/SimpleCommandMap.java b/src/main/java/org/bukkit/command/SimpleCommandMap.java
+index 04c8affc6b4518ac584f77071d4042fc6bc1e35a..12fa767ebe446d56a450036f7aff8b898fa02d3f 100644
+--- a/src/main/java/org/bukkit/command/SimpleCommandMap.java
++++ b/src/main/java/org/bukkit/command/SimpleCommandMap.java
+@@ -312,4 +312,48 @@ public class SimpleCommandMap implements CommandMap {
+         return knownCommands;
+     }
+     // Paper end
++
++    // Daydream start
++    @NotNull
++    public synchronized List<String> unregisterBrigadierCommands(@NotNull org.bukkit.plugin.Plugin plugin, @NotNull String... commands) {
++        final List<String> removedCommand = new ArrayList<>();
++        final String fallback = plugin.getName().toLowerCase(java.util.Locale.ENGLISH);
++        for (String name : commands) {
++            name = name.toLowerCase(java.util.Locale.ENGLISH);
++            // Label
++            if (this.removeCommand(plugin, name)) {
++                removedCommand.add(name);
++                knownCommands.remove(name);
++            }
++            // Fallback Label
++            final String fallbackLabel = (fallback + ":" + name);
++            if (this.removeCommand(plugin, fallbackLabel)) {
++                removedCommand.add(fallbackLabel);
++                knownCommands.remove(fallbackLabel);
++            }
++        }
++        return removedCommand;
++    }
++
++    @NotNull
++    public synchronized List<String> unregisterAllBrigadierCommands(@NotNull org.bukkit.plugin.Plugin plugin) {
++        final List<String> removedCommand = new ArrayList<>();
++        final Iterator<String> iterator = knownCommands.keySet().iterator();
++        while (iterator.hasNext()) {
++            final String name = iterator.next();
++            if (!this.removeCommand(plugin, name)) continue;
++            removedCommand.add(name);
++            iterator.remove();
++        }
++        return removedCommand;
++    }
++
++    private synchronized boolean removeCommand(@NotNull org.bukkit.plugin.Plugin plugin, @NotNull String name) {
++        final Command command = knownCommands.get(name);
++        if (!(command instanceof moe.caramel.daydream.brigadier.PluginIdentifiableCommand pluginCmd)) return false;
++        if (!command.isBrigadierCommand() || pluginCmd.getPlugin() != plugin) return false;
++        command.unregister(this);
++        return true;
++    }
++    // Daydream end
+ }
+diff --git a/src/main/java/org/bukkit/plugin/SimplePluginManager.java b/src/main/java/org/bukkit/plugin/SimplePluginManager.java
+index bab8bb3a52cdeef5f7052d4e3f404c42f37d117d..7a6a5e5cc70ca8f4e023c56fee08cfd27ed3e022 100644
+--- a/src/main/java/org/bukkit/plugin/SimplePluginManager.java
++++ b/src/main/java/org/bukkit/plugin/SimplePluginManager.java
+@@ -574,6 +574,15 @@ public final class SimplePluginManager implements PluginManager {
+     @Override
+     public synchronized void disablePlugin(@NotNull final Plugin plugin) { // Paper - synchronize
+         if (plugin.isEnabled()) {
++            // Daydream start
++            try {
++                server.unregisterAllCommands(plugin);
++            } catch (Throwable ex) {
++                handlePluginException("Error occurred (in the plugin loader) while unregister brigadier commands "
++                        + plugin.getDescription().getFullName() + " (Is it up to date?)", ex, plugin); // Paper
++            }
++            // Daydream end
++
+             try {
+                 plugin.getPluginLoader().disablePlugin(plugin);
+             } catch (Throwable ex) {
 diff --git a/src/main/java/org/bukkit/plugin/java/JavaPlugin.java b/src/main/java/org/bukkit/plugin/java/JavaPlugin.java
-index c943bd801b54519ba6cf5d45aec593d7b7438f99..074b434813ecc428df882ab6ccebc312619bcdbe 100644
+index c943bd801b54519ba6cf5d45aec593d7b7438f99..186d12c430e26d5a7501238bb5c5d19f6d7e6dcf 100644
 --- a/src/main/java/org/bukkit/plugin/java/JavaPlugin.java
 +++ b/src/main/java/org/bukkit/plugin/java/JavaPlugin.java
-@@ -325,6 +325,18 @@ public abstract class JavaPlugin extends PluginBase {
+@@ -325,6 +325,39 @@ public abstract class JavaPlugin extends PluginBase {
          }
      }
  
@@ -1146,6 +1301,27 @@ index c943bd801b54519ba6cf5d45aec593d7b7438f99..074b434813ecc428df882ab6ccebc312
 +     */
 +    public void registerCommand(@NotNull String label, @NotNull moe.caramel.daydream.brigadier.AbstractCommand command) {
 +        this.getServer().registerCommand(this, label, command);
++    }
++
++    /**
++     * Unregister commands using Brigadier.
++     *
++     * @param commands commands
++     * @return removed command list
++     */
++    @NotNull
++    public List<String> unregisterCommands(@NotNull String... commands) {
++        return this.getServer().unregisterCommands(this, commands);
++    }
++
++    /**
++     * Unregister all commands using Brigadier.
++     *
++     * @return removed command list
++     */
++    @NotNull
++    public List<String> unregisterAllCommands() {
++        return this.getServer().unregisterAllCommands(this);
 +    }
 +    // Daydream end
 +
