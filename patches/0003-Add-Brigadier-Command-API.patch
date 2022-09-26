@@ -22,7 +22,7 @@ index 46016bd1a2403c9f449ba92ec942cd349da747ac..1bd6143bd4c061224e53f8123874f855
      compileOnly("org.apache.maven.resolver:maven-resolver-connector-basic:1.7.2")
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/AbstractCommand.java b/src/main/java/moe/caramel/daydream/brigadier/AbstractCommand.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..b3dca81432152a560f88cb3a34ca071531b03add
+index 0000000000000000000000000000000000000000..eb72f3fc2c8541a753021e6fc3f7228a6d28d9ed
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/brigadier/AbstractCommand.java
 @@ -0,0 +1,387 @@
@@ -384,7 +384,7 @@ index 0000000000000000000000000000000000000000..b3dca81432152a560f88cb3a34ca0715
 +     * @return The built suggestions
 +     */
 +    @NotNull
-+    private static CompletableFuture<Suggestions> suggestMatching(@NotNull SuggestionsBuilder builder, @NotNull Iterable<String> suggestions, boolean multiple) {
++    public static CompletableFuture<Suggestions> suggestMatching(@NotNull SuggestionsBuilder builder, @NotNull Iterable<String> suggestions, boolean multiple) {
 +        if (multiple) builder = builder.createOffset(builder.getInput().lastIndexOf(' ') + 1);
 +        String token = builder.getRemainingLowerCase();
 +        for (String s : suggestions) if (s.toLowerCase().startsWith(token)) builder.suggest(s);
@@ -401,7 +401,7 @@ index 0000000000000000000000000000000000000000..b3dca81432152a560f88cb3a34ca0715
 +     * @return The built suggestions
 +     */
 +    @NotNull
-+    private static CompletableFuture<Suggestions> suggestMatching(@NotNull SuggestionsBuilder builder, @NotNull Map<String, String> suggestions, boolean multiple) {
++    public static CompletableFuture<Suggestions> suggestMatching(@NotNull SuggestionsBuilder builder, @NotNull Map<String, String> suggestions, boolean multiple) {
 +        if (multiple) builder = builder.createOffset(builder.getInput().lastIndexOf(' ') + 1);
 +        String token = builder.getRemainingLowerCase();
 +
