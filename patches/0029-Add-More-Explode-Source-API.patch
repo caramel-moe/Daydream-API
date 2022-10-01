@@ -4,6 +4,27 @@ Date: Wed, 3 Aug 2022 12:47:42 +0900
 Subject: [PATCH] Add More Explode Source API
 
 
+diff --git a/src/main/java/io/papermc/paper/entity/damage/BadRespawnPointDamageOrigin.java b/src/main/java/io/papermc/paper/entity/damage/BadRespawnPointDamageOrigin.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..48007d82d2d621807fc4d9e8d82dd96d0653a1a0
+--- /dev/null
++++ b/src/main/java/io/papermc/paper/entity/damage/BadRespawnPointDamageOrigin.java
+@@ -0,0 +1,15 @@
++package io.papermc.paper.entity.damage;
++
++import org.bukkit.entity.Entity;
++import org.jetbrains.annotations.Nullable;
++
++public interface BadRespawnPointDamageOrigin extends DamageOrigin {
++
++    /**
++     * 폭발에 대한 책임이 있는 엔티티를 가져옵니다.
++     *
++     * @return 엔티티를 알 수 없는 경우 {@code null}을 반환합니다.
++     */
++    @Nullable
++    Entity getSource();
++}
 diff --git a/src/main/java/org/bukkit/entity/EnderCrystal.java b/src/main/java/org/bukkit/entity/EnderCrystal.java
 index febc7b3f4c9a402d74d2bcf27e89578fc6d7d6a3..5fc135b1f32e2e5e7dccadbd347ef8a80b8f8d74 100644
 --- a/src/main/java/org/bukkit/entity/EnderCrystal.java
