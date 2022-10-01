@@ -1503,28 +1503,51 @@ extends <a href="RegionAccessor.html" title="interface in org.bukkit">RegionAcce
 <div class="block">Performs a ray trace that checks for both block and entity collisions.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="util/RayTraceResult.html" title="class in org.bukkit.util">RayTraceResult</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#rayTraceBlocks(org.bukkit.Location,org.bukkit.util.Vector,double)" class="member-name-link">rayTraceBlocks</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Location.html" title="class in org.bukkit">Location</a>&nbsp;start,
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="util/Vector.html" title="class in org.bukkit.util">Vector</a>&nbsp;direction,
- double&nbsp;maxDistance)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Performs a ray trace that checks for block collisions using the blocks'
- precise collision shapes.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="util/RayTraceResult.html" title="class in org.bukkit.util">RayTraceResult</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#rayTraceBlocks(org.bukkit.Location,org.bukkit.util.Vector,double,org.bukkit.FluidCollisionMode)" class="member-name-link">rayTraceBlocks</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Location.html" title="class in org.bukkit">Location</a>&nbsp;start,
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#rayTrace(org.bukkit.Location,org.bukkit.util.Vector,double,org.bukkit.FluidCollisionMode,boolean,double,java.util.function.Predicate,java.util.Collection)" class="member-name-link">rayTrace</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Location.html" title="class in org.bukkit">Location</a>&nbsp;start,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="util/Vector.html" title="class in org.bukkit.util">Vector</a>&nbsp;direction,
  double&nbsp;maxDistance,
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="FluidCollisionMode.html" title="enum class in org.bukkit">FluidCollisionMode</a>&nbsp;fluidCollisionMode)</code></div>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="FluidCollisionMode.html" title="enum class in org.bukkit">FluidCollisionMode</a>&nbsp;fluidCollisionMode,
+ boolean&nbsp;ignorePassableBlocks,
+ double&nbsp;raySize,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Predicate.html" title="class or interface in java.util.function" class="external-link">Predicate</a>&lt;<a href="entity/Entity.html" title="interface in org.bukkit.entity">Entity</a>&gt;&nbsp;filter,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Collection.html" title="class or interface in java.util" class="external-link">Collection</a>&lt;<a href="block/Block.html" title="interface in org.bukkit.block">Block</a>&gt;&nbsp;ignored)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Performs a ray trace that checks for both block and entity collisions.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="util/RayTraceResult.html" title="class in org.bukkit.util">RayTraceResult</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#rayTraceBlocks(org.bukkit.Location,org.bukkit.util.Vector,double)" class="member-name-link">rayTraceBlocks</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Location.html" title="class in org.bukkit">Location</a>&nbsp;start,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="util/Vector.html" title="class in org.bukkit.util">Vector</a>&nbsp;direction,
+ double&nbsp;maxDistance)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Performs a ray trace that checks for block collisions using the blocks'
  precise collision shapes.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="util/RayTraceResult.html" title="class in org.bukkit.util">RayTraceResult</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#rayTraceBlocks(org.bukkit.Location,org.bukkit.util.Vector,double,org.bukkit.FluidCollisionMode,boolean)" class="member-name-link">rayTraceBlocks</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Location.html" title="class in org.bukkit">Location</a>&nbsp;start,
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#rayTraceBlocks(org.bukkit.Location,org.bukkit.util.Vector,double,org.bukkit.FluidCollisionMode)" class="member-name-link">rayTraceBlocks</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Location.html" title="class in org.bukkit">Location</a>&nbsp;start,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="util/Vector.html" title="class in org.bukkit.util">Vector</a>&nbsp;direction,
+ double&nbsp;maxDistance,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="FluidCollisionMode.html" title="enum class in org.bukkit">FluidCollisionMode</a>&nbsp;fluidCollisionMode)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Performs a ray trace that checks for block collisions using the blocks'
+ precise collision shapes.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="util/RayTraceResult.html" title="class in org.bukkit.util">RayTraceResult</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#rayTraceBlocks(org.bukkit.Location,org.bukkit.util.Vector,double,org.bukkit.FluidCollisionMode,boolean)" class="member-name-link">rayTraceBlocks</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Location.html" title="class in org.bukkit">Location</a>&nbsp;start,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="util/Vector.html" title="class in org.bukkit.util">Vector</a>&nbsp;direction,
  double&nbsp;maxDistance,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="FluidCollisionMode.html" title="enum class in org.bukkit">FluidCollisionMode</a>&nbsp;fluidCollisionMode,
  boolean&nbsp;ignorePassableBlocks)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Performs a ray trace that checks for block collisions using the blocks'
+ precise collision shapes.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="util/RayTraceResult.html" title="class in org.bukkit.util">RayTraceResult</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#rayTraceBlocks(org.bukkit.Location,org.bukkit.util.Vector,double,org.bukkit.FluidCollisionMode,boolean,java.util.Collection)" class="member-name-link">rayTraceBlocks</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Location.html" title="class in org.bukkit">Location</a>&nbsp;start,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="util/Vector.html" title="class in org.bukkit.util">Vector</a>&nbsp;direction,
+ double&nbsp;maxDistance,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="FluidCollisionMode.html" title="enum class in org.bukkit">FluidCollisionMode</a>&nbsp;fluidCollisionMode,
+ boolean&nbsp;ignorePassableBlocks,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Collection.html" title="class or interface in java.util" class="external-link">Collection</a>&lt;<a href="block/Block.html" title="interface in org.bukkit.block">Block</a>&gt;&nbsp;ignored)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Performs a ray trace that checks for block collisions using the blocks'
  precise collision shapes.</div>
@@ -4787,6 +4810,46 @@ extends <a href="RegionAccessor.html" title="interface in org.bukkit">RegionAcce
 </section>
 </li>
 <li>
+<section class="detail" id="rayTraceBlocks(org.bukkit.Location,org.bukkit.util.Vector,double,org.bukkit.FluidCollisionMode,boolean,java.util.Collection)">
+<h3>rayTraceBlocks</h3>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a>
+</span><span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="util/RayTraceResult.html" title="class in org.bukkit.util">RayTraceResult</a></span>&nbsp;<span class="element-name">rayTraceBlocks</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Location.html" title="class in org.bukkit">Location</a>&nbsp;start,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="util/Vector.html" title="class in org.bukkit.util">Vector</a>&nbsp;direction,
+ double&nbsp;maxDistance,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="FluidCollisionMode.html" title="enum class in org.bukkit">FluidCollisionMode</a>&nbsp;fluidCollisionMode,
+ boolean&nbsp;ignorePassableBlocks,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Collection.html" title="class or interface in java.util" class="external-link">Collection</a>&lt;<a href="block/Block.html" title="interface in org.bukkit.block">Block</a>&gt;&nbsp;ignored)</span></div>
+<div class="block">Performs a ray trace that checks for block collisions using the blocks'
+ precise collision shapes.
+ <p>
+ If collisions with passable blocks are ignored, fluid collisions are
+ ignored as well regardless of the fluid collision mode.
+ <p>
+ Portal blocks are only considered passable if the ray starts within
+ them. Apart from that collisions with portal blocks will be considered
+ even if collisions with passable blocks are otherwise ignored.
+ <p>
+ This may cause loading of chunks! Some implementations may impose
+ artificial restrictions on the maximum distance.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>start</code> - the start location</dd>
+<dd><code>direction</code> - the ray direction</dd>
+<dd><code>maxDistance</code> - the maximum distance</dd>
+<dd><code>fluidCollisionMode</code> - the fluid collision mode</dd>
+<dd><code>ignorePassableBlocks</code> - whether to ignore passable but collidable
+     blocks (ex. tall grass, signs, fluids, ..)</dd>
+<dd><code>ignored</code> - a collection of blocks to ignore</dd>
+<dt>Returns:</dt>
+<dd>the ray trace hit result, or <code>null</code> if there is no hit</dd>
+</dl>
+</section>
+</li>
+<li>
 <section class="detail" id="rayTrace(org.bukkit.Location,org.bukkit.util.Vector,double,org.bukkit.FluidCollisionMode,boolean,double,java.util.function.Predicate)">
 <h3>rayTrace</h3>
 <div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a>
@@ -4828,6 +4891,57 @@ extends <a href="RegionAccessor.html" title="interface in org.bukkit">RegionAcce
      shrinked) by this value before doing collision checks</dd>
 <dd><code>filter</code> - only entities that fulfill this predicate are considered,
      or <code>null</code> to consider all entities</dd>
+<dt>Returns:</dt>
+<dd>the closest ray trace hit result with either a block or an
+     entity, or <code>null</code> if there is no hit</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="rayTrace(org.bukkit.Location,org.bukkit.util.Vector,double,org.bukkit.FluidCollisionMode,boolean,double,java.util.function.Predicate,java.util.Collection)">
+<h3>rayTrace</h3>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a>
+</span><span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="util/RayTraceResult.html" title="class in org.bukkit.util">RayTraceResult</a></span>&nbsp;<span class="element-name">rayTrace</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Location.html" title="class in org.bukkit">Location</a>&nbsp;start,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="util/Vector.html" title="class in org.bukkit.util">Vector</a>&nbsp;direction,
+ double&nbsp;maxDistance,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="FluidCollisionMode.html" title="enum class in org.bukkit">FluidCollisionMode</a>&nbsp;fluidCollisionMode,
+ boolean&nbsp;ignorePassableBlocks,
+ double&nbsp;raySize,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Predicate.html" title="class or interface in java.util.function" class="external-link">Predicate</a>&lt;<a href="entity/Entity.html" title="interface in org.bukkit.entity">Entity</a>&gt;&nbsp;filter,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Collection.html" title="class or interface in java.util" class="external-link">Collection</a>&lt;<a href="block/Block.html" title="interface in org.bukkit.block">Block</a>&gt;&nbsp;ignored)</span></div>
+<div class="block">Performs a ray trace that checks for both block and entity collisions.
+ <p>
+ Block collisions use the blocks' precise collision shapes. The
+ <code>raySize</code> parameter is only taken into account for entity
+ collision checks.
+ <p>
+ If collisions with passable blocks are ignored, fluid collisions are
+ ignored as well regardless of the fluid collision mode.
+ <p>
+ Portal blocks are only considered passable if the ray starts within them.
+ Apart from that collisions with portal blocks will be considered even if
+ collisions with passable blocks are otherwise ignored.
+ <p>
+ This may cause loading of chunks! Some implementations may impose
+ artificial restrictions on the maximum distance.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>start</code> - the start location</dd>
+<dd><code>direction</code> - the ray direction</dd>
+<dd><code>maxDistance</code> - the maximum distance</dd>
+<dd><code>fluidCollisionMode</code> - the fluid collision mode</dd>
+<dd><code>ignorePassableBlocks</code> - whether to ignore passable but collidable
+     blocks (ex. tall grass, signs, fluids, ..)</dd>
+<dd><code>raySize</code> - entity bounding boxes will be uniformly expanded (or
+     shrinked) by this value before doing collision checks</dd>
+<dd><code>filter</code> - only entities that fulfill this predicate are considered,
+     or <code>null</code> to consider all entities</dd>
+<dd><code>ignored</code> - a collection of blocks to ignore</dd>
 <dt>Returns:</dt>
 <dd>the closest ray trace hit result with either a block or an
      entity, or <code>null</code> if there is no hit</dd>

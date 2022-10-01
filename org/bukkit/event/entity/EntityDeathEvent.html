@@ -128,6 +128,11 @@ implements <a href="../Cancellable.html" title="interface in org.bukkit.event">C
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../../inventory/ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&gt;&nbsp;drops,
  int&nbsp;droppedExp)</code></div>
 <div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(org.bukkit.entity.LivingEntity,java.util.List,int,io.papermc.paper.entity.damage.DamageOrigin)" class="member-name-link">EntityDeathEvent</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../entity/LivingEntity.html" title="interface in org.bukkit.entity">LivingEntity</a>&nbsp;what,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../../inventory/ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&gt;&nbsp;drops,
+ int&nbsp;droppedExp,
+ <a href="../../../../io/papermc/paper/entity/damage/DamageOrigin.html" title="interface in io.papermc.paper.entity.damage">DamageOrigin</a>&nbsp;origin)</code></div>
+<div class="col-last even-row-color">&nbsp;</div>
 </div>
 </section>
 </li>
@@ -183,59 +188,64 @@ implements <a href="../Cancellable.html" title="interface in org.bukkit.event">C
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../HandlerList.html" title="class in org.bukkit.event">HandlerList</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getHandlers()" class="member-name-link">getHandlers</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getReviveHealth()" class="member-name-link">getReviveHealth</a>()</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../../../../io/papermc/paper/entity/damage/DamageOrigin.html" title="interface in io.papermc.paper.entity.damage">DamageOrigin</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getOrigin()" class="member-name-link">getOrigin</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Gets the damage origin that dealt this death</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getReviveHealth()" class="member-name-link">getReviveHealth</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Get the amount of health that the entity should revive with after cancelling the event.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isCancelled()" class="member-name-link">isCancelled</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isCancelled()" class="member-name-link">isCancelled</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Gets the cancellation state of this event.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setCancelled(boolean)" class="member-name-link">setCancelled</a><wbr>(boolean&nbsp;cancel)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setCancelled(boolean)" class="member-name-link">setCancelled</a><wbr>(boolean&nbsp;cancel)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Sets the cancellation state of this event.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setDeathSound(org.bukkit.Sound)" class="member-name-link">setDeathSound</a><wbr>(<a href="../../Sound.html" title="enum class in org.bukkit">Sound</a>&nbsp;sound)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setDeathSound(org.bukkit.Sound)" class="member-name-link">setDeathSound</a><wbr>(<a href="../../Sound.html" title="enum class in org.bukkit">Sound</a>&nbsp;sound)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Set the sound that the entity makes when dying</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setDeathSoundCategory(org.bukkit.SoundCategory)" class="member-name-link">setDeathSoundCategory</a><wbr>(<a href="../../SoundCategory.html" title="enum class in org.bukkit">SoundCategory</a>&nbsp;soundCategory)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setDeathSoundCategory(org.bukkit.SoundCategory)" class="member-name-link">setDeathSoundCategory</a><wbr>(<a href="../../SoundCategory.html" title="enum class in org.bukkit">SoundCategory</a>&nbsp;soundCategory)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Set the sound category that the death sound should play in.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setDeathSoundPitch(float)" class="member-name-link">setDeathSoundPitch</a><wbr>(float&nbsp;pitch)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setDeathSoundPitch(float)" class="member-name-link">setDeathSoundPitch</a><wbr>(float&nbsp;pitch)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">GSetet the pitch that the death sound should play with.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setDeathSoundVolume(float)" class="member-name-link">setDeathSoundVolume</a><wbr>(float&nbsp;volume)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setDeathSoundVolume(float)" class="member-name-link">setDeathSoundVolume</a><wbr>(float&nbsp;volume)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Set the volume the death sound should play at.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setDroppedExp(int)" class="member-name-link">setDroppedExp</a><wbr>(int&nbsp;exp)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setDroppedExp(int)" class="member-name-link">setDroppedExp</a><wbr>(int&nbsp;exp)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Sets how much EXP should be dropped from this death.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setReviveHealth(double)" class="member-name-link">setReviveHealth</a><wbr>(double&nbsp;reviveHealth)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setReviveHealth(double)" class="member-name-link">setReviveHealth</a><wbr>(double&nbsp;reviveHealth)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Set the amount of health that the entity should revive with after cancelling the event.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setShouldPlayDeathSound(boolean)" class="member-name-link">setShouldPlayDeathSound</a><wbr>(boolean&nbsp;playDeathSound)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setShouldPlayDeathSound(boolean)" class="member-name-link">setShouldPlayDeathSound</a><wbr>(boolean&nbsp;playDeathSound)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Set whether or not the death sound should play when the entity dies.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#shouldPlayDeathSound()" class="member-name-link">shouldPlayDeathSound</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#shouldPlayDeathSound()" class="member-name-link">shouldPlayDeathSound</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Whether or not the death sound should play when the entity dies.</div>
 </div>
 </div>
@@ -278,6 +288,18 @@ implements <a href="../Cancellable.html" title="interface in org.bukkit.event">C
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../../inventory/ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&gt;&nbsp;drops,
  int&nbsp;droppedExp)</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="&lt;init&gt;(org.bukkit.entity.LivingEntity,java.util.List,int,io.papermc.paper.entity.damage.DamageOrigin)">
+<h3>EntityDeathEvent</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">EntityDeathEvent</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../entity/LivingEntity.html" title="interface in org.bukkit.entity">LivingEntity</a>&nbsp;what,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../../inventory/ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&gt;&nbsp;drops,
+ int&nbsp;droppedExp,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="../../../../io/papermc/paper/entity/damage/DamageOrigin.html" title="interface in io.papermc.paper.entity.damage">DamageOrigin</a>&nbsp;origin)</span></div>
 </section>
 </li>
 </ul>
@@ -529,6 +551,18 @@ implements <a href="../Cancellable.html" title="interface in org.bukkit.event">C
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>pitch</code> - The pitch the death sound should play with</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getOrigin()">
+<h3>getOrigin</h3>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../../../../io/papermc/paper/entity/damage/DamageOrigin.html" title="interface in io.papermc.paper.entity.damage">DamageOrigin</a></span>&nbsp;<span class="element-name">getOrigin</span>()</div>
+<div class="block">Gets the damage origin that dealt this death</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>History of the damage</dd>
 </dl>
 </section>
 </li>

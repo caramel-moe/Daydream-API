@@ -110,14 +110,28 @@ extends <a href="Entity.html" title="interface in org.bukkit.entity">Entity</a><
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#damage(double)" class="member-name-link">damage</a><wbr>(double&nbsp;amount)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Deals the given amount of damage to this entity.</div>
+<div class="block">Deals the given amount of damage to this entity using the <a href="../../../io/papermc/paper/entity/damage/VanillaDamageOrigin.html#GENERIC"><code>VanillaDamageOrigin.GENERIC</code></a> damage origin.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#damage(double,org.bukkit.entity.Entity)" class="member-name-link">damage</a><wbr>(double&nbsp;amount,
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6"><code><a href="#damage(double,org.bukkit.entity.Entity)" class="member-name-link">damage</a><wbr>(double&nbsp;amount,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="Entity.html" title="interface in org.bukkit.entity">Entity</a>&nbsp;source)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6">
+<div class="block"><span class="deprecated-label">Deprecated.</span>
+<div class="deprecation-comment">you should use <a href="#damage(double,io.papermc.paper.entity.damage.DamageOrigin)"><code>damage(double, io.papermc.paper.entity.damage.DamageOrigin)</code></a> using a <a href="../../../io/papermc/paper/entity/damage/EntityDamageOrigin.html" title="interface in io.papermc.paper.entity.damage"><code>EntityDamageOrigin</code></a> instead <!-- Paper Damage source wrapper --></div>
+</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#damage(double,io.papermc.paper.entity.damage.DamageOrigin)" class="member-name-link">damage</a><wbr>(double&nbsp;amount,
+ <a href="../../../io/papermc/paper/entity/damage/DamageOrigin.html" title="interface in io.papermc.paper.entity.damage">DamageOrigin</a>&nbsp;origin)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Deals the given amount of damage to this entity with specific <a href="../../../io/papermc/paper/entity/damage/DamageOrigin.html" title="interface in io.papermc.paper.entity.damage"><code>DamageOrigin</code></a>.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#damageByBlock(double,io.papermc.paper.entity.damage.DamageOrigin,org.bukkit.block.Block)" class="member-name-link">damageByBlock</a><wbr>(double&nbsp;amount,
+ <a href="../../../io/papermc/paper/entity/damage/DamageOrigin.html" title="interface in io.papermc.paper.entity.damage">DamageOrigin</a>&nbsp;origin,
+ <a href="../block/Block.html" title="interface in org.bukkit.block">Block</a>&nbsp;block)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Deals the given amount of damage to this entity, from a specified
- entity.</div>
+<div class="block">Deals the given amount of damage to this entity with specific <a href="../../../io/papermc/paper/entity/damage/DamageOrigin.html" title="interface in io.papermc.paper.entity.damage"><code>DamageOrigin</code></a> from specific block.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>double</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getAbsorptionAmount()" class="member-name-link">getAbsorptionAmount</a>()</code></div>
@@ -129,34 +143,39 @@ extends <a href="Entity.html" title="interface in org.bukkit.entity">Entity</a><
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Gets the entity's health from 0 to <a href="#getMaxHealth()"><code>getMaxHealth()</code></a>, where 0 is dead.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6"><code>double</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6"><code><a href="#getMaxHealth()" class="member-name-link">getMaxHealth</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6">
-<div class="block"><span class="deprecated-label">Deprecated.</span>
-<div class="deprecation-comment">use <a href="../attribute/Attribute.html#GENERIC_MAX_HEALTH"><code>Attribute.GENERIC_MAX_HEALTH</code></a>.</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="../Sound.html" title="enum class in org.bukkit">Sound</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getHurtSound(io.papermc.paper.entity.damage.DamageOrigin)" class="member-name-link">getHurtSound</a><wbr>(<a href="../../../io/papermc/paper/entity/damage/DamageOrigin.html" title="interface in io.papermc.paper.entity.damage">DamageOrigin</a>&nbsp;origin)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Gets the hurt sound that this damage origin will deal.</div>
 </div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6"><code><a href="#resetMaxHealth()" class="member-name-link">resetMaxHealth</a>()</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6"><code>double</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6"><code><a href="#getMaxHealth()" class="member-name-link">getMaxHealth</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6">
 <div class="block"><span class="deprecated-label">Deprecated.</span>
 <div class="deprecation-comment">use <a href="../attribute/Attribute.html#GENERIC_MAX_HEALTH"><code>Attribute.GENERIC_MAX_HEALTH</code></a>.</div>
 </div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#setAbsorptionAmount(double)" class="member-name-link">setAbsorptionAmount</a><wbr>(double&nbsp;amount)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Sets the entity's absorption amount.</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6"><code><a href="#resetMaxHealth()" class="member-name-link">resetMaxHealth</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6">
+<div class="block"><span class="deprecated-label">Deprecated.</span>
+<div class="deprecation-comment">use <a href="../attribute/Attribute.html#GENERIC_MAX_HEALTH"><code>Attribute.GENERIC_MAX_HEALTH</code></a>.</div>
+</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#setHealth(double)" class="member-name-link">setHealth</a><wbr>(double&nbsp;health)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#setAbsorptionAmount(double)" class="member-name-link">setAbsorptionAmount</a><wbr>(double&nbsp;amount)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Sets the entity's absorption amount.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#setHealth(double)" class="member-name-link">setHealth</a><wbr>(double&nbsp;health)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Sets the entity's health from 0 to <a href="#getMaxHealth()"><code>getMaxHealth()</code></a>, where 0 is
  dead.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6"><code><a href="#setMaxHealth(double)" class="member-name-link">setMaxHealth</a><wbr>(double&nbsp;health)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6"><code><a href="#setMaxHealth(double)" class="member-name-link">setMaxHealth</a><wbr>(double&nbsp;health)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6">
 <div class="block"><span class="deprecated-label">Deprecated.</span>
 <div class="deprecation-comment">use <a href="../attribute/Attribute.html#GENERIC_MAX_HEALTH"><code>Attribute.GENERIC_MAX_HEALTH</code></a>.</div>
 </div>
@@ -172,7 +191,7 @@ extends <a href="Entity.html" title="interface in org.bukkit.entity">Entity</a><
 <code><a href="../command/CommandSender.html#getName()">getName</a>, <a href="../command/CommandSender.html#name()">name</a>, <a href="../command/CommandSender.html#sendMessage(java.lang.String)">sendMessage</a>, <a href="../command/CommandSender.html#sendMessage(java.lang.String...)">sendMessage</a>, <a href="../command/CommandSender.html#sendMessage(net.md_5.bungee.api.chat.BaseComponent...)">sendMessage</a>, <a href="../command/CommandSender.html#sendMessage(java.util.UUID,java.lang.String)">sendMessage</a>, <a href="../command/CommandSender.html#sendMessage(java.util.UUID,java.lang.String...)">sendMessage</a>, <a href="../command/CommandSender.html#sendMessage(net.kyori.adventure.identity.Identity,net.kyori.adventure.text.Component,net.kyori.adventure.audience.MessageType)">sendMessage</a>, <a href="../command/CommandSender.html#sendMessage(net.md_5.bungee.api.chat.BaseComponent)">sendMessage</a>, <a href="../command/CommandSender.html#sendPlainMessage(java.lang.String)">sendPlainMessage</a>, <a href="../command/CommandSender.html#sendRichMessage(java.lang.String)">sendRichMessage</a></code></div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-org.bukkit.entity.Entity">Methods inherited from interface&nbsp;org.bukkit.entity.<a href="Entity.html" title="interface in org.bukkit.entity">Entity</a></h3>
-<code><a href="Entity.html#addPassenger(org.bukkit.entity.Entity)">addPassenger</a>, <a href="Entity.html#addScoreboardTag(java.lang.String)">addScoreboardTag</a>, <a href="Entity.html#asHoverEvent(java.util.function.UnaryOperator)">asHoverEvent</a>, <a href="Entity.html#eject()">eject</a>, <a href="Entity.html#fromMobSpawner()">fromMobSpawner</a>, <a href="Entity.html#getBoundingBox()">getBoundingBox</a>, <a href="Entity.html#getChunk()">getChunk</a>, <a href="Entity.html#getEntityId()">getEntityId</a>, <a href="Entity.html#getEntitySpawnReason()">getEntitySpawnReason</a>, <a href="Entity.html#getFacing()">getFacing</a>, <a href="Entity.html#getFallDistance()">getFallDistance</a>, <a href="Entity.html#getFireTicks()">getFireTicks</a>, <a href="Entity.html#getFreezeTicks()">getFreezeTicks</a>, <a href="Entity.html#getHeight()">getHeight</a>, <a href="Entity.html#getLastDamageCause()">getLastDamageCause</a>, <a href="Entity.html#getLocation()">getLocation</a>, <a href="Entity.html#getLocation(org.bukkit.Location)">getLocation</a>, <a href="Entity.html#getMaxFireTicks()">getMaxFireTicks</a>, <a href="Entity.html#getMaxFreezeTicks()">getMaxFreezeTicks</a>, <a href="Entity.html#getNearbyEntities(double,double,double)">getNearbyEntities</a>, <a href="Entity.html#getOrigin()">getOrigin</a>, <a href="Entity.html#getPassenger()">getPassenger</a>, <a href="Entity.html#getPassengers()">getPassengers</a>, <a href="Entity.html#getPistonMoveReaction()">getPistonMoveReaction</a>, <a href="Entity.html#getPortalCooldown()">getPortalCooldown</a>, <a href="Entity.html#getPose()">getPose</a>, <a href="Entity.html#getScoreboardTags()">getScoreboardTags</a>, <a href="Entity.html#getServer()">getServer</a>, <a href="Entity.html#getSpawnCategory()">getSpawnCategory</a>, <a href="Entity.html#getTicksLived()">getTicksLived</a>, <a href="Entity.html#getTrackedPlayers()">getTrackedPlayers</a>, <a href="Entity.html#getType()">getType</a>, <a href="Entity.html#getUniqueId()">getUniqueId</a>, <a href="Entity.html#getVehicle()">getVehicle</a>, <a href="Entity.html#getVelocity()">getVelocity</a>, <a href="Entity.html#getWidth()">getWidth</a>, <a href="Entity.html#getWorld()">getWorld</a>, <a href="Entity.html#hasFixedPose()">hasFixedPose</a>, <a href="Entity.html#hasGravity()">hasGravity</a>, <a href="Entity.html#isCustomNameVisible()">isCustomNameVisible</a>, <a href="Entity.html#isDead()">isDead</a>, <a href="Entity.html#isEmpty()">isEmpty</a>, <a href="Entity.html#isFreezeTickingLocked()">isFreezeTickingLocked</a>, <a href="Entity.html#isFrozen()">isFrozen</a>, <a href="Entity.html#isGlowing()">isGlowing</a>, <a href="Entity.html#isInBubbleColumn()">isInBubbleColumn</a>, <a href="Entity.html#isInitialized()">isInitialized</a>, <a href="Entity.html#isInLava()">isInLava</a>, <a href="Entity.html#isInPowderedSnow()">isInPowderedSnow</a>, <a href="Entity.html#isInRain()">isInRain</a>, <a href="Entity.html#isInsideVehicle()">isInsideVehicle</a>, <a href="Entity.html#isInvulnerable()">isInvulnerable</a>, <a href="Entity.html#isInWater()">isInWater</a>, <a href="Entity.html#isInWaterOrBubbleColumn()">isInWaterOrBubbleColumn</a>, <a href="Entity.html#isInWaterOrRain()">isInWaterOrRain</a>, <a href="Entity.html#isInWaterOrRainOrBubbleColumn()">isInWaterOrRainOrBubbleColumn</a>, <a href="Entity.html#isOnGround()">isOnGround</a>, <a href="Entity.html#isPersistent()">isPersistent</a>, <a href="Entity.html#isSilent()">isSilent</a>, <a href="Entity.html#isTicking()">isTicking</a>, <a href="Entity.html#isValid()">isValid</a>, <a href="Entity.html#isVisualFire()">isVisualFire</a>, <a href="Entity.html#leaveVehicle()">leaveVehicle</a>, <a href="Entity.html#lockFreezeTicks(boolean)">lockFreezeTicks</a>, <a href="Entity.html#playEffect(org.bukkit.EntityEffect)">playEffect</a>, <a href="Entity.html#remove()">remove</a>, <a href="Entity.html#removePassenger(org.bukkit.entity.Entity)">removePassenger</a>, <a href="Entity.html#removeScoreboardTag(java.lang.String)">removeScoreboardTag</a>, <a href="Entity.html#setCustomNameVisible(boolean)">setCustomNameVisible</a>, <a href="Entity.html#setFallDistance(float)">setFallDistance</a>, <a href="Entity.html#setFireTicks(int)">setFireTicks</a>, <a href="Entity.html#setFreezeTicks(int)">setFreezeTicks</a>, <a href="Entity.html#setGlowing(boolean)">setGlowing</a>, <a href="Entity.html#setGravity(boolean)">setGravity</a>, <a href="Entity.html#setInvulnerable(boolean)">setInvulnerable</a>, <a href="Entity.html#setLastDamageCause(org.bukkit.event.entity.EntityDamageEvent)">setLastDamageCause</a>, <a href="Entity.html#setPacketInvisible(boolean)">setPacketInvisible</a>, <a href="Entity.html#setPassenger(org.bukkit.entity.Entity)">setPassenger</a>, <a href="Entity.html#setPersistent(boolean)">setPersistent</a>, <a href="Entity.html#setPortalCooldown(int)">setPortalCooldown</a>, <a href="Entity.html#setPose(org.bukkit.entity.Pose)">setPose</a>, <a href="Entity.html#setPose(org.bukkit.entity.Pose,boolean)">setPose</a>, <a href="Entity.html#setRotation(float,float)">setRotation</a>, <a href="Entity.html#setSilent(boolean)">setSilent</a>, <a href="Entity.html#setTicksLived(int)">setTicksLived</a>, <a href="Entity.html#setVelocity(org.bukkit.util.Vector)">setVelocity</a>, <a href="Entity.html#setVisualFire(boolean)">setVisualFire</a>, <a href="Entity.html#spawnAt(org.bukkit.Location)">spawnAt</a>, <a href="Entity.html#spawnAt(org.bukkit.Location,org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason)">spawnAt</a>, <a href="Entity.html#spigot()">spigot</a>, <a href="Entity.html#teamDisplayName()">teamDisplayName</a>, <a href="Entity.html#teleport(org.bukkit.entity.Entity)">teleport</a>, <a href="Entity.html#teleport(org.bukkit.entity.Entity,org.bukkit.event.player.PlayerTeleportEvent.TeleportCause)">teleport</a>, <a href="Entity.html#teleport(org.bukkit.Location)">teleport</a>, <a href="Entity.html#teleport(org.bukkit.Location,org.bukkit.event.player.PlayerTeleportEvent.TeleportCause)">teleport</a>, <a href="Entity.html#teleportAsync(org.bukkit.Location)">teleportAsync</a>, <a href="Entity.html#teleportAsync(org.bukkit.Location,org.bukkit.event.player.PlayerTeleportEvent.TeleportCause)">teleportAsync</a>, <a href="Entity.html#usePacketInvisible()">usePacketInvisible</a></code></div>
+<code><a href="Entity.html#addPassenger(org.bukkit.entity.Entity)">addPassenger</a>, <a href="Entity.html#addScoreboardTag(java.lang.String)">addScoreboardTag</a>, <a href="Entity.html#asHoverEvent(java.util.function.UnaryOperator)">asHoverEvent</a>, <a href="Entity.html#eject()">eject</a>, <a href="Entity.html#fromMobSpawner()">fromMobSpawner</a>, <a href="Entity.html#getBoundingBox()">getBoundingBox</a>, <a href="Entity.html#getChunk()">getChunk</a>, <a href="Entity.html#getEntityId()">getEntityId</a>, <a href="Entity.html#getEntitySpawnReason()">getEntitySpawnReason</a>, <a href="Entity.html#getFacing()">getFacing</a>, <a href="Entity.html#getFallDistance()">getFallDistance</a>, <a href="Entity.html#getFireTicks()">getFireTicks</a>, <a href="Entity.html#getFreezeTicks()">getFreezeTicks</a>, <a href="Entity.html#getHeight()">getHeight</a>, <a href="Entity.html#getLastDamageCause()">getLastDamageCause</a>, <a href="Entity.html#getLocation()">getLocation</a>, <a href="Entity.html#getLocation(org.bukkit.Location)">getLocation</a>, <a href="Entity.html#getMaxFireTicks()">getMaxFireTicks</a>, <a href="Entity.html#getMaxFreezeTicks()">getMaxFreezeTicks</a>, <a href="Entity.html#getNearbyEntities(double,double,double)">getNearbyEntities</a>, <a href="Entity.html#getOrigin()">getOrigin</a>, <a href="Entity.html#getPassenger()">getPassenger</a>, <a href="Entity.html#getPassengers()">getPassengers</a>, <a href="Entity.html#getPistonMoveReaction()">getPistonMoveReaction</a>, <a href="Entity.html#getPortalCooldown()">getPortalCooldown</a>, <a href="Entity.html#getPose()">getPose</a>, <a href="Entity.html#getScoreboardTags()">getScoreboardTags</a>, <a href="Entity.html#getServer()">getServer</a>, <a href="Entity.html#getSpawnCategory()">getSpawnCategory</a>, <a href="Entity.html#getTicksLived()">getTicksLived</a>, <a href="Entity.html#getTrackedPlayers()">getTrackedPlayers</a>, <a href="Entity.html#getType()">getType</a>, <a href="Entity.html#getUniqueId()">getUniqueId</a>, <a href="Entity.html#getVehicle()">getVehicle</a>, <a href="Entity.html#getVelocity()">getVelocity</a>, <a href="Entity.html#getWidth()">getWidth</a>, <a href="Entity.html#getWorld()">getWorld</a>, <a href="Entity.html#hasFixedPose()">hasFixedPose</a>, <a href="Entity.html#hasGravity()">hasGravity</a>, <a href="Entity.html#isCustomNameVisible()">isCustomNameVisible</a>, <a href="Entity.html#isDead()">isDead</a>, <a href="Entity.html#isEmpty()">isEmpty</a>, <a href="Entity.html#isFreezeTickingLocked()">isFreezeTickingLocked</a>, <a href="Entity.html#isFrozen()">isFrozen</a>, <a href="Entity.html#isGlowing()">isGlowing</a>, <a href="Entity.html#isInBubbleColumn()">isInBubbleColumn</a>, <a href="Entity.html#isInitialized()">isInitialized</a>, <a href="Entity.html#isInLava()">isInLava</a>, <a href="Entity.html#isInPowderedSnow()">isInPowderedSnow</a>, <a href="Entity.html#isInRain()">isInRain</a>, <a href="Entity.html#isInsideVehicle()">isInsideVehicle</a>, <a href="Entity.html#isInvulnerable()">isInvulnerable</a>, <a href="Entity.html#isInvulnerableTo(io.papermc.paper.entity.damage.DamageOrigin)">isInvulnerableTo</a>, <a href="Entity.html#isInWater()">isInWater</a>, <a href="Entity.html#isInWaterOrBubbleColumn()">isInWaterOrBubbleColumn</a>, <a href="Entity.html#isInWaterOrRain()">isInWaterOrRain</a>, <a href="Entity.html#isInWaterOrRainOrBubbleColumn()">isInWaterOrRainOrBubbleColumn</a>, <a href="Entity.html#isOnGround()">isOnGround</a>, <a href="Entity.html#isPersistent()">isPersistent</a>, <a href="Entity.html#isSilent()">isSilent</a>, <a href="Entity.html#isTicking()">isTicking</a>, <a href="Entity.html#isValid()">isValid</a>, <a href="Entity.html#isVisualFire()">isVisualFire</a>, <a href="Entity.html#leaveVehicle()">leaveVehicle</a>, <a href="Entity.html#lockFreezeTicks(boolean)">lockFreezeTicks</a>, <a href="Entity.html#playEffect(org.bukkit.EntityEffect)">playEffect</a>, <a href="Entity.html#remove()">remove</a>, <a href="Entity.html#removePassenger(org.bukkit.entity.Entity)">removePassenger</a>, <a href="Entity.html#removeScoreboardTag(java.lang.String)">removeScoreboardTag</a>, <a href="Entity.html#setCustomNameVisible(boolean)">setCustomNameVisible</a>, <a href="Entity.html#setFallDistance(float)">setFallDistance</a>, <a href="Entity.html#setFireTicks(int)">setFireTicks</a>, <a href="Entity.html#setFreezeTicks(int)">setFreezeTicks</a>, <a href="Entity.html#setGlowing(boolean)">setGlowing</a>, <a href="Entity.html#setGravity(boolean)">setGravity</a>, <a href="Entity.html#setInvulnerable(boolean)">setInvulnerable</a>, <a href="Entity.html#setLastDamageCause(org.bukkit.event.entity.EntityDamageEvent)">setLastDamageCause</a>, <a href="Entity.html#setPacketInvisible(boolean)">setPacketInvisible</a>, <a href="Entity.html#setPassenger(org.bukkit.entity.Entity)">setPassenger</a>, <a href="Entity.html#setPersistent(boolean)">setPersistent</a>, <a href="Entity.html#setPortalCooldown(int)">setPortalCooldown</a>, <a href="Entity.html#setPose(org.bukkit.entity.Pose)">setPose</a>, <a href="Entity.html#setPose(org.bukkit.entity.Pose,boolean)">setPose</a>, <a href="Entity.html#setRotation(float,float)">setRotation</a>, <a href="Entity.html#setSilent(boolean)">setSilent</a>, <a href="Entity.html#setTicksLived(int)">setTicksLived</a>, <a href="Entity.html#setVelocity(org.bukkit.util.Vector)">setVelocity</a>, <a href="Entity.html#setVisualFire(boolean)">setVisualFire</a>, <a href="Entity.html#spawnAt(org.bukkit.Location)">spawnAt</a>, <a href="Entity.html#spawnAt(org.bukkit.Location,org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason)">spawnAt</a>, <a href="Entity.html#spigot()">spigot</a>, <a href="Entity.html#teamDisplayName()">teamDisplayName</a>, <a href="Entity.html#teleport(org.bukkit.entity.Entity)">teleport</a>, <a href="Entity.html#teleport(org.bukkit.entity.Entity,org.bukkit.event.player.PlayerTeleportEvent.TeleportCause)">teleport</a>, <a href="Entity.html#teleport(org.bukkit.Location)">teleport</a>, <a href="Entity.html#teleport(org.bukkit.Location,org.bukkit.event.player.PlayerTeleportEvent.TeleportCause)">teleport</a>, <a href="Entity.html#teleportAsync(org.bukkit.Location)">teleportAsync</a>, <a href="Entity.html#teleportAsync(org.bukkit.Location,org.bukkit.event.player.PlayerTeleportEvent.TeleportCause)">teleportAsync</a>, <a href="Entity.html#usePacketInvisible()">usePacketInvisible</a></code></div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-net.kyori.adventure.text.event.HoverEventSource">Methods inherited from interface&nbsp;net.kyori.adventure.text.event.<a href="https://jd.adventure.kyori.net/api/4.11.0/net/kyori/adventure/text/event/HoverEventSource.html" title="class or interface in net.kyori.adventure.text.event" class="external-link">HoverEventSource</a></h3>
 <code><a href="https://jd.adventure.kyori.net/api/4.11.0/net/kyori/adventure/text/event/HoverEventSource.html#asHoverEvent()" title="class or interface in net.kyori.adventure.text.event" class="external-link">asHoverEvent</a></code></div>
@@ -209,7 +228,7 @@ extends <a href="Entity.html" title="interface in org.bukkit.entity">Entity</a><
 <section class="detail" id="damage(double)">
 <h3>damage</h3>
 <div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">damage</span><wbr><span class="parameters">(double&nbsp;amount)</span></div>
-<div class="block">Deals the given amount of damage to this entity.</div>
+<div class="block">Deals the given amount of damage to this entity using the <a href="../../../io/papermc/paper/entity/damage/VanillaDamageOrigin.html#GENERIC"><code>VanillaDamageOrigin.GENERIC</code></a> damage origin. <!-- Paper Damage source wrapper --></div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>amount</code> - Amount of damage to deal</dd>
@@ -219,15 +238,76 @@ extends <a href="Entity.html" title="interface in org.bukkit.entity">Entity</a><
 <li>
 <section class="detail" id="damage(double,org.bukkit.entity.Entity)">
 <h3>damage</h3>
-<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">damage</span><wbr><span class="parameters">(double&nbsp;amount,
+<div class="member-signature"><span class="annotations"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Deprecated.html" title="class or interface in java.lang" class="external-link">@Deprecated</a>
+</span><span class="return-type">void</span>&nbsp;<span class="element-name">damage</span><wbr><span class="parameters">(double&nbsp;amount,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="Entity.html" title="interface in org.bukkit.entity">Entity</a>&nbsp;source)</span></div>
+<div class="deprecation-block"><span class="deprecated-label">Deprecated.</span>
+<div class="deprecation-comment">you should use <a href="#damage(double,io.papermc.paper.entity.damage.DamageOrigin)"><code>damage(double, io.papermc.paper.entity.damage.DamageOrigin)</code></a> using a <a href="../../../io/papermc/paper/entity/damage/EntityDamageOrigin.html" title="interface in io.papermc.paper.entity.damage"><code>EntityDamageOrigin</code></a> instead <!-- Paper Damage source wrapper --></div>
+</div>
 <div class="block">Deals the given amount of damage to this entity, from a specified
  entity.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>amount</code> - Amount of damage to deal</dd>
 <dd><code>source</code> - Entity which to attribute this damage from</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="damage(double,io.papermc.paper.entity.damage.DamageOrigin)">
+<h3>damage</h3>
+<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">damage</span><wbr><span class="parameters">(double&nbsp;amount,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="../../../io/papermc/paper/entity/damage/DamageOrigin.html" title="interface in io.papermc.paper.entity.damage">DamageOrigin</a>&nbsp;origin)</span></div>
+<div class="block">Deals the given amount of damage to this entity with specific <a href="../../../io/papermc/paper/entity/damage/DamageOrigin.html" title="interface in io.papermc.paper.entity.damage"><code>DamageOrigin</code></a>.
+
+ <br><br>Note: using this method can only trigger <a href="../event/entity/EntityDamageEvent.html" title="class in org.bukkit.event.entity"><code>EntityDamageEvent</code></a> or
+ <a href="../event/entity/EntityDamageByEntityEvent.html" title="class in org.bukkit.event.entity"><code>EntityDamageByEntityEvent</code></a> but will never trigger <a href="../event/entity/EntityDamageByBlockEvent.html" title="class in org.bukkit.event.entity"><code>EntityDamageByBlockEvent</code></a>
+ even with the correct damage origin. For that you should use <a href="#damageByBlock(double,io.papermc.paper.entity.damage.DamageOrigin,org.bukkit.block.Block)"><code>damageByBlock(double, io.papermc.paper.entity.damage.DamageOrigin, org.bukkit.block.Block)</code></a> instead.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>amount</code> - Amount of damage to deal</dd>
+<dd><code>origin</code> - History of damage</dd>
+<dt>Returns:</dt>
+<dd>True if the damage has been dealt</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="damageByBlock(double,io.papermc.paper.entity.damage.DamageOrigin,org.bukkit.block.Block)">
+<h3>damageByBlock</h3>
+<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">damageByBlock</span><wbr><span class="parameters">(double&nbsp;amount,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="../../../io/papermc/paper/entity/damage/DamageOrigin.html" title="interface in io.papermc.paper.entity.damage">DamageOrigin</a>&nbsp;origin,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="../block/Block.html" title="interface in org.bukkit.block">Block</a>&nbsp;block)</span></div>
+<div class="block">Deals the given amount of damage to this entity with specific <a href="../../../io/papermc/paper/entity/damage/DamageOrigin.html" title="interface in io.papermc.paper.entity.damage"><code>DamageOrigin</code></a> from specific block.
+
+ <br><br>Note: using this method can only trigger <a href="../event/entity/EntityDamageByBlockEvent.html" title="class in org.bukkit.event.entity"><code>EntityDamageByBlockEvent</code></a>.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>amount</code> - Amount of damage to deal</dd>
+<dd><code>origin</code> - History of damage</dd>
+<dd><code>block</code> - The block that deal this damage</dd>
+<dt>Returns:</dt>
+<dd>True if the damage has been dealt</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getHurtSound(io.papermc.paper.entity.damage.DamageOrigin)">
+<h3>getHurtSound</h3>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a>
+</span><span class="return-type"><a href="../Sound.html" title="enum class in org.bukkit">Sound</a></span>&nbsp;<span class="element-name">getHurtSound</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="../../../io/papermc/paper/entity/damage/DamageOrigin.html" title="interface in io.papermc.paper.entity.damage">DamageOrigin</a>&nbsp;origin)</span></div>
+<div class="block">Gets the hurt sound that this damage origin will deal.
+ The sound can be null and often in this case another action can occur.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>origin</code> - History of damage</dd>
+<dt>Returns:</dt>
+<dd>The playing sound when this entity will take that damage origin</dd>
 </dl>
 </section>
 </li>

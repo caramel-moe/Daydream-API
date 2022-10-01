@@ -145,7 +145,17 @@ loadScripts(document, 'script');</script>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="EntityDamageEvent.DamageModifier.html" title="enum class in org.bukkit.event.entity">EntityDamageEvent.DamageModifier</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Double.html" title="class or interface in java.lang" class="external-link">Double</a>&gt;&nbsp;modifiers,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="EntityDamageEvent.DamageModifier.html" title="enum class in org.bukkit.event.entity">EntityDamageEvent.DamageModifier</a>,<wbr>? extends <a href="https://guava.dev/releases/31.0.1-jre/api/docs/com/google/common/base/Function.html" title="class or interface in com.google.common.base" class="external-link">Function</a>&lt;? super <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Double.html" title="class or interface in java.lang" class="external-link">Double</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Double.html" title="class or interface in java.lang" class="external-link">Double</a>&gt;&gt;&nbsp;modifierFunctions,
  boolean&nbsp;critical)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block"><span class="deprecated-label">Deprecated.</span></div>
+</div>
+<div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(org.bukkit.entity.Entity,org.bukkit.entity.Entity,org.bukkit.event.entity.EntityDamageEvent.DamageCause,io.papermc.paper.entity.damage.DamageOrigin,java.util.Map,java.util.Map,boolean)" class="member-name-link">EntityDamageByEntityEvent</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../entity/Entity.html" title="interface in org.bukkit.entity">Entity</a>&nbsp;damager,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../entity/Entity.html" title="interface in org.bukkit.entity">Entity</a>&nbsp;damagee,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="EntityDamageEvent.DamageCause.html" title="enum class in org.bukkit.event.entity">EntityDamageEvent.DamageCause</a>&nbsp;cause,
+ <a href="../../../../io/papermc/paper/entity/damage/DamageOrigin.html" title="interface in io.papermc.paper.entity.damage">DamageOrigin</a>&nbsp;origin,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="EntityDamageEvent.DamageModifier.html" title="enum class in org.bukkit.event.entity">EntityDamageEvent.DamageModifier</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Double.html" title="class or interface in java.lang" class="external-link">Double</a>&gt;&nbsp;modifiers,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="EntityDamageEvent.DamageModifier.html" title="enum class in org.bukkit.event.entity">EntityDamageEvent.DamageModifier</a>,<wbr>? extends <a href="https://guava.dev/releases/31.0.1-jre/api/docs/com/google/common/base/Function.html" title="class or interface in com.google.common.base" class="external-link">Function</a>&lt;? super <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Double.html" title="class or interface in java.lang" class="external-link">Double</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Double.html" title="class or interface in java.lang" class="external-link">Double</a>&gt;&gt;&nbsp;modifierFunctions,
+ boolean&nbsp;critical)</code></div>
+<div class="col-last odd-row-color">&nbsp;</div>
 </div>
 </section>
 </li>
@@ -165,9 +175,14 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Returns the entity that damaged the defender.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isCritical()" class="member-name-link">isCritical</a>()</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../../../../io/papermc/paper/entity/damage/EntityDamageOrigin.html" title="interface in io.papermc.paper.entity.damage">EntityDamageOrigin</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getOrigin()" class="member-name-link">getOrigin</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Gets the origin of the damage.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isCritical()" class="member-name-link">isCritical</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Shows this damage instance was critical.</div>
 </div>
 </div>
@@ -230,12 +245,32 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="&lt;init&gt;(org.bukkit.entity.Entity,org.bukkit.entity.Entity,org.bukkit.event.entity.EntityDamageEvent.DamageCause,java.util.Map,java.util.Map,boolean)">
 <h3>EntityDamageByEntityEvent</h3>
+<div class="member-signature"><span class="annotations"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Deprecated.html" title="class or interface in java.lang" class="external-link">@Deprecated</a>
+</span><span class="modifiers">public</span>&nbsp;<span class="element-name">EntityDamageByEntityEvent</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../entity/Entity.html" title="interface in org.bukkit.entity">Entity</a>&nbsp;damager,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../entity/Entity.html" title="interface in org.bukkit.entity">Entity</a>&nbsp;damagee,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="EntityDamageEvent.DamageCause.html" title="enum class in org.bukkit.event.entity">EntityDamageEvent.DamageCause</a>&nbsp;cause,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="EntityDamageEvent.DamageModifier.html" title="enum class in org.bukkit.event.entity">EntityDamageEvent.DamageModifier</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Double.html" title="class or interface in java.lang" class="external-link">Double</a>&gt;&nbsp;modifiers,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="EntityDamageEvent.DamageModifier.html" title="enum class in org.bukkit.event.entity">EntityDamageEvent.DamageModifier</a>,<wbr>? extends <a href="https://guava.dev/releases/31.0.1-jre/api/docs/com/google/common/base/Function.html" title="class or interface in com.google.common.base" class="external-link">Function</a>&lt;? super <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Double.html" title="class or interface in java.lang" class="external-link">Double</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Double.html" title="class or interface in java.lang" class="external-link">Double</a>&gt;&gt;&nbsp;modifierFunctions,
+ boolean&nbsp;critical)</span></div>
+<div class="deprecation-block"><span class="deprecated-label">Deprecated.</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="&lt;init&gt;(org.bukkit.entity.Entity,org.bukkit.entity.Entity,org.bukkit.event.entity.EntityDamageEvent.DamageCause,io.papermc.paper.entity.damage.DamageOrigin,java.util.Map,java.util.Map,boolean)">
+<h3>EntityDamageByEntityEvent</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">EntityDamageByEntityEvent</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../entity/Entity.html" title="interface in org.bukkit.entity">Entity</a>&nbsp;damager,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../entity/Entity.html" title="interface in org.bukkit.entity">Entity</a>&nbsp;damagee,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="EntityDamageEvent.DamageCause.html" title="enum class in org.bukkit.event.entity">EntityDamageEvent.DamageCause</a>&nbsp;cause,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="../../../../io/papermc/paper/entity/damage/DamageOrigin.html" title="interface in io.papermc.paper.entity.damage">DamageOrigin</a>&nbsp;origin,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="EntityDamageEvent.DamageModifier.html" title="enum class in org.bukkit.event.entity">EntityDamageEvent.DamageModifier</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Double.html" title="class or interface in java.lang" class="external-link">Double</a>&gt;&nbsp;modifiers,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
@@ -251,6 +286,21 @@ loadScripts(document, 'script');</script>
 <section class="method-details" id="method-detail">
 <h2>Method Details</h2>
 <ul class="member-list">
+<li>
+<section class="detail" id="getOrigin()">
+<h3>getOrigin</h3>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../../../../io/papermc/paper/entity/damage/EntityDamageOrigin.html" title="interface in io.papermc.paper.entity.damage">EntityDamageOrigin</a></span>&nbsp;<span class="element-name">getOrigin</span>()</div>
+<div class="block"><span class="descfrm-type-label">Description copied from class:&nbsp;<code><a href="EntityDamageEvent.html#getOrigin()">EntityDamageEvent</a></code></span></div>
+<div class="block">Gets the origin of the damage.</div>
+<dl class="notes">
+<dt>Overrides:</dt>
+<dd><code><a href="EntityDamageEvent.html#getOrigin()">getOrigin</a></code>&nbsp;in class&nbsp;<code><a href="EntityDamageEvent.html" title="class in org.bukkit.event.entity">EntityDamageEvent</a></code></dd>
+<dt>Returns:</dt>
+<dd>A <a href="../../../../io/papermc/paper/entity/damage/DamageOrigin.html" title="interface in io.papermc.paper.entity.damage"><code>DamageOrigin</code></a> value detailing the origin of the damage.</dd>
+</dl>
+</section>
+</li>
 <li>
 <section class="detail" id="isCritical()">
 <h3>isCritical</h3>

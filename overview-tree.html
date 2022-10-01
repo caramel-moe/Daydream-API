@@ -80,6 +80,8 @@ loadScripts(document, 'script');</script>
 <li><a href="io/papermc/paper/datapack/package-tree.html">io.papermc.paper.datapack</a>, </li>
 <li><a href="io/papermc/paper/enchantments/package-tree.html">io.papermc.paper.enchantments</a>, </li>
 <li><a href="io/papermc/paper/entity/package-tree.html">io.papermc.paper.entity</a>, </li>
+<li><a href="io/papermc/paper/entity/damage/package-tree.html">io.papermc.paper.entity.damage</a>, </li>
+<li><a href="io/papermc/paper/entity/damage/builder/package-tree.html">io.papermc.paper.entity.damage.builder</a>, </li>
 <li><a href="io/papermc/paper/event/block/package-tree.html">io.papermc.paper.event.block</a>, </li>
 <li><a href="io/papermc/paper/event/entity/package-tree.html">io.papermc.paper.event.entity</a>, </li>
 <li><a href="io/papermc/paper/event/packet/package-tree.html">io.papermc.paper.event.packet</a>, </li>
@@ -89,6 +91,7 @@ loadScripts(document, 'script');</script>
 <li><a href="io/papermc/paper/event/world/border/package-tree.html">io.papermc.paper.event.world.border</a>, </li>
 <li><a href="io/papermc/paper/inventory/package-tree.html">io.papermc.paper.inventory</a>, </li>
 <li><a href="io/papermc/paper/potion/package-tree.html">io.papermc.paper.potion</a>, </li>
+<li><a href="io/papermc/paper/raytrace/package-tree.html">io.papermc.paper.raytrace</a>, </li>
 <li><a href="io/papermc/paper/registry/package-tree.html">io.papermc.paper.registry</a>, </li>
 <li><a href="io/papermc/paper/tag/package-tree.html">io.papermc.paper.tag</a>, </li>
 <li><a href="io/papermc/paper/text/package-tree.html">io.papermc.paper.text</a>, </li>
@@ -1156,6 +1159,8 @@ loadScripts(document, 'script');</script>
 </li>
 <li class="circle">io.papermc.paper.potion.<a href="io/papermc/paper/potion/PotionMix.html" class="type-name-link" title="class in io.papermc.paper.potion">PotionMix</a> (implements org.bukkit.<a href="org/bukkit/Keyed.html" title="interface in org.bukkit">Keyed</a>)</li>
 <li class="circle">com.destroystokyo.paper.profile.<a href="com/destroystokyo/paper/profile/ProfileProperty.html" class="type-name-link" title="class in com.destroystokyo.paper.profile">ProfileProperty</a></li>
+<li class="circle">io.papermc.paper.raytrace.<a href="io/papermc/paper/raytrace/RayTraceContext.html" class="type-name-link" title="class in io.papermc.paper.raytrace">RayTraceContext</a></li>
+<li class="circle">io.papermc.paper.raytrace.<a href="io/papermc/paper/raytrace/RayTraceContext.Builder.html" class="type-name-link" title="class in io.papermc.paper.raytrace">RayTraceContext.Builder</a></li>
 <li class="circle">org.bukkit.util.<a href="org/bukkit/util/RayTraceResult.html" class="type-name-link" title="class in org.bukkit.util">RayTraceResult</a></li>
 <li class="circle">org.bukkit.inventory.<a href="org/bukkit/inventory/RecipeChoice.ExactChoice.html" class="type-name-link" title="class in org.bukkit.inventory">RecipeChoice.ExactChoice</a> (implements org.bukkit.inventory.<a href="org/bukkit/inventory/RecipeChoice.html" title="interface in org.bukkit.inventory">RecipeChoice</a>)</li>
 <li class="circle">org.bukkit.inventory.<a href="org/bukkit/inventory/RecipeChoice.MaterialChoice.html" class="type-name-link" title="class in org.bukkit.inventory">RecipeChoice.MaterialChoice</a> (implements org.bukkit.inventory.<a href="org/bukkit/inventory/RecipeChoice.html" title="interface in org.bukkit.inventory">RecipeChoice</a>)</li>
@@ -1252,6 +1257,7 @@ loadScripts(document, 'script');</script>
 <li class="circle">org.bukkit.conversations.<a href="org/bukkit/conversations/RegexPrompt.html" class="type-name-link" title="class in org.bukkit.conversations">RegexPrompt</a></li>
 </ul>
 </li>
+<li class="circle">io.papermc.paper.entity.damage.<a href="io/papermc/paper/entity/damage/VanillaDamageOrigin.html" class="type-name-link" title="class in io.papermc.paper.entity.damage">VanillaDamageOrigin</a></li>
 <li class="circle">org.bukkit.util.<a href="org/bukkit/util/Vector.html" class="type-name-link" title="class in org.bukkit.util">Vector</a> (implements java.lang.<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Cloneable.html" title="class or interface in java.lang" class="external-link">Cloneable</a>, org.bukkit.configuration.serialization.<a href="org/bukkit/configuration/serialization/ConfigurationSerializable.html" title="interface in org.bukkit.configuration.serialization">ConfigurationSerializable</a>)
 <ul>
 <li class="circle">org.bukkit.util.<a href="org/bukkit/util/BlockVector.html" class="type-name-link" title="class in org.bukkit.util">BlockVector</a></li>
@@ -1286,6 +1292,17 @@ loadScripts(document, 'script');</script>
 </li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="circle">io.papermc.paper.entity.damage.builder.<a href="io/papermc/paper/entity/damage/builder/AbstractDamageOriginBuilder.html" class="type-name-link" title="interface in io.papermc.paper.entity.damage.builder">AbstractDamageOriginBuilder</a>&lt;T,<wbr>B&gt;
+<ul>
+<li class="circle">io.papermc.paper.entity.damage.builder.<a href="io/papermc/paper/entity/damage/builder/AbstractEntityDamageOriginBuilder.html" class="type-name-link" title="interface in io.papermc.paper.entity.damage.builder">AbstractEntityDamageOriginBuilder</a>&lt;T,<wbr>B&gt;
+<ul>
+<li class="circle">io.papermc.paper.entity.damage.builder.<a href="io/papermc/paper/entity/damage/builder/EntityDamageOriginBuilder.html" class="type-name-link" title="interface in io.papermc.paper.entity.damage.builder">EntityDamageOriginBuilder</a></li>
+<li class="circle">io.papermc.paper.entity.damage.builder.<a href="io/papermc/paper/entity/damage/builder/IndirectEntityDamageOriginBuilder.html" class="type-name-link" title="interface in io.papermc.paper.entity.damage.builder">IndirectEntityDamageOriginBuilder</a></li>
+</ul>
+</li>
+<li class="circle">io.papermc.paper.entity.damage.builder.<a href="io/papermc/paper/entity/damage/builder/DamageOriginBuilder.html" class="type-name-link" title="interface in io.papermc.paper.entity.damage.builder">DamageOriginBuilder</a></li>
 </ul>
 </li>
 <li class="circle">moe.caramel.daydream.advancement.<a href="moe/caramel/daydream/advancement/AdvancementBuilder.html" class="type-name-link" title="interface in moe.caramel.daydream.advancement">AdvancementBuilder</a></li>
@@ -1931,6 +1948,16 @@ loadScripts(document, 'script');</script>
 </li>
 <li class="circle">org.bukkit.conversations.<a href="org/bukkit/conversations/ConversationPrefix.html" class="type-name-link" title="interface in org.bukkit.conversations">ConversationPrefix</a></li>
 <li class="circle">org.bukkit.inventory.meta.tags.<a href="org/bukkit/inventory/meta/tags/CustomItemTagContainer.html" class="type-name-link" title="interface in org.bukkit.inventory.meta.tags">CustomItemTagContainer</a></li>
+<li class="circle">io.papermc.paper.entity.damage.<a href="io/papermc/paper/entity/damage/DamageOrigin.html" class="type-name-link" title="interface in io.papermc.paper.entity.damage">DamageOrigin</a>
+<ul>
+<li class="circle">io.papermc.paper.entity.damage.<a href="io/papermc/paper/entity/damage/BadRespawnPointDamageOrigin.html" class="type-name-link" title="interface in io.papermc.paper.entity.damage">BadRespawnPointDamageOrigin</a></li>
+<li class="circle">io.papermc.paper.entity.damage.<a href="io/papermc/paper/entity/damage/EntityDamageOrigin.html" class="type-name-link" title="interface in io.papermc.paper.entity.damage">EntityDamageOrigin</a>
+<ul>
+<li class="circle">io.papermc.paper.entity.damage.<a href="io/papermc/paper/entity/damage/IndirectEntityDamageOrigin.html" class="type-name-link" title="interface in io.papermc.paper.entity.damage">IndirectEntityDamageOrigin</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="circle">io.papermc.paper.datapack.<a href="io/papermc/paper/datapack/Datapack.html" class="type-name-link" title="interface in io.papermc.paper.datapack">Datapack</a></li>
 <li class="circle">io.papermc.paper.datapack.<a href="io/papermc/paper/datapack/DatapackManager.html" class="type-name-link" title="interface in io.papermc.paper.datapack">DatapackManager</a></li>
 <li class="circle">org.bukkit.material.<a href="org/bukkit/material/Directional.html" class="type-name-link" title="interface in org.bukkit.material">Directional</a>
