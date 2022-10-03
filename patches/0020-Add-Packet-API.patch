@@ -450,14 +450,13 @@ index 0000000000000000000000000000000000000000..871264afd7094c2d8dd1ec627bb26a8b
 +}
 diff --git a/src/main/java/moe/caramel/daydream/network/packet/SetChunkCacheRadiusPacket.java b/src/main/java/moe/caramel/daydream/network/packet/SetChunkCacheRadiusPacket.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..017cb29b6a367d12444e6d267a31c1fdcde2665c
+index 0000000000000000000000000000000000000000..6d0d0956e39e54d29560397888f194fb999753ac
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/network/packet/SetChunkCacheRadiusPacket.java
-@@ -0,0 +1,17 @@
+@@ -0,0 +1,16 @@
 +package moe.caramel.daydream.network.packet;
 +
 +import moe.caramel.daydream.network.Packet;
-+import org.bukkit.inventory.ItemStack;
 +import org.jetbrains.annotations.NotNull;
 +
 +public interface SetChunkCacheRadiusPacket extends Packet {
@@ -470,6 +469,113 @@ index 0000000000000000000000000000000000000000..017cb29b6a367d12444e6d267a31c1fd
 +     */
 +    @NotNull
 +    SetChunkCacheRadiusPacket create(int distance);
++}
+diff --git a/src/main/java/moe/caramel/daydream/network/packet/SetPlayerTeamPacket.java b/src/main/java/moe/caramel/daydream/network/packet/SetPlayerTeamPacket.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..1c1dcb38a55e8a480ef47f0e2247e2ba0583d827
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/network/packet/SetPlayerTeamPacket.java
+@@ -0,0 +1,101 @@
++package moe.caramel.daydream.network.packet;
++
++import moe.caramel.daydream.network.Packet;
++import net.kyori.adventure.text.Component;
++import org.bukkit.ChatColor;
++import org.bukkit.scoreboard.Team;
++import org.jetbrains.annotations.NotNull;
++import java.util.Collection;
++
++public interface SetPlayerTeamPacket extends Packet {
++
++    /*
++        CREATE OR UPDATE
++     */
++
++    /**
++     * 팀 추가 또는 업데이트 패킷을 생성합니다.
++     *
++     * @param team 추가 또는 업데이트할 팀
++     * @param add 만약 {@code true}라면 추가, 아니라면 정보를 업데이트 합니다
++     * @return this
++     */
++    @NotNull
++    SetPlayerTeamPacket createTeamAddOrUpdatePacket(@NotNull Team team, boolean add);
++
++    /**
++     * 팀 추가 또는 업데이트 패킷을 생성합니다.
++     *
++     * @param teamName 추가 또는 업데이트할 팀의 이름
++     * @param displayName 팀의 디스플레이 이름
++     * @param allowFriendlyFire 만약 {@code true}라면 아군 사격을 허용합니다
++     * @param canSeeFriendlyInvisibles 만약 {@code true}라면 보이지 않는 플레이어를 볼 수 있습니다
++     * @param nametagVisibility 팀의 이름 태그 가시성 규칙
++     * @param collisionRule 팀의 충돌 규칙
++     * @param color 팀의 색
++     * @param teamPrefix 팀의 접두사
++     * @param teamSuffix 팀의 접미사
++     * @param add 만약 {@code true}라면 추가, 아니라면 정보를 업데이트 합니다
++     * @return this
++     */
++    @NotNull
++    SetPlayerTeamPacket createTeamAddOrUpdatePacket(
++        @NotNull String teamName,
++        @NotNull Component displayName,
++        boolean allowFriendlyFire, boolean canSeeFriendlyInvisibles,
++        @NotNull Team.OptionStatus nametagVisibility,
++        @NotNull Team.OptionStatus collisionRule, @NotNull ChatColor color,
++        @NotNull Component teamPrefix, @NotNull Component teamSuffix,
++        boolean add
++    );
++
++
++    /*
++        REMOVE
++     */
++
++    /**
++     * 팀 제거 패킷을 생성합니다.
++     *
++     * @param team 제거할 팀
++     * @return this
++     */
++    @NotNull
++    SetPlayerTeamPacket createTeamRemovePacket(@NotNull Team team);
++
++    /**
++     * 팀 제거 패킷을 생성합니다.
++     *
++     * @param teamName 제거할 팀의 이름
++     * @return this
++     */
++    @NotNull
++    SetPlayerTeamPacket createTeamRemovePacket(@NotNull String teamName);
++
++
++    /*
++        JOIN OR LEAVE
++     */
++
++    /**
++     * 팀 가입 또는 탈퇴 패킷을 생성합니다.
++     *
++     * @param team 가입 또는 탈퇴할 팀
++     * @param players 가입 또는 탈퇴할 플레이어의 목록
++     * @param join 만약 {@code true}라면 가입, 아니라면 탈퇴
++     * @return this
++     */
++    @NotNull
++    SetPlayerTeamPacket createTeamJoinOrLeavePacket(@NotNull Team team, @NotNull Collection<String> players, boolean join);
++
++    /**
++     * 팀 가입 또는 탈퇴 패킷을 생성합니다.
++     *
++     * @param teamName 가입 또는 탈퇴할 팀의 이름
++     * @param players 가입 또는 탈퇴할 플레이어의 목록
++     * @param join 만약 {@code true}라면 가입, 아니라면 탈퇴
++     * @return this
++     */
++    @NotNull
++    SetPlayerTeamPacket createTeamJoinOrLeavePacket(@NotNull String teamName, @NotNull Collection<String> players, boolean join);
 +}
 diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
 index 7c5d6c2b52c051b89bca9c120ec896395cda2b2f..b58efc34b9dd832a8f32ea0e034e04c5fa848657 100644
