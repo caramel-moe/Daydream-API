@@ -3,16 +3,18 @@ From: PrimordialMoros <mail@moros.me>
 Date: Fri, 29 Jul 2022 16:04:32 +0300
 Subject: [PATCH] Add extra raytracing api
 
-Adds the option to ignore specific blocks (based on their position) when performing a raytrace.
+Adds the option to ~~ignore specific blocks (based on their position)~~ block filter when performing a raytrace.
 
 https://github.com/PaperMC/Paper/pull/8205
 
+Co-Author: LemonCaramel <admin@caramel.moe>
+
 diff --git a/src/main/java/io/papermc/paper/raytrace/RayTraceContext.java b/src/main/java/io/papermc/paper/raytrace/RayTraceContext.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..0b3a490df1e114f81fcedc04343d4b105cb498fb
+index 0000000000000000000000000000000000000000..1af19502123d532e2448b99259ff6b4109e87e77
 --- /dev/null
 +++ b/src/main/java/io/papermc/paper/raytrace/RayTraceContext.java
-@@ -0,0 +1,320 @@
+@@ -0,0 +1,317 @@
 +package io.papermc.paper.raytrace;
 +
 +import com.google.common.base.Preconditions;
@@ -25,15 +27,12 @@ index 0000000000000000000000000000000000000000..0b3a490df1e114f81fcedc04343d4b10
 +import org.bukkit.util.Vector;
 +import org.jetbrains.annotations.NotNull;
 +import org.jetbrains.annotations.Nullable;
-+
-+import java.util.Collection;
-+import java.util.Set;
 +import java.util.function.Predicate;
 +
 +/**
 + * Represents the immutable context for performing a raytrace.
 + * <p>Usage of the {@link Builder} is preferred over the super long
-+ * {@link World#rayTrace(Location, Vector, double, FluidCollisionMode, boolean, double, Predicate, Collection)} API.
++ * {@link World#rayTrace(Location, Vector, double, FluidCollisionMode, boolean, double, Predicate, Predicate)} API.
 + */
 +public class RayTraceContext {
 +    public static final double MAX_RANGE = 100;
@@ -48,7 +47,7 @@ index 0000000000000000000000000000000000000000..0b3a490df1e114f81fcedc04343d4b10
 +
 +    private final FluidCollisionMode fluidMode;
 +    private final Predicate<Entity> entityPredicate;
-+    private final Set<Block> ignoreBlocks;
++    private final Predicate<Block> blockPredicate;
 +
 +    private RayTraceContext(Builder builder) {
 +        this.origin = builder.origin;
@@ -58,7 +57,7 @@ index 0000000000000000000000000000000000000000..0b3a490df1e114f81fcedc04343d4b10
 +        this.ignorePassable = builder.ignorePassable;
 +        this.fluidMode = builder.fluidMode;
 +        this.entityPredicate = builder.entityPredicate;
-+        this.ignoreBlocks = builder.ignoreBlocks;
++        this.blockPredicate = builder.blockPredicate;
 +    }
 +
 +    /**
@@ -129,13 +128,13 @@ index 0000000000000000000000000000000000000000..0b3a490df1e114f81fcedc04343d4b10
 +    }
 +
 +    /**
-+     * Get this context's ignored blocks.
++     * Get this context's block filter.
 +     *
-+     * @return an immutable collection of ignored blocks
++     * @return the filter
 +     */
 +    @NotNull
-+    public Set<Block> ignoreBlocks() {
-+        return ignoreBlocks;
++    public Predicate<Block> blockFilter() {
++        return blockPredicate;
 +    }
 +
 +    /**
@@ -172,7 +171,7 @@ index 0000000000000000000000000000000000000000..0b3a490df1e114f81fcedc04343d4b10
 +
 +        private FluidCollisionMode fluidMode = FluidCollisionMode.NEVER;
 +        private Predicate<Entity> entityPredicate = x -> true;
-+        private Set<Block> ignoreBlocks = Set.of();
++        private Predicate<Block> blockPredicate = x -> true;
 +
 +        private Builder() {
 +        }
@@ -185,7 +184,7 @@ index 0000000000000000000000000000000000000000..0b3a490df1e114f81fcedc04343d4b10
 +            this.ignorePassable = context.ignorePassable;
 +            this.fluidMode = context.fluidMode;
 +            this.entityPredicate = context.entityPredicate;
-+            this.ignoreBlocks = context.ignoreBlocks;
++            this.blockPredicate = context.blockPredicate;
 +        }
 +
 +        /**
@@ -269,16 +268,16 @@ index 0000000000000000000000000000000000000000..0b3a490df1e114f81fcedc04343d4b10
 +        }
 +
 +        /**
-+         * Define a set of specific blocks the raytrace should ignore.
-+         * Default value is an empty set.
++         * Define a predicate of entities to filter when casting the raytrace. All other entities will be ignored.
++         * Default value isn't colliding with all blocks.
 +         *
-+         * @param ignoreBlocks the new set of blocks to ignore
++         * @param blockPredicate the new predicate
 +         * @return the modified builder
 +         */
 +        @NotNull
-+        public Builder ignore(@NotNull Collection<Block> ignoreBlocks) {
-+            Preconditions.checkArgument(ignoreBlocks != null, "Collection cannot be null");
-+            this.ignoreBlocks = Set.copyOf(ignoreBlocks);
++        public Builder blockFilter(@NotNull Predicate<Block> blockPredicate) {
++            Preconditions.checkArgument(blockPredicate != null, "Predicate cannot be null");
++            this.blockPredicate = blockPredicate;
 +            return this;
 +        }
 +
@@ -316,7 +315,7 @@ index 0000000000000000000000000000000000000000..0b3a490df1e114f81fcedc04343d4b10
 +        public RayTraceResult blocks(@NotNull World world) {
 +            Preconditions.checkArgument(world != null, "World cannot be null");
 +            Location start = new Location(world, origin.getX(), origin.getY(), origin.getZ());
-+            return world.rayTraceBlocks(start, direction, range, fluidMode, ignorePassable, ignoreBlocks);
++            return world.rayTraceBlocks(start, direction, range, fluidMode, ignorePassable, blockPredicate);
 +        }
 +
 +        /**
@@ -329,12 +328,12 @@ index 0000000000000000000000000000000000000000..0b3a490df1e114f81fcedc04343d4b10
 +        public RayTraceResult entities(@NotNull World world) {
 +            Preconditions.checkArgument(world != null, "World cannot be null");
 +            Location start = new Location(world, origin.getX(), origin.getY(), origin.getZ());
-+            return world.rayTrace(start, direction, range, fluidMode, ignorePassable, raySize, entityPredicate, ignoreBlocks);
++            return world.rayTrace(start, direction, range, fluidMode, ignorePassable, raySize, entityPredicate, blockPredicate);
 +        }
 +    }
 +}
 diff --git a/src/main/java/org/bukkit/World.java b/src/main/java/org/bukkit/World.java
-index 397d847dcf7f77fa907045d1600008eade7ad82c..678c24d5131844374380ffcd749fdf0b6481c14b 100644
+index 397d847dcf7f77fa907045d1600008eade7ad82c..c585cdadd477b209a688868d661867608fb2ad23 100644
 --- a/src/main/java/org/bukkit/World.java
 +++ b/src/main/java/org/bukkit/World.java
 @@ -1796,6 +1796,34 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
@@ -362,11 +361,11 @@ index 397d847dcf7f77fa907045d1600008eade7ad82c..678c24d5131844374380ffcd749fdf0b
 +     * @param fluidCollisionMode the fluid collision mode
 +     * @param ignorePassableBlocks whether to ignore passable but collidable
 +     *     blocks (ex. tall grass, signs, fluids, ..)
-+     * @param ignored a collection of blocks to ignore
++     * @param blockFilter a block filter
 +     * @return the ray trace hit result, or <code>null</code> if there is no hit
 +     */
 +    @Nullable
-+    public RayTraceResult rayTraceBlocks(@NotNull Location start, @NotNull Vector direction, double maxDistance, @NotNull FluidCollisionMode fluidCollisionMode, boolean ignorePassableBlocks, @NotNull Collection<Block> ignored);
++    public RayTraceResult rayTraceBlocks(@NotNull Location start, @NotNull Vector direction, double maxDistance, @NotNull FluidCollisionMode fluidCollisionMode, boolean ignorePassableBlocks, @Nullable Predicate<Block> blockFilter);
 +    // Paper end
 +
      /**
@@ -402,14 +401,14 @@ index 397d847dcf7f77fa907045d1600008eade7ad82c..678c24d5131844374380ffcd749fdf0b
 +     *     blocks (ex. tall grass, signs, fluids, ..)
 +     * @param raySize entity bounding boxes will be uniformly expanded (or
 +     *     shrinked) by this value before doing collision checks
-+     * @param filter only entities that fulfill this predicate are considered,
++     * @param entityFilter only entities that fulfill this predicate are considered,
 +     *     or <code>null</code> to consider all entities
-+     * @param ignored a collection of blocks to ignore
++     * @param blockFilter a block filter
 +     * @return the closest ray trace hit result with either a block or an
 +     *     entity, or <code>null</code> if there is no hit
 +     */
 +    @Nullable
-+    public RayTraceResult rayTrace(@NotNull Location start, @NotNull Vector direction, double maxDistance, @NotNull FluidCollisionMode fluidCollisionMode, boolean ignorePassableBlocks, double raySize, @Nullable Predicate<Entity> filter, @NotNull Collection<Block> ignored);
++    public RayTraceResult rayTrace(@NotNull Location start, @NotNull Vector direction, double maxDistance, @NotNull FluidCollisionMode fluidCollisionMode, boolean ignorePassableBlocks, double raySize, @Nullable Predicate<Entity> entityFilter, @Nullable Predicate<Block> blockFilter);
 +    // Paper end
 +
      /**
