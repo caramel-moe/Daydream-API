@@ -470,6 +470,77 @@ index 0000000000000000000000000000000000000000..6d0d0956e39e54d29560397888f194fb
 +    @NotNull
 +    SetChunkCacheRadiusPacket create(int distance);
 +}
+diff --git a/src/main/java/moe/caramel/daydream/network/packet/SetDisplayObjectivePacket.java b/src/main/java/moe/caramel/daydream/network/packet/SetDisplayObjectivePacket.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..921aa1a9ed934b8aa292e12490924a10b8783ccb
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/network/packet/SetDisplayObjectivePacket.java
+@@ -0,0 +1,65 @@
++package moe.caramel.daydream.network.packet;
++
++import moe.caramel.daydream.network.Packet;
++import org.bukkit.scoreboard.DisplaySlot;
++import org.bukkit.scoreboard.Objective;
++import org.jetbrains.annotations.NotNull;
++import org.jetbrains.annotations.Nullable;
++
++public interface SetDisplayObjectivePacket extends Packet {
++
++    int PLAYER_LIST = 0;
++    int SIDEBAR = 1;
++    int BELOW_NAME = 2;
++    int SIDEBAR_TEAM_BLACK = 3;
++    int SIDEBAR_TEAM_DARK_BLUE = 4;
++    int SIDEBAR_TEAM_DARK_GREEN = 5;
++    int SIDEBAR_TEAM_DARK_AQUA = 6;
++    int SIDEBAR_TEAM_DARK_RED = 7;
++    int SIDEBAR_TEAM_DARK_PURPLE = 8;
++    int SIDEBAR_TEAM_GOLD = 9;
++    int SIDEBAR_TEAM_GRAY = 10;
++    int SIDEBAR_TEAM_DARK_GRAY = 11;
++    int SIDEBAR_TEAM_BLUE = 12;
++    int SIDEBAR_TEAM_GREEN = 13;
++    int SIDEBAR_TEAM_AQUA = 14;
++    int SIDEBAR_TEAM_RED = 15;
++    int SIDEBAR_TEAM_LIGHT_PURPLE = 16;
++    int SIDEBAR_TEAM_YELLOW = 17;
++    int SIDEBAR_TEAM_WHITE = 18;
++
++    /**
++     * 패킷을 생성합니다.
++     *
++     * @param slot 스코어보드의 위치
++     *              <a href="https://wiki.vg/Protocol#Display_Objective">여기</a>를 참고하세요.
++     * @param objective {@link Objective} 객체
++     * @return this
++     */
++    @NotNull
++    SetDisplayObjectivePacket create(@NotNull DisplaySlot slot, @NotNull Objective objective);
++
++    /**
++     * 패킷을 생성합니다.
++     *
++     * @param position 스코어보드의 위치
++     *              <a href="https://wiki.vg/Protocol#Display_Objective">여기</a>를 참고하세요.
++     * @param objective {@link Objective} 객체
++     * @return this
++     */
++    @NotNull
++    default SetDisplayObjectivePacket create(int position, @NotNull Objective objective) {
++        return this.create(position, objective.getName());
++    }
++
++    /**
++     * 패킷을 생성합니다.
++     *
++     * @param position 스코어보드의 위치
++     *              <a href="https://wiki.vg/Protocol#Display_Objective">여기</a>를 참고하세요.
++     * @param scoreName {@link Objective}의 이름
++     * @return this
++     */
++    @NotNull
++    SetDisplayObjectivePacket create(int position, @Nullable String scoreName);
++}
 diff --git a/src/main/java/moe/caramel/daydream/network/packet/SetPlayerTeamPacket.java b/src/main/java/moe/caramel/daydream/network/packet/SetPlayerTeamPacket.java
 new file mode 100644
 index 0000000000000000000000000000000000000000..1c1dcb38a55e8a480ef47f0e2247e2ba0583d827
