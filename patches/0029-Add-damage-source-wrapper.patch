@@ -837,7 +837,7 @@ index 461727dc7f06efb3550fc370e0db5bd04ba89711..d410ee534e337df6acf143eb06303870
      /**
       * Returns the block that damaged the player.
 diff --git a/src/main/java/org/bukkit/event/entity/EntityDamageByEntityEvent.java b/src/main/java/org/bukkit/event/entity/EntityDamageByEntityEvent.java
-index 7ce8f1a26c1b33dd0eb6e6435952fd73abf49879..ca8a8d6189c3708b65bb6b7c94ffbec3504ba189 100644
+index 7ce8f1a26c1b33dd0eb6e6435952fd73abf49879..24422888200717f87c993068ea64a36f3302a9ab 100644
 --- a/src/main/java/org/bukkit/event/entity/EntityDamageByEntityEvent.java
 +++ b/src/main/java/org/bukkit/event/entity/EntityDamageByEntityEvent.java
 @@ -25,6 +25,7 @@ public class EntityDamageByEntityEvent extends EntityDamageEvent {
@@ -848,7 +848,7 @@ index 7ce8f1a26c1b33dd0eb6e6435952fd73abf49879..ca8a8d6189c3708b65bb6b7c94ffbec3
      public EntityDamageByEntityEvent(@NotNull final Entity damager, @NotNull final Entity damagee, @NotNull final DamageCause cause, @NotNull final Map<DamageModifier, Double> modifiers, @NotNull final Map<DamageModifier, ? extends Function<? super Double, Double>> modifierFunctions, boolean critical) {
          // Paper end
          super(damagee, cause, modifiers, modifierFunctions);
-@@ -32,7 +33,20 @@ public class EntityDamageByEntityEvent extends EntityDamageEvent {
+@@ -32,7 +33,24 @@ public class EntityDamageByEntityEvent extends EntityDamageEvent {
          // Paper start - add critical damage API
          this.critical = critical;
      }
@@ -860,11 +860,15 @@ index 7ce8f1a26c1b33dd0eb6e6435952fd73abf49879..ca8a8d6189c3708b65bb6b7c94ffbec3
 +        this.damager = damager;
 +        this.critical = critical; // Paper add critical damage API
 +    }
++    // Daydream start - ...
++    /*
 +    @Override
 +    @NotNull
 +    public io.papermc.paper.entity.damage.EntityDamageOrigin getOrigin() {
 +        return (io.papermc.paper.entity.damage.EntityDamageOrigin) super.getOrigin();
 +    }
++    */
++    // Daydream end - ...
 +    // Paper end
 +    // Paper start - add critical damage API
      /**
