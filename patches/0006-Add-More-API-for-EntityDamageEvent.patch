@@ -1,0 +1,64 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: LemonCaramel <admin@caramel.moe>
+Date: Sun, 8 Aug 2021 03:05:54 +0900
+Subject: [PATCH] Add More API for EntityDamageEvent
+
+
+diff --git a/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java b/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java
+index 07538e1b94921429ddb277c154e5d5c83d095b3e..3e74069d5beb60e09901eb9fe4ec668983536c09 100644
+--- a/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java
++++ b/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java
+@@ -43,6 +43,53 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
+         this.modifierFunctions = modifierFunctions;
+     }
+ 
++    // Daydream start - Add More API for EntityDamageEvent
++    private int noDamageTick = -1;
++    private org.bukkit.util.Vector knockbackOverride;
++
++    /**
++     * Returns the no damage ticks of the living entity to be set after the
++     * event is processed.
++     *
++     * @return living entity's no damage ticks.
++     * if the return value is -1, it is not modified yet
++     */
++    public int getNoDamageTick() {
++        return noDamageTick;
++    }
++
++    /**
++     * Sets the no damage ticks of the living entity to be set after the
++     * event is processed.
++     *
++     * @param ticks amount of no damage ticks
++     */
++    public void setNoDamageTick(int ticks) {
++        this.noDamageTick = Math.max(0, ticks);
++    }
++
++    /**
++     * 수정된 넉백 벡터를 가져옵니다.
++     *
++     * @return 수정된 넉백 벡터 (없다면 {@code null}을 반환)
++     */
++    @org.jetbrains.annotations.Nullable
++    public org.bukkit.util.Vector getKnockbackOverride() {
++        return knockbackOverride;
++    }
++
++    /**
++     * 수정할 넉백 벡터를 설정합니다.
++     * <br>
++     * 크리티컬 대미지의 경우 작동을 하지 않습니다.
++     *
++     * @param knockback 수정할 넉백 벡터
++     */
++    public void setKnockbackOverride(@NotNull org.bukkit.util.Vector knockback) {
++        this.knockbackOverride = knockback;
++    }
++    // Daydream end - Add More API for EntityDamageEvent
++
+     @Override
+     public boolean isCancelled() {
+         return cancelled;

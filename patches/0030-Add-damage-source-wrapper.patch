@@ -875,13 +875,13 @@ index 7ce8f1a26c1b33dd0eb6e6435952fd73abf49879..24422888200717f87c993068ea64a36f
       * Shows this damage instance was critical.
       * The damage instance can be critical if the attacking player met the respective conditions.
 diff --git a/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java b/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java
-index 4999ba01fe58593efc1971e5337d26f5bbebbdb1..4cc5cda1343d029538c0597a5ad48f09d288e9b4 100644
+index 3e74069d5beb60e09901eb9fe4ec668983536c09..ac9b2c25ec84d154c99bc20aa51130e3e69d03bb 100644
 --- a/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java
 +++ b/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java
-@@ -30,17 +30,29 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
-     private boolean noDamageTickModified;
-     private int noDamageTick;
-     // Daydream end - Add no damage tick API for EntityDamageEvent
+@@ -25,12 +25,20 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
+     private final Map<DamageModifier, Double> originals;
+     private boolean cancelled;
+     private final DamageCause cause;
 +    private final io.papermc.paper.entity.damage.DamageOrigin origin; // Paper - Damage source wrapper
  
 +    @Deprecated // Paper
@@ -891,32 +891,23 @@ index 4999ba01fe58593efc1971e5337d26f5bbebbdb1..4cc5cda1343d029538c0597a5ad48f09
  
 +    @Deprecated // Paper
      public EntityDamageEvent(@NotNull final Entity damagee, @NotNull final DamageCause cause, @NotNull final Map<DamageModifier, Double> modifiers, @NotNull final Map<DamageModifier, ? extends Function<? super Double, Double>> modifierFunctions) {
-         // Daydream start - Add no damage tick API for EntityDamageEvent
-         this(damagee, cause, modifiers, modifierFunctions, (damagee instanceof org.bukkit.entity.LivingEntity living) ? living.getMaximumNoDamageTicks() : UNKNOWN_NO_DAMAGE_TICK);
-     }
- 
-+    @Deprecated // Paper
-     public EntityDamageEvent(@NotNull final Entity damagee, @NotNull final DamageCause cause, @NotNull final Map<DamageModifier, Double> modifiers, @NotNull final Map<DamageModifier, ? extends Function<? super Double, Double>> modifierFunctions, int noDamageTick) {
 +        // Paper start - Damage source wrapper
-+        this(damagee, cause, io.papermc.paper.entity.damage.DamageOrigin.of("unknown").build(), modifiers, modifierFunctions, noDamageTick); // Paper
++        this(damagee, cause, io.papermc.paper.entity.damage.DamageOrigin.of("unknown").build(), modifiers, modifierFunctions); // Paper
 +    }
 +    public EntityDamageEvent(@NotNull final Entity damagee, @NotNull final DamageCause cause, @NotNull final io.papermc.paper.entity.damage.DamageOrigin origin, @NotNull final Map<DamageModifier, Double> modifiers, @NotNull final Map<DamageModifier, ? extends Function<? super Double, Double>> modifierFunctions) {
-+        this(damagee, cause, origin, modifiers, modifierFunctions, (damagee instanceof org.bukkit.entity.LivingEntity living) ? living.getMaximumNoDamageTicks() : UNKNOWN_NO_DAMAGE_TICK);
-+    }
-+    public EntityDamageEvent(@NotNull final Entity damagee, @NotNull final DamageCause cause, @NotNull final io.papermc.paper.entity.damage.DamageOrigin origin, @NotNull final Map<DamageModifier, Double> modifiers, @NotNull final Map<DamageModifier, ? extends Function<? super Double, Double>> modifierFunctions, int noDamageTick) {
 +        // Paper end - Damage source wrapper
-         // Daydream end - Add no damage tick API for EntityDamageEvent
          super(damagee);
          Validate.isTrue(modifiers.containsKey(DamageModifier.BASE), "BASE DamageModifier missing");
-@@ -52,6 +64,7 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
+         Validate.isTrue(!modifiers.containsKey(null), "Cannot have null DamageModifier");
+@@ -41,6 +49,7 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
          this.cause = cause;
          this.modifiers = modifiers;
          this.modifierFunctions = modifierFunctions;
 +        this.origin = origin; // Paper - Damage source wrapper
-         // Daydream start - Add no damage tick API for EntityDamageEvent
-         this.noDamageTick = noDamageTick;
      }
-@@ -226,12 +239,27 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
+ 
+     // Daydream start - Add More API for EntityDamageEvent
+@@ -228,12 +237,27 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
          setDamage(DamageModifier.BASE, damage);
      }
  
@@ -944,7 +935,7 @@ index 4999ba01fe58593efc1971e5337d26f5bbebbdb1..4cc5cda1343d029538c0597a5ad48f09
      public DamageCause getCause() {
          return cause;
      }
-@@ -301,7 +329,10 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
+@@ -303,7 +327,10 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
  
      /**
       * An enum to specify the cause of the damage
