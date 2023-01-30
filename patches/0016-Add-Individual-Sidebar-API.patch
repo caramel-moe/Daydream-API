@@ -199,10 +199,10 @@ index 0000000000000000000000000000000000000000..ea254c9d14fdecde022a3f2af614f984
 +}
 diff --git a/src/main/java/moe/caramel/daydream/sidebar/ISidebar.java b/src/main/java/moe/caramel/daydream/sidebar/ISidebar.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..58127f087f72164020e472315821ee9e300dede2
+index 0000000000000000000000000000000000000000..1b9467ec88aa5b8ca1b750443847294dc422affb
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/sidebar/ISidebar.java
-@@ -0,0 +1,46 @@
+@@ -0,0 +1,53 @@
 +package moe.caramel.daydream.sidebar;
 +
 +import org.jetbrains.annotations.NotNull;
@@ -232,6 +232,13 @@ index 0000000000000000000000000000000000000000..58127f087f72164020e472315821ee9e
 +     */
 +    @NotNull
 +    SidebarProcessor enableIndividualSidebar(final @NotNull SidebarDecorator decorator);
++
++    /**
++     * 개인 사이드바 기능을 비활성화합니다.
++     *
++     * @return 사이드바가 활성화 되어있었다면 {@code true}를 반환
++     */
++    boolean disableIndividualSidebar();
 +
 +    /**
 +     * 개인 사이드바 기능의 활성화 여부를 가져옵니다.
