@@ -1,0 +1,381 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: LemonCaramel <admin@caramel.moe>
+Date: Tue, 24 Aug 2021 12:02:16 +0900
+Subject: [PATCH] Add Individual Sidebar API
+
+
+diff --git a/src/main/java/moe/caramel/daydream/sidebar/EntryBuilder.java b/src/main/java/moe/caramel/daydream/sidebar/EntryBuilder.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..26bbb0def90f3ddd2a3a7a03484e7d503d60945a
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/sidebar/EntryBuilder.java
+@@ -0,0 +1,186 @@
++package moe.caramel.daydream.sidebar;
++
++import net.kyori.adventure.text.Component;
++import org.apache.commons.lang3.Validate;
++import org.jetbrains.annotations.ApiStatus;
++import org.jetbrains.annotations.NotNull;
++import org.jetbrains.annotations.Nullable;
++import java.util.ArrayList;
++import java.util.Collections;
++import java.util.List;
++import java.util.Objects;
++
++import static net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer.legacySection;
++import static org.bukkit.ChatColor.translateAlternateColorCodes;
++
++/**
++ * {@link ISidebar} API 사용을 위한 {@link Entry} 빌더
++ */
++public final class EntryBuilder {
++
++    public static final int MAX_ENTRY_SIZE = 15;
++
++    private final List<Entry> entries = new ArrayList<>(); // TODO Performance?
++    private boolean built;
++
++    // ==============================================
++
++    private EntryBuilder() { }
++
++    /**
++     * Entry 빌더를 생성합니다.
++     *
++     * @return {@link EntryBuilder}
++     */
++    public static EntryBuilder builder() {
++        return new EntryBuilder();
++    }
++
++    // ==============================================
++
++    /**
++     * {@link Entry} 리스트에 빈 줄을 추가합니다.
++     *
++     * @return this
++     */
++    @NotNull
++    public EntryBuilder blank() {
++        return next(Component.empty());
++    }
++
++    /**
++     * {@link Entry} 리스트에 제공한 텍스트를 추가합니다.
++     *
++     * @param name 리스트에 추가할 텍스트
++     * @return this
++     */
++    @NotNull
++    public EntryBuilder next(final @NotNull String name) {
++        return next(name, null);
++    }
++
++    /**
++     * {@link Entry} 리스트에 제공한 텍스트를 추가합니다.
++     *
++     * @param name 리스트에 추가할 텍스트
++     * @param callback {@link Entry}가 추가되거나 제거될 때 호출되는 콜백
++     * @return this
++     */
++    @NotNull
++    public EntryBuilder next(final @NotNull String name, final @Nullable EntryCallback callback) {
++        return next(legacySection().deserialize(translateAlternateColorCodes('&', name)), callback);
++    }
++
++    /**
++     * {@link Entry} 리스트에 제공한 텍스트를 추가합니다.
++     *
++     * @param name 리스트에 추가할 텍스트
++     * @return this
++     */
++    @NotNull
++    public EntryBuilder next(final @NotNull Component name) {
++        return next(name, null);
++    }
++
++    /**
++     * {@link Entry} 리스트에 제공한 텍스트를 추가합니다.
++     *
++     * @param name 리스트에 추가할 텍스트
++     * @param callback {@link Entry}가 추가되거나 제거될 때 호출되는 콜백
++     * @return this
++     */
++    @NotNull
++    public EntryBuilder next(final @NotNull Component name, final @Nullable EntryCallback callback) {
++        Validate.isTrue(entries.size() < MAX_ENTRY_SIZE, "Entry 목록의 크기는 " + MAX_ENTRY_SIZE + "를 넘을 수 없습니다."); // TODO ?..
++        this.entries.add(new Entry(name, callback));
++        return this;
++    }
++
++    // ==============================================
++
++    /**
++     * 현재 {@link Entry} 리스트의 크기를 가져옵니다.
++     *
++     * @return 현재 {@link Entry} 리스트의 크기
++     */
++    public int getSize() {
++        return (this.entries.size());
++    }
++
++    /**
++     * {@link Entry} 리스트를 시스템이 사용하기 편하게 수정합니다.
++     *
++     * @return 빌드된 {@link Entry} 리스트
++     */
++    @NotNull
++    public List<Entry> build() {
++        if (!built) Collections.reverse(this.entries);
++        this.built = true;
++        return entries;
++    }
++
++    // ==============================================
++
++    /**
++     * {@link Entry}에 동작이 취해졌을 때 호출되는 콜백
++     */
++    @FunctionalInterface
++    public interface EntryCallback {
++
++        /**
++         * {@link Entry}가 추가되거나 제거되었을 때 수행할 동작을 작성합니다.
++         *
++         * @param entry 대상 {@link Entry}
++         * @param remove 제거된 경우 {@code true}
++         */
++        @ApiStatus.Experimental
++        void callback(final @NotNull Entry entry, final boolean remove);
++    }
++
++    // ==============================================
++
++    /**
++     * {@link ISidebar}에 표시될 항목의 데이터
++     */
++    public static final class Entry {
++
++        private final Component name;
++        private final EntryCallback callback;
++
++        Entry(final @NotNull Component name, final @Nullable EntryCallback callback) {
++            this.name = name;
++            this.callback = callback;
++        }
++
++        @NotNull
++        public Component getName() {
++            return name;
++        }
++
++        @Nullable
++        public EntryCallback getCallback() {
++            return callback;
++        }
++
++        @Override
++        public String toString() {
++            return "Entry{" +
++                   "name=" + name +
++                   ", callback=" + callback +
++                   '}';
++        }
++
++        @Override
++        public boolean equals(Object o) {
++            if (this == o) return true;
++            if (o == null || getClass() != o.getClass()) return false;
++            final Entry entry = (Entry) o;
++            return name.equals(entry.name) && Objects.equals(callback, entry.callback);
++        }
++
++        @Override
++        public int hashCode() {
++            return Objects.hash(name, callback);
++        }
++    }
++}
+diff --git a/src/main/java/moe/caramel/daydream/sidebar/ISidebar.java b/src/main/java/moe/caramel/daydream/sidebar/ISidebar.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..5c4382242d684e3a840b4936e0a5aef9e0234650
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/sidebar/ISidebar.java
+@@ -0,0 +1,46 @@
++package moe.caramel.daydream.sidebar;
++
++import org.jetbrains.annotations.NotNull;
++
++public interface ISidebar {
++
++    /**
++     * 이 {@link org.bukkit.scoreboard.Objective}에 개인 사이드바 기능을 활성화합니다.
++     * <br><br>
++     * <strong>WARNING!</strong>
++     * <p>
++     * 1. 이 기능이 활성화되어있는 경우 {@link org.bukkit.scoreboard.Objective#unregister()},
++     * {@link org.bukkit.scoreboard.Objective#setDisplaySlot(org.bukkit.scoreboard.DisplaySlot)},
++     * {@link org.bukkit.scoreboard.Objective#setRenderType(org.bukkit.scoreboard.RenderType)},
++     * {@link org.bukkit.scoreboard.Objective#getScore(String)},
++     * {@link org.bukkit.scoreboard.Objective#getScore(org.bukkit.OfflinePlayer)},
++     * {@link org.bukkit.scoreboard.Objective#getScoreFor(org.bukkit.entity.Entity)} 메서드를 사용할 수 없습니다.
++     * </p>
++     * <p>2. 이 기능을 사용하기 위해서는 이 {@link org.bukkit.scoreboard.Objective}에 {@link org.bukkit.scoreboard.Score}가 존재해서는 안 됩니다.</p>
++     * <p>3. 이 기능을 사용하기 위해서는 {@link org.bukkit.scoreboard.DisplaySlot}이 {@link org.bukkit.scoreboard.DisplaySlot#SIDEBAR}이어야만 합니다.</p>
++     * <p>4. 이 기능을 사용하기 위해서는 {@link org.bukkit.scoreboard.Criteria}이 {@link org.bukkit.scoreboard.Criteria#DUMMY}이어야만 합니다.</p>
++     * <p>5. 이 기능을 사용하기 위해서는 {@link org.bukkit.scoreboard.RenderType}이 {@link org.bukkit.scoreboard.RenderType#INTEGER}이어야만 합니다.</p>
++     * <p>6. 이 기능이 이미 활성화되어있는 경우 호출 시 {@link Exception}이 발생합니다.</p>
++     *
++     * @param decorator 사용자 지정 {@link SidebarDecorator} 데코레이터
++     * @return 활성화 가능한 {@link SidebarProcessor}
++     */
++    @NotNull
++    SidebarProcessor enableIndividualSidebar(final @NotNull SidebarDecorator decorator);
++
++    /**
++     * 개인 사이드바 기능의 활성화 여부를 가져옵니다.
++     *
++     * @return 사이드바가 활성화 되어있다면 {@code true}를 반환
++     */
++    boolean isUseIndividualSidebar();
++
++    /**
++     * {@link SidebarProcessor}를 가져옵니다.
++     *
++     * @return 활성화 가능한 {@link SidebarProcessor}
++     * @throws IllegalArgumentException 개인 사이드바 기능이 활성화되어있지 않은 경우
++     */
++    @NotNull
++    SidebarProcessor getSidebarProcessor();
++}
+diff --git a/src/main/java/moe/caramel/daydream/sidebar/SidebarDecorator.java b/src/main/java/moe/caramel/daydream/sidebar/SidebarDecorator.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..e5fcf4332ac61a9eaae05d6ce7317a6c095621eb
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/sidebar/SidebarDecorator.java
+@@ -0,0 +1,35 @@
++package moe.caramel.daydream.sidebar;
++
++import net.kyori.adventure.text.Component;
++import org.bukkit.entity.Player;
++import org.jetbrains.annotations.NotNull;
++import org.jetbrains.annotations.Nullable;
++
++/**
++ * 플레이어별 사이드바 데코레이터
++ */
++public interface SidebarDecorator {
++
++    /**
++     * 플레이어별 사이드바에 표시할 제목을 가져옵니다.
++     * <br>
++     * {@code null}을 반환하는 경우 {@link org.bukkit.scoreboard.Objective}의
++     * {@link org.bukkit.scoreboard.Objective#displayName()}이 사용됩니다.
++     *
++     * @param player 대상 플레이어
++     * @return 사이드바에 표시할 제목
++     */
++    @Nullable
++    Component getTitle(final @NotNull Player player);
++
++    /**
++     * 플레이어별 사이드바에 표시할 {@link moe.caramel.daydream.sidebar.EntryBuilder.Entry} 리스트를 가져옵니다.
++     * <br>
++     * {@code null}을 반환하는 경우 리스트를 업데이트하지 않습니다.
++     *
++     * @param player 대상 플레이어
++     * @return 사이드바에 표시할 {@link moe.caramel.daydream.sidebar.EntryBuilder.Entry} 리스트
++     */
++    @Nullable
++    EntryBuilder getEntries(final @NotNull Player player);
++}
+diff --git a/src/main/java/moe/caramel/daydream/sidebar/SidebarProcessor.java b/src/main/java/moe/caramel/daydream/sidebar/SidebarProcessor.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..b1adde6e61e4b95e5c31703577b478753f5d6dd8
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/sidebar/SidebarProcessor.java
+@@ -0,0 +1,52 @@
++package moe.caramel.daydream.sidebar;
++
++import org.bukkit.entity.Player;
++import org.bukkit.plugin.Plugin;
++import org.jetbrains.annotations.NotNull;
++
++public interface SidebarProcessor {
++
++    /**
++     * {@link SidebarDecorator}를 가져옵니다.
++     *
++     * @return 사용자 지정 {@link SidebarDecorator}
++     */
++    @NotNull
++    SidebarDecorator decorator();
++
++    /**
++     * 특정 플레이어에게 개인 사이드바 기능을 활성화합니다.
++     *
++     * @param owner 소유 플러그인
++     * @param holder 대상 플레이어
++     * @param updateInterval 사이드바 업데이트 시간(Tick), 0 이하일 수 없습니다.
++     * @return 다른 플러그인 또는 다른 {@link org.bukkit.scoreboard.Criteria}에서 이미 사용하고 있는 경우 {@code false}를 반환
++     */
++    boolean activate(final @NotNull Plugin owner, final @NotNull Player holder, final long updateInterval);
++
++    /**
++     * 특정 플레이어에게 개인 사이드바 기능을 비활성화합니다.
++     *
++     * @param holder 대상 플레이어
++     * @return 활성화되어있지 않은 경우 {@code false}를 반환
++     */
++    boolean deactivate(final @NotNull Player holder);
++
++    /**
++     * 특정 플레이어의 개인 사이드바 기능 사용 여부를 가져옵니다.
++     * <br>다른 플러그인이 소유하고 있더라도 {@code true}를 반환합니다.
++     *
++     * @param holder 대상 플레이어
++     * @return 개인 사이드바 기능 사용 여부
++     */
++    boolean isActivated(final @NotNull Player holder);
++
++    /**
++     * 특정 플레이어의 개인 사이드바 업데이트 시간을 가져옵니다.
++     *
++     * @param holder 대상 플레이어
++     * @return 개인 사이드바 기능 사용 여부
++     * @throws IllegalArgumentException 개인 사이드바 기능이 활성화되어있지 않은 경우
++     */
++    long getUpdateInterval(final @NotNull Player holder);
++}
+diff --git a/src/main/java/moe/caramel/daydream/util/CancellableTask.java b/src/main/java/moe/caramel/daydream/util/CancellableTask.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..4dc7b27772061780734abef78e207ca5037b0578
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/util/CancellableTask.java
+@@ -0,0 +1,13 @@
++package moe.caramel.daydream.util;
++
++/**
++ * 이 클래스가 상속되어있는 {@link org.bukkit.scheduler.BukkitRunnable}은 테스크가 종료되었을 때
++ * {@link #cancelRequest()} 메서드를 호출합니다.
++ */
++public interface CancellableTask {
++
++    /**
++     * 작업 취소 요청을 받았을 때 호출됩니다.
++     */
++    void cancelRequest();
++}
+diff --git a/src/main/java/org/bukkit/scoreboard/Objective.java b/src/main/java/org/bukkit/scoreboard/Objective.java
+index b236d19d4e4e4f9def610bae8a0c7d222fe2241b..0b4601e78c907e42e1a3736e58a20743c3fb0e81 100644
+--- a/src/main/java/org/bukkit/scoreboard/Objective.java
++++ b/src/main/java/org/bukkit/scoreboard/Objective.java
+@@ -9,7 +9,7 @@ import org.jetbrains.annotations.Nullable;
+  * objective is only relevant to the display of the associated {@link
+  * #getScoreboard() scoreboard}.
+  */
+-public interface Objective {
++public interface Objective extends moe.caramel.daydream.sidebar.ISidebar { // Daydream - Add Individual Sidebar API
+ 
+     /**
+      * Gets the name of this Objective
