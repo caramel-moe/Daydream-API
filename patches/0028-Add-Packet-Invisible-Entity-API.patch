@@ -5,10 +5,10 @@ Subject: [PATCH] Add Packet Invisible Entity API
 
 
 diff --git a/src/main/java/org/bukkit/World.java b/src/main/java/org/bukkit/World.java
-index bd35cb298972ec1bc586ba25d155ee24c5b27327..397d847dcf7f77fa907045d1600008eade7ad82c 100644
+index 676a1615bd61787691d4d900c44fe02165a2a0f8..54881799491feae739c135a057cb609951ca4b57 100644
 --- a/src/main/java/org/bukkit/World.java
 +++ b/src/main/java/org/bukkit/World.java
-@@ -2284,6 +2284,26 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
+@@ -2295,6 +2295,26 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      @NotNull
      public FallingBlock spawnFallingBlock(@NotNull Location location, @NotNull BlockData data) throws IllegalArgumentException;
  
@@ -36,10 +36,10 @@ index bd35cb298972ec1bc586ba25d155ee24c5b27327..397d847dcf7f77fa907045d1600008ea
       * Spawn a {@link FallingBlock} entity at the given {@link Location} of the
       * specified {@link Material}. The material dictates what is falling.
 diff --git a/src/main/java/org/bukkit/entity/Entity.java b/src/main/java/org/bukkit/entity/Entity.java
-index 2b4ca69037aa1ff66e2fe351cfcb99c595b58671..de55135c21c1890b7550457f1ee59c3a1bf46b34 100644
+index 1358259fd54dbb6f8b413a91fb693c0ea6691ac2..d33c74155a6ca64bad65b1529b6e1ef477bc61a2 100644
 --- a/src/main/java/org/bukkit/entity/Entity.java
 +++ b/src/main/java/org/bukkit/entity/Entity.java
-@@ -863,4 +863,29 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
+@@ -876,4 +876,29 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
       */
      boolean isInPowderedSnow();
      // Paper end

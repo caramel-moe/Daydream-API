@@ -694,8 +694,54 @@ index 5d9a27a55e95dd84fe3d108a5b84242c40bd2b27..3664723563b96187c4218a4008a25ec2
 +    <T extends moe.caramel.daydream.network.Packet> T createPacket(@NotNull Class<T> packet);
 +    // Daydream end - Add Packet API
  }
+diff --git a/src/main/java/org/bukkit/World.java b/src/main/java/org/bukkit/World.java
+index bd35cb298972ec1bc586ba25d155ee24c5b27327..676a1615bd61787691d4d900c44fe02165a2a0f8 100644
+--- a/src/main/java/org/bukkit/World.java
++++ b/src/main/java/org/bukkit/World.java
+@@ -1608,6 +1608,17 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
+     public Entity getEntity(@NotNull java.util.UUID uuid);
+     // Paper end
+ 
++    // Daydream start - Add Packet API (getEntity by ID API)
++    /**
++     * Gets an entity in this world by its ID
++     *
++     * @param id the ID of the entity
++     * @return the entity with the given ID, or null if it isn't found
++     */
++    @Nullable
++    public Entity getEntity(int id);
++    // Daydream end
++
+     /**
+      * Returns a list of entities within a bounding box centered around a
+      * Location.
+diff --git a/src/main/java/org/bukkit/entity/Entity.java b/src/main/java/org/bukkit/entity/Entity.java
+index 8bc6876c82935988436597161fa0ec94c032174b..8cc343f8f549d1a07a5ea775b854fb89db6f369d 100644
+--- a/src/main/java/org/bukkit/entity/Entity.java
++++ b/src/main/java/org/bukkit/entity/Entity.java
+@@ -457,6 +457,19 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
+     @NotNull
+     public UUID getUniqueId();
+ 
++    // Daydream start - Add Packet API
++    /**
++     * Gets the metadata of the entity.
++     *
++     * @param index metadata index
++     * @return get or null
++     * @see <a href="https://wiki.vg/Entity_metadata">here</a>
++     */
++    @Nullable
++    @org.jetbrains.annotations.ApiStatus.Experimental
++    public Object getMetadata(int index);
++    // Daydream end
++
+     /**
+      * Gets the amount of ticks this entity has lived for.
+      * <p>
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index e9a5b81ba15e1a94e647a748c3ae198975530e32..d47ca991d9592060c62a4d3dc827b5eefbf47fb3 100644
+index dc75f005ae838621a3ace9294719e25ef949087c..6fd7587ea71af8188e5819348ee3133c8e813185 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
 @@ -661,6 +661,22 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
