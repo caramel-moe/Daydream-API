@@ -5,17 +5,17 @@ Subject: [PATCH] Add Network API
 
 
 diff --git a/build.gradle.kts b/build.gradle.kts
-index 92d97569e0c2bdf53d385eaa2d3d440c03edb452..c4762dc6a6745b3b24e8d9766c81f9e9b4dde2f0 100644
+index cd2068cbcd8bab043cc2bcce09ab75b62f5b6a72..969e61cfb4831ebef9466f9b4b34e0c0d2e08156 100644
 --- a/build.gradle.kts
 +++ b/build.gradle.kts
-@@ -54,6 +54,7 @@ dependencies {
-     api("com.mojang:authlib:3.3.39") // Daydream - Mojang Authlib (keep in sync with major MC versions)
-     api("moe.caramel:acacia-user:1.0.0-SNAPSHOT") // Daydream - caramel.moe Network
+@@ -53,6 +53,7 @@ dependencies {
+     // Daydream end - Add Brigadier Command API
+     api("com.mojang:authlib:3.17.30") // Daydream - Mojang Authlib (keep in sync with major MC versions)
      api("com.neovisionaries:nv-i18n:1.29") // Daydream - add GeoIP
-+    api("io.netty:netty-all:4.1.82.Final") // Daydream - add Network API
++    api("io.netty:netty-all:4.1.87.Final") // Daydream - add Network API
  
-     compileOnly("org.apache.maven:maven-resolver-provider:3.8.4")
-     compileOnly("org.apache.maven.resolver:maven-resolver-connector-basic:1.7.2")
+     api("org.apache.maven:maven-resolver-provider:3.8.5") // Paper, expose
+     compileOnly("org.apache.maven.resolver:maven-resolver-connector-basic:1.7.3")
 diff --git a/src/main/java/moe/caramel/daydream/network/MojangByteBuf.java b/src/main/java/moe/caramel/daydream/network/MojangByteBuf.java
 new file mode 100644
 index 0000000000000000000000000000000000000000..21fde661e12417b1af155cfcb747140b249e4c63
@@ -181,12 +181,12 @@ index 0000000000000000000000000000000000000000..21fde661e12417b1af155cfcb747140b
 +    public abstract MojangByteBuf writeBitSet(@NotNull BitSet bitSet);
 +}
 diff --git a/src/main/java/org/bukkit/UnsafeValues.java b/src/main/java/org/bukkit/UnsafeValues.java
-index eb3397c45d37e5236155156cf3cdd49ea5e0a491..2fcae464aa3b036fa637a87742772aa0d1078362 100644
+index 8a5ad3b36ebaa17dd353a93ed0139fa52d57d0c1..cfe310e5df504384b1d69d545a204eaa171d23c8 100644
 --- a/src/main/java/org/bukkit/UnsafeValues.java
 +++ b/src/main/java/org/bukkit/UnsafeValues.java
-@@ -257,4 +257,15 @@ public interface UnsafeValues {
+@@ -259,4 +259,15 @@ public interface UnsafeValues {
       */
-     boolean isCollidable(@org.jetbrains.annotations.NotNull Material material);
+     void setBiomeKey(RegionAccessor accessor, int x, int y, int z, NamespacedKey biomeKey);
      // Paper end
 +
 +    // Daydream start
@@ -201,12 +201,12 @@ index eb3397c45d37e5236155156cf3cdd49ea5e0a491..2fcae464aa3b036fa637a87742772aa0
 +    // Daydream end
  }
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index d2a1c4ab984e713b1f1769d17bf01e01bea0bcb9..e9a5b81ba15e1a94e647a748c3ae198975530e32 100644
+index d99247504159679a825658b50f5058069b54826c..24dd773621080932f494e96f0e2c8e3f6ff18e4e 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
-@@ -645,6 +645,24 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+@@ -720,6 +720,24 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
       */
-     public void sendEquipmentChange(@NotNull LivingEntity entity, @NotNull EquipmentSlot slot, @NotNull ItemStack item);
+     public void sendEquipmentChange(@NotNull LivingEntity entity, @NotNull Map<EquipmentSlot, ItemStack> items);
  
 +    // Daydream start
 +    /**

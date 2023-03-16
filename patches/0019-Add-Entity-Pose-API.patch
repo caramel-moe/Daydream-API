@@ -3,16 +3,17 @@ From: LoaiDev <lolyakram11@gmail.com>
 Date: Tue, 11 Jan 2022 18:01:33 +0200
 Subject: [PATCH] Add Entity Pose API
 
+https://github.com/PaperMC/Paper/pull/7318
 
 diff --git a/src/main/java/org/bukkit/entity/Entity.java b/src/main/java/org/bukkit/entity/Entity.java
-index 8cc343f8f549d1a07a5ea775b854fb89db6f369d..a11dc0a4067e2d38c7f2b80a4af941369b687f74 100644
+index a8406e5260666b1ed48cd20cfb3e991631be52db..dc1d7062f1b808bb8c0d56bffbcbdd0b07ca0d3f 100644
 --- a/src/main/java/org/bukkit/entity/Entity.java
 +++ b/src/main/java/org/bukkit/entity/Entity.java
-@@ -700,6 +700,40 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
+@@ -777,6 +777,39 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
      @NotNull
      Pose getPose();
  
-+    // Daydream start - Add Entity Pose API
++    // Paper start - Add Entity Pose API
 +    /**
 +     * Sets the entity's current pose.
 +     *
@@ -43,9 +44,8 @@ index 8cc343f8f549d1a07a5ea775b854fb89db6f369d..a11dc0a4067e2d38c7f2b80a4af94136
 +     * @return if entity has fixed pose
 +     */
 +    boolean hasFixedPose();
-+    // Daydream end - Add Entity Pose API
++    // Paper end - Add Entity Pose API
 +
-+
+     // Paper start
      /**
-      * Get the category of spawn to which this entity belongs.
-      *
+      * Returns if the entity is in sneak mode

@@ -4,8 +4,8 @@ import org.gradle.api.tasks.testing.logging.TestLogEvent
 
 plugins {
     java
-    id("com.github.johnrengelman.shadow") version "7.1.2" apply false
-    id("io.papermc.paperweight.patcher") version "1.3.7"
+    id("com.github.johnrengelman.shadow") version "8.1.0" apply false
+    id("io.papermc.paperweight.patcher") version "1.5.3"
 }
 
 val caramelMavenPublicUrl = "https://repo.caramel.moe/repository/maven-public";
@@ -13,7 +13,9 @@ val paperMavenPublicUrl = "https://papermc.io/repo/repository/maven-public/"
 repositories {
     mavenCentral()
     maven(paperMavenPublicUrl) {
-        content { onlyForConfigurations(PAPERCLIP_CONFIG) }
+        content {
+            onlyForConfigurations(PAPERCLIP_CONFIG)
+        }
     }
 }
 
@@ -47,6 +49,8 @@ subprojects {
             exceptionFormat = TestExceptionFormat.FULL
             events(TestLogEvent.STANDARD_OUT)
         }
+        minHeapSize = "2g"
+        maxHeapSize = "4g"
     }
 
     repositories {

@@ -1,0 +1,69 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: LemonCaramel <admin@caramel.moe>
+Date: Sun, 8 Aug 2021 22:10:59 +0900
+Subject: [PATCH] Add more World Block API
+
+
+diff --git a/src/main/java/org/bukkit/World.java b/src/main/java/org/bukkit/World.java
+index aa04d7df70d99402c91e920fd693d7d4fb655786..5c65d1f67b9e95a4444354535ba02eaddbcc4050 100644
+--- a/src/main/java/org/bukkit/World.java
++++ b/src/main/java/org/bukkit/World.java
+@@ -75,6 +75,14 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
+     int getPlayerCount();
+     // Paper end
+ 
++    // Daydream start
++    /**
++     * @param boundingBox BoundingBox to be checked
++     * @return Returns {@code false} if a block exists within the {@code boundingBox} range.
++     */
++    boolean boundingBoxNoBlocksAround(@NotNull BoundingBox boundingBox);
++    // Daydream end
++
+     /**
+      * Gets the {@link Block} at the given coordinates
+      *
+diff --git a/src/main/java/org/bukkit/block/Block.java b/src/main/java/org/bukkit/block/Block.java
+index 390a2a2611df35a9ea6f1eb996b47e2aa4597ff0..10eec45e7c6dc79500a8c3bbf767f21731db191f 100644
+--- a/src/main/java/org/bukkit/block/Block.java
++++ b/src/main/java/org/bukkit/block/Block.java
+@@ -590,6 +590,20 @@ public interface Block extends Metadatable, Translatable, net.kyori.adventure.tr
+      */
+     boolean breakNaturally(@NotNull ItemStack tool, boolean triggerEffect, boolean dropExperience);
+ 
++    // Daydream start
++    /**
++     * Breaks the block and spawns items as if a player had digged it with a
++     * specific tool
++     *
++     * @param tool The tool or item in hand used for digging
++     * @param triggerEffect Play the block break particle effect and sound
++     * @param dropExperience drop exp if the block normally does so
++     * @param dropItem Item Drop
++     * @return true if the block was destroyed
++     */
++    boolean breakNaturally(@NotNull ItemStack tool, boolean triggerEffect, boolean dropExperience, boolean dropItem);
++    // Daydream end
++
+     /**
+      * Causes the block to be ticked, this is different from {@link Block#randomTick()},
+      * in that it is usually scheduled to occur, for example
+diff --git a/src/main/java/org/bukkit/util/StructureSearchResult.java b/src/main/java/org/bukkit/util/StructureSearchResult.java
+index 129c14ef4a89bcd14b31343a756773bde43d48ab..917ebda96032bbb38382f69f48f549e3a8fb9dd7 100644
+--- a/src/main/java/org/bukkit/util/StructureSearchResult.java
++++ b/src/main/java/org/bukkit/util/StructureSearchResult.java
+@@ -29,4 +29,14 @@ public interface StructureSearchResult {
+      */
+     @NotNull
+     Location getLocation();
++
++    // Daydream start
++    /**
++     * Return the bounding box of the structure.
++     *
++     * @return the bounding box the structure was found.
++     */
++    @NotNull
++    BoundingBox getBoundingBox();
++    // Daydream end
+ }

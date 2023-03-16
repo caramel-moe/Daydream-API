@@ -6,10 +6,10 @@ Subject: [PATCH] Add Packet API
 
 diff --git a/src/main/java/moe/caramel/daydream/event/network/PacketType.java b/src/main/java/moe/caramel/daydream/event/network/PacketType.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..b2e79d611160879693643fd42a9254c5b82f42ae
+index 0000000000000000000000000000000000000000..c3882dfcb5c5f26d662af4a43a152f54e170a122
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/event/network/PacketType.java
-@@ -0,0 +1,16 @@
+@@ -0,0 +1,17 @@
 +package moe.caramel.daydream.event.network;
 +
 +/**
@@ -23,12 +23,13 @@ index 0000000000000000000000000000000000000000..b2e79d611160879693643fd42a9254c5
 +     * [Client -> Server] Packets
 +     */
 +    public enum Client {
-+        PLAYER_INPUT
++        PLAYER_INPUT,
++        PONG
 +    }
 +}
 diff --git a/src/main/java/moe/caramel/daydream/event/network/ReceivePacketEvent.java b/src/main/java/moe/caramel/daydream/event/network/ReceivePacketEvent.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..159f0bd553535a6e893a7e96ea13e5563d24d97e
+index 0000000000000000000000000000000000000000..e73ff2530dfeb0e1c12b75797e92d3265a16f571
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/event/network/ReceivePacketEvent.java
 @@ -0,0 +1,45 @@
@@ -52,8 +53,8 @@ index 0000000000000000000000000000000000000000..159f0bd553535a6e893a7e96ea13e556
 +    private final PacketType.Client packetType;
 +    private boolean cancelled;
 +
-+    public ReceivePacketEvent(@NotNull Player who, @NotNull PacketType.Client packetType) {
-+        super(who);
++    public ReceivePacketEvent(@NotNull Player who, @NotNull PacketType.Client packetType, boolean async) {
++        super(who, async);
 +        this.packetType = packetType;
 +    }
 +
@@ -79,7 +80,7 @@ index 0000000000000000000000000000000000000000..159f0bd553535a6e893a7e96ea13e556
 +}
 diff --git a/src/main/java/moe/caramel/daydream/event/network/ReceivePlayerInputPacketEvent.java b/src/main/java/moe/caramel/daydream/event/network/ReceivePlayerInputPacketEvent.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..0745c1744fc6ad02812b19bd2fcbcbfbfe9db4c2
+index 0000000000000000000000000000000000000000..04d5a513bb261af0ee6d82ecec36c94dd5b42bf7
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/event/network/ReceivePlayerInputPacketEvent.java
 @@ -0,0 +1,106 @@
@@ -97,7 +98,7 @@ index 0000000000000000000000000000000000000000..0745c1744fc6ad02812b19bd2fcbcbfb
 +    private boolean jumping, shiftKeyDown;
 +
 +    public ReceivePlayerInputPacketEvent(@NotNull Player who, float sideways, float forward, boolean jumping, boolean shiftKeyDown) {
-+        super(who, PacketType.Client.PLAYER_INPUT);
++        super(who, PacketType.Client.PLAYER_INPUT, false);
 +        this.sideways = sideways;
 +        this.forward = forward;
 +        this.jumping = jumping;
@@ -189,6 +190,55 @@ index 0000000000000000000000000000000000000000..0745c1744fc6ad02812b19bd2fcbcbfb
 +            '}';
 +    }
 +}
+diff --git a/src/main/java/moe/caramel/daydream/event/network/ReceivePlayerPongPacketEvent.java b/src/main/java/moe/caramel/daydream/event/network/ReceivePlayerPongPacketEvent.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..2110ec8c9f53be8c805b05f02669a4a1cd488694
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/event/network/ReceivePlayerPongPacketEvent.java
+@@ -0,0 +1,43 @@
++package moe.caramel.daydream.event.network;
++
++import org.bukkit.entity.Player;
++import org.jetbrains.annotations.NotNull;
++
++/**
++ * 서버가 클라이언트로부터 {@link PacketType.Client#PONG}패킷을 전달받았을 때 호출됩니다.
++ */
++public final class ReceivePlayerPongPacketEvent extends ReceivePacketEvent {
++
++    private final int id;
++
++    public ReceivePlayerPongPacketEvent(@NotNull Player who, int id) {
++        super(who, PacketType.Client.PONG, true);
++        this.id = id;
++    }
++
++    /**
++     * Gets id.
++     *
++     * @return id
++     */
++    public int getId() {
++        return id;
++    }
++
++    /**
++     * 이 패킷은 서버에서 아무 처리도 하지 않아 취소할 수 없습니다.
++     *
++     * @param cancel 취소할 수 없음
++     */
++    @Override
++    @Deprecated
++    public void setCancelled(boolean cancel) {
++    }
++
++    @Override
++    public String toString() {
++        return "ReceivePlayerPongPacketEvent{" +
++            "id=" + id +
++            '}';
++    }
++}
 diff --git a/src/main/java/moe/caramel/daydream/network/Packet.java b/src/main/java/moe/caramel/daydream/network/Packet.java
 new file mode 100644
 index 0000000000000000000000000000000000000000..6eef5e86697ff2b9dcb8a5a48cc8dfd590cdf6d6
@@ -210,6 +260,40 @@ index 0000000000000000000000000000000000000000..6eef5e86697ff2b9dcb8a5a48cc8dfd5
 +     * @return 빌드가 가능하면 {@code true}를 반환합니다.
 +     */
 +    boolean canBuild();
++}
+diff --git a/src/main/java/moe/caramel/daydream/network/packet/BundlePacket.java b/src/main/java/moe/caramel/daydream/network/packet/BundlePacket.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..07067f90219f3ebc5e9a67e99c86dca69480db94
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/network/packet/BundlePacket.java
+@@ -0,0 +1,28 @@
++package moe.caramel.daydream.network.packet;
++
++import moe.caramel.daydream.network.Packet;
++import org.jetbrains.annotations.NotNull;
++import java.util.List;
++
++public interface BundlePacket extends Packet {
++
++    /**
++     * 패킷을 생성합니다.
++     *
++     * @param packets 동시에 처리할 패킷 목록
++     * @return this
++     */
++    @NotNull
++    default BundlePacket create(final @NotNull Packet... packets) {
++        return create(List.of(packets));
++    }
++
++    /**
++     * 패킷을 생성합니다.
++     *
++     * @param packets 동시에 처리할 패킷 목록
++     * @return this
++     */
++    @NotNull
++    BundlePacket create(final @NotNull List<Packet> packets);
 +}
 diff --git a/src/main/java/moe/caramel/daydream/network/packet/ContainerSetSlotPacket.java b/src/main/java/moe/caramel/daydream/network/packet/ContainerSetSlotPacket.java
 new file mode 100644
@@ -277,76 +361,171 @@ index 0000000000000000000000000000000000000000..091f30773662c104a6e5017209febee2
 +    @NotNull
 +    GameEventPacket create(int event, float value);
 +}
-diff --git a/src/main/java/moe/caramel/daydream/network/packet/PlayerInfoPacket.java b/src/main/java/moe/caramel/daydream/network/packet/PlayerInfoPacket.java
+diff --git a/src/main/java/moe/caramel/daydream/network/packet/PingPacket.java b/src/main/java/moe/caramel/daydream/network/packet/PingPacket.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..871264afd7094c2d8dd1ec627bb26a8baf7ef7e0
+index 0000000000000000000000000000000000000000..eb202b5eaee0e43a6e600e06e79063810a3ba156
 --- /dev/null
-+++ b/src/main/java/moe/caramel/daydream/network/packet/PlayerInfoPacket.java
-@@ -0,0 +1,165 @@
++++ b/src/main/java/moe/caramel/daydream/network/packet/PingPacket.java
+@@ -0,0 +1,16 @@
++package moe.caramel.daydream.network.packet;
++
++import moe.caramel.daydream.network.Packet;
++import org.jetbrains.annotations.NotNull;
++
++public interface PingPacket extends Packet {
++
++    /**
++     * 패킷을 생성합니다.
++     *
++     * @param id {@link moe.caramel.daydream.event.network.PacketType.Client#PONG} 패킷으로 돌려받을 Id
++     * @return this
++     */
++    @NotNull
++    PingPacket create(int id);
++}
+diff --git a/src/main/java/moe/caramel/daydream/network/packet/PlayerInfoRemovePacket.java b/src/main/java/moe/caramel/daydream/network/packet/PlayerInfoRemovePacket.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..81e12d87514a89dafa81a6734650288a53e45bd0
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/network/packet/PlayerInfoRemovePacket.java
+@@ -0,0 +1,44 @@
++package moe.caramel.daydream.network.packet;
++
++import moe.caramel.daydream.network.Packet;
++import org.bukkit.entity.Player;
++import org.jetbrains.annotations.NotNull;
++import java.util.ArrayList;
++import java.util.List;
++import java.util.UUID;
++
++public interface PlayerInfoRemovePacket extends Packet {
++
++    /**
++     * 패킷을 생성합니다.
++     *
++     * @param players 플레이어 목록
++     * @return this
++     */
++    @NotNull
++    default PlayerInfoRemovePacket create(@NotNull Player... players) {
++        final List<UUID> list = new ArrayList<>();
++        for (Player player : players) list.add(player.getUniqueId());
++        return create(list);
++    }
++
++    /**
++     * 패킷을 생성합니다.
++     *
++     * @param uuids 플레이어 목록
++     * @return this
++     */
++    @NotNull
++    default PlayerInfoRemovePacket create(@NotNull UUID... uuids) {
++        return create(List.of(uuids));
++    }
++
++    /**
++     * 패킷을 생성합니다.
++     *
++     * @param uuids 플레이어 목록
++     * @return this
++     */
++    @NotNull
++    PlayerInfoRemovePacket create(@NotNull List<UUID> uuids);
++}
+diff --git a/src/main/java/moe/caramel/daydream/network/packet/PlayerInfoUpdatePacket.java b/src/main/java/moe/caramel/daydream/network/packet/PlayerInfoUpdatePacket.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..9fd5b994e2f013cf7ba43864347bb632b3271a29
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/network/packet/PlayerInfoUpdatePacket.java
+@@ -0,0 +1,183 @@
 +package moe.caramel.daydream.network.packet;
 +
 +import com.mojang.authlib.GameProfile;
 +import moe.caramel.daydream.network.Packet;
++import moe.caramel.daydream.player.ChatSession;
 +import net.kyori.adventure.text.Component;
 +import org.bukkit.GameMode;
 +import org.bukkit.entity.Player;
 +import org.jetbrains.annotations.NotNull;
 +import org.jetbrains.annotations.Nullable;
 +import java.util.Collection;
++import java.util.EnumSet;
++import java.util.List;
 +import java.util.UUID;
 +
-+public interface PlayerInfoPacket extends Packet {
++public interface PlayerInfoUpdatePacket extends Packet {
 +
 +    /**
 +     * 패킷을 생성합니다.
 +     *
-+     * @param action 패킷이 수행할 작업
-+     * @param data 플레이어 데이터
++     * @param actions 패킷이 수행할 작업의 목록
++     * @param players 플레이어 목록
 +     * @return this
 +     */
 +    @NotNull
-+    PlayerInfoPacket create(@NotNull Action action, @NotNull PlayerData... data);
++    PlayerInfoUpdatePacket create(@NotNull EnumSet<Action> actions, @NotNull Player... players);
 +
 +    /**
 +     * 패킷을 생성합니다.
 +     *
-+     * @param action 패킷이 수행할 작업
++     * @param actions 패킷이 수행할 작업의 목록
 +     * @param data 플레이어 데이터
 +     * @return this
 +     */
 +    @NotNull
-+    PlayerInfoPacket create(@NotNull Action action, @NotNull Collection<PlayerData> data);
++    default PlayerInfoUpdatePacket create(@NotNull EnumSet<Action> actions, @NotNull PlayerData... data) {
++        return create(actions, List.of(data));
++    }
++
++    /**
++     * 패킷을 생성합니다.
++     *
++     * @param actions 패킷이 수행할 작업의 목록
++     * @param data 플레이어 데이터
++     * @return this
++     */
++    @NotNull
++    PlayerInfoUpdatePacket create(@NotNull EnumSet<Action> actions, @NotNull Collection<PlayerData> data);
 +
 +
 +    /**
 +     * 플레이어 데이터
 +     *
-+     * @param profile 플레이어의 게임 프로파일 (필수: 모두)
-+     * @param latency 플레이어의 지연 시간 (필수: {@link Action#ADD_PLAYER}, {@link Action#UPDATE_LATENCY})
-+     * @param gameMode 플레이어의 게임 모드 (필수: {@link Action#ADD_PLAYER}, {@link Action#UPDATE_GAME_MODE})
-+     * @param displayName 플레이어의 표시 이름 (nullable)
++     * @param profileId 플레이어의 게임 프로파일 UUID (필수: 모두)
++     * @param profile 플레이어의 게임 프로파일 (필수: {@link Action#ADD_PLAYER})
++     * @param listed 탭 리스트 표시 여부 (필수: {@link Action#UPDATE_LISTED})
++     * @param latency 플레이어의 지연 시간 (필수: {@link Action#UPDATE_LATENCY})
++     * @param gameMode 플레이어의 게임 모드 (필수: {@link Action#UPDATE_GAME_MODE})
++     * @param displayName 플레이어의 표시 이름 (필수: {@link Action#UPDATE_DISPLAY_NAME})
++     * @param chatSession 플레이어의 채팅 세션 (선택: {@link Action#INITIALIZE_CHAT})
 +     */
 +    record PlayerData(
-+        @NotNull GameProfile profile, int latency,
-+        @Nullable GameMode gameMode, @Nullable Component displayName
++        @NotNull UUID profileId, @NotNull GameProfile profile,
++        boolean listed, int latency, @NotNull GameMode gameMode,
++        @Nullable Component displayName, @Nullable ChatSession chatSession
 +    ) {}
 +
 +
 +    /**
 +     * for Add Player Action
 +     *
++     * @param profileId 플레이어의 프로파일 UUID
 +     * @param profile 플레이어의 게임 프로파일
++     * @param listed 탭 리스트 표시 여부
 +     * @param latency 플레이어의 지연 시간
 +     * @param gameMode 플레이어의 게임 모드
 +     * @param displayName 플레이어의 표시 이름 (nullable)
++     * @param chatSession 플레이어의 채팅 세션 (nullable)
 +     * @return 플레이어 데이터
 +     */
 +    @NotNull
 +    static PlayerData addPlayer(
-+        @NotNull GameProfile profile, int latency,
-+        @NotNull GameMode gameMode, @Nullable Component displayName
++        @NotNull UUID profileId, @NotNull GameProfile profile,
++        boolean listed, int latency, @NotNull GameMode gameMode,
++        @Nullable Component displayName, @Nullable ChatSession chatSession
 +    ) {
-+        return new PlayerData(profile, latency, gameMode, displayName);
++        return new PlayerData(profileId, profile, listed, latency, gameMode, displayName, chatSession);
 +    }
 +
 +    /**
@@ -357,9 +536,10 @@ index 0000000000000000000000000000000000000000..871264afd7094c2d8dd1ec627bb26a8b
 +     */
 +    @NotNull
 +    static PlayerData addPlayer(@NotNull Player player) {
-+        return PlayerInfoPacket.addPlayer(
-+            player.getProfile(), player.getPing(),
-+            player.getGameMode(), player.displayName()
++        return PlayerInfoUpdatePacket.addPlayer(
++            player.getUniqueId(), player.getProfile(),
++            true, player.getPing(), player.getGameMode(),
++            player.displayName(), player.getChatSession()
 +        );
 +    }
 +
@@ -372,7 +552,19 @@ index 0000000000000000000000000000000000000000..871264afd7094c2d8dd1ec627bb26a8b
 +     */
 +    @NotNull
 +    static PlayerData updateGameMode(@NotNull UUID uuid, @NotNull GameMode gameMode) {
-+        return new PlayerData(new GameProfile(uuid, null), 0, gameMode, null);
++        return new PlayerData(uuid, null, false, 0, gameMode, null, null);
++    }
++
++    /**
++     * for Update Listed Action
++     *
++     * @param uuid 플레이어의 UUID
++     * @param listed 플레이어가 탭 리스트에 표시될지의 여부
++     * @return 플레이어 데이터
++     */
++    @NotNull
++    static PlayerData updateListed(@NotNull UUID uuid, boolean listed) {
++        return new PlayerData(uuid, null, listed, 0, null, null, null);
 +    }
 +
 +    /**
@@ -384,7 +576,7 @@ index 0000000000000000000000000000000000000000..871264afd7094c2d8dd1ec627bb26a8b
 +     */
 +    @NotNull
 +    static PlayerData updateLatency(@NotNull UUID uuid, int latency) {
-+        return new PlayerData(new GameProfile(uuid, null), latency, null, null);
++        return new PlayerData(uuid, null, false, latency, null, null, null);
 +    }
 +
 +    /**
@@ -396,34 +588,12 @@ index 0000000000000000000000000000000000000000..871264afd7094c2d8dd1ec627bb26a8b
 +     */
 +    @NotNull
 +    static PlayerData updateDisplayName(@NotNull UUID uuid, @Nullable Component displayName) {
-+        return new PlayerData(new GameProfile(uuid, null), 0, null, displayName);
-+    }
-+
-+    /**
-+     * for Remove Player Action
-+     *
-+     * @param uuid 플레이어의 UUID
-+     * @return 플레이어 데이터
-+     */
-+    @NotNull
-+    static PlayerData removePlayer(@NotNull UUID uuid) {
-+        return new PlayerData(new GameProfile(uuid, null), 0, null, null);
-+    }
-+
-+    /**
-+     * for Remove Player Action
-+     *
-+     * @param player 대상 플레이어
-+     * @return 플레이어 데이터
-+     */
-+    @NotNull
-+    static PlayerData removePlayer(@NotNull Player player) {
-+        return new PlayerData(player.getProfile(), 0, null, null);
++        return new PlayerData(uuid, null, false, 0, null, displayName, null);
 +    }
 +
 +
 +    /**
-+     * Player Info 패킷 액션
++     * Player Info Update 패킷 액션
 +     */
 +    enum Action {
 +        /**
@@ -431,9 +601,17 @@ index 0000000000000000000000000000000000000000..871264afd7094c2d8dd1ec627bb26a8b
 +         */
 +        ADD_PLAYER,
 +        /**
++         * 채팅 세션을 설정합니다.
++         */
++        INITIALIZE_CHAT,
++        /**
 +         * 플레이어의 게임 모드를 업데이트합니다.
 +         */
 +        UPDATE_GAME_MODE,
++        /**
++         * 플레이어를 탭 리스트에 포함할지 결정합니다.
++         */
++        UPDATE_LISTED,
 +        /**
 +         * 플레이어의 지연 시간을 업데이트합니다.
 +         */
@@ -441,11 +619,7 @@ index 0000000000000000000000000000000000000000..871264afd7094c2d8dd1ec627bb26a8b
 +        /**
 +         * 플레이어의 표시 이름을 업데이트합니다.
 +         */
-+        UPDATE_DISPLAY_NAME,
-+        /**
-+         * 플레이어를 제거합니다.
-+         */
-+        REMOVE_PLAYER;
++        UPDATE_DISPLAY_NAME;
 +    }
 +}
 diff --git a/src/main/java/moe/caramel/daydream/network/packet/SetChunkCacheRadiusPacket.java b/src/main/java/moe/caramel/daydream/network/packet/SetChunkCacheRadiusPacket.java
@@ -472,7 +646,7 @@ index 0000000000000000000000000000000000000000..6d0d0956e39e54d29560397888f194fb
 +}
 diff --git a/src/main/java/moe/caramel/daydream/network/packet/SetDisplayObjectivePacket.java b/src/main/java/moe/caramel/daydream/network/packet/SetDisplayObjectivePacket.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..921aa1a9ed934b8aa292e12490924a10b8783ccb
+index 0000000000000000000000000000000000000000..ac841ee5ac79fe37fc4440f8bed45427bce8737c
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/network/packet/SetDisplayObjectivePacket.java
 @@ -0,0 +1,65 @@
@@ -511,7 +685,7 @@ index 0000000000000000000000000000000000000000..921aa1a9ed934b8aa292e12490924a10
 +     *
 +     * @param slot 스코어보드의 위치
 +     *              <a href="https://wiki.vg/Protocol#Display_Objective">여기</a>를 참고하세요.
-+     * @param objective {@link Objective} 객체
++     * @param objective {@link org.bukkit.scoreboard.Objective} 객체
 +     * @return this
 +     */
 +    @NotNull
@@ -522,7 +696,7 @@ index 0000000000000000000000000000000000000000..921aa1a9ed934b8aa292e12490924a10
 +     *
 +     * @param position 스코어보드의 위치
 +     *              <a href="https://wiki.vg/Protocol#Display_Objective">여기</a>를 참고하세요.
-+     * @param objective {@link Objective} 객체
++     * @param objective {@link org.bukkit.scoreboard.Objective} 객체
 +     * @return this
 +     */
 +    @NotNull
@@ -535,7 +709,7 @@ index 0000000000000000000000000000000000000000..921aa1a9ed934b8aa292e12490924a10
 +     *
 +     * @param position 스코어보드의 위치
 +     *              <a href="https://wiki.vg/Protocol#Display_Objective">여기</a>를 참고하세요.
-+     * @param scoreName {@link Objective}의 이름
++     * @param scoreName {@link org.bukkit.scoreboard.Objective}의 이름
 +     * @return this
 +     */
 +    @NotNull
@@ -648,11 +822,139 @@ index 0000000000000000000000000000000000000000..1c1dcb38a55e8a480ef47f0e2247e2ba
 +    @NotNull
 +    SetPlayerTeamPacket createTeamJoinOrLeavePacket(@NotNull String teamName, @NotNull Collection<String> players, boolean join);
 +}
+diff --git a/src/main/java/moe/caramel/daydream/player/ChatSession.java b/src/main/java/moe/caramel/daydream/player/ChatSession.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..cc0d7fa52044d0d6340bdb9ab277765c44bda95b
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/player/ChatSession.java
+@@ -0,0 +1,51 @@
++package moe.caramel.daydream.player;
++
++import org.jetbrains.annotations.NotNull;
++import java.util.UUID;
++
++/**
++ * 채팅 세션 클래스
++ */
++public final class ChatSession {
++
++    private final UUID sessionId;
++    private final IdentifyKey profileIdentifyKey;
++
++    @NotNull
++    public static ChatSession create(@NotNull UUID sessionId, @NotNull IdentifyKey profileIdentifyKey) {
++        return new ChatSession(sessionId, profileIdentifyKey);
++    }
++
++    ChatSession(@NotNull UUID sessionId, @NotNull IdentifyKey profileIdentifyKey) {
++        this.sessionId = sessionId;
++        this.profileIdentifyKey = profileIdentifyKey;
++    }
++
++    /**
++     * 채팅 세션의 세션 ID를 가져옵니다.
++     *
++     * @return 채팅 세션의 세션 ID
++     */
++    @NotNull
++    public UUID sessionId() {
++        return sessionId;
++    }
++
++    /**
++     * 프로파일의 공개키를 가져옵니다.
++     *
++     * @return 프로파일의 공개키
++     */
++    @NotNull
++    public IdentifyKey profileIdentifyKey() {
++        return profileIdentifyKey;
++    }
++
++    @Override
++    public String toString() {
++        return "ChatSession{" +
++            "sessionId=" + sessionId +
++            ", profileIdentifyKey=" + profileIdentifyKey +
++            '}';
++    }
++}
+diff --git a/src/main/java/moe/caramel/daydream/player/IdentifyKey.java b/src/main/java/moe/caramel/daydream/player/IdentifyKey.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..a4b9dcd4179fa4d4089d1929b639a6d663b53d99
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/player/IdentifyKey.java
+@@ -0,0 +1,65 @@
++package moe.caramel.daydream.player;
++
++import org.jetbrains.annotations.NotNull;
++import java.security.PublicKey;
++import java.time.Instant;
++import java.util.Arrays;
++
++/**
++ * 플레이어 공개키 클래스
++ */
++public final class IdentifyKey {
++
++    private final Instant expiresAt;
++    private final PublicKey key;
++    private final byte[] signature;
++
++    @NotNull
++    public static IdentifyKey create(@NotNull Instant expiresAt, @NotNull PublicKey key, byte @NotNull [] signature) {
++        return new IdentifyKey(expiresAt, key, signature);
++    }
++
++    IdentifyKey(@NotNull Instant expiresAt, @NotNull PublicKey key, byte @NotNull [] signature) {
++        this.expiresAt = expiresAt;
++        this.key = key;
++        this.signature = signature;
++    }
++
++    /**
++     * 공개키의 만료 시간을 가져옵니다.
++     *
++     * @return 공개키의 만료 시간
++     */
++    @NotNull
++    public Instant expiresAt() {
++        return expiresAt;
++    }
++
++    /**
++     * 플레이어의 공개키를 가져옵니다.
++     *
++     * @return 플레이어의 공개키
++     */
++    @NotNull
++    public PublicKey key() {
++        return key;
++    }
++
++    /**
++     * 공개키의 서명을 가져옵니다.
++     *
++     * @return 공개키의 서명
++     */
++    public byte @NotNull [] signature() {
++        return signature;
++    }
++
++    @Override
++    public String toString() {
++        return "IdentifyKey{" +
++            "expiresAt=" + expiresAt +
++            ", key=" + key +
++            ", signature=" + Arrays.toString(signature) +
++            '}';
++    }
++}
 diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
-index 7c5d6c2b52c051b89bca9c120ec896395cda2b2f..b58efc34b9dd832a8f32ea0e034e04c5fa848657 100644
+index 44d316bf71bb7a2c946a12ad66a20e8dcd888e62..4db81023ab502281aeb359afb59f46b77c6cfdb1 100644
 --- a/src/main/java/org/bukkit/Bukkit.java
 +++ b/src/main/java/org/bukkit/Bukkit.java
-@@ -2413,6 +2413,20 @@ public final class Bukkit {
+@@ -2509,6 +2509,20 @@ public final class Bukkit {
      }
      // Paper end
  
@@ -674,10 +976,10 @@ index 7c5d6c2b52c051b89bca9c120ec896395cda2b2f..b58efc34b9dd832a8f32ea0e034e04c5
      public static Server.Spigot spigot() {
          return server.spigot();
 diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
-index 5d9a27a55e95dd84fe3d108a5b84242c40bd2b27..3664723563b96187c4218a4008a25ec2c3092684 100644
+index 2853241f22aecb7ea2b408be0861664615c1eb78..e969bfd7cb67ef802c976029e89f47451430a56b 100644
 --- a/src/main/java/org/bukkit/Server.java
 +++ b/src/main/java/org/bukkit/Server.java
-@@ -2104,4 +2104,16 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
+@@ -2188,4 +2188,16 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
       */
      @NotNull org.bukkit.potion.PotionBrewer getPotionBrewer();
      // Paper end
@@ -695,10 +997,10 @@ index 5d9a27a55e95dd84fe3d108a5b84242c40bd2b27..3664723563b96187c4218a4008a25ec2
 +    // Daydream end - Add Packet API
  }
 diff --git a/src/main/java/org/bukkit/World.java b/src/main/java/org/bukkit/World.java
-index bd35cb298972ec1bc586ba25d155ee24c5b27327..676a1615bd61787691d4d900c44fe02165a2a0f8 100644
+index 5c65d1f67b9e95a4444354535ba02eaddbcc4050..ac42c2424806fb0b2a0cd586eca08a5624dab7d3 100644
 --- a/src/main/java/org/bukkit/World.java
 +++ b/src/main/java/org/bukkit/World.java
-@@ -1608,6 +1608,17 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
+@@ -1611,6 +1611,17 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      public Entity getEntity(@NotNull java.util.UUID uuid);
      // Paper end
  
@@ -717,10 +1019,10 @@ index bd35cb298972ec1bc586ba25d155ee24c5b27327..676a1615bd61787691d4d900c44fe021
       * Returns a list of entities within a bounding box centered around a
       * Location.
 diff --git a/src/main/java/org/bukkit/entity/Entity.java b/src/main/java/org/bukkit/entity/Entity.java
-index 8bc6876c82935988436597161fa0ec94c032174b..8cc343f8f549d1a07a5ea775b854fb89db6f369d 100644
+index 365350d38b2eee00d22bad09ab95c6054f11d536..a8406e5260666b1ed48cd20cfb3e991631be52db 100644
 --- a/src/main/java/org/bukkit/entity/Entity.java
 +++ b/src/main/java/org/bukkit/entity/Entity.java
-@@ -457,6 +457,19 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
+@@ -482,6 +482,19 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
      @NotNull
      public UUID getUniqueId();
  
@@ -741,10 +1043,27 @@ index 8bc6876c82935988436597161fa0ec94c032174b..8cc343f8f549d1a07a5ea775b854fb89
       * Gets the amount of ticks this entity has lived for.
       * <p>
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index dc75f005ae838621a3ace9294719e25ef949087c..6fd7587ea71af8188e5819348ee3133c8e813185 100644
+index 24dd773621080932f494e96f0e2c8e3f6ff18e4e..3c95f02661413db0fe51dcd2bedd08c81d46912c 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
-@@ -661,6 +661,22 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+@@ -294,6 +294,16 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+      */
+     public boolean performCommand(@NotNull String command);
+ 
++    // Daydream start - Add Packet API
++    /**
++     * 플레이어의 채팅 세션을 가져옵니다.
++     *
++     * @return 플레이어의 채팅 세션
++     */
++    @Nullable
++    public moe.caramel.daydream.player.ChatSession getChatSession();
++    // Daydream end - Add Packet API
++
+     /**
+      * Returns true if the entity is supported by a block.
+      *
+@@ -736,6 +746,22 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
       * @param buf byte buf object
       */
      public void sendCustomPayload(@NotNull org.bukkit.NamespacedKey channel, @NotNull moe.caramel.daydream.network.MojangByteBuf buf);

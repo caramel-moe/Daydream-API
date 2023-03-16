@@ -5,25 +5,25 @@ Subject: [PATCH] Add GeoIP Support
 
 
 diff --git a/build.gradle.kts b/build.gradle.kts
-index b5417b3529e3b164513243317e98045091a3b1ef..92d97569e0c2bdf53d385eaa2d3d440c03edb452 100644
+index 0bb8c691a65f33b3a28da03b5e5bd87ad2c75f99..cd2068cbcd8bab043cc2bcce09ab75b62f5b6a72 100644
 --- a/build.gradle.kts
 +++ b/build.gradle.kts
-@@ -53,6 +53,7 @@ dependencies {
+@@ -52,6 +52,7 @@ dependencies {
+     }
      // Daydream end - Add Brigadier Command API
-     api("com.mojang:authlib:3.3.39") // Daydream - Mojang Authlib (keep in sync with major MC versions)
-     api("moe.caramel:acacia-user:1.0.0-SNAPSHOT") // Daydream - caramel.moe Network
+     api("com.mojang:authlib:3.17.30") // Daydream - Mojang Authlib (keep in sync with major MC versions)
 +    api("com.neovisionaries:nv-i18n:1.29") // Daydream - add GeoIP
  
-     compileOnly("org.apache.maven:maven-resolver-provider:3.8.4")
-     compileOnly("org.apache.maven.resolver:maven-resolver-connector-basic:1.7.2")
+     api("org.apache.maven:maven-resolver-provider:3.8.5") // Paper, expose
+     compileOnly("org.apache.maven.resolver:maven-resolver-connector-basic:1.7.3")
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index fcffe6de89ed2ec930ef0b3092bf9933ff860d2f..0ea96be7c18da2c7ab06b34ff0d13843536e71c5 100644
+index 87c33aa9b99afc7e4562337fbd1600133ed16c07..82d91813280e334800b62a7707a9c8e37ea2c7b9 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
-@@ -57,6 +57,16 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
-      * @return caramel.moe Network 유저 데이터
+@@ -49,6 +49,16 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
       */
-     @NotNull moe.caramel.acacia.user.User getUserData();
+     @NotNull
+     moe.caramel.daydream.player.InteractManager getInteractManager();
 +
 +    /**
 +     * Get the player's country.

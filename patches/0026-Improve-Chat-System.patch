@@ -1,0 +1,67 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: LemonCaramel <admin@caramel.moe>
+Date: Fri, 9 Dec 2022 20:25:16 +0900
+Subject: [PATCH] Improve Chat System
+
+
+diff --git a/src/main/java/io/papermc/paper/event/player/AbstractChatEvent.java b/src/main/java/io/papermc/paper/event/player/AbstractChatEvent.java
+index e7e13011c76285681ad420e6f356f6b83045d31a..132593da53cf21bff78f4a9618829271939171d1 100644
+--- a/src/main/java/io/papermc/paper/event/player/AbstractChatEvent.java
++++ b/src/main/java/io/papermc/paper/event/player/AbstractChatEvent.java
+@@ -23,6 +23,38 @@ public abstract class AbstractChatEvent extends PlayerEvent implements Cancellab
+     private ChatRenderer renderer;
+     private Component message;
+     private boolean cancelled = false;
++    // Daydream start - Improve Chat System
++    private net.kyori.adventure.chat.ChatType chatType = null;
++
++    /**
++     * Get the player message wrapper.
++     *
++     * @return player message wrapper
++     */
++    @NotNull
++    public moe.caramel.daydream.network.chat.PlayerMessage playerMessage() {
++        return (moe.caramel.daydream.network.chat.PlayerMessage) signedMessage;
++    }
++
++    /**
++     * 채팅 포맷을 가져옵니다.
++     *
++     * @return 채팅 포맷
++     */
++    @org.jetbrains.annotations.Nullable
++    public net.kyori.adventure.chat.ChatType chatType() {
++        return chatType;
++    }
++
++    /**
++     * 채팅 포맷을 설정합니다.
++     *
++     * @param chatType 채팅 포맷
++     */
++    public void chatType(@NotNull net.kyori.adventure.chat.ChatType chatType) {
++        this.chatType = chatType;
++    }
++    // Daydream end - Improve Chat System
+ 
+     AbstractChatEvent(final boolean async, final @NotNull Player player, final @NotNull Set<Audience> viewers, final @NotNull ChatRenderer renderer, final @NotNull Component message, final @NotNull Component originalMessage, final @NotNull SignedMessage signedMessage) {
+         super(player, async);
+diff --git a/src/main/java/io/papermc/paper/event/player/ChatEvent.java b/src/main/java/io/papermc/paper/event/player/ChatEvent.java
+index 46c209f61135c7d37ccfbbc7bb1d74e608fac9d3..1226bca34d9e4c03067e2f4a4f455b92e8862e7f 100644
+--- a/src/main/java/io/papermc/paper/event/player/ChatEvent.java
++++ b/src/main/java/io/papermc/paper/event/player/ChatEvent.java
+@@ -24,6 +24,13 @@ public final class ChatEvent extends AbstractChatEvent {
+         super(false, player, viewers, renderer, message, originalMessage, signedMessage);
+     }
+ 
++    // Daydream start - Improve Chat System
++    @NotNull @Override
++    public moe.caramel.daydream.network.chat.PlayerMessage playerMessage() {
++        throw new UnsupportedOperationException("Async Only.");
++    }
++    // Daydream end - Improve Chat System
++
+     @NotNull
+     @Override
+     public HandlerList getHandlers() {

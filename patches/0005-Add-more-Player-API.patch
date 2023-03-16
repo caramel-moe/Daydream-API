@@ -5,22 +5,22 @@ Subject: [PATCH] Add more Player API
 
 
 diff --git a/build.gradle.kts b/build.gradle.kts
-index 1bd6143bd4c061224e53f8123874f855d0fc7bc5..90282b4598c4483fbdecdb50eefd90cc81f4234a 100644
+index 735557a4a5397220b79d43a540373ccc96451e03..0bb8c691a65f33b3a28da03b5e5bd87ad2c75f99 100644
 --- a/build.gradle.kts
 +++ b/build.gradle.kts
 @@ -51,6 +51,7 @@ dependencies {
          exclude("io.papermc.paper", "paper-api")
      }
      // Daydream end - Add Brigadier Command API
-+    api("com.mojang:authlib:3.3.39") // Daydream - Mojang Authlib (keep in sync with major MC versions)
++    api("com.mojang:authlib:3.17.30") // Daydream - Mojang Authlib (keep in sync with major MC versions)
  
-     compileOnly("org.apache.maven:maven-resolver-provider:3.8.4")
-     compileOnly("org.apache.maven.resolver:maven-resolver-connector-basic:1.7.2")
+     api("org.apache.maven:maven-resolver-provider:3.8.5") // Paper, expose
+     compileOnly("org.apache.maven.resolver:maven-resolver-connector-basic:1.7.3")
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index 6cd0b10d1dc4506cfb1e4db5e1260cb705566cec..8a62980878fa687c8675e4fa56b8a7f33a3a5861 100644
+index 660f28e371176c62e38a84b187958aceb235c8e3..38e7371e950ce8ff32d230a2daf280b27c027378 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
-@@ -2477,6 +2477,15 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+@@ -2648,6 +2648,15 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      @Nullable
      org.bukkit.event.player.PlayerResourcePackStatusEvent.Status getResourcePackStatus();
  
@@ -36,7 +36,7 @@ index 6cd0b10d1dc4506cfb1e4db5e1260cb705566cec..8a62980878fa687c8675e4fa56b8a7f3
      /**
       * @return the most recent resource pack hash received from the player,
       *         or null if no hash has ever been received from this player.
-@@ -2500,6 +2509,16 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+@@ -2671,6 +2680,16 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      @NotNull
      com.destroystokyo.paper.profile.PlayerProfile getPlayerProfile();
  

@@ -5,21 +5,21 @@ Subject: [PATCH] Add Brigadier Command API
 
 
 diff --git a/build.gradle.kts b/build.gradle.kts
-index 46016bd1a2403c9f449ba92ec942cd349da747ac..1bd6143bd4c061224e53f8123874f855d0fc7bc5 100644
+index cad12a2632b9ebb569280441c42869685db1f31a..86bc2d5e3718c8188f773fdaabfcd211decdc277 100644
 --- a/build.gradle.kts
 +++ b/build.gradle.kts
 @@ -46,6 +46,11 @@ dependencies {
-     implementation("org.ow2.asm:asm:9.2")
-     implementation("org.ow2.asm:asm-commons:9.2")
+     implementation("org.ow2.asm:asm:9.4")
+     implementation("org.ow2.asm:asm-commons:9.4")
      // Paper end
 +    // Daydream start - Add Brigadier Command API
-+    api("io.papermc.paper:paper-mojangapi:1.18.2-R0.1-SNAPSHOT") {
++    api("io.papermc.paper:paper-mojangapi:1.19.4-R0.1-SNAPSHOT") {
 +        exclude("io.papermc.paper", "paper-api")
 +    }
 +    // Daydream end - Add Brigadier Command API
  
-     compileOnly("org.apache.maven:maven-resolver-provider:3.8.4")
-     compileOnly("org.apache.maven.resolver:maven-resolver-connector-basic:1.7.2")
+     api("org.apache.maven:maven-resolver-provider:3.8.5") // Paper, expose
+     compileOnly("org.apache.maven.resolver:maven-resolver-connector-basic:1.7.3")
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/AbstractCommand.java b/src/main/java/moe/caramel/daydream/brigadier/AbstractCommand.java
 new file mode 100644
 index 0000000000000000000000000000000000000000..eb72f3fc2c8541a753021e6fc3f7228a6d28d9ed
@@ -415,43 +415,35 @@ index 0000000000000000000000000000000000000000..eb72f3fc2c8541a753021e6fc3f7228a
 +}
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/Arguments.java b/src/main/java/moe/caramel/daydream/brigadier/Arguments.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..8ff3213b6eb2b324add1ea7f91ce274ed0bfd46b
+index 0000000000000000000000000000000000000000..633ee7d5818a927177fff1f73743fc1ea57b32ab
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/brigadier/Arguments.java
-@@ -0,0 +1,246 @@
+@@ -0,0 +1,303 @@
 +package moe.caramel.daydream.brigadier;
 +
++import static moe.caramel.daydream.brigadier.BrigadierService.SERVICE;
 +import com.destroystokyo.paper.brigadier.BukkitBrigadierCommandSource;
 +import com.mojang.authlib.GameProfile;
-+import moe.caramel.daydream.brigadier.argument.BlockPosArgument;
-+import moe.caramel.daydream.brigadier.argument.BlockStateArgument;
-+import moe.caramel.daydream.brigadier.argument.SimpleArgument;
-+import moe.caramel.daydream.brigadier.argument.SimpleArgumentSuggestion;
-+import moe.caramel.daydream.brigadier.argument.EntityAnchorArgument;
-+import moe.caramel.daydream.brigadier.argument.EntityArgument;
-+import moe.caramel.daydream.brigadier.argument.ItemArgument;
-+import moe.caramel.daydream.brigadier.data.Operation;
-+import moe.caramel.daydream.brigadier.data.Position;
-+import moe.caramel.daydream.brigadier.argument.ResourceLocationArgument;
-+import moe.caramel.daydream.brigadier.argument.ScoreHolderArgument;
-+import moe.caramel.daydream.brigadier.argument.VecArgument;
++import moe.caramel.daydream.brigadier.argument.*;
++import moe.caramel.daydream.brigadier.data.*;
 +import moe.caramel.daydream.util.NumberRange;
 +import net.kyori.adventure.nbt.api.BinaryTagHolder;
 +import net.kyori.adventure.text.Component;
 +import net.kyori.adventure.text.format.TextColor;
 +import org.bukkit.Axis;
++import org.bukkit.GameMode;
++import org.bukkit.HeightMap;
 +import org.bukkit.NamespacedKey;
 +import org.bukkit.Particle;
 +import org.bukkit.World;
 +import org.bukkit.block.Block;
-+import org.bukkit.enchantments.Enchantment;
-+import org.bukkit.entity.EntityType;
++import org.bukkit.block.structure.Mirror;
++import org.bukkit.block.structure.StructureRotation;
 +import org.bukkit.inventory.ItemStack;
-+import org.bukkit.potion.PotionEffectType;
 +import org.bukkit.scoreboard.DisplaySlot;
 +import org.bukkit.scoreboard.Objective;
 +import org.bukkit.scoreboard.Team;
-+
++import org.jetbrains.annotations.NotNull;
 +import java.util.Collection;
 +import java.util.EnumSet;
 +import java.util.UUID;
@@ -462,196 +454,234 @@ index 0000000000000000000000000000000000000000..8ff3213b6eb2b324add1ea7f91ce274e
 + *
 + * @author LemonCaramel
 + */
-+public class Arguments {
++@SuppressWarnings("unused")
++public final class Arguments {
 +
 +    /**
-+     * It's a utility class.
++     * It's a constant class.
 +     * Don't create instances.
 +     */
-+    Arguments() { throw new UnsupportedOperationException(); }
-+
++    private Arguments() { throw new UnsupportedOperationException(); }
 +
 +    /**
 +     * Example: "Player", "0123", "@e", "@e[type=foo]", "dd12be42-52a9-4a91-a8a1-11c01849e498"
 +     */
-+    public static final EntityArgument ENTITY = null;
++    @NotNull
++    public static final EntityArgument ENTITY = SERVICE.getArgument("entity");
 +
 +    /**
 +     * Example: "Player", "0123", "dd12be42-52a9-4a91-a8a1-11c01849e498", "@e"
 +     */
-+    public static final SimpleArgument<Collection<GameProfile>> GAME_PROFILES = null;
++    @NotNull
++    public static final SimpleArgument<Collection<GameProfile>> GAME_PROFILES = SERVICE.getArgument("game_profile");
 +
 +    /**
 +     * Example: "0 0 0", "~ ~ ~", "^ ^ ^", "^1 ^ ^-5", "~0.5 ~1 ~-5"
 +     */
-+    public static final BlockPosArgument BLOCK_POS = null;
++    @NotNull
++    public static final BlockPosArgument BLOCK_POS = SERVICE.getArgument("block_pos");
 +
 +    /**
 +     * Example: "0 0", "~ ~", "~1 ~-2", "^ ^", "^-1 ^0"
 +     */
-+    public static final SimpleArgument<Position<BukkitBrigadierCommandSource>> COLUMN_POS = null;
++    @NotNull
++    public static final SimpleArgument<Position<BukkitBrigadierCommandSource>> COLUMN_POS = SERVICE.getArgument("column_pos");
 +
 +    /**
 +     * Example: "0 0 0", "~ ~ ~", "^ ^ ^", "^1 ^ ^-5", "0.1 -0.5 .9", "~0.5 ~1 ~-5"
 +     */
-+    public static final VecArgument VEC3 = null;
++    @NotNull
++    public static final VecArgument VEC3 = SERVICE.getArgument("vec3");
 +
 +    /**
 +     * Example: "0 0", "~ ~", "0.1 -0.5", "~1 ~-2"
 +     */
-+    public static final VecArgument VEC2 = null;
++    @NotNull
++    public static final VecArgument VEC2 = SERVICE.getArgument("vec2");
 +
 +    /**
 +     * Example: "stone", "minecraft:stone", "stone[foo=bar]", "foo{bar=baz}"
 +     */
-+    public static final BlockStateArgument BLOCK_STATE = null;
++    @NotNull
++    public static final BlockStateArgument BLOCK_STATE = SERVICE.getArgument("block_state");
 +
 +    /**
 +     * Example: "stone", "minecraft:stone", "stone[foo=bar]", "#stone", "#stone[foo=bar]{baz=nbt}"
 +     */
-+    public static final SimpleArgument<Predicate<Block>> BLOCK_PREDICATE = null;
++    @NotNull
++    public static final SimpleArgument<Predicate<Block>> BLOCK_PREDICATE = SERVICE.getArgument("block_predicate");
 +
 +    /**
 +     * Example: "stick", "minecraft:stick", "stick{foo=bar}"
 +     */
-+    public static final ItemArgument ITEM = null;
++    @NotNull
++    public static final ItemArgument ITEM = SERVICE.getArgument("item_stack");
 +
 +    /**
 +     * Example: "stick", "minecraft:stick", "#stick", "#stick{foo=bar}"
 +     */
-+    public static final SimpleArgument<Predicate<ItemStack>> ITEM_PREDICATE = null;
++    @NotNull
++    public static final SimpleArgument<Predicate<ItemStack>> ITEM_PREDICATE = SERVICE.getArgument("item_predicate");
 +
 +    /**
 +     * Example: "red", "green"
 +     */
-+    public static final SimpleArgument<TextColor> COLOR = null;
++    @NotNull
++    public static final SimpleArgument<TextColor> COLOR = SERVICE.getArgument("color");
 +
 +    /**
 +     * Example: "\"hello world\"", "\"\"", "\"{\"text\":\"hello world\"}", "[\"\"]"
 +     */
-+    public static final SimpleArgument<Component> COMPONENT = null;
++    @NotNull
++    public static final SimpleArgument<Component> COMPONENT = SERVICE.getArgument("component");
 +
 +    /**
 +     * Example: "Hello world!", "foo", "@e", "Hello @p :)"
 +     */
-+    public static final SimpleArgument<Component> MESSAGE = null;
++    @NotNull
++    public static final MessageArgument MESSAGE = SERVICE.getArgument("message");
 +
 +    /**
 +     * Example: "{}", "{foo=bar}"
 +     */
-+    public static final SimpleArgument<BinaryTagHolder> COMPOUND_TAG = null;
++    @NotNull
++    public static final SimpleArgument<BinaryTagHolder> COMPOUND_TAG = SERVICE.getArgument("nbt_compound_tag");
 +
-+    // NbtTagArgument
++    /*
++     * Example: "0", "0b", "0l", "0.0", "\"foo\"", "{foo=bar}", "[0]"
++     * NBT_TAG
++     */
 +
-+    // NbtPathArgument
++    /*
++     * Example: "foo", "foo.bar", "foo[0]", "[0]", "[]", "{foo=bar}"
++     * NBT_PATH
++     */
 +
 +    /**
 +     * Example: "foo", "*", "012"
 +     */
-+    public static final SimpleArgument<Objective> OBJECTIVE = null;
++    @NotNull
++    public static final SimpleArgument<Objective> OBJECTIVE = SERVICE.getArgument("objective");
 +
 +    /**
 +     * Example: "foo", "foo.bar.baz", "minecraft:foo"
 +     */
-+    public static final SimpleArgument<String> OBJECTIVE_CRITERIA = null;
++    @NotNull
++    public static final SimpleArgument<String> OBJECTIVE_CRITERIA = SERVICE.getArgument("objective_criteria");
 +
 +    /**
 +     * Example: "=", "{@literal >}", "{@literal <}"
 +     */
-+    public static final SimpleArgument<Operation> OPERATION = null;
++    @NotNull
++    public static final SimpleArgument<Operation> OPERATION = SERVICE.getArgument("operation");
 +
 +    /**
 +     * Example: "foo", "foo:bar", "particle with options"
 +     */
-+    public static final SimpleArgument<Particle> PARTICLE = null;
++    @NotNull
++    public static final SimpleArgument<Particle> PARTICLE = SERVICE.getArgument("particle");
 +
 +    /**
 +     * Example: "0", "~", "~-5"
 +     */
-+    public static final SimpleArgument<Float> ANGLE = null;
++    @NotNull
++    public static final SimpleArgument<Float> ANGLE = SERVICE.getArgument("angle");
 +
 +    /**
 +     * Example: "0 0", "~ ~", "~-5 ~5"
 +     */
-+    public static final SimpleArgument<Position<BukkitBrigadierCommandSource>> ROTATION = null;
++    @NotNull
++    public static final SimpleArgument<Position<BukkitBrigadierCommandSource>> ROTATION = SERVICE.getArgument("rotation");
 +
 +    /**
 +     * Example: "sidebar", "sidebar.team.light_purple"
 +     */
-+    public static final SimpleArgument<DisplaySlot> SCOREBOARD_SLOT = null;
++    @NotNull
++    public static final SimpleArgument<DisplaySlot> SCOREBOARD_SLOT = SERVICE.getArgument("scoreboard_slot");
 +
 +    /**
 +     * Example: "Player", "0123", "*", "@e"
 +     */
-+    public static final ScoreHolderArgument SCORE_HOLDER = null;
++    @NotNull
++    public static final ScoreHolderArgument SCORE_HOLDER = SERVICE.getArgument("score_holder");
 +
 +    /**
 +     * Example: "xyz", "x"
 +     */
-+    public static final SimpleArgument<EnumSet<Axis>> SWIZZLE = null;
++    @NotNull
++    public static final SimpleArgument<EnumSet<Axis>> SWIZZLE = SERVICE.getArgument("swizzle");
 +
 +    /**
 +     * Example: "foo", "123"
 +     */
-+    public static final SimpleArgument<Team> TEAM = null;
++    @NotNull
++    public static final SimpleArgument<Team> TEAM = SERVICE.getArgument("team");
 +
 +    /**
 +     * Example: "container.5", "12", "weapon"
 +     */
-+    public static final SimpleArgument<Integer> SLOT = null;
++    @NotNull
++    public static final SimpleArgument<Integer> SLOT = SERVICE.getArgument("item_slot");
 +
 +    /**
 +     * Example: "foo", "foo:bar", "012"
 +     */
-+    public static final ResourceLocationArgument<NamespacedKey> RESOURCE_LOCATION = null;
++    @NotNull
++    public static final ResourceLocationArgument<NamespacedKey> RESOURCE_LOCATION = SERVICE.getArgument("resource_location");
 +
-+    /**
-+     * Example: "spooky", "effect"
++    /*
++     * Example: "foo", "foo:bar", "#foo"
++     * FUNCTION
 +     */
-+    public static final SimpleArgument<PotionEffectType> MOB_EFFECT = null;
-+
-+    // FunctionArgument
 +
 +    /**
 +     * Example: "eyes", "feet"
 +     */
-+    public static final SimpleArgument<EntityAnchorArgument> ENTITY_ANCHOR = null;
++    @NotNull
++    public static final SimpleArgument<EntityAnchorArgument> ENTITY_ANCHOR = SERVICE.getArgument("entity_anchor");
 +
 +    /**
 +     * Example: "0..5", "0", "-5", "-100..", "..100"
 +     */
-+    public static final SimpleArgument<NumberRange<Integer>> RANGE_INTEGER = null;
++    @NotNull
++    public static final SimpleArgument<NumberRange<Integer>> RANGE_INTEGER = SERVICE.getArgument("int_range");
 +
 +    /**
 +     * Example: "0..5.2", "0", "-5.4", "-100.76..", "..100"
 +     */
-+    public static final SimpleArgument<NumberRange<Double>> RANGE_FLOATS = null;
-+
-+    /**
-+     * Example: "unbreaking", "silk_touch"
-+     */
-+    public static final SimpleArgument<Enchantment> ITEM_ENCHANTMENT = null;
-+
-+    /**
-+     * Example: "minecraft:pig", "cow"
-+     */
-+    public static final SimpleArgumentSuggestion<EntityType> ENTITY_SUMMON = null;
++    @NotNull
++    public static final SimpleArgument<NumberRange<Double>> RANGE_FLOATS = SERVICE.getArgument("float_range");
 +
 +    /**
 +     * Example: "minecraft:overworld", "minecraft:the_nether"
 +     * Please use this API's suggestion.
 +     */
-+    public static final SimpleArgumentSuggestion<World> DIMENSION = null;
++    @NotNull
++    public static final SimpleArgumentSuggestion<World> DIMENSION = SERVICE.getArgument("dimension");
++
++    /**
++     * Example: "survival", "creative", "adventure", "spectator"
++     */
++    @NotNull
++    public static final SimpleArgument<GameMode> GAMEMODE = SERVICE.getArgument("gamemode");
 +
 +    /**
 +     * Example: "0d", "0s", "0t", "0"
 +     */
-+    public static final SimpleArgument<Integer> TIME = null;
++    @NotNull
++    public static final TimeArgument TIME = SERVICE.getArgument("time");
 +
-+    /**
-+     * Example: "dd12be42-52a9-4a91-a8a1-11c01849e498"
++    /*
++     * Example: "foo", "foo:bar", "012", "#skeletons", "#minecraft:skeletons"
++     * @since Minecraft 1.18.2
++     * RESOURCE_OR_TAG
 +     */
-+    public static final SimpleArgument<UUID> UUID = null;
++
++    /*
++     * Example: "foo", "foo:bar", "012", "#skeletons", "#minecraft:skeletons"
++     * @since Minecraft 1.19.3
++     * RESOURCE_OR_TAG_KEY
++     */
 +
 +    /*
 +     * Example: "foo", "foo:bar", "012"
@@ -660,10 +690,89 @@ index 0000000000000000000000000000000000000000..8ff3213b6eb2b324add1ea7f91ce274e
 +     */
 +
 +    /*
-+     * Example: "foo", "foo:bar", "012", "#skeletons", "#minecraft:skeletons"
-+     * @since Minecraft 1.18.2
-+     * RESOURCE_OR_TAG_LOCATION
++     * Example: "foo", "foo:bar", "012"
++     * @since Minecraft 1.19.3
++     * RESOURCE
 +     */
++
++    /**
++     * Example: "template_mirror", "left_right", "none"
++     * @since Minecraft 1.19
++     */
++    @NotNull
++    public static final SimpleArgument<Mirror> TEMPLATE_MIRROR = SERVICE.getArgument("template_mirror");
++
++    /**
++     * Example: "180", "clockwise_90", "counterclockwise_90", "none"
++     * @since Minecraft 1.19
++     */
++    @NotNull
++    public static final SimpleArgument<StructureRotation> TEMPLATE_ROTATION = SERVICE.getArgument("template_rotation");
++
++    /**
++     * Example: "world_surface", "ocean_floor", "motion_blocking", "motion_blocking_no_leaves"
++     * @since Minecraft 1.19.4
++     */
++    @NotNull
++    public static final SimpleArgument<HeightMap> HEIGHT_MAP = SERVICE.getArgument("heightmap");
++
++    /**
++     * Example: "dd12be42-52a9-4a91-a8a1-11c01849e498"
++     */
++    @NotNull
++    public static final SimpleArgument<UUID> UUID = SERVICE.getArgument("uuid");
++}
+diff --git a/src/main/java/moe/caramel/daydream/brigadier/BrigadierService.java b/src/main/java/moe/caramel/daydream/brigadier/BrigadierService.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..f31b3b5ba9d769500b846283fe01071f2f3c3de1
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/brigadier/BrigadierService.java
+@@ -0,0 +1,46 @@
++package moe.caramel.daydream.brigadier;
++
++import org.jetbrains.annotations.NotNull;
++
++import java.util.ServiceLoader;
++
++/**
++ * Argument Type Service
++ */
++class BrigadierService {
++
++    /**
++     * Inventory API Service Instance
++     */
++    @NotNull
++    static final Service SERVICE = ServiceLoader
++            .load(Service.class, Service.class.getClassLoader())
++            .findFirst().orElseThrow();
++
++
++    /**
++     * Service Interface
++     */
++    protected interface Service {
++
++        /**
++         * Get Argument.
++         *
++         * @param type argument type name
++         * @return Argument Type
++         * @param <T> Argument Type Class
++         */
++        @NotNull
++        <T> T getArgument(@NotNull String type);
++
++        /**
++         * Get Suggestion.
++         *
++         * @param type suggestion type name
++         * @return Suggestion
++         * @param <T> Suggestion Type Class
++         */
++        @NotNull
++        <T> T getSuggestion(@NotNull String type);
++    }
 +}
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/PluginIdentifiableCommand.java b/src/main/java/moe/caramel/daydream/brigadier/PluginIdentifiableCommand.java
 new file mode 100644
@@ -696,31 +805,41 @@ index 0000000000000000000000000000000000000000..2d6c8e74b5605d425a46ae6980028781
 +}
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/Suggestions.java b/src/main/java/moe/caramel/daydream/brigadier/Suggestions.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..b37308a8f1af3c508402d41b96ac8678ade7086f
+index 0000000000000000000000000000000000000000..c86bcda045edb5d20f44131037a62720bebb5a30
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/brigadier/Suggestions.java
-@@ -0,0 +1,22 @@
+@@ -0,0 +1,32 @@
 +package moe.caramel.daydream.brigadier;
 +
++import static moe.caramel.daydream.brigadier.BrigadierService.SERVICE;
 +import moe.caramel.daydream.brigadier.suggestion.SimpleSuggestion;
++import org.jetbrains.annotations.NotNull;
 +
 +/**
-+ * WARNING!
-+ * <p>
-+ * This is intended API design.
-+ * It was designed in this way for internal debugging.
-+ * Don't ever change the value.
++ * Brigadier Vanilla Suggestions
++ *
++ * @author LemonCaramel
 + */
++@SuppressWarnings("unused")
 +public final class Suggestions {
 +
-+    public static SimpleSuggestion ALL_RECIPES;
++    /**
++     * All Recipes
++     */
++    @NotNull
++    public static final SimpleSuggestion ALL_RECIPES = SERVICE.getSuggestion("all_recipes");
 +
-+    public static SimpleSuggestion AVAILABLE_SOUNDS;
++    /**
++     * Available Sounds
++     */
++    @NotNull
++    public static final SimpleSuggestion AVAILABLE_SOUNDS = SERVICE.getSuggestion("available_sounds");
 +
-+    @Deprecated
-+    public static SimpleSuggestion AVAILABLE_BIOMES;
-+
-+    public static SimpleSuggestion SUMMONABLE_ENTITIES;
++    /**
++     * Summonable Entities
++     */
++    @NotNull
++    public static final SimpleSuggestion SUMMONABLE_ENTITIES = SERVICE.getSuggestion("summonable_entities");
 +}
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/argument/ArgumentInf.java b/src/main/java/moe/caramel/daydream/brigadier/argument/ArgumentInf.java
 new file mode 100644
@@ -766,10 +885,10 @@ index 0000000000000000000000000000000000000000..e564721974edfe3b7f34012cbd921e82
 +}
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/argument/BlockStateArgument.java b/src/main/java/moe/caramel/daydream/brigadier/argument/BlockStateArgument.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..94e19bb08f9a37be2133e0f3712a47f5b361409c
+index 0000000000000000000000000000000000000000..07ab6e0518d66229e88b8b516daa30e6de68d124
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/brigadier/argument/BlockStateArgument.java
-@@ -0,0 +1,23 @@
+@@ -0,0 +1,22 @@
 +package moe.caramel.daydream.brigadier.argument;
 +
 +import com.destroystokyo.paper.brigadier.BukkitBrigadierCommandSource;
@@ -780,7 +899,6 @@ index 0000000000000000000000000000000000000000..94e19bb08f9a37be2133e0f3712a47f5
 +import org.bukkit.block.Block;
 +import org.bukkit.block.data.BlockData;
 +import org.jetbrains.annotations.NotNull;
-+
 +import java.util.function.Predicate;
 +
 +public interface BlockStateArgument extends ArgumentInf {
@@ -871,19 +989,44 @@ index 0000000000000000000000000000000000000000..201ff85ff4fac3531a5c3a37336ff292
 +    @NotNull
 +    ItemStack createItemStack(final @NotNull CommandContext<? extends BukkitBrigadierCommandSource> context, @NotNull String name, int amount, boolean checkOverstack) throws CommandSyntaxException;
 +}
+diff --git a/src/main/java/moe/caramel/daydream/brigadier/argument/MessageArgument.java b/src/main/java/moe/caramel/daydream/brigadier/argument/MessageArgument.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..5a0f6d0bad08f058335cd065184b3512cd79031d
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/brigadier/argument/MessageArgument.java
+@@ -0,0 +1,20 @@
++package moe.caramel.daydream.brigadier.argument;
++
++import com.destroystokyo.paper.brigadier.BukkitBrigadierCommandSource;
++import com.mojang.brigadier.context.CommandContext;
++import com.mojang.brigadier.exceptions.CommandSyntaxException;
++import moe.caramel.daydream.network.chat.PlayerMessage;
++import net.kyori.adventure.text.Component;
++import org.bukkit.util.Consumer;
++import org.jetbrains.annotations.NotNull;
++
++public interface MessageArgument extends SimpleArgument<Component> {
++
++    /**
++     * 서명된 메시지와 관련된 작업을 수행합니다.
++     */
++    void resolveMessage(
++        final @NotNull CommandContext<? extends BukkitBrigadierCommandSource> context,
++        final @NotNull String name, final @NotNull Consumer<PlayerMessage> callback
++    ) throws CommandSyntaxException;
++}
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/argument/ResourceLocationArgument.java b/src/main/java/moe/caramel/daydream/brigadier/argument/ResourceLocationArgument.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..882bb34b91eda90594418aa3585b88d9353e2421
+index 0000000000000000000000000000000000000000..e1fae34e6b176133acc81b05928c576bca5d304d
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/brigadier/argument/ResourceLocationArgument.java
-@@ -0,0 +1,31 @@
+@@ -0,0 +1,26 @@
 +package moe.caramel.daydream.brigadier.argument;
 +
 +import com.destroystokyo.paper.brigadier.BukkitBrigadierCommandSource;
 +import com.mojang.brigadier.context.CommandContext;
 +import com.mojang.brigadier.exceptions.CommandSyntaxException;
 +import org.bukkit.advancement.Advancement;
-+import org.bukkit.attribute.Attribute;
 +import org.jetbrains.annotations.NotNull;
 +
 +public interface ResourceLocationArgument<T> extends SimpleArgument<T> {
@@ -899,10 +1042,6 @@ index 0000000000000000000000000000000000000000..882bb34b91eda90594418aa3585b88d9
 +    T getPredicate(final @NotNull CommandContext<? extends BukkitBrigadierCommandSource> context, @NotNull String name) throws CommandSyntaxException;
 +     */
 +
-+    @NotNull
-+    @Deprecated
-+    Attribute getAttribute(final @NotNull CommandContext<? extends BukkitBrigadierCommandSource> context, @NotNull String name) throws CommandSyntaxException;
-+
 +    /*
 +    @NotNull
 +    T getItemModifier(final @NotNull CommandContext<? extends BukkitBrigadierCommandSource> context, @NotNull String name) throws CommandSyntaxException;
@@ -910,10 +1049,10 @@ index 0000000000000000000000000000000000000000..882bb34b91eda90594418aa3585b88d9
 +}
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/argument/ScoreHolderArgument.java b/src/main/java/moe/caramel/daydream/brigadier/argument/ScoreHolderArgument.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..e5ac0f101a76c8c6d8058397af753865c381ae7d
+index 0000000000000000000000000000000000000000..336e167919e9680dd1433e28431fb313e23dca77
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/brigadier/argument/ScoreHolderArgument.java
-@@ -0,0 +1,28 @@
+@@ -0,0 +1,27 @@
 +package moe.caramel.daydream.brigadier.argument;
 +
 +import com.destroystokyo.paper.brigadier.BukkitBrigadierCommandSource;
@@ -922,7 +1061,6 @@ index 0000000000000000000000000000000000000000..e5ac0f101a76c8c6d8058397af753865
 +import com.mojang.brigadier.exceptions.CommandSyntaxException;
 +import com.mojang.brigadier.suggestion.SuggestionProvider;
 +import org.jetbrains.annotations.NotNull;
-+
 +import java.util.Collection;
 +import java.util.function.Supplier;
 +
@@ -971,6 +1109,27 @@ index 0000000000000000000000000000000000000000..fc49c907007458c21ad13e7b9e1c5538
 +import moe.caramel.daydream.brigadier.suggestion.SimpleSuggestion;
 +
 +public interface SimpleArgumentSuggestion<T> extends SimpleArgument<T>, SimpleSuggestion {}
+diff --git a/src/main/java/moe/caramel/daydream/brigadier/argument/TimeArgument.java b/src/main/java/moe/caramel/daydream/brigadier/argument/TimeArgument.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..3250e6e5a53bf54d56380be56217b9df453c9a5c
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/brigadier/argument/TimeArgument.java
+@@ -0,0 +1,15 @@
++package moe.caramel.daydream.brigadier.argument;
++
++import com.mojang.brigadier.arguments.ArgumentType;
++import org.jetbrains.annotations.NotNull;
++
++public interface TimeArgument extends SimpleArgument<Integer> {
++
++    /**
++     * 시간 인자를 가져옵니다.
++     *
++     * @param minimum 최소 값
++     * @return TimeArgument
++     */
++    @NotNull ArgumentType<?> get(int minimum);
++}
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/argument/VecArgument.java b/src/main/java/moe/caramel/daydream/brigadier/argument/VecArgument.java
 new file mode 100644
 index 0000000000000000000000000000000000000000..30ad53e262f8f4bc9746edcab9bf79f475bb29bc
@@ -1049,6 +1208,88 @@ index 0000000000000000000000000000000000000000..01496ae337322cd91fe42444554a2ca3
 +    @NotNull
 +    SuggestionProvider<BukkitBrigadierCommandSource> getSuggestion();
 +}
+diff --git a/src/main/java/moe/caramel/daydream/network/chat/PlayerMessage.java b/src/main/java/moe/caramel/daydream/network/chat/PlayerMessage.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..e3247497bbf39051ed4b65c87d6c3cfe60971216
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/network/chat/PlayerMessage.java
+@@ -0,0 +1,76 @@
++package moe.caramel.daydream.network.chat;
++
++import net.kyori.adventure.chat.SignedMessage;
++import net.kyori.adventure.text.Component;
++import org.jetbrains.annotations.NotNull;
++import java.time.Instant;
++import java.util.UUID;
++
++public interface PlayerMessage extends SignedMessage  {
++
++    /**
++     * 메시지를 발신한 대상의 UUID를 가져옵니다.
++     *
++     * @return 메시지를 발신한 대상의 UUID
++     */
++    @NotNull
++    UUID sender();
++
++    /**
++     * 메시지가 서버 시간 기준으로 만료되었는지 확인합니다.
++     *
++     * @param currentTime 현재 시간
++     * @return 만료되었다면 {@code true}를 반환
++     */
++    boolean hasExpiredServer(@NotNull Instant currentTime);
++
++    /**
++     * 메시지가 클라이언트 시간 기준으로 만료되었는지 확인합니다.
++     *
++     * @param currentTime 현재 시간
++     * @return 만료되었다면 {@code true}를 반환
++     */
++    boolean hasExpiredClient(@NotNull Instant currentTime);
++
++    /**
++     * 메시지가 서명을 가지고 있는지의 여부를 가져옵니다.
++     *
++     * @return 메시지가 서명을 가지고 있는지의 여부
++     */
++    boolean hasSignature();
++
++    /**
++     * 특정 대상의 서명인지 확인합니다.
++     *
++     * @param uuid 대상
++     * @return 대상의 서명이 맞다면 {@code true}를 반환
++     */
++    boolean hasSignatureFrom(@NotNull UUID uuid);
++
++    /**
++     * 꾸며진 메시지를 가져옵니다.
++     *
++     * @return 꾸며진 메시지가 없는 경우 원본을 반환
++     */
++    @NotNull
++    Component decoratedContent();
++
++    /**
++     * 서명되지 않은 메시지를 설정합니다. 주로 메시지를 꾸미는 용도로 사용합니다.
++     *
++     * @param message 서명되지 않은 메시지
++     */
++    void unsignedContent(final @NotNull Component message);
++
++    /**
++     * 서명되지 않은 메시지를 제거합니다. 받는 대상은 원본 메시지로 표시됩니다.
++     */
++    void removeUnsignedContent();
++
++    /**
++     * 메시지가 모두 필터링 되었는지의 여부를 가져옵니다.
++     *
++     * @return 메시지가 모두 필터링 되었는지의 여부
++     */
++    boolean isFullyFiltered();
++}
 diff --git a/src/main/java/moe/caramel/daydream/util/NumberRange.java b/src/main/java/moe/caramel/daydream/util/NumberRange.java
 new file mode 100644
 index 0000000000000000000000000000000000000000..facc2182e0920c9b71e44e8686f97b2afe461401
@@ -1100,10 +1341,10 @@ index 0000000000000000000000000000000000000000..facc2182e0920c9b71e44e8686f97b2a
 +    }
 +}
 diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
-index a87399fa4838d4b2c1ff9cc35d433ae76cc149bf..51102225ad101381f29eb963cd99c11616f17f17 100644
+index ac9b690fcccb60b587e5345f12f1383afd0a73a1..4752860cd9b5dc4caa4072852d5b3ddc7ee790c8 100644
 --- a/src/main/java/org/bukkit/Bukkit.java
 +++ b/src/main/java/org/bukkit/Bukkit.java
-@@ -938,6 +938,42 @@ public final class Bukkit {
+@@ -959,6 +959,42 @@ public final class Bukkit {
          return server.getPluginCommand(name);
      }
  
@@ -1147,10 +1388,10 @@ index a87399fa4838d4b2c1ff9cc35d433ae76cc149bf..51102225ad101381f29eb963cd99c116
       * Writes loaded players to disk.
       */
 diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
-index d5af4edbc7b209421a67bb304de86f4e7c675d2c..070ea79ef65489c2cd5d493e9cea45a7d644de96 100644
+index ed3289f137d76212f37100279d364def2e3dd3b8..a56148f7c69b16d643b93c127314c3246fe11e44 100644
 --- a/src/main/java/org/bukkit/Server.java
 +++ b/src/main/java/org/bukkit/Server.java
-@@ -781,6 +781,36 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
+@@ -803,6 +803,36 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
      @Nullable
      public PluginCommand getPluginCommand(@NotNull String name);
  
@@ -1188,7 +1429,7 @@ index d5af4edbc7b209421a67bb304de86f4e7c675d2c..070ea79ef65489c2cd5d493e9cea45a7
       * Writes loaded players to disk.
       */
 diff --git a/src/main/java/org/bukkit/command/Command.java b/src/main/java/org/bukkit/command/Command.java
-index 4c608818a797c12cba6aa91643a915cf0bae77f5..0f09138449ae6eaa64f51d8c7042f9245aab8512 100644
+index 608b541aef01f33891a492fff5b8400496832c3a..0b830e71a40e52c455e6bb64ac0ccd7ca653b85b 100644
 --- a/src/main/java/org/bukkit/command/Command.java
 +++ b/src/main/java/org/bukkit/command/Command.java
 @@ -35,6 +35,10 @@ public abstract class Command {
@@ -1206,16 +1447,16 @@ index 4c608818a797c12cba6aa91643a915cf0bae77f5..0f09138449ae6eaa64f51d8c7042f924
          }
  
              // Paper start - use components for permissionMessage
--        net.kyori.adventure.text.Component permissionMessage = this.permissionMessage != null ? this.permissionMessage : net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer.legacySection().deserialize(Bukkit.getPermissionMessage());
-+        net.kyori.adventure.text.Component permissionMessage = this.permissionMessage != null ? this.permissionMessage : (Bukkit.getPermissionMessage().isEmpty() ? net.kyori.adventure.text.Component.translatable("command.failed", net.kyori.adventure.text.format.NamedTextColor.RED) : net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer.legacySection().deserialize(Bukkit.getPermissionMessage())); // Daydream
+-        net.kyori.adventure.text.Component permissionMessage = this.permissionMessage != null ? this.permissionMessage : Bukkit.permissionMessage();
++        net.kyori.adventure.text.Component permissionMessage = this.permissionMessage != null ? this.permissionMessage : (Bukkit.getPermissionMessage().isEmpty() ? net.kyori.adventure.text.Component.translatable("command.failed", net.kyori.adventure.text.format.NamedTextColor.RED) : Bukkit.permissionMessage()); // Daydream
          if (!permissionMessage.equals(net.kyori.adventure.text.Component.empty())) {
              target.sendMessage(permissionMessage.replaceText(net.kyori.adventure.text.TextReplacementConfig.builder().matchLiteral("<permission>").replacement(permission).build()));
              // Paper end
 diff --git a/src/main/java/org/bukkit/command/SimpleCommandMap.java b/src/main/java/org/bukkit/command/SimpleCommandMap.java
-index 04c8affc6b4518ac584f77071d4042fc6bc1e35a..12fa767ebe446d56a450036f7aff8b898fa02d3f 100644
+index 36da67bf9fda415c302afcf0e346c72e664fa6a3..9e9e08d1c9e505533a279d459b2548f48c08eea2 100644
 --- a/src/main/java/org/bukkit/command/SimpleCommandMap.java
 +++ b/src/main/java/org/bukkit/command/SimpleCommandMap.java
-@@ -312,4 +312,48 @@ public class SimpleCommandMap implements CommandMap {
+@@ -308,4 +308,48 @@ public class SimpleCommandMap implements CommandMap {
          return knownCommands;
      }
      // Paper end
@@ -1264,13 +1505,42 @@ index 04c8affc6b4518ac584f77071d4042fc6bc1e35a..12fa767ebe446d56a450036f7aff8b89
 +    }
 +    // Daydream end
  }
+diff --git a/src/main/java/org/bukkit/event/command/UnknownCommandEvent.java b/src/main/java/org/bukkit/event/command/UnknownCommandEvent.java
+index e4f8a0d14ae66468bbb0a5d6bf9c1ee417dc866c..5342f39f827fe5bf18fdef9469cd56492eb2f17f 100644
+--- a/src/main/java/org/bukkit/event/command/UnknownCommandEvent.java
++++ b/src/main/java/org/bukkit/event/command/UnknownCommandEvent.java
+@@ -17,6 +17,24 @@ public class UnknownCommandEvent extends Event {
+     @NotNull private CommandSender sender;
+     @NotNull private String commandLine;
+     @Nullable private Component message;
++    // Daydream start - Add Brigadier Command API
++    private boolean vanilla;
++    /**
++     * 바닐라 명령어 여부를 가져옵니다.
++     *
++     * @return 바닐라 명령어라면 {@code true}를 반환
++     */
++    public boolean isVanilla() {
++        return vanilla;
++    }
++    public UnknownCommandEvent(@NotNull final CommandSender sender, @NotNull final String commandLine, @Nullable final Component message, final boolean vanilla) {
++        super(false);
++        this.sender = sender;
++        this.commandLine = commandLine;
++        this.message = message;
++        this.vanilla = vanilla;
++    }
++    // Daydream end - Add Brigadier Command API
+ 
+     public UnknownCommandEvent(@NotNull final CommandSender sender, @NotNull final String commandLine, @Nullable final Component message) {
+         super(false);
 diff --git a/src/main/java/org/bukkit/plugin/SimplePluginManager.java b/src/main/java/org/bukkit/plugin/SimplePluginManager.java
-index bab8bb3a52cdeef5f7052d4e3f404c42f37d117d..7a6a5e5cc70ca8f4e023c56fee08cfd27ed3e022 100644
+index 2b8308989fce7f8a16907f8711b362e671fdbfb6..aa165f4ff25052f192e53bb9a43058e83efe46a1 100644
 --- a/src/main/java/org/bukkit/plugin/SimplePluginManager.java
 +++ b/src/main/java/org/bukkit/plugin/SimplePluginManager.java
-@@ -574,6 +574,15 @@ public final class SimplePluginManager implements PluginManager {
-     @Override
-     public synchronized void disablePlugin(@NotNull final Plugin plugin) { // Paper - synchronize
+@@ -536,6 +536,15 @@ public final class SimplePluginManager implements PluginManager {
+     public void disablePlugin(@NotNull final Plugin plugin) {
+         if (true) {this.paperPluginManager.disablePlugin(plugin); return;} // Paper
          if (plugin.isEnabled()) {
 +            // Daydream start
 +            try {
@@ -1285,10 +1555,10 @@ index bab8bb3a52cdeef5f7052d4e3f404c42f37d117d..7a6a5e5cc70ca8f4e023c56fee08cfd2
                  plugin.getPluginLoader().disablePlugin(plugin);
              } catch (Throwable ex) {
 diff --git a/src/main/java/org/bukkit/plugin/java/JavaPlugin.java b/src/main/java/org/bukkit/plugin/java/JavaPlugin.java
-index c943bd801b54519ba6cf5d45aec593d7b7438f99..186d12c430e26d5a7501238bb5c5d19f6d7e6dcf 100644
+index 6d31f3a2569ae9c522a5e6cddd38ac8f252f1bfe..44afd69c268362d1d3a61ee1a9ab1fe5240e1c5b 100644
 --- a/src/main/java/org/bukkit/plugin/java/JavaPlugin.java
 +++ b/src/main/java/org/bukkit/plugin/java/JavaPlugin.java
-@@ -325,6 +325,39 @@ public abstract class JavaPlugin extends PluginBase {
+@@ -350,6 +350,39 @@ public abstract class JavaPlugin extends PluginBase {
          }
      }
  

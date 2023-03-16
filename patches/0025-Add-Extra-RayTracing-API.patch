@@ -1,0 +1,91 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: PrimordialMoros <mail@moros.me>
+Date: Fri, 29 Jul 2022 16:04:32 +0300
+Subject: [PATCH] Add Extra RayTracing API
+
+Adds the option to ignore specific blocks (based on their position) when performing a raytrace.
+
+https://github.com/PaperMC/Paper/pull/8205
+
+diff --git a/src/main/java/org/bukkit/World.java b/src/main/java/org/bukkit/World.java
+index 866d63b5b3bfd9afce46e2e2cddc0d8b2f940b55..09d17865303545e1811c355fcd93edf2c4a15815 100644
+--- a/src/main/java/org/bukkit/World.java
++++ b/src/main/java/org/bukkit/World.java
+@@ -1810,6 +1810,34 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
+     @Nullable
+     public RayTraceResult rayTraceBlocks(@NotNull Location start, @NotNull Vector direction, double maxDistance, @NotNull FluidCollisionMode fluidCollisionMode, boolean ignorePassableBlocks);
+ 
++    // Paper start
++    /**
++     * Performs a ray trace that checks for block collisions using the blocks'
++     * precise collision shapes.
++     * <p>
++     * If collisions with passable blocks are ignored, fluid collisions are
++     * ignored as well regardless of the fluid collision mode.
++     * <p>
++     * Portal blocks are only considered passable if the ray starts within
++     * them. Apart from that collisions with portal blocks will be considered
++     * even if collisions with passable blocks are otherwise ignored.
++     * <p>
++     * This may cause loading of chunks! Some implementations may impose
++     * artificial restrictions on the maximum distance.
++     *
++     * @param start the start location
++     * @param direction the ray direction
++     * @param maxDistance the maximum distance
++     * @param fluidCollisionMode the fluid collision mode
++     * @param ignorePassableBlocks whether to ignore passable but collidable
++     *     blocks (ex. tall grass, signs, fluids, ..)
++     * @param blockFilter a block filter
++     * @return the ray trace hit result, or <code>null</code> if there is no hit
++     */
++    @Nullable
++    public RayTraceResult rayTraceBlocks(@NotNull Location start, @NotNull Vector direction, double maxDistance, @NotNull FluidCollisionMode fluidCollisionMode, boolean ignorePassableBlocks, @Nullable Predicate<Block> blockFilter);
++    // Paper end
++
+     /**
+      * Performs a ray trace that checks for both block and entity collisions.
+      * <p>
+@@ -1843,6 +1871,42 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
+     @Nullable
+     public RayTraceResult rayTrace(@NotNull Location start, @NotNull Vector direction, double maxDistance, @NotNull FluidCollisionMode fluidCollisionMode, boolean ignorePassableBlocks, double raySize, @Nullable Predicate<Entity> filter);
+ 
++    // Paper start
++    /**
++     * Performs a ray trace that checks for both block and entity collisions.
++     * <p>
++     * Block collisions use the blocks' precise collision shapes. The
++     * <code>raySize</code> parameter is only taken into account for entity
++     * collision checks.
++     * <p>
++     * If collisions with passable blocks are ignored, fluid collisions are
++     * ignored as well regardless of the fluid collision mode.
++     * <p>
++     * Portal blocks are only considered passable if the ray starts within them.
++     * Apart from that collisions with portal blocks will be considered even if
++     * collisions with passable blocks are otherwise ignored.
++     * <p>
++     * This may cause loading of chunks! Some implementations may impose
++     * artificial restrictions on the maximum distance.
++     *
++     * @param start the start location
++     * @param direction the ray direction
++     * @param maxDistance the maximum distance
++     * @param fluidCollisionMode the fluid collision mode
++     * @param ignorePassableBlocks whether to ignore passable but collidable
++     *     blocks (ex. tall grass, signs, fluids, ..)
++     * @param raySize entity bounding boxes will be uniformly expanded (or
++     *     shrinked) by this value before doing collision checks
++     * @param entityFilter only entities that fulfill this predicate are considered,
++     *     or <code>null</code> to consider all entities
++     * @param blockFilter a block filter
++     * @return the closest ray trace hit result with either a block or an
++     *     entity, or <code>null</code> if there is no hit
++     */
++    @Nullable
++    public RayTraceResult rayTrace(@NotNull Location start, @NotNull Vector direction, double maxDistance, @NotNull FluidCollisionMode fluidCollisionMode, boolean ignorePassableBlocks, double raySize, @Nullable Predicate<Entity> entityFilter, @Nullable Predicate<Block> blockFilter);
++    // Paper end
++
+     /**
+      * Gets the default spawn {@link Location} of this world
+      *

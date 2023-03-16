@@ -6,10 +6,10 @@ Subject: [PATCH] Add more Advancement API
 
 diff --git a/src/main/java/moe/caramel/daydream/advancement/AdvancementBuilder.java b/src/main/java/moe/caramel/daydream/advancement/AdvancementBuilder.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..58cad714be43b4fed2c506a226dcd65f9a891169
+index 0000000000000000000000000000000000000000..fb23f9d04fad5718a9ff7d16cf5756132016c794
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/advancement/AdvancementBuilder.java
-@@ -0,0 +1,179 @@
+@@ -0,0 +1,178 @@
 +package moe.caramel.daydream.advancement;
 +
 +import io.papermc.paper.advancement.AdvancementDisplay;
@@ -20,7 +20,6 @@ index 0000000000000000000000000000000000000000..58cad714be43b4fed2c506a226dcd65f
 +import org.bukkit.inventory.ItemStack;
 +import org.jetbrains.annotations.NotNull;
 +import org.jetbrains.annotations.Nullable;
-+
 +import java.util.function.Function;
 +
 +/**
@@ -353,10 +352,10 @@ index 0000000000000000000000000000000000000000..42a3f72a73d258aa378f407c460ae05e
 +    }
 +}
 diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
-index 51102225ad101381f29eb963cd99c11616f17f17..7c5d6c2b52c051b89bca9c120ec896395cda2b2f 100644
+index 4752860cd9b5dc4caa4072852d5b3ddc7ee790c8..44d316bf71bb7a2c946a12ad66a20e8dcd888e62 100644
 --- a/src/main/java/org/bukkit/Bukkit.java
 +++ b/src/main/java/org/bukkit/Bukkit.java
-@@ -2073,6 +2073,19 @@ public final class Bukkit {
+@@ -2139,6 +2139,19 @@ public final class Bukkit {
          return server.getAdvancement(key);
      }
  
@@ -377,10 +376,10 @@ index 51102225ad101381f29eb963cd99c11616f17f17..7c5d6c2b52c051b89bca9c120ec89639
       * Get an iterator through all advancements. Advancements cannot be removed
       * from this iterator,
 diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
-index 070ea79ef65489c2cd5d493e9cea45a7d644de96..5d9a27a55e95dd84fe3d108a5b84242c40bd2b27 100644
+index a56148f7c69b16d643b93c127314c3246fe11e44..2853241f22aecb7ea2b408be0861664615c1eb78 100644
 --- a/src/main/java/org/bukkit/Server.java
 +++ b/src/main/java/org/bukkit/Server.java
-@@ -1756,6 +1756,17 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
+@@ -1815,6 +1815,17 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
      @Nullable
      Advancement getAdvancement(@NotNull NamespacedKey key);
  
@@ -399,10 +398,10 @@ index 070ea79ef65489c2cd5d493e9cea45a7d644de96..5d9a27a55e95dd84fe3d108a5b84242c
       * Get an iterator through all advancements. Advancements cannot be removed
       * from this iterator,
 diff --git a/src/main/java/org/bukkit/UnsafeValues.java b/src/main/java/org/bukkit/UnsafeValues.java
-index 4fcafddf3792b66c618f91e04d102f374de565a8..eb3397c45d37e5236155156cf3cdd49ea5e0a491 100644
+index b92255a9c87620f46adb140689b1cd328a476d61..8a5ad3b36ebaa17dd353a93ed0139fa52d57d0c1 100644
 --- a/src/main/java/org/bukkit/UnsafeValues.java
 +++ b/src/main/java/org/bukkit/UnsafeValues.java
-@@ -71,6 +71,20 @@ public interface UnsafeValues {
+@@ -73,6 +73,20 @@ public interface UnsafeValues {
       */
      Advancement loadAdvancement(NamespacedKey key, String advancement);
  
@@ -424,10 +423,10 @@ index 4fcafddf3792b66c618f91e04d102f374de565a8..eb3397c45d37e5236155156cf3cdd49e
       * Delete an advancement which was loaded and saved by
       * {@link #loadAdvancement(org.bukkit.NamespacedKey, java.lang.String)}.
 diff --git a/src/main/java/org/bukkit/advancement/Advancement.java b/src/main/java/org/bukkit/advancement/Advancement.java
-index 792d5ab90e9252b4f660434f72f004fade14a84c..00b2b9d119c5f8b2e69baefcfe594e09f2e93ed7 100644
+index 3f6b9e59c2ea38031ca74962e02d710fde61fb1f..bd7e80317ff3a30f6ff522fcefec7d4adbe85a5c 100644
 --- a/src/main/java/org/bukkit/advancement/Advancement.java
 +++ b/src/main/java/org/bukkit/advancement/Advancement.java
-@@ -56,4 +56,19 @@ public interface Advancement extends Keyed {
+@@ -68,4 +68,19 @@ public interface Advancement extends Keyed {
      @NotNull
      Advancement getRoot();
      // Paper end
@@ -493,10 +492,10 @@ index f9bc179da071e7bd57cefc50d6763317fb643b74..532f51a1d537a342c0251d650cd503b1
 +    // Daydream end
  }
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index b1387d98cb7197ca0f665bdb0a21d7be26000d57..321d31aa6469b924d04555e3a3a2f713410d0d3e 100644
+index 82d91813280e334800b62a7707a9c8e37ea2c7b9..d99247504159679a825658b50f5058069b54826c 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
-@@ -2219,6 +2219,16 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+@@ -2383,6 +2383,16 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      @NotNull
      public AdvancementProgress getAdvancementProgress(@NotNull Advancement advancement);
  

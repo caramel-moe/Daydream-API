@@ -6,14 +6,14 @@ Subject: [PATCH] Add Individual Sidebar API
 
 diff --git a/src/main/java/moe/caramel/daydream/sidebar/EntryBuilder.java b/src/main/java/moe/caramel/daydream/sidebar/EntryBuilder.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..ea254c9d14fdecde022a3f2af614f984840978c7
+index 0000000000000000000000000000000000000000..90f93421f927c5acdc47ba3b95668e28b8c2cc7b
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/sidebar/EntryBuilder.java
 @@ -0,0 +1,187 @@
 +package moe.caramel.daydream.sidebar;
 +
++import com.google.common.base.Preconditions;
 +import net.kyori.adventure.text.Component;
-+import org.apache.commons.lang3.Validate;
 +import org.jetbrains.annotations.ApiStatus;
 +import org.jetbrains.annotations.NotNull;
 +import org.jetbrains.annotations.Nullable;
@@ -104,7 +104,7 @@ index 0000000000000000000000000000000000000000..ea254c9d14fdecde022a3f2af614f984
 +     */
 +    @NotNull
 +    public EntryBuilder next(final @NotNull Component name, final @Nullable EntryCallback callback) {
-+        Validate.isTrue(entries.size() < MAX_ENTRY_SIZE, "Entry 목록의 크기는 " + MAX_ENTRY_SIZE + "를 넘을 수 없습니다."); // TODO ?..
++        Preconditions.checkArgument(entries.size() < MAX_ENTRY_SIZE, "Entry 목록의 크기는 " + MAX_ENTRY_SIZE + "를 넘을 수 없습니다."); // TODO ?..
 +        this.entries.add(new Entry(name, callback));
 +        return this;
 +    }
@@ -199,7 +199,7 @@ index 0000000000000000000000000000000000000000..ea254c9d14fdecde022a3f2af614f984
 +}
 diff --git a/src/main/java/moe/caramel/daydream/sidebar/ISidebar.java b/src/main/java/moe/caramel/daydream/sidebar/ISidebar.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..1b9467ec88aa5b8ca1b750443847294dc422affb
+index 0000000000000000000000000000000000000000..b60319d9eef31aff2e0ff768cb012b068266009c
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/sidebar/ISidebar.java
 @@ -0,0 +1,53 @@
@@ -223,7 +223,7 @@ index 0000000000000000000000000000000000000000..1b9467ec88aa5b8ca1b750443847294d
 +     * </p>
 +     * <p>2. 이 기능을 사용하기 위해서는 이 {@link org.bukkit.scoreboard.Objective}에 {@link org.bukkit.scoreboard.Score}가 존재해서는 안 됩니다.</p>
 +     * <p>3. 이 기능을 사용하기 위해서는 {@link org.bukkit.scoreboard.DisplaySlot}이 {@link org.bukkit.scoreboard.DisplaySlot#SIDEBAR}이어야만 합니다.</p>
-+     * <p>4. 이 기능을 사용하기 위해서는 {@link org.bukkit.scoreboard.Objective#getCriteria()}이 {@code dummy}이어야만 합니다.</p>
++     * <p>4. 이 기능을 사용하기 위해서는 {@link org.bukkit.scoreboard.Criteria}이 {@link org.bukkit.scoreboard.Criteria#DUMMY}이어야만 합니다.</p>
 +     * <p>5. 이 기능을 사용하기 위해서는 {@link org.bukkit.scoreboard.RenderType}이 {@link org.bukkit.scoreboard.RenderType#INTEGER}이어야만 합니다.</p>
 +     * <p>6. 이 기능이 이미 활성화되어있는 경우 호출 시 {@link Exception}이 발생합니다.</p>
 +     *
@@ -375,7 +375,7 @@ index 0000000000000000000000000000000000000000..4dc7b27772061780734abef78e207ca5
 +    void cancelRequest();
 +}
 diff --git a/src/main/java/org/bukkit/scoreboard/Objective.java b/src/main/java/org/bukkit/scoreboard/Objective.java
-index b93b1b0428d11589605c8edf5c053369e1031076..8849f1ad7747c30988a91ad151e95beefa193c2d 100644
+index b236d19d4e4e4f9def610bae8a0c7d222fe2241b..0b4601e78c907e42e1a3736e58a20743c3fb0e81 100644
 --- a/src/main/java/org/bukkit/scoreboard/Objective.java
 +++ b/src/main/java/org/bukkit/scoreboard/Objective.java
 @@ -9,7 +9,7 @@ import org.jetbrains.annotations.Nullable;
