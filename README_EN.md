@@ -5,7 +5,7 @@
 <p>Daydream is Paper's Fork with the aim of high performance and using various API.</p>
 
 [![caramel.moe](https://img.shields.io/badge/made%20by.-caramel.moe-red)](https://caramel.moe)
-[![Build Status](https://img.shields.io/github/workflow/status/LemonCaramel/Daydream-API/Build%20Daydream%20API%20(1.18))](https://github.com/LemonCaramel/Daydream-API/actions/workflows/daydream-api-build-1.18.yml)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/LemonCaramel/Daydream-API/daydream-api-build-1.19.yml)](https://github.com/LemonCaramel/Daydream-API/actions/workflows/daydream-api-build-1.19.yml)
 [![Discord](https://img.shields.io/discord/534586842079821824.svg?label=use%20server&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/f9qGtYF)
 
 [KOREAN](README.md), ENGLISH
