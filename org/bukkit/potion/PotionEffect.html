@@ -46,13 +46,13 @@ loadScripts(document, 'script');</script>
 <ul class="sub-nav-list">
 <li>Summary:&nbsp;</li>
 <li>Nested&nbsp;|&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field-summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor-summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method-summary">Method</a></li>
 </ul>
 <ul class="sub-nav-list">
 <li>Detail:&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field-detail">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor-detail">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method-detail">Method</a></li>
 </ul>
@@ -91,6 +91,23 @@ implements <a href="../configuration/serialization/ConfigurationSerializable.htm
 </section>
 <section class="summary">
 <ul class="summary-list">
+<!-- =========== FIELD SUMMARY =========== -->
+<li>
+<section class="field-summary" id="field-summary">
+<h2>Field Summary</h2>
+<div class="caption"><span>Fields</span></div>
+<div class="summary-table three-column-summary">
+<div class="table-header col-first">Modifier and Type</div>
+<div class="table-header col-second">Field</div>
+<div class="table-header col-last">Description</div>
+<div class="col-first even-row-color"><code>static final int</code></div>
+<div class="col-second even-row-color"><code><a href="#INFINITE_DURATION" class="member-name-link">INFINITE_DURATION</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">A constant denoting infinite potion duration.</div>
+</div>
+</div>
+</section>
+</li>
 <!-- ======== CONSTRUCTOR SUMMARY ======== -->
 <li>
 <section class="constructor-summary" id="constructor-summary">
@@ -193,6 +210,17 @@ implements <a href="../configuration/serialization/ConfigurationSerializable.htm
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Makes potion effect produce more, translucent, particles.</div>
 </div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isInfinite()" class="member-name-link">isInfinite</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns whether or not this potion effect has an infinite duration.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isShorterThan(org.bukkit.potion.PotionEffect)" class="member-name-link">isShorterThan</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="PotionEffect.html" title="class in org.bukkit.potion">PotionEffect</a>&nbsp;other)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns whether or not this potion effect has a shorter duration than the
+ provided potion effect.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&gt;</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#serialize()" class="member-name-link">serialize</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
@@ -231,6 +259,29 @@ implements <a href="../configuration/serialization/ConfigurationSerializable.htm
 </section>
 <section class="details">
 <ul class="details-list">
+<!-- ============ FIELD DETAIL =========== -->
+<li>
+<section class="field-details" id="field-detail">
+<h2>Field Details</h2>
+<ul class="member-list">
+<li>
+<section class="detail" id="INFINITE_DURATION">
+<h3>INFINITE_DURATION</h3>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">INFINITE_DURATION</span></div>
+<div class="block">A constant denoting infinite potion duration.</div>
+<dl class="notes">
+<dt>See Also:</dt>
+<dd>
+<ul class="see-list">
+<li><a href="../../../constant-values.html#org.bukkit.potion.PotionEffect.INFINITE_DURATION">Constant Field Values</a></li>
+</ul>
+</dd>
+</dl>
+</section>
+</li>
+</ul>
+</section>
+</li>
 <!-- ========= CONSTRUCTOR DETAIL ======== -->
 <li>
 <section class="constructor-details" id="constructor-detail">
@@ -451,7 +502,46 @@ implements <a href="../configuration/serialization/ConfigurationSerializable.htm
  applied to a <a href="../entity/LivingEntity.html" title="interface in org.bukkit.entity"><code>LivingEntity</code></a>.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>The duration of the effect</dd>
+<dd>The duration of the effect, or <a href="#INFINITE_DURATION">-1</a> if
+ this effect is infinite</dd>
+<dt>See Also:</dt>
+<dd>
+<ul class="see-list">
+<li><a href="#isInfinite()"><code>isInfinite()</code></a></li>
+</ul>
+</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="isInfinite()">
+<h3>isInfinite</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isInfinite</span>()</div>
+<div class="block">Returns whether or not this potion effect has an infinite duration. Potion
+ effects with infinite durations will display an infinite symbol and never
+ expire unless manually removed.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>whether this duration is infinite or not</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="isShorterThan(org.bukkit.potion.PotionEffect)">
+<h3>isShorterThan</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isShorterThan</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="PotionEffect.html" title="class in org.bukkit.potion">PotionEffect</a>&nbsp;other)</span></div>
+<div class="block">Returns whether or not this potion effect has a shorter duration than the
+ provided potion effect.
+ <p>
+ An infinite duration is considered longer than non-infinite durations. If
+ both potion effects have infinite durations, then neither is shorter than
+ the other and this method will return false.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>other</code> - the other effect</dd>
+<dt>Returns:</dt>
+<dd>true if this effect is shorter than the other, false if longer or equal</dd>
 </dl>
 </section>
 </li>

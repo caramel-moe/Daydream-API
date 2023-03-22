@@ -88,7 +88,9 @@ loadScripts(document, 'script');</script>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">BlockExplodeEvent</span>
 <span class="extends-implements">extends <a href="BlockEvent.html" title="class in org.bukkit.event.block">BlockEvent</a>
 implements <a href="../Cancellable.html" title="interface in org.bukkit.event">Cancellable</a></span></div>
-<div class="block">Called when a block explodes
+<div class="block">Called when a block explodes interacting with blocks. The
+ event isn't called if the <a href="../../GameRule.html#MOB_GRIEFING"><code>GameRule.MOB_GRIEFING</code></a>
+ is disabled as no block interaction will occur.
  <p>
  The <a href="../../block/Block.html" title="interface in org.bukkit.block"><code>Block</code></a> returned by this event is not necessarily
  the block that caused the explosion, just the block at the location where
