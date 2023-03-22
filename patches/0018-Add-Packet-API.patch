@@ -241,11 +241,13 @@ index 0000000000000000000000000000000000000000..2110ec8c9f53be8c805b05f02669a4a1
 +}
 diff --git a/src/main/java/moe/caramel/daydream/network/Packet.java b/src/main/java/moe/caramel/daydream/network/Packet.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..6eef5e86697ff2b9dcb8a5a48cc8dfd590cdf6d6
+index 0000000000000000000000000000000000000000..9cfd3dec61b78742219e33792df9dbc6b10afa38
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/network/Packet.java
-@@ -0,0 +1,16 @@
+@@ -0,0 +1,27 @@
 +package moe.caramel.daydream.network;
++
++import org.jetbrains.annotations.NotNull;
 +
 +public interface Packet {
 +
@@ -253,6 +255,15 @@ index 0000000000000000000000000000000000000000..6eef5e86697ff2b9dcb8a5a48cc8dfd5
 +     * Packet API Version
 +     */
 +    int API_VERSION = 1;
++
++    /**
++     * 패킷을 가져옵니다.
++     *
++     * @return 패킷 인스턴스를 반환합니다.
++     * @throws RuntimeException 패킷 빌드가 불가능한 경우 던져집니다.
++     */
++    @NotNull
++    Object getPacket();
 +
 +    /**
 +     * 패킷이 빌드 가능한지 확인합니다.
@@ -1043,7 +1054,7 @@ index 365350d38b2eee00d22bad09ab95c6054f11d536..a8406e5260666b1ed48cd20cfb3e9916
       * Gets the amount of ticks this entity has lived for.
       * <p>
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index 24dd773621080932f494e96f0e2c8e3f6ff18e4e..3c95f02661413db0fe51dcd2bedd08c81d46912c 100644
+index ddcdd5d191de46af1a1ca505b84f71d54b9b339f..bf00fd7c9a6a983451ffdcf62313869323307f81 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
 @@ -294,6 +294,16 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM

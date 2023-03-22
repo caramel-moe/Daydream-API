@@ -774,35 +774,6 @@ index 0000000000000000000000000000000000000000..f31b3b5ba9d769500b846283fe01071f
 +        <T> T getSuggestion(@NotNull String type);
 +    }
 +}
-diff --git a/src/main/java/moe/caramel/daydream/brigadier/PluginIdentifiableCommand.java b/src/main/java/moe/caramel/daydream/brigadier/PluginIdentifiableCommand.java
-new file mode 100644
-index 0000000000000000000000000000000000000000..2d6c8e74b5605d425a46ae69800287813ffd6736
---- /dev/null
-+++ b/src/main/java/moe/caramel/daydream/brigadier/PluginIdentifiableCommand.java
-@@ -0,0 +1,23 @@
-+package moe.caramel.daydream.brigadier;
-+
-+import org.bukkit.plugin.Plugin;
-+import org.jetbrains.annotations.NotNull;
-+
-+/**
-+ * This interface is used by the help system to group commands into
-+ * sub-indexes based on the {@link Plugin} they are a part of. Custom command
-+ * implementations will need to implement this interface to have a sub-index
-+ * automatically generated on the plugin's behalf.
-+ *
-+ * @deprecated I HATE PLUGMAN
-+ */
-+public interface PluginIdentifiableCommand {
-+
-+    /**
-+     * Gets the owner of this PluginIdentifiableCommand.
-+     *
-+     * @return Plugin that owns this PluginIdentifiableCommand.
-+     */
-+    @NotNull
-+    public Plugin getPlugin();
-+}
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/Suggestions.java b/src/main/java/moe/caramel/daydream/brigadier/Suggestions.java
 new file mode 100644
 index 0000000000000000000000000000000000000000..c86bcda045edb5d20f44131037a62720bebb5a30
@@ -1453,7 +1424,7 @@ index 608b541aef01f33891a492fff5b8400496832c3a..0b830e71a40e52c455e6bb64ac0ccd7c
              target.sendMessage(permissionMessage.replaceText(net.kyori.adventure.text.TextReplacementConfig.builder().matchLiteral("<permission>").replacement(permission).build()));
              // Paper end
 diff --git a/src/main/java/org/bukkit/command/SimpleCommandMap.java b/src/main/java/org/bukkit/command/SimpleCommandMap.java
-index 36da67bf9fda415c302afcf0e346c72e664fa6a3..9e9e08d1c9e505533a279d459b2548f48c08eea2 100644
+index 36da67bf9fda415c302afcf0e346c72e664fa6a3..32fb0743b6650c4d753360ee8a6b985f99775346 100644
 --- a/src/main/java/org/bukkit/command/SimpleCommandMap.java
 +++ b/src/main/java/org/bukkit/command/SimpleCommandMap.java
 @@ -308,4 +308,48 @@ public class SimpleCommandMap implements CommandMap {
@@ -1498,7 +1469,7 @@ index 36da67bf9fda415c302afcf0e346c72e664fa6a3..9e9e08d1c9e505533a279d459b2548f4
 +
 +    private synchronized boolean removeCommand(@NotNull org.bukkit.plugin.Plugin plugin, @NotNull String name) {
 +        final Command command = knownCommands.get(name);
-+        if (!(command instanceof moe.caramel.daydream.brigadier.PluginIdentifiableCommand pluginCmd)) return false;
++        if (!(command instanceof org.bukkit.command.PluginIdentifiableCommand pluginCmd)) return false;
 +        if (!command.isBrigadierCommand() || pluginCmd.getPlugin() != plugin) return false;
 +        command.unregister(this);
 +        return true;
