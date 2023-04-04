@@ -207,7 +207,7 @@ loadScripts(document, 'script');</script>
 <div class="col-second odd-row-color"><span class="type-name-label">WitchReadyPotionEvent.</span><code><a href="../../../../com/destroystokyo/paper/event/entity/WitchReadyPotionEvent.html#process(org.bukkit.entity.Witch,org.bukkit.inventory.ItemStack)" class="member-name-link">process</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../entity/Witch.html" title="interface in org.bukkit.entity">Witch</a>&nbsp;witch,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;potion)</code></div>
 <div class="col-last odd-row-color">
-<div class="block">Fires thee event, returning the desired potion, or air of cancelled</div>
+<div class="block">Fires the event, returning the desired potion, or air of cancelled</div>
 </div>
 </div>
 <div class="caption"><span>Methods in <a href="../../../../com/destroystokyo/paper/event/entity/package-summary.html">com.destroystokyo.paper.event.entity</a> with parameters of type <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a></span></div>
@@ -219,7 +219,7 @@ loadScripts(document, 'script');</script>
 <div class="col-second even-row-color"><span class="type-name-label">WitchReadyPotionEvent.</span><code><a href="../../../../com/destroystokyo/paper/event/entity/WitchReadyPotionEvent.html#process(org.bukkit.entity.Witch,org.bukkit.inventory.ItemStack)" class="member-name-link">process</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../entity/Witch.html" title="interface in org.bukkit.entity">Witch</a>&nbsp;witch,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;potion)</code></div>
 <div class="col-last even-row-color">
-<div class="block">Fires thee event, returning the desired potion, or air of cancelled</div>
+<div class="block">Fires the event, returning the desired potion, or air of cancelled</div>
 </div>
 <div class="col-first odd-row-color"><code>void</code></div>
 <div class="col-second odd-row-color"><span class="type-name-label">WitchConsumePotionEvent.</span><code><a href="../../../../com/destroystokyo/paper/event/entity/WitchConsumePotionEvent.html#setPotion(org.bukkit.inventory.ItemStack)" class="member-name-link">setPotion</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;potion)</code></div>
@@ -1503,120 +1503,127 @@ loadScripts(document, 'script');</script>
 <div class="block">Open a <a href="../../Material.html#WRITTEN_BOOK"><code>Material.WRITTEN_BOOK</code></a> for a Player</div>
 </div>
 <div class="col-first odd-row-color"><code>void</code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">Player.</span><code><a href="../../entity/Player.html#sendEquipmentChange(org.bukkit.entity.LivingEntity,org.bukkit.inventory.EquipmentSlot,org.bukkit.inventory.ItemStack)" class="member-name-link">sendEquipmentChange</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../entity/LivingEntity.html" title="interface in org.bukkit.entity">LivingEntity</a>&nbsp;entity,
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../EquipmentSlot.html" title="enum class in org.bukkit.inventory">EquipmentSlot</a>&nbsp;slot,
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;item)</code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">Player.</span><code><a href="../../entity/Player.html#sendAdvancementAlert(org.bukkit.inventory.ItemStack,net.kyori.adventure.text.Component,io.papermc.paper.advancement.AdvancementDisplay.Frame)" class="member-name-link">sendAdvancementAlert</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;item,
+ <a href="https://jd.advntr.dev/api/4.13.0/net/kyori/adventure/text/Component.html" title="class or interface in net.kyori.adventure.text" class="external-link">Component</a>&nbsp;title,
+ <a href="../../../../io/papermc/paper/advancement/AdvancementDisplay.Frame.html" title="enum class in io.papermc.paper.advancement">AdvancementDisplay.Frame</a>&nbsp;frame)</code></div>
 <div class="col-last odd-row-color">
-<div class="block">Send an equipment change for the target entity.</div>
+<div class="block">플레이어에게 발전 과제 알림을 전송합니다.</div>
 </div>
 <div class="col-first even-row-color"><code>void</code></div>
-<div class="col-second even-row-color"><span class="type-name-label">ArmorStand.</span><code><a href="../../entity/ArmorStand.html#setBoots(org.bukkit.inventory.ItemStack)" class="member-name-link">setBoots</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;item)</code></div>
+<div class="col-second even-row-color"><span class="type-name-label">Player.</span><code><a href="../../entity/Player.html#sendEquipmentChange(org.bukkit.entity.LivingEntity,org.bukkit.inventory.EquipmentSlot,org.bukkit.inventory.ItemStack)" class="member-name-link">sendEquipmentChange</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../entity/LivingEntity.html" title="interface in org.bukkit.entity">LivingEntity</a>&nbsp;entity,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../EquipmentSlot.html" title="enum class in org.bukkit.inventory">EquipmentSlot</a>&nbsp;slot,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;item)</code></div>
 <div class="col-last even-row-color">
+<div class="block">Send an equipment change for the target entity.</div>
+</div>
+<div class="col-first odd-row-color"><code>void</code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">ArmorStand.</span><code><a href="../../entity/ArmorStand.html#setBoots(org.bukkit.inventory.ItemStack)" class="member-name-link">setBoots</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;item)</code></div>
+<div class="col-last odd-row-color">
 <div class="block"><span class="deprecated-label">Deprecated.</span>
 <div class="deprecation-comment">prefer
  <a href="../EntityEquipment.html#setBoots(org.bukkit.inventory.ItemStack)"><code>EntityEquipment.setBoots(org.bukkit.inventory.ItemStack)</code></a></div>
 </div>
 </div>
-<div class="col-first odd-row-color"><code>void</code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">ArmorStand.</span><code><a href="../../entity/ArmorStand.html#setChestplate(org.bukkit.inventory.ItemStack)" class="member-name-link">setChestplate</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;item)</code></div>
-<div class="col-last odd-row-color">
+<div class="col-first even-row-color"><code>void</code></div>
+<div class="col-second even-row-color"><span class="type-name-label">ArmorStand.</span><code><a href="../../entity/ArmorStand.html#setChestplate(org.bukkit.inventory.ItemStack)" class="member-name-link">setChestplate</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;item)</code></div>
+<div class="col-last even-row-color">
 <div class="block"><span class="deprecated-label">Deprecated.</span>
 <div class="deprecation-comment">prefer
  <a href="../EntityEquipment.html#setChestplate(org.bukkit.inventory.ItemStack)"><code>EntityEquipment.setChestplate(org.bukkit.inventory.ItemStack)</code></a></div>
 </div>
 </div>
-<div class="col-first even-row-color"><code>void</code></div>
-<div class="col-second even-row-color"><span class="type-name-label">SizedFireball.</span><code><a href="../../entity/SizedFireball.html#setDisplayItem(org.bukkit.inventory.ItemStack)" class="member-name-link">setDisplayItem</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;item)</code></div>
-<div class="col-last even-row-color">
+<div class="col-first odd-row-color"><code>void</code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">SizedFireball.</span><code><a href="../../entity/SizedFireball.html#setDisplayItem(org.bukkit.inventory.ItemStack)" class="member-name-link">setDisplayItem</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;item)</code></div>
+<div class="col-last odd-row-color">
 <div class="block">Sets the display <a href="../ItemStack.html" title="class in org.bukkit.inventory"><code>ItemStack</code></a> for the fireball.</div>
 </div>
-<div class="col-first odd-row-color"><code>void</code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">Witch.</span><code><a href="../../entity/Witch.html#setDrinkingPotion(org.bukkit.inventory.ItemStack)" class="member-name-link">setDrinkingPotion</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;potion)</code></div>
-<div class="col-last odd-row-color">
+<div class="col-first even-row-color"><code>void</code></div>
+<div class="col-second even-row-color"><span class="type-name-label">Witch.</span><code><a href="../../entity/Witch.html#setDrinkingPotion(org.bukkit.inventory.ItemStack)" class="member-name-link">setDrinkingPotion</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;potion)</code></div>
+<div class="col-last even-row-color">
 <div class="block">Set the potion the Witch should drink</div>
 </div>
-<div class="col-first even-row-color"><code>void</code></div>
-<div class="col-second even-row-color"><span class="type-name-label">ArmorStand.</span><code><a href="../../entity/ArmorStand.html#setHelmet(org.bukkit.inventory.ItemStack)" class="member-name-link">setHelmet</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;item)</code></div>
-<div class="col-last even-row-color">
+<div class="col-first odd-row-color"><code>void</code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">ArmorStand.</span><code><a href="../../entity/ArmorStand.html#setHelmet(org.bukkit.inventory.ItemStack)" class="member-name-link">setHelmet</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;item)</code></div>
+<div class="col-last odd-row-color">
 <div class="block"><span class="deprecated-label">Deprecated.</span>
 <div class="deprecation-comment">prefer
  <a href="../EntityEquipment.html#setHelmet(org.bukkit.inventory.ItemStack)"><code>EntityEquipment.setHelmet(org.bukkit.inventory.ItemStack)</code></a></div>
 </div>
 </div>
-<div class="col-first odd-row-color"><code>void</code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">ArmorStand.</span><code><a href="../../entity/ArmorStand.html#setItem(org.bukkit.inventory.EquipmentSlot,org.bukkit.inventory.ItemStack)" class="member-name-link">setItem</a><wbr>(<a href="../EquipmentSlot.html" title="enum class in org.bukkit.inventory">EquipmentSlot</a>&nbsp;slot,
+<div class="col-first even-row-color"><code>void</code></div>
+<div class="col-second even-row-color"><span class="type-name-label">ArmorStand.</span><code><a href="../../entity/ArmorStand.html#setItem(org.bukkit.inventory.EquipmentSlot,org.bukkit.inventory.ItemStack)" class="member-name-link">setItem</a><wbr>(<a href="../EquipmentSlot.html" title="enum class in org.bukkit.inventory">EquipmentSlot</a>&nbsp;slot,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;item)</code></div>
-<div class="col-last odd-row-color">
+<div class="col-last even-row-color">
 <div class="block">Sets the item the armor stand has
  equip in the given equipment slot</div>
 </div>
-<div class="col-first even-row-color"><code>void</code></div>
-<div class="col-second even-row-color"><span class="type-name-label">EnderSignal.</span><code><a href="../../entity/EnderSignal.html#setItem(org.bukkit.inventory.ItemStack)" class="member-name-link">setItem</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;item)</code></div>
-<div class="col-last even-row-color">
+<div class="col-first odd-row-color"><code>void</code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">EnderSignal.</span><code><a href="../../entity/EnderSignal.html#setItem(org.bukkit.inventory.ItemStack)" class="member-name-link">setItem</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;item)</code></div>
+<div class="col-last odd-row-color">
 <div class="block">Set the <a href="../ItemStack.html" title="class in org.bukkit.inventory"><code>ItemStack</code></a> to be displayed while in the air and to be
  dropped on death.</div>
 </div>
-<div class="col-first odd-row-color"><code>void</code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">Firework.</span><code><a href="../../entity/Firework.html#setItem(org.bukkit.inventory.ItemStack)" class="member-name-link">setItem</a><wbr>(<a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;itemStack)</code></div>
-<div class="col-last odd-row-color">
+<div class="col-first even-row-color"><code>void</code></div>
+<div class="col-second even-row-color"><span class="type-name-label">Firework.</span><code><a href="../../entity/Firework.html#setItem(org.bukkit.inventory.ItemStack)" class="member-name-link">setItem</a><wbr>(<a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;itemStack)</code></div>
+<div class="col-last even-row-color">
 <div class="block">Sets the item used in the firework.</div>
 </div>
-<div class="col-first even-row-color"><code>void</code></div>
-<div class="col-second even-row-color"><span class="type-name-label">ItemFrame.</span><code><a href="../../entity/ItemFrame.html#setItem(org.bukkit.inventory.ItemStack)" class="member-name-link">setItem</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;item)</code></div>
-<div class="col-last even-row-color">
-<div class="block">Set the item in this frame</div>
-</div>
 <div class="col-first odd-row-color"><code>void</code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">ItemFrame.</span><code><a href="../../entity/ItemFrame.html#setItem(org.bukkit.inventory.ItemStack,boolean)" class="member-name-link">setItem</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;item,
- boolean&nbsp;playSound)</code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">ItemFrame.</span><code><a href="../../entity/ItemFrame.html#setItem(org.bukkit.inventory.ItemStack)" class="member-name-link">setItem</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;item)</code></div>
 <div class="col-last odd-row-color">
 <div class="block">Set the item in this frame</div>
 </div>
 <div class="col-first even-row-color"><code>void</code></div>
-<div class="col-second even-row-color"><span class="type-name-label">ThrowableProjectile.</span><code><a href="../../entity/ThrowableProjectile.html#setItem(org.bukkit.inventory.ItemStack)" class="member-name-link">setItem</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;item)</code></div>
+<div class="col-second even-row-color"><span class="type-name-label">ItemFrame.</span><code><a href="../../entity/ItemFrame.html#setItem(org.bukkit.inventory.ItemStack,boolean)" class="member-name-link">setItem</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;item,
+ boolean&nbsp;playSound)</code></div>
 <div class="col-last even-row-color">
+<div class="block">Set the item in this frame</div>
+</div>
+<div class="col-first odd-row-color"><code>void</code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">ThrowableProjectile.</span><code><a href="../../entity/ThrowableProjectile.html#setItem(org.bukkit.inventory.ItemStack)" class="member-name-link">setItem</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;item)</code></div>
+<div class="col-last odd-row-color">
 <div class="block">Sets the display ItemStack for the thrown projectile.</div>
 </div>
-<div class="col-first odd-row-color"><code>void</code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">ThrownPotion.</span><code><a href="../../entity/ThrownPotion.html#setItem(org.bukkit.inventory.ItemStack)" class="member-name-link">setItem</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;item)</code></div>
-<div class="col-last odd-row-color">
+<div class="col-first even-row-color"><code>void</code></div>
+<div class="col-second even-row-color"><span class="type-name-label">ThrownPotion.</span><code><a href="../../entity/ThrownPotion.html#setItem(org.bukkit.inventory.ItemStack)" class="member-name-link">setItem</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;item)</code></div>
+<div class="col-last even-row-color">
 <div class="block">Set the ItemStack for this thrown potion.</div>
 </div>
-<div class="col-first even-row-color"><code>void</code></div>
-<div class="col-second even-row-color"><span class="type-name-label">ArmorStand.</span><code><a href="../../entity/ArmorStand.html#setItemInHand(org.bukkit.inventory.ItemStack)" class="member-name-link">setItemInHand</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;item)</code></div>
-<div class="col-last even-row-color">
+<div class="col-first odd-row-color"><code>void</code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">ArmorStand.</span><code><a href="../../entity/ArmorStand.html#setItemInHand(org.bukkit.inventory.ItemStack)" class="member-name-link">setItemInHand</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;item)</code></div>
+<div class="col-last odd-row-color">
 <div class="block"><span class="deprecated-label">Deprecated.</span>
 <div class="deprecation-comment">prefer
  <a href="../../entity/ArmorStand.html#setItem(org.bukkit.inventory.EquipmentSlot,org.bukkit.inventory.ItemStack)"><code>ArmorStand.setItem(EquipmentSlot, ItemStack)</code></a> // Paper</div>
 </div>
 </div>
-<div class="col-first odd-row-color"><code>void</code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">HumanEntity.</span><code><a href="../../entity/HumanEntity.html#setItemInHand(org.bukkit.inventory.ItemStack)" class="member-name-link">setItemInHand</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;item)</code></div>
-<div class="col-last odd-row-color">
+<div class="col-first even-row-color"><code>void</code></div>
+<div class="col-second even-row-color"><span class="type-name-label">HumanEntity.</span><code><a href="../../entity/HumanEntity.html#setItemInHand(org.bukkit.inventory.ItemStack)" class="member-name-link">setItemInHand</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;item)</code></div>
+<div class="col-last even-row-color">
 <div class="block"><span class="deprecated-label">Deprecated.</span>
 <div class="deprecation-comment">Humans may now dual wield in their off hand, use explicit
  methods in <a href="../PlayerInventory.html" title="interface in org.bukkit.inventory"><code>PlayerInventory</code></a>.</div>
 </div>
 </div>
-<div class="col-first even-row-color"><code>void</code></div>
-<div class="col-second even-row-color"><span class="type-name-label">HumanEntity.</span><code><a href="../../entity/HumanEntity.html#setItemOnCursor(org.bukkit.inventory.ItemStack)" class="member-name-link">setItemOnCursor</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;item)</code></div>
-<div class="col-last even-row-color">
+<div class="col-first odd-row-color"><code>void</code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">HumanEntity.</span><code><a href="../../entity/HumanEntity.html#setItemOnCursor(org.bukkit.inventory.ItemStack)" class="member-name-link">setItemOnCursor</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;item)</code></div>
+<div class="col-last odd-row-color">
 <div class="block">Sets the item to the given ItemStack, this will replace whatever the
  user was moving.</div>
 </div>
-<div class="col-first odd-row-color"><code>void</code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">Item.</span><code><a href="../../entity/Item.html#setItemStack(org.bukkit.inventory.ItemStack)" class="member-name-link">setItemStack</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;stack)</code></div>
-<div class="col-last odd-row-color">
+<div class="col-first even-row-color"><code>void</code></div>
+<div class="col-second even-row-color"><span class="type-name-label">Item.</span><code><a href="../../entity/Item.html#setItemStack(org.bukkit.inventory.ItemStack)" class="member-name-link">setItemStack</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;stack)</code></div>
+<div class="col-last even-row-color">
 <div class="block">Sets the item stack associated with this item drop.</div>
 </div>
-<div class="col-first even-row-color"><code>void</code></div>
-<div class="col-second even-row-color"><span class="type-name-label">ItemDisplay.</span><code><a href="../../entity/ItemDisplay.html#setItemStack(org.bukkit.inventory.ItemStack)" class="member-name-link">setItemStack</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;item)</code></div>
-<div class="col-last even-row-color">
+<div class="col-first odd-row-color"><code>void</code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">ItemDisplay.</span><code><a href="../../entity/ItemDisplay.html#setItemStack(org.bukkit.inventory.ItemStack)" class="member-name-link">setItemStack</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;item)</code></div>
+<div class="col-last odd-row-color">
 <div class="block">Sets the displayed item stack.</div>
 </div>
-<div class="col-first odd-row-color"><code>void</code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">ArmorStand.</span><code><a href="../../entity/ArmorStand.html#setLeggings(org.bukkit.inventory.ItemStack)" class="member-name-link">setLeggings</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;item)</code></div>
-<div class="col-last odd-row-color">
+<div class="col-first even-row-color"><code>void</code></div>
+<div class="col-second even-row-color"><span class="type-name-label">ArmorStand.</span><code><a href="../../entity/ArmorStand.html#setLeggings(org.bukkit.inventory.ItemStack)" class="member-name-link">setLeggings</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;item)</code></div>
+<div class="col-last even-row-color">
 <div class="block"><span class="deprecated-label">Deprecated.</span>
 <div class="deprecation-comment">prefer
  <a href="../EntityEquipment.html#setLeggings(org.bukkit.inventory.ItemStack)"><code>EntityEquipment.setLeggings(org.bukkit.inventory.ItemStack)</code></a></div>
@@ -2199,8 +2206,13 @@ loadScripts(document, 'script');</script>
  inventory.</div>
 </div>
 <div class="col-first odd-row-color"><code>void</code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">PrepareInventoryResultEvent.</span><code><a href="../../event/inventory/PrepareInventoryResultEvent.html#setResult(org.bukkit.inventory.ItemStack)" class="member-name-link">setResult</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;result)</code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">PrepareAnvilEvent.</span><code><a href="../../event/inventory/PrepareAnvilEvent.html#setResult(org.bukkit.inventory.ItemStack)" class="member-name-link">setResult</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;result)</code></div>
 <div class="col-last odd-row-color">
+<div class="block">Set result item, may be null.</div>
+</div>
+<div class="col-first even-row-color"><code>void</code></div>
+<div class="col-second even-row-color"><span class="type-name-label">PrepareInventoryResultEvent.</span><code><a href="../../event/inventory/PrepareInventoryResultEvent.html#setResult(org.bukkit.inventory.ItemStack)" class="member-name-link">setResult</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;result)</code></div>
+<div class="col-last even-row-color">
 <div class="block"><span class="deprecated-label">Deprecated.</span></div>
 <div class="block">Set result item, may be null.</div>
 </div>
@@ -3034,111 +3046,116 @@ loadScripts(document, 'script');</script>
 <div class="col-last odd-row-color">
 <div class="block">Get the contents of the crafting matrix.</div>
 </div>
-<div class="col-first even-row-color"><code>default <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a></code></div>
-<div class="col-second even-row-color"><span class="type-name-label">AnvilInventory.</span><code><a href="../AnvilInventory.html#getResult()" class="member-name-link">getResult</a>()</code></div>
+<div class="col-first even-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a></code></div>
+<div class="col-second even-row-color"><span class="type-name-label">JukeboxInventory.</span><code><a href="../JukeboxInventory.html#getRecord()" class="member-name-link">getRecord</a>()</code></div>
 <div class="col-last even-row-color">
+<div class="block">Get the record in the jukebox.</div>
+</div>
+<div class="col-first odd-row-color"><code>default <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a></code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">AnvilInventory.</span><code><a href="../AnvilInventory.html#getResult()" class="member-name-link">getResult</a>()</code></div>
+<div class="col-last odd-row-color">
 <div class="block">Gets the item in the result slot.</div>
 </div>
-<div class="col-first odd-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a></code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">CookingRecipe.</span><code><a href="../CookingRecipe.html#getResult()" class="member-name-link">getResult</a>()</code></div>
-<div class="col-last odd-row-color">
+<div class="col-first even-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a></code></div>
+<div class="col-second even-row-color"><span class="type-name-label">CookingRecipe.</span><code><a href="../CookingRecipe.html#getResult()" class="member-name-link">getResult</a>()</code></div>
+<div class="col-last even-row-color">
 <div class="block">Get the result of this recipe.</div>
 </div>
-<div class="col-first even-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a></code></div>
-<div class="col-second even-row-color"><span class="type-name-label">CraftingInventory.</span><code><a href="../CraftingInventory.html#getResult()" class="member-name-link">getResult</a>()</code></div>
-<div class="col-last even-row-color">
+<div class="col-first odd-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a></code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">CraftingInventory.</span><code><a href="../CraftingInventory.html#getResult()" class="member-name-link">getResult</a>()</code></div>
+<div class="col-last odd-row-color">
 <div class="block">Check what item is in the result slot of this crafting inventory.</div>
 </div>
-<div class="col-first odd-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a></code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">FurnaceInventory.</span><code><a href="../FurnaceInventory.html#getResult()" class="member-name-link">getResult</a>()</code></div>
-<div class="col-last odd-row-color">
+<div class="col-first even-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a></code></div>
+<div class="col-second even-row-color"><span class="type-name-label">FurnaceInventory.</span><code><a href="../FurnaceInventory.html#getResult()" class="member-name-link">getResult</a>()</code></div>
+<div class="col-last even-row-color">
 <div class="block">Get the current item in the result slot.</div>
 </div>
-<div class="col-first even-row-color"><code>default <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a></code></div>
-<div class="col-second even-row-color"><span class="type-name-label">GrindstoneInventory.</span><code><a href="../GrindstoneInventory.html#getResult()" class="member-name-link">getResult</a>()</code></div>
-<div class="col-last even-row-color">
+<div class="col-first odd-row-color"><code>default <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a></code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">GrindstoneInventory.</span><code><a href="../GrindstoneInventory.html#getResult()" class="member-name-link">getResult</a>()</code></div>
+<div class="col-last odd-row-color">
 <div class="block">Gets the result.</div>
 </div>
-<div class="col-first odd-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a></code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">MerchantRecipe.</span><code><a href="../MerchantRecipe.html#getResult()" class="member-name-link">getResult</a>()</code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
 <div class="col-first even-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a></code></div>
-<div class="col-second even-row-color"><span class="type-name-label">Recipe.</span><code><a href="../Recipe.html#getResult()" class="member-name-link">getResult</a>()</code></div>
-<div class="col-last even-row-color">
+<div class="col-second even-row-color"><span class="type-name-label">MerchantRecipe.</span><code><a href="../MerchantRecipe.html#getResult()" class="member-name-link">getResult</a>()</code></div>
+<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-first odd-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a></code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">Recipe.</span><code><a href="../Recipe.html#getResult()" class="member-name-link">getResult</a>()</code></div>
+<div class="col-last odd-row-color">
 <div class="block">Get the result of this recipe.</div>
 </div>
-<div class="col-first odd-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a></code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">ShapedRecipe.</span><code><a href="../ShapedRecipe.html#getResult()" class="member-name-link">getResult</a>()</code></div>
-<div class="col-last odd-row-color">
+<div class="col-first even-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a></code></div>
+<div class="col-second even-row-color"><span class="type-name-label">ShapedRecipe.</span><code><a href="../ShapedRecipe.html#getResult()" class="member-name-link">getResult</a>()</code></div>
+<div class="col-last even-row-color">
 <div class="block">Get the result.</div>
 </div>
-<div class="col-first even-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a></code></div>
-<div class="col-second even-row-color"><span class="type-name-label">ShapelessRecipe.</span><code><a href="../ShapelessRecipe.html#getResult()" class="member-name-link">getResult</a>()</code></div>
-<div class="col-last even-row-color">
+<div class="col-first odd-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a></code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">ShapelessRecipe.</span><code><a href="../ShapelessRecipe.html#getResult()" class="member-name-link">getResult</a>()</code></div>
+<div class="col-last odd-row-color">
 <div class="block">Get the result of this recipe.</div>
 </div>
-<div class="col-first odd-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a></code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">SmithingInventory.</span><code><a href="../SmithingInventory.html#getResult()" class="member-name-link">getResult</a>()</code></div>
-<div class="col-last odd-row-color">
+<div class="col-first even-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a></code></div>
+<div class="col-second even-row-color"><span class="type-name-label">SmithingInventory.</span><code><a href="../SmithingInventory.html#getResult()" class="member-name-link">getResult</a>()</code></div>
+<div class="col-last even-row-color">
 <div class="block">Check what item is in the result slot of this smithing table.</div>
 </div>
-<div class="col-first even-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a></code></div>
-<div class="col-second even-row-color"><span class="type-name-label">SmithingRecipe.</span><code><a href="../SmithingRecipe.html#getResult()" class="member-name-link">getResult</a>()</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
-<div class="col-first odd-row-color"><code>default <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a></code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">StonecutterInventory.</span><code><a href="../StonecutterInventory.html#getResult()" class="member-name-link">getResult</a>()</code></div>
-<div class="col-last odd-row-color">
+<div class="col-first odd-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a></code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">SmithingRecipe.</span><code><a href="../SmithingRecipe.html#getResult()" class="member-name-link">getResult</a>()</code></div>
+<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-first even-row-color"><code>default <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a></code></div>
+<div class="col-second even-row-color"><span class="type-name-label">StonecutterInventory.</span><code><a href="../StonecutterInventory.html#getResult()" class="member-name-link">getResult</a>()</code></div>
+<div class="col-last even-row-color">
 <div class="block">Gets the result item.</div>
 </div>
-<div class="col-first even-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a></code></div>
-<div class="col-second even-row-color"><span class="type-name-label">StonecuttingRecipe.</span><code><a href="../StonecuttingRecipe.html#getResult()" class="member-name-link">getResult</a>()</code></div>
-<div class="col-last even-row-color">
+<div class="col-first odd-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a></code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">StonecuttingRecipe.</span><code><a href="../StonecuttingRecipe.html#getResult()" class="member-name-link">getResult</a>()</code></div>
+<div class="col-last odd-row-color">
 <div class="block">Get the result of this recipe.</div>
 </div>
-<div class="col-first odd-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a></code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">AbstractHorseInventory.</span><code><a href="../AbstractHorseInventory.html#getSaddle()" class="member-name-link">getSaddle</a>()</code></div>
-<div class="col-last odd-row-color">
+<div class="col-first even-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a></code></div>
+<div class="col-second even-row-color"><span class="type-name-label">AbstractHorseInventory.</span><code><a href="../AbstractHorseInventory.html#getSaddle()" class="member-name-link">getSaddle</a>()</code></div>
+<div class="col-last even-row-color">
 <div class="block">Gets the item in the horse's saddle slot.</div>
 </div>
-<div class="col-first even-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a></code></div>
-<div class="col-second even-row-color"><span class="type-name-label">EnchantingInventory.</span><code><a href="../EnchantingInventory.html#getSecondary()" class="member-name-link">getSecondary</a>()</code></div>
-<div class="col-last even-row-color">
+<div class="col-first odd-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a></code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">EnchantingInventory.</span><code><a href="../EnchantingInventory.html#getSecondary()" class="member-name-link">getSecondary</a>()</code></div>
+<div class="col-last odd-row-color">
 <div class="block">Get the secondary item being used for the enchant.</div>
 </div>
-<div class="col-first odd-row-color"><code>default <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a></code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">AnvilInventory.</span><code><a href="../AnvilInventory.html#getSecondItem()" class="member-name-link">getSecondItem</a>()</code></div>
-<div class="col-last odd-row-color">
+<div class="col-first even-row-color"><code>default <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a></code></div>
+<div class="col-second even-row-color"><span class="type-name-label">AnvilInventory.</span><code><a href="../AnvilInventory.html#getSecondItem()" class="member-name-link">getSecondItem</a>()</code></div>
+<div class="col-last even-row-color">
 <div class="block">Gets the item in the right input slot.</div>
 </div>
-<div class="col-first even-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a></code></div>
-<div class="col-second even-row-color"><span class="type-name-label">FurnaceInventory.</span><code><a href="../FurnaceInventory.html#getSmelting()" class="member-name-link">getSmelting</a>()</code></div>
-<div class="col-last even-row-color">
+<div class="col-first odd-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a></code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">FurnaceInventory.</span><code><a href="../FurnaceInventory.html#getSmelting()" class="member-name-link">getSmelting</a>()</code></div>
+<div class="col-last odd-row-color">
 <div class="block">Get the item currently smelting.</div>
 </div>
-<div class="col-first odd-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a></code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">ItemFactory.</span><code><a href="../ItemFactory.html#getSpawnEgg(org.bukkit.entity.EntityType)" class="member-name-link">getSpawnEgg</a><wbr>(<a href="../../entity/EntityType.html" title="enum class in org.bukkit.entity">EntityType</a>&nbsp;type)</code></div>
-<div class="col-last odd-row-color">
+<div class="col-first even-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a></code></div>
+<div class="col-second even-row-color"><span class="type-name-label">ItemFactory.</span><code><a href="../ItemFactory.html#getSpawnEgg(org.bukkit.entity.EntityType)" class="member-name-link">getSpawnEgg</a><wbr>(<a href="../../entity/EntityType.html" title="enum class in org.bukkit.entity">EntityType</a>&nbsp;type)</code></div>
+<div class="col-last even-row-color">
 <div class="block">Get a spawn egg ItemStack from an EntityType</div>
 </div>
-<div class="col-first even-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a> <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> []</code></div>
-<div class="col-second even-row-color"><span class="type-name-label">Inventory.</span><code><a href="../Inventory.html#getStorageContents()" class="member-name-link">getStorageContents</a>()</code></div>
-<div class="col-last even-row-color">
+<div class="col-first odd-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a> <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> []</code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">Inventory.</span><code><a href="../Inventory.html#getStorageContents()" class="member-name-link">getStorageContents</a>()</code></div>
+<div class="col-last odd-row-color">
 <div class="block">Return the contents from the section of the inventory where items can
  reasonably be expected to be stored.</div>
 </div>
-<div class="col-first odd-row-color"><code>default <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a></code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">GrindstoneInventory.</span><code><a href="../GrindstoneInventory.html#getUpperItem()" class="member-name-link">getUpperItem</a>()</code></div>
-<div class="col-last odd-row-color">
+<div class="col-first even-row-color"><code>default <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a></code></div>
+<div class="col-second even-row-color"><span class="type-name-label">GrindstoneInventory.</span><code><a href="../GrindstoneInventory.html#getUpperItem()" class="member-name-link">getUpperItem</a>()</code></div>
+<div class="col-last even-row-color">
 <div class="block">Gets the upper input item.</div>
 </div>
-<div class="col-first even-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a></code></div>
-<div class="col-second even-row-color"><span class="type-name-label">ItemStack.</span><code><a href="../ItemStack.html#subtract()" class="member-name-link">subtract</a>()</code></div>
-<div class="col-last even-row-color">
+<div class="col-first odd-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a></code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">ItemStack.</span><code><a href="../ItemStack.html#subtract()" class="member-name-link">subtract</a>()</code></div>
+<div class="col-last odd-row-color">
 <div class="block">Subtracts 1 to this itemstack.</div>
 </div>
-<div class="col-first odd-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a></code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">ItemStack.</span><code><a href="../ItemStack.html#subtract(int)" class="member-name-link">subtract</a><wbr>(int&nbsp;qty)</code></div>
-<div class="col-last odd-row-color">
+<div class="col-first even-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a></code></div>
+<div class="col-second even-row-color"><span class="type-name-label">ItemStack.</span><code><a href="../ItemStack.html#subtract(int)" class="member-name-link">subtract</a><wbr>(int&nbsp;qty)</code></div>
+<div class="col-last even-row-color">
 <div class="block">Subtracts quantity to this itemstack.</div>
 </div>
 </div>
@@ -3610,75 +3627,80 @@ loadScripts(document, 'script');</script>
 <div class="col-last odd-row-color">
 <div class="block">Replace the contents of the crafting matrix</div>
 </div>
-<div class="col-first even-row-color"><code>default void</code></div>
-<div class="col-second even-row-color"><span class="type-name-label">AnvilInventory.</span><code><a href="../AnvilInventory.html#setResult(org.bukkit.inventory.ItemStack)" class="member-name-link">setResult</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;result)</code></div>
+<div class="col-first even-row-color"><code>void</code></div>
+<div class="col-second even-row-color"><span class="type-name-label">JukeboxInventory.</span><code><a href="../JukeboxInventory.html#setRecord(org.bukkit.inventory.ItemStack)" class="member-name-link">setRecord</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;item)</code></div>
 <div class="col-last even-row-color">
+<div class="block">Set the record in the jukebox.</div>
+</div>
+<div class="col-first odd-row-color"><code>default void</code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">AnvilInventory.</span><code><a href="../AnvilInventory.html#setResult(org.bukkit.inventory.ItemStack)" class="member-name-link">setResult</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;result)</code></div>
+<div class="col-last odd-row-color">
 <div class="block">Sets the item in the result slot.</div>
 </div>
-<div class="col-first odd-row-color"><code>void</code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">CraftingInventory.</span><code><a href="../CraftingInventory.html#setResult(org.bukkit.inventory.ItemStack)" class="member-name-link">setResult</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;newResult)</code></div>
-<div class="col-last odd-row-color">
+<div class="col-first even-row-color"><code>void</code></div>
+<div class="col-second even-row-color"><span class="type-name-label">CraftingInventory.</span><code><a href="../CraftingInventory.html#setResult(org.bukkit.inventory.ItemStack)" class="member-name-link">setResult</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;newResult)</code></div>
+<div class="col-last even-row-color">
 <div class="block">Set the item in the result slot of the crafting inventory.</div>
 </div>
-<div class="col-first even-row-color"><code>void</code></div>
-<div class="col-second even-row-color"><span class="type-name-label">FurnaceInventory.</span><code><a href="../FurnaceInventory.html#setResult(org.bukkit.inventory.ItemStack)" class="member-name-link">setResult</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;stack)</code></div>
-<div class="col-last even-row-color">
+<div class="col-first odd-row-color"><code>void</code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">FurnaceInventory.</span><code><a href="../FurnaceInventory.html#setResult(org.bukkit.inventory.ItemStack)" class="member-name-link">setResult</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;stack)</code></div>
+<div class="col-last odd-row-color">
 <div class="block">Set the current item in the result slot.</div>
 </div>
-<div class="col-first odd-row-color"><code>default void</code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">GrindstoneInventory.</span><code><a href="../GrindstoneInventory.html#setResult(org.bukkit.inventory.ItemStack)" class="member-name-link">setResult</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;result)</code></div>
-<div class="col-last odd-row-color">
+<div class="col-first even-row-color"><code>default void</code></div>
+<div class="col-second even-row-color"><span class="type-name-label">GrindstoneInventory.</span><code><a href="../GrindstoneInventory.html#setResult(org.bukkit.inventory.ItemStack)" class="member-name-link">setResult</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;result)</code></div>
+<div class="col-last even-row-color">
 <div class="block">Sets the result.</div>
 </div>
-<div class="col-first even-row-color"><code>void</code></div>
-<div class="col-second even-row-color"><span class="type-name-label">SmithingInventory.</span><code><a href="../SmithingInventory.html#setResult(org.bukkit.inventory.ItemStack)" class="member-name-link">setResult</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;newResult)</code></div>
-<div class="col-last even-row-color">
+<div class="col-first odd-row-color"><code>void</code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">SmithingInventory.</span><code><a href="../SmithingInventory.html#setResult(org.bukkit.inventory.ItemStack)" class="member-name-link">setResult</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;newResult)</code></div>
+<div class="col-last odd-row-color">
 <div class="block">Set the item in the result slot of the smithing table</div>
 </div>
-<div class="col-first odd-row-color"><code>default void</code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">StonecutterInventory.</span><code><a href="../StonecutterInventory.html#setResult(org.bukkit.inventory.ItemStack)" class="member-name-link">setResult</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;itemStack)</code></div>
-<div class="col-last odd-row-color">
+<div class="col-first even-row-color"><code>default void</code></div>
+<div class="col-second even-row-color"><span class="type-name-label">StonecutterInventory.</span><code><a href="../StonecutterInventory.html#setResult(org.bukkit.inventory.ItemStack)" class="member-name-link">setResult</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;itemStack)</code></div>
+<div class="col-last even-row-color">
 <div class="block">Sets the result item.</div>
 </div>
-<div class="col-first even-row-color"><code>void</code></div>
-<div class="col-second even-row-color"><span class="type-name-label">AbstractHorseInventory.</span><code><a href="../AbstractHorseInventory.html#setSaddle(org.bukkit.inventory.ItemStack)" class="member-name-link">setSaddle</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;stack)</code></div>
-<div class="col-last even-row-color">
+<div class="col-first odd-row-color"><code>void</code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">AbstractHorseInventory.</span><code><a href="../AbstractHorseInventory.html#setSaddle(org.bukkit.inventory.ItemStack)" class="member-name-link">setSaddle</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;stack)</code></div>
+<div class="col-last odd-row-color">
 <div class="block">Sets the item in the horse's saddle slot.</div>
 </div>
-<div class="col-first odd-row-color"><code>void</code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">EnchantingInventory.</span><code><a href="../EnchantingInventory.html#setSecondary(org.bukkit.inventory.ItemStack)" class="member-name-link">setSecondary</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;item)</code></div>
-<div class="col-last odd-row-color">
+<div class="col-first even-row-color"><code>void</code></div>
+<div class="col-second even-row-color"><span class="type-name-label">EnchantingInventory.</span><code><a href="../EnchantingInventory.html#setSecondary(org.bukkit.inventory.ItemStack)" class="member-name-link">setSecondary</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;item)</code></div>
+<div class="col-last even-row-color">
 <div class="block">Set the secondary item being used for the enchant.</div>
 </div>
-<div class="col-first even-row-color"><code>default void</code></div>
-<div class="col-second even-row-color"><span class="type-name-label">AnvilInventory.</span><code><a href="../AnvilInventory.html#setSecondItem(org.bukkit.inventory.ItemStack)" class="member-name-link">setSecondItem</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;secondItem)</code></div>
-<div class="col-last even-row-color">
+<div class="col-first odd-row-color"><code>default void</code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">AnvilInventory.</span><code><a href="../AnvilInventory.html#setSecondItem(org.bukkit.inventory.ItemStack)" class="member-name-link">setSecondItem</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;secondItem)</code></div>
+<div class="col-last odd-row-color">
 <div class="block">Sets the item in the right input slot.</div>
 </div>
-<div class="col-first odd-row-color"><code>void</code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">FurnaceInventory.</span><code><a href="../FurnaceInventory.html#setSmelting(org.bukkit.inventory.ItemStack)" class="member-name-link">setSmelting</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;stack)</code></div>
-<div class="col-last odd-row-color">
+<div class="col-first even-row-color"><code>void</code></div>
+<div class="col-second even-row-color"><span class="type-name-label">FurnaceInventory.</span><code><a href="../FurnaceInventory.html#setSmelting(org.bukkit.inventory.ItemStack)" class="member-name-link">setSmelting</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;stack)</code></div>
+<div class="col-last even-row-color">
 <div class="block">Set the item currently smelting.</div>
 </div>
-<div class="col-first even-row-color"><code>void</code></div>
-<div class="col-second even-row-color"><span class="type-name-label">Inventory.</span><code><a href="../Inventory.html#setStorageContents(org.bukkit.inventory.ItemStack%5B%5D)" class="member-name-link">setStorageContents</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a> <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> []&nbsp;items)</code></div>
-<div class="col-last even-row-color">
+<div class="col-first odd-row-color"><code>void</code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">Inventory.</span><code><a href="../Inventory.html#setStorageContents(org.bukkit.inventory.ItemStack%5B%5D)" class="member-name-link">setStorageContents</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a> <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> []&nbsp;items)</code></div>
+<div class="col-last odd-row-color">
 <div class="block">Put the given ItemStacks into the storage slots</div>
 </div>
-<div class="col-first odd-row-color"><code>default void</code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">GrindstoneInventory.</span><code><a href="../GrindstoneInventory.html#setUpperItem(org.bukkit.inventory.ItemStack)" class="member-name-link">setUpperItem</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;upperItem)</code></div>
-<div class="col-last odd-row-color">
+<div class="col-first even-row-color"><code>default void</code></div>
+<div class="col-second even-row-color"><span class="type-name-label">GrindstoneInventory.</span><code><a href="../GrindstoneInventory.html#setUpperItem(org.bukkit.inventory.ItemStack)" class="member-name-link">setUpperItem</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;upperItem)</code></div>
+<div class="col-last even-row-color">
 <div class="block">Sets the upper input item.</div>
 </div>
-<div class="col-first even-row-color"><code>boolean</code></div>
-<div class="col-second even-row-color"><span class="type-name-label">RecipeChoice.ExactChoice.</span><code><a href="../RecipeChoice.ExactChoice.html#test(org.bukkit.inventory.ItemStack)" class="member-name-link">test</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;t)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
 <div class="col-first odd-row-color"><code>boolean</code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">RecipeChoice.MaterialChoice.</span><code><a href="../RecipeChoice.MaterialChoice.html#test(org.bukkit.inventory.ItemStack)" class="member-name-link">test</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;t)</code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">RecipeChoice.ExactChoice.</span><code><a href="../RecipeChoice.ExactChoice.html#test(org.bukkit.inventory.ItemStack)" class="member-name-link">test</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;t)</code></div>
 <div class="col-last odd-row-color">&nbsp;</div>
 <div class="col-first even-row-color"><code>boolean</code></div>
-<div class="col-second even-row-color"><span class="type-name-label">RecipeChoice.</span><code><a href="../RecipeChoice.html#test(org.bukkit.inventory.ItemStack)" class="member-name-link">test</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;itemStack)</code></div>
+<div class="col-second even-row-color"><span class="type-name-label">RecipeChoice.MaterialChoice.</span><code><a href="../RecipeChoice.MaterialChoice.html#test(org.bukkit.inventory.ItemStack)" class="member-name-link">test</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;t)</code></div>
 <div class="col-last even-row-color">&nbsp;</div>
+<div class="col-first odd-row-color"><code>boolean</code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">RecipeChoice.</span><code><a href="../RecipeChoice.html#test(org.bukkit.inventory.ItemStack)" class="member-name-link">test</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;itemStack)</code></div>
+<div class="col-last odd-row-color">&nbsp;</div>
 </div>
 <div class="caption"><span>Method parameters in <a href="../package-summary.html">org.bukkit.inventory</a> with type arguments of type <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a></span></div>
 <div class="summary-table three-column-summary">
@@ -3920,7 +3942,7 @@ loadScripts(document, 'script');</script>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;result,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../RecipeChoice.html" title="interface in org.bukkit.inventory">RecipeChoice</a>&nbsp;input)</code></div>
 <div class="col-last odd-row-color">
-<div class="block">Create a cooking recipe to craft the specified ItemStack.</div>
+<div class="block">Create a Stonecutting recipe to craft the specified ItemStack.</div>
 </div>
 <div class="col-first even-row-color"><code>&nbsp;</code></div>
 <div class="col-second even-row-color"><code><a href="../StonecuttingRecipe.html#%3Cinit%3E(org.bukkit.NamespacedKey,org.bukkit.inventory.ItemStack,org.bukkit.Material)" class="member-name-link">StonecuttingRecipe</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../NamespacedKey.html" title="class in org.bukkit">NamespacedKey</a>&nbsp;key,

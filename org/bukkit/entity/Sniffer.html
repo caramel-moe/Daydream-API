@@ -15,7 +15,11 @@
 <script type="text/javascript" src="../../../script-dir/jquery-ui.min.js"></script>
 </head>
 <body class="class-declaration-page">
-<script type="text/javascript">var pathtoroot = "../../../";
+<script type="text/javascript">var evenRowColor = "even-row-color";
+var oddRowColor = "odd-row-color";
+var tableTab = "table-tab";
+var activeTableTab = "active-table-tab";
+var pathtoroot = "../../../";
 loadScripts(document, 'script');</script>
 <noscript>
 <div>JavaScript is disabled on your browser.</div>
@@ -50,7 +54,7 @@ loadScripts(document, 'script');</script>
 <li>Detail:&nbsp;</li>
 <li>Field&nbsp;|&nbsp;</li>
 <li>Constr&nbsp;|&nbsp;</li>
-<li>Method</li>
+<li><a href="#method-detail">Method</a></li>
 </ul>
 </div>
 <div class="nav-list-search"><label for="search-input">SEARCH:</label>
@@ -77,7 +81,10 @@ loadScripts(document, 'script');</script>
 <div class="type-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/ApiStatus.Experimental.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Experimental</a>
 </span><span class="modifiers">public interface </span><span class="element-name type-name-label">Sniffer</span><span class="extends-implements">
 extends <a href="Animals.html" title="interface in org.bukkit.entity">Animals</a></span></div>
-<div class="block">Represents a Sniffer.</div>
+<div class="block">Represents a Sniffer.
+
+ <b>Note: This entity is part of an experimental feature of Minecraft and
+ hence subject to change.</b></div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -85,6 +92,17 @@ extends <a href="Animals.html" title="interface in org.bukkit.entity">Animals</a
 <li>
 <section class="nested-class-summary" id="nested-class-summary">
 <h2>Nested Class Summary</h2>
+<div class="caption"><span>Nested Classes</span></div>
+<div class="summary-table three-column-summary">
+<div class="table-header col-first">Modifier and Type</div>
+<div class="table-header col-second">Interface</div>
+<div class="table-header col-last">Description</div>
+<div class="col-first even-row-color"><code>static enum&nbsp;</code></div>
+<div class="col-second even-row-color"><code><a href="Sniffer.State.html" class="type-name-link" title="enum class in org.bukkit.entity">Sniffer.State</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">Represents the current state of the Sniffer.</div>
+</div>
+</div>
 <div class="inherited-list">
 <h2 id="nested-classes-inherited-from-class-org.bukkit.entity.Entity">Nested classes/interfaces inherited from interface&nbsp;org.bukkit.entity.<a href="Entity.html" title="interface in org.bukkit.entity">Entity</a></h2>
 <code><a href="Entity.Spigot.html" title="class in org.bukkit.entity">Entity.Spigot</a></code></div>
@@ -94,6 +112,52 @@ extends <a href="Animals.html" title="interface in org.bukkit.entity">Animals</a
 <li>
 <section class="method-summary" id="method-summary">
 <h2>Method Summary</h2>
+<div id="method-summary-table">
+<div class="table-tabs" role="tablist" aria-orientation="horizontal"><button id="method-summary-table-tab0" role="tab" aria-selected="true" aria-controls="method-summary-table.tabpanel" tabindex="0" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table', 3)" class="active-table-tab">All Methods</button><button id="method-summary-table-tab2" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab2', 3)" class="table-tab">Instance Methods</button><button id="method-summary-table-tab3" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab3', 3)" class="table-tab">Abstract Methods</button></div>
+<div id="method-summary-table.tabpanel" role="tabpanel">
+<div class="summary-table three-column-summary" aria-labelledby="method-summary-table-tab0">
+<div class="table-header col-first">Modifier and Type</div>
+<div class="table-header col-second">Method</div>
+<div class="table-header col-last">Description</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#addExploredLocation(org.bukkit.Location)" class="member-name-link">addExploredLocation</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;location)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Add a location to the explored locations.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#canDig()" class="member-name-link">canDig</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Gets whether the sniffer can dig in the current <a href="../Location.html" title="class in org.bukkit"><code>Location</code></a> below
+ its head.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../Location.html" title="class in org.bukkit">Location</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#findPossibleDigLocation()" class="member-name-link">findPossibleDigLocation</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Try to get a possible location where the sniffer can dig.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Collection.html" title="class or interface in java.util" class="external-link">Collection</a>&lt;<a href="../Location.html" title="class in org.bukkit">Location</a>&gt;</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getExploredLocations()" class="member-name-link">getExploredLocations</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Gets the locations explored by the sniffer.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="Sniffer.State.html" title="enum class in org.bukkit.entity">Sniffer.State</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getState()" class="member-name-link">getState</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Get the current state of the sniffer.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#removeExploredLocation(org.bukkit.Location)" class="member-name-link">removeExploredLocation</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;location)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Remove a location of the explored locations.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#setState(org.bukkit.entity.Sniffer.State)" class="member-name-link">setState</a><wbr>(<a href="Sniffer.State.html" title="enum class in org.bukkit.entity">Sniffer.State</a>&nbsp;state)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Set a new state for the sniffer.</div>
+</div>
+</div>
+</div>
+</div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-org.bukkit.entity.Ageable">Methods inherited from interface&nbsp;org.bukkit.entity.<a href="Ageable.html" title="interface in org.bukkit.entity">Ageable</a></h3>
 <code><a href="Ageable.html#getAge()">getAge</a>, <a href="Ageable.html#isAdult()">isAdult</a>, <a href="Ageable.html#setAdult()">setAdult</a>, <a href="Ageable.html#setAge(int)">setAge</a>, <a href="Ageable.html#setBaby()">setBaby</a></code></div>
@@ -111,7 +175,7 @@ extends <a href="Animals.html" title="interface in org.bukkit.entity">Animals</a
 <code><a href="Breedable.html#canBreed()">canBreed</a>, <a href="Breedable.html#getAgeLock()">getAgeLock</a>, <a href="Breedable.html#setAgeLock(boolean)">setAgeLock</a>, <a href="Breedable.html#setBreed(boolean)">setBreed</a></code></div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-org.bukkit.command.CommandSender">Methods inherited from interface&nbsp;org.bukkit.command.<a href="../command/CommandSender.html" title="interface in org.bukkit.command">CommandSender</a></h3>
-<code><a href="../command/CommandSender.html#getName()">getName</a>, <a href="../command/CommandSender.html#name()">name</a>, <a href="../command/CommandSender.html#sendMessage(java.lang.String)">sendMessage</a>, <a href="../command/CommandSender.html#sendMessage(java.lang.String...)">sendMessage</a>, <a href="../command/CommandSender.html#sendMessage(net.md_5.bungee.api.chat.BaseComponent...)">sendMessage</a>, <a href="../command/CommandSender.html#sendMessage(java.util.UUID,java.lang.String)">sendMessage</a>, <a href="../command/CommandSender.html#sendMessage(java.util.UUID,java.lang.String...)">sendMessage</a>, <a href="../command/CommandSender.html#sendMessage(net.kyori.adventure.identity.Identity,net.kyori.adventure.text.Component,net.kyori.adventure.audience.MessageType)">sendMessage</a>, <a href="../command/CommandSender.html#sendMessage(net.md_5.bungee.api.chat.BaseComponent)">sendMessage</a>, <a href="../command/CommandSender.html#sendPlainMessage(java.lang.String)">sendPlainMessage</a>, <a href="../command/CommandSender.html#sendRichMessage(java.lang.String)">sendRichMessage</a></code></div>
+<code><a href="../command/CommandSender.html#getName()">getName</a>, <a href="../command/CommandSender.html#name()">name</a>, <a href="../command/CommandSender.html#sendMessage(java.lang.String)">sendMessage</a>, <a href="../command/CommandSender.html#sendMessage(java.lang.String...)">sendMessage</a>, <a href="../command/CommandSender.html#sendMessage(net.kyori.adventure.identity.Identity,net.kyori.adventure.text.Component,net.kyori.adventure.audience.MessageType)">sendMessage</a>, <a href="../command/CommandSender.html#sendMessage(net.md_5.bungee.api.chat.BaseComponent...)">sendMessage</a>, <a href="../command/CommandSender.html#sendMessage(java.util.UUID,java.lang.String)">sendMessage</a>, <a href="../command/CommandSender.html#sendMessage(java.util.UUID,java.lang.String...)">sendMessage</a>, <a href="../command/CommandSender.html#sendMessage(net.md_5.bungee.api.chat.BaseComponent)">sendMessage</a>, <a href="../command/CommandSender.html#sendPlainMessage(java.lang.String)">sendPlainMessage</a>, <a href="../command/CommandSender.html#sendRichMessage(java.lang.String)">sendRichMessage</a></code></div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-org.bukkit.entity.Damageable">Methods inherited from interface&nbsp;org.bukkit.entity.<a href="Damageable.html" title="interface in org.bukkit.entity">Damageable</a></h3>
 <code><a href="Damageable.html#damage(double)">damage</a>, <a href="Damageable.html#damage(double,org.bukkit.entity.Entity)">damage</a>, <a href="Damageable.html#getAbsorptionAmount()">getAbsorptionAmount</a>, <a href="Damageable.html#getHealth()">getHealth</a>, <a href="Damageable.html#getMaxHealth()">getMaxHealth</a>, <a href="Damageable.html#resetMaxHealth()">resetMaxHealth</a>, <a href="Damageable.html#setAbsorptionAmount(double)">setAbsorptionAmount</a>, <a href="Damageable.html#setHealth(double)">setHealth</a>, <a href="Damageable.html#setMaxHealth(double)">setMaxHealth</a></code></div>
@@ -154,6 +218,124 @@ extends <a href="Animals.html" title="interface in org.bukkit.entity">Animals</a
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-org.bukkit.permissions.ServerOperator">Methods inherited from interface&nbsp;org.bukkit.permissions.<a href="../permissions/ServerOperator.html" title="interface in org.bukkit.permissions">ServerOperator</a></h3>
 <code><a href="../permissions/ServerOperator.html#isOp()">isOp</a>, <a href="../permissions/ServerOperator.html#setOp(boolean)">setOp</a></code></div>
+</section>
+</li>
+</ul>
+</section>
+<section class="details">
+<ul class="details-list">
+<!-- ============ METHOD DETAIL ========== -->
+<li>
+<section class="method-details" id="method-detail">
+<h2>Method Details</h2>
+<ul class="member-list">
+<li>
+<section class="detail" id="getExploredLocations()">
+<h3>getExploredLocations</h3>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+</span><span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Collection.html" title="class or interface in java.util" class="external-link">Collection</a>&lt;<a href="../Location.html" title="class in org.bukkit">Location</a>&gt;</span>&nbsp;<span class="element-name">getExploredLocations</span>()</div>
+<div class="block">Gets the locations explored by the sniffer.
+
+ <b>Note:</b> the returned locations use sniffer's current world.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>a collection of locations</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="removeExploredLocation(org.bukkit.Location)">
+<h3>removeExploredLocation</h3>
+<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">removeExploredLocation</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;location)</span></div>
+<div class="block">Remove a location of the explored locations.
+
+ <b>Note:</b> the location must be in the sniffer's current world for this
+ method to have any effect.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>location</code> - the location to remove</dd>
+<dt>See Also:</dt>
+<dd>
+<ul class="see-list">
+<li><a href="#getExploredLocations()"><code>getExploredLocations()</code></a></li>
+</ul>
+</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="addExploredLocation(org.bukkit.Location)">
+<h3>addExploredLocation</h3>
+<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">addExploredLocation</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;location)</span></div>
+<div class="block">Add a location to the explored locations.
+
+ <b>Note:</b> the location must be in the sniffer's current world for this
+ method to have any effect.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>location</code> - the location to add</dd>
+<dt>See Also:</dt>
+<dd>
+<ul class="see-list">
+<li><a href="#getExploredLocations()"><code>getExploredLocations()</code></a></li>
+</ul>
+</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getState()">
+<h3>getState</h3>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+</span><span class="return-type"><a href="Sniffer.State.html" title="enum class in org.bukkit.entity">Sniffer.State</a></span>&nbsp;<span class="element-name">getState</span>()</div>
+<div class="block">Get the current state of the sniffer.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the state of the sniffer</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="setState(org.bukkit.entity.Sniffer.State)">
+<h3>setState</h3>
+<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">setState</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="Sniffer.State.html" title="enum class in org.bukkit.entity">Sniffer.State</a>&nbsp;state)</span></div>
+<div class="block">Set a new state for the sniffer.
+ <br>
+ This will also make the sniffer make the transition to the new state.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>state</code> - the new state</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="findPossibleDigLocation()">
+<h3>findPossibleDigLocation</h3>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a>
+</span><span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../Location.html" title="class in org.bukkit">Location</a></span>&nbsp;<span class="element-name">findPossibleDigLocation</span>()</div>
+<div class="block">Try to get a possible location where the sniffer can dig.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>a <a href="../Location.html" title="class in org.bukkit"><code>Location</code></a> if found or null</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="canDig()">
+<h3>canDig</h3>
+<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">canDig</span>()</div>
+<div class="block">Gets whether the sniffer can dig in the current <a href="../Location.html" title="class in org.bukkit"><code>Location</code></a> below
+ its head.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd><code>true</code> if can dig or <code>false</code> otherwise</dd>
+</dl>
+</section>
+</li>
+</ul>
 </section>
 </li>
 </ul>

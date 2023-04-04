@@ -1926,7 +1926,7 @@ extends <a href="RegionAccessor.html" title="interface in org.bukkit">RegionAcce
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="block/data/BlockData.html" title="interface in org.bukkit.block.data">BlockData</a>&nbsp;data)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Spawn a <a href="entity/FallingBlock.html" title="interface in org.bukkit.entity"><code>FallingBlock</code></a> entity at the given <a href="Location.html" title="class in org.bukkit"><code>Location</code></a> of
- the specified <a href="Material.html" title="enum class in org.bukkit"><code>Material</code></a>.</div>
+ the specified <a href="block/data/BlockData.html" title="interface in org.bukkit.block.data"><code>BlockData</code></a>.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="entity/FallingBlock.html" title="interface in org.bukkit.entity">FallingBlock</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#spawnFallingBlock(org.bukkit.Location,org.bukkit.block.data.BlockData,org.bukkit.util.Consumer)" class="member-name-link">spawnFallingBlock</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Location.html" title="class in org.bukkit">Location</a>&nbsp;location,
@@ -3943,8 +3943,8 @@ extends <a href="RegionAccessor.html" title="interface in org.bukkit">RegionAcce
  on the main Server Thread.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>x</code> - Chunk X-coordinate of the chunk - (world coordinate / 16)</dd>
-<dd><code>z</code> - Chunk Z-coordinate of the chunk - (world coordinate / 16)</dd>
+<dd><code>x</code> - Chunk X-coordinate of the chunk - floor(world coordinate / 16)</dd>
+<dd><code>z</code> - Chunk Z-coordinate of the chunk - floor(world coordinate / 16)</dd>
 <dd><code>cb</code> - Callback to receive the chunk when it is loaded.
            will be executed synchronously</dd>
 </dl>
@@ -4030,8 +4030,8 @@ extends <a href="RegionAccessor.html" title="interface in org.bukkit">RegionAcce
  on the main Server Thread.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>x</code> - Chunk X-coordinate of the chunk - (world coordinate / 16)</dd>
-<dd><code>z</code> - Chunk Z-coordinate of the chunk - (world coordinate / 16)</dd>
+<dd><code>x</code> - Chunk X-coordinate of the chunk - floor(world coordinate / 16)</dd>
+<dd><code>z</code> - Chunk Z-coordinate of the chunk - floor(world coordinate / 16)</dd>
 <dd><code>cb</code> - Callback to receive the chunk when it is loaded.
            will be executed synchronously</dd>
 </dl>
@@ -4058,9 +4058,9 @@ extends <a href="RegionAccessor.html" title="interface in org.bukkit">RegionAcce
  on the main Server Thread.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>x</code> - Chunk X-coordinate of the chunk - (world coordinate / 16)</dd>
-<dd><code>z</code> - Chunk Z-coordinate of the chunk - (world coordinate / 16)</dd>
-<dd><code>gen</code> - Should we generate a chunk if it doesn't exists or not</dd>
+<dd><code>x</code> - Chunk X-coordinate of the chunk - floor(world coordinate / 16)</dd>
+<dd><code>z</code> - Chunk Z-coordinate of the chunk - floor(world coordinate / 16)</dd>
+<dd><code>gen</code> - Should we generate a chunk if it doesn't exist or not</dd>
 <dd><code>cb</code> - Callback to receive the chunk when it is loaded.
            will be executed synchronously</dd>
 </dl>
@@ -4114,7 +4114,7 @@ extends <a href="RegionAccessor.html" title="interface in org.bukkit">RegionAcce
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>loc</code> - Location of the chunk</dd>
-<dd><code>gen</code> - Should the chunk generate</dd>
+<dd><code>gen</code> - Should the chunk generate if it doesn't exist</dd>
 <dd><code>cb</code> - Callback to receive the chunk when it is loaded.
            will be executed synchronously</dd>
 </dl>
@@ -4168,7 +4168,7 @@ extends <a href="RegionAccessor.html" title="interface in org.bukkit">RegionAcce
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>block</code> - Block to get the containing chunk from</dd>
-<dd><code>gen</code> - Should the chunk generate</dd>
+<dd><code>gen</code> - Should the chunk generate if it doesn't exist</dd>
 <dd><code>cb</code> - Callback to receive the chunk when it is loaded.
            will be executed synchronously</dd>
 </dl>
@@ -4220,7 +4220,7 @@ extends <a href="RegionAccessor.html" title="interface in org.bukkit">RegionAcce
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>loc</code> - Location to load the corresponding chunk from</dd>
-<dd><code>gen</code> - Should the chunk generate</dd>
+<dd><code>gen</code> - Should the chunk generate if it doesn't exist</dd>
 <dt>Returns:</dt>
 <dd>Future that will resolve when the chunk is loaded</dd>
 </dl>
@@ -4272,7 +4272,7 @@ extends <a href="RegionAccessor.html" title="interface in org.bukkit">RegionAcce
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>block</code> - Block to load the corresponding chunk from</dd>
-<dd><code>gen</code> - Should the chunk generate</dd>
+<dd><code>gen</code> - Should the chunk generate if it doesn't exist</dd>
 <dt>Returns:</dt>
 <dd>Future that will resolve when the chunk is loaded</dd>
 </dl>
@@ -4297,8 +4297,8 @@ extends <a href="RegionAccessor.html" title="interface in org.bukkit">RegionAcce
  on the main Server Thread.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>x</code> - X Coord</dd>
-<dd><code>z</code> - Z Coord</dd>
+<dd><code>x</code> - Chunk X-coordinate of the chunk - floor(world coordinate / 16)</dd>
+<dd><code>z</code> - Chunk Z-coordinate of the chunk - floor(world coordinate / 16)</dd>
 <dt>Returns:</dt>
 <dd>Future that will resolve when the chunk is loaded</dd>
 </dl>
@@ -4324,9 +4324,9 @@ extends <a href="RegionAccessor.html" title="interface in org.bukkit">RegionAcce
  on the main Server Thread.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>x</code> - Chunk X-coordinate of the chunk - (world coordinate / 16)</dd>
-<dd><code>z</code> - Chunk Z-coordinate of the chunk - (world coordinate / 16)</dd>
-<dd><code>gen</code> - Should we generate a chunk if it doesn't exists or not</dd>
+<dd><code>x</code> - Chunk X-coordinate of the chunk - floor(world coordinate / 16)</dd>
+<dd><code>z</code> - Chunk Z-coordinate of the chunk - floor(world coordinate / 16)</dd>
+<dd><code>gen</code> - Should we generate a chunk if it doesn't exist or not</dd>
 <dt>Returns:</dt>
 <dd>Future that will resolve when the chunk is loaded</dd>
 </dl>
@@ -4378,7 +4378,7 @@ extends <a href="RegionAccessor.html" title="interface in org.bukkit">RegionAcce
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>loc</code> - Location to load the corresponding chunk from</dd>
-<dd><code>gen</code> - Should the chunk generate</dd>
+<dd><code>gen</code> - Should the chunk generate if it doesn't exist</dd>
 <dt>Returns:</dt>
 <dd>Future that will resolve when the chunk is loaded</dd>
 </dl>
@@ -4430,7 +4430,7 @@ extends <a href="RegionAccessor.html" title="interface in org.bukkit">RegionAcce
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>block</code> - Block to load the corresponding chunk from</dd>
-<dd><code>gen</code> - Should the chunk generate</dd>
+<dd><code>gen</code> - Should the chunk generate if it doesn't exist</dd>
 <dt>Returns:</dt>
 <dd>Future that will resolve when the chunk is loaded</dd>
 </dl>
@@ -5720,10 +5720,8 @@ extends <a href="RegionAccessor.html" title="interface in org.bukkit">RegionAcce
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="block/data/BlockData.html" title="interface in org.bukkit.block.data">BlockData</a>&nbsp;data)</span>
                                  throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></span></div>
 <div class="block">Spawn a <a href="entity/FallingBlock.html" title="interface in org.bukkit.entity"><code>FallingBlock</code></a> entity at the given <a href="Location.html" title="class in org.bukkit"><code>Location</code></a> of
- the specified <a href="Material.html" title="enum class in org.bukkit"><code>Material</code></a>. The material dictates what is falling.
- When the FallingBlock hits the ground, it will place that block.
- <p>
- The Material must be a block type, check with <a href="Material.html#isBlock()"><code>material.isBlock()</code></a>. The Material may not be air.</div>
+ the specified <a href="block/data/BlockData.html" title="interface in org.bukkit.block.data"><code>BlockData</code></a>. The block data dictates what is falling.
+ When the FallingBlock hits the ground, it will place that block.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>location</code> - The <a href="Location.html" title="class in org.bukkit"><code>Location</code></a> to spawn the FallingBlock</dd>
@@ -7896,7 +7894,7 @@ extends <a href="RegionAccessor.html" title="interface in org.bukkit">RegionAcce
 </div>
 <div class="block">Find the closest nearby structure of a given <a href="generator/structure/StructureType.html" title="class in org.bukkit.generator.structure"><code>StructureType</code></a>.
  Finding unexplored structures can, and will, block if the world is
- looking in chunks that gave not generated yet. This can lead to the world
+ looking in chunks that have not generated yet. This can lead to the world
  temporarily freezing while locating an unexplored structure.
  <p>
  The <code>radius</code> is not a rigid square radius. Each structure may alter
@@ -7940,7 +7938,7 @@ extends <a href="RegionAccessor.html" title="interface in org.bukkit">RegionAcce
  boolean&nbsp;findUnexplored)</span></div>
 <div class="block">Find the closest nearby structure of a given <a href="generator/structure/StructureType.html" title="class in org.bukkit.generator.structure"><code>StructureType</code></a>.
  Finding unexplored structures can, and will, block if the world is
- looking in chunks that gave not generated yet. This can lead to the world
+ looking in chunks that have not generated yet. This can lead to the world
  temporarily freezing while locating an unexplored structure.
  <p>
  The <code>radius</code> is not a rigid square radius. Each structure may alter
@@ -7988,7 +7986,7 @@ extends <a href="RegionAccessor.html" title="interface in org.bukkit">RegionAcce
  boolean&nbsp;findUnexplored)</span></div>
 <div class="block">Find the closest nearby structure of a given <a href="generator/structure/Structure.html" title="class in org.bukkit.generator.structure"><code>Structure</code></a>. Finding
  unexplored structures can, and will, block if the world is looking in
- chunks that gave not generated yet. This can lead to the world
+ chunks that have not generated yet. This can lead to the world
  temporarily freezing while locating an unexplored structure.
  <p>
  The <code>radius</code> is not a rigid square radius. Each structure may alter

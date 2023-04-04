@@ -113,7 +113,7 @@ loadScripts(document, 'script');</script>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Date.html" title="class or interface in java.util" class="external-link">Date</a>&nbsp;expires,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;source)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Adds a ban to the this list.</div>
+<div class="block">Adds a ban to this list.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Set.html" title="class or interface in java.util" class="external-link">Set</a>&lt;<a href="BanEntry.html" title="interface in org.bukkit">BanEntry</a>&gt;</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getBanEntries()" class="member-name-link">getBanEntries</a>()</code></div>
@@ -157,7 +157,10 @@ loadScripts(document, 'script');</script>
 <div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a>
 </span><span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="BanEntry.html" title="interface in org.bukkit">BanEntry</a></span>&nbsp;<span class="element-name">getBanEntry</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;target)</span></div>
-<div class="block">Gets a <a href="BanEntry.html" title="interface in org.bukkit"><code>BanEntry</code></a> by target.</div>
+<div class="block">Gets a <a href="BanEntry.html" title="interface in org.bukkit"><code>BanEntry</code></a> by target.
+ <p>
+ Bans by name for ban type <a href="BanList.Type.html#NAME"><code>NAME</code></a> are no longer supported and this method will return
+ null when trying to request them. The replacement is bans by UUID.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>target</code> - entry parameter to search for</dd>
@@ -178,8 +181,11 @@ loadScripts(document, 'script');</script>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Date.html" title="class or interface in java.util" class="external-link">Date</a>&nbsp;expires,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;source)</span></div>
-<div class="block">Adds a ban to the this list. If a previous ban exists, this will
- update the previous entry.</div>
+<div class="block">Adds a ban to this list. If a previous ban exists, this will
+ update the previous entry.
+ <p>
+ Bans by name for ban type <a href="BanList.Type.html#NAME"><code>NAME</code></a> are no longer supported and this method will return
+ null when trying to request them. The replacement is bans by UUID.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>target</code> - the target of the ban</dd>
@@ -211,7 +217,10 @@ loadScripts(document, 'script');</script>
 <div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">isBanned</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;target)</span></div>
 <div class="block">Gets if a <a href="BanEntry.html" title="interface in org.bukkit"><code>BanEntry</code></a> exists for the target, indicating an active
- ban status.</div>
+ ban status.
+ <p>
+ Bans by name for ban type <a href="BanList.Type.html#NAME"><code>NAME</code></a> are no longer supported.
+ The replacement is bans by UUID.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>target</code> - the target to find</dd>
@@ -227,7 +236,10 @@ loadScripts(document, 'script');</script>
 <div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">pardon</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;target)</span></div>
 <div class="block">Removes the specified target from this list, therefore indicating a
- "not banned" status.</div>
+ "not banned" status.
+ <p>
+ Bans by name for ban type <a href="BanList.Type.html#NAME"><code>NAME</code></a> are no longer supported.
+ The replacement is bans by UUID.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>target</code> - the target to remove from this list</dd>

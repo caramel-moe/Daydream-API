@@ -139,12 +139,17 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Gets the primary Inventory involved in this transaction</div>
 </div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setResult(org.bukkit.inventory.ItemStack)" class="member-name-link">setResult</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../../inventory/ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;result)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Set result item, may be null.</div>
+</div>
 </div>
 </div>
 </div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-com.destroystokyo.paper.event.inventory.PrepareResultEvent">Methods inherited from class&nbsp;com.destroystokyo.paper.event.inventory.<a href="../../../../com/destroystokyo/paper/event/inventory/PrepareResultEvent.html" title="class in com.destroystokyo.paper.event.inventory">PrepareResultEvent</a></h3>
-<code><a href="../../../../com/destroystokyo/paper/event/inventory/PrepareResultEvent.html#getResult()">getResult</a>, <a href="../../../../com/destroystokyo/paper/event/inventory/PrepareResultEvent.html#setResult(org.bukkit.inventory.ItemStack)">setResult</a></code></div>
+<code><a href="../../../../com/destroystokyo/paper/event/inventory/PrepareResultEvent.html#getResult()">getResult</a></code></div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-org.bukkit.event.inventory.PrepareInventoryResultEvent">Methods inherited from class&nbsp;org.bukkit.event.inventory.<a href="PrepareInventoryResultEvent.html" title="class in org.bukkit.event.inventory">PrepareInventoryResultEvent</a></h3>
 <code><a href="PrepareInventoryResultEvent.html#getHandlerList()">getHandlerList</a>, <a href="PrepareInventoryResultEvent.html#getHandlers()">getHandlers</a></code></div>
@@ -197,6 +202,25 @@ loadScripts(document, 'script');</script>
 <dd><code><a href="InventoryEvent.html#getInventory()">getInventory</a></code>&nbsp;in class&nbsp;<code><a href="InventoryEvent.html" title="class in org.bukkit.event.inventory">InventoryEvent</a></code></dd>
 <dt>Returns:</dt>
 <dd>The upper inventory.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="setResult(org.bukkit.inventory.ItemStack)">
+<h3>setResult</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setResult</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../../inventory/ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;result)</span></div>
+<div class="block">Set result item, may be null.
+
+ <p>
+ Note: by default custom recipes in anvil are disabled
+ you should define a repair cost on the anvil inventory
+ greater or equals to zero in order to allow that.</div>
+<dl class="notes">
+<dt>Overrides:</dt>
+<dd><code><a href="../../../../com/destroystokyo/paper/event/inventory/PrepareResultEvent.html#setResult(org.bukkit.inventory.ItemStack)">setResult</a></code>&nbsp;in class&nbsp;<code><a href="../../../../com/destroystokyo/paper/event/inventory/PrepareResultEvent.html" title="class in com.destroystokyo.paper.event.inventory">PrepareResultEvent</a></code></dd>
+<dt>Parameters:</dt>
+<dd><code>result</code> - result item</dd>
 </dl>
 </section>
 </li>
