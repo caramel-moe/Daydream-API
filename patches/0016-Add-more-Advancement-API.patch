@@ -6,7 +6,7 @@ Subject: [PATCH] Add more Advancement API
 
 diff --git a/src/main/java/moe/caramel/daydream/advancement/AdvancementBuilder.java b/src/main/java/moe/caramel/daydream/advancement/AdvancementBuilder.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..fb23f9d04fad5718a9ff7d16cf5756132016c794
+index 0000000000000000000000000000000000000000..630044cc63c790a49d9811383ef05f00aeeac6a1
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/advancement/AdvancementBuilder.java
 @@ -0,0 +1,178 @@
@@ -59,9 +59,9 @@ index 0000000000000000000000000000000000000000..fb23f9d04fad5718a9ff7d16cf575613
 +     */
 +    @NotNull
 +    default AdvancementBuilder display(
-+            @NotNull Material icon, @NotNull Component title, @Nullable Component description,
-+            @Nullable NamespacedKey background, @NotNull AdvancementDisplay.Frame frame,
-+            boolean showToast, boolean announceToChat, boolean hidden
++        @NotNull Material icon, @NotNull Component title, @Nullable Component description,
++        @Nullable NamespacedKey background, @NotNull AdvancementDisplay.Frame frame,
++        boolean showToast, boolean announceToChat, boolean hidden
 +    ) {
 +        return this.display(icon, title, description, background, frame, 0, 0, showToast, announceToChat, hidden);
 +    }
@@ -81,9 +81,9 @@ index 0000000000000000000000000000000000000000..fb23f9d04fad5718a9ff7d16cf575613
 +     */
 +    @NotNull
 +    default AdvancementBuilder display(
-+            @NotNull ItemStack icon, @NotNull Component title, @Nullable Component description,
-+            @Nullable NamespacedKey background, @NotNull AdvancementDisplay.Frame frame,
-+            boolean showToast, boolean announceToChat, boolean hidden
++        @NotNull ItemStack icon, @NotNull Component title, @Nullable Component description,
++        @Nullable NamespacedKey background, @NotNull AdvancementDisplay.Frame frame,
++        boolean showToast, boolean announceToChat, boolean hidden
 +    ) {
 +        return this.display(icon, title, description, background, frame, 0, 0, showToast, announceToChat, hidden);
 +    }
@@ -105,9 +105,9 @@ index 0000000000000000000000000000000000000000..fb23f9d04fad5718a9ff7d16cf575613
 +     */
 +    @NotNull
 +    default AdvancementBuilder display(
-+            @NotNull Material icon, @NotNull Component title, @Nullable Component description,
-+            @Nullable NamespacedKey background, @NotNull AdvancementDisplay.Frame frame,
-+            float x, float y, boolean showToast, boolean announceToChat, boolean hidden
++        @NotNull Material icon, @NotNull Component title, @Nullable Component description,
++        @Nullable NamespacedKey background, @NotNull AdvancementDisplay.Frame frame,
++        float x, float y, boolean showToast, boolean announceToChat, boolean hidden
 +    ) {
 +        return this.display(new ItemStack(icon), title, description, background, frame, x, y, showToast, announceToChat, hidden);
 +    }
@@ -129,9 +129,9 @@ index 0000000000000000000000000000000000000000..fb23f9d04fad5718a9ff7d16cf575613
 +     */
 +    @NotNull
 +    AdvancementBuilder display(
-+            @NotNull ItemStack icon, @NotNull Component title, @Nullable Component description,
-+            @Nullable NamespacedKey background, @NotNull AdvancementDisplay.Frame frame,
-+            float x, float y, boolean showToast, boolean announceToChat, boolean hidden
++        @NotNull ItemStack icon, @NotNull Component title, @Nullable Component description,
++        @Nullable NamespacedKey background, @NotNull AdvancementDisplay.Frame frame,
++        float x, float y, boolean showToast, boolean announceToChat, boolean hidden
 +    );
 +
 +    /**
@@ -352,10 +352,10 @@ index 0000000000000000000000000000000000000000..42a3f72a73d258aa378f407c460ae05e
 +    }
 +}
 diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
-index 4752860cd9b5dc4caa4072852d5b3ddc7ee790c8..44d316bf71bb7a2c946a12ad66a20e8dcd888e62 100644
+index adb0b509f1b7daaa257e14d988463fb030208dab..5a618b5b7437b218e46c6f4b90bca43adc0fc0f0 100644
 --- a/src/main/java/org/bukkit/Bukkit.java
 +++ b/src/main/java/org/bukkit/Bukkit.java
-@@ -2139,6 +2139,19 @@ public final class Bukkit {
+@@ -2136,6 +2136,19 @@ public final class Bukkit {
          return server.getAdvancement(key);
      }
  
@@ -376,10 +376,10 @@ index 4752860cd9b5dc4caa4072852d5b3ddc7ee790c8..44d316bf71bb7a2c946a12ad66a20e8d
       * Get an iterator through all advancements. Advancements cannot be removed
       * from this iterator,
 diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
-index a56148f7c69b16d643b93c127314c3246fe11e44..2853241f22aecb7ea2b408be0861664615c1eb78 100644
+index 7204b053134646eec5b1f077fb19f707bb3ab197..74616df93cc3cebff9dad1cbe47651bcc40434b6 100644
 --- a/src/main/java/org/bukkit/Server.java
 +++ b/src/main/java/org/bukkit/Server.java
-@@ -1815,6 +1815,17 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
+@@ -1812,6 +1812,17 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
      @Nullable
      Advancement getAdvancement(@NotNull NamespacedKey key);
  
@@ -423,10 +423,10 @@ index b92255a9c87620f46adb140689b1cd328a476d61..8a5ad3b36ebaa17dd353a93ed0139fa5
       * Delete an advancement which was loaded and saved by
       * {@link #loadAdvancement(org.bukkit.NamespacedKey, java.lang.String)}.
 diff --git a/src/main/java/org/bukkit/advancement/Advancement.java b/src/main/java/org/bukkit/advancement/Advancement.java
-index 3f6b9e59c2ea38031ca74962e02d710fde61fb1f..bd7e80317ff3a30f6ff522fcefec7d4adbe85a5c 100644
+index 51cab9c3ab0293fcc003db8a540a358ba5fadb84..e8652ef4e12e3ef919c8071433af340418d5b929 100644
 --- a/src/main/java/org/bukkit/advancement/Advancement.java
 +++ b/src/main/java/org/bukkit/advancement/Advancement.java
-@@ -68,4 +68,19 @@ public interface Advancement extends Keyed {
+@@ -70,4 +70,19 @@ public interface Advancement extends Keyed {
      @NotNull
      Advancement getRoot();
      // Paper end
@@ -492,10 +492,10 @@ index f9bc179da071e7bd57cefc50d6763317fb643b74..532f51a1d537a342c0251d650cd503b1
 +    // Daydream end
  }
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index 82d91813280e334800b62a7707a9c8e37ea2c7b9..d99247504159679a825658b50f5058069b54826c 100644
+index 32f2ebb30ae4dc093052403002978aeb205194ad..a08d07283315bb12dfbdcdd6d2970660dcb2e699 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
-@@ -2383,6 +2383,16 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+@@ -2383,6 +2383,25 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      @NotNull
      public AdvancementProgress getAdvancementProgress(@NotNull Advancement advancement);
  
@@ -507,6 +507,15 @@ index 82d91813280e334800b62a7707a9c8e37ea2c7b9..d99247504159679a825658b50f505806
 +     */
 +    @NotNull
 +    public com.google.gson.JsonElement serializedAdvancementProgress();
++
++    /**
++     * 플레이어에게 발전 과제 알림을 전송합니다.
++     *
++     * @param item 표시할 아이템
++     * @param title 표시할 제목
++     * @param frame 표시할 프레임
++     */
++    public void sendAdvancementAlert(@NotNull ItemStack item, @NotNull net.kyori.adventure.text.Component title, @NotNull io.papermc.paper.advancement.AdvancementDisplay.Frame frame);
 +    // Daydream end
 +
      /**

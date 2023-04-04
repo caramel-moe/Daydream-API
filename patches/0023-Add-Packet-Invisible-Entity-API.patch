@@ -5,10 +5,10 @@ Subject: [PATCH] Add Packet Invisible Entity API
 
 
 diff --git a/src/main/java/org/bukkit/World.java b/src/main/java/org/bukkit/World.java
-index ac42c2424806fb0b2a0cd586eca08a5624dab7d3..866d63b5b3bfd9afce46e2e2cddc0d8b2f940b55 100644
+index a2dc9346c007841d3dfb6b0ffb79e82086be3542..c345b4b6d0eacd0da1dda1ef6dcedb9f0a83aa86 100644
 --- a/src/main/java/org/bukkit/World.java
 +++ b/src/main/java/org/bukkit/World.java
-@@ -2298,6 +2298,26 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
+@@ -2295,6 +2295,26 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      @NotNull
      public FallingBlock spawnFallingBlock(@NotNull Location location, @NotNull BlockData data) throws IllegalArgumentException;
  
@@ -36,7 +36,7 @@ index ac42c2424806fb0b2a0cd586eca08a5624dab7d3..866d63b5b3bfd9afce46e2e2cddc0d8b
       * Spawn a {@link FallingBlock} entity at the given {@link Location} of the
       * specified {@link Material}. The material dictates what is falling.
 diff --git a/src/main/java/org/bukkit/entity/Entity.java b/src/main/java/org/bukkit/entity/Entity.java
-index dc1d7062f1b808bb8c0d56bffbcbdd0b07ca0d3f..421ee1c4fa16e71cf711abc5021476d62d1b5494 100644
+index 0c8baf20f2f62a4682e195c19036f6fbeadd57bb..92a837ce596af040fd063da44509991e6e81689a 100644
 --- a/src/main/java/org/bukkit/entity/Entity.java
 +++ b/src/main/java/org/bukkit/entity/Entity.java
 @@ -999,4 +999,29 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
