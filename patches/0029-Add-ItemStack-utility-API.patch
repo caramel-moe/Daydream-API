@@ -108,3 +108,31 @@ index d15a74c38576c49df61cfab02c70fc5d8c0dd5f7..6ee16473d7b8bff09e83452e60f79f22
      /**
       * Defaults stack size to 1, with no extra data.
       * <p>
+diff --git a/src/main/java/org/bukkit/inventory/meta/ItemMeta.java b/src/main/java/org/bukkit/inventory/meta/ItemMeta.java
+index e33ec3eaa1cd520db8224250e886e6240fefe76f..4492198add30d95987dc3b08d538bb3c6a636e15 100644
+--- a/src/main/java/org/bukkit/inventory/meta/ItemMeta.java
++++ b/src/main/java/org/bukkit/inventory/meta/ItemMeta.java
+@@ -338,6 +338,23 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
+      */
+     void setUnbreakable(boolean unbreakable);
+ 
++    // Daydream start - Add GlowItem API
++    /**
++     * 아이템의 빛남 여부를 가져옵니다.
++     *
++     * @return 만약 {@code true}라면 아이템이 빛남
++     */
++    boolean isGlowing();
++
++    /**
++     * 아이템의 빛남 여부를 설정합니다. 일반적으로 허용하지 않는 방법을 통해 아이템에 글로우 효과를 추가하므로,
++     * 여러 문제가 발생할 수 있습니다. 이 기능을 사용하는 경우 모든 인첸트가 해제되며, 인첸트가 추가되는 경우 해제됩니다.
++     *
++     * @param glowing 만약 {@code true}라면 빛나게 설정
++     */
++    void setGlowing(boolean glowing);
++    // Daydream end - Add GlowItem API
++
+     /**
+      * Checks for the existence of any AttributeModifiers.
+      *
