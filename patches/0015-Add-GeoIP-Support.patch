@@ -5,7 +5,7 @@ Subject: [PATCH] Add GeoIP Support
 
 
 diff --git a/build.gradle.kts b/build.gradle.kts
-index 0bb8c691a65f33b3a28da03b5e5bd87ad2c75f99..cd2068cbcd8bab043cc2bcce09ab75b62f5b6a72 100644
+index 1925e86ce4fc7630fb2ad6132baabe03ecfc2de6..54c7cfd69cb043931c28baae8367793575822cb0 100644
 --- a/build.gradle.kts
 +++ b/build.gradle.kts
 @@ -52,6 +52,7 @@ dependencies {
@@ -17,10 +17,10 @@ index 0bb8c691a65f33b3a28da03b5e5bd87ad2c75f99..cd2068cbcd8bab043cc2bcce09ab75b6
      api("org.apache.maven:maven-resolver-provider:3.8.5") // Paper, expose
      compileOnly("org.apache.maven.resolver:maven-resolver-connector-basic:1.7.3")
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index 87c33aa9b99afc7e4562337fbd1600133ed16c07..82d91813280e334800b62a7707a9c8e37ea2c7b9 100644
+index 41e1e148554b05698d3bc381932df2300a202afd..f6765eb6dcaa9a27121513e527e17aa8e403a040 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
-@@ -49,6 +49,16 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+@@ -50,6 +50,16 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
       */
      @NotNull
      moe.caramel.daydream.player.InteractManager getInteractManager();

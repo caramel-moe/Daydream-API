@@ -5,7 +5,7 @@ Subject: [PATCH] Add more Player API
 
 
 diff --git a/build.gradle.kts b/build.gradle.kts
-index 735557a4a5397220b79d43a540373ccc96451e03..0bb8c691a65f33b3a28da03b5e5bd87ad2c75f99 100644
+index 587c6940e6bb73a5f3fd154bbbcfa16820ac2d95..1925e86ce4fc7630fb2ad6132baabe03ecfc2de6 100644
 --- a/build.gradle.kts
 +++ b/build.gradle.kts
 @@ -51,6 +51,7 @@ dependencies {
@@ -17,10 +17,10 @@ index 735557a4a5397220b79d43a540373ccc96451e03..0bb8c691a65f33b3a28da03b5e5bd87a
      api("org.apache.maven:maven-resolver-provider:3.8.5") // Paper, expose
      compileOnly("org.apache.maven.resolver:maven-resolver-connector-basic:1.7.3")
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index 660f28e371176c62e38a84b187958aceb235c8e3..38e7371e950ce8ff32d230a2daf280b27c027378 100644
+index ee446bfb3e6c4b1d4428c00d6406bf9455c68ad5..1c9863d606eceb719a249343b7cb447603b30bbf 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
-@@ -2648,6 +2648,15 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+@@ -2683,6 +2683,15 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      @Nullable
      org.bukkit.event.player.PlayerResourcePackStatusEvent.Status getResourcePackStatus();
  
@@ -36,7 +36,7 @@ index 660f28e371176c62e38a84b187958aceb235c8e3..38e7371e950ce8ff32d230a2daf280b2
      /**
       * @return the most recent resource pack hash received from the player,
       *         or null if no hash has ever been received from this player.
-@@ -2671,6 +2680,16 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+@@ -2706,6 +2715,16 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      @NotNull
      com.destroystokyo.paper.profile.PlayerProfile getPlayerProfile();
  
