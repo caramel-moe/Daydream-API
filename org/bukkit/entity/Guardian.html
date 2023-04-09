@@ -107,6 +107,17 @@ extends <a href="Monster.html" title="interface in org.bukkit.entity">Monster</a
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>int</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getLaserDuration()" class="member-name-link">getLaserDuration</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Get the duration (in ticks) that a laser attack takes.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>int</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getLaserTicks()" class="member-name-link">getLaserTicks</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Get the amount of ticks that have elapsed since this guardian has initiated
+ a laser attack.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#hasLaser()" class="member-name-link">hasLaser</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
@@ -119,17 +130,28 @@ extends <a href="Monster.html" title="interface in org.bukkit.entity">Monster</a
 <div class="deprecation-comment">should check if instance of <a href="ElderGuardian.html" title="interface in org.bukkit.entity"><code>ElderGuardian</code></a>.</div>
 </div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6"><code><a href="#setElder(boolean)" class="member-name-link">setElder</a><wbr>(boolean&nbsp;shouldBeElder)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#isMoving()" class="member-name-link">isMoving</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Check whether or not this guardian is moving.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6"><code><a href="#setElder(boolean)" class="member-name-link">setElder</a><wbr>(boolean&nbsp;shouldBeElder)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6">
 <div class="block"><span class="deprecated-label">Deprecated.</span>
 <div class="deprecation-comment">Must spawn a new <a href="ElderGuardian.html" title="interface in org.bukkit.entity"><code>ElderGuardian</code></a>.</div>
 </div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#setLaser(boolean)" class="member-name-link">setLaser</a><wbr>(boolean&nbsp;activated)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#setLaser(boolean)" class="member-name-link">setLaser</a><wbr>(boolean&nbsp;activated)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Sets whether the guardian laser should show or not.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#setLaserTicks(int)" class="member-name-link">setLaserTicks</a><wbr>(int&nbsp;ticks)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Set the amount of ticks that have elapsed since this guardian has initiated
+ a laser attack.</div>
 </div>
 </div>
 </div>
@@ -231,6 +253,53 @@ extends <a href="Monster.html" title="interface in org.bukkit.entity">Monster</a
 </section>
 </li>
 <li>
+<section class="detail" id="getLaserDuration()">
+<h3>getLaserDuration</h3>
+<div class="member-signature"><span class="return-type">int</span>&nbsp;<span class="element-name">getLaserDuration</span>()</div>
+<div class="block">Get the duration (in ticks) that a laser attack takes.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the laser duration in ticks</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="setLaserTicks(int)">
+<h3>setLaserTicks</h3>
+<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">setLaserTicks</span><wbr><span class="parameters">(int&nbsp;ticks)</span></div>
+<div class="block">Set the amount of ticks that have elapsed since this guardian has initiated
+ a laser attack. If set to <a href="#getLaserDuration()"><code>getLaserDuration()</code></a> or greater, the guardian
+ will inflict damage upon its target and the laser attack will complete.
+ <p>
+ For this value to have any effect, the guardian must have an active target
+ (see <a href="Mob.html#setTarget(org.bukkit.entity.LivingEntity)"><code>Mob.setTarget(LivingEntity)</code></a>) and be charging a laser attack (where
+ <a href="#hasLaser()"><code>hasLaser()</code></a> is true). The client may display a different animation of
+ the guardian laser than the set ticks.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>ticks</code> - the ticks to set. Must be at least -10</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getLaserTicks()">
+<h3>getLaserTicks</h3>
+<div class="member-signature"><span class="return-type">int</span>&nbsp;<span class="element-name">getLaserTicks</span>()</div>
+<div class="block">Get the amount of ticks that have elapsed since this guardian has initiated
+ a laser attack.
+ <p>
+ This value may or may not be significant depending on whether or not the guardian
+ has an active target (<a href="Mob.html#getTarget()"><code>Mob.getTarget()</code></a>) and is charging a laser attack
+ (<a href="#hasLaser()"><code>hasLaser()</code></a>). This value is not reset after a successful attack nor used
+ in the next and will be reset to the minimum value when the guardian initiates a
+ new one.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the laser ticks ranging from -10 to <a href="#getLaserDuration()"><code>getLaserDuration()</code></a></dd>
+</dl>
+</section>
+</li>
+<li>
 <section class="detail" id="isElder()">
 <h3>isElder</h3>
 <div class="member-signature"><span class="annotations"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Deprecated.html" title="class or interface in java.lang" class="external-link">@Deprecated</a>
@@ -256,6 +325,22 @@ extends <a href="Monster.html" title="interface in org.bukkit.entity">Monster</a
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>shouldBeElder</code> - shouldBeElder</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="isMoving()">
+<h3>isMoving</h3>
+<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">isMoving</span>()</div>
+<div class="block">Check whether or not this guardian is moving.
+ <p>
+ While moving, the guardian's spikes are retracted and will not inflict thorns
+ damage upon entities that attack it. Additionally, a moving guardian cannot
+ attack another entity. If stationary (i.e. this method returns <code>false</code>),
+ thorns damage is guaranteed and the guardian may initiate laser attacks.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>true if moving, false if stationary</dd>
 </dl>
 </section>
 </li>

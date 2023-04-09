@@ -107,32 +107,33 @@ extends <a href="../Minecart.html" title="interface in org.bukkit.entity">Mineca
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#explode()" class="member-name-link">explode</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Immediately explodes the Minecart.</div>
+<div class="block">Immediately explode this minecart with the power assumed by its current
+ movement.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#explode(double)" class="member-name-link">explode</a><wbr>(double&nbsp;power)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Immediately explodes the Minecart with the specified power.</div>
+<div class="block">Immediately explode this minecart with the given power.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>int</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getFuseTicks()" class="member-name-link">getFuseTicks</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Retrieve the number of ticks until the explosive Minecart explodes.</div>
+<div class="block">Get the fuse ticks of this minecart.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#ignite()" class="member-name-link">ignite</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Ignites this explosive Minecart, beginning its fuse.</div>
+<div class="block">Ignite this minecart's fuse naturally.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#isIgnited()" class="member-name-link">isIgnited</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Checks whether this explosive Minecart is ignited (its fuse is primed).</div>
+<div class="block">Check whether or not this minecart's fuse has been ignited.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#setFuseTicks(int)" class="member-name-link">setFuseTicks</a><wbr>(int&nbsp;fuseTicks)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#setFuseTicks(int)" class="member-name-link">setFuseTicks</a><wbr>(int&nbsp;ticks)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Set the number of ticks until the Minecart explodes after being primed.</div>
+<div class="block">Set the fuse ticks of this minecart.</div>
 </div>
 </div>
 </div>
@@ -187,11 +188,14 @@ extends <a href="../Minecart.html" title="interface in org.bukkit.entity">Mineca
 <li>
 <section class="detail" id="setFuseTicks(int)">
 <h3>setFuseTicks</h3>
-<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">setFuseTicks</span><wbr><span class="parameters">(int&nbsp;fuseTicks)</span></div>
-<div class="block">Set the number of ticks until the Minecart explodes after being primed.</div>
+<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">setFuseTicks</span><wbr><span class="parameters">(int&nbsp;ticks)</span></div>
+<div class="block">Set the fuse ticks of this minecart.
+
+ If the fuse ticks are set to a non-zero value, this will ignite the
+ explosive.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>fuseTicks</code> - fuse ticks or -1 if the fuse isn't primed</dd>
+<dd><code>ticks</code> - the ticks</dd>
 </dl>
 </section>
 </li>
@@ -199,21 +203,13 @@ extends <a href="../Minecart.html" title="interface in org.bukkit.entity">Mineca
 <section class="detail" id="getFuseTicks()">
 <h3>getFuseTicks</h3>
 <div class="member-signature"><span class="return-type">int</span>&nbsp;<span class="element-name">getFuseTicks</span>()</div>
-<div class="block">Retrieve the number of ticks until the explosive Minecart explodes.</div>
+<div class="block">Get the fuse ticks of this minecart.
+
+ If the fuse ticks reach 0, the minecart will explode.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>number of ticks or -1 if the fuse isn't primed</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="isIgnited()">
-<h3>isIgnited</h3>
-<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">isIgnited</span>()</div>
-<div class="block">Checks whether this explosive Minecart is ignited (its fuse is primed).</div>
-<dl class="notes">
-<dt>Returns:</dt>
-<dd>whether the Minecart is ignited</dd>
+<dd>the fuse ticks, or -1 if this minecart's fuse has not yet been
+ ignited</dd>
 </dl>
 </section>
 </li>
@@ -221,25 +217,36 @@ extends <a href="../Minecart.html" title="interface in org.bukkit.entity">Mineca
 <section class="detail" id="ignite()">
 <h3>ignite</h3>
 <div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">ignite</span>()</div>
-<div class="block">Ignites this explosive Minecart, beginning its fuse.</div>
+<div class="block">Ignite this minecart's fuse naturally.</div>
+</section>
+</li>
+<li>
+<section class="detail" id="isIgnited()">
+<h3>isIgnited</h3>
+<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">isIgnited</span>()</div>
+<div class="block">Check whether or not this minecart's fuse has been ignited.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>true if ignited, false otherwise</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="explode()">
 <h3>explode</h3>
 <div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">explode</span>()</div>
-<div class="block">Immediately explodes the Minecart.
- Power will depend on the Minecart's horizontal speed.</div>
+<div class="block">Immediately explode this minecart with the power assumed by its current
+ movement.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="explode(double)">
 <h3>explode</h3>
 <div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">explode</span><wbr><span class="parameters">(double&nbsp;power)</span></div>
-<div class="block">Immediately explodes the Minecart with the specified power.</div>
+<div class="block">Immediately explode this minecart with the given power.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>power</code> - explosion power</dd>
+<dd><code>power</code> - the power to use. Must be positive and cannot exceed 5.0</dd>
 </dl>
 </section>
 </li>

@@ -188,11 +188,21 @@ extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/ja
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Merges all explicitly set states from the given data with this BlockData.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#requiresCorrectToolForDrops()" class="member-name-link">requiresCorrectToolForDrops</a>()</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#mirror(org.bukkit.block.structure.Mirror)" class="member-name-link">mirror</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../structure/Mirror.html" title="enum class in org.bukkit.block.structure">Mirror</a>&nbsp;mirror)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Mirrors this blockdata using the specified <a href="../structure/Mirror.html" title="enum class in org.bukkit.block.structure"><code>Mirror</code></a>.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#requiresCorrectToolForDrops()" class="member-name-link">requiresCorrectToolForDrops</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Check whether or not this state requires a specific item to be used to drop
  items when broken.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#rotate(org.bukkit.block.structure.StructureRotation)" class="member-name-link">rotate</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../structure/StructureRotation.html" title="enum class in org.bukkit.block.structure">StructureRotation</a>&nbsp;rotation)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Rotates this blockdata by the specified <a href="../structure/StructureRotation.html" title="enum class in org.bukkit.block.structure"><code>StructureRotation</code></a>.</div>
 </div>
 </div>
 </div>
@@ -484,6 +494,34 @@ extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/ja
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>placement material or <a href="../../Material.html#AIR"><code>Material.AIR</code></a> if it doesn't have one</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="rotate(org.bukkit.block.structure.StructureRotation)">
+<h3>rotate</h3>
+<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">rotate</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../structure/StructureRotation.html" title="enum class in org.bukkit.block.structure">StructureRotation</a>&nbsp;rotation)</span></div>
+<div class="block">Rotates this blockdata by the specified <a href="../structure/StructureRotation.html" title="enum class in org.bukkit.block.structure"><code>StructureRotation</code></a>.
+ <p>
+ This has no effect on blocks that do not have any rotatable states.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>rotation</code> - the rotation</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="mirror(org.bukkit.block.structure.Mirror)">
+<h3>mirror</h3>
+<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">mirror</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../structure/Mirror.html" title="enum class in org.bukkit.block.structure">Mirror</a>&nbsp;mirror)</span></div>
+<div class="block">Mirrors this blockdata using the specified <a href="../structure/Mirror.html" title="enum class in org.bukkit.block.structure"><code>Mirror</code></a>.
+ <p>
+ This has no effect on blocks that do not have any mirrorable states.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>mirror</code> - the mirror</dd>
 </dl>
 </section>
 </li>

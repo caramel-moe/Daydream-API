@@ -1718,7 +1718,7 @@ loadScripts(document, 'script');</script>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../block/data/BlockData.html" title="interface in org.bukkit.block.data">BlockData</a>&nbsp;data)</code></div>
 <div class="col-last even-row-color">
 <div class="block">Spawn a <a href="../entity/FallingBlock.html" title="interface in org.bukkit.entity"><code>FallingBlock</code></a> entity at the given <a href="../Location.html" title="class in org.bukkit"><code>Location</code></a> of
- the specified <a href="../block/data/BlockData.html" title="interface in org.bukkit.block.data"><code>BlockData</code></a>.</div>
+ the specified <a href="../Material.html" title="enum class in org.bukkit"><code>Material</code></a>.</div>
 </div>
 <div class="col-first odd-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../entity/FallingBlock.html" title="interface in org.bukkit.entity">FallingBlock</a></code></div>
 <div class="col-second odd-row-color"><span class="type-name-label">World.</span><code><a href="../World.html#spawnFallingBlock(org.bukkit.Location,org.bukkit.block.data.BlockData,org.bukkit.util.Consumer)" class="member-name-link">spawnFallingBlock</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;location,
@@ -2410,207 +2410,214 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color"><code>void</code></div>
 <div class="col-second even-row-color"><span class="type-name-label">Player.</span><code><a href="../entity/Player.html#sendBlockDamage(org.bukkit.Location,float,int)" class="member-name-link">sendBlockDamage</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;loc,
  float&nbsp;progress,
- int&nbsp;destroyerIdentity)</code></div>
+ int&nbsp;sourceId)</code></div>
 <div class="col-last even-row-color">
 <div class="block">Send block damage.</div>
 </div>
 <div class="col-first odd-row-color"><code>void</code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">Player.</span><code><a href="../entity/Player.html#sendSignChange(org.bukkit.Location,java.lang.String%5B%5D)" class="member-name-link">sendSignChange</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;loc,
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>[]&nbsp;lines)</code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">Player.</span><code><a href="../entity/Player.html#sendBlockDamage(org.bukkit.Location,float,org.bukkit.entity.Entity)" class="member-name-link">sendBlockDamage</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;loc,
+ float&nbsp;progress,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../entity/Entity.html" title="interface in org.bukkit.entity">Entity</a>&nbsp;source)</code></div>
 <div class="col-last odd-row-color">
+<div class="block">Send block damage.</div>
+</div>
+<div class="col-first even-row-color"><code>void</code></div>
+<div class="col-second even-row-color"><span class="type-name-label">Player.</span><code><a href="../entity/Player.html#sendSignChange(org.bukkit.Location,java.lang.String%5B%5D)" class="member-name-link">sendSignChange</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;loc,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>[]&nbsp;lines)</code></div>
+<div class="col-last even-row-color">
 <div class="block"><span class="deprecated-label">Deprecated.</span>
 <div class="deprecation-comment">in favour of <a href="../entity/Player.html#sendSignChange(org.bukkit.Location,java.util.List)"><code>Player.sendSignChange(org.bukkit.Location, java.util.List)</code></a></div>
 </div>
 </div>
-<div class="col-first even-row-color"><code>void</code></div>
-<div class="col-second even-row-color"><span class="type-name-label">Player.</span><code><a href="../entity/Player.html#sendSignChange(org.bukkit.Location,java.lang.String%5B%5D,org.bukkit.DyeColor)" class="member-name-link">sendSignChange</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;loc,
+<div class="col-first odd-row-color"><code>void</code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">Player.</span><code><a href="../entity/Player.html#sendSignChange(org.bukkit.Location,java.lang.String%5B%5D,org.bukkit.DyeColor)" class="member-name-link">sendSignChange</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;loc,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>[]&nbsp;lines,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../DyeColor.html" title="enum class in org.bukkit">DyeColor</a>&nbsp;dyeColor)</code></div>
-<div class="col-last even-row-color">
+<div class="col-last odd-row-color">
 <div class="block"><span class="deprecated-label">Deprecated.</span>
 <div class="deprecation-comment">in favour of <a href="../entity/Player.html#sendSignChange(org.bukkit.Location,java.util.List,org.bukkit.DyeColor)"><code>Player.sendSignChange(org.bukkit.Location, java.util.List, org.bukkit.DyeColor)</code></a></div>
 </div>
 </div>
-<div class="col-first odd-row-color"><code>void</code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">Player.</span><code><a href="../entity/Player.html#sendSignChange(org.bukkit.Location,java.lang.String%5B%5D,org.bukkit.DyeColor,boolean)" class="member-name-link">sendSignChange</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;loc,
+<div class="col-first even-row-color"><code>void</code></div>
+<div class="col-second even-row-color"><span class="type-name-label">Player.</span><code><a href="../entity/Player.html#sendSignChange(org.bukkit.Location,java.lang.String%5B%5D,org.bukkit.DyeColor,boolean)" class="member-name-link">sendSignChange</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;loc,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>[]&nbsp;lines,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../DyeColor.html" title="enum class in org.bukkit">DyeColor</a>&nbsp;dyeColor,
  boolean&nbsp;hasGlowingText)</code></div>
-<div class="col-last odd-row-color">
+<div class="col-last even-row-color">
 <div class="block"><span class="deprecated-label">Deprecated.</span>
 <div class="deprecation-comment">Deprecated in favour of <a href="../entity/Player.html#sendSignChange(org.bukkit.Location,java.util.List,org.bukkit.DyeColor,boolean)"><code>Player.sendSignChange(Location, java.util.List, DyeColor, boolean)</code></a></div>
 </div>
 </div>
-<div class="col-first even-row-color"><code>default void</code></div>
-<div class="col-second even-row-color"><span class="type-name-label">Player.</span><code><a href="../entity/Player.html#sendSignChange(org.bukkit.Location,java.util.List)" class="member-name-link">sendSignChange</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;loc,
+<div class="col-first odd-row-color"><code>default void</code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">Player.</span><code><a href="../entity/Player.html#sendSignChange(org.bukkit.Location,java.util.List)" class="member-name-link">sendSignChange</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;loc,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;? extends <a href="https://jd.advntr.dev/api/4.13.0/net/kyori/adventure/text/Component.html" title="class or interface in net.kyori.adventure.text" class="external-link">Component</a>&gt;&nbsp;lines)</code></div>
+<div class="col-last odd-row-color">
+<div class="block">Send a sign change.</div>
+</div>
+<div class="col-first even-row-color"><code>default void</code></div>
+<div class="col-second even-row-color"><span class="type-name-label">Player.</span><code><a href="../entity/Player.html#sendSignChange(org.bukkit.Location,java.util.List,boolean)" class="member-name-link">sendSignChange</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;loc,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;? extends <a href="https://jd.advntr.dev/api/4.13.0/net/kyori/adventure/text/Component.html" title="class or interface in net.kyori.adventure.text" class="external-link">Component</a>&gt;&nbsp;lines,
+ boolean&nbsp;hasGlowingText)</code></div>
 <div class="col-last even-row-color">
 <div class="block">Send a sign change.</div>
 </div>
 <div class="col-first odd-row-color"><code>default void</code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">Player.</span><code><a href="../entity/Player.html#sendSignChange(org.bukkit.Location,java.util.List,boolean)" class="member-name-link">sendSignChange</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;loc,
+<div class="col-second odd-row-color"><span class="type-name-label">Player.</span><code><a href="../entity/Player.html#sendSignChange(org.bukkit.Location,java.util.List,org.bukkit.DyeColor)" class="member-name-link">sendSignChange</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;loc,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;? extends <a href="https://jd.advntr.dev/api/4.13.0/net/kyori/adventure/text/Component.html" title="class or interface in net.kyori.adventure.text" class="external-link">Component</a>&gt;&nbsp;lines,
- boolean&nbsp;hasGlowingText)</code></div>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../DyeColor.html" title="enum class in org.bukkit">DyeColor</a>&nbsp;dyeColor)</code></div>
 <div class="col-last odd-row-color">
 <div class="block">Send a sign change.</div>
 </div>
-<div class="col-first even-row-color"><code>default void</code></div>
-<div class="col-second even-row-color"><span class="type-name-label">Player.</span><code><a href="../entity/Player.html#sendSignChange(org.bukkit.Location,java.util.List,org.bukkit.DyeColor)" class="member-name-link">sendSignChange</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;loc,
- <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;? extends <a href="https://jd.advntr.dev/api/4.13.0/net/kyori/adventure/text/Component.html" title="class or interface in net.kyori.adventure.text" class="external-link">Component</a>&gt;&nbsp;lines,
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../DyeColor.html" title="enum class in org.bukkit">DyeColor</a>&nbsp;dyeColor)</code></div>
-<div class="col-last even-row-color">
-<div class="block">Send a sign change.</div>
-</div>
-<div class="col-first odd-row-color"><code>void</code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">Player.</span><code><a href="../entity/Player.html#sendSignChange(org.bukkit.Location,java.util.List,org.bukkit.DyeColor,boolean)" class="member-name-link">sendSignChange</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;loc,
+<div class="col-first even-row-color"><code>void</code></div>
+<div class="col-second even-row-color"><span class="type-name-label">Player.</span><code><a href="../entity/Player.html#sendSignChange(org.bukkit.Location,java.util.List,org.bukkit.DyeColor,boolean)" class="member-name-link">sendSignChange</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;loc,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;? extends <a href="https://jd.advntr.dev/api/4.13.0/net/kyori/adventure/text/Component.html" title="class or interface in net.kyori.adventure.text" class="external-link">Component</a>&gt;&nbsp;lines,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../DyeColor.html" title="enum class in org.bukkit">DyeColor</a>&nbsp;dyeColor,
  boolean&nbsp;hasGlowingText)</code></div>
-<div class="col-last odd-row-color">
+<div class="col-last even-row-color">
 <div class="block">Send a sign change.</div>
 </div>
-<div class="col-first even-row-color"><code>void</code></div>
-<div class="col-second even-row-color"><span class="type-name-label">Phantom.</span><code><a href="../entity/Phantom.html#setAnchorLocation(org.bukkit.Location)" class="member-name-link">setAnchorLocation</a><wbr>(<a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;location)</code></div>
-<div class="col-last even-row-color">
+<div class="col-first odd-row-color"><code>void</code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">Phantom.</span><code><a href="../entity/Phantom.html#setAnchorLocation(org.bukkit.Location)" class="member-name-link">setAnchorLocation</a><wbr>(<a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;location)</code></div>
+<div class="col-last odd-row-color">
 <div class="block">Sets the location that this phantom circles around when not attacking a player</div>
 </div>
-<div class="col-first odd-row-color"><code>void</code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">EnderCrystal.</span><code><a href="../entity/EnderCrystal.html#setBeamTarget(org.bukkit.Location)" class="member-name-link">setBeamTarget</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;location)</code></div>
-<div class="col-last odd-row-color">
+<div class="col-first even-row-color"><code>void</code></div>
+<div class="col-second even-row-color"><span class="type-name-label">EnderCrystal.</span><code><a href="../entity/EnderCrystal.html#setBeamTarget(org.bukkit.Location)" class="member-name-link">setBeamTarget</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;location)</code></div>
+<div class="col-last even-row-color">
 <div class="block">Sets the location that this end crystal is pointing to.</div>
 </div>
-<div class="col-first even-row-color"><code>void</code></div>
-<div class="col-second even-row-color"><span class="type-name-label">Player.</span><code><a href="../entity/Player.html#setBedSpawnLocation(org.bukkit.Location)" class="member-name-link">setBedSpawnLocation</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;location)</code></div>
-<div class="col-last even-row-color">
-<div class="block">Sets the Location where the player will spawn at their bed.</div>
-</div>
 <div class="col-first odd-row-color"><code>void</code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">Player.</span><code><a href="../entity/Player.html#setBedSpawnLocation(org.bukkit.Location,boolean)" class="member-name-link">setBedSpawnLocation</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;location,
- boolean&nbsp;force)</code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">Player.</span><code><a href="../entity/Player.html#setBedSpawnLocation(org.bukkit.Location)" class="member-name-link">setBedSpawnLocation</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;location)</code></div>
 <div class="col-last odd-row-color">
 <div class="block">Sets the Location where the player will spawn at their bed.</div>
 </div>
 <div class="col-first even-row-color"><code>void</code></div>
-<div class="col-second even-row-color"><span class="type-name-label">Vex.</span><code><a href="../entity/Vex.html#setBound(org.bukkit.Location)" class="member-name-link">setBound</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;location)</code></div>
+<div class="col-second even-row-color"><span class="type-name-label">Player.</span><code><a href="../entity/Player.html#setBedSpawnLocation(org.bukkit.Location,boolean)" class="member-name-link">setBedSpawnLocation</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;location,
+ boolean&nbsp;force)</code></div>
 <div class="col-last even-row-color">
+<div class="block">Sets the Location where the player will spawn at their bed.</div>
+</div>
+<div class="col-first odd-row-color"><code>void</code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">Vex.</span><code><a href="../entity/Vex.html#setBound(org.bukkit.Location)" class="member-name-link">setBound</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;location)</code></div>
+<div class="col-last odd-row-color">
 <div class="block">Sets the bound of this entity.</div>
 </div>
-<div class="col-first odd-row-color"><code>void</code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">Player.</span><code><a href="../entity/Player.html#setCompassTarget(org.bukkit.Location)" class="member-name-link">setCompassTarget</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;loc)</code></div>
-<div class="col-last odd-row-color">
+<div class="col-first even-row-color"><code>void</code></div>
+<div class="col-second even-row-color"><span class="type-name-label">Player.</span><code><a href="../entity/Player.html#setCompassTarget(org.bukkit.Location)" class="member-name-link">setCompassTarget</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;loc)</code></div>
+<div class="col-last even-row-color">
 <div class="block">Set the target of the player's compass.</div>
 </div>
-<div class="col-first even-row-color"><code>void</code></div>
-<div class="col-second even-row-color"><span class="type-name-label">Warden.</span><code><a href="../entity/Warden.html#setDisturbanceLocation(org.bukkit.Location)" class="member-name-link">setDisturbanceLocation</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;location)</code></div>
-<div class="col-last even-row-color">
+<div class="col-first odd-row-color"><code>void</code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">Warden.</span><code><a href="../entity/Warden.html#setDisturbanceLocation(org.bukkit.Location)" class="member-name-link">setDisturbanceLocation</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;location)</code></div>
+<div class="col-last odd-row-color">
 <div class="block">Make the warden sense a disturbance in the force at the location given.</div>
 </div>
-<div class="col-first odd-row-color"><code>void</code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">Bee.</span><code><a href="../entity/Bee.html#setFlower(org.bukkit.Location)" class="member-name-link">setFlower</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;location)</code></div>
-<div class="col-last odd-row-color">
+<div class="col-first even-row-color"><code>void</code></div>
+<div class="col-second even-row-color"><span class="type-name-label">Bee.</span><code><a href="../entity/Bee.html#setFlower(org.bukkit.Location)" class="member-name-link">setFlower</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;location)</code></div>
+<div class="col-last even-row-color">
 <div class="block">Set the bee's flower location.</div>
 </div>
-<div class="col-first even-row-color"><code>void</code></div>
-<div class="col-second even-row-color"><span class="type-name-label">Bee.</span><code><a href="../entity/Bee.html#setHive(org.bukkit.Location)" class="member-name-link">setHive</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;location)</code></div>
-<div class="col-last even-row-color">
+<div class="col-first odd-row-color"><code>void</code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">Bee.</span><code><a href="../entity/Bee.html#setHive(org.bukkit.Location)" class="member-name-link">setHive</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;location)</code></div>
+<div class="col-last odd-row-color">
 <div class="block">Set the bee's hive location.</div>
 </div>
-<div class="col-first odd-row-color"><code>void</code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">Turtle.</span><code><a href="../entity/Turtle.html#setHome(org.bukkit.Location)" class="member-name-link">setHome</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;location)</code></div>
-<div class="col-last odd-row-color">
+<div class="col-first even-row-color"><code>void</code></div>
+<div class="col-second even-row-color"><span class="type-name-label">Turtle.</span><code><a href="../entity/Turtle.html#setHome(org.bukkit.Location)" class="member-name-link">setHome</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;location)</code></div>
+<div class="col-last even-row-color">
 <div class="block">Set the turtle's home location</div>
 </div>
-<div class="col-first even-row-color"><code>void</code></div>
-<div class="col-second even-row-color"><span class="type-name-label">HumanEntity.</span><code><a href="../entity/HumanEntity.html#setLastDeathLocation(org.bukkit.Location)" class="member-name-link">setLastDeathLocation</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;location)</code></div>
-<div class="col-last even-row-color">
+<div class="col-first odd-row-color"><code>void</code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">HumanEntity.</span><code><a href="../entity/HumanEntity.html#setLastDeathLocation(org.bukkit.Location)" class="member-name-link">setLastDeathLocation</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;location)</code></div>
+<div class="col-last odd-row-color">
 <div class="block">Sets the player's last death location.</div>
 </div>
-<div class="col-first odd-row-color"><code>void</code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">EnderDragon.</span><code><a href="../entity/EnderDragon.html#setPodium(org.bukkit.Location)" class="member-name-link">setPodium</a><wbr>(<a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;location)</code></div>
-<div class="col-last odd-row-color">
+<div class="col-first even-row-color"><code>void</code></div>
+<div class="col-second even-row-color"><span class="type-name-label">EnderDragon.</span><code><a href="../entity/EnderDragon.html#setPodium(org.bukkit.Location)" class="member-name-link">setPodium</a><wbr>(<a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;location)</code></div>
+<div class="col-last even-row-color">
 <div class="block">Sets the location of the podium for the ender dragon.</div>
 </div>
-<div class="col-first even-row-color"><code>void</code></div>
-<div class="col-second even-row-color"><span class="type-name-label">Bat.</span><code><a href="../entity/Bat.html#setTargetLocation(org.bukkit.Location)" class="member-name-link">setTargetLocation</a><wbr>(<a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;location)</code></div>
-<div class="col-last even-row-color">
+<div class="col-first odd-row-color"><code>void</code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">Bat.</span><code><a href="../entity/Bat.html#setTargetLocation(org.bukkit.Location)" class="member-name-link">setTargetLocation</a><wbr>(<a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;location)</code></div>
+<div class="col-last odd-row-color">
 <div class="block">Sets the location that this bat is currently trying to move towards.</div>
 </div>
-<div class="col-first odd-row-color"><code>void</code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">EnderSignal.</span><code><a href="../entity/EnderSignal.html#setTargetLocation(org.bukkit.Location)" class="member-name-link">setTargetLocation</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;location)</code></div>
-<div class="col-last odd-row-color">
-<div class="block">Set the <a href="../Location.html" title="class in org.bukkit"><code>Location</code></a> this EnderSignal is moving towards.</div>
-</div>
 <div class="col-first even-row-color"><code>void</code></div>
-<div class="col-second even-row-color"><span class="type-name-label">EnderSignal.</span><code><a href="../entity/EnderSignal.html#setTargetLocation(org.bukkit.Location,boolean)" class="member-name-link">setTargetLocation</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;location,
- boolean&nbsp;update)</code></div>
+<div class="col-second even-row-color"><span class="type-name-label">EnderSignal.</span><code><a href="../entity/EnderSignal.html#setTargetLocation(org.bukkit.Location)" class="member-name-link">setTargetLocation</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;location)</code></div>
 <div class="col-last even-row-color">
 <div class="block">Set the <a href="../Location.html" title="class in org.bukkit"><code>Location</code></a> this EnderSignal is moving towards.</div>
 </div>
 <div class="col-first odd-row-color"><code>void</code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">Dolphin.</span><code><a href="../entity/Dolphin.html#setTreasureLocation(org.bukkit.Location)" class="member-name-link">setTreasureLocation</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;location)</code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">EnderSignal.</span><code><a href="../entity/EnderSignal.html#setTargetLocation(org.bukkit.Location,boolean)" class="member-name-link">setTargetLocation</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;location,
+ boolean&nbsp;update)</code></div>
 <div class="col-last odd-row-color">
+<div class="block">Set the <a href="../Location.html" title="class in org.bukkit"><code>Location</code></a> this EnderSignal is moving towards.</div>
+</div>
+<div class="col-first even-row-color"><code>void</code></div>
+<div class="col-second even-row-color"><span class="type-name-label">Dolphin.</span><code><a href="../entity/Dolphin.html#setTreasureLocation(org.bukkit.Location)" class="member-name-link">setTreasureLocation</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;location)</code></div>
+<div class="col-last even-row-color">
 <div class="block">Sets the treasure location that this dolphin will try to lead the player to.</div>
 </div>
-<div class="col-first even-row-color"><code>void</code></div>
-<div class="col-second even-row-color"><span class="type-name-label">WanderingTrader.</span><code><a href="../entity/WanderingTrader.html#setWanderingTowards(org.bukkit.Location)" class="member-name-link">setWanderingTowards</a><wbr>(<a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;location)</code></div>
-<div class="col-last even-row-color">
+<div class="col-first odd-row-color"><code>void</code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">WanderingTrader.</span><code><a href="../entity/WanderingTrader.html#setWanderingTowards(org.bukkit.Location)" class="member-name-link">setWanderingTowards</a><wbr>(<a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;location)</code></div>
+<div class="col-last odd-row-color">
 <div class="block">Sets the location that this wandering trader is currently wandering towards.</div>
 </div>
-<div class="col-first odd-row-color"><code>boolean</code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">HumanEntity.</span><code><a href="../entity/HumanEntity.html#sleep(org.bukkit.Location,boolean)" class="member-name-link">sleep</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;location,
+<div class="col-first even-row-color"><code>boolean</code></div>
+<div class="col-second even-row-color"><span class="type-name-label">HumanEntity.</span><code><a href="../entity/HumanEntity.html#sleep(org.bukkit.Location,boolean)" class="member-name-link">sleep</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;location,
  boolean&nbsp;force)</code></div>
-<div class="col-last odd-row-color">
+<div class="col-last even-row-color">
 <div class="block">Attempts to make the entity sleep at the given location.</div>
 </div>
-<div class="col-first even-row-color"><code>boolean</code></div>
-<div class="col-second even-row-color"><span class="type-name-label">Villager.</span><code><a href="../entity/Villager.html#sleep(org.bukkit.Location)" class="member-name-link">sleep</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;location)</code></div>
-<div class="col-last even-row-color">
+<div class="col-first odd-row-color"><code>boolean</code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">Villager.</span><code><a href="../entity/Villager.html#sleep(org.bukkit.Location)" class="member-name-link">sleep</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;location)</code></div>
+<div class="col-last odd-row-color">
 <div class="block">Attempts to make this villager sleep at the given location.</div>
 </div>
-<div class="col-first odd-row-color"><code>default boolean</code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">Entity.</span><code><a href="../entity/Entity.html#spawnAt(org.bukkit.Location)" class="member-name-link">spawnAt</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;location)</code></div>
-<div class="col-last odd-row-color">
+<div class="col-first even-row-color"><code>default boolean</code></div>
+<div class="col-second even-row-color"><span class="type-name-label">Entity.</span><code><a href="../entity/Entity.html#spawnAt(org.bukkit.Location)" class="member-name-link">spawnAt</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;location)</code></div>
+<div class="col-last even-row-color">
 <div class="block">Spawns the entity in the world at the given <a href="../Location.html" title="class in org.bukkit"><code>Location</code></a> with the default spawn reason.</div>
 </div>
-<div class="col-first even-row-color"><code>boolean</code></div>
-<div class="col-second even-row-color"><span class="type-name-label">Entity.</span><code><a href="../entity/Entity.html#spawnAt(org.bukkit.Location,org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason)" class="member-name-link">spawnAt</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;location,
+<div class="col-first odd-row-color"><code>boolean</code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">Entity.</span><code><a href="../entity/Entity.html#spawnAt(org.bukkit.Location,org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason)" class="member-name-link">spawnAt</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;location,
  <a href="../event/entity/CreatureSpawnEvent.SpawnReason.html" title="enum class in org.bukkit.event.entity">CreatureSpawnEvent.SpawnReason</a>&nbsp;reason)</code></div>
-<div class="col-last even-row-color">
+<div class="col-last odd-row-color">
 <div class="block">Spawns the entity in the world at the given <a href="../Location.html" title="class in org.bukkit"><code>Location</code></a> with the reason given.</div>
 </div>
-<div class="col-first odd-row-color"><code>void</code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">Player.</span><code><a href="../entity/Player.html#spawnParticle(org.bukkit.Particle,org.bukkit.Location,int)" class="member-name-link">spawnParticle</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Particle.html" title="enum class in org.bukkit">Particle</a>&nbsp;particle,
+<div class="col-first even-row-color"><code>void</code></div>
+<div class="col-second even-row-color"><span class="type-name-label">Player.</span><code><a href="../entity/Player.html#spawnParticle(org.bukkit.Particle,org.bukkit.Location,int)" class="member-name-link">spawnParticle</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Particle.html" title="enum class in org.bukkit">Particle</a>&nbsp;particle,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;location,
  int&nbsp;count)</code></div>
-<div class="col-last odd-row-color">
+<div class="col-last even-row-color">
 <div class="block">Spawns the particle (the number of times specified by count)
  at the target location.</div>
 </div>
-<div class="col-first even-row-color"><code>void</code></div>
-<div class="col-second even-row-color"><span class="type-name-label">Player.</span><code><a href="../entity/Player.html#spawnParticle(org.bukkit.Particle,org.bukkit.Location,int,double,double,double)" class="member-name-link">spawnParticle</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Particle.html" title="enum class in org.bukkit">Particle</a>&nbsp;particle,
+<div class="col-first odd-row-color"><code>void</code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">Player.</span><code><a href="../entity/Player.html#spawnParticle(org.bukkit.Particle,org.bukkit.Location,int,double,double,double)" class="member-name-link">spawnParticle</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Particle.html" title="enum class in org.bukkit">Particle</a>&nbsp;particle,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;location,
  int&nbsp;count,
  double&nbsp;offsetX,
  double&nbsp;offsetY,
  double&nbsp;offsetZ)</code></div>
-<div class="col-last even-row-color">
+<div class="col-last odd-row-color">
 <div class="block">Spawns the particle (the number of times specified by count)
  at the target location.</div>
 </div>
-<div class="col-first odd-row-color"><code>void</code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">Player.</span><code><a href="../entity/Player.html#spawnParticle(org.bukkit.Particle,org.bukkit.Location,int,double,double,double,double)" class="member-name-link">spawnParticle</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Particle.html" title="enum class in org.bukkit">Particle</a>&nbsp;particle,
+<div class="col-first even-row-color"><code>void</code></div>
+<div class="col-second even-row-color"><span class="type-name-label">Player.</span><code><a href="../entity/Player.html#spawnParticle(org.bukkit.Particle,org.bukkit.Location,int,double,double,double,double)" class="member-name-link">spawnParticle</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Particle.html" title="enum class in org.bukkit">Particle</a>&nbsp;particle,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;location,
  int&nbsp;count,
  double&nbsp;offsetX,
  double&nbsp;offsetY,
  double&nbsp;offsetZ,
  double&nbsp;extra)</code></div>
-<div class="col-last odd-row-color">
+<div class="col-last even-row-color">
 <div class="block">Spawns the particle (the number of times specified by count)
  at the target location.</div>
 </div>
-<div class="col-first even-row-color"><code>&lt;T&gt;&nbsp;void</code></div>
-<div class="col-second even-row-color"><span class="type-name-label">Player.</span><code><a href="../entity/Player.html#spawnParticle(org.bukkit.Particle,org.bukkit.Location,int,double,double,double,double,T)" class="member-name-link">spawnParticle</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Particle.html" title="enum class in org.bukkit">Particle</a>&nbsp;particle,
+<div class="col-first odd-row-color"><code>&lt;T&gt;&nbsp;void</code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">Player.</span><code><a href="../entity/Player.html#spawnParticle(org.bukkit.Particle,org.bukkit.Location,int,double,double,double,double,T)" class="member-name-link">spawnParticle</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Particle.html" title="enum class in org.bukkit">Particle</a>&nbsp;particle,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;location,
  int&nbsp;count,
  double&nbsp;offsetX,
@@ -2618,88 +2625,71 @@ loadScripts(document, 'script');</script>
  double&nbsp;offsetZ,
  double&nbsp;extra,
  T&nbsp;data)</code></div>
-<div class="col-last even-row-color">
+<div class="col-last odd-row-color">
 <div class="block">Spawns the particle (the number of times specified by count)
  at the target location.</div>
 </div>
-<div class="col-first odd-row-color"><code>&lt;T&gt;&nbsp;void</code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">Player.</span><code><a href="../entity/Player.html#spawnParticle(org.bukkit.Particle,org.bukkit.Location,int,double,double,double,T)" class="member-name-link">spawnParticle</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Particle.html" title="enum class in org.bukkit">Particle</a>&nbsp;particle,
+<div class="col-first even-row-color"><code>&lt;T&gt;&nbsp;void</code></div>
+<div class="col-second even-row-color"><span class="type-name-label">Player.</span><code><a href="../entity/Player.html#spawnParticle(org.bukkit.Particle,org.bukkit.Location,int,double,double,double,T)" class="member-name-link">spawnParticle</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Particle.html" title="enum class in org.bukkit">Particle</a>&nbsp;particle,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;location,
  int&nbsp;count,
  double&nbsp;offsetX,
  double&nbsp;offsetY,
  double&nbsp;offsetZ,
  T&nbsp;data)</code></div>
-<div class="col-last odd-row-color">
+<div class="col-last even-row-color">
 <div class="block">Spawns the particle (the number of times specified by count)
  at the target location.</div>
 </div>
-<div class="col-first even-row-color"><code>&lt;T&gt;&nbsp;void</code></div>
-<div class="col-second even-row-color"><span class="type-name-label">Player.</span><code><a href="../entity/Player.html#spawnParticle(org.bukkit.Particle,org.bukkit.Location,int,T)" class="member-name-link">spawnParticle</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Particle.html" title="enum class in org.bukkit">Particle</a>&nbsp;particle,
+<div class="col-first odd-row-color"><code>&lt;T&gt;&nbsp;void</code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">Player.</span><code><a href="../entity/Player.html#spawnParticle(org.bukkit.Particle,org.bukkit.Location,int,T)" class="member-name-link">spawnParticle</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Particle.html" title="enum class in org.bukkit">Particle</a>&nbsp;particle,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;location,
  int&nbsp;count,
  T&nbsp;data)</code></div>
-<div class="col-last even-row-color">
+<div class="col-last odd-row-color">
 <div class="block">Spawns the particle (the number of times specified by count)
  at the target location.</div>
 </div>
-<div class="col-first odd-row-color"><code>void</code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">Allay.</span><code><a href="../entity/Allay.html#startDancing(org.bukkit.Location)" class="member-name-link">startDancing</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;location)</code></div>
-<div class="col-last odd-row-color">
+<div class="col-first even-row-color"><code>void</code></div>
+<div class="col-second even-row-color"><span class="type-name-label">Allay.</span><code><a href="../entity/Allay.html#startDancing(org.bukkit.Location)" class="member-name-link">startDancing</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;location)</code></div>
+<div class="col-last even-row-color">
 <div class="block">Causes the allay to start dancing because of the provided jukebox
  location.</div>
 </div>
-<div class="col-first even-row-color"><code>boolean</code></div>
-<div class="col-second even-row-color"><span class="type-name-label">Entity.</span><code><a href="../entity/Entity.html#teleport(org.bukkit.Location)" class="member-name-link">teleport</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;location)</code></div>
-<div class="col-last even-row-color">
-<div class="block">Teleports this entity to the given location.</div>
-</div>
-<div class="col-first odd-row-color"><code>default boolean</code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">Entity.</span><code><a href="../entity/Entity.html#teleport(org.bukkit.Location,io.papermc.paper.entity.TeleportFlag...)" class="member-name-link">teleport</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;location,
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../io/papermc/paper/entity/TeleportFlag.html" title="interface in io.papermc.paper.entity">TeleportFlag</a> <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> ...&nbsp;teleportFlags)</code></div>
+<div class="col-first odd-row-color"><code>boolean</code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">Entity.</span><code><a href="../entity/Entity.html#teleport(org.bukkit.Location)" class="member-name-link">teleport</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;location)</code></div>
 <div class="col-last odd-row-color">
 <div class="block">Teleports this entity to the given location.</div>
 </div>
-<div class="col-first even-row-color"><code>boolean</code></div>
-<div class="col-second even-row-color"><span class="type-name-label">Entity.</span><code><a href="../entity/Entity.html#teleport(org.bukkit.Location,org.bukkit.event.player.PlayerTeleportEvent.TeleportCause)" class="member-name-link">teleport</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;location,
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../event/player/PlayerTeleportEvent.TeleportCause.html" title="enum class in org.bukkit.event.player">PlayerTeleportEvent.TeleportCause</a>&nbsp;cause)</code></div>
+<div class="col-first even-row-color"><code>default boolean</code></div>
+<div class="col-second even-row-color"><span class="type-name-label">Entity.</span><code><a href="../entity/Entity.html#teleport(org.bukkit.Location,io.papermc.paper.entity.TeleportFlag...)" class="member-name-link">teleport</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;location,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../io/papermc/paper/entity/TeleportFlag.html" title="interface in io.papermc.paper.entity">TeleportFlag</a> <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> ...&nbsp;teleportFlags)</code></div>
 <div class="col-last even-row-color">
 <div class="block">Teleports this entity to the given location.</div>
 </div>
 <div class="col-first odd-row-color"><code>boolean</code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">Entity.</span><code><a href="../entity/Entity.html#teleport(org.bukkit.Location,org.bukkit.event.player.PlayerTeleportEvent.TeleportCause,io.papermc.paper.entity.TeleportFlag...)" class="member-name-link">teleport</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;location,
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../event/player/PlayerTeleportEvent.TeleportCause.html" title="enum class in org.bukkit.event.player">PlayerTeleportEvent.TeleportCause</a>&nbsp;cause,
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../io/papermc/paper/entity/TeleportFlag.html" title="interface in io.papermc.paper.entity">TeleportFlag</a> <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> ...&nbsp;teleportFlags)</code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">Entity.</span><code><a href="../entity/Entity.html#teleport(org.bukkit.Location,org.bukkit.event.player.PlayerTeleportEvent.TeleportCause)" class="member-name-link">teleport</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;location,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../event/player/PlayerTeleportEvent.TeleportCause.html" title="enum class in org.bukkit.event.player">PlayerTeleportEvent.TeleportCause</a>&nbsp;cause)</code></div>
 <div class="col-last odd-row-color">
 <div class="block">Teleports this entity to the given location.</div>
 </div>
-<div class="col-first even-row-color"><code>default <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/concurrent/CompletableFuture.html" title="class or interface in java.util.concurrent" class="external-link">CompletableFuture</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html" title="class or interface in java.lang" class="external-link">Boolean</a>&gt;</code></div>
-<div class="col-second even-row-color"><span class="type-name-label">Entity.</span><code><a href="../entity/Entity.html#teleportAsync(org.bukkit.Location)" class="member-name-link">teleportAsync</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;loc)</code></div>
+<div class="col-first even-row-color"><code>boolean</code></div>
+<div class="col-second even-row-color"><span class="type-name-label">Entity.</span><code><a href="../entity/Entity.html#teleport(org.bukkit.Location,org.bukkit.event.player.PlayerTeleportEvent.TeleportCause,io.papermc.paper.entity.TeleportFlag...)" class="member-name-link">teleport</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;location,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../event/player/PlayerTeleportEvent.TeleportCause.html" title="enum class in org.bukkit.event.player">PlayerTeleportEvent.TeleportCause</a>&nbsp;cause,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../io/papermc/paper/entity/TeleportFlag.html" title="interface in io.papermc.paper.entity">TeleportFlag</a> <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> ...&nbsp;teleportFlags)</code></div>
 <div class="col-last even-row-color">
-<div class="block">Loads/Generates(in 1.13+) the Chunk asynchronously, and then teleports the entity when the chunk is ready.</div>
+<div class="block">Teleports this entity to the given location.</div>
 </div>
 <div class="col-first odd-row-color"><code>default <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/concurrent/CompletableFuture.html" title="class or interface in java.util.concurrent" class="external-link">CompletableFuture</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html" title="class or interface in java.lang" class="external-link">Boolean</a>&gt;</code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">Entity.</span><code><a href="../entity/Entity.html#teleportAsync(org.bukkit.Location,org.bukkit.event.player.PlayerTeleportEvent.TeleportCause)" class="member-name-link">teleportAsync</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;loc,
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../event/player/PlayerTeleportEvent.TeleportCause.html" title="enum class in org.bukkit.event.player">PlayerTeleportEvent.TeleportCause</a>&nbsp;cause)</code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">Entity.</span><code><a href="../entity/Entity.html#teleportAsync(org.bukkit.Location)" class="member-name-link">teleportAsync</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;loc)</code></div>
 <div class="col-last odd-row-color">
 <div class="block">Loads/Generates(in 1.13+) the Chunk asynchronously, and then teleports the entity when the chunk is ready.</div>
 </div>
-</div>
-<div class="caption"><span>Method parameters in <a href="../entity/package-summary.html">org.bukkit.entity</a> with type arguments of type <a href="../Location.html" title="class in org.bukkit">Location</a></span></div>
-<div class="summary-table three-column-summary">
-<div class="table-header col-first">Modifier and Type</div>
-<div class="table-header col-second">Method</div>
-<div class="table-header col-last">Description</div>
-<div class="col-first even-row-color"><code>default void</code></div>
-<div class="col-second even-row-color"><span class="type-name-label">Player.</span><code><a href="../entity/Player.html#sendMultiBlockChange(java.util.Map)" class="member-name-link">sendMultiBlockChange</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="../Location.html" title="class in org.bukkit">Location</a>,<wbr><a href="../block/data/BlockData.html" title="interface in org.bukkit.block.data">BlockData</a>&gt;&nbsp;blockChanges)</code></div>
+<div class="col-first even-row-color"><code>default <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/concurrent/CompletableFuture.html" title="class or interface in java.util.concurrent" class="external-link">CompletableFuture</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html" title="class or interface in java.lang" class="external-link">Boolean</a>&gt;</code></div>
+<div class="col-second even-row-color"><span class="type-name-label">Entity.</span><code><a href="../entity/Entity.html#teleportAsync(org.bukkit.Location,org.bukkit.event.player.PlayerTeleportEvent.TeleportCause)" class="member-name-link">teleportAsync</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;loc,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../event/player/PlayerTeleportEvent.TeleportCause.html" title="enum class in org.bukkit.event.player">PlayerTeleportEvent.TeleportCause</a>&nbsp;cause)</code></div>
 <div class="col-last even-row-color">
-<div class="block">Send multiple block changes.</div>
-</div>
-<div class="col-first odd-row-color"><code>void</code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">Player.</span><code><a href="../entity/Player.html#sendMultiBlockChange(java.util.Map,boolean)" class="member-name-link">sendMultiBlockChange</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="../Location.html" title="class in org.bukkit">Location</a>,<wbr><a href="../block/data/BlockData.html" title="interface in org.bukkit.block.data">BlockData</a>&gt;&nbsp;blockChanges,
- boolean&nbsp;suppressLightUpdates)</code></div>
-<div class="col-last odd-row-color">
-<div class="block">Send multiple block changes.</div>
+<div class="block">Loads/Generates(in 1.13+) the Chunk asynchronously, and then teleports the entity when the chunk is ready.</div>
 </div>
 </div>
 </section>
@@ -2993,7 +2983,7 @@ loadScripts(document, 'script');</script>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;respawnLocation,
  boolean&nbsp;isBedSpawn,
  boolean&nbsp;isAnchorSpawn,
- <a href="https://guava.dev/releases/31.0.1-jre/api/docs/com/google/common/collect/ImmutableSet.Builder.html" title="class or interface in com.google.common.collect" class="external-link">ImmutableSet.Builder</a>&lt;<a href="../event/player/PlayerRespawnEvent.RespawnFlag.html" title="enum class in org.bukkit.event.player">PlayerRespawnEvent.RespawnFlag</a>&gt;&nbsp;respawnFlags)</code></div>
+ <a href="https://guava.dev/releases/31.1-jre/api/docs/com/google/common/collect/ImmutableSet.Builder.html" title="class or interface in com.google.common.collect" class="external-link">ImmutableSet.Builder</a>&lt;<a href="../event/player/PlayerRespawnEvent.RespawnFlag.html" title="enum class in org.bukkit.event.player">PlayerRespawnEvent.RespawnFlag</a>&gt;&nbsp;respawnFlags)</code></div>
 <div class="col-last odd-row-color">&nbsp;</div>
 <div class="col-first even-row-color"><code>&nbsp;</code></div>
 <div class="col-second even-row-color"><code><a href="../event/player/PlayerTeleportEvent.html#%3Cinit%3E(org.bukkit.entity.Player,org.bukkit.Location,org.bukkit.Location)" class="member-name-link">PlayerTeleportEvent</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../entity/Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;player,
