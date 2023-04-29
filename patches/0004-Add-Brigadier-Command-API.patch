@@ -5,30 +5,78 @@ Subject: [PATCH] Add Brigadier Command API
 
 
 diff --git a/build.gradle.kts b/build.gradle.kts
-index cad12a2632b9ebb569280441c42869685db1f31a..86bc2d5e3718c8188f773fdaabfcd211decdc277 100644
+index 279a666e8ea2c07f41ee3f28b768e95dca5f0a10..b9688f7eefdb0f7e6e121479e0554dd0d18c0acb 100644
 --- a/build.gradle.kts
 +++ b/build.gradle.kts
-@@ -46,6 +46,11 @@ dependencies {
+@@ -46,6 +46,7 @@ dependencies {
      implementation("org.ow2.asm:asm:9.4")
      implementation("org.ow2.asm:asm-commons:9.4")
      // Paper end
-+    // Daydream start - Add Brigadier Command API
-+    api("io.papermc.paper:paper-mojangapi:1.19.4-R0.1-SNAPSHOT") {
-+        exclude("io.papermc.paper", "paper-api")
-+    }
-+    // Daydream end - Add Brigadier Command API
++    api("com.mojang:brigadier:1.0.18") // Daydream - Add Brigadier Command API
  
      api("org.apache.maven:maven-resolver-provider:3.8.5") // Paper, expose
      compileOnly("org.apache.maven.resolver:maven-resolver-connector-basic:1.7.3")
+diff --git a/src/main/java/io/papermc/paper/command/brigadier/CommandSourceStack.java b/src/main/java/io/papermc/paper/command/brigadier/CommandSourceStack.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..3a1ac3bd7d7e30105cf9eb4c7ccfe20bc31afdb1
+--- /dev/null
++++ b/src/main/java/io/papermc/paper/command/brigadier/CommandSourceStack.java
+@@ -0,0 +1,47 @@
++package io.papermc.paper.command.brigadier;
++
++import org.bukkit.Location;
++import org.bukkit.World;
++import org.bukkit.command.CommandSender;
++import org.bukkit.entity.Entity;
++import org.jetbrains.annotations.ApiStatus;
++import org.jetbrains.annotations.NotNull;
++import org.jetbrains.annotations.Nullable;
++
++/**
++ * Represents a vanilla command source stack which is used
++ * for command execution.
++ *
++ * @see <a href="https://github.com/PaperMC/Paper/pull/8235">from Origianl PR</a>
++ */
++public interface CommandSourceStack {
++
++    /**
++     * Gets the bukkit entity running this command.
++     * @return bukkit entity, null if not present
++     */
++    @Nullable
++    Entity getBukkitEntity();
++
++    /**
++     * Gets the world that this command is being executed in.
++     * @return world
++     */
++    @Nullable
++    World getBukkitWorld();
++
++    /**
++     * Gets the location that this command is being executed in.
++     * @return location
++     */
++    @Nullable
++    Location getBukkitLocation();
++
++    /**
++     * Gets the sender representing this source stack.
++     * @return source stack sender
++     */
++    @NotNull
++    CommandSender getBukkitSender();
++
++}
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/AbstractCommand.java b/src/main/java/moe/caramel/daydream/brigadier/AbstractCommand.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..eb72f3fc2c8541a753021e6fc3f7228a6d28d9ed
+index 0000000000000000000000000000000000000000..9130f2a899b635800f43c7f3b416bf8d71e31c6b
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/brigadier/AbstractCommand.java
 @@ -0,0 +1,387 @@
 +package moe.caramel.daydream.brigadier;
 +
-+import com.destroystokyo.paper.brigadier.BukkitBrigadierCommandSource;
 +import com.mojang.brigadier.LiteralMessage;
 +import com.mojang.brigadier.arguments.ArgumentType;
 +import com.mojang.brigadier.builder.LiteralArgumentBuilder;
@@ -36,6 +84,7 @@ index 0000000000000000000000000000000000000000..eb72f3fc2c8541a753021e6fc3f7228a
 +import com.mojang.brigadier.suggestion.SuggestionProvider;
 +import com.mojang.brigadier.suggestion.Suggestions;
 +import com.mojang.brigadier.suggestion.SuggestionsBuilder;
++import io.papermc.paper.command.brigadier.CommandSourceStack;
 +import net.kyori.adventure.text.Component;
 +import org.jetbrains.annotations.NotNull;
 +import org.jetbrains.annotations.Nullable;
@@ -60,7 +109,7 @@ index 0000000000000000000000000000000000000000..eb72f3fc2c8541a753021e6fc3f7228a
 +     *
 +     * @param builder Make it freely using the builder.
 +     */
-+    public abstract void createCommand(@NotNull LiteralArgumentBuilder<BukkitBrigadierCommandSource> builder);
++    public abstract void createCommand(@NotNull LiteralArgumentBuilder<CommandSourceStack> builder);
 +
 +
 +    /*
@@ -208,7 +257,7 @@ index 0000000000000000000000000000000000000000..eb72f3fc2c8541a753021e6fc3f7228a
 +     * @return A literal argument
 +     */
 +    @NotNull
-+    protected LiteralArgumentBuilder<BukkitBrigadierCommandSource> literal(@NotNull String literal) {
++    protected LiteralArgumentBuilder<CommandSourceStack> literal(@NotNull String literal) {
 +        return LiteralArgumentBuilder.literal(literal);
 +    }
 +
@@ -221,7 +270,7 @@ index 0000000000000000000000000000000000000000..eb72f3fc2c8541a753021e6fc3f7228a
 +     * @return A required argument for the type
 +     */
 +    @NotNull
-+    protected <T> RequiredArgumentBuilder<BukkitBrigadierCommandSource, T> argument(@NotNull String name, @NotNull ArgumentType<T> type) {
++    protected <T> RequiredArgumentBuilder<CommandSourceStack, T> argument(@NotNull String name, @NotNull ArgumentType<T> type) {
 +        return RequiredArgumentBuilder.argument(name, type);
 +    }
 +
@@ -232,7 +281,7 @@ index 0000000000000000000000000000000000000000..eb72f3fc2c8541a753021e6fc3f7228a
 +     * @return The suggestion provider of the inputted strings
 +     */
 +    @NotNull
-+    protected SuggestionProvider<BukkitBrigadierCommandSource> suggest(@NotNull String... strings) {
++    protected SuggestionProvider<CommandSourceStack> suggest(@NotNull String... strings) {
 +        return this.suggest(Arrays.asList(strings));
 +    }
 +
@@ -246,7 +295,7 @@ index 0000000000000000000000000000000000000000..eb72f3fc2c8541a753021e6fc3f7228a
 +     * @return The suggestion provider of the inputted strings
 +     */
 +    @NotNull
-+    protected SuggestionProvider<BukkitBrigadierCommandSource> multipleSuggest(@NotNull String... strings) {
++    protected SuggestionProvider<CommandSourceStack> multipleSuggest(@NotNull String... strings) {
 +        return this.multipleSuggest(Arrays.asList(strings));
 +    }
 +
@@ -257,7 +306,7 @@ index 0000000000000000000000000000000000000000..eb72f3fc2c8541a753021e6fc3f7228a
 +     * @return The suggestion provider of the inputted strings
 +     */
 +    @NotNull
-+    protected SuggestionProvider<BukkitBrigadierCommandSource> mutableSuggestArray(@NotNull Supplier<String[]> strings) {
++    protected SuggestionProvider<CommandSourceStack> mutableSuggestArray(@NotNull Supplier<String[]> strings) {
 +        return suggest(strings.get());
 +    }
 +
@@ -271,7 +320,7 @@ index 0000000000000000000000000000000000000000..eb72f3fc2c8541a753021e6fc3f7228a
 +     * @return The suggestion provider of the inputted strings
 +     */
 +    @NotNull
-+    protected SuggestionProvider<BukkitBrigadierCommandSource> mutableMultipleSuggestArray(@NotNull Supplier<String[]> strings) {
++    protected SuggestionProvider<CommandSourceStack> mutableMultipleSuggestArray(@NotNull Supplier<String[]> strings) {
 +        return this.multipleSuggest(Arrays.asList(strings.get()));
 +    }
 +
@@ -282,7 +331,7 @@ index 0000000000000000000000000000000000000000..eb72f3fc2c8541a753021e6fc3f7228a
 +     * @return The SuggestionProvider of the inputted string collection
 +     */
 +    @NotNull
-+    protected SuggestionProvider<BukkitBrigadierCommandSource> suggest(@NotNull Collection<String> strings) {
++    protected SuggestionProvider<CommandSourceStack> suggest(@NotNull Collection<String> strings) {
 +        return (c, b) -> suggestMatching(b, strings, false);
 +    }
 +
@@ -296,7 +345,7 @@ index 0000000000000000000000000000000000000000..eb72f3fc2c8541a753021e6fc3f7228a
 +     * @return The SuggestionProvider of the inputted string collection
 +     */
 +    @NotNull
-+    protected SuggestionProvider<BukkitBrigadierCommandSource> multipleSuggest(@NotNull Collection<String> strings) {
++    protected SuggestionProvider<CommandSourceStack> multipleSuggest(@NotNull Collection<String> strings) {
 +        return (c, b) -> suggestMatching(b, strings, true);
 +    }
 +
@@ -307,7 +356,7 @@ index 0000000000000000000000000000000000000000..eb72f3fc2c8541a753021e6fc3f7228a
 +     * @return The SuggestionProvider of the inputted string collection
 +     */
 +    @NotNull
-+    protected SuggestionProvider<BukkitBrigadierCommandSource> mutableSuggestCollection(@NotNull Function<Collection<String>, Collection<String>> strings) {
++    protected SuggestionProvider<CommandSourceStack> mutableSuggestCollection(@NotNull Function<Collection<String>, Collection<String>> strings) {
 +        return (c, b) -> suggestMatching(b, strings.apply(new ArrayList<>()), false);
 +    }
 +
@@ -321,7 +370,7 @@ index 0000000000000000000000000000000000000000..eb72f3fc2c8541a753021e6fc3f7228a
 +     * @return The SuggestionProvider of the inputted string collection
 +     */
 +    @NotNull
-+    protected SuggestionProvider<BukkitBrigadierCommandSource> mutableMultipleSuggestCollection(@NotNull Function<Collection<String>, Collection<String>> strings) {
++    protected SuggestionProvider<CommandSourceStack> mutableMultipleSuggestCollection(@NotNull Function<Collection<String>, Collection<String>> strings) {
 +        return (c, b) -> suggestMatching(b, strings.apply(new ArrayList<>()), true);
 +    }
 +
@@ -332,7 +381,7 @@ index 0000000000000000000000000000000000000000..eb72f3fc2c8541a753021e6fc3f7228a
 +     * @return The suggestion provider for the inputted map
 +     */
 +    @NotNull
-+    protected SuggestionProvider<BukkitBrigadierCommandSource> suggest(@NotNull Map<String, String> suggestions) {
++    protected SuggestionProvider<CommandSourceStack> suggest(@NotNull Map<String, String> suggestions) {
 +        return (c, b) -> suggestMatching(b, suggestions, false);
 +    }
 +
@@ -346,7 +395,7 @@ index 0000000000000000000000000000000000000000..eb72f3fc2c8541a753021e6fc3f7228a
 +     * @return The suggestion provider for the inputted map
 +     */
 +    @NotNull
-+    protected SuggestionProvider<BukkitBrigadierCommandSource> multipleSuggest(@NotNull Map<String, String> suggestions) {
++    protected SuggestionProvider<CommandSourceStack> multipleSuggest(@NotNull Map<String, String> suggestions) {
 +        return (c, b) -> suggestMatching(b, suggestions, true);
 +    }
 +
@@ -357,7 +406,7 @@ index 0000000000000000000000000000000000000000..eb72f3fc2c8541a753021e6fc3f7228a
 +     * @return The suggestion provider for the inputted map
 +     */
 +    @NotNull
-+    protected SuggestionProvider<BukkitBrigadierCommandSource> mutableSuggestMap(@NotNull Function<Map<String, String>, Map<String, String>> suggestions) {
++    protected SuggestionProvider<CommandSourceStack> mutableSuggestMap(@NotNull Function<Map<String, String>, Map<String, String>> suggestions) {
 +        return (c, b) -> suggestMatching(b, suggestions.apply(new HashMap<>()), false);
 +    }
 +
@@ -371,7 +420,7 @@ index 0000000000000000000000000000000000000000..eb72f3fc2c8541a753021e6fc3f7228a
 +     * @return The suggestion provider for the inputted map
 +     */
 +    @NotNull
-+    protected SuggestionProvider<BukkitBrigadierCommandSource> mutableMultipleSuggestMap(@NotNull Function<Map<String, String>, Map<String, String>> suggestions) {
++    protected SuggestionProvider<CommandSourceStack> mutableMultipleSuggestMap(@NotNull Function<Map<String, String>, Map<String, String>> suggestions) {
 +        return (c, b) -> suggestMatching(b, suggestions.apply(new HashMap<>()), true);
 +    }
 +
@@ -415,15 +464,15 @@ index 0000000000000000000000000000000000000000..eb72f3fc2c8541a753021e6fc3f7228a
 +}
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/Arguments.java b/src/main/java/moe/caramel/daydream/brigadier/Arguments.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..633ee7d5818a927177fff1f73743fc1ea57b32ab
+index 0000000000000000000000000000000000000000..4cec89cc827054f65a850af5b707a493e63da586
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/brigadier/Arguments.java
 @@ -0,0 +1,303 @@
 +package moe.caramel.daydream.brigadier;
 +
 +import static moe.caramel.daydream.brigadier.BrigadierService.SERVICE;
-+import com.destroystokyo.paper.brigadier.BukkitBrigadierCommandSource;
 +import com.mojang.authlib.GameProfile;
++import io.papermc.paper.command.brigadier.CommandSourceStack;
 +import moe.caramel.daydream.brigadier.argument.*;
 +import moe.caramel.daydream.brigadier.data.*;
 +import moe.caramel.daydream.util.NumberRange;
@@ -485,7 +534,7 @@ index 0000000000000000000000000000000000000000..633ee7d5818a927177fff1f73743fc1e
 +     * Example: "0 0", "~ ~", "~1 ~-2", "^ ^", "^-1 ^0"
 +     */
 +    @NotNull
-+    public static final SimpleArgument<Position<BukkitBrigadierCommandSource>> COLUMN_POS = SERVICE.getArgument("column_pos");
++    public static final SimpleArgument<Position<CommandSourceStack>> COLUMN_POS = SERVICE.getArgument("column_pos");
 +
 +    /**
 +     * Example: "0 0 0", "~ ~ ~", "^ ^ ^", "^1 ^ ^-5", "0.1 -0.5 .9", "~0.5 ~1 ~-5"
@@ -591,7 +640,7 @@ index 0000000000000000000000000000000000000000..633ee7d5818a927177fff1f73743fc1e
 +     * Example: "0 0", "~ ~", "~-5 ~5"
 +     */
 +    @NotNull
-+    public static final SimpleArgument<Position<BukkitBrigadierCommandSource>> ROTATION = SERVICE.getArgument("rotation");
++    public static final SimpleArgument<Position<CommandSourceStack>> ROTATION = SERVICE.getArgument("rotation");
 +
 +    /**
 +     * Example: "sidebar", "sidebar.team.light_purple"
@@ -834,37 +883,37 @@ index 0000000000000000000000000000000000000000..ad361b4b2f019e02c35ae92f06e8cb6e
 +}
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/argument/BlockPosArgument.java b/src/main/java/moe/caramel/daydream/brigadier/argument/BlockPosArgument.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..e564721974edfe3b7f34012cbd921e8205e191f2
+index 0000000000000000000000000000000000000000..ae671d0a6310fae3128624f5dd40c6990d5736f1
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/brigadier/argument/BlockPosArgument.java
 @@ -0,0 +1,16 @@
 +package moe.caramel.daydream.brigadier.argument;
 +
-+import com.destroystokyo.paper.brigadier.BukkitBrigadierCommandSource;
 +import com.mojang.brigadier.context.CommandContext;
 +import com.mojang.brigadier.exceptions.CommandSyntaxException;
++import io.papermc.paper.command.brigadier.CommandSourceStack;
 +import org.bukkit.block.Block;
 +import org.jetbrains.annotations.NotNull;
 +
 +public interface BlockPosArgument extends ArgumentInf {
 +
 +    @NotNull
-+    Block getLoadedBlockPos(final @NotNull CommandContext<? extends BukkitBrigadierCommandSource> context, @NotNull String name) throws CommandSyntaxException;
++    Block getLoadedBlockPos(final @NotNull CommandContext<? extends CommandSourceStack> context, @NotNull String name) throws CommandSyntaxException;
 +
 +    @NotNull
-+    Block getSpawnablePos(final @NotNull CommandContext<? extends BukkitBrigadierCommandSource> context, @NotNull String name) throws CommandSyntaxException;
++    Block getSpawnablePos(final @NotNull CommandContext<? extends CommandSourceStack> context, @NotNull String name) throws CommandSyntaxException;
 +}
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/argument/BlockStateArgument.java b/src/main/java/moe/caramel/daydream/brigadier/argument/BlockStateArgument.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..07ab6e0518d66229e88b8b516daa30e6de68d124
+index 0000000000000000000000000000000000000000..dca35daeb5e1e28454d436a8dfabb02e4249d22d
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/brigadier/argument/BlockStateArgument.java
 @@ -0,0 +1,22 @@
 +package moe.caramel.daydream.brigadier.argument;
 +
-+import com.destroystokyo.paper.brigadier.BukkitBrigadierCommandSource;
 +import com.mojang.brigadier.context.CommandContext;
 +import com.mojang.brigadier.exceptions.CommandSyntaxException;
++import io.papermc.paper.command.brigadier.CommandSourceStack;
 +import org.bukkit.Location;
 +import org.bukkit.World;
 +import org.bukkit.block.Block;
@@ -875,12 +924,12 @@ index 0000000000000000000000000000000000000000..07ab6e0518d66229e88b8b516daa30e6
 +public interface BlockStateArgument extends ArgumentInf {
 +
 +    @NotNull
-+    BlockData getState(final @NotNull CommandContext<? extends BukkitBrigadierCommandSource> context, @NotNull String name) throws CommandSyntaxException;
++    BlockData getState(final @NotNull CommandContext<? extends CommandSourceStack> context, @NotNull String name) throws CommandSyntaxException;
 +
-+    boolean place(final @NotNull CommandContext<? extends BukkitBrigadierCommandSource> context, @NotNull String name, @NotNull World world, @NotNull Location location, int flags);
++    boolean place(final @NotNull CommandContext<? extends CommandSourceStack> context, @NotNull String name, @NotNull World world, @NotNull Location location, int flags);
 +
 +    @NotNull
-+    Predicate<Block> getPredicate(final @NotNull CommandContext<? extends BukkitBrigadierCommandSource> context, @NotNull String name) throws CommandSyntaxException;
++    Predicate<Block> getPredicate(final @NotNull CommandContext<? extends CommandSourceStack> context, @NotNull String name) throws CommandSyntaxException;
 +}
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/argument/EntityAnchorArgument.java b/src/main/java/moe/caramel/daydream/brigadier/argument/EntityAnchorArgument.java
 new file mode 100644
@@ -900,20 +949,19 @@ index 0000000000000000000000000000000000000000..cfd681a43f4b4f10d5c55e4c0a2fe1bb
 +}
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/argument/EntityArgument.java b/src/main/java/moe/caramel/daydream/brigadier/argument/EntityArgument.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..1f343e849551acae44fbd1b6922ec65a72834935
+index 0000000000000000000000000000000000000000..dfcf872de75411be1a2fedaf5ca0c03bd78f492f
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/brigadier/argument/EntityArgument.java
-@@ -0,0 +1,32 @@
+@@ -0,0 +1,31 @@
 +package moe.caramel.daydream.brigadier.argument;
 +
-+import com.destroystokyo.paper.brigadier.BukkitBrigadierCommandSource;
 +import com.mojang.brigadier.arguments.ArgumentType;
 +import com.mojang.brigadier.context.CommandContext;
 +import com.mojang.brigadier.exceptions.CommandSyntaxException;
++import io.papermc.paper.command.brigadier.CommandSourceStack;
 +import org.bukkit.entity.Entity;
 +import org.bukkit.entity.Player;
 +import org.jetbrains.annotations.NotNull;
-+
 +import java.util.Collection;
 +
 +public interface EntityArgument {
@@ -926,51 +974,51 @@ index 0000000000000000000000000000000000000000..1f343e849551acae44fbd1b6922ec65a
 +
 +    @NotNull ArgumentType<?> players();
 +
-+    @NotNull Entity getEntity(final @NotNull CommandContext<? extends BukkitBrigadierCommandSource> context, @NotNull String name) throws CommandSyntaxException;
++    @NotNull Entity getEntity(final @NotNull CommandContext<? extends CommandSourceStack> context, @NotNull String name) throws CommandSyntaxException;
 +
-+    @NotNull Collection<? extends Entity> getEntities(final @NotNull CommandContext<? extends BukkitBrigadierCommandSource> context, @NotNull String name) throws CommandSyntaxException;
++    @NotNull Collection<? extends Entity> getEntities(final @NotNull CommandContext<? extends CommandSourceStack> context, @NotNull String name) throws CommandSyntaxException;
 +
-+    @NotNull Collection<Player> getOptionalPlayers(final @NotNull CommandContext<? extends BukkitBrigadierCommandSource> context, @NotNull String name) throws CommandSyntaxException;
++    @NotNull Collection<Player> getOptionalPlayers(final @NotNull CommandContext<? extends CommandSourceStack> context, @NotNull String name) throws CommandSyntaxException;
 +
-+    @NotNull Player getPlayer(final @NotNull CommandContext<? extends BukkitBrigadierCommandSource> context, @NotNull String name) throws CommandSyntaxException;
++    @NotNull Player getPlayer(final @NotNull CommandContext<? extends CommandSourceStack> context, @NotNull String name) throws CommandSyntaxException;
 +
-+    @NotNull Collection<Player> getPlayers(final @NotNull CommandContext<? extends BukkitBrigadierCommandSource> context, @NotNull String name) throws CommandSyntaxException;
++    @NotNull Collection<Player> getPlayers(final @NotNull CommandContext<? extends CommandSourceStack> context, @NotNull String name) throws CommandSyntaxException;
 +}
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/argument/ItemArgument.java b/src/main/java/moe/caramel/daydream/brigadier/argument/ItemArgument.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..201ff85ff4fac3531a5c3a37336ff2922fc336e0
+index 0000000000000000000000000000000000000000..1bcb7d8901140e9e0f9516c2fcd156da1d798037
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/brigadier/argument/ItemArgument.java
 @@ -0,0 +1,18 @@
 +package moe.caramel.daydream.brigadier.argument;
 +
-+import com.destroystokyo.paper.brigadier.BukkitBrigadierCommandSource;
 +import com.mojang.brigadier.context.CommandContext;
 +import com.mojang.brigadier.exceptions.CommandSyntaxException;
++import io.papermc.paper.command.brigadier.CommandSourceStack;
 +import org.bukkit.inventory.ItemStack;
 +import org.jetbrains.annotations.NotNull;
 +
 +public interface ItemArgument extends ArgumentInf {
 +
 +    @NotNull
-+    default ItemStack getItem(final @NotNull CommandContext<? extends BukkitBrigadierCommandSource> context, @NotNull String name) throws CommandSyntaxException {
++    default ItemStack getItem(final @NotNull CommandContext<? extends CommandSourceStack> context, @NotNull String name) throws CommandSyntaxException {
 +        return this.createItemStack(context, name, 1, false);
 +    }
 +
 +    @NotNull
-+    ItemStack createItemStack(final @NotNull CommandContext<? extends BukkitBrigadierCommandSource> context, @NotNull String name, int amount, boolean checkOverstack) throws CommandSyntaxException;
++    ItemStack createItemStack(final @NotNull CommandContext<? extends CommandSourceStack> context, @NotNull String name, int amount, boolean checkOverstack) throws CommandSyntaxException;
 +}
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/argument/MessageArgument.java b/src/main/java/moe/caramel/daydream/brigadier/argument/MessageArgument.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..5a0f6d0bad08f058335cd065184b3512cd79031d
+index 0000000000000000000000000000000000000000..5d0eb87f741f24fe9f68abe0a36d0b80f3fa7d3e
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/brigadier/argument/MessageArgument.java
 @@ -0,0 +1,20 @@
 +package moe.caramel.daydream.brigadier.argument;
 +
-+import com.destroystokyo.paper.brigadier.BukkitBrigadierCommandSource;
 +import com.mojang.brigadier.context.CommandContext;
 +import com.mojang.brigadier.exceptions.CommandSyntaxException;
++import io.papermc.paper.command.brigadier.CommandSourceStack;
 +import moe.caramel.daydream.network.chat.PlayerMessage;
 +import net.kyori.adventure.text.Component;
 +import org.bukkit.util.Consumer;
@@ -982,55 +1030,55 @@ index 0000000000000000000000000000000000000000..5a0f6d0bad08f058335cd065184b3512
 +     * 서명된 메시지와 관련된 작업을 수행합니다.
 +     */
 +    void resolveMessage(
-+        final @NotNull CommandContext<? extends BukkitBrigadierCommandSource> context,
++        final @NotNull CommandContext<? extends CommandSourceStack> context,
 +        final @NotNull String name, final @NotNull Consumer<PlayerMessage> callback
 +    ) throws CommandSyntaxException;
 +}
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/argument/ResourceLocationArgument.java b/src/main/java/moe/caramel/daydream/brigadier/argument/ResourceLocationArgument.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..e1fae34e6b176133acc81b05928c576bca5d304d
+index 0000000000000000000000000000000000000000..d15b2296a84dfbd5d757dca219b289740fe7559a
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/brigadier/argument/ResourceLocationArgument.java
 @@ -0,0 +1,26 @@
 +package moe.caramel.daydream.brigadier.argument;
 +
-+import com.destroystokyo.paper.brigadier.BukkitBrigadierCommandSource;
 +import com.mojang.brigadier.context.CommandContext;
 +import com.mojang.brigadier.exceptions.CommandSyntaxException;
++import io.papermc.paper.command.brigadier.CommandSourceStack;
 +import org.bukkit.advancement.Advancement;
 +import org.jetbrains.annotations.NotNull;
 +
 +public interface ResourceLocationArgument<T> extends SimpleArgument<T> {
 +
 +    @NotNull
-+    Advancement getAdvancement(final @NotNull CommandContext<? extends BukkitBrigadierCommandSource> context, @NotNull String name) throws CommandSyntaxException;
++    Advancement getAdvancement(final @NotNull CommandContext<? extends CommandSourceStack> context, @NotNull String name) throws CommandSyntaxException;
 +
 +    @NotNull
-+    T getRecipe(final @NotNull CommandContext<? extends BukkitBrigadierCommandSource> context, @NotNull String name) throws CommandSyntaxException;
++    T getRecipe(final @NotNull CommandContext<? extends CommandSourceStack> context, @NotNull String name) throws CommandSyntaxException;
 +
 +    /*
 +    @NotNull
-+    T getPredicate(final @NotNull CommandContext<? extends BukkitBrigadierCommandSource> context, @NotNull String name) throws CommandSyntaxException;
++    T getPredicate(final @NotNull CommandContext<? extends CommandSourceStack> context, @NotNull String name) throws CommandSyntaxException;
 +     */
 +
 +    /*
 +    @NotNull
-+    T getItemModifier(final @NotNull CommandContext<? extends BukkitBrigadierCommandSource> context, @NotNull String name) throws CommandSyntaxException;
++    T getItemModifier(final @NotNull CommandContext<? extends CommandSourceStack> context, @NotNull String name) throws CommandSyntaxException;
 +    */
 +}
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/argument/ScoreHolderArgument.java b/src/main/java/moe/caramel/daydream/brigadier/argument/ScoreHolderArgument.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..336e167919e9680dd1433e28431fb313e23dca77
+index 0000000000000000000000000000000000000000..87556d48b160969b05a75166a24859463e4032ed
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/brigadier/argument/ScoreHolderArgument.java
 @@ -0,0 +1,27 @@
 +package moe.caramel.daydream.brigadier.argument;
 +
-+import com.destroystokyo.paper.brigadier.BukkitBrigadierCommandSource;
 +import com.mojang.brigadier.arguments.ArgumentType;
 +import com.mojang.brigadier.context.CommandContext;
 +import com.mojang.brigadier.exceptions.CommandSyntaxException;
 +import com.mojang.brigadier.suggestion.SuggestionProvider;
++import io.papermc.paper.command.brigadier.CommandSourceStack;
 +import org.jetbrains.annotations.NotNull;
 +import java.util.Collection;
 +import java.util.function.Supplier;
@@ -1041,33 +1089,33 @@ index 0000000000000000000000000000000000000000..336e167919e9680dd1433e28431fb313
 +
 +    @NotNull ArgumentType<?> getHolders();
 +
-+    @NotNull String getName(final @NotNull CommandContext<? extends BukkitBrigadierCommandSource> context, @NotNull String name) throws CommandSyntaxException;
++    @NotNull String getName(final @NotNull CommandContext<? extends CommandSourceStack> context, @NotNull String name) throws CommandSyntaxException;
 +
-+    @NotNull Collection<String> getNames(final @NotNull CommandContext<? extends BukkitBrigadierCommandSource> context, @NotNull String name) throws CommandSyntaxException;
++    @NotNull Collection<String> getNames(final @NotNull CommandContext<? extends CommandSourceStack> context, @NotNull String name) throws CommandSyntaxException;
 +
-+    @NotNull Collection<String> getNamesWithDefaultWildcard(final @NotNull CommandContext<? extends BukkitBrigadierCommandSource> context, @NotNull String name) throws CommandSyntaxException;
++    @NotNull Collection<String> getNamesWithDefaultWildcard(final @NotNull CommandContext<? extends CommandSourceStack> context, @NotNull String name) throws CommandSyntaxException;
 +
-+    @NotNull Collection<String> getNamesSupplier(final @NotNull CommandContext<? extends BukkitBrigadierCommandSource> context, @NotNull String name, @NotNull Supplier<Collection<String>> players) throws CommandSyntaxException;
++    @NotNull Collection<String> getNamesSupplier(final @NotNull CommandContext<? extends CommandSourceStack> context, @NotNull String name, @NotNull Supplier<Collection<String>> players) throws CommandSyntaxException;
 +
-+    @NotNull SuggestionProvider<BukkitBrigadierCommandSource> getSuggestion();
++    @NotNull SuggestionProvider<CommandSourceStack> getSuggestion();
 +}
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/argument/SimpleArgument.java b/src/main/java/moe/caramel/daydream/brigadier/argument/SimpleArgument.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..378810282864c9a3ceb7ecb72cad20f0e7ff2e3e
+index 0000000000000000000000000000000000000000..fdd3886e959230891af306c8e8ea2b623352da4a
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/brigadier/argument/SimpleArgument.java
 @@ -0,0 +1,12 @@
 +package moe.caramel.daydream.brigadier.argument;
 +
-+import com.destroystokyo.paper.brigadier.BukkitBrigadierCommandSource;
 +import com.mojang.brigadier.context.CommandContext;
 +import com.mojang.brigadier.exceptions.CommandSyntaxException;
++import io.papermc.paper.command.brigadier.CommandSourceStack;
 +import org.jetbrains.annotations.NotNull;
 +
 +public interface SimpleArgument<T> extends ArgumentInf {
 +
 +    @NotNull
-+    T getData(final @NotNull CommandContext<? extends BukkitBrigadierCommandSource> context, @NotNull String name) throws CommandSyntaxException;
++    T getData(final @NotNull CommandContext<? extends CommandSourceStack> context, @NotNull String name) throws CommandSyntaxException;
 +}
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/argument/SimpleArgumentSuggestion.java b/src/main/java/moe/caramel/daydream/brigadier/argument/SimpleArgumentSuggestion.java
 new file mode 100644
@@ -1103,18 +1151,18 @@ index 0000000000000000000000000000000000000000..3250e6e5a53bf54d56380be56217b9df
 +}
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/argument/VecArgument.java b/src/main/java/moe/caramel/daydream/brigadier/argument/VecArgument.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..30ad53e262f8f4bc9746edcab9bf79f475bb29bc
+index 0000000000000000000000000000000000000000..a594e1bc2a493a17996bb70bfaaba3163ee6f957
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/brigadier/argument/VecArgument.java
 @@ -0,0 +1,11 @@
 +package moe.caramel.daydream.brigadier.argument;
 +
-+import com.destroystokyo.paper.brigadier.BukkitBrigadierCommandSource;
 +import com.mojang.brigadier.arguments.ArgumentType;
++import io.papermc.paper.command.brigadier.CommandSourceStack;
 +import moe.caramel.daydream.brigadier.data.Position;
 +import org.jetbrains.annotations.NotNull;
 +
-+public interface VecArgument extends SimpleArgument<Position<BukkitBrigadierCommandSource>> {
++public interface VecArgument extends SimpleArgument<Position<CommandSourceStack>> {
 +
 +    @NotNull ArgumentType<?> get(boolean centerIntegers);
 +}
@@ -1135,18 +1183,18 @@ index 0000000000000000000000000000000000000000..2b11e6a5c9a841dabd5d91632a0945a1
 +}
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/data/Position.java b/src/main/java/moe/caramel/daydream/brigadier/data/Position.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..1711a2159548ea1686a02a7225a6145d9f0fb76c
+index 0000000000000000000000000000000000000000..911385fe601788cbc518d3197fba2c1c17f8d655
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/brigadier/data/Position.java
 @@ -0,0 +1,23 @@
 +package moe.caramel.daydream.brigadier.data;
 +
-+import com.destroystokyo.paper.brigadier.BukkitBrigadierCommandSource;
++import io.papermc.paper.command.brigadier.CommandSourceStack;
 +import org.bukkit.Location;
 +import org.bukkit.util.Vector;
 +import org.jetbrains.annotations.NotNull;
 +
-+public interface Position<C extends BukkitBrigadierCommandSource> {
++public interface Position<C extends CommandSourceStack> {
 +
 +    @NotNull Vector getPositionVector(@NotNull C source);
 +
@@ -1164,20 +1212,20 @@ index 0000000000000000000000000000000000000000..1711a2159548ea1686a02a7225a6145d
 +}
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/suggestion/SimpleSuggestion.java b/src/main/java/moe/caramel/daydream/brigadier/suggestion/SimpleSuggestion.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..01496ae337322cd91fe42444554a2ca36068e145
+index 0000000000000000000000000000000000000000..ba04177bbccb9f65cb1eeb22f0f92deab7d2c392
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/brigadier/suggestion/SimpleSuggestion.java
 @@ -0,0 +1,11 @@
 +package moe.caramel.daydream.brigadier.suggestion;
 +
-+import com.destroystokyo.paper.brigadier.BukkitBrigadierCommandSource;
 +import com.mojang.brigadier.suggestion.SuggestionProvider;
++import io.papermc.paper.command.brigadier.CommandSourceStack;
 +import org.jetbrains.annotations.NotNull;
 +
 +public interface SimpleSuggestion {
 +
 +    @NotNull
-+    SuggestionProvider<BukkitBrigadierCommandSource> getSuggestion();
++    SuggestionProvider<CommandSourceStack> getSuggestion();
 +}
 diff --git a/src/main/java/moe/caramel/daydream/network/chat/PlayerMessage.java b/src/main/java/moe/caramel/daydream/network/chat/PlayerMessage.java
 new file mode 100644
@@ -1312,7 +1360,7 @@ index 0000000000000000000000000000000000000000..facc2182e0920c9b71e44e8686f97b2a
 +    }
 +}
 diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
-index ac9b690fcccb60b587e5345f12f1383afd0a73a1..4752860cd9b5dc4caa4072852d5b3ddc7ee790c8 100644
+index f1af93319d6b29d7bc709e7e273e8abe26c7b4af..adb0b509f1b7daaa257e14d988463fb030208dab 100644
 --- a/src/main/java/org/bukkit/Bukkit.java
 +++ b/src/main/java/org/bukkit/Bukkit.java
 @@ -959,6 +959,42 @@ public final class Bukkit {
@@ -1359,7 +1407,7 @@ index ac9b690fcccb60b587e5345f12f1383afd0a73a1..4752860cd9b5dc4caa4072852d5b3ddc
       * Writes loaded players to disk.
       */
 diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
-index ed3289f137d76212f37100279d364def2e3dd3b8..a56148f7c69b16d643b93c127314c3246fe11e44 100644
+index 7d48ae96acebda8484a76645cfb34e2dbe0afb03..1e20f73338ecdd1842764ca3f8f9f13454e205fd 100644
 --- a/src/main/java/org/bukkit/Server.java
 +++ b/src/main/java/org/bukkit/Server.java
 @@ -803,6 +803,36 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
@@ -1400,7 +1448,7 @@ index ed3289f137d76212f37100279d364def2e3dd3b8..a56148f7c69b16d643b93c127314c324
       * Writes loaded players to disk.
       */
 diff --git a/src/main/java/org/bukkit/command/Command.java b/src/main/java/org/bukkit/command/Command.java
-index 608b541aef01f33891a492fff5b8400496832c3a..0b830e71a40e52c455e6bb64ac0ccd7ca653b85b 100644
+index b791358f90fe92bc2264d9a26492245763813af3..7ea2656138d2797f96954c58b9d5a2651a5db92d 100644
 --- a/src/main/java/org/bukkit/command/Command.java
 +++ b/src/main/java/org/bukkit/command/Command.java
 @@ -35,6 +35,10 @@ public abstract class Command {
@@ -1506,7 +1554,7 @@ index e4f8a0d14ae66468bbb0a5d6bf9c1ee417dc866c..5342f39f827fe5bf18fdef9469cd5649
      public UnknownCommandEvent(@NotNull final CommandSender sender, @NotNull final String commandLine, @Nullable final Component message) {
          super(false);
 diff --git a/src/main/java/org/bukkit/plugin/SimplePluginManager.java b/src/main/java/org/bukkit/plugin/SimplePluginManager.java
-index 2b8308989fce7f8a16907f8711b362e671fdbfb6..aa165f4ff25052f192e53bb9a43058e83efe46a1 100644
+index fc2dae69165776d08274e34a69962cc70445f411..062a3a9d701ff068bfa770c9b29d3e0d166a8e50 100644
 --- a/src/main/java/org/bukkit/plugin/SimplePluginManager.java
 +++ b/src/main/java/org/bukkit/plugin/SimplePluginManager.java
 @@ -536,6 +536,15 @@ public final class SimplePluginManager implements PluginManager {
@@ -1526,10 +1574,10 @@ index 2b8308989fce7f8a16907f8711b362e671fdbfb6..aa165f4ff25052f192e53bb9a43058e8
                  plugin.getPluginLoader().disablePlugin(plugin);
              } catch (Throwable ex) {
 diff --git a/src/main/java/org/bukkit/plugin/java/JavaPlugin.java b/src/main/java/org/bukkit/plugin/java/JavaPlugin.java
-index 6d31f3a2569ae9c522a5e6cddd38ac8f252f1bfe..44afd69c268362d1d3a61ee1a9ab1fe5240e1c5b 100644
+index f35cbf369f3d1e1c0b62e6dbc62ea65d9d6ca04e..f292b0f05ca2ae0297ed696f3fc5b39930ddd215 100644
 --- a/src/main/java/org/bukkit/plugin/java/JavaPlugin.java
 +++ b/src/main/java/org/bukkit/plugin/java/JavaPlugin.java
-@@ -350,6 +350,39 @@ public abstract class JavaPlugin extends PluginBase {
+@@ -346,6 +346,39 @@ public abstract class JavaPlugin extends PluginBase {
          }
      }
  
