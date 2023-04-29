@@ -11,7 +11,7 @@
 <link rel="stylesheet" type="text/css" href="../../../script-dir/jquery-ui.min.css" title="Style">
 <link rel="stylesheet" type="text/css" href="../../../jquery-ui.overrides.css" title="Style">
 <script type="text/javascript" src="../../../script.js"></script>
-<script type="text/javascript" src="../../../script-dir/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="../../../script-dir/jquery-3.6.1.min.js"></script>
 <script type="text/javascript" src="../../../script-dir/jquery-ui.min.js"></script>
 </head>
 <body class="class-declaration-page">
@@ -121,17 +121,29 @@ extends <a href="Entity.html" title="interface in org.bukkit.entity">Entity</a><
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Get the data for the falling block</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getDropItem()" class="member-name-link">getDropItem</a>()</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>float</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getDamagePerBlock()" class="member-name-link">getDamagePerBlock</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Get the amount of damage inflicted upon entities multiplied by the distance
+ that the block had fallen when this falling block lands on them.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getDropItem()" class="member-name-link">getDropItem</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Get if the falling block will break into an item if it cannot be placed</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Material.html" title="enum class in org.bukkit">Material</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6"><code><a href="#getMaterial()" class="member-name-link">getMaterial</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Material.html" title="enum class in org.bukkit">Material</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6"><code><a href="#getMaterial()" class="member-name-link">getMaterial</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6">
 <div class="block"><span class="deprecated-label">Deprecated.</span>
 <div class="deprecation-comment">use <a href="#getBlockData()"><code>getBlockData()</code></a></div>
 </div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>int</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getMaxDamage()" class="member-name-link">getMaxDamage</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Get the maximum amount of damage that can be inflicted upon entities when
+ this falling block lands on them.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5 method-summary-table-tab6"><code>default <a href="../Location.html" title="class in org.bukkit">Location</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5 method-summary-table-tab6"><code><a href="#getSourceLoc()" class="member-name-link">getSourceLoc</a>()</code></div>
@@ -141,14 +153,26 @@ extends <a href="Entity.html" title="interface in org.bukkit.entity">Entity</a><
 </div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#setDropItem(boolean)" class="member-name-link">setDropItem</a><wbr>(boolean&nbsp;drop)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#setDamagePerBlock(float)" class="member-name-link">setDamagePerBlock</a><wbr>(float&nbsp;damage)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Set if the falling block will break into an item if it cannot be placed</div>
+<div class="block">Set the amount of damage inflicted upon entities multiplied by the distance
+ that the block had fallen when this falling block lands on them.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#setHurtEntities(boolean)" class="member-name-link">setHurtEntities</a><wbr>(boolean&nbsp;hurtEntities)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#setDropItem(boolean)" class="member-name-link">setDropItem</a><wbr>(boolean&nbsp;drop)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Set if the falling block will break into an item if it cannot be placed</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#setHurtEntities(boolean)" class="member-name-link">setHurtEntities</a><wbr>(boolean&nbsp;hurtEntities)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Set the HurtEntities state of this block.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#setMaxDamage(int)" class="member-name-link">setMaxDamage</a><wbr>(int&nbsp;damage)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Set the maximum amount of damage that can be inflicted upon entities when
+ this falling block lands on them.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#shouldAutoExpire(boolean)" class="member-name-link">shouldAutoExpire</a><wbr>(boolean&nbsp;autoExpires)</code></div>
@@ -270,6 +294,60 @@ extends <a href="Entity.html" title="interface in org.bukkit.entity">Entity</a><
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>hurtEntities</code> - whether entities will be damaged by this block.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getDamagePerBlock()">
+<h3>getDamagePerBlock</h3>
+<div class="member-signature"><span class="return-type">float</span>&nbsp;<span class="element-name">getDamagePerBlock</span>()</div>
+<div class="block">Get the amount of damage inflicted upon entities multiplied by the distance
+ that the block had fallen when this falling block lands on them.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the damage per block</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="setDamagePerBlock(float)">
+<h3>setDamagePerBlock</h3>
+<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">setDamagePerBlock</span><wbr><span class="parameters">(float&nbsp;damage)</span></div>
+<div class="block">Set the amount of damage inflicted upon entities multiplied by the distance
+ that the block had fallen when this falling block lands on them.
+ <p>
+ If <code>damage</code> is non-zero, this method will automatically call
+ <a href="#setHurtEntities(boolean)"><code>setHurtEntities(true)</code></a>.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>damage</code> - the damage per block to set. Must be >= 0.0</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getMaxDamage()">
+<h3>getMaxDamage</h3>
+<div class="member-signature"><span class="return-type">int</span>&nbsp;<span class="element-name">getMaxDamage</span>()</div>
+<div class="block">Get the maximum amount of damage that can be inflicted upon entities when
+ this falling block lands on them.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the max damage</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="setMaxDamage(int)">
+<h3>setMaxDamage</h3>
+<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">setMaxDamage</span><wbr><span class="parameters">(int&nbsp;damage)</span></div>
+<div class="block">Set the maximum amount of damage that can be inflicted upon entities when
+ this falling block lands on them.
+ <p>
+ If <code>damage</code> is non-zero, this method will automatically call
+ <a href="#setHurtEntities(boolean)"><code>setHurtEntities(true)</code></a>.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>damage</code> - the max damage to set. Must be >= 0</dd>
 </dl>
 </section>
 </li>
