@@ -5,14 +5,15 @@ Subject: [PATCH] Add caramel.moe Network Support
 
 
 diff --git a/build.gradle.kts b/build.gradle.kts
-index 4f8ad786591336e237d5646760dab6470b7bbea6..e68a45149d64df41c093dab81a6b7469cb0b095d 100644
+index 4f8ad786591336e237d5646760dab6470b7bbea6..b8e0965479ca59023357b896d4f968f6a686d450 100644
 --- a/build.gradle.kts
 +++ b/build.gradle.kts
-@@ -48,6 +48,7 @@ dependencies {
+@@ -48,6 +48,8 @@ dependencies {
      // Paper end
      api("com.mojang:brigadier:1.0.18") // Daydream - Add Brigadier Command API
      api("com.mojang:authlib:3.17.30") // Daydream - Mojang Authlib (keep in sync with major MC versions)
 +    compileOnly("moe.caramel:acacia-api:1.0.0-SNAPSHOT") // Daydream - caramel.moe Network
++    testRuntimeOnly("moe.caramel:acacia-api:1.0.0-SNAPSHOT") // Daydream - caramel.moe Network
  
      api("org.apache.maven:maven-resolver-provider:3.8.5") // Paper, expose
      compileOnly("org.apache.maven.resolver:maven-resolver-connector-basic:1.7.3")
