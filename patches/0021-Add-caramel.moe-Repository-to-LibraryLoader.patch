@@ -5,7 +5,7 @@ Subject: [PATCH] Add caramel.moe Repository to LibraryLoader
 
 
 diff --git a/src/main/java/org/bukkit/plugin/java/LibraryLoader.java b/src/main/java/org/bukkit/plugin/java/LibraryLoader.java
-index e4b6f278a811acbb0070e311c5c3bdaff7b00474..37302a87c90cb2a39f03bb67e1736c79aa3f8c39 100644
+index e4b6f278a811acbb0070e311c5c3bdaff7b00474..963af9f76701a2099e6341cd9405d52ba372c57d 100644
 --- a/src/main/java/org/bukkit/plugin/java/LibraryLoader.java
 +++ b/src/main/java/org/bukkit/plugin/java/LibraryLoader.java
 @@ -70,7 +70,7 @@ public class LibraryLoader
@@ -17,3 +17,11 @@ index e4b6f278a811acbb0070e311c5c3bdaff7b00474..37302a87c90cb2a39f03bb67e1736c79
      }
  
      @Nullable
+@@ -118,6 +118,7 @@ public class LibraryLoader
+             }
+ 
+             jarFiles.add( url );
++            if (!org.bukkit.Bukkit.spigot().getDaydreamConfig().getBoolean("logger.ignore-library-loader-log", false)) // Daydream
+             logger.log( Level.INFO, "[{0}] Loaded library {1}", new Object[]
+             {
+                 java.util.Objects.requireNonNullElseGet(desc.getPrefix(), desc::getName), file // Paper - use configured log prefix

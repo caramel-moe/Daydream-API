@@ -1008,10 +1008,10 @@ index 24992fdfc239f450906ec90918641ef0e96e2f37..5298c8cededc98e7133c63705d26ad20
 +    // Daydream end - Add Packet API
  }
 diff --git a/src/main/java/org/bukkit/World.java b/src/main/java/org/bukkit/World.java
-index 97acd38469acab0653ae55254bff5e267690d63b..291918f6d100c665b8880fb9d9a6df74fad5d396 100644
+index a12cd30508ed14eb344eb5d3ad162e2efcce25d6..f81e78396899dbd1108bfb91ba97a803abffb63d 100644
 --- a/src/main/java/org/bukkit/World.java
 +++ b/src/main/java/org/bukkit/World.java
-@@ -1622,6 +1622,17 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
+@@ -1577,6 +1577,17 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      public Entity getEntity(@NotNull java.util.UUID uuid);
      // Paper end
  
@@ -1054,10 +1054,10 @@ index a2a423d4e4c2702ba5967223cab0432dd7d04732..79ee00792d13c37946d910819baf0cd3
       * Gets the amount of ticks this entity has lived for.
       * <p>
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index 891ccb39ebe807aa8165b7ddf9ec881479d6177e..402ce7cb4a4beedeef18fd1f116b2e9d983d8163 100644
+index b0aabed1fdcda208e1c06e00cf37dcc1ceb3054e..d063c22b7e6fe8cbfbfb55a41f6fbfc671e21725 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
-@@ -305,6 +305,16 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+@@ -306,6 +306,16 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
       */
      public boolean performCommand(@NotNull String command);
  
@@ -1074,7 +1074,7 @@ index 891ccb39ebe807aa8165b7ddf9ec881479d6177e..402ce7cb4a4beedeef18fd1f116b2e9d
      /**
       * Returns true if the entity is supported by a block.
       *
-@@ -768,6 +778,22 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+@@ -769,6 +779,22 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
       * @param buf byte buf object
       */
      public void sendCustomPayload(@NotNull org.bukkit.NamespacedKey channel, @NotNull moe.caramel.daydream.network.MojangByteBuf buf);
