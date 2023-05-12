@@ -183,6 +183,34 @@ extends <a href="Keyed.html" title="interface in org.bukkit">Keyed</a></span></d
 <div class="block">Get a collection of all entities in this RegionAccessor matching any of the
  given classes/interfaces</div>
 </div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>int</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getHighestBlockYAt(int,int)" class="member-name-link">getHighestBlockYAt</a><wbr>(int&nbsp;x,
+ int&nbsp;z)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Gets the highest non-empty (impassable) coordinate at the given
+ coordinates.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>int</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getHighestBlockYAt(int,int,org.bukkit.HeightMap)" class="member-name-link">getHighestBlockYAt</a><wbr>(int&nbsp;x,
+ int&nbsp;z,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="HeightMap.html" title="enum class in org.bukkit">HeightMap</a>&nbsp;heightMap)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Gets the highest coordinate corresponding to the <a href="HeightMap.html" title="enum class in org.bukkit"><code>HeightMap</code></a> at the
+ given coordinates.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>int</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getHighestBlockYAt(org.bukkit.Location)" class="member-name-link">getHighestBlockYAt</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Location.html" title="class in org.bukkit">Location</a>&nbsp;location)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Gets the highest non-empty (impassable) coordinate at the given
+ <a href="Location.html" title="class in org.bukkit"><code>Location</code></a>.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>int</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getHighestBlockYAt(org.bukkit.Location,org.bukkit.HeightMap)" class="member-name-link">getHighestBlockYAt</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Location.html" title="class in org.bukkit">Location</a>&nbsp;location,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="HeightMap.html" title="enum class in org.bukkit">HeightMap</a>&nbsp;heightMap)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Gets the highest coordinate corresponding to the <a href="HeightMap.html" title="enum class in org.bukkit"><code>HeightMap</code></a> at the
+ given <a href="Location.html" title="class in org.bukkit"><code>Location</code></a>.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="NamespacedKey.html" title="class in org.bukkit">NamespacedKey</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getKey()" class="member-name-link">getKey</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
@@ -995,6 +1023,78 @@ extends <a href="Keyed.html" title="interface in org.bukkit">Keyed</a></span></d
 <dd>the spawned entity instance.</dd>
 <dt>Throws:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if either the world or clazz parameter are null.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getHighestBlockYAt(int,int)">
+<h3>getHighestBlockYAt</h3>
+<div class="member-signature"><span class="return-type">int</span>&nbsp;<span class="element-name">getHighestBlockYAt</span><wbr><span class="parameters">(int&nbsp;x,
+ int&nbsp;z)</span></div>
+<div class="block">Gets the highest non-empty (impassable) coordinate at the given
+ coordinates.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>x</code> - X-coordinate of the blocks</dd>
+<dd><code>z</code> - Z-coordinate of the blocks</dd>
+<dt>Returns:</dt>
+<dd>Y-coordinate of the highest non-empty block</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getHighestBlockYAt(org.bukkit.Location)">
+<h3>getHighestBlockYAt</h3>
+<div class="member-signature"><span class="return-type">int</span>&nbsp;<span class="element-name">getHighestBlockYAt</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Location.html" title="class in org.bukkit">Location</a>&nbsp;location)</span></div>
+<div class="block">Gets the highest non-empty (impassable) coordinate at the given
+ <a href="Location.html" title="class in org.bukkit"><code>Location</code></a>.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>location</code> - Location of the blocks</dd>
+<dt>Returns:</dt>
+<dd>Y-coordinate of the highest non-empty block</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getHighestBlockYAt(int,int,org.bukkit.HeightMap)">
+<h3>getHighestBlockYAt</h3>
+<div class="member-signature"><span class="return-type">int</span>&nbsp;<span class="element-name">getHighestBlockYAt</span><wbr><span class="parameters">(int&nbsp;x,
+ int&nbsp;z,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="HeightMap.html" title="enum class in org.bukkit">HeightMap</a>&nbsp;heightMap)</span></div>
+<div class="block">Gets the highest coordinate corresponding to the <a href="HeightMap.html" title="enum class in org.bukkit"><code>HeightMap</code></a> at the
+ given coordinates.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>x</code> - X-coordinate of the blocks</dd>
+<dd><code>z</code> - Z-coordinate of the blocks</dd>
+<dd><code>heightMap</code> - the heightMap that is used to determine the highest
+ point</dd>
+<dt>Returns:</dt>
+<dd>Y-coordinate of the highest block corresponding to the
+ <a href="HeightMap.html" title="enum class in org.bukkit"><code>HeightMap</code></a></dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getHighestBlockYAt(org.bukkit.Location,org.bukkit.HeightMap)">
+<h3>getHighestBlockYAt</h3>
+<div class="member-signature"><span class="return-type">int</span>&nbsp;<span class="element-name">getHighestBlockYAt</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Location.html" title="class in org.bukkit">Location</a>&nbsp;location,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="HeightMap.html" title="enum class in org.bukkit">HeightMap</a>&nbsp;heightMap)</span></div>
+<div class="block">Gets the highest coordinate corresponding to the <a href="HeightMap.html" title="enum class in org.bukkit"><code>HeightMap</code></a> at the
+ given <a href="Location.html" title="class in org.bukkit"><code>Location</code></a>.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>location</code> - Location of the blocks</dd>
+<dd><code>heightMap</code> - the heightMap that is used to determine the highest
+ point</dd>
+<dt>Returns:</dt>
+<dd>Y-coordinate of the highest block corresponding to the
+ <a href="HeightMap.html" title="enum class in org.bukkit"><code>HeightMap</code></a></dd>
 </dl>
 </section>
 </li>
