@@ -1,24 +1,23 @@
 From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: LemonCaramel <admin@caramel.moe>
-Date: Tue, 24 Aug 2021 00:10:34 +0900
-Subject: [PATCH] Add caramel.moe Network Support
+Date: Mon, 17 Jan 2022 02:35:40 +0900
+Subject: [PATCH] Add GeoIP Support
 
 
 diff --git a/build.gradle.kts b/build.gradle.kts
-index 4f8ad786591336e237d5646760dab6470b7bbea6..b8e0965479ca59023357b896d4f968f6a686d450 100644
+index 4f8ad786591336e237d5646760dab6470b7bbea6..a1ccf5b3d9dd946d6def9043c4ecd66ed0e08624 100644
 --- a/build.gradle.kts
 +++ b/build.gradle.kts
-@@ -48,6 +48,8 @@ dependencies {
+@@ -48,6 +48,7 @@ dependencies {
      // Paper end
      api("com.mojang:brigadier:1.0.18") // Daydream - Add Brigadier Command API
      api("com.mojang:authlib:3.17.30") // Daydream - Mojang Authlib (keep in sync with major MC versions)
-+    compileOnly("moe.caramel:acacia-api:1.0.0-SNAPSHOT") // Daydream - caramel.moe Network
-+    testRuntimeOnly("moe.caramel:acacia-api:1.0.0-SNAPSHOT") // Daydream - caramel.moe Network
++    api("com.neovisionaries:nv-i18n:1.29") // Daydream - add GeoIP
  
      api("org.apache.maven:maven-resolver-provider:3.8.5") // Paper, expose
      compileOnly("org.apache.maven.resolver:maven-resolver-connector-basic:1.7.3")
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index 35d93c173e63680891586b8e3f812d8ef4132d05..4bc2cd7498cebec7b152db0028fb5a00830bfcdf 100644
+index 35d93c173e63680891586b8e3f812d8ef4132d05..445e7e3c686688af2872107f451b1fce6b33f510 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
 @@ -51,6 +51,16 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
@@ -27,14 +26,14 @@ index 35d93c173e63680891586b8e3f812d8ef4132d05..4bc2cd7498cebec7b152db0028fb5a00
      moe.caramel.daydream.player.InteractManager getInteractManager();
 +
 +    /**
-+     * caramel.moe Network 유저 데이터를 가져옵니다.
++     * Get the player's country.
 +     *
-+     * @return caramel.moe Network 유저 데이터
++     * @return In the case below, return {@link com.neovisionaries.i18n.CountryCode#UNDEFINED}.
++     * <p><strong>1.</strong> if the server is not connected to the caramel.moe network.</p>
++     * <p><strong>2.</strong> if the player join the server with a local IP.</p>
++     * <p><strong>3.</strong> if Endless or Sunflower misinterpreted the player's IP.</p>
 +     */
-+    @NotNull
-+    default moe.caramel.acacia.user.User getUser() {
-+        return moe.caramel.acacia.Acacia.getUser(this);
-+    }
++    @NotNull com.neovisionaries.i18n.CountryCode getCountry();
      // Daydream end
  
      // Paper start

@@ -5,12 +5,12 @@ Subject: [PATCH] Add Network API
 
 
 diff --git a/build.gradle.kts b/build.gradle.kts
-index 08346ed0136e78b2f0f8481427988f5b4110ebd9..e131a5fc34ecf0d154a92b1957ee02ad47d62500 100644
+index a1ccf5b3d9dd946d6def9043c4ecd66ed0e08624..49b24afb1b973c4f6c8be5438a8ea3aa8812000a 100644
 --- a/build.gradle.kts
 +++ b/build.gradle.kts
-@@ -51,6 +51,7 @@ dependencies {
-     compileOnly("moe.caramel:acacia-api:1.0.0-SNAPSHOT") // Daydream - caramel.moe Network
-     testRuntimeOnly("moe.caramel:acacia-api:1.0.0-SNAPSHOT") // Daydream - caramel.moe Network
+@@ -49,6 +49,7 @@ dependencies {
+     api("com.mojang:brigadier:1.0.18") // Daydream - Add Brigadier Command API
+     api("com.mojang:authlib:3.17.30") // Daydream - Mojang Authlib (keep in sync with major MC versions)
      api("com.neovisionaries:nv-i18n:1.29") // Daydream - add GeoIP
 +    api("io.netty:netty-all:4.1.87.Final") // Daydream - add Network API
  
@@ -201,10 +201,10 @@ index 8a5ad3b36ebaa17dd353a93ed0139fa52d57d0c1..cfe310e5df504384b1d69d545a204eaa
 +    // Daydream end
  }
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index 0804382b30579f08217c61b3253a40adc6f6c67d..b0aabed1fdcda208e1c06e00cf37dcc1ceb3054e 100644
+index ced1ad08c6c00d87e769b18a63218c7fdac46629..05171f498eb208b64712fa6e283b508895766e2c 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
-@@ -753,6 +753,24 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+@@ -743,6 +743,24 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
       */
      public void sendEquipmentChange(@NotNull LivingEntity entity, @NotNull Map<EquipmentSlot, ItemStack> items);
  
