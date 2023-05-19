@@ -106,10 +106,10 @@ index 0000000000000000000000000000000000000000..e451e41bb00e60e12a7f8a8abb5c904b
 +    boolean wasCancelled();
 +}
 diff --git a/src/main/java/org/bukkit/World.java b/src/main/java/org/bukkit/World.java
-index 8dee959a85171176f6fc7973bc2112b7eec86038..105cd20fe633554f1440d36e545ebd762d406d2e 100644
+index 8dee959a85171176f6fc7973bc2112b7eec86038..ccec1d692c31eeda46951050b2547f6d02122598 100644
 --- a/src/main/java/org/bukkit/World.java
 +++ b/src/main/java/org/bukkit/World.java
-@@ -2122,6 +2122,44 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
+@@ -2122,6 +2122,42 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
       */
      public boolean createExplosion(double x, double y, double z, float power, boolean setFire, boolean breakBlocks, @Nullable Entity source);
  
@@ -118,9 +118,7 @@ index 8dee959a85171176f6fc7973bc2112b7eec86038..105cd20fe633554f1440d36e545ebd76
 +     * Creates explosion at given coordinates with given power and optionally
 +     * setting blocks on fire or breaking blocks.
 +     *
-+     * @param x X coordinate
-+     * @param y Y coordinate
-+     * @param z Z coordinate
++     * @param loc Location to blow up
 +     * @param power The power of explosion, where 4F is TNT
 +     * @param setFire Whether or not to set blocks on fire
 +     * @param breakBlocks Whether or not to have blocks be destroyed
