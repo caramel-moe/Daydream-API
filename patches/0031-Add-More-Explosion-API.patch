@@ -1,0 +1,297 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: LemonCaramel <admin@caramel.moe>
+Date: Fri, 19 May 2023 20:56:45 +0900
+Subject: [PATCH] Add More Explosion API
+
+
+diff --git a/src/main/java/moe/caramel/daydream/world/Explosion.java b/src/main/java/moe/caramel/daydream/world/Explosion.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..e451e41bb00e60e12a7f8a8abb5c904baa0a2bde
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/world/Explosion.java
+@@ -0,0 +1,95 @@
++package moe.caramel.daydream.world;
++
++import org.bukkit.World;
++import org.bukkit.entity.HumanEntity;
++import org.bukkit.util.Vector;
++import org.jetbrains.annotations.NotNull;
++import java.util.Map;
++
++/**
++ * 폭발 래퍼
++ */
++public interface Explosion {
++
++    /**
++     * 폭발이 발생한 월드를 가져옵니다.
++     *
++     * @return 폭발이 발생한 월드
++     */
++    @NotNull
++    World getWorld();
++
++    /**
++     * 폭발 시 방화 여부를 가져옵니다.
++     *
++     * @return 방화 여부
++     */
++    boolean isFire();
++
++    /**
++     * 폭발 발생 X 좌표를 가져옵니다.
++     *
++     * @return X 좌표
++     */
++    double getX();
++
++    /**
++     * 폭발 발생 Y 좌표를 가져옵니다.
++     *
++     * @return Y 좌표
++     */
++    double getY();
++
++    /**
++     * 폭발 발생 Z 좌표를 가져옵니다.
++     *
++     * @return Z 좌표
++     */
++    double getZ();
++
++    /**
++     * 폭발 범위를 가져옵니다.
++     *
++     * @return 폭발 범위
++     */
++    float getRadius();
++
++    /**
++     * 이 폭발에 블록이 영향받는지를 가져옵니다.
++     *
++     * @return 블록이 영향받는지
++     */
++    boolean interactsWithBlocks();
++
++    /**
++     * 이 폭발에 영향을 받는 플레이어 목록을 가져옵니다.
++     *
++     * @return 플레이어 목록 및 벡터
++     */
++    @NotNull
++    Map<HumanEntity, Vector> getHitPlayers();
++
++    /**
++     * 이 폭발에 영향을 받는 플레이어 목록을 설정합니다.
++     *
++     * @param map 플레이어 목록 및 벡터
++     */
++    void setHitPlayers(@NotNull Map<HumanEntity, Vector> map);
++
++    /**
++     * 이 폭발에 영향을 받는 플레이어 목록을 비웁니다.
++     */
++    void clearHitPlayers();
++
++    /**
++     * 폭발을 마무리합니다.
++     */
++    void finalizeExplosion();
++
++    /**
++     * 폭발이 취소되었는지 여부를 가져옵니다.
++     *
++     * @return 폭발 취소의 여부
++     */
++    boolean wasCancelled();
++}
+diff --git a/src/main/java/org/bukkit/World.java b/src/main/java/org/bukkit/World.java
+index 8dee959a85171176f6fc7973bc2112b7eec86038..105cd20fe633554f1440d36e545ebd762d406d2e 100644
+--- a/src/main/java/org/bukkit/World.java
++++ b/src/main/java/org/bukkit/World.java
+@@ -2122,6 +2122,44 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
+      */
+     public boolean createExplosion(double x, double y, double z, float power, boolean setFire, boolean breakBlocks, @Nullable Entity source);
+ 
++    // Daydream start - Add More Explosion API
++    /**
++     * Creates explosion at given coordinates with given power and optionally
++     * setting blocks on fire or breaking blocks.
++     *
++     * @param x X coordinate
++     * @param y Y coordinate
++     * @param z Z coordinate
++     * @param power The power of explosion, where 4F is TNT
++     * @param setFire Whether or not to set blocks on fire
++     * @param breakBlocks Whether or not to have blocks be destroyed
++     * @param source the source entity, used for tracking damage
++     * @return returns the Explosion wrapper. Explosion is not enabled,
++     * finalize Exploitation should be called.
++     */
++    @NotNull
++    default moe.caramel.daydream.world.Explosion explosion(@NotNull Location loc, float power, boolean setFire, boolean breakBlocks, @Nullable Entity source) {
++        return explosion(loc.getX(), loc.getY(), loc.getZ(), power, setFire, breakBlocks, source);
++    }
++
++    /**
++     * Creates explosion at given coordinates with given power and optionally
++     * setting blocks on fire or breaking blocks.
++     *
++     * @param x X coordinate
++     * @param y Y coordinate
++     * @param z Z coordinate
++     * @param power The power of explosion, where 4F is TNT
++     * @param setFire Whether or not to set blocks on fire
++     * @param breakBlocks Whether or not to have blocks be destroyed
++     * @param source the source entity, used for tracking damage
++     * @return returns the Explosion wrapper. Explosion is not enabled,
++     * finalize Exploitation should be called.
++     */
++    @NotNull
++    public moe.caramel.daydream.world.Explosion explosion(double x, double y, double z, float power, boolean setFire, boolean breakBlocks, @Nullable Entity source);
++    // Daydream end - Add More Explosion API
++
+     /**
+      * Creates explosion at given coordinates with given power
+      *
+diff --git a/src/main/java/org/bukkit/event/block/BlockExplodeEvent.java b/src/main/java/org/bukkit/event/block/BlockExplodeEvent.java
+index d8b5362d0cdc3440efe30d619985018509b669e7..3284fd6a227507e0f8542fd52931201f92cbd33f 100644
+--- a/src/main/java/org/bukkit/event/block/BlockExplodeEvent.java
++++ b/src/main/java/org/bukkit/event/block/BlockExplodeEvent.java
+@@ -28,11 +28,29 @@ public class BlockExplodeEvent extends BlockEvent implements Cancellable {
+     }
+     public BlockExplodeEvent(@NotNull final Block what, @NotNull final List<Block> blocks, final float yield, @org.jetbrains.annotations.Nullable org.bukkit.block.BlockState explodedBlockState) {
+         // Paper end
++        // Daydream start - Add More Explosion API
++        this(what, blocks, yield, explodedBlockState, null);
++    }
++    private final moe.caramel.daydream.world.Explosion explosion;
++
++    /**
++     * 폭발 래퍼를 가져옵니다.
++     *
++     * @return 폭발 래퍼
++     */
++    @NotNull
++    public moe.caramel.daydream.world.Explosion getExplosion() {
++        return explosion;
++    }
++
++    public BlockExplodeEvent(@NotNull final Block what, @NotNull final List<Block> blocks, final float yield, @org.jetbrains.annotations.Nullable org.bukkit.block.BlockState explodedBlockState, @NotNull moe.caramel.daydream.world.Explosion explosion) {
++        // Daydream end - Add More Explosion API
+         super(what);
+         this.blocks = blocks;
+         this.yield = yield;
+         this.cancel = false;
+         this.explodedBlockState = explodedBlockState; // Paper
++        this.explosion = explosion; // Daydream - Add More Explosion API
+     }
+ 
+     @Override
+diff --git a/src/main/java/org/bukkit/event/entity/EntityDamageByBlockEvent.java b/src/main/java/org/bukkit/event/entity/EntityDamageByBlockEvent.java
+index 461727dc7f06efb3550fc370e0db5bd04ba89711..6859978cf02925e4f0ff43f3a0234f129783a745 100644
+--- a/src/main/java/org/bukkit/event/entity/EntityDamageByBlockEvent.java
++++ b/src/main/java/org/bukkit/event/entity/EntityDamageByBlockEvent.java
+@@ -19,7 +19,12 @@ public class EntityDamageByBlockEvent extends EntityDamageEvent {
+     }
+ 
+     public EntityDamageByBlockEvent(@Nullable final Block damager, @NotNull final Entity damagee, @NotNull final DamageCause cause, @NotNull final Map<DamageModifier, Double> modifiers, @NotNull final Map<DamageModifier, ? extends Function<? super Double, Double>> modifierFunctions) {
+-        super(damagee, cause, modifiers, modifierFunctions);
++        this(damager, damagee, cause, modifiers, modifierFunctions, null);
++        // Daydream start - Add More Explosion API
++    }
++    public EntityDamageByBlockEvent(@Nullable final Block damager, @NotNull final Entity damagee, @NotNull final DamageCause cause, @NotNull final Map<DamageModifier, Double> modifiers, @NotNull final Map<DamageModifier, ? extends Function<? super Double, Double>> modifierFunctions, @org.jetbrains.annotations.Nullable moe.caramel.daydream.world.Explosion explosion) {
++        // Daydream end - Add More Explosion API
++        super(damagee, cause, modifiers, modifierFunctions, explosion); // Daydream - Add More Explosion API
+         this.damager = damager;
+     }
+ 
+diff --git a/src/main/java/org/bukkit/event/entity/EntityDamageByEntityEvent.java b/src/main/java/org/bukkit/event/entity/EntityDamageByEntityEvent.java
+index 7ce8f1a26c1b33dd0eb6e6435952fd73abf49879..eb82c88725be6198d465e9243c9208c66192dddb 100644
+--- a/src/main/java/org/bukkit/event/entity/EntityDamageByEntityEvent.java
++++ b/src/main/java/org/bukkit/event/entity/EntityDamageByEntityEvent.java
+@@ -26,8 +26,13 @@ public class EntityDamageByEntityEvent extends EntityDamageEvent {
+ 
+     private final boolean critical;
+     public EntityDamageByEntityEvent(@NotNull final Entity damager, @NotNull final Entity damagee, @NotNull final DamageCause cause, @NotNull final Map<DamageModifier, Double> modifiers, @NotNull final Map<DamageModifier, ? extends Function<? super Double, Double>> modifierFunctions, boolean critical) {
++        // Daydream start - Add More Explosion API
++        this(damager, damagee, cause, modifiers, modifierFunctions, critical, null);
++    }
++    public EntityDamageByEntityEvent(@NotNull final Entity damager, @NotNull final Entity damagee, @NotNull final DamageCause cause, @NotNull final Map<DamageModifier, Double> modifiers, @NotNull final Map<DamageModifier, ? extends Function<? super Double, Double>> modifierFunctions, boolean critical, @org.jetbrains.annotations.Nullable moe.caramel.daydream.world.Explosion explosion) {
++        // Daydream end - Add More Explosion API
+         // Paper end
+-        super(damagee, cause, modifiers, modifierFunctions);
++        super(damagee, cause, modifiers, modifierFunctions, explosion); // Daydream - Add More Explosion API
+         this.damager = damager;
+         // Paper start - add critical damage API
+         this.critical = critical;
+diff --git a/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java b/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java
+index e87581fae10cef3543b4daad5f319fc8adf0eb70..fc3d8950277e4473f13c0f15d78a419b13fbfade 100644
+--- a/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java
++++ b/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java
+@@ -32,6 +32,23 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
+     }
+ 
+     public EntityDamageEvent(@NotNull final Entity damagee, @NotNull final DamageCause cause, @NotNull final Map<DamageModifier, Double> modifiers, @NotNull final Map<DamageModifier, ? extends Function<? super Double, Double>> modifierFunctions) {
++        // Daydream start - Add More Explosion API
++        this(damagee, cause, modifiers, modifierFunctions, null);
++    }
++    private final moe.caramel.daydream.world.Explosion explosion;
++
++    /**
++     * 폭발 래퍼를 가져옵니다.
++     *
++     * @return 폭발 래퍼
++     */
++    @org.jetbrains.annotations.Nullable
++    public moe.caramel.daydream.world.Explosion getExplosion() {
++        return explosion;
++    }
++
++    public EntityDamageEvent(@NotNull final Entity damagee, @NotNull final DamageCause cause, @NotNull final Map<DamageModifier, Double> modifiers, @NotNull final Map<DamageModifier, ? extends Function<? super Double, Double>> modifierFunctions, @org.jetbrains.annotations.Nullable moe.caramel.daydream.world.Explosion explosion) {
++        // Daydream end - Add More Explosion API
+         super(damagee);
+         Preconditions.checkArgument(modifiers.containsKey(DamageModifier.BASE), "BASE DamageModifier missing");
+         Preconditions.checkArgument(!modifiers.containsKey(null), "Cannot have null DamageModifier");
+@@ -42,6 +59,7 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
+         this.cause = cause;
+         this.modifiers = modifiers;
+         this.modifierFunctions = modifierFunctions;
++        this.explosion = explosion;// Daydream - Add More Explosion API
+     }
+ 
+     // Daydream start - Add More API for EntityDamageEvent
+diff --git a/src/main/java/org/bukkit/event/entity/EntityExplodeEvent.java b/src/main/java/org/bukkit/event/entity/EntityExplodeEvent.java
+index 099efafa14c10910e4ed04abb1823f0c1a96b6a6..28ec92d62468d807538864135e3f1394beb446f9 100644
+--- a/src/main/java/org/bukkit/event/entity/EntityExplodeEvent.java
++++ b/src/main/java/org/bukkit/event/entity/EntityExplodeEvent.java
+@@ -21,11 +21,29 @@ public class EntityExplodeEvent extends EntityEvent implements Cancellable {
+     private float yield;
+ 
+     public EntityExplodeEvent(@NotNull final Entity what, @NotNull final Location location, @NotNull final List<Block> blocks, final float yield) {
++        // Daydream start - Add More Explosion API
++        this(what, location, blocks, yield, null);
++    }
++    private final moe.caramel.daydream.world.Explosion explosion;
++
++    /**
++     * 폭발 래퍼를 가져옵니다.
++     *
++     * @return 폭발 래퍼
++     */
++    @NotNull
++    public moe.caramel.daydream.world.Explosion getExplosion() {
++        return explosion;
++    }
++
++    public EntityExplodeEvent(@NotNull final Entity what, @NotNull final Location location, @NotNull final List<Block> blocks, final float yield, @NotNull moe.caramel.daydream.world.Explosion explosion) {
++        // Daydream end - Add More Explosion API
+         super(what);
+         this.location = location;
+         this.blocks = blocks;
+         this.yield = yield;
+         this.cancel = false;
++        this.explosion = explosion; // Daydream - Add More Explosion API
+     }
+ 
+     @Override
