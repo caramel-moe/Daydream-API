@@ -312,6 +312,28 @@ extends <a href="RegionAccessor.html" title="interface in org.bukkit">RegionAcce
 <div class="block">Drops an item at the specified <a href="Location.html" title="class in org.bukkit"><code>Location</code></a> with a random offset
  Note that functions will run before the entity is spawned</div>
 </div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="../../moe/caramel/daydream/world/Explosion.html" title="interface in moe.caramel.daydream.world">Explosion</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#explosion(double,double,double,float,boolean,boolean,org.bukkit.entity.Entity)" class="member-name-link">explosion</a><wbr>(double&nbsp;x,
+ double&nbsp;y,
+ double&nbsp;z,
+ float&nbsp;power,
+ boolean&nbsp;setFire,
+ boolean&nbsp;breakBlocks,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="entity/Entity.html" title="interface in org.bukkit.entity">Entity</a>&nbsp;source)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Creates explosion at given coordinates with given power and optionally
+ setting blocks on fire or breaking blocks.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code>default <a href="../../moe/caramel/daydream/world/Explosion.html" title="interface in moe.caramel.daydream.world">Explosion</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#explosion(org.bukkit.Location,float,boolean,boolean,org.bukkit.entity.Entity)" class="member-name-link">explosion</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Location.html" title="class in org.bukkit">Location</a>&nbsp;loc,
+ float&nbsp;power,
+ boolean&nbsp;setFire,
+ boolean&nbsp;breakBlocks,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="entity/Entity.html" title="interface in org.bukkit.entity">Entity</a>&nbsp;source)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5">
+<div class="block">Creates explosion at given coordinates with given power and optionally
+ setting blocks on fire or breaking blocks.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="Location.html" title="class in org.bukkit">Location</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#findLightningRod(org.bukkit.Location)" class="member-name-link">findLightningRod</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Location.html" title="class in org.bukkit">Location</a>&nbsp;location)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
@@ -5331,6 +5353,61 @@ extends <a href="RegionAccessor.html" title="interface in org.bukkit">RegionAcce
 <dd><code>source</code> - the source entity, used for tracking damage</dd>
 <dt>Returns:</dt>
 <dd>false if explosion was canceled, otherwise true</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="explosion(org.bukkit.Location,float,boolean,boolean,org.bukkit.entity.Entity)">
+<h3>explosion</h3>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+</span><span class="modifiers">default</span>&nbsp;<span class="return-type"><a href="../../moe/caramel/daydream/world/Explosion.html" title="interface in moe.caramel.daydream.world">Explosion</a></span>&nbsp;<span class="element-name">explosion</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Location.html" title="class in org.bukkit">Location</a>&nbsp;loc,
+ float&nbsp;power,
+ boolean&nbsp;setFire,
+ boolean&nbsp;breakBlocks,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="entity/Entity.html" title="interface in org.bukkit.entity">Entity</a>&nbsp;source)</span></div>
+<div class="block">Creates explosion at given coordinates with given power and optionally
+ setting blocks on fire or breaking blocks.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>loc</code> - Location to blow up</dd>
+<dd><code>power</code> - The power of explosion, where 4F is TNT</dd>
+<dd><code>setFire</code> - Whether or not to set blocks on fire</dd>
+<dd><code>breakBlocks</code> - Whether or not to have blocks be destroyed</dd>
+<dd><code>source</code> - the source entity, used for tracking damage</dd>
+<dt>Returns:</dt>
+<dd>returns the Explosion wrapper. Explosion is not enabled,
+ finalize Exploitation should be called.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="explosion(double,double,double,float,boolean,boolean,org.bukkit.entity.Entity)">
+<h3>explosion</h3>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+</span><span class="return-type"><a href="../../moe/caramel/daydream/world/Explosion.html" title="interface in moe.caramel.daydream.world">Explosion</a></span>&nbsp;<span class="element-name">explosion</span><wbr><span class="parameters">(double&nbsp;x,
+ double&nbsp;y,
+ double&nbsp;z,
+ float&nbsp;power,
+ boolean&nbsp;setFire,
+ boolean&nbsp;breakBlocks,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="entity/Entity.html" title="interface in org.bukkit.entity">Entity</a>&nbsp;source)</span></div>
+<div class="block">Creates explosion at given coordinates with given power and optionally
+ setting blocks on fire or breaking blocks.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>x</code> - X coordinate</dd>
+<dd><code>y</code> - Y coordinate</dd>
+<dd><code>z</code> - Z coordinate</dd>
+<dd><code>power</code> - The power of explosion, where 4F is TNT</dd>
+<dd><code>setFire</code> - Whether or not to set blocks on fire</dd>
+<dd><code>breakBlocks</code> - Whether or not to have blocks be destroyed</dd>
+<dd><code>source</code> - the source entity, used for tracking damage</dd>
+<dt>Returns:</dt>
+<dd>returns the Explosion wrapper. Explosion is not enabled,
+ finalize Exploitation should be called.</dd>
 </dl>
 </section>
 </li>
