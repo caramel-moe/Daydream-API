@@ -6,10 +6,10 @@ Subject: [PATCH] Add More Explosion API
 
 diff --git a/src/main/java/moe/caramel/daydream/world/Explosion.java b/src/main/java/moe/caramel/daydream/world/Explosion.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..e451e41bb00e60e12a7f8a8abb5c904baa0a2bde
+index 0000000000000000000000000000000000000000..6868409b157abc94307a188c59c5f05d5f35c728
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/world/Explosion.java
-@@ -0,0 +1,95 @@
+@@ -0,0 +1,117 @@
 +package moe.caramel.daydream.world;
 +
 +import org.bukkit.World;
@@ -74,6 +74,20 @@ index 0000000000000000000000000000000000000000..e451e41bb00e60e12a7f8a8abb5c904b
 +    boolean interactsWithBlocks();
 +
 +    /**
++     * 이 폭발의 넉백 제거 활성화 여부를 설정합니다.
++     *
++     * @param mark 넉백 제거가 활성화 여부
++     */
++    void markNoKnockback(boolean mark);
++
++    /**
++     * 이 폭발에 넉백 제거가 활성화 되어있는지 가져옵니다.
++     *
++     * @return 넉백 제거가 활성화 여부
++     */
++    boolean markedNoKnockback();
++
++    /**
 +     * 이 폭발에 영향을 받는 플레이어 목록을 가져옵니다.
 +     *
 +     * @return 플레이어 목록 및 벡터
@@ -92,6 +106,14 @@ index 0000000000000000000000000000000000000000..e451e41bb00e60e12a7f8a8abb5c904b
 +     * 이 폭발에 영향을 받는 플레이어 목록을 비웁니다.
 +     */
 +    void clearHitPlayers();
++
++    /**
++     * 폭발의 메타데이터를 가져옵니다.
++     *
++     * @return 메타데이터
++     */
++    @NotNull
++    Map<String, Object> getMetadata();
 +
 +    /**
 +     * 폭발을 마무리합니다.
