@@ -6,10 +6,10 @@ Subject: [PATCH] Add More Explosion API
 
 diff --git a/src/main/java/moe/caramel/daydream/world/Explosion.java b/src/main/java/moe/caramel/daydream/world/Explosion.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..6868409b157abc94307a188c59c5f05d5f35c728
+index 0000000000000000000000000000000000000000..394159310ec31777c5c423f94405d9ec3721e95a
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/world/Explosion.java
-@@ -0,0 +1,117 @@
+@@ -0,0 +1,122 @@
 +package moe.caramel.daydream.world;
 +
 +import org.bukkit.World;
@@ -116,6 +116,11 @@ index 0000000000000000000000000000000000000000..6868409b157abc94307a188c59c5f05d
 +    Map<String, Object> getMetadata();
 +
 +    /**
++     * 폭발을 시작합니다.
++     */
++    void explode();
++
++    /**
 +     * 폭발을 마무리합니다.
 +     */
 +    void finalizeExplosion();
@@ -128,7 +133,7 @@ index 0000000000000000000000000000000000000000..6868409b157abc94307a188c59c5f05d
 +    boolean wasCancelled();
 +}
 diff --git a/src/main/java/org/bukkit/World.java b/src/main/java/org/bukkit/World.java
-index 8dee959a85171176f6fc7973bc2112b7eec86038..ccec1d692c31eeda46951050b2547f6d02122598 100644
+index 8dee959a85171176f6fc7973bc2112b7eec86038..646168f79e00d4e12c08822bc1465fac5a63e2d1 100644
 --- a/src/main/java/org/bukkit/World.java
 +++ b/src/main/java/org/bukkit/World.java
 @@ -2122,6 +2122,42 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
@@ -146,7 +151,7 @@ index 8dee959a85171176f6fc7973bc2112b7eec86038..ccec1d692c31eeda46951050b2547f6d
 +     * @param breakBlocks Whether or not to have blocks be destroyed
 +     * @param source the source entity, used for tracking damage
 +     * @return returns the Explosion wrapper. Explosion is not enabled,
-+     * finalize Exploitation should be called.
++     * explode & finalize should be called.
 +     */
 +    @NotNull
 +    default moe.caramel.daydream.world.Explosion explosion(@NotNull Location loc, float power, boolean setFire, boolean breakBlocks, @Nullable Entity source) {
@@ -165,7 +170,7 @@ index 8dee959a85171176f6fc7973bc2112b7eec86038..ccec1d692c31eeda46951050b2547f6d
 +     * @param breakBlocks Whether or not to have blocks be destroyed
 +     * @param source the source entity, used for tracking damage
 +     * @return returns the Explosion wrapper. Explosion is not enabled,
-+     * finalize Exploitation should be called.
++     * explode & finalize should be called.
 +     */
 +    @NotNull
 +    public moe.caramel.daydream.world.Explosion explosion(double x, double y, double z, float power, boolean setFire, boolean breakBlocks, @Nullable Entity source);
@@ -174,6 +179,27 @@ index 8dee959a85171176f6fc7973bc2112b7eec86038..ccec1d692c31eeda46951050b2547f6d
      /**
       * Creates explosion at given coordinates with given power
       *
+diff --git a/src/main/java/org/bukkit/entity/TNTPrimed.java b/src/main/java/org/bukkit/entity/TNTPrimed.java
+index 0813bd913c8fdb2001963ce3e82c07c2af105418..75c9e90ce2bf96c510aca45f2658298e0440883c 100644
+--- a/src/main/java/org/bukkit/entity/TNTPrimed.java
++++ b/src/main/java/org/bukkit/entity/TNTPrimed.java
+@@ -64,4 +64,16 @@ public interface TNTPrimed extends Explosive {
+     default org.bukkit.Location getSourceLoc() {
+         return this.getOrigin();
+     }
++
++    // Daydream start - Add More Explosion API
++    /**
++     * {@link TNTPrimed}의 폭발 래퍼를 가져옵니다.
++     *
++     * @return 폭발이 완료되지 않은 상태로 반환되며,
++     * {@link org.bukkit.event.entity.ExplosionPrimeEvent}가
++     * 취소된 경우 {@code null}을 반환합니다.
++     */
++    @Nullable
++    moe.caramel.daydream.world.Explosion getExplosion();
++    // Daydream end - Add More Explosion API
+ }
 diff --git a/src/main/java/org/bukkit/event/block/BlockExplodeEvent.java b/src/main/java/org/bukkit/event/block/BlockExplodeEvent.java
 index d8b5362d0cdc3440efe30d619985018509b669e7..3284fd6a227507e0f8542fd52931201f92cbd33f 100644
 --- a/src/main/java/org/bukkit/event/block/BlockExplodeEvent.java
