@@ -133,7 +133,7 @@ index 0000000000000000000000000000000000000000..394159310ec31777c5c423f94405d9ec
 +    boolean wasCancelled();
 +}
 diff --git a/src/main/java/org/bukkit/World.java b/src/main/java/org/bukkit/World.java
-index 8dee959a85171176f6fc7973bc2112b7eec86038..646168f79e00d4e12c08822bc1465fac5a63e2d1 100644
+index 8dee959a85171176f6fc7973bc2112b7eec86038..6d7dd1ac0df1e437aa36350fa017f02c671671ff 100644
 --- a/src/main/java/org/bukkit/World.java
 +++ b/src/main/java/org/bukkit/World.java
 @@ -2122,6 +2122,42 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
@@ -151,7 +151,7 @@ index 8dee959a85171176f6fc7973bc2112b7eec86038..646168f79e00d4e12c08822bc1465fac
 +     * @param breakBlocks Whether or not to have blocks be destroyed
 +     * @param source the source entity, used for tracking damage
 +     * @return returns the Explosion wrapper. Explosion is not enabled,
-+     * explode & finalize should be called.
++     * explode and finalize should be called.
 +     */
 +    @NotNull
 +    default moe.caramel.daydream.world.Explosion explosion(@NotNull Location loc, float power, boolean setFire, boolean breakBlocks, @Nullable Entity source) {
@@ -170,7 +170,7 @@ index 8dee959a85171176f6fc7973bc2112b7eec86038..646168f79e00d4e12c08822bc1465fac
 +     * @param breakBlocks Whether or not to have blocks be destroyed
 +     * @param source the source entity, used for tracking damage
 +     * @return returns the Explosion wrapper. Explosion is not enabled,
-+     * explode & finalize should be called.
++     * explode and finalize should be called.
 +     */
 +    @NotNull
 +    public moe.caramel.daydream.world.Explosion explosion(double x, double y, double z, float power, boolean setFire, boolean breakBlocks, @Nullable Entity source);
