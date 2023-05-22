@@ -446,7 +446,7 @@ index 0000000000000000000000000000000000000000..81e12d87514a89dafa81a6734650288a
 +}
 diff --git a/src/main/java/moe/caramel/daydream/network/packet/PlayerInfoUpdatePacket.java b/src/main/java/moe/caramel/daydream/network/packet/PlayerInfoUpdatePacket.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..9fd5b994e2f013cf7ba43864347bb632b3271a29
+index 0000000000000000000000000000000000000000..6cce79beaa8eddd3eb7999ec379e2b29aee3fdea
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/network/packet/PlayerInfoUpdatePacket.java
 @@ -0,0 +1,183 @@
@@ -508,13 +508,13 @@ index 0000000000000000000000000000000000000000..9fd5b994e2f013cf7ba43864347bb632
 +     * @param listed 탭 리스트 표시 여부 (필수: {@link Action#UPDATE_LISTED})
 +     * @param latency 플레이어의 지연 시간 (필수: {@link Action#UPDATE_LATENCY})
 +     * @param gameMode 플레이어의 게임 모드 (필수: {@link Action#UPDATE_GAME_MODE})
-+     * @param displayName 플레이어의 표시 이름 (필수: {@link Action#UPDATE_DISPLAY_NAME})
++     * @param playerListName 플레이어의 표시 이름 (필수: {@link Action#UPDATE_DISPLAY_NAME})
 +     * @param chatSession 플레이어의 채팅 세션 (선택: {@link Action#INITIALIZE_CHAT})
 +     */
 +    record PlayerData(
 +        @NotNull UUID profileId, @NotNull GameProfile profile,
 +        boolean listed, int latency, @NotNull GameMode gameMode,
-+        @Nullable Component displayName, @Nullable ChatSession chatSession
++        @Nullable Component playerListName, @Nullable ChatSession chatSession
 +    ) {}
 +
 +
@@ -526,7 +526,7 @@ index 0000000000000000000000000000000000000000..9fd5b994e2f013cf7ba43864347bb632
 +     * @param listed 탭 리스트 표시 여부
 +     * @param latency 플레이어의 지연 시간
 +     * @param gameMode 플레이어의 게임 모드
-+     * @param displayName 플레이어의 표시 이름 (nullable)
++     * @param playerListName 플레이어의 표시 이름 (nullable)
 +     * @param chatSession 플레이어의 채팅 세션 (nullable)
 +     * @return 플레이어 데이터
 +     */
@@ -534,9 +534,9 @@ index 0000000000000000000000000000000000000000..9fd5b994e2f013cf7ba43864347bb632
 +    static PlayerData addPlayer(
 +        @NotNull UUID profileId, @NotNull GameProfile profile,
 +        boolean listed, int latency, @NotNull GameMode gameMode,
-+        @Nullable Component displayName, @Nullable ChatSession chatSession
++        @Nullable Component playerListName, @Nullable ChatSession chatSession
 +    ) {
-+        return new PlayerData(profileId, profile, listed, latency, gameMode, displayName, chatSession);
++        return new PlayerData(profileId, profile, listed, latency, gameMode, playerListName, chatSession);
 +    }
 +
 +    /**
@@ -550,7 +550,7 @@ index 0000000000000000000000000000000000000000..9fd5b994e2f013cf7ba43864347bb632
 +        return PlayerInfoUpdatePacket.addPlayer(
 +            player.getUniqueId(), player.getProfile(),
 +            true, player.getPing(), player.getGameMode(),
-+            player.displayName(), player.getChatSession()
++            player.playerListName(), player.getChatSession()
 +        );
 +    }
 +
@@ -591,15 +591,15 @@ index 0000000000000000000000000000000000000000..9fd5b994e2f013cf7ba43864347bb632
 +    }
 +
 +    /**
-+     * for Update DisplayName Action
++     * for Update PlayerListName Action
 +     *
 +     * @param uuid 플레이어의 UUID
-+     * @param displayName 플레이어의 표시 이름 (nullable)
++     * @param playerListName 플레이어의 표시 이름 (nullable)
 +     * @return 플레이어 데이터
 +     */
 +    @NotNull
-+    static PlayerData updateDisplayName(@NotNull UUID uuid, @Nullable Component displayName) {
-+        return new PlayerData(uuid, null, false, 0, null, displayName, null);
++    static PlayerData updatePlayerListName(@NotNull UUID uuid, @Nullable Component playerListName) {
++        return new PlayerData(uuid, null, false, 0, null, playerListName, null);
 +    }
 +
 +
