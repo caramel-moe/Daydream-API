@@ -6,13 +6,12 @@ Subject: [PATCH] Add SendEntityEquipmentEvent
 
 diff --git a/src/main/java/moe/caramel/daydream/event/packet/SendEntityEquipmentEvent.java b/src/main/java/moe/caramel/daydream/event/packet/SendEntityEquipmentEvent.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..3ac8bfc980b3e92a2c7c9f008ea7aa5e18ce66f6
+index 0000000000000000000000000000000000000000..df5bc5fdecde55306bb27ee185518fc6425f40d2
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/event/packet/SendEntityEquipmentEvent.java
-@@ -0,0 +1,111 @@
+@@ -0,0 +1,87 @@
 +package moe.caramel.daydream.event.packet;
 +
-+import moe.caramel.daydream.util.Pair;
 +import org.bukkit.entity.Entity;
 +import org.bukkit.entity.Player;
 +import org.bukkit.event.Cancellable;
@@ -21,8 +20,7 @@ index 0000000000000000000000000000000000000000..3ac8bfc980b3e92a2c7c9f008ea7aa5e
 +import org.bukkit.inventory.EquipmentSlot;
 +import org.bukkit.inventory.ItemStack;
 +import org.jetbrains.annotations.NotNull;
-+import java.util.ArrayList;
-+import java.util.List;
++import java.util.Map;
 +
 +/**
 + * Entity Equipment 패킷이 전송될 때 호출되는 이벤트
@@ -35,16 +33,14 @@ index 0000000000000000000000000000000000000000..3ac8bfc980b3e92a2c7c9f008ea7aa5e
 +
 +    private final Reason reason;
 +    private final Player target;
-+    private final List<Pair<EquipmentSlot, ItemStack>> origin;
-+    private List<Pair<EquipmentSlot, ItemStack>> edit;
++    private final Map<EquipmentSlot, ItemStack> data;
 +    private boolean cancelled;
 +
-+    public SendEntityEquipmentEvent(@NotNull Entity source, @NotNull Reason reason, @NotNull Player target, @NotNull List<Pair<EquipmentSlot, ItemStack>> origin) {
++    public SendEntityEquipmentEvent(@NotNull Entity source, @NotNull Reason reason, @NotNull Player target, @NotNull Map<EquipmentSlot, ItemStack> data) {
 +        super(source);
 +        this.reason = reason;
 +        this.target = target;
-+        this.origin = origin;
-+        this.edit = null;
++        this.data = data;
 +    }
 +
 +    /**
@@ -68,33 +64,13 @@ index 0000000000000000000000000000000000000000..3ac8bfc980b3e92a2c7c9f008ea7aa5e
 +    }
 +
 +    /**
-+     * 전송 예정인 장비 리스트를 반환합니다.
-+     * <p>
-+     * @throws UnsupportedOperationException 이 리스트는 수정할 수 없습니다. {@link SendEntityEquipmentEvent#getEdit()}에서 수정해 주세요.
++     * 전송 예정인 장비 목록을 반환하며, 목록을 수정할 수 있습니다.
 +     *
-+     * @return 원본 장비 리스트
++     * @return 장비 목록
 +     */
 +    @NotNull
-+    public List<Pair<EquipmentSlot, ItemStack>> getOrigin() {
-+        return origin;
-+    }
-+
-+    /**
-+     * 수정해야 할 장비 리스트를 반환합니다.
-+     * <p>
-+     * 주의!
-+     * 이 리스트를 수정하지 않는다면, 절대로 호출하지 마세요.
-+     *
-+     * @return 빈 장비 리스트
-+     */
-+    @NotNull
-+    public List<Pair<EquipmentSlot, ItemStack>> getEdit() {
-+        if (edit == null) this.edit = new ArrayList<>();
-+        return edit;
-+    }
-+
-+    public boolean isEmpty() {
-+        return edit == null;
++    public Map<EquipmentSlot, ItemStack> getData() {
++        return data;
 +    }
 +
 +    @Override
