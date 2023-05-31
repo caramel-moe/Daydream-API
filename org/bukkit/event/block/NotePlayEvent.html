@@ -274,7 +274,11 @@ implements <a href="../Cancellable.html" title="interface in org.bukkit.event">C
 <h3>setInstrument</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setInstrument</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../Instrument.html" title="enum class in org.bukkit">Instrument</a>&nbsp;instrument)</span></div>
-<div class="block">Overrides the <a href="../../Instrument.html" title="enum class in org.bukkit"><code>Instrument</code></a> to be used.</div>
+<div class="block">Overrides the <a href="../../Instrument.html" title="enum class in org.bukkit"><code>Instrument</code></a> to be used.
+ <p>
+ Only works when the note block isn't under a player head.
+ For this specific case the 'note_block_sound' property of the
+ player head state takes the priority.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>instrument</code> - the Instrument. Has no effect if null.</dd>
