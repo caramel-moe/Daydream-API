@@ -133,7 +133,16 @@ implements <a href="../Cancellable.html" title="interface in org.bukkit.event">C
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../inventory/EquipmentSlot.html" title="enum class in org.bukkit.inventory">EquipmentSlot</a>&nbsp;slot,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../entity/ExperienceOrb.html" title="interface in org.bukkit.entity">ExperienceOrb</a>&nbsp;experienceOrb,
  int&nbsp;repairAmount)</code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-last odd-row-color">
+<div class="block"><span class="deprecated-label">Deprecated.</span></div>
+</div>
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(org.bukkit.entity.Player,org.bukkit.inventory.ItemStack,org.bukkit.inventory.EquipmentSlot,org.bukkit.entity.ExperienceOrb,int,java.util.function.IntUnaryOperator)" class="member-name-link">PlayerItemMendEvent</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../entity/Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;who,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../inventory/ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;item,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../inventory/EquipmentSlot.html" title="enum class in org.bukkit.inventory">EquipmentSlot</a>&nbsp;slot,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../entity/ExperienceOrb.html" title="interface in org.bukkit.entity">ExperienceOrb</a>&nbsp;experienceOrb,
+ int&nbsp;repairAmount,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/IntUnaryOperator.html" title="class or interface in java.util.function" class="external-link">IntUnaryOperator</a>&nbsp;durabilityToXpOp)</code></div>
+<div class="col-last even-row-color">&nbsp;</div>
 </div>
 </section>
 </li>
@@ -148,6 +157,17 @@ implements <a href="../Cancellable.html" title="interface in org.bukkit.event">C
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getConsumedExperience()" class="member-name-link">getConsumedExperience</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Helper method to get the amount of experience that will be consumed.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/IntUnaryOperator.html" title="class or interface in java.util.function" class="external-link">IntUnaryOperator</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getDurabilityToXpOperation()" class="member-name-link">getDurabilityToXpOperation</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Get the operation used to calculate xp used based on
+ the set repair amount.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../entity/ExperienceOrb.html" title="interface in org.bukkit.entity">ExperienceOrb</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getExperienceOrb()" class="member-name-link">getExperienceOrb</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
@@ -186,8 +206,14 @@ implements <a href="../Cancellable.html" title="interface in org.bukkit.event">C
 <div class="block">Sets the cancellation state of this event.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setRepairAmount(int)" class="member-name-link">setRepairAmount</a><wbr>(int&nbsp;amount)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setDurabilityToXpOperation(java.util.function.IntUnaryOperator)" class="member-name-link">setDurabilityToXpOperation</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/IntUnaryOperator.html" title="class or interface in java.util.function" class="external-link">IntUnaryOperator</a>&nbsp;durabilityToXpOp)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Sets the operation used to calculate xp used based on
+ the set repair amount.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setRepairAmount(int)" class="member-name-link">setRepairAmount</a><wbr>(int&nbsp;amount)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Set the amount the item will be repaired.</div>
 </div>
 </div>
@@ -216,7 +242,8 @@ implements <a href="../Cancellable.html" title="interface in org.bukkit.event">C
 <li>
 <section class="detail" id="&lt;init&gt;(org.bukkit.entity.Player,org.bukkit.inventory.ItemStack,org.bukkit.inventory.EquipmentSlot,org.bukkit.entity.ExperienceOrb,int)">
 <h3>PlayerItemMendEvent</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">PlayerItemMendEvent</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+<div class="member-signature"><span class="annotations"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Deprecated.html" title="class or interface in java.lang" class="external-link">@Deprecated</a>
+</span><span class="modifiers">public</span>&nbsp;<span class="element-name">PlayerItemMendEvent</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../entity/Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;who,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../inventory/ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;item,
@@ -225,6 +252,24 @@ implements <a href="../Cancellable.html" title="interface in org.bukkit.event">C
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../entity/ExperienceOrb.html" title="interface in org.bukkit.entity">ExperienceOrb</a>&nbsp;experienceOrb,
  int&nbsp;repairAmount)</span></div>
+<div class="deprecation-block"><span class="deprecated-label">Deprecated.</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="&lt;init&gt;(org.bukkit.entity.Player,org.bukkit.inventory.ItemStack,org.bukkit.inventory.EquipmentSlot,org.bukkit.entity.ExperienceOrb,int,java.util.function.IntUnaryOperator)">
+<h3>PlayerItemMendEvent</h3>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/ApiStatus.Internal.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Internal</a>
+</span><span class="modifiers">public</span>&nbsp;<span class="element-name">PlayerItemMendEvent</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../entity/Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;who,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../inventory/ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;item,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../inventory/EquipmentSlot.html" title="enum class in org.bukkit.inventory">EquipmentSlot</a>&nbsp;slot,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../entity/ExperienceOrb.html" title="interface in org.bukkit.entity">ExperienceOrb</a>&nbsp;experienceOrb,
+ int&nbsp;repairAmount,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/IntUnaryOperator.html" title="class or interface in java.util.function" class="external-link">IntUnaryOperator</a>&nbsp;durabilityToXpOp)</span></div>
 </section>
 </li>
 <li>
@@ -249,6 +294,47 @@ implements <a href="../Cancellable.html" title="interface in org.bukkit.event">C
 <section class="method-details" id="method-detail">
 <h2>Method Details</h2>
 <ul class="member-list">
+<li>
+<section class="detail" id="getDurabilityToXpOperation()">
+<h3>getDurabilityToXpOperation</h3>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/IntUnaryOperator.html" title="class or interface in java.util.function" class="external-link">IntUnaryOperator</a></span>&nbsp;<span class="element-name">getDurabilityToXpOperation</span>()</div>
+<div class="block">Get the operation used to calculate xp used based on
+ the set repair amount. Used to calculate how much of
+ an XP orb will be consumed by this mend operation.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the durability-to-xp operation</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="setDurabilityToXpOperation(java.util.function.IntUnaryOperator)">
+<h3>setDurabilityToXpOperation</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setDurabilityToXpOperation</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/IntUnaryOperator.html" title="class or interface in java.util.function" class="external-link">IntUnaryOperator</a>&nbsp;durabilityToXpOp)</span></div>
+<div class="block">Sets the operation used to calculate xp used based on
+ the set repair amount. Used to calculate how much of
+ an XP orb will be consumed by this mend operation.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>durabilityToXpOp</code> - the durability-to-xp operation</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getConsumedExperience()">
+<h3>getConsumedExperience</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getConsumedExperience</span>()</div>
+<div class="block">Helper method to get the amount of experience that will be consumed.
+ This method just returns the result of inputting <a href="#getRepairAmount()"><code>getRepairAmount()</code></a>
+ into the function <a href="#getDurabilityToXpOperation()"><code>getDurabilityToXpOperation()</code></a>.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the amount of xp that will be consumed</dd>
+</dl>
+</section>
+</li>
 <li>
 <section class="detail" id="getItem()">
 <h3>getItem</h3>
