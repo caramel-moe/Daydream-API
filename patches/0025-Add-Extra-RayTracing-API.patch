@@ -8,10 +8,10 @@ Adds the option to ignore specific blocks (based on their position) when perform
 https://github.com/PaperMC/Paper/pull/8205
 
 diff --git a/src/main/java/org/bukkit/World.java b/src/main/java/org/bukkit/World.java
-index 7f76dcb2a3ce3d9291851c9a8e8b00055961b265..8dee959a85171176f6fc7973bc2112b7eec86038 100644
+index 5bbdbbfffc3789bc4306a41389956bd197caf540..73e5586d4cf46b8186e3aa8c91059796b0681ce1 100644
 --- a/src/main/java/org/bukkit/World.java
 +++ b/src/main/java/org/bukkit/World.java
-@@ -1776,6 +1776,34 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
+@@ -1777,6 +1777,34 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      @Nullable
      public RayTraceResult rayTraceBlocks(@NotNull Location start, @NotNull Vector direction, double maxDistance, @NotNull FluidCollisionMode fluidCollisionMode, boolean ignorePassableBlocks);
  
@@ -46,7 +46,7 @@ index 7f76dcb2a3ce3d9291851c9a8e8b00055961b265..8dee959a85171176f6fc7973bc2112b7
      /**
       * Performs a ray trace that checks for both block and entity collisions.
       * <p>
-@@ -1809,6 +1837,42 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
+@@ -1810,6 +1838,42 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      @Nullable
      public RayTraceResult rayTrace(@NotNull Location start, @NotNull Vector direction, double maxDistance, @NotNull FluidCollisionMode fluidCollisionMode, boolean ignorePassableBlocks, double raySize, @Nullable Predicate<Entity> filter);
  

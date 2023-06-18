@@ -352,10 +352,10 @@ index 0000000000000000000000000000000000000000..42a3f72a73d258aa378f407c460ae05e
 +    }
 +}
 diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
-index 70a254bff1dcb17cb20a2fb42c5a750f1b978a80..d7eb22157dcc29b912f4444d76ae22834205651a 100644
+index a82453d97491cbb85d63d564cc212e0e4efc11cf..4015b1b32290969ac0a093306e778635205ccbe8 100644
 --- a/src/main/java/org/bukkit/Bukkit.java
 +++ b/src/main/java/org/bukkit/Bukkit.java
-@@ -2135,6 +2135,19 @@ public final class Bukkit {
+@@ -2158,6 +2158,19 @@ public final class Bukkit {
          return server.getAdvancement(key);
      }
  
@@ -376,10 +376,10 @@ index 70a254bff1dcb17cb20a2fb42c5a750f1b978a80..d7eb22157dcc29b912f4444d76ae2283
       * Get an iterator through all advancements. Advancements cannot be removed
       * from this iterator,
 diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
-index 4c24a557dbd369b2cadec71cd0de48a673b52c50..4dade4a849388a08841205c18d3fecb89b719326 100644
+index 5c1e17f6f3fc1213585c69ad4dcee29e757a19a2..f0c0f6e4dd097f209c6f97ab7119f4fcf1f568d6 100644
 --- a/src/main/java/org/bukkit/Server.java
 +++ b/src/main/java/org/bukkit/Server.java
-@@ -1811,6 +1811,17 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
+@@ -1838,6 +1838,17 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
      @Nullable
      Advancement getAdvancement(@NotNull NamespacedKey key);
  
@@ -398,10 +398,10 @@ index 4c24a557dbd369b2cadec71cd0de48a673b52c50..4dade4a849388a08841205c18d3fecb8
       * Get an iterator through all advancements. Advancements cannot be removed
       * from this iterator,
 diff --git a/src/main/java/org/bukkit/UnsafeValues.java b/src/main/java/org/bukkit/UnsafeValues.java
-index b92255a9c87620f46adb140689b1cd328a476d61..8a5ad3b36ebaa17dd353a93ed0139fa52d57d0c1 100644
+index c661eab343ae76488de701630424e2d589f44fc0..b04ca98728d2b313b3b4fa057ab81bbefa2c5d84 100644
 --- a/src/main/java/org/bukkit/UnsafeValues.java
 +++ b/src/main/java/org/bukkit/UnsafeValues.java
-@@ -73,6 +73,20 @@ public interface UnsafeValues {
+@@ -75,6 +75,20 @@ public interface UnsafeValues {
       */
      Advancement loadAdvancement(NamespacedKey key, String advancement);
  
@@ -492,10 +492,10 @@ index f9bc179da071e7bd57cefc50d6763317fb643b74..532f51a1d537a342c0251d650cd503b1
 +    // Daydream end
  }
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index 445e7e3c686688af2872107f451b1fce6b33f510..ced1ad08c6c00d87e769b18a63218c7fdac46629 100644
+index f75bdb108b1124253912f2ce3e5fc57f4c02a43a..29940c4eff149fef0222cfef9afd262d61b4eaad 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
-@@ -2440,6 +2440,25 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+@@ -2441,6 +2441,25 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      @NotNull
      public AdvancementProgress getAdvancementProgress(@NotNull Advancement advancement);
  

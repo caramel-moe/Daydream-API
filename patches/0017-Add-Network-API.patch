@@ -181,10 +181,10 @@ index 0000000000000000000000000000000000000000..21fde661e12417b1af155cfcb747140b
 +    public abstract MojangByteBuf writeBitSet(@NotNull BitSet bitSet);
 +}
 diff --git a/src/main/java/org/bukkit/UnsafeValues.java b/src/main/java/org/bukkit/UnsafeValues.java
-index 8a5ad3b36ebaa17dd353a93ed0139fa52d57d0c1..cfe310e5df504384b1d69d545a204eaa171d23c8 100644
+index b04ca98728d2b313b3b4fa057ab81bbefa2c5d84..a6fde8c5295a63e64e026fe2231ca79806f150f6 100644
 --- a/src/main/java/org/bukkit/UnsafeValues.java
 +++ b/src/main/java/org/bukkit/UnsafeValues.java
-@@ -259,4 +259,15 @@ public interface UnsafeValues {
+@@ -264,4 +264,15 @@ public interface UnsafeValues {
       */
      void setBiomeKey(RegionAccessor accessor, int x, int y, int z, NamespacedKey biomeKey);
      // Paper end
@@ -201,10 +201,10 @@ index 8a5ad3b36ebaa17dd353a93ed0139fa52d57d0c1..cfe310e5df504384b1d69d545a204eaa
 +    // Daydream end
  }
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index ced1ad08c6c00d87e769b18a63218c7fdac46629..05171f498eb208b64712fa6e283b508895766e2c 100644
+index 29940c4eff149fef0222cfef9afd262d61b4eaad..fbbaffd43e40130e7610a6dd1bd68023cb3b1852 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
-@@ -743,6 +743,24 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+@@ -744,6 +744,24 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
       */
      public void sendEquipmentChange(@NotNull LivingEntity entity, @NotNull Map<EquipmentSlot, ItemStack> items);
  

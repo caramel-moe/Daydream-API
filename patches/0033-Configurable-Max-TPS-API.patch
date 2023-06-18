@@ -1,0 +1,68 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: LemonCaramel <admin@caramel.moe>
+Date: Sun, 18 Jun 2023 06:28:23 +0900
+Subject: [PATCH] Configurable Max TPS API
+
+
+diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
+index d595c7a75f94dd2ef60ee302d03ebeafb8ce6bc7..431e1b87f14965ce1250197cdf477ed1c5b4d665 100644
+--- a/src/main/java/org/bukkit/Bukkit.java
++++ b/src/main/java/org/bukkit/Bukkit.java
+@@ -2117,6 +2117,28 @@ public final class Bukkit {
+         return server.getEntity(uuid);
+     }
+ 
++    // Daydream start - Configurable Max TPS API
++    /**
++     * 서버의 최대 TPS를 가져옵니다.
++     *
++     * @return 최대 TPS
++     */
++    @org.jetbrains.annotations.Range(from = 1, to = Integer.MAX_VALUE)
++    public static int getMaxTPS() {
++        return server.getMaxTPS();
++    }
++
++    /**
++     * 서버의 최대 TPS를 설정합니다.
++     *
++     * @param tps 최대 TPS (1 이상)
++     */
++    @org.jetbrains.annotations.ApiStatus.Experimental
++    public static void setMaxTPS(@org.jetbrains.annotations.Range(from = 1, to = Integer.MAX_VALUE) int tps) {
++        server.setMaxTPS(tps);
++    }
++    // Daydream end - Configurable Max TPS API
++
+     // Paper start
+     /**
+      * Gets the current server TPS
+diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
+index 390f1d596f3ce9d1128ba601f82a028f7f1bfd9d..52b318e42c91a4bd67a79922f4de26bdbd623479 100644
+--- a/src/main/java/org/bukkit/Server.java
++++ b/src/main/java/org/bukkit/Server.java
+@@ -1795,6 +1795,24 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
+     @Nullable
+     Entity getEntity(@NotNull UUID uuid);
+ 
++    // Daydream start - Configurable Max TPS API
++    /**
++     * 서버의 최대 TPS를 가져옵니다.
++     *
++     * @return 최대 TPS
++     */
++    @org.jetbrains.annotations.Range(from = 1, to = Integer.MAX_VALUE)
++    int getMaxTPS();
++
++    /**
++     * 서버의 최대 TPS를 설정합니다.
++     *
++     * @param tps 최대 TPS (1 이상)
++     */
++    @org.jetbrains.annotations.ApiStatus.Experimental
++    void setMaxTPS(@org.jetbrains.annotations.Range(from = 1, to = Integer.MAX_VALUE) int tps);
++    // Daydream end - Configurable Max TPS API
++
+     // Paper start
+     /**
+      * Gets the current server TPS
