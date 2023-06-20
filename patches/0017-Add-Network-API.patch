@@ -16,6 +16,26 @@ index a1ccf5b3d9dd946d6def9043c4ecd66ed0e08624..49b24afb1b973c4f6c8be5438a8ea3aa
  
      api("org.apache.maven:maven-resolver-provider:3.8.5") // Paper, expose
      compileOnly("org.apache.maven.resolver:maven-resolver-connector-basic:1.7.3")
+diff --git a/src/main/java/com/destroystokyo/paper/network/NetworkClient.java b/src/main/java/com/destroystokyo/paper/network/NetworkClient.java
+index 7b2af1bd72dfbcf4e962a982940fc49b851aa04f..dad505d4e12bcdbb379485c59e476c98120d3ecd 100644
+--- a/src/main/java/com/destroystokyo/paper/network/NetworkClient.java
++++ b/src/main/java/com/destroystokyo/paper/network/NetworkClient.java
+@@ -38,4 +38,15 @@ public interface NetworkClient {
+     @Nullable
+     InetSocketAddress getVirtualHost();
+ 
++    // Daydream start - Add Network API
++    /**
++     * 이 클라이언트 연결의 netty 채널을 가져옵니다.
++     *
++     * @return netty 채널
++     */
++    @Nullable
++    default io.netty.channel.Channel getChannel() {
++        return null;
++    }
++    // Daydream end - Add Network API
+ }
 diff --git a/src/main/java/moe/caramel/daydream/network/MojangByteBuf.java b/src/main/java/moe/caramel/daydream/network/MojangByteBuf.java
 new file mode 100644
 index 0000000000000000000000000000000000000000..21fde661e12417b1af155cfcb747140b249e4c63

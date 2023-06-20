@@ -71,21 +71,23 @@ index 0000000000000000000000000000000000000000..3a1ac3bd7d7e30105cf9eb4c7ccfe20b
 +}
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/AbstractCommand.java b/src/main/java/moe/caramel/daydream/brigadier/AbstractCommand.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..9130f2a899b635800f43c7f3b416bf8d71e31c6b
+index 0000000000000000000000000000000000000000..eef66db7ab64677406135040cd8ca63c5f784ecf
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/brigadier/AbstractCommand.java
-@@ -0,0 +1,387 @@
+@@ -0,0 +1,417 @@
 +package moe.caramel.daydream.brigadier;
 +
 +import com.mojang.brigadier.LiteralMessage;
 +import com.mojang.brigadier.arguments.ArgumentType;
 +import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 +import com.mojang.brigadier.builder.RequiredArgumentBuilder;
++import com.mojang.brigadier.context.CommandContext;
 +import com.mojang.brigadier.suggestion.SuggestionProvider;
 +import com.mojang.brigadier.suggestion.Suggestions;
 +import com.mojang.brigadier.suggestion.SuggestionsBuilder;
 +import io.papermc.paper.command.brigadier.CommandSourceStack;
 +import net.kyori.adventure.text.Component;
++import org.bukkit.command.CommandSender;
 +import org.jetbrains.annotations.NotNull;
 +import org.jetbrains.annotations.Nullable;
 +import java.util.ArrayList;
@@ -250,6 +252,7 @@ index 0000000000000000000000000000000000000000..9130f2a899b635800f43c7f3b416bf8d
 +    /*
 +       Utilities
 +     */
++
 +    /**
 +     * Creating a literal argument
 +     *
@@ -273,6 +276,33 @@ index 0000000000000000000000000000000000000000..9130f2a899b635800f43c7f3b416bf8d
 +    protected <T> RequiredArgumentBuilder<CommandSourceStack, T> argument(@NotNull String name, @NotNull ArgumentType<T> type) {
 +        return RequiredArgumentBuilder.argument(name, type);
 +    }
++
++    /**
++     * Gets the Bukkit Command sender
++     *
++     * @param context the Command Context
++     * @return the Bukkit Command sender
++     */
++    @NotNull
++    protected CommandSender sender(@NotNull CommandContext<CommandSourceStack> context) {
++        return sender(context.getSource());
++    }
++
++    /**
++     * Gets the Bukkit Command sender
++     *
++     * @param source the Command Source
++     * @return the Bukkit Command sender
++     */
++    @NotNull
++    protected CommandSender sender(@NotNull CommandSourceStack source) {
++        return source.getBukkitSender();
++    }
++
++
++    /*
++       Suggest Utilities
++     */
 +
 +    /**
 +     * Utility method for creating custom suggestions quickly

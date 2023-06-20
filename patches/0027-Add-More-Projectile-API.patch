@@ -1,0 +1,58 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: LemonCaramel <admin@caramel.moe>
+Date: Wed, 1 Mar 2023 00:44:47 +0900
+Subject: [PATCH] Add More Projectile API
+
+
+diff --git a/src/main/java/org/bukkit/entity/AbstractArrow.java b/src/main/java/org/bukkit/entity/AbstractArrow.java
+index d173010d51d05928c35bb4bf5fbc08ce221ec474..1b63a8ba4d301cd64e05cae19b2e952e662c00b4 100644
+--- a/src/main/java/org/bukkit/entity/AbstractArrow.java
++++ b/src/main/java/org/bukkit/entity/AbstractArrow.java
+@@ -227,4 +227,20 @@ public interface AbstractArrow extends Projectile {
+         CREATIVE_ONLY;
+     }
+     // Paper end
++
++    // Daydream start - Add More Projectile API
++    /**
++     * 대상 엔티티에게 화살 카운트를 추가할지의 여부를 설정합니다.
++     *
++     * @param use {@code false}인 경우 카운트를 추가하지 않음
++     */
++    void setUseEntityArrowCount(boolean use);
++
++    /**
++     * 대상 엔티티에게 화살 카운트를 추가할지의 여부를 가져옵니다.
++     *
++     * @return {@code false}인 경우 카운트를 추가하지 않음
++     */
++    boolean useEntityArrowCount();
++    // Daydream end - Add More Projectile API
+ }
+diff --git a/src/main/java/org/bukkit/entity/ThrowableProjectile.java b/src/main/java/org/bukkit/entity/ThrowableProjectile.java
+index ceb3e2c5117740ce284e893fff8e41a002d78649..ecbde1912af12243c074be5a2a4ffa98adc1bb26 100644
+--- a/src/main/java/org/bukkit/entity/ThrowableProjectile.java
++++ b/src/main/java/org/bukkit/entity/ThrowableProjectile.java
+@@ -19,4 +19,22 @@ public interface ThrowableProjectile extends Projectile {
+      * @param item ItemStack set to be displayed
+      */
+     void setItem(@NotNull ItemStack item);
++
++    // Daydream start - Add More Projectile API
++    /**
++     * 포탈 무시 여부를 가져옵니다.
++     *
++     * @return 만약 {@code true}라면 포탈을 무시합니다.
++     */
++    default boolean isIgnorePortal() {
++        return false;
++    }
++
++    /**
++     * 포탈 무시 여부를 설정합니다.
++     *
++     * @param ignore 만약 {@code true}라면 포탈을 무시합니다.
++     */
++    default void setIgnorePortal(boolean ignore) { }
++    // Daydream end - Add More Projectile API
+ }
