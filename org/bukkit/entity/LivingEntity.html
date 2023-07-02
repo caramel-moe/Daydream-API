@@ -373,6 +373,22 @@ extends <a href="../attribute/Attributable.html" title="interface in org.bukkit.
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Returns if the living entity despawns when away from players or not.</div>
 </div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>float</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getSeenPercent(double,double,double,double,boolean)" class="member-name-link">getSeenPercent</a><wbr>(double&nbsp;x,
+ double&nbsp;y,
+ double&nbsp;z,
+ double&nbsp;expand,
+ boolean&nbsp;instantReturn)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">특정 위치에서 이 엔티티를 어느 정도 보고 있는지 가져옵니다.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code>default float</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#getSeenPercent(org.bukkit.Location,double,boolean)" class="member-name-link">getSeenPercent</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;location,
+ double&nbsp;expand,
+ boolean&nbsp;instantReturn)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5">
+<div class="block">특정 위치에서 이 엔티티를 어느 정도 보고 있는지 가져옵니다.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>int</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getShieldBlockingDelay()" class="member-name-link">getShieldBlockingDelay</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
@@ -1632,6 +1648,45 @@ extends <a href="../attribute/Attributable.html" title="interface in org.bukkit.
 <dd><code>location</code> - the location to determine line of sight to</dd>
 <dt>Returns:</dt>
 <dd>true if there is a line of sight, false if not</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getSeenPercent(org.bukkit.Location,double,boolean)">
+<h3>getSeenPercent</h3>
+<div class="member-signature"><span class="modifiers">default</span>&nbsp;<span class="return-type">float</span>&nbsp;<span class="element-name">getSeenPercent</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;location,
+ double&nbsp;expand,
+ boolean&nbsp;instantReturn)</span></div>
+<div class="block">특정 위치에서 이 엔티티를 어느 정도 보고 있는지 가져옵니다.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>location</code> - 위치</dd>
+<dd><code>expand</code> - 확장할 히트박스의 크기</dd>
+<dd><code>instantReturn</code> - 즉시 반환 여부, 이 값이 <code>true</code>라면 이 엔티티가 조금이라도 보일 때 <code>1.0f</code>를 즉시 반환합니다.</dd>
+<dt>Returns:</dt>
+<dd>엔티티가 보이는 정도</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getSeenPercent(double,double,double,double,boolean)">
+<h3>getSeenPercent</h3>
+<div class="member-signature"><span class="return-type">float</span>&nbsp;<span class="element-name">getSeenPercent</span><wbr><span class="parameters">(double&nbsp;x,
+ double&nbsp;y,
+ double&nbsp;z,
+ double&nbsp;expand,
+ boolean&nbsp;instantReturn)</span></div>
+<div class="block">특정 위치에서 이 엔티티를 어느 정도 보고 있는지 가져옵니다.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>x</code> - 이 엔티티를 바라볼 x 위치</dd>
+<dd><code>y</code> - 이 엔티티를 바라볼 y 위치</dd>
+<dd><code>z</code> - 이 엔티티를 바라볼 z 위치</dd>
+<dd><code>expand</code> - 확장할 히트박스의 크기</dd>
+<dd><code>instantReturn</code> - 즉시 반환 여부, 이 값이 <code>true</code>라면 이 엔티티가 조금이라도 보일 때 <code>1.0f</code>를 즉시 반환합니다.</dd>
+<dt>Returns:</dt>
+<dd>엔티티가 보이는 정도</dd>
 </dl>
 </section>
 </li>
