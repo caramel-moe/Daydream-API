@@ -1,0 +1,43 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: LemonCaramel <admin@caramel.moe>
+Date: Sun, 2 Jul 2023 14:40:50 +0900
+Subject: [PATCH] Add more LivingEntity API
+
+
+diff --git a/src/main/java/org/bukkit/entity/LivingEntity.java b/src/main/java/org/bukkit/entity/LivingEntity.java
+index ffca32ae2464ea5a669029079a50585ca259a4f8..4231f97570dfd654926ac667794fad118b85ba3d 100644
+--- a/src/main/java/org/bukkit/entity/LivingEntity.java
++++ b/src/main/java/org/bukkit/entity/LivingEntity.java
+@@ -589,6 +589,32 @@ public interface LivingEntity extends Attributable, Damageable, ProjectileSource
+     public boolean hasLineOfSight(@NotNull Location location);
+     // Paper end
+ 
++    // Daydream start - Add more LivingEntity API (getSeenPercent)
++    /**
++     * 특정 위치에서 이 엔티티를 어느 정도 보고 있는지 가져옵니다.
++     *
++     * @param location 위치
++     * @param expand 확장할 히트박스의 크기
++     * @param instantReturn 즉시 반환 여부, 이 값이 {@code true}라면 이 엔티티가 조금이라도 보일 때 {@code 1.0f}를 즉시 반환합니다.
++     * @return 엔티티가 보이는 정도
++     */
++    default float getSeenPercent(@NotNull Location location, double expand, boolean instantReturn) {
++        return getSeenPercent(location.x(), location.y(), location.z(), expand, instantReturn);
++    }
++
++    /**
++     * 특정 위치에서 이 엔티티를 어느 정도 보고 있는지 가져옵니다.
++     *
++     * @param x 이 엔티티를 바라볼 x 위치
++     * @param y 이 엔티티를 바라볼 y 위치
++     * @param z 이 엔티티를 바라볼 z 위치
++     * @param expand 확장할 히트박스의 크기
++     * @param instantReturn 즉시 반환 여부, 이 값이 {@code true}라면 이 엔티티가 조금이라도 보일 때 {@code 1.0f}를 즉시 반환합니다.
++     * @return 엔티티가 보이는 정도
++     */
++    public float getSeenPercent(double x, double y, double z, double expand, boolean instantReturn);
++    // Daydream end - Add more LivingEntity API (getSeenPercent)
++
+     /**
+      * Returns if the living entity despawns when away from players or not.
+      * <p>
