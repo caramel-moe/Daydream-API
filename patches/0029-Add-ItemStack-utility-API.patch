@@ -4,8 +4,31 @@ Date: Wed, 5 Apr 2023 00:53:49 +0900
 Subject: [PATCH] Add ItemStack utility API
 
 
+diff --git a/src/main/java/org/bukkit/UnsafeValues.java b/src/main/java/org/bukkit/UnsafeValues.java
+index a6fde8c5295a63e64e026fe2231ca79806f150f6..d94779b775fd0b7c93e5c71b7245339b587b3514 100644
+--- a/src/main/java/org/bukkit/UnsafeValues.java
++++ b/src/main/java/org/bukkit/UnsafeValues.java
+@@ -275,4 +275,18 @@ public interface UnsafeValues {
+     @org.jetbrains.annotations.NotNull
+     moe.caramel.daydream.network.MojangByteBuf createByteBuf(@org.jetbrains.annotations.NotNull io.netty.buffer.ByteBuf buf);
+     // Daydream end
++
++    // Daydream start - Add ItemStack utility API
++    /**
++     * Create a new ItemStack
++     * (for Paper Compatibility)
++     *
++     * @param material the material
++     * @param count item count
++     * @return ItemStack
++     * @see <a href=https://github.com/PaperMC/Paper/pull/8711>here</a>
++     */
++    @org.jetbrains.annotations.NotNull
++    ItemStack newItem(@org.jetbrains.annotations.NotNull org.bukkit.Material material, int count);
++    // Daydream end - Add ItemStack utility API
+ }
 diff --git a/src/main/java/org/bukkit/inventory/ItemStack.java b/src/main/java/org/bukkit/inventory/ItemStack.java
-index d15a74c38576c49df61cfab02c70fc5d8c0dd5f7..6ee16473d7b8bff09e83452e60f79f22537fa5c5 100644
+index d15a74c38576c49df61cfab02c70fc5d8c0dd5f7..a432456a6a561cad66e573d7a780e41427aabadc 100644
 --- a/src/main/java/org/bukkit/inventory/ItemStack.java
 +++ b/src/main/java/org/bukkit/inventory/ItemStack.java
 @@ -34,6 +34,99 @@ public class ItemStack implements Cloneable, ConfigurationSerializable, Translat
@@ -24,7 +47,7 @@ index d15a74c38576c49df61cfab02c70fc5d8c0dd5f7..6ee16473d7b8bff09e83452e60f79f22
 +     */
 +    @NotNull
 +    public static ItemStack create(final @NotNull Material type) {
-+        return new ItemStack(type);
++        return Bukkit.getUnsafe().newItem(type, 1);
 +    }
 +
 +    /**
@@ -36,7 +59,7 @@ index d15a74c38576c49df61cfab02c70fc5d8c0dd5f7..6ee16473d7b8bff09e83452e60f79f22
 +     */
 +    @NotNull
 +    public static ItemStack create(final @NotNull Material type, final @NotNull java.util.function.Consumer<? super ItemMeta> consumer) {
-+        final ItemStack item = new ItemStack(type);
++        final ItemStack item = Bukkit.getUnsafe().newItem(type, 1);
 +        item.editMeta(consumer);
 +        return item;
 +    }
@@ -52,7 +75,7 @@ index d15a74c38576c49df61cfab02c70fc5d8c0dd5f7..6ee16473d7b8bff09e83452e60f79f22
 +     */
 +    @NotNull
 +    public static <M extends ItemMeta> ItemStack create(final @NotNull Material type, final @NotNull Class<M> metaClass, final @NotNull java.util.function.Consumer<@NotNull ? super M> consumer) {
-+        final ItemStack item = new ItemStack(type);
++        final ItemStack item = Bukkit.getUnsafe().newItem(type, 1);
 +        item.editMeta(metaClass, consumer);
 +        return item;
 +    }
@@ -69,7 +92,7 @@ index d15a74c38576c49df61cfab02c70fc5d8c0dd5f7..6ee16473d7b8bff09e83452e60f79f22
 +     */
 +    @NotNull
 +    public static ItemStack create(final @NotNull Material type, final int amount) {
-+        return new ItemStack(type, amount);
++        return Bukkit.getUnsafe().newItem(type, amount);
 +    }
 +
 +    /**
@@ -82,7 +105,7 @@ index d15a74c38576c49df61cfab02c70fc5d8c0dd5f7..6ee16473d7b8bff09e83452e60f79f22
 +     */
 +    @NotNull
 +    public static ItemStack create(final @NotNull Material type, final int amount, final @NotNull java.util.function.Consumer<? super ItemMeta> consumer) {
-+        final ItemStack item = new ItemStack(type, amount);
++        final ItemStack item = Bukkit.getUnsafe().newItem(type, amount);
 +        item.editMeta(consumer);
 +        return item;
 +    }
@@ -99,7 +122,7 @@ index d15a74c38576c49df61cfab02c70fc5d8c0dd5f7..6ee16473d7b8bff09e83452e60f79f22
 +     */
 +    @NotNull
 +    public static <M extends ItemMeta> ItemStack create(final @NotNull Material type, final int amount, final @NotNull Class<M> metaClass, final @NotNull java.util.function.Consumer<@NotNull ? super M> consumer) {
-+        final ItemStack item = new ItemStack(type, amount);
++        final ItemStack item = Bukkit.getUnsafe().newItem(type, amount);
 +        item.editMeta(metaClass, consumer);
 +        return item;
 +    }

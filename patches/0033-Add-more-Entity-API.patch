@@ -1,18 +1,39 @@
 From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: LemonCaramel <admin@caramel.moe>
 Date: Sun, 2 Jul 2023 14:40:50 +0900
-Subject: [PATCH] Add more LivingEntity API
+Subject: [PATCH] Add more Entity API
 
 
+diff --git a/src/main/java/org/bukkit/entity/Entity.java b/src/main/java/org/bukkit/entity/Entity.java
+index 95cb32e20cb68d87d0a2b6070a0dd587580535cb..ea524021e59948596f4b761980106a86beafb478 100644
+--- a/src/main/java/org/bukkit/entity/Entity.java
++++ b/src/main/java/org/bukkit/entity/Entity.java
+@@ -483,6 +483,16 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
+     @NotNull
+     public UUID getUniqueId();
+ 
++    // Daydream start - Add more Entity API (getStringUniqueId)
++    /**
++     * Returns a unique and persistent string id for this entity
++     *
++     * @return string unique id
++     */
++    @NotNull
++    public String getStringUniqueId();
++    // Daydream end - Add more Entity API (getStringUniqueId)
++
+     // Daydream start - Add Packet API
+     /**
+      * Gets the metadata of the entity.
 diff --git a/src/main/java/org/bukkit/entity/LivingEntity.java b/src/main/java/org/bukkit/entity/LivingEntity.java
-index ffca32ae2464ea5a669029079a50585ca259a4f8..4231f97570dfd654926ac667794fad118b85ba3d 100644
+index ffca32ae2464ea5a669029079a50585ca259a4f8..7909a0f3eeca69feccca50b531bbf5eb9315a9c7 100644
 --- a/src/main/java/org/bukkit/entity/LivingEntity.java
 +++ b/src/main/java/org/bukkit/entity/LivingEntity.java
 @@ -589,6 +589,32 @@ public interface LivingEntity extends Attributable, Damageable, ProjectileSource
      public boolean hasLineOfSight(@NotNull Location location);
      // Paper end
  
-+    // Daydream start - Add more LivingEntity API (getSeenPercent)
++    // Daydream start - Add more Entity API (getSeenPercent)
 +    /**
 +     * 특정 위치에서 이 엔티티를 어느 정도 보고 있는지 가져옵니다.
 +     *
@@ -36,7 +57,7 @@ index ffca32ae2464ea5a669029079a50585ca259a4f8..4231f97570dfd654926ac667794fad11
 +     * @return 엔티티가 보이는 정도
 +     */
 +    public float getSeenPercent(double x, double y, double z, double expand, boolean instantReturn);
-+    // Daydream end - Add more LivingEntity API (getSeenPercent)
++    // Daydream end - Add more Entity API (getSeenPercent)
 +
      /**
       * Returns if the living entity despawns when away from players or not.

@@ -71,10 +71,10 @@ index 0000000000000000000000000000000000000000..3a1ac3bd7d7e30105cf9eb4c7ccfe20b
 +}
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/AbstractCommand.java b/src/main/java/moe/caramel/daydream/brigadier/AbstractCommand.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..eef66db7ab64677406135040cd8ca63c5f784ecf
+index 0000000000000000000000000000000000000000..5321db1fae1c4ad9928bcb929a6896ab0d17152a
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/brigadier/AbstractCommand.java
-@@ -0,0 +1,417 @@
+@@ -0,0 +1,420 @@
 +package moe.caramel.daydream.brigadier;
 +
 +import com.mojang.brigadier.LiteralMessage;
@@ -91,9 +91,9 @@ index 0000000000000000000000000000000000000000..eef66db7ab64677406135040cd8ca63c
 +import org.jetbrains.annotations.NotNull;
 +import org.jetbrains.annotations.Nullable;
 +import java.util.ArrayList;
-+import java.util.Arrays;
 +import java.util.Collection;
 +import java.util.HashMap;
++import java.util.List;
 +import java.util.Map;
 +import java.util.concurrent.CompletableFuture;
 +import java.util.function.Function;
@@ -312,7 +312,7 @@ index 0000000000000000000000000000000000000000..eef66db7ab64677406135040cd8ca63c
 +     */
 +    @NotNull
 +    protected SuggestionProvider<CommandSourceStack> suggest(@NotNull String... strings) {
-+        return this.suggest(Arrays.asList(strings));
++        return this.suggest(List.of(strings));
 +    }
 +
 +    /**
@@ -326,7 +326,7 @@ index 0000000000000000000000000000000000000000..eef66db7ab64677406135040cd8ca63c
 +     */
 +    @NotNull
 +    protected SuggestionProvider<CommandSourceStack> multipleSuggest(@NotNull String... strings) {
-+        return this.multipleSuggest(Arrays.asList(strings));
++        return this.multipleSuggest(List.of(strings));
 +    }
 +
 +    /**
@@ -337,7 +337,10 @@ index 0000000000000000000000000000000000000000..eef66db7ab64677406135040cd8ca63c
 +     */
 +    @NotNull
 +    protected SuggestionProvider<CommandSourceStack> mutableSuggestArray(@NotNull Supplier<String[]> strings) {
-+        return suggest(strings.get());
++        return this.mutableSuggestCollection(list -> {
++            list.addAll(List.of(strings.get()));
++            return list;
++        });
 +    }
 +
 +    /**
@@ -351,7 +354,7 @@ index 0000000000000000000000000000000000000000..eef66db7ab64677406135040cd8ca63c
 +     */
 +    @NotNull
 +    protected SuggestionProvider<CommandSourceStack> mutableMultipleSuggestArray(@NotNull Supplier<String[]> strings) {
-+        return this.multipleSuggest(Arrays.asList(strings.get()));
++        return this.multipleSuggest(List.of(strings.get()));
 +    }
 +
 +    /**
