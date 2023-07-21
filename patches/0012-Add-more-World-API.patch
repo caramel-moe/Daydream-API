@@ -5,7 +5,7 @@ Subject: [PATCH] Add more World API
 
 
 diff --git a/src/main/java/org/bukkit/World.java b/src/main/java/org/bukkit/World.java
-index 72f1576b8ce5b55b50f053f346ce42c52db4b568..b9d7c454f405c31a675750c1f7ed3f8eeac3eca4 100644
+index 72f1576b8ce5b55b50f053f346ce42c52db4b568..31cb75ff56e581828b0ecfc736e0cf032762fc07 100644
 --- a/src/main/java/org/bukkit/World.java
 +++ b/src/main/java/org/bukkit/World.java
 @@ -149,6 +149,16 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
@@ -25,6 +25,45 @@ index 72f1576b8ce5b55b50f053f346ce42c52db4b568..b9d7c454f405c31a675750c1f7ed3f8e
      // Paper start - Add heightmap API
      /**
       * Returns the highest block's y-coordinate at the specified block coordinates that match the specified heightmap's conditions.
+@@ -3197,6 +3207,38 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
+      */
+     void playSound(@NotNull Location location, @NotNull String sound, @NotNull SoundCategory category, float volume, float pitch);
+ 
++    // Daydream start - Add More World API (Sound)
++    /**
++     * Play a Sound at the provided Location in the World.
++     * <p>
++     * This function will fail silently if Location or Sound are null.
++     *
++     * @param except The except player
++     * @param location The location to play the sound
++     * @param sound The sound to play
++     * @param category the category of the sound
++     * @param volume The volume of the sound
++     * @param pitch The pitch of the sound
++     */
++    void playSound(@NotNull Player except, @NotNull Location location, @NotNull Sound sound, @NotNull SoundCategory category, float volume, float pitch);
++
++    /**
++     * Play a Sound at the provided Location in the World.
++     * <p>
++     * This function will fail silently if Location or Sound are null. No sound
++     * will be heard by the players if their clients do not have the respective
++     * sound for the value passed.
++     *
++     * @param except The except player
++     * @param location The location to play the sound
++     * @param sound The internal sound name to play
++     * @param category The category of the sound
++     * @param volume The volume of the sound
++     * @param pitch The pitch of the sound
++     */
++    void playSound(@NotNull Player except, @NotNull Location location, @NotNull String sound, @NotNull SoundCategory category, float volume, float pitch);
++    // Daydream end - Add More World API (Sound)
++
+     /**
+      * Play a Sound at the location of the provided entity in the World.
+      * <p>
 diff --git a/src/main/java/org/bukkit/block/Block.java b/src/main/java/org/bukkit/block/Block.java
 index 1c3f54382d66549dc881d4577c7104be6673a274..25c1194df3b8cf6f45d5f965caa58e0fee905317 100644
 --- a/src/main/java/org/bukkit/block/Block.java
