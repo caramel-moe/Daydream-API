@@ -133,7 +133,7 @@ index 0000000000000000000000000000000000000000..394159310ec31777c5c423f94405d9ec
 +    boolean wasCancelled();
 +}
 diff --git a/src/main/java/org/bukkit/World.java b/src/main/java/org/bukkit/World.java
-index bff0c417bacda2bbe00fe10b7a4c989046448927..0b600ffe291e15abf0eb373d459031ae1c574a77 100644
+index 4866b2f9646058228da74c7f460a1039c45c1dcb..4a8f5882e34ab07b6f628b3c31e239e936735bb6 100644
 --- a/src/main/java/org/bukkit/World.java
 +++ b/src/main/java/org/bukkit/World.java
 @@ -2125,6 +2125,42 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
@@ -235,52 +235,53 @@ index d8b5362d0cdc3440efe30d619985018509b669e7..3284fd6a227507e0f8542fd52931201f
  
      @Override
 diff --git a/src/main/java/org/bukkit/event/entity/EntityDamageByBlockEvent.java b/src/main/java/org/bukkit/event/entity/EntityDamageByBlockEvent.java
-index 461727dc7f06efb3550fc370e0db5bd04ba89711..6859978cf02925e4f0ff43f3a0234f129783a745 100644
+index 913747f0b338a4217a7d9c90b6cb03f148abc196..0dd425f7afab2359b3805095876583f3f04ff6a5 100644
 --- a/src/main/java/org/bukkit/event/entity/EntityDamageByBlockEvent.java
 +++ b/src/main/java/org/bukkit/event/entity/EntityDamageByBlockEvent.java
-@@ -19,7 +19,12 @@ public class EntityDamageByBlockEvent extends EntityDamageEvent {
+@@ -26,8 +26,14 @@ public class EntityDamageByBlockEvent extends EntityDamageEvent {
      }
  
-     public EntityDamageByBlockEvent(@Nullable final Block damager, @NotNull final Entity damagee, @NotNull final DamageCause cause, @NotNull final Map<DamageModifier, Double> modifiers, @NotNull final Map<DamageModifier, ? extends Function<? super Double, Double>> modifierFunctions) {
--        super(damagee, cause, modifiers, modifierFunctions);
-+        this(damager, damagee, cause, modifiers, modifierFunctions, null);
+     // Daydream start - Add More API for EntityDamageEvent
++    @Deprecated // Daydream - Add More API for EntityDamageEvent
+     public EntityDamageByBlockEvent(@Nullable final Block damager, @NotNull final Entity damagee, @NotNull final DamageCause cause, @NotNull final Map<DamageModifier, Double> modifiers, @NotNull final Map<DamageModifier, ? extends Function<? super Double, Double>> modifierFunctions, @NotNull Object damageSource) {
+-        super(damagee, cause, modifiers, modifierFunctions, damageSource);
 +        // Daydream start - Add More Explosion API
++        this(damager, damagee, cause, modifiers, modifierFunctions, damageSource, null);
 +    }
-+    public EntityDamageByBlockEvent(@Nullable final Block damager, @NotNull final Entity damagee, @NotNull final DamageCause cause, @NotNull final Map<DamageModifier, Double> modifiers, @NotNull final Map<DamageModifier, ? extends Function<? super Double, Double>> modifierFunctions, @org.jetbrains.annotations.Nullable moe.caramel.daydream.world.Explosion explosion) {
++    public EntityDamageByBlockEvent(@Nullable final Block damager, @NotNull final Entity damagee, @NotNull final DamageCause cause, @NotNull final Map<DamageModifier, Double> modifiers, @NotNull final Map<DamageModifier, ? extends Function<? super Double, Double>> modifierFunctions, @NotNull Object damageSource, @org.jetbrains.annotations.Nullable moe.caramel.daydream.world.Explosion explosion) {
 +        // Daydream end - Add More Explosion API
-+        super(damagee, cause, modifiers, modifierFunctions, explosion); // Daydream - Add More Explosion API
++        super(damagee, cause, modifiers, modifierFunctions, damageSource, explosion); // Daydream - Add More Explosion API
          this.damager = damager;
      }
- 
+     // Daydream end - Add More API for EntityDamageEvent
 diff --git a/src/main/java/org/bukkit/event/entity/EntityDamageByEntityEvent.java b/src/main/java/org/bukkit/event/entity/EntityDamageByEntityEvent.java
-index 7ce8f1a26c1b33dd0eb6e6435952fd73abf49879..eb82c88725be6198d465e9243c9208c66192dddb 100644
+index 59d21ad3afce7dfe49ebaec9c0493b49b6653b37..0a2a5307896da7f26f7adeffabc1de2990b8e7ed 100644
 --- a/src/main/java/org/bukkit/event/entity/EntityDamageByEntityEvent.java
 +++ b/src/main/java/org/bukkit/event/entity/EntityDamageByEntityEvent.java
-@@ -26,8 +26,13 @@ public class EntityDamageByEntityEvent extends EntityDamageEvent {
- 
-     private final boolean critical;
-     public EntityDamageByEntityEvent(@NotNull final Entity damager, @NotNull final Entity damagee, @NotNull final DamageCause cause, @NotNull final Map<DamageModifier, Double> modifiers, @NotNull final Map<DamageModifier, ? extends Function<? super Double, Double>> modifierFunctions, boolean critical) {
-+        // Daydream start - Add More Explosion API
-+        this(damager, damagee, cause, modifiers, modifierFunctions, critical, null);
-+    }
-+    public EntityDamageByEntityEvent(@NotNull final Entity damager, @NotNull final Entity damagee, @NotNull final DamageCause cause, @NotNull final Map<DamageModifier, Double> modifiers, @NotNull final Map<DamageModifier, ? extends Function<? super Double, Double>> modifierFunctions, boolean critical, @org.jetbrains.annotations.Nullable moe.caramel.daydream.world.Explosion explosion) {
-+        // Daydream end - Add More Explosion API
+@@ -33,7 +33,12 @@ public class EntityDamageByEntityEvent extends EntityDamageEvent {
+     public EntityDamageByEntityEvent(@NotNull final Entity damager, @NotNull final Entity damagee, @NotNull final DamageCause cause, @NotNull final Map<DamageModifier, Double> modifiers, @NotNull final Map<DamageModifier, ? extends Function<? super Double, Double>> modifierFunctions, boolean critical, @NotNull Object damageSource) {
+         // Daydream end - Add More API for EntityDamageEvent
          // Paper end
--        super(damagee, cause, modifiers, modifierFunctions);
-+        super(damagee, cause, modifiers, modifierFunctions, explosion); // Daydream - Add More Explosion API
+-        super(damagee, cause, modifiers, modifierFunctions, damageSource); // Daydream - Add More API for EntityDamageEvent
++        // Daydream start - Add More Explosion API
++        this(damager, damagee, cause, modifiers, modifierFunctions, critical, damageSource, null);
++    }
++    public EntityDamageByEntityEvent(@NotNull final Entity damager, @NotNull final Entity damagee, @NotNull final DamageCause cause, @NotNull final Map<DamageModifier, Double> modifiers, @NotNull final Map<DamageModifier, ? extends Function<? super Double, Double>> modifierFunctions, boolean critical, @NotNull Object damageSource, @org.jetbrains.annotations.Nullable moe.caramel.daydream.world.Explosion explosion) {
++        // Daydream end - Add More Explosion API
++        super(damagee, cause, modifiers, modifierFunctions, damageSource, explosion); // Daydream - Add More API for EntityDamageEvent // Daydream - Add More Explosion API
          this.damager = damager;
          // Paper start - add critical damage API
          this.critical = critical;
 diff --git a/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java b/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java
-index e87581fae10cef3543b4daad5f319fc8adf0eb70..fc3d8950277e4473f13c0f15d78a419b13fbfade 100644
+index af580f6f2bff20c4cd7f2e45ec12a9f27ca3776d..72ea34e8195f9762df4d23330cb12827c99de5e7 100644
 --- a/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java
 +++ b/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java
-@@ -32,6 +32,23 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
-     }
+@@ -52,6 +52,23 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
  
-     public EntityDamageEvent(@NotNull final Entity damagee, @NotNull final DamageCause cause, @NotNull final Map<DamageModifier, Double> modifiers, @NotNull final Map<DamageModifier, ? extends Function<? super Double, Double>> modifierFunctions) {
+     public EntityDamageEvent(@NotNull final Entity damagee, @NotNull final DamageCause cause, @NotNull final Map<DamageModifier, Double> modifiers, @NotNull final Map<DamageModifier, ? extends Function<? super Double, Double>> modifierFunctions, @NotNull Object damageSource) {
+         // Daydream end - Add More API for EntityDamageEvent
 +        // Daydream start - Add More Explosion API
-+        this(damagee, cause, modifiers, modifierFunctions, null);
++        this(damagee, cause, modifiers, modifierFunctions, damageSource, null);
 +    }
 +    private final moe.caramel.daydream.world.Explosion explosion;
 +
@@ -294,19 +295,19 @@ index e87581fae10cef3543b4daad5f319fc8adf0eb70..fc3d8950277e4473f13c0f15d78a419b
 +        return explosion;
 +    }
 +
-+    public EntityDamageEvent(@NotNull final Entity damagee, @NotNull final DamageCause cause, @NotNull final Map<DamageModifier, Double> modifiers, @NotNull final Map<DamageModifier, ? extends Function<? super Double, Double>> modifierFunctions, @org.jetbrains.annotations.Nullable moe.caramel.daydream.world.Explosion explosion) {
++    public EntityDamageEvent(@NotNull final Entity damagee, @NotNull final DamageCause cause, @NotNull final Map<DamageModifier, Double> modifiers, @NotNull final Map<DamageModifier, ? extends Function<? super Double, Double>> modifierFunctions, @NotNull Object damageSource, @org.jetbrains.annotations.Nullable moe.caramel.daydream.world.Explosion explosion) {
 +        // Daydream end - Add More Explosion API
          super(damagee);
          Preconditions.checkArgument(modifiers.containsKey(DamageModifier.BASE), "BASE DamageModifier missing");
          Preconditions.checkArgument(!modifiers.containsKey(null), "Cannot have null DamageModifier");
-@@ -42,6 +59,7 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
-         this.cause = cause;
+@@ -63,6 +80,7 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
          this.modifiers = modifiers;
          this.modifierFunctions = modifierFunctions;
+         this.damageSource = damageSource; // Daydream - Add More API for EntityDamageEvent
 +        this.explosion = explosion;// Daydream - Add More Explosion API
      }
  
-     // Daydream start - Add More API for EntityDamageEvent
+     @Override
 diff --git a/src/main/java/org/bukkit/event/entity/EntityExplodeEvent.java b/src/main/java/org/bukkit/event/entity/EntityExplodeEvent.java
 index 099efafa14c10910e4ed04abb1823f0c1a96b6a6..28ec92d62468d807538864135e3f1394beb446f9 100644
 --- a/src/main/java/org/bukkit/event/entity/EntityExplodeEvent.java

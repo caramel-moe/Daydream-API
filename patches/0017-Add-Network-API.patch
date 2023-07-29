@@ -201,13 +201,13 @@ index 0000000000000000000000000000000000000000..21fde661e12417b1af155cfcb747140b
 +    public abstract MojangByteBuf writeBitSet(@NotNull BitSet bitSet);
 +}
 diff --git a/src/main/java/org/bukkit/UnsafeValues.java b/src/main/java/org/bukkit/UnsafeValues.java
-index b04ca98728d2b313b3b4fa057ab81bbefa2c5d84..a6fde8c5295a63e64e026fe2231ca79806f150f6 100644
+index 5f36d7d97b89cec8606bfdfc3518fcf2ccde4296..684b674d53a67e5c032ba5b5d6dec031303b840d 100644
 --- a/src/main/java/org/bukkit/UnsafeValues.java
 +++ b/src/main/java/org/bukkit/UnsafeValues.java
-@@ -264,4 +264,15 @@ public interface UnsafeValues {
-      */
-     void setBiomeKey(RegionAccessor accessor, int x, int y, int z, NamespacedKey biomeKey);
-     // Paper end
+@@ -269,4 +269,15 @@ public interface UnsafeValues {
+     @Nullable java.util.Map<String, Object> getDamageSourceMetadata(@NotNull Object damageSource);
+     void setDamageSourceMetadata(@NotNull Object damageSource, @Nullable java.util.Map<String, Object> metadata);
+     // Daydream end - Add More API for EntityDamageEvent
 +
 +    // Daydream start
 +    /**
