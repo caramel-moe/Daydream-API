@@ -4,22 +4,264 @@ Date: Sun, 8 Aug 2021 03:05:54 +0900
 Subject: [PATCH] Add More API for EntityDamageEvent
 
 
+diff --git a/src/main/java/moe/caramel/daydream/world/DamageMata.java b/src/main/java/moe/caramel/daydream/world/DamageMata.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..9fa71303c56abb7d1f783e60e13682a9d6d42706
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/world/DamageMata.java
+@@ -0,0 +1,239 @@
++package moe.caramel.daydream.world;
++
++import org.bukkit.entity.Entity;
++import org.bukkit.util.Vector;
++import org.jetbrains.annotations.NotNull;
++import org.jetbrains.annotations.Nullable;
++import java.util.Map;
++
++/**
++ * 대미지 메타데이터
++ */
++public interface DamageMata {
++
++    int NO_DATA = -1;
++
++    // ==============================================
++
++    /**
++     * NMS DamageSource를 가져옵니다.
++     *
++     * @return NMS DamageSource
++     */
++    @NotNull
++    Object getDamageSource();
++
++    /**
++     * 배고픔 고갈 정도를 가져옵니다.
++     *
++     * @return 배고픔 고갈 정도
++     */
++    float getFoodExhaustion();
++
++    /**
++     * 간접 공격의 여부를 가져옵니다.
++     *
++     * @return 간접 공격의 여부
++     */
++    boolean isIndirect();
++
++    /**
++     * 이 엔티티의 공격자를 가져옵니다.
++     * 예시) 화살
++     *
++     * @return 공격자
++     */
++    @Nullable
++    Entity getDirectEntity();
++
++    /**
++     * (존재하는 경우) 이 엔티티의 실제 공격자를 가져옵니다.
++     * 예시) 화살을 발사한 공격자를 반환
++     *
++     * @return 실제 공격자
++     */
++    @Nullable
++    Entity getEntity();
++
++    /**
++     * 이 대미지 소스의 ID를 가져옵니다.
++     *
++     * @return 대미지 소스의 ID
++     */
++    @NotNull
++    String getId();
++
++    /**
++     * 난이도에 따라 대미지 스케일이 변하는지 여부를 가져옵니다.
++     *
++     * @return 가변 스케일 여부
++     */
++    boolean scalesWithDifficulty();
++
++    /**
++     * 이 대미지 소스의 발생 위치를 가져옵니다.
++     * (일반적으로 BadRespawnPoint에서 발생)
++     *
++     * @return 이 대미지 소스의 발생 위치
++     */
++    @Nullable
++    Vector getSourcePosition();
++
++    /**
++     * 크리티컬 대미지 여부를 가져옵니다.
++     *
++     * @return 크리티컬 대미지 여부
++     */
++    boolean isCritical();
++
++    /**
++     * 검에 의한 쓸기 공격 여부를 가져옵니다.
++     *
++     * @return 쓸기 공격 여부
++     */
++    boolean isSweep();
++
++    /**
++     * 눈골렘이 녹아 발생한 대미지인지 확인합니다.
++     *
++     * @return 눈골렘이 녹아 발생한 대미지 여부
++     */
++    boolean isMelting();
++
++    /**
++     * 독 포션에 의한 대미지인지 확인합니다.
++     *
++     * @return 독 포션에 의한 대미지 여부
++     */
++    boolean isPoison();
++
++    // ====================== (DamageTypes)
++
++    boolean isTypeInFire();
++    boolean isTypeLightningBolt();
++    boolean isTypeOnFire();
++    boolean isTypeLava();
++    boolean isTypeHotFloor();
++    boolean isTypeInWall();
++    boolean isTypeCramming();
++    boolean isTypeDrown();
++    boolean isTypeStarve();
++    boolean isTypeCactus();
++    boolean isTypeFall();
++    boolean isTypeFlyIntoWall();
++    boolean isTypeOutOfWorld();
++    boolean isTypeGeneric();
++    boolean isTypeMagic();
++    boolean isTypeWither();
++    boolean isTypeDragonBreath();
++    boolean isTypeDryOut();
++    boolean isTypeSweetBerryBush();
++    boolean isTypeFreeze();
++    boolean isTypeStalagmite();
++    boolean isTypeFallingBlock();
++    boolean isTypeFallingAnvil();
++    boolean isTypeFallingStalactite();
++    boolean isTypeSting();
++    boolean isTypeMobAttack();
++    boolean isTypeMobAttackNoAggro();
++    boolean isTypePlayerAttack();
++    boolean isTypeArrow();
++    boolean isTypeTrident();
++    boolean isTypeMobProjectile();
++    boolean isTypeFireworks();
++    boolean isTypeFireball();
++    boolean isTypeUnattributedFireball();
++    boolean isTypeWitherSkull();
++    boolean isTypeThrown();
++    boolean isTypeIndirectMagic();
++    boolean isTypeThorns();
++    boolean isTypeExplosion();
++    boolean isTypePlayerExplosion();
++    boolean isTypeSonicBoom();
++    boolean isTypeBadRespawnPoint();
++
++    // ====================== (Tags)
++
++    boolean hasTagDamagesHelmet();
++    boolean hasTagBypassesArmor();
++    boolean hasTagBypassesShield();
++    boolean hasTagBypassesInvulnerability();
++    boolean hasTagBypassesCooldown();
++    boolean hasTagBypassesEffects();
++    boolean hasTagBypassesResistance();
++    boolean hasTagBypassesEnchantments();
++    boolean hasTagIsFire();
++    boolean hasTagIsProjectile();
++    boolean hasTagWitchResistantTo();
++    boolean hasTagIsExplosion();
++    boolean hasTagIsFall();
++    boolean hasTagIsDrowning();
++    boolean hasTagIsFreezing();
++    boolean hasTagIsLighting();
++    boolean hasTagNoAnger();
++    boolean hasTagNoImpact();
++    boolean hasTagNoKnockback(); // Daydream - Add More API for EntityDamageEvent
++    boolean hasTagAlwaysMostSignificantFall();
++    boolean hasTagWitherImmuneTo();
++    boolean hasTagIgnitesArmorStands();
++    boolean hasTagBurnsArmorStands();
++    boolean hasTagAvoidsGuardianThorns();
++    boolean hasTagAlwaysTriggersSilverfish();
++    boolean hasTagAlwaysHurtsEnderDragons();
++
++    // ==============================================
++
++    /**
++     * 사용자 지정 메타데이터를 가져옵니다.
++     * 초기 값은 {@code null}입니다.
++     *
++     * @return 사용자 지정 메타데이터
++     */
++    @Nullable
++    Map<String, Object> getMetadata();
++
++    /**
++     * 사용자 지정 메타데이터를 설정합니다.
++     * 데이터를 추가하는 것이 아닌 완전히 덮어 씌웁니다.
++     *
++     * @param metadata 사용자 지정 메타데이터
++     */
++    void setMetadata(final @Nullable Map<String, Object> metadata);
++
++    // ==============================================
++
++    /**
++     * 대상 엔티티에게 설정될 무적 시간을 가져옵니다.
++     * LivingEntity가 아닌 경우 {@link #NO_DATA}를 반환합니다.
++     *
++     * @return 무적 시간
++     */
++    int getNoDamageTick();
++
++    /**
++     * 대상 엔티티의 무적 시간을 설정합니다.
++     * LivingEntity가 아닌 경우 값이 적용되지 않습니다.
++     *
++     * @param ticks 무적 시간
++     */
++    void setNoDamageTick(final int ticks);
++
++    // ==============================================
++
++    /**
++     * 대미지 처리 이후 받게 될 강제된 넉백을 가져옵니다.
++     *
++     * @return 대미지 처리 이후 받게 될 넉백
++     */
++    @Nullable
++    Vector getOverrideKnockback();
++
++    /**
++     * 대미지 처리 이후 받게 될 넉백을 강제로 설정합니다.
++     * {@code null}인 경우 바닐라의 설정을 따르며, {@link Vector}의
++     * 크기가 0인 경우 넉백을 적용하지 않습니다.
++     *
++     * @param knockback 대미지 처리 이후 받게 될 넉백
++     */
++    void setOverrideKnockback(final @Nullable Vector knockback);
++}
 diff --git a/src/main/java/org/bukkit/UnsafeValues.java b/src/main/java/org/bukkit/UnsafeValues.java
-index c661eab343ae76488de701630424e2d589f44fc0..93f4b365d88d95a0f54a55eec4e631166ff84654 100644
+index c661eab343ae76488de701630424e2d589f44fc0..8b606979adc04dd92032ade5951f2db8c38b9d40 100644
 --- a/src/main/java/org/bukkit/UnsafeValues.java
 +++ b/src/main/java/org/bukkit/UnsafeValues.java
-@@ -250,4 +250,9 @@ public interface UnsafeValues {
+@@ -250,4 +250,6 @@ public interface UnsafeValues {
       */
      void setBiomeKey(RegionAccessor accessor, int x, int y, int z, NamespacedKey biomeKey);
      // Paper end
 +
-+    // Daydream start - Add More API for EntityDamageEvent
-+    @Nullable java.util.Map<String, Object> getDamageSourceMetadata(@NotNull Object damageSource);
-+    void setDamageSourceMetadata(@NotNull Object damageSource, @Nullable java.util.Map<String, Object> metadata);
-+    // Daydream end - Add More API for EntityDamageEvent
++    @NotNull moe.caramel.daydream.world.DamageMata getDamageMeta(@NotNull Object damageSource); // Daydream - Add More API for EntityDamageEvent
  }
 diff --git a/src/main/java/org/bukkit/event/entity/EntityDamageByBlockEvent.java b/src/main/java/org/bukkit/event/entity/EntityDamageByBlockEvent.java
-index 461727dc7f06efb3550fc370e0db5bd04ba89711..913747f0b338a4217a7d9c90b6cb03f148abc196 100644
+index 461727dc7f06efb3550fc370e0db5bd04ba89711..2a61f4b6815e1501142862a7989ab5087dfa1fd8 100644
 --- a/src/main/java/org/bukkit/event/entity/EntityDamageByBlockEvent.java
 +++ b/src/main/java/org/bukkit/event/entity/EntityDamageByBlockEvent.java
 @@ -13,16 +13,25 @@ import org.jetbrains.annotations.Nullable;
@@ -39,8 +281,8 @@ index 461727dc7f06efb3550fc370e0db5bd04ba89711..913747f0b338a4217a7d9c90b6cb03f1
      }
  
 +    // Daydream start - Add More API for EntityDamageEvent
-+    public EntityDamageByBlockEvent(@Nullable final Block damager, @NotNull final Entity damagee, @NotNull final DamageCause cause, @NotNull final Map<DamageModifier, Double> modifiers, @NotNull final Map<DamageModifier, ? extends Function<? super Double, Double>> modifierFunctions, @NotNull Object damageSource) {
-+        super(damagee, cause, modifiers, modifierFunctions, damageSource);
++    public EntityDamageByBlockEvent(@Nullable final Block damager, @NotNull final Entity damagee, @NotNull final DamageCause cause, @NotNull final Map<DamageModifier, Double> modifiers, @NotNull final Map<DamageModifier, ? extends Function<? super Double, Double>> modifierFunctions, @NotNull moe.caramel.daydream.world.DamageMata damageMata) {
++        super(damagee, cause, modifiers, modifierFunctions, damageMata);
 +        this.damager = damager;
 +    }
 +    // Daydream end - Add More API for EntityDamageEvent
@@ -49,7 +291,7 @@ index 461727dc7f06efb3550fc370e0db5bd04ba89711..913747f0b338a4217a7d9c90b6cb03f1
       * Returns the block that damaged the player.
       *
 diff --git a/src/main/java/org/bukkit/event/entity/EntityDamageByEntityEvent.java b/src/main/java/org/bukkit/event/entity/EntityDamageByEntityEvent.java
-index 7ce8f1a26c1b33dd0eb6e6435952fd73abf49879..59d21ad3afce7dfe49ebaec9c0493b49b6653b37 100644
+index 7ce8f1a26c1b33dd0eb6e6435952fd73abf49879..74ed45fc93f06c4d505a52dc146cb5755ede406b 100644
 --- a/src/main/java/org/bukkit/event/entity/EntityDamageByEntityEvent.java
 +++ b/src/main/java/org/bukkit/event/entity/EntityDamageByEntityEvent.java
 @@ -25,9 +25,15 @@ public class EntityDamageByEntityEvent extends EntityDamageEvent {
@@ -61,16 +303,16 @@ index 7ce8f1a26c1b33dd0eb6e6435952fd73abf49879..59d21ad3afce7dfe49ebaec9c0493b49
 +        // Daydream start - Add More API for EntityDamageEvent
 +        this(damager, damagee, cause, modifiers, modifierFunctions, critical, null);
 +    }
-+    public EntityDamageByEntityEvent(@NotNull final Entity damager, @NotNull final Entity damagee, @NotNull final DamageCause cause, @NotNull final Map<DamageModifier, Double> modifiers, @NotNull final Map<DamageModifier, ? extends Function<? super Double, Double>> modifierFunctions, boolean critical, @NotNull Object damageSource) {
++    public EntityDamageByEntityEvent(@NotNull final Entity damager, @NotNull final Entity damagee, @NotNull final DamageCause cause, @NotNull final Map<DamageModifier, Double> modifiers, @NotNull final Map<DamageModifier, ? extends Function<? super Double, Double>> modifierFunctions, boolean critical, @NotNull moe.caramel.daydream.world.DamageMata damageMata) {
 +        // Daydream end - Add More API for EntityDamageEvent
          // Paper end
 -        super(damagee, cause, modifiers, modifierFunctions);
-+        super(damagee, cause, modifiers, modifierFunctions, damageSource); // Daydream - Add More API for EntityDamageEvent
++        super(damagee, cause, modifiers, modifierFunctions, damageMata); // Daydream - Add More API for EntityDamageEvent
          this.damager = damager;
          // Paper start - add critical damage API
          this.critical = critical;
 diff --git a/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java b/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java
-index 6241f31e7326954b2e704da46bf0115adbcf8671..af580f6f2bff20c4cd7f2e45ec12a9f27ca3776d 100644
+index 6241f31e7326954b2e704da46bf0115adbcf8671..47bcf1f2b743d3d1065eb3467f3fff36b0fb6026 100644
 --- a/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java
 +++ b/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java
 @@ -27,11 +27,31 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
@@ -88,19 +330,19 @@ index 6241f31e7326954b2e704da46bf0115adbcf8671..af580f6f2bff20c4cd7f2e45ec12a9f2
 +        this(damagee, cause, modifiers, modifierFunctions, null);
 +    }
 +
-+    private final Object damageSource;
++    private final moe.caramel.daydream.world.DamageMata damageMata;
 +
 +    /**
-+     * Gets the NMS DamageSource.
++     * 대미지 메타데이터를 가져옵니다.
 +     *
-+     * @return NMS DamageSource
++     * @return 대미지 메타데이터
 +     */
 +    @NotNull
-+    public Object getDamageSource() {
-+        return damageSource;
++    public moe.caramel.daydream.world.DamageMata getDamageMeta() {
++        return damageMata;
 +    }
 +
-+    public EntityDamageEvent(@NotNull final Entity damagee, @NotNull final DamageCause cause, @NotNull final Map<DamageModifier, Double> modifiers, @NotNull final Map<DamageModifier, ? extends Function<? super Double, Double>> modifierFunctions, @NotNull Object damageSource) {
++    public EntityDamageEvent(@NotNull final Entity damagee, @NotNull final DamageCause cause, @NotNull final Map<DamageModifier, Double> modifiers, @NotNull final Map<DamageModifier, ? extends Function<? super Double, Double>> modifierFunctions, @NotNull moe.caramel.daydream.world.DamageMata damageMata) {
 +        // Daydream end - Add More API for EntityDamageEvent
          super(damagee);
          Preconditions.checkArgument(modifiers.containsKey(DamageModifier.BASE), "BASE DamageModifier missing");
@@ -109,61 +351,7 @@ index 6241f31e7326954b2e704da46bf0115adbcf8671..af580f6f2bff20c4cd7f2e45ec12a9f2
          this.cause = cause;
          this.modifiers = modifiers;
          this.modifierFunctions = modifierFunctions;
-+        this.damageSource = damageSource; // Daydream - Add More API for EntityDamageEvent
++        this.damageMata = damageMata; // Daydream - Add More API for EntityDamageEvent
      }
  
      @Override
-@@ -54,6 +75,53 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
-         cancelled = cancel;
-     }
- 
-+    // Daydream start - Add More API for EntityDamageEvent
-+    private int noDamageTick = -1;
-+    private org.bukkit.util.Vector knockbackOverride;
-+
-+    /**
-+     * Returns the no damage ticks of the living entity to be set after the
-+     * event is processed.
-+     *
-+     * @return living entity's no damage ticks.
-+     * if the return value is -1, it is not modified yet
-+     */
-+    public int getNoDamageTick() {
-+        return noDamageTick;
-+    }
-+
-+    /**
-+     * Sets the no damage ticks of the living entity to be set after the
-+     * event is processed.
-+     *
-+     * @param ticks amount of no damage ticks
-+     */
-+    public void setNoDamageTick(int ticks) {
-+        this.noDamageTick = Math.max(0, ticks);
-+    }
-+
-+    /**
-+     * 수정된 넉백 벡터를 가져옵니다.
-+     *
-+     * @return 수정된 넉백 벡터 (없다면 {@code null}을 반환)
-+     */
-+    @org.jetbrains.annotations.Nullable
-+    public org.bukkit.util.Vector getKnockbackOverride() {
-+        return knockbackOverride;
-+    }
-+
-+    /**
-+     * 수정할 넉백 벡터를 설정합니다.
-+     * <br>
-+     * 크리티컬 대미지의 경우 작동을 하지 않습니다.
-+     *
-+     * @param knockback 수정할 넉백 벡터
-+     */
-+    public void setKnockbackOverride(@NotNull org.bukkit.util.Vector knockback) {
-+        this.knockbackOverride = knockback;
-+    }
-+    // Daydream end - Add More API for EntityDamageEvent
-+
-     /**
-      * Gets the original damage for the specified modifier, as defined at this
-      * event's construction.
