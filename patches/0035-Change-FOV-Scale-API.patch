@@ -1,0 +1,33 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: LemonCaramel <admin@caramel.moe>
+Date: Thu, 10 Aug 2023 17:48:56 +0900
+Subject: [PATCH] Change FOV Scale API
+
+
+diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
+index 0a68cec34b53b4c78360530f6194e9699942556b..32676f988f70a3716fec622cac155b051b911d36 100644
+--- a/src/main/java/org/bukkit/entity/Player.java
++++ b/src/main/java/org/bukkit/entity/Player.java
+@@ -1614,6 +1614,22 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+      */
+     public void setAllowFlight(boolean flight);
+ 
++    // Daydream start - Change FOV Scale API
++    /**
++     * FOV 크기를 가져옵니다.
++     *
++     * @return FOV 크기 (기본 값: {@code 1.0f})
++     */
++    public float getFovScale();
++
++    /**
++     * FOV 크기를 설정합니다.
++     *
++     * @param fov FOV 크기
++     */
++    public void setFovScale(final float fov);
++    // Daydream end - Change FOV Scale API
++
+     // Paper start - flying fall damage
+     /**
+      * Allows you to enable fall damage while {@link #getAllowFlight()} is {@code true}
