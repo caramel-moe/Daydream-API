@@ -1393,10 +1393,10 @@ index 0000000000000000000000000000000000000000..facc2182e0920c9b71e44e8686f97b2a
 +    }
 +}
 diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
-index b0bc2df41506770e2854a287813f1c53f003eda1..a82453d97491cbb85d63d564cc212e0e4efc11cf 100644
+index b0bc2df41506770e2854a287813f1c53f003eda1..4493f23512ec1d33d4d5236facabca743d5ab903 100644
 --- a/src/main/java/org/bukkit/Bukkit.java
 +++ b/src/main/java/org/bukkit/Bukkit.java
-@@ -981,6 +981,42 @@ public final class Bukkit {
+@@ -981,6 +981,52 @@ public final class Bukkit {
          return server.getPluginCommand(name);
      }
  
@@ -1434,16 +1434,26 @@ index b0bc2df41506770e2854a287813f1c53f003eda1..a82453d97491cbb85d63d564cc212e0e
 +    public static List<String> unregisterAllCommands(@NotNull org.bukkit.plugin.Plugin plugin) {
 +        return server.unregisterAllCommands(plugin);
 +    }
++
++    /**
++     * Gets the Command Dispatcher.
++     *
++     * @return Command Dispatcher
++     */
++    @NotNull
++    public static com.mojang.brigadier.CommandDispatcher<io.papermc.paper.command.brigadier.CommandSourceStack> getCommandDispatcher() {
++        return server.getCommandDispatcher();
++    }
 +    // Daydream end
 +
      /**
       * Writes loaded players to disk.
       */
 diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
-index f1a252881c979c4d800a06806d464d0d804d8042..5c1e17f6f3fc1213585c69ad4dcee29e757a19a2 100644
+index f1a252881c979c4d800a06806d464d0d804d8042..9c12812d215b4702b5efe23cf6a002f5c2aab2d6 100644
 --- a/src/main/java/org/bukkit/Server.java
 +++ b/src/main/java/org/bukkit/Server.java
-@@ -829,6 +829,36 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
+@@ -829,6 +829,44 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
      @Nullable
      public PluginCommand getPluginCommand(@NotNull String name);
  
@@ -1475,6 +1485,14 @@ index f1a252881c979c4d800a06806d464d0d804d8042..5c1e17f6f3fc1213585c69ad4dcee29e
 +     */
 +    @NotNull
 +    public List<String> unregisterAllCommands(@NotNull org.bukkit.plugin.Plugin plugin);
++
++    /**
++     * Gets the Command Dispatcher.
++     *
++     * @return Command Dispatcher
++     */
++    @NotNull
++    public com.mojang.brigadier.CommandDispatcher<io.papermc.paper.command.brigadier.CommandSourceStack> getCommandDispatcher();
 +    // Daydream end
 +
      /**
@@ -1557,6 +1575,27 @@ index 36da67bf9fda415c302afcf0e346c72e664fa6a3..32fb0743b6650c4d753360ee8a6b985f
 +    }
 +    // Daydream end
  }
+diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
+index 88c4885569d2b8b22fce55601d50608ac8e9388c..49440520baf9210d7c7f7335539a782afdbe1ff0 100644
+--- a/src/main/java/org/bukkit/entity/Player.java
++++ b/src/main/java/org/bukkit/entity/Player.java
+@@ -277,6 +277,16 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+      */
+     public boolean performCommand(@NotNull String command);
+ 
++    // Daydream start - Add Brigadier API
++    /**
++     * CommandSource를 생성합니다.
++     *
++     * @return CommandSource
++     */
++    @NotNull
++    public io.papermc.paper.command.brigadier.CommandSourceStack getCommandSource();
++    // Daydream end - Add Brigadier API
++
+     /**
+      * Returns true if the entity is supported by a block.
+      *
 diff --git a/src/main/java/org/bukkit/event/command/UnknownCommandEvent.java b/src/main/java/org/bukkit/event/command/UnknownCommandEvent.java
 index e4f8a0d14ae66468bbb0a5d6bf9c1ee417dc866c..5342f39f827fe5bf18fdef9469cd56492eb2f17f 100644
 --- a/src/main/java/org/bukkit/event/command/UnknownCommandEvent.java

@@ -5,13 +5,13 @@ Subject: [PATCH] Add Network API
 
 
 diff --git a/build.gradle.kts b/build.gradle.kts
-index a1ccf5b3d9dd946d6def9043c4ecd66ed0e08624..49b24afb1b973c4f6c8be5438a8ea3aa8812000a 100644
+index 4f8ad786591336e237d5646760dab6470b7bbea6..a6e54eeb757356cce524e9657c2448a136d19f83 100644
 --- a/build.gradle.kts
 +++ b/build.gradle.kts
-@@ -49,6 +49,7 @@ dependencies {
+@@ -48,6 +48,7 @@ dependencies {
+     // Paper end
      api("com.mojang:brigadier:1.0.18") // Daydream - Add Brigadier Command API
      api("com.mojang:authlib:3.17.30") // Daydream - Mojang Authlib (keep in sync with major MC versions)
-     api("com.neovisionaries:nv-i18n:1.29") // Daydream - add GeoIP
 +    api("io.netty:netty-all:4.1.87.Final") // Daydream - add Network API
  
      api("org.apache.maven:maven-resolver-provider:3.8.5") // Paper, expose
@@ -221,7 +221,7 @@ index ef8517aac80e478bbb17415f87e40d9c5e0e79c5..44dfcf031418e8d4cff7dd3fd3320576
 +    // Daydream end
  }
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index 29940c4eff149fef0222cfef9afd262d61b4eaad..fbbaffd43e40130e7610a6dd1bd68023cb3b1852 100644
+index 322ee6ab2a6c36785353cb3c59b6626cf16da055..d26b89ad95cf4da9387ff1955f8f408b4f318ac2 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
 @@ -744,6 +744,24 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM

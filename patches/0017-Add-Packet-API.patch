@@ -962,10 +962,10 @@ index 0000000000000000000000000000000000000000..a4b9dcd4179fa4d4089d1929b639a6d6
 +    }
 +}
 diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
-index 4015b1b32290969ac0a093306e778635205ccbe8..d595c7a75f94dd2ef60ee302d03ebeafb8ce6bc7 100644
+index 09de0f8e0e6a80ccd8f26a8e70f87bb7dba2fda7..2a81ddd274450671128e68bd7e0a24098da27058 100644
 --- a/src/main/java/org/bukkit/Bukkit.java
 +++ b/src/main/java/org/bukkit/Bukkit.java
-@@ -2528,6 +2528,20 @@ public final class Bukkit {
+@@ -2538,6 +2538,20 @@ public final class Bukkit {
      }
      // Paper end
  
@@ -987,10 +987,10 @@ index 4015b1b32290969ac0a093306e778635205ccbe8..d595c7a75f94dd2ef60ee302d03ebeaf
      public static Server.Spigot spigot() {
          return server.spigot();
 diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
-index f0c0f6e4dd097f209c6f97ab7119f4fcf1f568d6..390f1d596f3ce9d1128ba601f82a028f7f1bfd9d 100644
+index 501ad85d12fb61dacd2e9441ed327a866818ae33..df5c9aadc83e12d8cd52e8200dcc30dbcc29437e 100644
 --- a/src/main/java/org/bukkit/Server.java
 +++ b/src/main/java/org/bukkit/Server.java
-@@ -2211,4 +2211,16 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
+@@ -2219,4 +2219,16 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
       */
      @NotNull org.bukkit.potion.PotionBrewer getPotionBrewer();
      // Paper end
@@ -1008,7 +1008,7 @@ index f0c0f6e4dd097f209c6f97ab7119f4fcf1f568d6..390f1d596f3ce9d1128ba601f82a028f
 +    // Daydream end - Add Packet API
  }
 diff --git a/src/main/java/org/bukkit/World.java b/src/main/java/org/bukkit/World.java
-index b9d7c454f405c31a675750c1f7ed3f8eeac3eca4..be5e7e7635c30b886971ba03a85f8c16809b38c8 100644
+index 31cb75ff56e581828b0ecfc736e0cf032762fc07..26397142e4b7c259c8b1375659ce57e4153679b0 100644
 --- a/src/main/java/org/bukkit/World.java
 +++ b/src/main/java/org/bukkit/World.java
 @@ -1580,6 +1580,17 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
@@ -1054,12 +1054,12 @@ index a2a423d4e4c2702ba5967223cab0432dd7d04732..79ee00792d13c37946d910819baf0cd3
       * Gets the amount of ticks this entity has lived for.
       * <p>
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index fbbaffd43e40130e7610a6dd1bd68023cb3b1852..0a68cec34b53b4c78360530f6194e9699942556b 100644
+index d26b89ad95cf4da9387ff1955f8f408b4f318ac2..497cfd447fad9bb5fd0fffaa2af8027c7c6e1e16 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
 @@ -297,6 +297,16 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
-      */
-     public boolean performCommand(@NotNull String command);
+     public io.papermc.paper.command.brigadier.CommandSourceStack getCommandSource();
+     // Daydream end - Add Brigadier API
  
 +    // Daydream start - Add Packet API
 +    /**
