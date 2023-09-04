@@ -5,16 +5,16 @@ Subject: [PATCH] Add Network API
 
 
 diff --git a/build.gradle.kts b/build.gradle.kts
-index 4f8ad786591336e237d5646760dab6470b7bbea6..a6e54eeb757356cce524e9657c2448a136d19f83 100644
+index e820ff2ff61c225694735b051fe4cebbfdecb3e6..80fe9d1d63cc45a455ffdd0c9df39f3835587878 100644
 --- a/build.gradle.kts
 +++ b/build.gradle.kts
-@@ -48,6 +48,7 @@ dependencies {
+@@ -52,6 +52,7 @@ dependencies {
      // Paper end
-     api("com.mojang:brigadier:1.0.18") // Daydream - Add Brigadier Command API
-     api("com.mojang:authlib:3.17.30") // Daydream - Mojang Authlib (keep in sync with major MC versions)
+     api("com.mojang:brigadier:1.1.8") // Daydream - Add Brigadier Command API
+     api("com.mojang:authlib:4.0.43") // Daydream - Mojang Authlib (keep in sync with major MC versions)
 +    api("io.netty:netty-all:4.1.87.Final") // Daydream - add Network API
  
-     api("org.apache.maven:maven-resolver-provider:3.8.5") // Paper, expose
+     api("org.apache.maven:maven-resolver-provider:3.8.5")
      compileOnly("org.apache.maven.resolver:maven-resolver-connector-basic:1.7.3")
 diff --git a/src/main/java/com/destroystokyo/paper/network/NetworkClient.java b/src/main/java/com/destroystokyo/paper/network/NetworkClient.java
 index 7b2af1bd72dfbcf4e962a982940fc49b851aa04f..dad505d4e12bcdbb379485c59e476c98120d3ecd 100644
@@ -201,10 +201,10 @@ index 0000000000000000000000000000000000000000..21fde661e12417b1af155cfcb747140b
 +    public abstract MojangByteBuf writeBitSet(@NotNull BitSet bitSet);
 +}
 diff --git a/src/main/java/org/bukkit/UnsafeValues.java b/src/main/java/org/bukkit/UnsafeValues.java
-index ef8517aac80e478bbb17415f87e40d9c5e0e79c5..44dfcf031418e8d4cff7dd3fd3320576368d2010 100644
+index 174b47338148b5d2842bacc1c2787e9bbccdcf60..a2eed72fc05180a4b705898ad27d4287d648ee0f 100644
 --- a/src/main/java/org/bukkit/UnsafeValues.java
 +++ b/src/main/java/org/bukkit/UnsafeValues.java
-@@ -266,4 +266,15 @@ public interface UnsafeValues {
+@@ -268,4 +268,15 @@ public interface UnsafeValues {
      // Paper end
  
      @NotNull moe.caramel.daydream.world.DamageMata getDamageMeta(@NotNull Object damageSource); // Daydream - Add More API for EntityDamageEvent
@@ -221,10 +221,10 @@ index ef8517aac80e478bbb17415f87e40d9c5e0e79c5..44dfcf031418e8d4cff7dd3fd3320576
 +    // Daydream end
  }
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index 322ee6ab2a6c36785353cb3c59b6626cf16da055..d26b89ad95cf4da9387ff1955f8f408b4f318ac2 100644
+index 558a4915a90e08c3e16e51d5c0e88ff5bbbabb7e..5ad60ef83146272d10e6d9bdec3f250421f33088 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
-@@ -744,6 +744,24 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+@@ -887,6 +887,24 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
       */
      public void sendEquipmentChange(@NotNull LivingEntity entity, @NotNull Map<EquipmentSlot, ItemStack> items);
  

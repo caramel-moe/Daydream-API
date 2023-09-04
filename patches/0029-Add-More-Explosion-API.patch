@@ -5,10 +5,10 @@ Subject: [PATCH] Add More Explosion API
 
 
 diff --git a/src/main/java/moe/caramel/daydream/world/DamageMata.java b/src/main/java/moe/caramel/daydream/world/DamageMata.java
-index 9fa71303c56abb7d1f783e60e13682a9d6d42706..10a745da5a6dc09795ddf5c659806dc28cbdcb03 100644
+index 8e26ae37875abef532781e0bf3742eec8823fb19..7175e3b3f85a0dd6c79c149bc8c5560c9db7794d 100644
 --- a/src/main/java/moe/caramel/daydream/world/DamageMata.java
 +++ b/src/main/java/moe/caramel/daydream/world/DamageMata.java
-@@ -236,4 +236,14 @@ public interface DamageMata {
+@@ -238,4 +238,14 @@ public interface DamageMata {
       * @param knockback 대미지 처리 이후 받게 될 넉백
       */
      void setOverrideKnockback(final @Nullable Vector knockback);
@@ -152,10 +152,10 @@ index 0000000000000000000000000000000000000000..394159310ec31777c5c423f94405d9ec
 +    boolean wasCancelled();
 +}
 diff --git a/src/main/java/org/bukkit/World.java b/src/main/java/org/bukkit/World.java
-index 4866b2f9646058228da74c7f460a1039c45c1dcb..4a8f5882e34ab07b6f628b3c31e239e936735bb6 100644
+index c5771a57115386d0da3306c2fa2d3c053bedc0cc..bde9a60bb9d0a835db34feabd5d891b0a01e76a6 100644
 --- a/src/main/java/org/bukkit/World.java
 +++ b/src/main/java/org/bukkit/World.java
-@@ -2125,6 +2125,42 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
+@@ -2143,6 +2143,42 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
       */
      public boolean createExplosion(double x, double y, double z, float power, boolean setFire, boolean breakBlocks, @Nullable Entity source);
  
@@ -220,11 +220,11 @@ index 0813bd913c8fdb2001963ce3e82c07c2af105418..75c9e90ce2bf96c510aca45f2658298e
 +    // Daydream end - Add More Explosion API
  }
 diff --git a/src/main/java/org/bukkit/event/block/BlockExplodeEvent.java b/src/main/java/org/bukkit/event/block/BlockExplodeEvent.java
-index d8b5362d0cdc3440efe30d619985018509b669e7..3284fd6a227507e0f8542fd52931201f92cbd33f 100644
+index 7dcbb75170296c1dd1d784a032bf369602328b29..d34b3b812fec6c4d1e06b0e5e74c0dbaabf9d5a4 100644
 --- a/src/main/java/org/bukkit/event/block/BlockExplodeEvent.java
 +++ b/src/main/java/org/bukkit/event/block/BlockExplodeEvent.java
-@@ -28,11 +28,29 @@ public class BlockExplodeEvent extends BlockEvent implements Cancellable {
-     }
+@@ -30,11 +30,29 @@ public class BlockExplodeEvent extends BlockEvent implements Cancellable {
+     @org.jetbrains.annotations.ApiStatus.Internal
      public BlockExplodeEvent(@NotNull final Block what, @NotNull final List<Block> blocks, final float yield, @org.jetbrains.annotations.Nullable org.bukkit.block.BlockState explodedBlockState) {
          // Paper end
 +        // Daydream start - Add More Explosion API
@@ -254,10 +254,10 @@ index d8b5362d0cdc3440efe30d619985018509b669e7..3284fd6a227507e0f8542fd52931201f
  
      @Override
 diff --git a/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java b/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java
-index 47bcf1f2b743d3d1065eb3467f3fff36b0fb6026..0329448f547bbb95f06c2b0aec7f72e29d2f4458 100644
+index 9869dd430a1340926f84fe7de42820bda7ce00ba..c1a2d3a237c6dd76516c0cd1af9a01bc3f2c513e 100644
 --- a/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java
 +++ b/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java
-@@ -50,6 +50,16 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
+@@ -51,6 +51,16 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
          return damageMata;
      }
  

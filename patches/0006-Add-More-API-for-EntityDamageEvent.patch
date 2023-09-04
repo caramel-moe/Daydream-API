@@ -6,10 +6,10 @@ Subject: [PATCH] Add More API for EntityDamageEvent
 
 diff --git a/src/main/java/moe/caramel/daydream/world/DamageMata.java b/src/main/java/moe/caramel/daydream/world/DamageMata.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..9fa71303c56abb7d1f783e60e13682a9d6d42706
+index 0000000000000000000000000000000000000000..8e26ae37875abef532781e0bf3742eec8823fb19
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/world/DamageMata.java
-@@ -0,0 +1,239 @@
+@@ -0,0 +1,241 @@
 +package moe.caramel.daydream.world;
 +
 +import org.bukkit.entity.Entity;
@@ -133,7 +133,7 @@ index 0000000000000000000000000000000000000000..9fa71303c56abb7d1f783e60e13682a9
 +    boolean isTypeCactus();
 +    boolean isTypeFall();
 +    boolean isTypeFlyIntoWall();
-+    boolean isTypeOutOfWorld();
++    boolean isTypeFellOutOfWorld();
 +    boolean isTypeGeneric();
 +    boolean isTypeMagic();
 +    boolean isTypeWither();
@@ -163,6 +163,8 @@ index 0000000000000000000000000000000000000000..9fa71303c56abb7d1f783e60e13682a9
 +    boolean isTypePlayerExplosion();
 +    boolean isTypeSonicBoom();
 +    boolean isTypeBadRespawnPoint();
++    boolean isTypeOutsideBorder();
++    boolean isTypeGenericKill();
 +
 +    // ====================== (Tags)
 +
@@ -250,40 +252,51 @@ index 0000000000000000000000000000000000000000..9fa71303c56abb7d1f783e60e13682a9
 +    void setOverrideKnockback(final @Nullable Vector knockback);
 +}
 diff --git a/src/main/java/org/bukkit/UnsafeValues.java b/src/main/java/org/bukkit/UnsafeValues.java
-index c661eab343ae76488de701630424e2d589f44fc0..8b606979adc04dd92032ade5951f2db8c38b9d40 100644
+index de36dab37d3af249cf51573d163731c12346066a..2231fafa0ec4a41f3a08a21278cb80a91b50f873 100644
 --- a/src/main/java/org/bukkit/UnsafeValues.java
 +++ b/src/main/java/org/bukkit/UnsafeValues.java
-@@ -250,4 +250,6 @@ public interface UnsafeValues {
-      */
-     void setBiomeKey(RegionAccessor accessor, int x, int y, int z, NamespacedKey biomeKey);
+@@ -252,4 +252,6 @@ public interface UnsafeValues {
+ 
+     String getStatisticCriteriaKey(@NotNull org.bukkit.Statistic statistic);
      // Paper end
 +
 +    @NotNull moe.caramel.daydream.world.DamageMata getDamageMeta(@NotNull Object damageSource); // Daydream - Add More API for EntityDamageEvent
  }
 diff --git a/src/main/java/org/bukkit/event/entity/EntityDamageByBlockEvent.java b/src/main/java/org/bukkit/event/entity/EntityDamageByBlockEvent.java
-index 461727dc7f06efb3550fc370e0db5bd04ba89711..2a61f4b6815e1501142862a7989ab5087dfa1fd8 100644
+index ab18f35b686ec79551c307dde9e43c7dfad1b182..1dfc7a6ffb356fb9ca6147fff5bd189ade2696e0 100644
 --- a/src/main/java/org/bukkit/event/entity/EntityDamageByBlockEvent.java
 +++ b/src/main/java/org/bukkit/event/entity/EntityDamageByBlockEvent.java
-@@ -13,16 +13,25 @@ import org.jetbrains.annotations.Nullable;
- public class EntityDamageByBlockEvent extends EntityDamageEvent {
+@@ -18,6 +18,7 @@ public class EntityDamageByBlockEvent extends EntityDamageEvent {
      private final Block damager;
+     private final org.bukkit.block.BlockState damagerBlockState; // Paper
  
 +    @Deprecated // Daydream - Add More API for EntityDamageEvent
      public EntityDamageByBlockEvent(@Nullable final Block damager, @NotNull final Entity damagee, @NotNull final DamageCause cause, final double damage) {
-         super(damagee, cause, damage);
-         this.damager = damager;
+         // Paper start
+         this(damager, damagee, cause, damage, null);
+@@ -30,11 +31,13 @@ public class EntityDamageByBlockEvent extends EntityDamageEvent {
+         this.damagerBlockState = damagerBlockState; // Paper
      }
  
 +    @Deprecated // Daydream - Add More API for EntityDamageEvent
      public EntityDamageByBlockEvent(@Nullable final Block damager, @NotNull final Entity damagee, @NotNull final DamageCause cause, @NotNull final Map<DamageModifier, Double> modifiers, @NotNull final Map<DamageModifier, ? extends Function<? super Double, Double>> modifierFunctions) {
-         super(damagee, cause, modifiers, modifierFunctions);
-         this.damager = damager;
+         // Paper start
+         this(damager, damagee, cause, modifiers, modifierFunctions, null);
+     }
+ 
++    @Deprecated // Daydream - Add More API for EntityDamageEvent
+     @org.jetbrains.annotations.ApiStatus.Internal
+     public EntityDamageByBlockEvent(@Nullable final Block damager, @NotNull final Entity damagee, @NotNull final DamageCause cause, @NotNull final Map<DamageModifier, Double> modifiers, @NotNull final Map<DamageModifier, ? extends Function<? super Double, Double>> modifierFunctions, final @Nullable org.bukkit.block.BlockState damagerBlockState) {
+         // Paper end
+@@ -43,6 +46,14 @@ public class EntityDamageByBlockEvent extends EntityDamageEvent {
+         this.damagerBlockState = damagerBlockState; // Paper
      }
  
 +    // Daydream start - Add More API for EntityDamageEvent
-+    public EntityDamageByBlockEvent(@Nullable final Block damager, @NotNull final Entity damagee, @NotNull final DamageCause cause, @NotNull final Map<DamageModifier, Double> modifiers, @NotNull final Map<DamageModifier, ? extends Function<? super Double, Double>> modifierFunctions, @NotNull moe.caramel.daydream.world.DamageMata damageMata) {
++    public EntityDamageByBlockEvent(@Nullable final Block damager, @NotNull final Entity damagee, @NotNull final DamageCause cause, @NotNull final Map<DamageModifier, Double> modifiers, @NotNull final Map<DamageModifier, ? extends Function<? super Double, Double>> modifierFunctions, final @Nullable org.bukkit.block.BlockState damagerBlockState, final @NotNull moe.caramel.daydream.world.DamageMata damageMata) {
 +        super(damagee, cause, modifiers, modifierFunctions, damageMata);
 +        this.damager = damager;
++        this.damagerBlockState = damagerBlockState;
 +    }
 +    // Daydream end - Add More API for EntityDamageEvent
 +
@@ -312,10 +325,10 @@ index 7ce8f1a26c1b33dd0eb6e6435952fd73abf49879..74ed45fc93f06c4d505a52dc146cb575
          // Paper start - add critical damage API
          this.critical = critical;
 diff --git a/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java b/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java
-index 6241f31e7326954b2e704da46bf0115adbcf8671..47bcf1f2b743d3d1065eb3467f3fff36b0fb6026 100644
+index 4773f537dec20d6ebd82e4b145a1cdea0077fe90..9869dd430a1340926f84fe7de42820bda7ce00ba 100644
 --- a/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java
 +++ b/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java
-@@ -27,11 +27,31 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
+@@ -28,11 +28,31 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
      private boolean cancelled;
      private final DamageCause cause;
  
@@ -347,7 +360,7 @@ index 6241f31e7326954b2e704da46bf0115adbcf8671..47bcf1f2b743d3d1065eb3467f3fff36
          super(damagee);
          Preconditions.checkArgument(modifiers.containsKey(DamageModifier.BASE), "BASE DamageModifier missing");
          Preconditions.checkArgument(!modifiers.containsKey(null), "Cannot have null DamageModifier");
-@@ -42,6 +62,7 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
+@@ -43,6 +63,7 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
          this.cause = cause;
          this.modifiers = modifiers;
          this.modifierFunctions = modifierFunctions;

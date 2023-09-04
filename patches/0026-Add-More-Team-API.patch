@@ -63,12 +63,12 @@ index 0000000000000000000000000000000000000000..8d2ef759e1f132053162442baee82482
 +    }
 +}
 diff --git a/src/main/java/org/bukkit/scoreboard/Team.java b/src/main/java/org/bukkit/scoreboard/Team.java
-index 0f1c08092577a7d66fdc1ea8b645ea67e0d9c6cf..3db3d65610bc75e826f595aef26f618464c300c7 100644
+index 8424fdac153f6dea76acce89f4726408d9726c41..17089015fe8923e630005320bc06730c21babc6e 100644
 --- a/src/main/java/org/bukkit/scoreboard/Team.java
 +++ b/src/main/java/org/bukkit/scoreboard/Team.java
-@@ -532,6 +532,46 @@ public interface Team {
+@@ -514,6 +514,46 @@ public interface Team {
      boolean hasEntity(@NotNull org.bukkit.entity.Entity entity) throws IllegalStateException, IllegalArgumentException;
-     // Paper end
+     // Paper end - improve scoreboard entries
  
 +    // Daydream start - Add More Team API
 +    /**
@@ -96,7 +96,7 @@ index 0f1c08092577a7d66fdc1ea8b645ea67e0d9c6cf..3db3d65610bc75e826f595aef26f6184
 +     * @throws IllegalArgumentException if players are null
 +     * @throws IllegalStateException if this team has been unregistered
 +     */
-+    void addPlayers(@NotNull java.util.Collection<? extends OfflinePlayer> players) throws IllegalStateException, IllegalArgumentException;
++    void addPlayers(@NotNull java.util.Collection<? extends OfflinePlayer> players);
 +
 +    /**
 +     * Removes a collection of players from this team  which results in one
@@ -107,7 +107,7 @@ index 0f1c08092577a7d66fdc1ea8b645ea67e0d9c6cf..3db3d65610bc75e826f595aef26f6184
 +     * @throws IllegalArgumentException if players is null
 +     * @throws IllegalStateException if this team has been unregistered
 +     */
-+    boolean removePlayers(@NotNull java.util.Collection<? extends OfflinePlayer> players) throws IllegalStateException, IllegalArgumentException;
++    boolean removePlayers(@NotNull java.util.Collection<? extends OfflinePlayer> players);
 +    // Daydream end - Add More Team API
 +
      /**

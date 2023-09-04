@@ -94,10 +94,10 @@ index 3ec32b46264cfff857b50129b5e0fa5584943ec6..918f3f6f120ea3853ddf5c2d501fa28f
      }
  }
 diff --git a/src/main/java/org/bukkit/command/defaults/VersionCommand.java b/src/main/java/org/bukkit/command/defaults/VersionCommand.java
-index e40f017f87d6b6b4770501b106c76dc69ec69abb..f7ef5a56d59ef53677a0e5151ea4c0d0002b8a13 100644
+index fd5d9881abfd930bb883120f018f76dc78b62b14..0468fd6ec6608ce2b4be50527009d007d75489ec 100644
 --- a/src/main/java/org/bukkit/command/defaults/VersionCommand.java
 +++ b/src/main/java/org/bukkit/command/defaults/VersionCommand.java
-@@ -43,13 +43,17 @@ public class VersionCommand extends BukkitCommand {
+@@ -50,13 +50,17 @@ public class VersionCommand extends BukkitCommand {
          this.usageMessage = "/version [plugin name]";
          this.setPermission("bukkit.command.version");
          this.setAliases(Arrays.asList("ver", "about"));
@@ -116,7 +116,7 @@ index e40f017f87d6b6b4770501b106c76dc69ec69abb..f7ef5a56d59ef53677a0e5151ea4c0d0
              //sender.sendMessage("This server is running " + Bukkit.getName() + " version " + Bukkit.getVersion() + " (Implementing API version " + Bukkit.getBukkitVersion() + ")"); // Paper - moved to setVersionMessage
              sendVersion(sender);
          } else {
-@@ -141,7 +145,7 @@ public class VersionCommand extends BukkitCommand {
+@@ -157,7 +161,7 @@ public class VersionCommand extends BukkitCommand {
          Preconditions.checkArgument(args != null, "Arguments cannot be null");
          Preconditions.checkArgument(alias != null, "Alias cannot be null");
  
@@ -125,7 +125,7 @@ index e40f017f87d6b6b4770501b106c76dc69ec69abb..f7ef5a56d59ef53677a0e5151ea4c0d0
              List<String> completions = new ArrayList<String>();
              String toComplete = args[0].toLowerCase(java.util.Locale.ENGLISH);
              for (Plugin plugin : Bukkit.getPluginManager().getPlugins()) {
-@@ -162,6 +166,18 @@ public class VersionCommand extends BukkitCommand {
+@@ -178,6 +182,18 @@ public class VersionCommand extends BukkitCommand {
      private long lastCheck = 0;
  
      private void sendVersion(@NotNull CommandSender sender) {
