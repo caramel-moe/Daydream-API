@@ -728,10 +728,10 @@ index 0000000000000000000000000000000000000000..ac841ee5ac79fe37fc4440f8bed45427
 +}
 diff --git a/src/main/java/moe/caramel/daydream/network/packet/SetPlayerTeamPacket.java b/src/main/java/moe/caramel/daydream/network/packet/SetPlayerTeamPacket.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..1c1dcb38a55e8a480ef47f0e2247e2ba0583d827
+index 0000000000000000000000000000000000000000..bfbd79d0259156951a744531cb98434599a811d0
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/network/packet/SetPlayerTeamPacket.java
-@@ -0,0 +1,101 @@
+@@ -0,0 +1,135 @@
 +package moe.caramel.daydream.network.packet;
 +
 +import moe.caramel.daydream.network.Packet;
@@ -739,6 +739,7 @@ index 0000000000000000000000000000000000000000..1c1dcb38a55e8a480ef47f0e2247e2ba
 +import org.bukkit.ChatColor;
 +import org.bukkit.scoreboard.Team;
 +import org.jetbrains.annotations.NotNull;
++import org.jetbrains.annotations.Nullable;
 +import java.util.Collection;
 +
 +public interface SetPlayerTeamPacket extends Packet {
@@ -773,7 +774,7 @@ index 0000000000000000000000000000000000000000..1c1dcb38a55e8a480ef47f0e2247e2ba
 +     * @return this
 +     */
 +    @NotNull
-+    SetPlayerTeamPacket createTeamAddOrUpdatePacket(
++    default SetPlayerTeamPacket createTeamAddOrUpdatePacket(
 +        @NotNull String teamName,
 +        @NotNull Component displayName,
 +        boolean allowFriendlyFire, boolean canSeeFriendlyInvisibles,
@@ -781,6 +782,39 @@ index 0000000000000000000000000000000000000000..1c1dcb38a55e8a480ef47f0e2247e2ba
 +        @NotNull Team.OptionStatus collisionRule, @NotNull ChatColor color,
 +        @NotNull Component teamPrefix, @NotNull Component teamSuffix,
 +        boolean add
++    ) {
++        return createTeamAddOrUpdatePacket(
++            teamName, displayName, allowFriendlyFire, canSeeFriendlyInvisibles,
++            nametagVisibility, collisionRule, color, teamPrefix, teamSuffix,
++            add, null
++        );
++    }
++
++    /**
++     * 팀 추가 또는 업데이트 패킷을 생성합니다.
++     *
++     * @param teamName 추가 또는 업데이트할 팀의 이름
++     * @param displayName 팀의 디스플레이 이름
++     * @param allowFriendlyFire 만약 {@code true}라면 아군 사격을 허용합니다
++     * @param canSeeFriendlyInvisibles 만약 {@code true}라면 보이지 않는 플레이어를 볼 수 있습니다
++     * @param nametagVisibility 팀의 이름 태그 가시성 규칙
++     * @param collisionRule 팀의 충돌 규칙
++     * @param color 팀의 색
++     * @param teamPrefix 팀의 접두사
++     * @param teamSuffix 팀의 접미사
++     * @param add 만약 {@code true}라면 추가, 아니라면 정보를 업데이트 합니다
++     * @param players 팀의 초기 플레이어 목록
++     * @return this
++     */
++    @NotNull
++    SetPlayerTeamPacket createTeamAddOrUpdatePacket(
++        @NotNull String teamName,
++        @NotNull Component displayName,
++        boolean allowFriendlyFire, boolean canSeeFriendlyInvisibles,
++        @NotNull Team.OptionStatus nametagVisibility,
++        @NotNull Team.OptionStatus collisionRule, @NotNull ChatColor color,
++        @NotNull Component teamPrefix, @NotNull Component teamSuffix,
++        boolean add, @Nullable Collection<String> players
 +    );
 +
 +
@@ -986,6 +1020,21 @@ index eac96c397224d7101453492428813a977bb3b422..9a15f80256ba066affc512ea121ac896
      @NotNull
      public static Server.Spigot spigot() {
          return server.spigot();
+diff --git a/src/main/java/org/bukkit/ChatColor.java b/src/main/java/org/bukkit/ChatColor.java
+index 918a045165cdcde264bc24082b7afebb407271de..0756634ad506aa81e8f3a789f5c28c8489c79659 100644
+--- a/src/main/java/org/bukkit/ChatColor.java
++++ b/src/main/java/org/bukkit/ChatColor.java
+@@ -10,9 +10,8 @@ import org.jetbrains.annotations.Nullable;
+ 
+ /**
+  * All supported color values for chat
+- * @deprecated ChatColor has been deprecated in favor of <a href="https://docs.advntr.dev/text.html">Adventure</a> API. See {@link net.kyori.adventure.text.format.NamedTextColor} for the adventure equivalent of pre-defined text colors
+  */
+-@Deprecated // Paper
++//@Deprecated // Paper // Daydream - No
+ public enum ChatColor {
+     /**
+      * Represents black
 diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
 index d66cce72610bdf26d4777790a684035e4b3cc44c..c43740eac8bbc82015371beb4060cb028bcb9a80 100644
 --- a/src/main/java/org/bukkit/Server.java

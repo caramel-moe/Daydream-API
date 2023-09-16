@@ -5,7 +5,7 @@ import org.gradle.api.tasks.testing.logging.TestLogEvent
 plugins {
     java
     id("com.github.johnrengelman.shadow") version "8.1.1" apply false
-    id("io.papermc.paperweight.patcher") version "1.5.5"
+    id("io.papermc.paperweight.patcher") version "1.5.6"
 }
 
 val caramelMavenPublicUrl = "https://repo.caramel.moe/repository/maven-public";
@@ -21,7 +21,7 @@ repositories {
 
 dependencies {
     remapper("net.fabricmc:tiny-remapper:0.8.6:fat")
-    paperclip("io.papermc:paperclip:3.0.2")
+    paperclip("io.papermc:paperclip:3.0.3")
 }
 
 subprojects {
