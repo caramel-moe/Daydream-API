@@ -5,22 +5,22 @@ Subject: [PATCH] Add more Player API
 
 
 diff --git a/build.gradle.kts b/build.gradle.kts
-index c7757850dd8636f28c2e97521c2707decc4da75a..e820ff2ff61c225694735b051fe4cebbfdecb3e6 100644
+index ed8d5a66f1c4d17819ed629e687945134d1de677..9443b50001060c2ad0ec4a88ee16125276298d94 100644
 --- a/build.gradle.kts
 +++ b/build.gradle.kts
 @@ -51,6 +51,7 @@ dependencies {
      implementation("org.ow2.asm:asm-commons:9.4")
      // Paper end
      api("com.mojang:brigadier:1.1.8") // Daydream - Add Brigadier Command API
-+    api("com.mojang:authlib:4.0.43") // Daydream - Mojang Authlib (keep in sync with major MC versions)
++    api("com.mojang:authlib:5.0.47") // Daydream - Mojang Authlib (keep in sync with major MC versions)
  
      api("org.apache.maven:maven-resolver-provider:3.8.5")
      compileOnly("org.apache.maven.resolver:maven-resolver-connector-basic:1.7.3")
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index 15d7e09f0254ede0bc19b33f11b59283c4c6b4ef..d4f909e762e2766b37dd9c2fd13fb0b424142146 100644
+index b1776ecf4f7b47d5abb7f2147b5831123acdbaa7..59d99fe44c2f1ca513a2054b82b64f67f9e19b91 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
-@@ -2944,6 +2944,15 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+@@ -2946,6 +2946,15 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      @Nullable
      org.bukkit.event.player.PlayerResourcePackStatusEvent.Status getResourcePackStatus();
  
@@ -36,7 +36,7 @@ index 15d7e09f0254ede0bc19b33f11b59283c4c6b4ef..d4f909e762e2766b37dd9c2fd13fb0b4
      /**
       * @return the most recent resource pack hash received from the player,
       *         or null if no hash has ever been received from this player.
-@@ -2967,6 +2976,16 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+@@ -2969,6 +2978,16 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      @NotNull
      com.destroystokyo.paper.profile.PlayerProfile getPlayerProfile();
  

@@ -6,10 +6,10 @@ Subject: [PATCH] Add more Advancement API
 
 diff --git a/src/main/java/moe/caramel/daydream/advancement/AdvancementBuilder.java b/src/main/java/moe/caramel/daydream/advancement/AdvancementBuilder.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..630044cc63c790a49d9811383ef05f00aeeac6a1
+index 0000000000000000000000000000000000000000..ff3e41287ba48c7f032360cc4fe7a78b28fc1393
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/advancement/AdvancementBuilder.java
-@@ -0,0 +1,178 @@
+@@ -0,0 +1,161 @@
 +package moe.caramel.daydream.advancement;
 +
 +import io.papermc.paper.advancement.AdvancementDisplay;
@@ -20,7 +20,6 @@ index 0000000000000000000000000000000000000000..630044cc63c790a49d9811383ef05f00
 +import org.bukkit.inventory.ItemStack;
 +import org.jetbrains.annotations.NotNull;
 +import org.jetbrains.annotations.Nullable;
-+import java.util.function.Function;
 +
 +/**
 + * Advancement builder.
@@ -171,34 +170,17 @@ index 0000000000000000000000000000000000000000..630044cc63c790a49d9811383ef05f00
 +     */
 +    @NotNull
 +    AdvancementBuilder useCount(int count);
-+
-+    /**
-+     * Returns whether you can build this advancement or not.
-+     *
-+     * @param parentProvider the parent provider
-+     * @return this builder
-+     */
-+    boolean canBuild(@NotNull Function<NamespacedKey, Advancement> parentProvider);
-+
-+    /**
-+     * Build it!
-+     *
-+     * @return the advancement
-+     */
-+    @NotNull
-+    Advancement build();
 +}
 diff --git a/src/main/java/moe/caramel/daydream/event/player/PlayerAdvancementPreLoadEvent.java b/src/main/java/moe/caramel/daydream/event/player/PlayerAdvancementPreLoadEvent.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..bc71837fb7837c3b0274c041a8404a1dca4ae347
+index 0000000000000000000000000000000000000000..6f4375d1b0e21ded70b5ba24998f3a2eb81ffe8c
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/event/player/PlayerAdvancementPreLoadEvent.java
-@@ -0,0 +1,75 @@
+@@ -0,0 +1,73 @@
 +package moe.caramel.daydream.event.player;
 +
 +import com.google.gson.JsonElement;
 +import org.bukkit.entity.Player;
-+import org.bukkit.event.Cancellable;
 +import org.bukkit.event.HandlerList;
 +import org.bukkit.event.player.PlayerEvent;
 +import org.jetbrains.annotations.NotNull;
@@ -209,27 +191,26 @@ index 0000000000000000000000000000000000000000..bc71837fb7837c3b0274c041a8404a1d
 + * <br>
 + * It's usually called earlier than {@link org.bukkit.event.player.PlayerJoinEvent}.
 + */
-+public final class PlayerAdvancementPreLoadEvent extends PlayerEvent implements Cancellable {
++public final class PlayerAdvancementPreLoadEvent extends PlayerEvent {
 +
 +    private static final HandlerList HANDLER_LIST = new HandlerList();
 +    public @NotNull HandlerList getHandlers() { return HANDLER_LIST; }
 +    public static @NotNull HandlerList getHandlerList() { return HANDLER_LIST; }
 +
 +    private JsonElement jsonElement;
-+    private boolean cancel, useDataFixer = true;
++    private boolean useDataFixer = true;
 +
 +    public PlayerAdvancementPreLoadEvent(@NotNull Player who) {
 +        super(who);
 +    }
 +
-+    @Override
++    @Deprecated(forRemoval = true, since = "1.21")
 +    public boolean isCancelled() {
-+        return this.cancel;
++        return false;
 +    }
 +
-+    @Override
++    @Deprecated(forRemoval = true, since = "1.21")
 +    public void setCancelled(boolean cancel) {
-+        this.cancel = cancel;
 +    }
 +
 +    /**
@@ -256,7 +237,7 @@ index 0000000000000000000000000000000000000000..bc71837fb7837c3b0274c041a8404a1d
 +     *
 +     * @return if {@code true}, use Mojang's DataFixer.
 +     */
-+    public boolean isUseDataFixer() {
++    public boolean useDataFixer() {
 +        return this.useDataFixer;
 +    }
 +
@@ -265,16 +246,16 @@ index 0000000000000000000000000000000000000000..bc71837fb7837c3b0274c041a8404a1d
 +     *
 +     * @param useDataFixer if {@code true}, use Mojang's DataFixer.
 +     */
-+    public void setUseDataFixer(boolean useDataFixer) {
++    public void useDataFixer(boolean useDataFixer) {
 +        this.useDataFixer = useDataFixer;
 +    }
 +}
 diff --git a/src/main/java/moe/caramel/daydream/event/player/PlayerAdvancementSaveEvent.java b/src/main/java/moe/caramel/daydream/event/player/PlayerAdvancementSaveEvent.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..42a3f72a73d258aa378f407c460ae05e704905e4
+index 0000000000000000000000000000000000000000..1fac043c1bce4c846dcdf9c75fca8230ad75247f
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/event/player/PlayerAdvancementSaveEvent.java
-@@ -0,0 +1,76 @@
+@@ -0,0 +1,46 @@
 +package moe.caramel.daydream.event.player;
 +
 +import com.google.gson.JsonElement;
@@ -294,13 +275,11 @@ index 0000000000000000000000000000000000000000..42a3f72a73d258aa378f407c460ae05e
 +    public static @NotNull HandlerList getHandlerList() { return HANDLER_LIST; }
 +
 +    private final JsonElement jsonElement;
-+    private final int dataVersion;
-+    private boolean cancel, saveDataVersion = true;
++    private boolean cancel;
 +
-+    public PlayerAdvancementSaveEvent(@NotNull Player who, @NotNull JsonElement jsonElement, int dataVersion) {
++    public PlayerAdvancementSaveEvent(@NotNull Player who, @NotNull JsonElement jsonElement) {
 +        super(who);
 +        this.jsonElement = jsonElement;
-+        this.dataVersion = dataVersion;
 +    }
 +
 +    @Override
@@ -320,35 +299,7 @@ index 0000000000000000000000000000000000000000..42a3f72a73d258aa378f407c460ae05e
 +     */
 +    @NotNull
 +    public JsonElement getJsonElement() {
-+        if (this.isSaveDataVersion()) jsonElement.getAsJsonObject().addProperty("DataVersion", dataVersion);
 +        return jsonElement;
-+    }
-+
-+    /**
-+     * Returns the server's data version.
-+     *
-+     * @return the server's data version
-+     */
-+    public int getDataVersion() {
-+        return dataVersion;
-+    }
-+
-+    /**
-+     * Returns whether to include the data version in json.
-+     *
-+     * @return if {@code true}, include the data version in json.
-+     */
-+    public boolean isSaveDataVersion() {
-+        return this.saveDataVersion;
-+    }
-+
-+    /**
-+     * Sets whether to include the data version in json.
-+     *
-+     * @param saveDataVersion if {@code true}, include the data version in json.
-+     */
-+    public void setSaveDataVersion(boolean saveDataVersion) {
-+        this.saveDataVersion = saveDataVersion;
 +    }
 +}
 diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
@@ -398,10 +349,10 @@ index cc4d7f26fe22dde5db91c1cbd4050c21ba59bcfb..d66cce72610bdf26d4777790a684035e
       * Get an iterator through all advancements. Advancements cannot be removed
       * from this iterator,
 diff --git a/src/main/java/org/bukkit/UnsafeValues.java b/src/main/java/org/bukkit/UnsafeValues.java
-index 2231fafa0ec4a41f3a08a21278cb80a91b50f873..174b47338148b5d2842bacc1c2787e9bbccdcf60 100644
+index 2231fafa0ec4a41f3a08a21278cb80a91b50f873..56d5dd17f6f7c1438db0778975dc55fedf0011bc 100644
 --- a/src/main/java/org/bukkit/UnsafeValues.java
 +++ b/src/main/java/org/bukkit/UnsafeValues.java
-@@ -75,6 +75,20 @@ public interface UnsafeValues {
+@@ -75,6 +75,35 @@ public interface UnsafeValues {
       */
      Advancement loadAdvancement(NamespacedKey key, String advancement);
  
@@ -416,7 +367,22 @@ index 2231fafa0ec4a41f3a08a21278cb80a91b50f873..174b47338148b5d2842bacc1c2787e9b
 +     * @param builder representation of the advancement
 +     * @return the loaded advancement or null if an error occurred
 +     */
-+    Advancement loadAdvancement(moe.caramel.daydream.advancement.AdvancementBuilder builder);
++    default Advancement loadAdvancement(moe.caramel.daydream.advancement.AdvancementBuilder builder) {
++        return loadAdvancement(builder, false);
++    }
++
++    /**
++     * Load an advancement represented by the specified builder into the server.
++     * <br>
++     * Loaded advancements will be deleted upon server restart and reload.
++     * <br>
++     * Callers should be prepared for {@link Exception} to be thrown.
++     *
++     * @param builder representation of the advancement
++     * @param save save or not
++     * @return the loaded advancement or null if an error occurred
++     */
++    Advancement loadAdvancement(moe.caramel.daydream.advancement.AdvancementBuilder builder, boolean save);
 +    // Daydream end
 +
      /**
@@ -492,21 +458,32 @@ index f9bc179da071e7bd57cefc50d6763317fb643b74..532f51a1d537a342c0251d650cd503b1
 +    // Daydream end
  }
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index 6eb229c984d19dfa006f0d4b9ef83f9a7f20276e..558a4915a90e08c3e16e51d5c0e88ff5bbbabb7e 100644
+index 5f67c73cc5f3784e22ca4fd474a744a57bb0afc8..21d8b4f87d202b89406a2a949c641eb7f31d265d 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
-@@ -2657,6 +2657,25 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+@@ -2659,6 +2659,36 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      @NotNull
      public AdvancementProgress getAdvancementProgress(@NotNull Advancement advancement);
  
 +    // Daydream start
 +    /**
-+     * Return the player's serialized advancement progress data.
++     * 플레이어의 직렬화된 발전과제 데이터를 가져옵니다.
 +     *
-+     * @return serialized advancement data
++     * @return 직렬화된 발전과제 데이터
 +     */
 +    @NotNull
-+    public com.google.gson.JsonElement serializedAdvancementProgress();
++    default com.google.gson.JsonElement serializedAdvancementProgress() {
++        return serializedAdvancementProgress(false);
++    }
++
++    /**
++     * 플레이어의 직렬화된 발전과제 데이터를 가져옵니다.
++     *
++     * @param withDataVersion 데이터 버전 포함 여부
++     * @return 직렬화된 발전과제 데이터
++     */
++    @NotNull
++    public com.google.gson.JsonElement serializedAdvancementProgress(boolean withDataVersion);
 +
 +    /**
 +     * 플레이어에게 발전 과제 알림을 전송합니다.

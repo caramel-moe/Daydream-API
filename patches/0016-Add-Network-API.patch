@@ -5,14 +5,14 @@ Subject: [PATCH] Add Network API
 
 
 diff --git a/build.gradle.kts b/build.gradle.kts
-index e820ff2ff61c225694735b051fe4cebbfdecb3e6..80fe9d1d63cc45a455ffdd0c9df39f3835587878 100644
+index f9e80e88523add9602bf4e39cfed843479b2109a..82b222d1c865020ca4368774d53e43e70cd7f0d9 100644
 --- a/build.gradle.kts
 +++ b/build.gradle.kts
 @@ -52,6 +52,7 @@ dependencies {
      // Paper end
      api("com.mojang:brigadier:1.1.8") // Daydream - Add Brigadier Command API
-     api("com.mojang:authlib:4.0.43") // Daydream - Mojang Authlib (keep in sync with major MC versions)
-+    api("io.netty:netty-all:4.1.87.Final") // Daydream - add Network API
+     api("com.mojang:authlib:5.0.47") // Daydream - Mojang Authlib (keep in sync with major MC versions)
++    api("io.netty:netty-all:4.1.97.Final") // Daydream - add Network API
  
      api("org.apache.maven:maven-resolver-provider:3.8.5")
      compileOnly("org.apache.maven.resolver:maven-resolver-connector-basic:1.7.3")
@@ -201,10 +201,10 @@ index 0000000000000000000000000000000000000000..21fde661e12417b1af155cfcb747140b
 +    public abstract MojangByteBuf writeBitSet(@NotNull BitSet bitSet);
 +}
 diff --git a/src/main/java/org/bukkit/UnsafeValues.java b/src/main/java/org/bukkit/UnsafeValues.java
-index 174b47338148b5d2842bacc1c2787e9bbccdcf60..a2eed72fc05180a4b705898ad27d4287d648ee0f 100644
+index 56d5dd17f6f7c1438db0778975dc55fedf0011bc..d35904dfd6afd033da50fc9c027f6e3c08e7c348 100644
 --- a/src/main/java/org/bukkit/UnsafeValues.java
 +++ b/src/main/java/org/bukkit/UnsafeValues.java
-@@ -268,4 +268,15 @@ public interface UnsafeValues {
+@@ -283,4 +283,15 @@ public interface UnsafeValues {
      // Paper end
  
      @NotNull moe.caramel.daydream.world.DamageMata getDamageMeta(@NotNull Object damageSource); // Daydream - Add More API for EntityDamageEvent
@@ -221,7 +221,7 @@ index 174b47338148b5d2842bacc1c2787e9bbccdcf60..a2eed72fc05180a4b705898ad27d4287
 +    // Daydream end
  }
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index 558a4915a90e08c3e16e51d5c0e88ff5bbbabb7e..5ad60ef83146272d10e6d9bdec3f250421f33088 100644
+index 21d8b4f87d202b89406a2a949c641eb7f31d265d..750bf7b7c8b4fb08559a9bccba592043daeab1c1 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
 @@ -887,6 +887,24 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM

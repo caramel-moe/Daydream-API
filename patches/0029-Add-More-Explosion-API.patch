@@ -5,10 +5,10 @@ Subject: [PATCH] Add More Explosion API
 
 
 diff --git a/src/main/java/moe/caramel/daydream/world/DamageMata.java b/src/main/java/moe/caramel/daydream/world/DamageMata.java
-index 8e26ae37875abef532781e0bf3742eec8823fb19..7175e3b3f85a0dd6c79c149bc8c5560c9db7794d 100644
+index 0516b48097c300e06c3a488a37b6ca4fdd483bdb..aeb09ad437336bcaae4f0f2d19046633e0e56f04 100644
 --- a/src/main/java/moe/caramel/daydream/world/DamageMata.java
 +++ b/src/main/java/moe/caramel/daydream/world/DamageMata.java
-@@ -238,4 +238,14 @@ public interface DamageMata {
+@@ -239,4 +239,14 @@ public interface DamageMata {
       * @param knockback 대미지 처리 이후 받게 될 넉백
       */
      void setOverrideKnockback(final @Nullable Vector knockback);
@@ -152,7 +152,7 @@ index 0000000000000000000000000000000000000000..394159310ec31777c5c423f94405d9ec
 +    boolean wasCancelled();
 +}
 diff --git a/src/main/java/org/bukkit/World.java b/src/main/java/org/bukkit/World.java
-index c5771a57115386d0da3306c2fa2d3c053bedc0cc..bde9a60bb9d0a835db34feabd5d891b0a01e76a6 100644
+index cd92af8dde2d5fb091dba77083b2480b9254f17c..b5d9b5c77aff27bdfa9b19da4e028c4440433942 100644
 --- a/src/main/java/org/bukkit/World.java
 +++ b/src/main/java/org/bukkit/World.java
 @@ -2143,6 +2143,42 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient

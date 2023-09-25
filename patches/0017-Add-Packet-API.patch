@@ -657,10 +657,10 @@ index 0000000000000000000000000000000000000000..6d0d0956e39e54d29560397888f194fb
 +}
 diff --git a/src/main/java/moe/caramel/daydream/network/packet/SetDisplayObjectivePacket.java b/src/main/java/moe/caramel/daydream/network/packet/SetDisplayObjectivePacket.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..ac841ee5ac79fe37fc4440f8bed45427bce8737c
+index 0000000000000000000000000000000000000000..69609dc5f87bf08dd41002601fd158108c09c171
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/network/packet/SetDisplayObjectivePacket.java
-@@ -0,0 +1,65 @@
+@@ -0,0 +1,32 @@
 +package moe.caramel.daydream.network.packet;
 +
 +import moe.caramel.daydream.network.Packet;
@@ -671,60 +671,27 @@ index 0000000000000000000000000000000000000000..ac841ee5ac79fe37fc4440f8bed45427
 +
 +public interface SetDisplayObjectivePacket extends Packet {
 +
-+    int PLAYER_LIST = 0;
-+    int SIDEBAR = 1;
-+    int BELOW_NAME = 2;
-+    int SIDEBAR_TEAM_BLACK = 3;
-+    int SIDEBAR_TEAM_DARK_BLUE = 4;
-+    int SIDEBAR_TEAM_DARK_GREEN = 5;
-+    int SIDEBAR_TEAM_DARK_AQUA = 6;
-+    int SIDEBAR_TEAM_DARK_RED = 7;
-+    int SIDEBAR_TEAM_DARK_PURPLE = 8;
-+    int SIDEBAR_TEAM_GOLD = 9;
-+    int SIDEBAR_TEAM_GRAY = 10;
-+    int SIDEBAR_TEAM_DARK_GRAY = 11;
-+    int SIDEBAR_TEAM_BLUE = 12;
-+    int SIDEBAR_TEAM_GREEN = 13;
-+    int SIDEBAR_TEAM_AQUA = 14;
-+    int SIDEBAR_TEAM_RED = 15;
-+    int SIDEBAR_TEAM_LIGHT_PURPLE = 16;
-+    int SIDEBAR_TEAM_YELLOW = 17;
-+    int SIDEBAR_TEAM_WHITE = 18;
-+
 +    /**
 +     * 패킷을 생성합니다.
 +     *
-+     * @param slot 스코어보드의 위치
-+     *              <a href="https://wiki.vg/Protocol#Display_Objective">여기</a>를 참고하세요.
++     * @param slot 목표의 위치
 +     * @param objective {@link org.bukkit.scoreboard.Objective} 객체
 +     * @return this
 +     */
 +    @NotNull
-+    SetDisplayObjectivePacket create(@NotNull DisplaySlot slot, @NotNull Objective objective);
-+
-+    /**
-+     * 패킷을 생성합니다.
-+     *
-+     * @param position 스코어보드의 위치
-+     *              <a href="https://wiki.vg/Protocol#Display_Objective">여기</a>를 참고하세요.
-+     * @param objective {@link org.bukkit.scoreboard.Objective} 객체
-+     * @return this
-+     */
-+    @NotNull
-+    default SetDisplayObjectivePacket create(int position, @NotNull Objective objective) {
-+        return this.create(position, objective.getName());
++    default SetDisplayObjectivePacket create(@NotNull DisplaySlot slot, @NotNull Objective objective) {
++        return this.create(slot, objective.getName());
 +    }
 +
 +    /**
 +     * 패킷을 생성합니다.
 +     *
-+     * @param position 스코어보드의 위치
-+     *              <a href="https://wiki.vg/Protocol#Display_Objective">여기</a>를 참고하세요.
++     * @param slot 목표의 위치
 +     * @param scoreName {@link org.bukkit.scoreboard.Objective}의 이름
 +     * @return this
 +     */
 +    @NotNull
-+    SetDisplayObjectivePacket create(int position, @Nullable String scoreName);
++    SetDisplayObjectivePacket create(@NotNull DisplaySlot slot, @Nullable String scoreName);
 +}
 diff --git a/src/main/java/moe/caramel/daydream/network/packet/SetPlayerTeamPacket.java b/src/main/java/moe/caramel/daydream/network/packet/SetPlayerTeamPacket.java
 new file mode 100644
@@ -1057,7 +1024,7 @@ index d66cce72610bdf26d4777790a684035e4b3cc44c..c43740eac8bbc82015371beb4060cb02
 +    // Daydream end - Add Packet API
  }
 diff --git a/src/main/java/org/bukkit/World.java b/src/main/java/org/bukkit/World.java
-index dc21e16cb266b1b7bae5f4029fa4565d8fa22c91..4cdafdcae6dd224e96ef0f36798a6c1576b94926 100644
+index 80dc3380a9405597df89d0b859bb57d83c00348e..566794e2533da424f844e59cb3161ac60c63b6a6 100644
 --- a/src/main/java/org/bukkit/World.java
 +++ b/src/main/java/org/bukkit/World.java
 @@ -1598,6 +1598,17 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
@@ -1103,7 +1070,7 @@ index 762cb07861ca8ff058ce8d57ea6c15df1e588bf3..929545a7aad97e1e70017c6b3cf286cd
       * Gets the amount of ticks this entity has lived for.
       * <p>
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index 5ad60ef83146272d10e6d9bdec3f250421f33088..29054053e15d59a6d8284d8218ded906df0c2e08 100644
+index 40ae56305dc2f34f80310b996f71b3f58e3aad22..4ef7d702bd239e10e40df947293ad737ad70aae4 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
 @@ -415,6 +415,16 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM

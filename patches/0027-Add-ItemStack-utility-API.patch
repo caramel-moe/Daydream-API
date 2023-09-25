@@ -5,10 +5,10 @@ Subject: [PATCH] Add ItemStack utility API
 
 
 diff --git a/src/main/java/org/bukkit/UnsafeValues.java b/src/main/java/org/bukkit/UnsafeValues.java
-index a2eed72fc05180a4b705898ad27d4287d648ee0f..9e60107bedca13a4d03a643b5434fde2fd314982 100644
+index d35904dfd6afd033da50fc9c027f6e3c08e7c348..2869cf86e5ce2540fbce05caf0417267c83771dc 100644
 --- a/src/main/java/org/bukkit/UnsafeValues.java
 +++ b/src/main/java/org/bukkit/UnsafeValues.java
-@@ -279,4 +279,18 @@ public interface UnsafeValues {
+@@ -294,4 +294,18 @@ public interface UnsafeValues {
      @org.jetbrains.annotations.NotNull
      moe.caramel.daydream.network.MojangByteBuf createByteBuf(@org.jetbrains.annotations.NotNull io.netty.buffer.ByteBuf buf);
      // Daydream end
@@ -28,7 +28,7 @@ index a2eed72fc05180a4b705898ad27d4287d648ee0f..9e60107bedca13a4d03a643b5434fde2
 +    // Daydream end - Add ItemStack utility API
  }
 diff --git a/src/main/java/org/bukkit/inventory/ItemStack.java b/src/main/java/org/bukkit/inventory/ItemStack.java
-index d15a74c38576c49df61cfab02c70fc5d8c0dd5f7..a432456a6a561cad66e573d7a780e41427aabadc 100644
+index 0af73cc04edb93b9772136d4d808f657ea40e733..936e047c29f8daecfc9dd5984e53a0b86b08bda5 100644
 --- a/src/main/java/org/bukkit/inventory/ItemStack.java
 +++ b/src/main/java/org/bukkit/inventory/ItemStack.java
 @@ -34,6 +34,99 @@ public class ItemStack implements Cloneable, ConfigurationSerializable, Translat

@@ -5,7 +5,7 @@ Subject: [PATCH] Add Brigadier Command API
 
 
 diff --git a/build.gradle.kts b/build.gradle.kts
-index 8045f92ffdfb4164bcbef99c41359590c45f9006..c7757850dd8636f28c2e97521c2707decc4da75a 100644
+index 0b9530ae4542c55c77294185a61d1d739d0eaac2..ed8d5a66f1c4d17819ed629e687945134d1de677 100644
 --- a/build.gradle.kts
 +++ b/build.gradle.kts
 @@ -50,6 +50,7 @@ dependencies {
@@ -1344,13 +1344,13 @@ index 0000000000000000000000000000000000000000..e3247497bbf39051ed4b65c87d6c3cfe
 +}
 diff --git a/src/main/java/moe/caramel/daydream/util/NumberRange.java b/src/main/java/moe/caramel/daydream/util/NumberRange.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..facc2182e0920c9b71e44e8686f97b2afe461401
+index 0000000000000000000000000000000000000000..ced8b19a02be4952784b7dbde45f01d63dbdad34
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/util/NumberRange.java
-@@ -0,0 +1,44 @@
+@@ -0,0 +1,74 @@
 +package moe.caramel.daydream.util;
 +
-+import org.jetbrains.annotations.NotNull;
++import org.jetbrains.annotations.Nullable;
 +
 +/**
 + * 숫자 범위를 지정합니다.
@@ -1367,7 +1367,7 @@ index 0000000000000000000000000000000000000000..facc2182e0920c9b71e44e8686f97b2a
 +     * @param min 최솟값
 +     * @param max 최댓값
 +     */
-+    public NumberRange(@NotNull T min, @NotNull T max) {
++    public NumberRange(@Nullable T min, @Nullable T max) {
 +        this.min = min;
 +        this.max = max;
 +    }
@@ -1377,9 +1377,20 @@ index 0000000000000000000000000000000000000000..facc2182e0920c9b71e44e8686f97b2a
 +     *
 +     * @return 최솟값
 +     */
-+    @NotNull
++    @Nullable
 +    public T getMin() {
-+        return min;
++        return getMin(null);
++    }
++
++    /**
++     * 최솟값을 가져옵니다.
++     *
++     * @param def 기본값
++     * @return 최솟값
++     */
++    @Nullable
++    public T getMin(final @Nullable T def) {
++        return (min == null) ? def : min;
 +    }
 +
 +    /**
@@ -1387,9 +1398,28 @@ index 0000000000000000000000000000000000000000..facc2182e0920c9b71e44e8686f97b2a
 +     *
 +     * @return 최댓값
 +     */
-+    @NotNull
++    @Nullable
 +    public T getMax() {
-+        return max;
++        return getMax(null);
++    }
++
++    /**
++     * 최댓값을 가져옵니다.
++     *
++     * @param def 기본값
++     * @return 최댓값
++     */
++    @Nullable
++    public T getMax(final @Nullable T def) {
++        return (max == null) ? def : max;
++    }
++
++    @Override
++    public String toString() {
++        return "NumberRange{" +
++               "min=" + min +
++               ", max=" + max +
++               '}';
 +    }
 +}
 diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
@@ -1576,7 +1606,7 @@ index 36da67bf9fda415c302afcf0e346c72e664fa6a3..32fb0743b6650c4d753360ee8a6b985f
 +    // Daydream end
  }
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index f9dd00210c1762a40259f823aeb8d8a5ddc78e3e..15d7e09f0254ede0bc19b33f11b59283c4c6b4ef 100644
+index 5c7a73ea74efe256c695080ba92b8cf698e4cd86..b1776ecf4f7b47d5abb7f2147b5831123acdbaa7 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
 @@ -395,6 +395,16 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM

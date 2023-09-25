@@ -199,7 +199,7 @@ index 0000000000000000000000000000000000000000..90f93421f927c5acdc47ba3b95668e28
 +}
 diff --git a/src/main/java/moe/caramel/daydream/sidebar/ISidebar.java b/src/main/java/moe/caramel/daydream/sidebar/ISidebar.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..b60319d9eef31aff2e0ff768cb012b068266009c
+index 0000000000000000000000000000000000000000..7aeb8286bfbe7a6782b2572f9ab048a097d354bf
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/sidebar/ISidebar.java
 @@ -0,0 +1,53 @@
@@ -245,7 +245,7 @@ index 0000000000000000000000000000000000000000..b60319d9eef31aff2e0ff768cb012b06
 +     *
 +     * @return 사이드바가 활성화 되어있다면 {@code true}를 반환
 +     */
-+    boolean isUseIndividualSidebar();
++    boolean useIndividualSidebar();
 +
 +    /**
 +     * {@link SidebarProcessor}를 가져옵니다.
@@ -375,7 +375,7 @@ index 0000000000000000000000000000000000000000..4dc7b27772061780734abef78e207ca5
 +    void cancelRequest();
 +}
 diff --git a/src/main/java/org/bukkit/scoreboard/Objective.java b/src/main/java/org/bukkit/scoreboard/Objective.java
-index b236d19d4e4e4f9def610bae8a0c7d222fe2241b..0b4601e78c907e42e1a3736e58a20743c3fb0e81 100644
+index a193ffabb05160b462dee1ba8f687fdbc84405b6..4e00c0bf4182e8eb936fcf52cc3e1a464745c5bc 100644
 --- a/src/main/java/org/bukkit/scoreboard/Objective.java
 +++ b/src/main/java/org/bukkit/scoreboard/Objective.java
 @@ -9,7 +9,7 @@ import org.jetbrains.annotations.Nullable;
