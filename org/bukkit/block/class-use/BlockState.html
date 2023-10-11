@@ -106,6 +106,11 @@ loadScripts(document, 'script');</script>
 <div class="block">Classes related to creating or using <a href="../../structure/Structure.html" title="interface in org.bukkit.structure"><code>structures</code></a> without creating <a href="../Structure.html" title="interface in org.bukkit.block"><code>Structure
  blocks</code></a> in the world.</div>
 </div>
+<div class="col-first odd-row-color"><a href="#org.bukkit.util">org.bukkit.util</a></div>
+<div class="col-last odd-row-color">
+<div class="block">Multi and single purpose classes to facilitate various programmatic
+ concepts.</div>
+</div>
 </div>
 <section class="class-uses">
 <ul class="block-list">
@@ -450,13 +455,18 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../BlockState.html" title="interface in org.bukkit.block">BlockState</a></code></div>
-<div class="col-second even-row-color"><span class="type-name-label">Block.</span><code><a href="../Block.html#getState()" class="member-name-link">getState</a>()</code></div>
+<div class="col-second even-row-color"><span class="type-name-label">BlockState.</span><code><a href="../BlockState.html#copy()" class="member-name-link">copy</a>()</code></div>
 <div class="col-last even-row-color">
-<div class="block">Captures the current state of this block.</div>
+<div class="block">Returns a copy of this BlockState as an unplaced BlockState.</div>
 </div>
 <div class="col-first odd-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../BlockState.html" title="interface in org.bukkit.block">BlockState</a></code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">Block.</span><code><a href="../Block.html#getState(boolean)" class="member-name-link">getState</a><wbr>(boolean&nbsp;useSnapshot)</code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-second odd-row-color"><span class="type-name-label">Block.</span><code><a href="../Block.html#getState()" class="member-name-link">getState</a>()</code></div>
+<div class="col-last odd-row-color">
+<div class="block">Captures the current state of this block.</div>
+</div>
+<div class="col-first even-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../BlockState.html" title="interface in org.bukkit.block">BlockState</a></code></div>
+<div class="col-second even-row-color"><span class="type-name-label">Block.</span><code><a href="../Block.html#getState(boolean)" class="member-name-link">getState</a><wbr>(boolean&nbsp;useSnapshot)</code></div>
+<div class="col-last even-row-color">&nbsp;</div>
 </div>
 </section>
 </li>
@@ -899,6 +909,56 @@ loadScripts(document, 'script');</script>
 <div class="col-second even-row-color"><span class="type-name-label">Palette.</span><code><a href="../../structure/Palette.html#getBlocks()" class="member-name-link">getBlocks</a>()</code></div>
 <div class="col-last even-row-color">
 <div class="block">Gets a copy of the blocks this Palette is made of.</div>
+</div>
+</div>
+</section>
+</li>
+<li>
+<section class="detail" id="org.bukkit.util">
+<h2>Uses of <a href="../BlockState.html" title="interface in org.bukkit.block">BlockState</a> in <a href="../../util/package-summary.html">org.bukkit.util</a></h2>
+<div class="caption"><span>Methods in <a href="../../util/package-summary.html">org.bukkit.util</a> that return <a href="../BlockState.html" title="interface in org.bukkit.block">BlockState</a></span></div>
+<div class="summary-table three-column-summary">
+<div class="table-header col-first">Modifier and Type</div>
+<div class="table-header col-second">Method</div>
+<div class="table-header col-last">Description</div>
+<div class="col-first even-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../BlockState.html" title="interface in org.bukkit.block">BlockState</a></code></div>
+<div class="col-second even-row-color"><span class="type-name-label">BlockTransformer.TransformationState.</span><code><a href="../../util/BlockTransformer.TransformationState.html#getOriginal()" class="member-name-link">getOriginal</a>()</code></div>
+<div class="col-last even-row-color">
+<div class="block">Creates a clone of the original block state that a structure wanted
+ to place and caches it for the current transformer.</div>
+</div>
+<div class="col-first odd-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../BlockState.html" title="interface in org.bukkit.block">BlockState</a></code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">BlockTransformer.TransformationState.</span><code><a href="../../util/BlockTransformer.TransformationState.html#getWorld()" class="member-name-link">getWorld</a>()</code></div>
+<div class="col-last odd-row-color">
+<div class="block">Creates a clone of the block state that was at the location of the
+ currently modified block at the start of the transformation process
+ and caches it for the current transformer.</div>
+</div>
+<div class="col-first even-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../BlockState.html" title="interface in org.bukkit.block">BlockState</a></code></div>
+<div class="col-second even-row-color"><span class="type-name-label">BlockTransformer.</span><code><a href="../../util/BlockTransformer.html#transform(org.bukkit.generator.LimitedRegion,int,int,int,org.bukkit.block.BlockState,org.bukkit.util.BlockTransformer.TransformationState)" class="member-name-link">transform</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../generator/LimitedRegion.html" title="interface in org.bukkit.generator">LimitedRegion</a>&nbsp;region,
+ int&nbsp;x,
+ int&nbsp;y,
+ int&nbsp;z,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../BlockState.html" title="interface in org.bukkit.block">BlockState</a>&nbsp;current,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../util/BlockTransformer.TransformationState.html" title="interface in org.bukkit.util">BlockTransformer.TransformationState</a>&nbsp;state)</code></div>
+<div class="col-last even-row-color">
+<div class="block">Transforms a block in a structure.</div>
+</div>
+</div>
+<div class="caption"><span>Methods in <a href="../../util/package-summary.html">org.bukkit.util</a> with parameters of type <a href="../BlockState.html" title="interface in org.bukkit.block">BlockState</a></span></div>
+<div class="summary-table three-column-summary">
+<div class="table-header col-first">Modifier and Type</div>
+<div class="table-header col-second">Method</div>
+<div class="table-header col-last">Description</div>
+<div class="col-first even-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../BlockState.html" title="interface in org.bukkit.block">BlockState</a></code></div>
+<div class="col-second even-row-color"><span class="type-name-label">BlockTransformer.</span><code><a href="../../util/BlockTransformer.html#transform(org.bukkit.generator.LimitedRegion,int,int,int,org.bukkit.block.BlockState,org.bukkit.util.BlockTransformer.TransformationState)" class="member-name-link">transform</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../generator/LimitedRegion.html" title="interface in org.bukkit.generator">LimitedRegion</a>&nbsp;region,
+ int&nbsp;x,
+ int&nbsp;y,
+ int&nbsp;z,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../BlockState.html" title="interface in org.bukkit.block">BlockState</a>&nbsp;current,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../util/BlockTransformer.TransformationState.html" title="interface in org.bukkit.util">BlockTransformer.TransformationState</a>&nbsp;state)</code></div>
+<div class="col-last even-row-color">
+<div class="block">Transforms a block in a structure.</div>
 </div>
 </div>
 </section>

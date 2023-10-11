@@ -1479,8 +1479,13 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../Player.html" title="interface in org.bukkit.entity">Player</a></code></div>
-<div class="col-second even-row-color"><span class="type-name-label">LivingEntity.</span><code><a href="../LivingEntity.html#getKiller()" class="member-name-link">getKiller</a>()</code></div>
+<div class="col-second even-row-color"><span class="type-name-label">LightningStrike.</span><code><a href="../LightningStrike.html#getCausingPlayer()" class="member-name-link">getCausingPlayer</a>()</code></div>
 <div class="col-last even-row-color">
+<div class="block">Get the <a href="../Player.html" title="interface in org.bukkit.entity"><code>Player</code></a> that caused this lightning to strike.</div>
+</div>
+<div class="col-first odd-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../Player.html" title="interface in org.bukkit.entity">Player</a></code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">LivingEntity.</span><code><a href="../LivingEntity.html#getKiller()" class="member-name-link">getKiller</a>()</code></div>
+<div class="col-last odd-row-color">
 <div class="block">Gets the player identified as the killer of the living entity.</div>
 </div>
 </div>
@@ -1495,9 +1500,16 @@ loadScripts(document, 'script');</script>
 <div class="block">Gets all players hidden with <a href="../Player.html#hidePlayer(org.bukkit.entity.Player)"><code>hidePlayer(org.bukkit.entity.Player)</code></a>.</div>
 </div>
 <div class="col-first odd-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Set.html" title="class or interface in java.util" class="external-link">Set</a>&lt;<a href="../Player.html" title="interface in org.bukkit.entity">Player</a>&gt;</code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">Entity.</span><code><a href="../Entity.html#getTrackedPlayers()" class="member-name-link">getTrackedPlayers</a>()</code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">Entity.</span><code><a href="../Entity.html#getTrackedBy()" class="member-name-link">getTrackedBy</a>()</code></div>
 <div class="col-last odd-row-color">
-<div class="block">Returns a set of <a href="../Player.html" title="interface in org.bukkit.entity"><code>Players</code></a> within this entity's tracking range (players that can "see" this entity).</div>
+<div class="block">Get all players that are currently tracking this entity.</div>
+</div>
+<div class="col-first even-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Set.html" title="class or interface in java.util" class="external-link">Set</a>&lt;<a href="../Player.html" title="interface in org.bukkit.entity">Player</a>&gt;</code></div>
+<div class="col-second even-row-color"><span class="type-name-label">Entity.</span><code><a href="../Entity.html#getTrackedPlayers()" class="member-name-link">getTrackedPlayers</a>()</code></div>
+<div class="col-last even-row-color">
+<div class="block"><span class="deprecated-label">Deprecated.</span>
+<div class="deprecation-comment">slightly misleading name, use <a href="../Entity.html#getTrackedBy()"><code>Entity.getTrackedBy()</code></a></div>
+</div>
 </div>
 </div>
 <div class="caption"><span>Methods in <a href="../package-summary.html">org.bukkit.entity</a> with parameters of type <a href="../Player.html" title="interface in org.bukkit.entity">Player</a></span></div>
@@ -1534,9 +1546,9 @@ loadScripts(document, 'script');</script>
 <div class="block">Lists the <code>other</code> player.</div>
 </div>
 <div class="col-first odd-row-color"><code>void</code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">LightningStrike.</span><code><a href="../LightningStrike.html#setCausingPlayer(org.bukkit.entity.Player)" class="member-name-link">setCausingPlayer</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;causingPlayer)</code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">LightningStrike.</span><code><a href="../LightningStrike.html#setCausingPlayer(org.bukkit.entity.Player)" class="member-name-link">setCausingPlayer</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;player)</code></div>
 <div class="col-last odd-row-color">
-<div class="block">Updates the player that caused this lightning to be summoned into the world.</div>
+<div class="block">Set the <a href="../Player.html" title="interface in org.bukkit.entity"><code>Player</code></a> that caused this lightning to strike.</div>
 </div>
 <div class="col-first even-row-color"><code>void</code></div>
 <div class="col-second even-row-color"><span class="type-name-label">LivingEntity.</span><code><a href="../LivingEntity.html#setKiller(org.bukkit.entity.Player)" class="member-name-link">setKiller</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;killer)</code></div>

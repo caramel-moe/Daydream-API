@@ -86,6 +86,14 @@ extends <a href="../Keyed.html" title="interface in org.bukkit">Keyed</a></span>
 <div class="deprecation-comment">use <a href="../../../io/papermc/paper/datapack/Datapack.html" title="interface in io.papermc.paper.datapack"><code>Datapack</code></a></div>
 </div>
 <div class="block">Represents a data pack.</div>
+<dl class="notes">
+<dt>See Also:</dt>
+<dd>
+<ul class="see-list">
+<li><a href="https://minecraft.wiki/w/Data_pack">Minecraft wiki</a></li>
+</ul>
+</dd>
+</dl>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -137,11 +145,22 @@ extends <a href="../Keyed.html" title="interface in org.bukkit">Keyed</a></span>
 <div class="block">Gets the description of the data pack.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6"><code>int</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6"><code><a href="#getMaxSupportedPackFormat()" class="member-name-link">getMaxSupportedPackFormat</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6">
+<div class="block"><span class="deprecated-label">Deprecated, for removal: This API element is subject to removal in a future version.</span></div>
+<div class="block">Gets the maximum supported pack format.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6"><code>int</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6"><code><a href="#getMinSupportedPackFormat()" class="member-name-link">getMinSupportedPackFormat</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6">
+<div class="block"><span class="deprecated-label">Deprecated, for removal: This API element is subject to removal in a future version.</span></div>
+<div class="block">Gets the minimum supported pack format.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6"><code>int</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6"><code><a href="#getPackFormat()" class="member-name-link">getPackFormat</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6">
-<div class="block"><span class="deprecated-label">Deprecated.</span>
-<div class="deprecation-comment">packs can support multiple versions</div>
-</div>
+<div class="block"><span class="deprecated-label">Deprecated, for removal: This API element is subject to removal in a future version.</span></div>
+<div class="block">Gets the pack format.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Set.html" title="class or interface in java.util" class="external-link">Set</a>&lt;<a href="../FeatureFlag.html" title="interface in org.bukkit">FeatureFlag</a>&gt;</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6"><code><a href="#getRequestedFeatures()" class="member-name-link">getRequestedFeatures</a>()</code></div>
@@ -219,17 +238,57 @@ extends <a href="../Keyed.html" title="interface in org.bukkit">Keyed</a></span>
 <li>
 <section class="detail" id="getPackFormat()">
 <h3>getPackFormat</h3>
-<div class="member-signature"><span class="annotations"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Deprecated.html" title="class or interface in java.lang" class="external-link">@Deprecated</a>
-</span><span class="return-type">int</span>&nbsp;<span class="element-name">getPackFormat</span>()</div>
-<div class="deprecation-block"><span class="deprecated-label">Deprecated.</span>
-<div class="deprecation-comment">packs can support multiple versions</div>
-</div>
-<div class="block">Gets the pack version.
+<div class="member-signature"><span class="return-type">int</span>&nbsp;<span class="element-name">getPackFormat</span>()</div>
+<div class="deprecation-block"><span class="deprecated-label">Deprecated, for removal: This API element is subject to removal in a future version.</span></div>
+<div class="block">Gets the pack format.
  <br>
- This is related to the server version to work.</div>
+ Pack formats are non-standard and unrelated to the version of Minecraft. For
+ a list of known pack versions, see the
+ <a href="https://minecraft.wiki/w/Data_pack#Pack_format">Minecraft Wiki</a>.</div>
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>the pack version</dd>
+<dt>See Also:</dt>
+<dd>
+<ul class="see-list">
+<li><a href="#getMinSupportedPackFormat()"><code>getMinSupportedPackFormat()</code></a></li>
+<li><a href="#getMaxSupportedPackFormat()"><code>getMaxSupportedPackFormat()</code></a></li>
+</ul>
+</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getMinSupportedPackFormat()">
+<h3>getMinSupportedPackFormat</h3>
+<div class="member-signature"><span class="return-type">int</span>&nbsp;<span class="element-name">getMinSupportedPackFormat</span>()</div>
+<div class="deprecation-block"><span class="deprecated-label">Deprecated, for removal: This API element is subject to removal in a future version.</span></div>
+<div class="block">Gets the minimum supported pack format. If the data pack does not specify a
+ minimum supported format, <a href="#getPackFormat()"><code>getPackFormat()</code></a> is returned.
+ <br>
+ Pack formats are non-standard and unrelated to the version of Minecraft. For
+ a list of known pack versions, see the
+ <a href="https://minecraft.wiki/w/Data_pack#Pack_format">Minecraft Wiki</a>.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the min pack version supported</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getMaxSupportedPackFormat()">
+<h3>getMaxSupportedPackFormat</h3>
+<div class="member-signature"><span class="return-type">int</span>&nbsp;<span class="element-name">getMaxSupportedPackFormat</span>()</div>
+<div class="deprecation-block"><span class="deprecated-label">Deprecated, for removal: This API element is subject to removal in a future version.</span></div>
+<div class="block">Gets the maximum supported pack format. If the data pack does not specify a
+ maximum supported format, <a href="#getPackFormat()"><code>getPackFormat()</code></a> is returned.
+ <br>
+ Pack formats are non-standard and unrelated to the version of Minecraft. For
+ a list of known pack versions, see the
+ <a href="https://minecraft.wiki/w/Data_pack#Pack_format">Minecraft Wiki</a>.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the max pack version supported</dd>
 </dl>
 </section>
 </li>
