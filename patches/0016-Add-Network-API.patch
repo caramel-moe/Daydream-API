@@ -5,7 +5,7 @@ Subject: [PATCH] Add Network API
 
 
 diff --git a/build.gradle.kts b/build.gradle.kts
-index f9e80e88523add9602bf4e39cfed843479b2109a..82b222d1c865020ca4368774d53e43e70cd7f0d9 100644
+index 3f45b3fe993e033e743e9f72b4ced20469ee1858..dabfcc0e05581219a08abe380ed37ab2e862273e 100644
 --- a/build.gradle.kts
 +++ b/build.gradle.kts
 @@ -52,6 +52,7 @@ dependencies {
@@ -201,10 +201,10 @@ index 0000000000000000000000000000000000000000..21fde661e12417b1af155cfcb747140b
 +    public abstract MojangByteBuf writeBitSet(@NotNull BitSet bitSet);
 +}
 diff --git a/src/main/java/org/bukkit/UnsafeValues.java b/src/main/java/org/bukkit/UnsafeValues.java
-index 56d5dd17f6f7c1438db0778975dc55fedf0011bc..d35904dfd6afd033da50fc9c027f6e3c08e7c348 100644
+index f569a1fd1b78ed3f3fd091bb3a0fee8c985630bb..e5861e716583d2e2ea2adafe3af57bd6209835d8 100644
 --- a/src/main/java/org/bukkit/UnsafeValues.java
 +++ b/src/main/java/org/bukkit/UnsafeValues.java
-@@ -283,4 +283,15 @@ public interface UnsafeValues {
+@@ -282,4 +282,15 @@ public interface UnsafeValues {
      // Paper end
  
      @NotNull moe.caramel.daydream.world.DamageMata getDamageMeta(@NotNull Object damageSource); // Daydream - Add More API for EntityDamageEvent
@@ -221,7 +221,7 @@ index 56d5dd17f6f7c1438db0778975dc55fedf0011bc..d35904dfd6afd033da50fc9c027f6e3c
 +    // Daydream end
  }
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index 21d8b4f87d202b89406a2a949c641eb7f31d265d..750bf7b7c8b4fb08559a9bccba592043daeab1c1 100644
+index 6ce203131ffca7c87677d4a207d32d7b0e5df9fb..5783e00de5f5a5e67460a331c10eeb73342aa6c1 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
 @@ -887,6 +887,24 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
