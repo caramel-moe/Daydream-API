@@ -5,7 +5,7 @@ Subject: [PATCH] Add more World API
 
 
 diff --git a/src/main/java/org/bukkit/World.java b/src/main/java/org/bukkit/World.java
-index 6917931966377c51db88a3364997a110dd987970..dc21e16cb266b1b7bae5f4029fa4565d8fa22c91 100644
+index 8d861f5522a33669f67b3e41dfbc5234637114b4..7160f06177335e6b4cf71e57a1ca63f2d96fd8e5 100644
 --- a/src/main/java/org/bukkit/World.java
 +++ b/src/main/java/org/bukkit/World.java
 @@ -150,6 +150,16 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
@@ -25,7 +25,7 @@ index 6917931966377c51db88a3364997a110dd987970..dc21e16cb266b1b7bae5f4029fa4565d
      // Paper start - Add heightmap API
      /**
       * Returns the highest block's y-coordinate at the specified block coordinates that match the specified heightmap's conditions.
-@@ -3215,6 +3225,38 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
+@@ -3217,6 +3227,38 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
       */
      void playSound(@NotNull Location location, @NotNull String sound, @NotNull SoundCategory category, float volume, float pitch);
  
@@ -65,7 +65,7 @@ index 6917931966377c51db88a3364997a110dd987970..dc21e16cb266b1b7bae5f4029fa4565d
       * Play a Sound at the location of the provided entity in the World.
       * <p>
 diff --git a/src/main/java/org/bukkit/block/Block.java b/src/main/java/org/bukkit/block/Block.java
-index 41b7310a514bf4d42c501e4bffe04008bda2541f..a9f7d144ae4a64b5b2089f889995434c993fcdb4 100644
+index 49974558799830d827f9ccd65a8bafee3fb0376b..9e3d77480f119ce4ffd7b3e5a34c97a651b7305f 100644
 --- a/src/main/java/org/bukkit/block/Block.java
 +++ b/src/main/java/org/bukkit/block/Block.java
 @@ -590,6 +590,20 @@ public interface Block extends Metadatable, Translatable, net.kyori.adventure.tr
