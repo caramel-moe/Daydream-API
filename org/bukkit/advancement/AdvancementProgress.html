@@ -99,12 +99,12 @@ loadScripts(document, 'script');</script>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>int</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#count()" class="member-name-link">count</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Get the advancement's count.</div>
+<div class="block">이 발전 과제 진행도의 현재 카운트를 가져옵니다.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#decreaseCount()" class="member-name-link">decreaseCount</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Decrease the Advancement Progress.</div>
+<div class="block">발전 과제 진행도의 카운트를 감소시킵니다.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Advancement.html" title="interface in org.bukkit.advancement">Advancement</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getAdvancement()" class="member-name-link">getAdvancement</a>()</code></div>
@@ -129,7 +129,7 @@ loadScripts(document, 'script');</script>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#increaseCount()" class="member-name-link">increaseCount</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Increase the Advancement Progress.</div>
+<div class="block">발전 과제 진행도의 카운트를 증가시킵니다.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#isDone()" class="member-name-link">isDone</a>()</code></div>
@@ -144,7 +144,7 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#useCount()" class="member-name-link">useCount</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Get the advancement uses the count.</div>
+<div class="block">발전 과제 진행도가 카운트를 사용하는지 가져옵니다.</div>
 </div>
 </div>
 </div>
@@ -255,14 +255,14 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="increaseCount()">
 <h3>increaseCount</h3>
 <div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">increaseCount</span>()</div>
-<div class="block">Increase the Advancement Progress.</div>
+<div class="block">발전 과제 진행도의 카운트를 증가시킵니다.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>true if increased, false if already reached the
- maximum count.</dd>
+<dd>증가되었다면 <code>true</code>, 최대 범위에 도달한 경우
+ <code>false</code>를 반환</dd>
 <dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/UnsupportedOperationException.html" title="class or interface in java.lang" class="external-link">UnsupportedOperationException</a></code> - This AdvancementProgress
- doesn't use counts.</dd>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/UnsupportedOperationException.html" title="class or interface in java.lang" class="external-link">UnsupportedOperationException</a></code> - 이 발전 과제 진행도가
+ 카운트를 사용하지 않습니다.</dd>
 </dl>
 </section>
 </li>
@@ -270,14 +270,14 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="decreaseCount()">
 <h3>decreaseCount</h3>
 <div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">decreaseCount</span>()</div>
-<div class="block">Decrease the Advancement Progress.</div>
+<div class="block">발전 과제 진행도의 카운트를 감소시킵니다.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>true if decreased, false if already reached the
- minimum count.</dd>
+<dd>감소되었다면 <code>true</code>, 최소 범위에 도달한 경우
+ <code>false</code>를 반환</dd>
 <dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/UnsupportedOperationException.html" title="class or interface in java.lang" class="external-link">UnsupportedOperationException</a></code> - This AdvancementProgress
- doesn't use counts.</dd>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/UnsupportedOperationException.html" title="class or interface in java.lang" class="external-link">UnsupportedOperationException</a></code> - 이 발전 과제 진행도가
+ 카운트를 사용하지 않습니다.</dd>
 </dl>
 </section>
 </li>
@@ -285,10 +285,10 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="useCount()">
 <h3>useCount</h3>
 <div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">useCount</span>()</div>
-<div class="block">Get the advancement uses the count.</div>
+<div class="block">발전 과제 진행도가 카운트를 사용하는지 가져옵니다.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>if the advancement uses the count, it returns <code>true</code>.</dd>
+<dd>이 발전 과제 진행도가 카운트를 사용하는 경우 <code>true</code>를 반환</dd>
 </dl>
 </section>
 </li>
@@ -296,10 +296,10 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="count()">
 <h3>count</h3>
 <div class="member-signature"><span class="return-type">int</span>&nbsp;<span class="element-name">count</span>()</div>
-<div class="block">Get the advancement's count.</div>
+<div class="block">이 발전 과제 진행도의 현재 카운트를 가져옵니다.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>advancement's count.</dd>
+<dd>현재 카운트</dd>
 </dl>
 </section>
 </li>
