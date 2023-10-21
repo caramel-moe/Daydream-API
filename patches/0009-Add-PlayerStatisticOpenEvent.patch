@@ -6,10 +6,10 @@ Subject: [PATCH] Add PlayerStatisticOpenEvent
 
 diff --git a/src/main/java/moe/caramel/daydream/event/packet/PlayerStatisticOpenEvent.java b/src/main/java/moe/caramel/daydream/event/packet/PlayerStatisticOpenEvent.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..6302e1833fa569142eb786c9bb78f2924a893650
+index 0000000000000000000000000000000000000000..73d0f6f9bcb155288674bb1103fb28cf6881eed1
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/event/packet/PlayerStatisticOpenEvent.java
-@@ -0,0 +1,46 @@
+@@ -0,0 +1,47 @@
 +package moe.caramel.daydream.event.packet;
 +
 +import org.bukkit.entity.Player;
@@ -19,7 +19,7 @@ index 0000000000000000000000000000000000000000..6302e1833fa569142eb786c9bb78f292
 +import org.jetbrains.annotations.NotNull;
 +
 +/**
-+ * 플레이어가 통계 스크린을 오픈했을 경우 호출됩니다.
++ * 플레이어가 통계 화면을 열었을 경우 호출됩니다.
 + */
 +public final class PlayerStatisticOpenEvent extends PlayerEvent implements Cancellable {
 +
@@ -45,9 +45,10 @@ index 0000000000000000000000000000000000000000..6302e1833fa569142eb786c9bb78f292
 +
 +    /**
 +     * 통계 패킷을 전송하지 않습니다.
-+     * <br><br>
++     * <p>
 +     * 주의: 이벤트를 취소해도 클라이언트에는 통계 로드 화면이 계속 출력됩니다.
-+     * 인벤토리를 오픈하고 닫는 방식으로 통계 로드 화면을 제거할 수 있습니다.
++     * 인벤토리를 열고 닫는 방법을 사용하여 로드 화면을 제거할 수 있습니다.
++     * </p>
 +     *
 +     * @param cancel {@code true}인 경우 통계 패킷을 전송하지 않습니다.
 +     */

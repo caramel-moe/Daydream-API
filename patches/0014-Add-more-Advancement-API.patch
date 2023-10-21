@@ -1,0 +1,498 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: LemonCaramel <admin@caramel.moe>
+Date: Fri, 4 Feb 2022 11:18:12 +0900
+Subject: [PATCH] Add more Advancement API
+
+
+diff --git a/src/main/java/moe/caramel/daydream/advancement/AdvancementBuilder.java b/src/main/java/moe/caramel/daydream/advancement/AdvancementBuilder.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..1677ae58bca93ded040f1f0f759e36aa522b5ac0
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/advancement/AdvancementBuilder.java
+@@ -0,0 +1,168 @@
++package moe.caramel.daydream.advancement;
++
++import io.papermc.paper.advancement.AdvancementDisplay;
++import net.kyori.adventure.text.Component;
++import org.bukkit.Material;
++import org.bukkit.NamespacedKey;
++import org.bukkit.advancement.Advancement;
++import org.bukkit.inventory.ItemStack;
++import org.jetbrains.annotations.NotNull;
++import org.jetbrains.annotations.Nullable;
++
++/**
++ * 발전 과제 빌더
++ */
++public interface AdvancementBuilder {
++
++    /**
++     * 부모 발전 과제를 설정합니다.
++     *
++     * @param advancement 부모 발전 과제
++     * @return this
++     */
++    @NotNull
++    AdvancementBuilder parent(@NotNull Advancement advancement);
++
++    /**
++     * 이 발전 과제가 항상 보여야 되는 경우에 사용합니다.
++     *
++     * @return this
++     */
++    @NotNull
++    AdvancementBuilder alwaysVisible();
++
++    /**
++     * 이 발전 과제의 디스플레이 정보를 설정합니다.
++     *
++     * @param icon 발전 과제의 프레임에 표시되는 아이콘
++     * @param title 발전 과제의 제목
++     * @param description 발전 과제의 설정
++     * @param background 발전 과제 탭을 선택 시에 표시될 배경 텍스쳐 (루트 발전 과제 전용)
++     * @param frame 발전 과제의 프레임
++     * @param showToast 발전 과제 완료 시에 토스트를 출력해야 하는 경우 {@code true}
++     * @param announceToChat 발전 과제 완료 시에 메시지를 보내야 하는 경우 {@code true}
++     * @param hidden 발전 과제가 숨겨진 경우 {@code true}
++     * @return this
++     */
++    @NotNull
++    default AdvancementBuilder display(
++        @NotNull Material icon, @NotNull Component title, @Nullable Component description,
++        @Nullable NamespacedKey background, @NotNull AdvancementDisplay.Frame frame,
++        boolean showToast, boolean announceToChat, boolean hidden
++    ) {
++        return display(new ItemStack(icon), title, description, background, frame, showToast, announceToChat, hidden);
++    }
++
++    /**
++     * 이 발전 과제의 디스플레이 정보를 설정합니다.
++     *
++     * @param icon 발전 과제의 프레임에 표시되는 아이콘
++     * @param title 발전 과제의 제목
++     * @param description 발전 과제의 설정
++     * @param background 발전 과제 탭을 선택 시에 표시될 배경 텍스쳐 (루트 발전 과제 전용)
++     * @param frame 발전 과제의 프레임
++     * @param showToast 발전 과제 완료 시에 토스트를 출력해야 하는 경우 {@code true}
++     * @param announceToChat 발전 과제 완료 시에 메시지를 보내야 하는 경우 {@code true}
++     * @param hidden 발전 과제가 숨겨진 경우 {@code true}
++     * @return this
++     */
++    @NotNull
++    AdvancementBuilder display(
++        @NotNull ItemStack icon, @NotNull Component title, @Nullable Component description,
++        @Nullable NamespacedKey background, @NotNull AdvancementDisplay.Frame frame,
++        boolean showToast, boolean announceToChat, boolean hidden
++    );
++
++    /**
++     * 이 발전 과제의 디스플레이 정보를 설정합니다.
++     *
++     * @param icon 발전 과제의 프레임에 표시되는 아이콘
++     * @param title 발전 과제의 제목
++     * @param description 발전 과제의 설정
++     * @param background 발전 과제 탭을 선택 시에 표시될 배경 텍스쳐 (루트 발전 과제 전용)
++     * @param frame 발전 과제의 프레임
++     * @param x 아이콘의 X 좌표
++     * @param y 아이콘의 Y 좌표
++     * @param showToast 발전 과제 완료 시에 토스트를 출력해야 하는 경우 {@code true}
++     * @param announceToChat 발전 과제 완료 시에 메시지를 보내야 하는 경우 {@code true}
++     * @param hidden 발전 과제가 숨겨진 경우 {@code true}
++     * @return this
++     */
++    @NotNull
++    default AdvancementBuilder display(
++        @NotNull Material icon, @NotNull Component title, @Nullable Component description,
++        @Nullable NamespacedKey background, @NotNull AdvancementDisplay.Frame frame,
++        float x, float y, boolean showToast, boolean announceToChat, boolean hidden
++    ) {
++        return display(new ItemStack(icon), title, description, background, frame, x, y, showToast, announceToChat, hidden);
++    }
++
++    /**
++     * 이 발전 과제의 디스플레이 정보를 설정합니다.
++     *
++     * @param icon 발전 과제의 프레임에 표시되는 아이콘
++     * @param title 발전 과제의 제목
++     * @param description 발전 과제의 설정
++     * @param background 발전 과제 탭을 선택 시에 표시될 배경 텍스쳐 (루트 발전 과제 전용)
++     * @param frame 발전 과제의 프레임
++     * @param x 아이콘의 X 좌표
++     * @param y 아이콘의 Y 좌표
++     * @param showToast 발전 과제 완료 시에 토스트를 출력해야 하는 경우 {@code true}
++     * @param announceToChat 발전 과제 완료 시에 메시지를 보내야 하는 경우 {@code true}
++     * @param hidden 발전 과제가 숨겨진 경우 {@code true}
++     * @return this
++     */
++    @NotNull
++    AdvancementBuilder display(
++        @NotNull ItemStack icon, @NotNull Component title, @Nullable Component description,
++        @Nullable NamespacedKey background, @NotNull AdvancementDisplay.Frame frame,
++        float x, float y, boolean showToast, boolean announceToChat, boolean hidden
++    );
++
++    /**
++     * 기준을 추가합니다.
++     * <br>
++     * 트리거는 Impossible 트리거로 고정됩니다.
++     *
++     * @param name 기준의 이름
++     * @return this
++     */
++    @NotNull
++    AdvancementBuilder addImpossibleCriterion(@NotNull String name);
++
++    /**
++     * 플레이어가 발전 과제를 완료하는 데 필요한 조건을 설정합니다.
++     *
++     * @param and {@code true}인 경우, 플레이어가 모든 기준을 완료해야합니다. ({@code false}인 경우, OR)
++     * @return this
++     */
++    @NotNull
++    AdvancementBuilder requirements(boolean and);
++
++    /**
++     * 플레이어가 발전 과제를 완료하는 데 필요한 조건을 설정합니다.
++     *
++     * @param requirements 필요한 조건
++     * @return this
++     */
++    @NotNull
++    AdvancementBuilder requirements(@NotNull String[][] requirements);
++
++    /**
++     * 이 발전 과제에 카운트를 사용합니다. 기준 설정이 필요하지 않습니다.
++     *
++     * @param count 최대 카운트
++     * @return this
++     */
++    @NotNull
++    AdvancementBuilder useCount(int count);
++
++    /**
++     * 발전 과제를 서버에 등록합니다.
++     *
++     * @param save 서버에 발전 과제 저장 여부
++     * @return 생성된 발전 과제
++     */
++    @NotNull
++    Advancement register(boolean save);
++}
+diff --git a/src/main/java/moe/caramel/daydream/event/player/PlayerAdvancementPreLoadEvent.java b/src/main/java/moe/caramel/daydream/event/player/PlayerAdvancementPreLoadEvent.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..ae9ff3fdbe7c3138de79eb1e3569fa83d60def5d
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/event/player/PlayerAdvancementPreLoadEvent.java
+@@ -0,0 +1,64 @@
++package moe.caramel.daydream.event.player;
++
++import com.google.gson.JsonElement;
++import org.bukkit.entity.Player;
++import org.bukkit.event.HandlerList;
++import org.bukkit.event.player.PlayerEvent;
++import org.jetbrains.annotations.NotNull;
++import org.jetbrains.annotations.Nullable;
++
++/**
++ * 플레이어의 발전 과제 데이터를 로드하기 직전에 호출됩니다.
++ * <br>
++ * 일반적으로 {@link org.bukkit.event.player.PlayerJoinEvent} 이전에 호출됩니다.
++ */
++public final class PlayerAdvancementPreLoadEvent extends PlayerEvent {
++
++    private static final HandlerList HANDLER_LIST = new HandlerList();
++    public @NotNull HandlerList getHandlers() { return HANDLER_LIST; }
++    public static @NotNull HandlerList getHandlerList() { return HANDLER_LIST; }
++
++    private JsonElement jsonElement;
++    private boolean useDataFixer = true;
++
++    public PlayerAdvancementPreLoadEvent(@NotNull Player who) {
++        super(who);
++    }
++
++    /**
++     * 로드할 발전 과제 Json을 가져옵니다.
++     *
++     * @return 발전 과제 Json
++     */
++    @Nullable
++    public JsonElement getJsonElement() {
++        return jsonElement;
++    }
++
++    /**
++     * 로드할 발전 과제 Json을 설정합니다.
++     *
++     * @param jsonElement 발전 과제 Json
++     */
++    public void setJsonElement(@NotNull JsonElement jsonElement) {
++        this.jsonElement = jsonElement;
++    }
++
++    /**
++     * Mojang의 DataFixer를 사용할지 여부를 가져옵니다.
++     *
++     * @return 만약 {@code true}인 경우, Mojang의 DataFixer를 사용
++     */
++    public boolean useDataFixer() {
++        return this.useDataFixer;
++    }
++
++    /**
++     * Mojang의 DataFixer를 사용할지 여부를 설정합니다.
++     *
++     * @param useDataFixer 만약 {@code true}인 경우, Mojang의 DataFixer를 사용
++     */
++    public void useDataFixer(boolean useDataFixer) {
++        this.useDataFixer = useDataFixer;
++    }
++}
+diff --git a/src/main/java/moe/caramel/daydream/event/player/PlayerAdvancementSaveEvent.java b/src/main/java/moe/caramel/daydream/event/player/PlayerAdvancementSaveEvent.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..712bb1844eaf39525aeb9ec1be0620eb2d0ab049
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/event/player/PlayerAdvancementSaveEvent.java
+@@ -0,0 +1,46 @@
++package moe.caramel.daydream.event.player;
++
++import com.google.gson.JsonElement;
++import org.bukkit.entity.Player;
++import org.bukkit.event.Cancellable;
++import org.bukkit.event.HandlerList;
++import org.bukkit.event.player.PlayerEvent;
++import org.jetbrains.annotations.NotNull;
++
++/**
++ * 플레이어 발전 과제 데이터가 저장될 때 호출됩니다.
++ */
++public final class PlayerAdvancementSaveEvent extends PlayerEvent implements Cancellable {
++
++    private static final HandlerList HANDLER_LIST = new HandlerList();
++    public @NotNull HandlerList getHandlers() { return HANDLER_LIST; }
++    public static @NotNull HandlerList getHandlerList() { return HANDLER_LIST; }
++
++    private final JsonElement jsonElement;
++    private boolean cancel;
++
++    public PlayerAdvancementSaveEvent(@NotNull Player who, @NotNull JsonElement jsonElement) {
++        super(who);
++        this.jsonElement = jsonElement;
++    }
++
++    @Override
++    public boolean isCancelled() {
++        return this.cancel;
++    }
++
++    @Override
++    public void setCancelled(boolean cancel) {
++        this.cancel = cancel;
++    }
++
++    /**
++     * 저장될 발전 과제 Json을 가져옵니다.
++     *
++     * @return 발전 과제 Json
++     */
++    @NotNull
++    public JsonElement getJsonElement() {
++        return jsonElement;
++    }
++}
+diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
+index 8334f94d2ccbd76f824cda64c4b084024911fa31..7557902a0175bc592ec44d35626db505386d4925 100644
+--- a/src/main/java/org/bukkit/Bukkit.java
++++ b/src/main/java/org/bukkit/Bukkit.java
+@@ -2168,6 +2168,19 @@ public final class Bukkit {
+         return server.getAdvancement(key);
+     }
+ 
++    // Daydream start
++    /**
++     * 발전 과제 빌더를 생성합니다.
++     *
++     * @param key 중복되지 않는 발전 과제 키
++     * @return 발전 과제 빌더
++     */
++    @NotNull
++    public static moe.caramel.daydream.advancement.AdvancementBuilder createAdvancement(@NotNull NamespacedKey key) {
++        return server.createAdvancement(key);
++    }
++    // Daydream end
++
+     /**
+      * Get an iterator through all advancements. Advancements cannot be removed
+      * from this iterator,
+diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
+index ea41d939aa4b84381755290730967b0a349a9ab0..c272885eedd7c04db9edd4a4fd8434f91e6e4ef4 100644
+--- a/src/main/java/org/bukkit/Server.java
++++ b/src/main/java/org/bukkit/Server.java
+@@ -1846,6 +1846,17 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
+     @Nullable
+     Advancement getAdvancement(@NotNull NamespacedKey key);
+ 
++    // Daydream start - Add more Advancement API
++    /**
++     * 발전 과제 빌더를 생성합니다.
++     *
++     * @param key 중복되지 않는 발전 과제 키
++     * @return 발전 과제 빌더
++     */
++    @NotNull
++    moe.caramel.daydream.advancement.AdvancementBuilder createAdvancement(@NotNull NamespacedKey key);
++    // Daydream end - Add more Advancement API
++
+     /**
+      * Get an iterator through all advancements. Advancements cannot be removed
+      * from this iterator,
+diff --git a/src/main/java/org/bukkit/UnsafeValues.java b/src/main/java/org/bukkit/UnsafeValues.java
+index 8b606979adc04dd92032ade5951f2db8c38b9d40..b32e24c7e0532a1c57d4b7cb1da1a44ea0ef80ea 100644
+--- a/src/main/java/org/bukkit/UnsafeValues.java
++++ b/src/main/java/org/bukkit/UnsafeValues.java
+@@ -75,6 +75,35 @@ public interface UnsafeValues {
+      */
+     Advancement loadAdvancement(NamespacedKey key, String advancement);
+ 
++    // Daydream start - Add more Advancement API
++    /**
++     * Load an advancement represented by the specified builder into the server.
++     * <br>
++     * Loaded advancements will be deleted upon server restart and reload.
++     * <br>
++     * Callers should be prepared for {@link Exception} to be thrown.
++     *
++     * @param builder representation of the advancement
++     * @return the loaded advancement or null if an error occurred
++     */
++    default Advancement loadAdvancement(moe.caramel.daydream.advancement.AdvancementBuilder builder) {
++        return loadAdvancement(builder, false);
++    }
++
++    /**
++     * Load an advancement represented by the specified builder into the server.
++     * <br>
++     * Loaded advancements will be deleted upon server restart and reload.
++     * <br>
++     * Callers should be prepared for {@link Exception} to be thrown.
++     *
++     * @param builder representation of the advancement
++     * @param save save or not
++     * @return the loaded advancement or null if an error occurred
++     */
++    Advancement loadAdvancement(moe.caramel.daydream.advancement.AdvancementBuilder builder, boolean save);
++    // Daydream end - Add more Advancement API
++
+     /**
+      * Delete an advancement which was loaded and saved by
+      * {@link #loadAdvancement(org.bukkit.NamespacedKey, java.lang.String)}.
+diff --git a/src/main/java/org/bukkit/advancement/Advancement.java b/src/main/java/org/bukkit/advancement/Advancement.java
+index 243e5f2debad7f12210169e15ef0b29763e988bb..3ece3bf528b48d13af20f6bf051b6db1082e62ef 100644
+--- a/src/main/java/org/bukkit/advancement/Advancement.java
++++ b/src/main/java/org/bukkit/advancement/Advancement.java
+@@ -68,4 +68,19 @@ public interface Advancement extends Keyed {
+     @NotNull
+     Advancement getRoot();
+     // Paper end
++    // Daydream start - Add more Advancement API
++    /**
++     * 발전 과제가 카운트를 사용하는지 가져옵니다.
++     *
++     * @return 이 발전 과제가 카운트를 사용하는 경우 {@code true}를 반환
++     */
++    boolean useCount();
++
++    /**
++     * 발전 과제의 최대 카운트를 가져옵니다.
++     *
++     * @return 발전 과제의 최대 카운트
++     */
++    int maxCount();
++    // Daydream end - Add more Advancement API
+ }
+diff --git a/src/main/java/org/bukkit/advancement/AdvancementProgress.java b/src/main/java/org/bukkit/advancement/AdvancementProgress.java
+index f9bc179da071e7bd57cefc50d6763317fb643b74..b0f7bd0bdc11123350a1faa3e3f9c6daf492a3ec 100644
+--- a/src/main/java/org/bukkit/advancement/AdvancementProgress.java
++++ b/src/main/java/org/bukkit/advancement/AdvancementProgress.java
+@@ -67,4 +67,40 @@ public interface AdvancementProgress {
+      */
+     @NotNull
+     Collection<String> getAwardedCriteria();
++
++    // Daydream start - Add more Advancement API
++    /**
++     * 발전 과제 진행도의 카운트를 증가시킵니다.
++     *
++     * @throws UnsupportedOperationException 이 발전 과제 진행도가
++     * 카운트를 사용하지 않습니다.
++     * @return 증가되었다면 {@code true}, 최대 범위에 도달한 경우
++     * {@code false}를 반환
++     */
++    boolean increaseCount();
++
++    /**
++     * 발전 과제 진행도의 카운트를 감소시킵니다.
++     *
++     * @throws UnsupportedOperationException 이 발전 과제 진행도가
++     * 카운트를 사용하지 않습니다.
++     * @return 감소되었다면 {@code true}, 최소 범위에 도달한 경우
++     * {@code false}를 반환
++     */
++    boolean decreaseCount();
++
++    /**
++     * 발전 과제 진행도가 카운트를 사용하는지 가져옵니다.
++     *
++     * @return 이 발전 과제 진행도가 카운트를 사용하는 경우 {@code true}를 반환
++     */
++    boolean useCount();
++
++    /**
++     * 이 발전 과제 진행도의 현재 카운트를 가져옵니다.
++     *
++     * @return 현재 카운트
++     */
++    int count();
++    // Daydream end - Add more Advancement API
+ }
+diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
+index f9aba3f5ffe630b011815e7efb70d97727a85d7f..9b35a5b4ab89bea6895a9336c940739b14226453 100644
+--- a/src/main/java/org/bukkit/entity/Player.java
++++ b/src/main/java/org/bukkit/entity/Player.java
+@@ -2441,6 +2441,36 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+     @NotNull
+     public AdvancementProgress getAdvancementProgress(@NotNull Advancement advancement);
+ 
++    // Daydream start - Add more Advancement API
++    /**
++     * 플레이어의 직렬화된 발전 과제 데이터를 가져옵니다.
++     *
++     * @return 직렬화된 발전 과제 데이터
++     */
++    @NotNull
++    default com.google.gson.JsonElement serializedAdvancementProgress() {
++        return serializedAdvancementProgress(false);
++    }
++
++    /**
++     * 플레이어의 직렬화된 발전 과제 데이터를 가져옵니다.
++     *
++     * @param withDataVersion 데이터 버전 포함 여부
++     * @return 직렬화된 발전 과제 데이터
++     */
++    @NotNull
++    public com.google.gson.JsonElement serializedAdvancementProgress(boolean withDataVersion);
++
++    /**
++     * 플레이어에게 발전 과제 알림을 전송합니다.
++     *
++     * @param item 표시할 아이템
++     * @param title 표시할 제목
++     * @param frame 표시할 프레임
++     */
++    public void sendAdvancementAlert(@NotNull ItemStack item, @NotNull net.kyori.adventure.text.Component title, @NotNull io.papermc.paper.advancement.AdvancementDisplay.Frame frame);
++    // Daydream end - Add more Advancement API
++
+     /**
+      * Get the player's current client side view distance.
+      * <br>

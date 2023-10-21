@@ -728,10 +728,10 @@ index 0000000000000000000000000000000000000000..ac841ee5ac79fe37fc4440f8bed45427
 +}
 diff --git a/src/main/java/moe/caramel/daydream/network/packet/SetPlayerTeamPacket.java b/src/main/java/moe/caramel/daydream/network/packet/SetPlayerTeamPacket.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..1c1dcb38a55e8a480ef47f0e2247e2ba0583d827
+index 0000000000000000000000000000000000000000..bfbd79d0259156951a744531cb98434599a811d0
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/network/packet/SetPlayerTeamPacket.java
-@@ -0,0 +1,101 @@
+@@ -0,0 +1,135 @@
 +package moe.caramel.daydream.network.packet;
 +
 +import moe.caramel.daydream.network.Packet;
@@ -739,6 +739,7 @@ index 0000000000000000000000000000000000000000..1c1dcb38a55e8a480ef47f0e2247e2ba
 +import org.bukkit.ChatColor;
 +import org.bukkit.scoreboard.Team;
 +import org.jetbrains.annotations.NotNull;
++import org.jetbrains.annotations.Nullable;
 +import java.util.Collection;
 +
 +public interface SetPlayerTeamPacket extends Packet {
@@ -773,7 +774,7 @@ index 0000000000000000000000000000000000000000..1c1dcb38a55e8a480ef47f0e2247e2ba
 +     * @return this
 +     */
 +    @NotNull
-+    SetPlayerTeamPacket createTeamAddOrUpdatePacket(
++    default SetPlayerTeamPacket createTeamAddOrUpdatePacket(
 +        @NotNull String teamName,
 +        @NotNull Component displayName,
 +        boolean allowFriendlyFire, boolean canSeeFriendlyInvisibles,
@@ -781,6 +782,39 @@ index 0000000000000000000000000000000000000000..1c1dcb38a55e8a480ef47f0e2247e2ba
 +        @NotNull Team.OptionStatus collisionRule, @NotNull ChatColor color,
 +        @NotNull Component teamPrefix, @NotNull Component teamSuffix,
 +        boolean add
++    ) {
++        return createTeamAddOrUpdatePacket(
++            teamName, displayName, allowFriendlyFire, canSeeFriendlyInvisibles,
++            nametagVisibility, collisionRule, color, teamPrefix, teamSuffix,
++            add, null
++        );
++    }
++
++    /**
++     * 팀 추가 또는 업데이트 패킷을 생성합니다.
++     *
++     * @param teamName 추가 또는 업데이트할 팀의 이름
++     * @param displayName 팀의 디스플레이 이름
++     * @param allowFriendlyFire 만약 {@code true}라면 아군 사격을 허용합니다
++     * @param canSeeFriendlyInvisibles 만약 {@code true}라면 보이지 않는 플레이어를 볼 수 있습니다
++     * @param nametagVisibility 팀의 이름 태그 가시성 규칙
++     * @param collisionRule 팀의 충돌 규칙
++     * @param color 팀의 색
++     * @param teamPrefix 팀의 접두사
++     * @param teamSuffix 팀의 접미사
++     * @param add 만약 {@code true}라면 추가, 아니라면 정보를 업데이트 합니다
++     * @param players 팀의 초기 플레이어 목록
++     * @return this
++     */
++    @NotNull
++    SetPlayerTeamPacket createTeamAddOrUpdatePacket(
++        @NotNull String teamName,
++        @NotNull Component displayName,
++        boolean allowFriendlyFire, boolean canSeeFriendlyInvisibles,
++        @NotNull Team.OptionStatus nametagVisibility,
++        @NotNull Team.OptionStatus collisionRule, @NotNull ChatColor color,
++        @NotNull Component teamPrefix, @NotNull Component teamSuffix,
++        boolean add, @Nullable Collection<String> players
 +    );
 +
 +
@@ -962,7 +996,7 @@ index 0000000000000000000000000000000000000000..a4b9dcd4179fa4d4089d1929b639a6d6
 +    }
 +}
 diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
-index 09de0f8e0e6a80ccd8f26a8e70f87bb7dba2fda7..2a81ddd274450671128e68bd7e0a24098da27058 100644
+index 7557902a0175bc592ec44d35626db505386d4925..1a94e670b6b8ced9999563689c9855459a321514 100644
 --- a/src/main/java/org/bukkit/Bukkit.java
 +++ b/src/main/java/org/bukkit/Bukkit.java
 @@ -2538,6 +2538,20 @@ public final class Bukkit {
@@ -986,8 +1020,21 @@ index 09de0f8e0e6a80ccd8f26a8e70f87bb7dba2fda7..2a81ddd274450671128e68bd7e0a2409
      @NotNull
      public static Server.Spigot spigot() {
          return server.spigot();
+diff --git a/src/main/java/org/bukkit/ChatColor.java b/src/main/java/org/bukkit/ChatColor.java
+index ea4ceb643239c26851bacbf45fc3f2efef3bb4be..0756634ad506aa81e8f3a789f5c28c8489c79659 100644
+--- a/src/main/java/org/bukkit/ChatColor.java
++++ b/src/main/java/org/bukkit/ChatColor.java
+@@ -11,7 +11,7 @@ import org.jetbrains.annotations.Nullable;
+ /**
+  * All supported color values for chat
+  */
+-@Deprecated // Paper
++//@Deprecated // Paper // Daydream - No
+ public enum ChatColor {
+     /**
+      * Represents black
 diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
-index 501ad85d12fb61dacd2e9441ed327a866818ae33..df5c9aadc83e12d8cd52e8200dcc30dbcc29437e 100644
+index c272885eedd7c04db9edd4a4fd8434f91e6e4ef4..43135965ae228c83a914f0a723abbba53c588ca7 100644
 --- a/src/main/java/org/bukkit/Server.java
 +++ b/src/main/java/org/bukkit/Server.java
 @@ -2219,4 +2219,16 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
@@ -1054,7 +1101,7 @@ index a2a423d4e4c2702ba5967223cab0432dd7d04732..79ee00792d13c37946d910819baf0cd3
       * Gets the amount of ticks this entity has lived for.
       * <p>
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index d26b89ad95cf4da9387ff1955f8f408b4f318ac2..497cfd447fad9bb5fd0fffaa2af8027c7c6e1e16 100644
+index a09772dbed9041b3e6ba9ff2c001d3d941a4214f..5411fbc46a86bf45f7355498da561951a6751ecd 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
 @@ -297,6 +297,16 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
@@ -1075,23 +1122,23 @@ index d26b89ad95cf4da9387ff1955f8f408b4f318ac2..497cfd447fad9bb5fd0fffaa2af8027c
       * Returns true if the entity is supported by a block.
       *
 @@ -760,6 +770,22 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
-      * @param buf byte buf object
+      * @param buf bytebuf 오브젝트
       */
-     public void sendCustomPayload(@NotNull org.bukkit.NamespacedKey channel, @NotNull moe.caramel.daydream.network.MojangByteBuf buf);
+     public void sendCustomPayload(@NotNull org.bukkit.NamespacedKey channel, @NotNull io.netty.buffer.ByteBuf buf);
 +
 +    /**
-+     * Send raw packet to this player
++     * 플레이어에게 raw 패킷을 전송합니다.
 +     *
-+     * @param packet The packet instance
-+     * @deprecated use {@link Player#sendPacket(moe.caramel.daydream.network.Packet)}
++     * @param packet NMS 패킷 인스턴스
++     * @deprecated {@link Player#sendPacket(moe.caramel.daydream.network.Packet)}를 사용해주세요
 +     */
 +    @Deprecated
 +    public void sendRawPacket(@NotNull Object packet);
 +
 +    /**
-+     * Send packet to this player
++     * 플레이어에게 패킷을 전송합니다.
 +     *
-+     * @param packet The packet instance
++     * @param packet 패킷 인스턴스
 +     */
 +    public void sendPacket(@NotNull moe.caramel.daydream.network.Packet packet);
      // Daydream end

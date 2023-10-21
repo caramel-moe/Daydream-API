@@ -186,22 +186,22 @@ index 0000000000000000000000000000000000000000..b8acc4f1d9b313842772a56d239ba03e
 +    }
 +}
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index 857095227ba28b9dfd7d333c05ea3ea75bade6b8..0d0ab4dd726c303fd504ca6c059b479781db583e 100644
+index 4536473bf1cbe41ecfe241a941218c26030ab7cd..f9aba3f5ffe630b011815e7efb70d97727a85d7f 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
 @@ -44,6 +44,16 @@ import org.jetbrains.annotations.Nullable;
   */
  public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginMessageRecipient, net.kyori.adventure.identity.Identified, com.destroystokyo.paper.network.NetworkClient { // Paper
  
-+    // Daydream start
++    // Daydream start - Add PlayerInteractManager
 +    /**
-+     * Gets this player's interact manager.
++     * 상호작용 관리자를 가져옵니다.
 +     *
-+     * @return player's interact manager object
++     * @return 플레이어의 상호작용 관리자 인스턴스
 +     */
 +    @NotNull
 +    moe.caramel.daydream.player.InteractManager getInteractManager();
-+    // Daydream end
++    // Daydream end - Add PlayerInteractManager
 +
      // Paper start
      @Override
