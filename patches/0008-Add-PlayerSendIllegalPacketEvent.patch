@@ -6,10 +6,10 @@ Subject: [PATCH] Add PlayerSendIllegalPacketEvent
 
 diff --git a/src/main/java/moe/caramel/daydream/event/packet/PlayerSendIllegalPacketEvent.java b/src/main/java/moe/caramel/daydream/event/packet/PlayerSendIllegalPacketEvent.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..b6b491fe5de86d6818c1b696bf4ca2c19b1747f6
+index 0000000000000000000000000000000000000000..7e7b21ee49f15fa0ed4748cc9f4342b50dd86a86
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/event/packet/PlayerSendIllegalPacketEvent.java
-@@ -0,0 +1,82 @@
+@@ -0,0 +1,74 @@
 +package moe.caramel.daydream.event.packet;
 +
 +import org.bukkit.entity.Player;
@@ -19,9 +19,7 @@ index 0000000000000000000000000000000000000000..b6b491fe5de86d6818c1b696bf4ca2c1
 +import org.jetbrains.annotations.Nullable;
 +
 +/**
-+ * 플레이어가 잘못된 채팅 패킷을 서버에 전송했을 때 호출됩니다.
-+ * <br>
-+ * Async일 수도 있습니다.
++ * 플레이어가 잘못된 패킷을 서버에 전송했을 때 호출됩니다.
 + */
 +public final class PlayerSendIllegalPacketEvent extends PlayerEvent {
 +
@@ -32,8 +30,8 @@ index 0000000000000000000000000000000000000000..b6b491fe5de86d6818c1b696bf4ca2c1
 +    private final Action action;
 +    private final String value;
 +
-+    public PlayerSendIllegalPacketEvent(@NotNull Player player, boolean async, @NotNull Action action, @Nullable String value) {
-+        super(player, async);
++    public PlayerSendIllegalPacketEvent(@NotNull Player player, @NotNull Action action, @Nullable String value) {
++        super(player);
 +        this.action = action;
 +        this.value = value;
 +    }
@@ -63,12 +61,6 @@ index 0000000000000000000000000000000000000000..b6b491fe5de86d6818c1b696bf4ca2c1
 +     */
 +    public enum Action {
 +        /**
-+         * Player Action 패킷
-+         *
-+         * 패킷의 Action 범위에 벗어나는 enum을 수신할 경우
-+         */
-+        PLAYER_ACTION,
-+        /**
 +         * Difficulty Change 패킷
 +         *
 +         * 일반적인 클라이언트에서는 보낼 수 없음
@@ -87,7 +79,7 @@ index 0000000000000000000000000000000000000000..b6b491fe5de86d6818c1b696bf4ca2c1
 +         */
 +        TAB_COMPLETE,
 +        /**
-+         * 비정상적인 Pitch 값이 수신될 경우
++         * 비정상적인 움직임 값이 수신될 경우
 +         */
 +        MOVE
 +    }

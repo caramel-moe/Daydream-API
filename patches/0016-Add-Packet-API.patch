@@ -963,7 +963,7 @@ index 0000000000000000000000000000000000000000..a4b9dcd4179fa4d4089d1929b639a6d6
 +    }
 +}
 diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
-index eac96c397224d7101453492428813a977bb3b422..9a15f80256ba066affc512ea121ac8960bb6933a 100644
+index b207376792b62c5c4b8bd776fbe2724369dae6c5..67c02d9f7687e1d34581e32ae57625056b5f9f2a 100644
 --- a/src/main/java/org/bukkit/Bukkit.java
 +++ b/src/main/java/org/bukkit/Bukkit.java
 @@ -2811,6 +2811,20 @@ public final class Bukkit {
@@ -1003,7 +1003,7 @@ index 918a045165cdcde264bc24082b7afebb407271de..0756634ad506aa81e8f3a789f5c28c84
      /**
       * Represents black
 diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
-index d66cce72610bdf26d4777790a684035e4b3cc44c..c43740eac8bbc82015371beb4060cb028bcb9a80 100644
+index 1d697a021e460f279a76ff3267f0180e2d16ca51..1cb29f0ad291e13041dc8aac689b59294c02504d 100644
 --- a/src/main/java/org/bukkit/Server.java
 +++ b/src/main/java/org/bukkit/Server.java
 @@ -2461,4 +2461,16 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
@@ -1024,7 +1024,7 @@ index d66cce72610bdf26d4777790a684035e4b3cc44c..c43740eac8bbc82015371beb4060cb02
 +    // Daydream end - Add Packet API
  }
 diff --git a/src/main/java/org/bukkit/World.java b/src/main/java/org/bukkit/World.java
-index 80dc3380a9405597df89d0b859bb57d83c00348e..566794e2533da424f844e59cb3161ac60c63b6a6 100644
+index 7160f06177335e6b4cf71e57a1ca63f2d96fd8e5..3a65906f4e15c7d59bb3138fb0bd1bd3b549cd88 100644
 --- a/src/main/java/org/bukkit/World.java
 +++ b/src/main/java/org/bukkit/World.java
 @@ -1598,6 +1598,17 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
@@ -1046,7 +1046,7 @@ index 80dc3380a9405597df89d0b859bb57d83c00348e..566794e2533da424f844e59cb3161ac6
       * Returns a list of entities within a bounding box centered around a
       * Location.
 diff --git a/src/main/java/org/bukkit/entity/Entity.java b/src/main/java/org/bukkit/entity/Entity.java
-index 762cb07861ca8ff058ce8d57ea6c15df1e588bf3..929545a7aad97e1e70017c6b3cf286cd49bcf605 100644
+index d340ddcf6924cc834455de3acbbac91ab9c66e39..c53fbc05de52137922fa1e21901b304033a1f9f3 100644
 --- a/src/main/java/org/bukkit/entity/Entity.java
 +++ b/src/main/java/org/bukkit/entity/Entity.java
 @@ -483,6 +483,19 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
@@ -1070,7 +1070,7 @@ index 762cb07861ca8ff058ce8d57ea6c15df1e588bf3..929545a7aad97e1e70017c6b3cf286cd
       * Gets the amount of ticks this entity has lived for.
       * <p>
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index 40ae56305dc2f34f80310b996f71b3f58e3aad22..4ef7d702bd239e10e40df947293ad737ad70aae4 100644
+index b87550ce7fc65ebcf8edc8937f40aa984ed787ac..bebd978add955839edd325d4d471d98daa0caf64 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
 @@ -415,6 +415,16 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
@@ -1091,23 +1091,23 @@ index 40ae56305dc2f34f80310b996f71b3f58e3aad22..4ef7d702bd239e10e40df947293ad737
       * Returns true if the entity is supported by a block.
       *
 @@ -903,6 +913,22 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
-      * @param buf byte buf object
+      * @param buf bytebuf 오브젝트
       */
-     public void sendCustomPayload(@NotNull org.bukkit.NamespacedKey channel, @NotNull moe.caramel.daydream.network.MojangByteBuf buf);
+     public void sendCustomPayload(@NotNull org.bukkit.NamespacedKey channel, @NotNull io.netty.buffer.ByteBuf buf);
 +
 +    /**
-+     * Send raw packet to this player
++     * 플레이어에게 raw 패킷을 전송합니다.
 +     *
-+     * @param packet The packet instance
-+     * @deprecated use {@link Player#sendPacket(moe.caramel.daydream.network.Packet)}
++     * @param packet NMS 패킷 인스턴스
++     * @deprecated {@link Player#sendPacket(moe.caramel.daydream.network.Packet)}를 사용해주세요
 +     */
 +    @Deprecated
 +    public void sendRawPacket(@NotNull Object packet);
 +
 +    /**
-+     * Send packet to this player
++     * 플레이어에게 패킷을 전송합니다.
 +     *
-+     * @param packet The packet instance
++     * @param packet 패킷 인스턴스
 +     */
 +    public void sendPacket(@NotNull moe.caramel.daydream.network.Packet packet);
      // Daydream end

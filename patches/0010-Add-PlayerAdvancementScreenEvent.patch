@@ -6,10 +6,10 @@ Subject: [PATCH] Add PlayerAdvancementScreenEvent
 
 diff --git a/src/main/java/moe/caramel/daydream/event/packet/PlayerAdvancementScreenEvent.java b/src/main/java/moe/caramel/daydream/event/packet/PlayerAdvancementScreenEvent.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..4332a24d1a48b622bbf288891f06a92f52ae96dc
+index 0000000000000000000000000000000000000000..c28145485940fd9c8114355fb0106c4515491eae
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/event/packet/PlayerAdvancementScreenEvent.java
-@@ -0,0 +1,82 @@
+@@ -0,0 +1,84 @@
 +package moe.caramel.daydream.event.packet;
 +
 +import org.bukkit.NamespacedKey;
@@ -21,7 +21,7 @@ index 0000000000000000000000000000000000000000..4332a24d1a48b622bbf288891f06a92f
 +import org.jetbrains.annotations.Nullable;
 +
 +/**
-+ * 플레이어가 발전 과제를 오픈하거나 닫았을 경우 호출됩니다.
++ * 플레이어가 발전 과제 화면을 열거나 닫았을 경우 호출됩니다.
 + */
 +public final class PlayerAdvancementScreenEvent extends PlayerEvent implements Cancellable {
 +
@@ -40,8 +40,10 @@ index 0000000000000000000000000000000000000000..4332a24d1a48b622bbf288891f06a92f
 +    }
 +
 +    /**
-+     * 스크린을 닫을지의 여부를 가져옵니다.
-+     * 반환 값이 {@code true}인 경우 스크린을 닫으나, {@link Action#CLOSED_SCREEN}인 경우 작동하지 않습니다.
++     * 발전 과제 화면을 닫을지의 여부를 가져옵니다.
++     *
++     * @return {@code true}인 경우 스크린을 닫습니다.
++     * {@link Action#CLOSED_SCREEN}인 경우 작동하지 않습니다.
 +     */
 +    @Override
 +    public boolean isCancelled() {

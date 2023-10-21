@@ -1,0 +1,76 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: LemonCaramel <admin@caramel.moe>
+Date: Mon, 18 Apr 2022 21:05:06 +0900
+Subject: [PATCH] Add Network API
+
+
+diff --git a/build.gradle.kts b/build.gradle.kts
+index 3f45b3fe993e033e743e9f72b4ced20469ee1858..641fed711df8be2f3223b54e528a3b298a397c18 100644
+--- a/build.gradle.kts
++++ b/build.gradle.kts
+@@ -52,6 +52,16 @@ dependencies {
+     // Paper end
+     api("com.mojang:brigadier:1.1.8") // Daydream - Add Brigadier Command API
+     api("com.mojang:authlib:5.0.47") // Daydream - Mojang Authlib (keep in sync with major MC versions)
++    // Daydream start - Add Network API
++    val nettyVersion = "4.1.97.Final"
++    api("io.netty:netty-buffer:$nettyVersion")
++    api("io.netty:netty-codec:$nettyVersion")
++    api("io.netty:netty-common:$nettyVersion")
++    api("io.netty:netty-handler:$nettyVersion")
++    api("io.netty:netty-resolver:$nettyVersion")
++    api("io.netty:netty-transport:$nettyVersion")
++    api("io.netty:netty-transport-classes-epoll:$nettyVersion")
++    // Daydream end - Add Network API
+ 
+     api("org.apache.maven:maven-resolver-provider:3.8.5")
+     compileOnly("org.apache.maven.resolver:maven-resolver-connector-basic:1.7.3")
+diff --git a/src/main/java/com/destroystokyo/paper/network/NetworkClient.java b/src/main/java/com/destroystokyo/paper/network/NetworkClient.java
+index 7b2af1bd72dfbcf4e962a982940fc49b851aa04f..dad505d4e12bcdbb379485c59e476c98120d3ecd 100644
+--- a/src/main/java/com/destroystokyo/paper/network/NetworkClient.java
++++ b/src/main/java/com/destroystokyo/paper/network/NetworkClient.java
+@@ -38,4 +38,15 @@ public interface NetworkClient {
+     @Nullable
+     InetSocketAddress getVirtualHost();
+ 
++    // Daydream start - Add Network API
++    /**
++     * 이 클라이언트 연결의 netty 채널을 가져옵니다.
++     *
++     * @return netty 채널
++     */
++    @Nullable
++    default io.netty.channel.Channel getChannel() {
++        return null;
++    }
++    // Daydream end - Add Network API
+ }
+diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
+index 709f7b316de6dc730f7df733ccd70a81c8daacca..b87550ce7fc65ebcf8edc8937f40aa984ed787ac 100644
+--- a/src/main/java/org/bukkit/entity/Player.java
++++ b/src/main/java/org/bukkit/entity/Player.java
+@@ -887,6 +887,24 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+      */
+     public void sendEquipmentChange(@NotNull LivingEntity entity, @NotNull Map<EquipmentSlot, ItemStack> items);
+ 
++    // Daydream start
++    /**
++     * 이 플레이어에게 커스텀 페이로드를 전송합니다.
++     *
++     * @param channel 채널 이름
++     * @param value 데이터
++     */
++    public void sendCustomPayload(@NotNull org.bukkit.NamespacedKey channel, @NotNull byte[] value);
++
++    /**
++     * 이 플레이어에게 커스텀 페이로드를 전송합니다.
++     *
++     * @param channel 채널 이름
++     * @param buf bytebuf 오브젝트
++     */
++    public void sendCustomPayload(@NotNull org.bukkit.NamespacedKey channel, @NotNull io.netty.buffer.ByteBuf buf);
++    // Daydream end
++
+     // Paper start
+     /**
+      * Send a sign change. This fakes a sign change packet for a user at

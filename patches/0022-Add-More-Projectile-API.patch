@@ -29,3 +29,28 @@ index d173010d51d05928c35bb4bf5fbc08ce221ec474..1b63a8ba4d301cd64e05cae19b2e952e
 +    boolean useEntityArrowCount();
 +    // Daydream end - Add More Projectile API
  }
+diff --git a/src/main/java/org/bukkit/entity/Firework.java b/src/main/java/org/bukkit/entity/Firework.java
+index 217d348ad0bbef720b25d3b507a55ca8105b7731..44b78460699f6fc75f9c2e392b712796a8517495 100644
+--- a/src/main/java/org/bukkit/entity/Firework.java
++++ b/src/main/java/org/bukkit/entity/Firework.java
+@@ -185,4 +185,20 @@ public interface Firework extends Projectile {
+      */
+     void setTicksToDetonate(int ticks);
+     // Paper end
++
++    // Daydream start - Add More Projectile API
++    /**
++     * 폭발 대미지 제거 여부를 가져옵니다.
++     *
++     * @return 폭발 대미지 제거 여부
++     */
++    boolean isDisableExplosionDeal();
++
++    /**
++     * 폭발 대미지 제거 여부를 설정합니다.
++     *
++     * @param disable 폭발 대미지 제거 여부
++     */
++    void setDisableExplosionDeal(boolean disable);
++    // Daydream end - Add More Projectile API
+ }
