@@ -5,10 +5,10 @@ Subject: [PATCH] Add ItemStack utility API
 
 
 diff --git a/src/main/java/org/bukkit/UnsafeValues.java b/src/main/java/org/bukkit/UnsafeValues.java
-index 04f91e742f4278c5b1589745d882eafe0abc76e4..8b81c95da5890919028e8cf86491badd909047ed 100644
+index 05bfe1cb8fdfb1f8b0be5475b0be32fa8cc4fd07..5e0e969a10df75411eedd00a63ead65a00c413b6 100644
 --- a/src/main/java/org/bukkit/UnsafeValues.java
 +++ b/src/main/java/org/bukkit/UnsafeValues.java
-@@ -282,4 +282,18 @@ public interface UnsafeValues {
+@@ -291,4 +291,18 @@ public interface UnsafeValues {
      // Paper end
  
      @NotNull moe.caramel.daydream.world.DamageMata getDamageMeta(@NotNull Object damageSource); // Daydream - Add More API for EntityDamageEvent
@@ -132,10 +132,10 @@ index 0af73cc04edb93b9772136d4d808f657ea40e733..936e047c29f8daecfc9dd5984e53a0b8
       * Defaults stack size to 1, with no extra data.
       * <p>
 diff --git a/src/main/java/org/bukkit/inventory/meta/ItemMeta.java b/src/main/java/org/bukkit/inventory/meta/ItemMeta.java
-index e33ec3eaa1cd520db8224250e886e6240fefe76f..4492198add30d95987dc3b08d538bb3c6a636e15 100644
+index ea64d5b1ebaa652785ddbc7b515808174f636a62..1a302d0ab77f8152561fed8d70d3f51fdbe4fa16 100644
 --- a/src/main/java/org/bukkit/inventory/meta/ItemMeta.java
 +++ b/src/main/java/org/bukkit/inventory/meta/ItemMeta.java
-@@ -338,6 +338,23 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
+@@ -339,6 +339,23 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
       */
      void setUnbreakable(boolean unbreakable);
  
