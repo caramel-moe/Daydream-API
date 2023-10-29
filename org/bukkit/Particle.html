@@ -80,11 +80,12 @@ loadScripts(document, 'script');</script>
 <section class="class-description" id="class-description">
 <dl class="notes">
 <dt>All Implemented Interfaces:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/Serializable.html" title="class or interface in java.io" class="external-link">Serializable</a></code>, <code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Comparable.html" title="class or interface in java.lang" class="external-link">Comparable</a>&lt;<a href="Particle.html" title="enum class in org.bukkit">Particle</a>&gt;</code>, <code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/constant/Constable.html" title="class or interface in java.lang.constant" class="external-link">Constable</a></code></dd>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/Serializable.html" title="class or interface in java.io" class="external-link">Serializable</a></code>, <code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Comparable.html" title="class or interface in java.lang" class="external-link">Comparable</a>&lt;<a href="Particle.html" title="enum class in org.bukkit">Particle</a>&gt;</code>, <code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/constant/Constable.html" title="class or interface in java.lang.constant" class="external-link">Constable</a></code>, <code>net.kyori.adventure.key.Keyed</code>, <code><a href="Keyed.html" title="interface in org.bukkit">Keyed</a></code></dd>
 </dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public enum </span><span class="element-name type-name-label">Particle</span>
-<span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Enum.html" title="class or interface in java.lang" class="external-link">Enum</a>&lt;<a href="Particle.html" title="enum class in org.bukkit">Particle</a>&gt;</span></div>
+<span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Enum.html" title="class or interface in java.lang" class="external-link">Enum</a>&lt;<a href="Particle.html" title="enum class in org.bukkit">Particle</a>&gt;
+implements <a href="Keyed.html" title="interface in org.bukkit">Keyed</a></span></div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -130,7 +131,9 @@ loadScripts(document, 'script');</script>
 </div>
 <div class="col-first even-row-color"><code><a href="#BLOCK_DUST" class="member-name-link">BLOCK_DUST</a></code></div>
 <div class="col-last even-row-color">
-<div class="block">Uses <a href="block/data/BlockData.html" title="interface in org.bukkit.block.data"><code>BlockData</code></a> as DataType</div>
+<div class="block"><span class="deprecated-label">Deprecated.</span>
+<div class="deprecation-comment">use <a href="#BLOCK_CRACK"><code>BLOCK_CRACK</code></a></div>
+</div>
 </div>
 <div class="col-first odd-row-color"><code><a href="#BLOCK_MARKER" class="member-name-link">BLOCK_MARKER</a></code></div>
 <div class="col-last odd-row-color">
@@ -240,15 +243,21 @@ loadScripts(document, 'script');</script>
 <div class="col-last odd-row-color">&nbsp;</div>
 <div class="col-first even-row-color"><code><a href="#LEGACY_BLOCK_CRACK" class="member-name-link">LEGACY_BLOCK_CRACK</a></code></div>
 <div class="col-last even-row-color">
-<div class="block">Uses <a href="material/MaterialData.html" title="class in org.bukkit.material"><code>MaterialData</code></a> as DataType</div>
+<div class="block"><span class="deprecated-label">Deprecated.</span>
+<div class="deprecation-comment"><a href="material/MaterialData.html" title="class in org.bukkit.material"><code>MaterialData</code></a> is deprecated API</div>
+</div>
 </div>
 <div class="col-first odd-row-color"><code><a href="#LEGACY_BLOCK_DUST" class="member-name-link">LEGACY_BLOCK_DUST</a></code></div>
 <div class="col-last odd-row-color">
-<div class="block">Uses <a href="material/MaterialData.html" title="class in org.bukkit.material"><code>MaterialData</code></a> as DataType</div>
+<div class="block"><span class="deprecated-label">Deprecated.</span>
+<div class="deprecation-comment"><a href="material/MaterialData.html" title="class in org.bukkit.material"><code>MaterialData</code></a> is deprecated API</div>
+</div>
 </div>
 <div class="col-first even-row-color"><code><a href="#LEGACY_FALLING_DUST" class="member-name-link">LEGACY_FALLING_DUST</a></code></div>
 <div class="col-last even-row-color">
-<div class="block">Uses <a href="material/MaterialData.html" title="class in org.bukkit.material"><code>MaterialData</code></a> as DataType</div>
+<div class="block"><span class="deprecated-label">Deprecated.</span>
+<div class="deprecation-comment"><a href="material/MaterialData.html" title="class in org.bukkit.material"><code>MaterialData</code></a> is deprecated API</div>
+</div>
 </div>
 <div class="col-first odd-row-color"><code><a href="#MOB_APPEARANCE" class="member-name-link">MOB_APPEARANCE</a></code></div>
 <div class="col-last odd-row-color">&nbsp;</div>
@@ -268,7 +277,7 @@ loadScripts(document, 'script');</script>
 <div class="col-last odd-row-color">&nbsp;</div>
 <div class="col-first even-row-color"><code><a href="#SCULK_CHARGE" class="member-name-link">SCULK_CHARGE</a></code></div>
 <div class="col-last even-row-color">
-<div class="block">Uses <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Float.html" title="class or interface in java.lang" class="external-link"><code>Float</code></a> as DataType, representing the angle the particle displays at in radians</div>
+<div class="block">Use <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Float.html" title="class or interface in java.lang" class="external-link"><code>Float</code></a> as DataType</div>
 </div>
 <div class="col-first odd-row-color"><code><a href="#SCULK_CHARGE_POP" class="member-name-link">SCULK_CHARGE_POP</a></code></div>
 <div class="col-last odd-row-color">&nbsp;</div>
@@ -276,7 +285,7 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color">&nbsp;</div>
 <div class="col-first odd-row-color"><code><a href="#SHRIEK" class="member-name-link">SHRIEK</a></code></div>
 <div class="col-last odd-row-color">
-<div class="block">Uses <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link"><code>Integer</code></a> as DataType, representing the delay in ticks until the particle shows up</div>
+<div class="block">Use <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link"><code>Integer</code></a> as DataType</div>
 </div>
 <div class="col-first even-row-color"><code><a href="#SLIME" class="member-name-link">SLIME</a></code></div>
 <div class="col-last even-row-color">&nbsp;</div>
@@ -374,14 +383,19 @@ loadScripts(document, 'script');</script>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Returns the required data type for the particle</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="Particle.html" title="enum class in org.bukkit">Particle</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#valueOf(java.lang.String)" class="member-name-link">valueOf</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="NamespacedKey.html" title="class in org.bukkit">NamespacedKey</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getKey()" class="member-name-link">getKey</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Return the namespaced identifier for this object.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="Particle.html" title="enum class in org.bukkit">Particle</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#valueOf(java.lang.String)" class="member-name-link">valueOf</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
 <div class="block">Returns the enum constant of this class with the specified name.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="Particle.html" title="enum class in org.bukkit">Particle</a>[]</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#values()" class="member-name-link">values</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="Particle.html" title="enum class in org.bukkit">Particle</a>[]</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#values()" class="member-name-link">values</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
 <div class="block">Returns an array containing the constants of this enum class, in
 the order they are declared.</div>
 </div>
@@ -394,6 +408,9 @@ the order they are declared.</div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-java.lang.Object">Methods inherited from class&nbsp;java.lang.<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></h3>
 <code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#getClass()" title="class or interface in java.lang" class="external-link">getClass</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#notify()" title="class or interface in java.lang" class="external-link">notify</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#notifyAll()" title="class or interface in java.lang" class="external-link">notifyAll</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait()" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait(long)" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait(long,int)" title="class or interface in java.lang" class="external-link">wait</a></code></div>
+<div class="inherited-list">
+<h3 id="methods-inherited-from-class-org.bukkit.Keyed">Methods inherited from interface&nbsp;org.bukkit.<a href="Keyed.html" title="interface in org.bukkit">Keyed</a></h3>
+<code><a href="Keyed.html#key()">key</a></code></div>
 </section>
 </li>
 </ul>
@@ -627,7 +644,11 @@ the order they are declared.</div>
 <li>
 <section class="detail" id="BLOCK_DUST">
 <h3>BLOCK_DUST</h3>
-<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="Particle.html" title="enum class in org.bukkit">Particle</a></span>&nbsp;<span class="element-name">BLOCK_DUST</span></div>
+<div class="member-signature"><span class="annotations"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Deprecated.html" title="class or interface in java.lang" class="external-link">@Deprecated</a>
+</span><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="Particle.html" title="enum class in org.bukkit">Particle</a></span>&nbsp;<span class="element-name">BLOCK_DUST</span></div>
+<div class="deprecation-block"><span class="deprecated-label">Deprecated.</span>
+<div class="deprecation-comment">use <a href="#BLOCK_CRACK"><code>BLOCK_CRACK</code></a></div>
+</div>
 <div class="block">Uses <a href="block/data/BlockData.html" title="interface in org.bukkit.block.data"><code>BlockData</code></a> as DataType</div>
 </section>
 </li>
@@ -968,7 +989,7 @@ the order they are declared.</div>
 <section class="detail" id="SCULK_CHARGE">
 <h3>SCULK_CHARGE</h3>
 <div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="Particle.html" title="enum class in org.bukkit">Particle</a></span>&nbsp;<span class="element-name">SCULK_CHARGE</span></div>
-<div class="block">Uses <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Float.html" title="class or interface in java.lang" class="external-link"><code>Float</code></a> as DataType, representing the angle the particle displays at in radians</div>
+<div class="block">Use <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Float.html" title="class or interface in java.lang" class="external-link"><code>Float</code></a> as DataType</div>
 </section>
 </li>
 <li>
@@ -981,7 +1002,7 @@ the order they are declared.</div>
 <section class="detail" id="SHRIEK">
 <h3>SHRIEK</h3>
 <div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="Particle.html" title="enum class in org.bukkit">Particle</a></span>&nbsp;<span class="element-name">SHRIEK</span></div>
-<div class="block">Uses <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link"><code>Integer</code></a> as DataType, representing the delay in ticks until the particle shows up</div>
+<div class="block">Use <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link"><code>Integer</code></a> as DataType</div>
 </section>
 </li>
 <li>
@@ -1006,21 +1027,33 @@ the order they are declared.</div>
 <li>
 <section class="detail" id="LEGACY_BLOCK_CRACK">
 <h3>LEGACY_BLOCK_CRACK</h3>
-<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="Particle.html" title="enum class in org.bukkit">Particle</a></span>&nbsp;<span class="element-name">LEGACY_BLOCK_CRACK</span></div>
+<div class="member-signature"><span class="annotations"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Deprecated.html" title="class or interface in java.lang" class="external-link">@Deprecated</a>
+</span><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="Particle.html" title="enum class in org.bukkit">Particle</a></span>&nbsp;<span class="element-name">LEGACY_BLOCK_CRACK</span></div>
+<div class="deprecation-block"><span class="deprecated-label">Deprecated.</span>
+<div class="deprecation-comment"><a href="material/MaterialData.html" title="class in org.bukkit.material"><code>MaterialData</code></a> is deprecated API</div>
+</div>
 <div class="block">Uses <a href="material/MaterialData.html" title="class in org.bukkit.material"><code>MaterialData</code></a> as DataType</div>
 </section>
 </li>
 <li>
 <section class="detail" id="LEGACY_BLOCK_DUST">
 <h3>LEGACY_BLOCK_DUST</h3>
-<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="Particle.html" title="enum class in org.bukkit">Particle</a></span>&nbsp;<span class="element-name">LEGACY_BLOCK_DUST</span></div>
+<div class="member-signature"><span class="annotations"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Deprecated.html" title="class or interface in java.lang" class="external-link">@Deprecated</a>
+</span><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="Particle.html" title="enum class in org.bukkit">Particle</a></span>&nbsp;<span class="element-name">LEGACY_BLOCK_DUST</span></div>
+<div class="deprecation-block"><span class="deprecated-label">Deprecated.</span>
+<div class="deprecation-comment"><a href="material/MaterialData.html" title="class in org.bukkit.material"><code>MaterialData</code></a> is deprecated API</div>
+</div>
 <div class="block">Uses <a href="material/MaterialData.html" title="class in org.bukkit.material"><code>MaterialData</code></a> as DataType</div>
 </section>
 </li>
 <li>
 <section class="detail" id="LEGACY_FALLING_DUST">
 <h3>LEGACY_FALLING_DUST</h3>
-<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="Particle.html" title="enum class in org.bukkit">Particle</a></span>&nbsp;<span class="element-name">LEGACY_FALLING_DUST</span></div>
+<div class="member-signature"><span class="annotations"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Deprecated.html" title="class or interface in java.lang" class="external-link">@Deprecated</a>
+</span><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="Particle.html" title="enum class in org.bukkit">Particle</a></span>&nbsp;<span class="element-name">LEGACY_FALLING_DUST</span></div>
+<div class="deprecation-block"><span class="deprecated-label">Deprecated.</span>
+<div class="deprecation-comment"><a href="material/MaterialData.html" title="class in org.bukkit.material"><code>MaterialData</code></a> is deprecated API</div>
+</div>
 <div class="block">Uses <a href="material/MaterialData.html" title="class in org.bukkit.material"><code>MaterialData</code></a> as DataType</div>
 </section>
 </li>
@@ -1072,6 +1105,21 @@ not permitted.)</div>
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>the required data type</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getKey()">
+<h3>getKey</h3>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="NamespacedKey.html" title="class in org.bukkit">NamespacedKey</a></span>&nbsp;<span class="element-name">getKey</span>()</div>
+<div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="Keyed.html#getKey()">Keyed</a></code></span></div>
+<div class="block">Return the namespaced identifier for this object.</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="Keyed.html#getKey()">getKey</a></code>&nbsp;in interface&nbsp;<code><a href="Keyed.html" title="interface in org.bukkit">Keyed</a></code></dd>
+<dt>Returns:</dt>
+<dd>this object's key</dd>
 </dl>
 </section>
 </li>

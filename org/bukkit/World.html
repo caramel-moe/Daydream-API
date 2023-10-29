@@ -1397,21 +1397,42 @@ extends <a href="RegionAccessor.html" title="interface in org.bukkit">RegionAcce
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Loads the specified <a href="Chunk.html" title="interface in org.bukkit"><code>Chunk</code></a>.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="Location.html" title="class in org.bukkit">Location</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#locateNearestBiome(org.bukkit.Location,org.bukkit.block.Biome,int)" class="member-name-link">locateNearestBiome</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Location.html" title="class in org.bukkit">Location</a>&nbsp;origin,
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="util/BiomeSearchResult.html" title="interface in org.bukkit.util">BiomeSearchResult</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#locateNearestBiome(org.bukkit.Location,int,int,int,org.bukkit.block.Biome...)" class="member-name-link">locateNearestBiome</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Location.html" title="class in org.bukkit">Location</a>&nbsp;origin,
+ int&nbsp;radius,
+ int&nbsp;horizontalInterval,
+ int&nbsp;verticalInterval,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="block/Biome.html" title="enum class in org.bukkit.block">Biome</a>...&nbsp;biomes)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Find the closest nearby location with a biome matching the provided
+ <a href="block/Biome.html" title="enum class in org.bukkit.block"><code>Biome</code></a>(s).</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="util/BiomeSearchResult.html" title="interface in org.bukkit.util">BiomeSearchResult</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#locateNearestBiome(org.bukkit.Location,int,org.bukkit.block.Biome...)" class="member-name-link">locateNearestBiome</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Location.html" title="class in org.bukkit">Location</a>&nbsp;origin,
+ int&nbsp;radius,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="block/Biome.html" title="enum class in org.bukkit.block">Biome</a>...&nbsp;biomes)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Find the closest nearby location with a biome matching the provided
+ <a href="block/Biome.html" title="enum class in org.bukkit.block"><code>Biome</code></a>(s).</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5 method-summary-table-tab6"><code>default <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="Location.html" title="class in org.bukkit">Location</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5 method-summary-table-tab6"><code><a href="#locateNearestBiome(org.bukkit.Location,org.bukkit.block.Biome,int)" class="member-name-link">locateNearestBiome</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Location.html" title="class in org.bukkit">Location</a>&nbsp;origin,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="block/Biome.html" title="enum class in org.bukkit.block">Biome</a>&nbsp;biome,
  int&nbsp;radius)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Locates the nearest biome based on an origin, biome type, and radius to search.</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5 method-summary-table-tab6">
+<div class="block"><span class="deprecated-label">Deprecated.</span>
+<div class="deprecation-comment">use <a href="#locateNearestBiome(org.bukkit.Location,int,org.bukkit.block.Biome...)"><code>locateNearestBiome(Location, int, Biome...)</code></a></div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="Location.html" title="class in org.bukkit">Location</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#locateNearestBiome(org.bukkit.Location,org.bukkit.block.Biome,int,int)" class="member-name-link">locateNearestBiome</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Location.html" title="class in org.bukkit">Location</a>&nbsp;origin,
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5 method-summary-table-tab6"><code>default <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="Location.html" title="class in org.bukkit">Location</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5 method-summary-table-tab6"><code><a href="#locateNearestBiome(org.bukkit.Location,org.bukkit.block.Biome,int,int)" class="member-name-link">locateNearestBiome</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Location.html" title="class in org.bukkit">Location</a>&nbsp;origin,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="block/Biome.html" title="enum class in org.bukkit.block">Biome</a>&nbsp;biome,
  int&nbsp;radius,
  int&nbsp;step)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Locates the nearest biome based on an origin, biome type, and radius to search
- and step</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5 method-summary-table-tab6">
+<div class="block"><span class="deprecated-label">Deprecated.</span>
+<div class="deprecation-comment">use <a href="#locateNearestBiome(org.bukkit.Location,int,int,int,org.bukkit.block.Biome...)"><code>locateNearestBiome(Location, int, int, int, Biome...)</code></a></div>
+</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="Raid.html" title="interface in org.bukkit">Raid</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#locateNearestRaid(org.bukkit.Location,int)" class="member-name-link">locateNearestRaid</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Location.html" title="class in org.bukkit">Location</a>&nbsp;location,
@@ -8119,12 +8140,16 @@ extends <a href="RegionAccessor.html" title="interface in org.bukkit">RegionAcce
 <li>
 <section class="detail" id="locateNearestBiome(org.bukkit.Location,org.bukkit.block.Biome,int)">
 <h3>locateNearestBiome</h3>
-<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a>
-</span><span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="Location.html" title="class in org.bukkit">Location</a></span>&nbsp;<span class="element-name">locateNearestBiome</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+<div class="member-signature"><span class="annotations"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Deprecated.html" title="class or interface in java.lang" class="external-link">@Deprecated</a>
+<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a>
+</span><span class="modifiers">default</span>&nbsp;<span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="Location.html" title="class in org.bukkit">Location</a></span>&nbsp;<span class="element-name">locateNearestBiome</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Location.html" title="class in org.bukkit">Location</a>&nbsp;origin,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="block/Biome.html" title="enum class in org.bukkit.block">Biome</a>&nbsp;biome,
  int&nbsp;radius)</span></div>
+<div class="deprecation-block"><span class="deprecated-label">Deprecated.</span>
+<div class="deprecation-comment">use <a href="#locateNearestBiome(org.bukkit.Location,int,org.bukkit.block.Biome...)"><code>locateNearestBiome(Location, int, Biome...)</code></a></div>
+</div>
 <div class="block">Locates the nearest biome based on an origin, biome type, and radius to search.
  Step defaults to <code>8</code>.</div>
 <dl class="notes">
@@ -8140,13 +8165,17 @@ extends <a href="RegionAccessor.html" title="interface in org.bukkit">RegionAcce
 <li>
 <section class="detail" id="locateNearestBiome(org.bukkit.Location,org.bukkit.block.Biome,int,int)">
 <h3>locateNearestBiome</h3>
-<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a>
-</span><span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="Location.html" title="class in org.bukkit">Location</a></span>&nbsp;<span class="element-name">locateNearestBiome</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+<div class="member-signature"><span class="annotations"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Deprecated.html" title="class or interface in java.lang" class="external-link">@Deprecated</a>
+<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a>
+</span><span class="modifiers">default</span>&nbsp;<span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="Location.html" title="class in org.bukkit">Location</a></span>&nbsp;<span class="element-name">locateNearestBiome</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Location.html" title="class in org.bukkit">Location</a>&nbsp;origin,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="block/Biome.html" title="enum class in org.bukkit.block">Biome</a>&nbsp;biome,
  int&nbsp;radius,
  int&nbsp;step)</span></div>
+<div class="deprecation-block"><span class="deprecated-label">Deprecated.</span>
+<div class="deprecation-comment">use <a href="#locateNearestBiome(org.bukkit.Location,int,int,int,org.bukkit.block.Biome...)"><code>locateNearestBiome(Location, int, int, int, Biome...)</code></a></div>
+</div>
 <div class="block">Locates the nearest biome based on an origin, biome type, and radius to search
  and step</div>
 <dl class="notes">
@@ -8416,6 +8445,89 @@ extends <a href="RegionAccessor.html" title="interface in org.bukkit">RegionAcce
 <div class="deprecation-block"><span class="deprecated-label">Deprecated.</span>
 <div class="deprecation-comment">Unsupported api</div>
 </div>
+</section>
+</li>
+<li>
+<section class="detail" id="locateNearestBiome(org.bukkit.Location,int,org.bukkit.block.Biome...)">
+<h3>locateNearestBiome</h3>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a>
+</span><span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="util/BiomeSearchResult.html" title="interface in org.bukkit.util">BiomeSearchResult</a></span>&nbsp;<span class="element-name">locateNearestBiome</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Location.html" title="class in org.bukkit">Location</a>&nbsp;origin,
+ int&nbsp;radius,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="block/Biome.html" title="enum class in org.bukkit.block">Biome</a>...&nbsp;biomes)</span></div>
+<div class="block">Find the closest nearby location with a biome matching the provided
+ <a href="block/Biome.html" title="enum class in org.bukkit.block"><code>Biome</code></a>(s). Finding biomes can, and will, block if the world is looking
+ in chunks that have not generated yet. This can lead to the world temporarily
+ freezing while locating a biome.
+ <p>
+ <b>Note:</b> This will <i>not</i> reflect changes made to the world after
+ generation, this method only sees the biome at the time of world generation.
+ This will <i>not</i> load or generate chunks.
+ <p>
+ If multiple biomes are provided <a href="util/BiomeSearchResult.html#getBiome()"><code>BiomeSearchResult.getBiome()</code></a> will
+ indicate which one was located.
+ <p>
+ This method will use a horizontal interval of 32 and a vertical interval of
+ 64, equal to the /locate command.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>origin</code> - where to start looking for a biome</dd>
+<dd><code>radius</code> - the radius, in blocks, around which to search</dd>
+<dd><code>biomes</code> - the biomes to search for</dd>
+<dt>Returns:</dt>
+<dd>a BiomeSearchResult containing the closest <a href="Location.html" title="class in org.bukkit"><code>Location</code></a> and
+         <a href="block/Biome.html" title="enum class in org.bukkit.block"><code>Biome</code></a>, or null if no biome was found.</dd>
+<dt>See Also:</dt>
+<dd>
+<ul class="see-list-long">
+<li><a href="#locateNearestBiome(org.bukkit.Location,int,int,int,org.bukkit.block.Biome...)"><code>locateNearestBiome(Location, int, int, int, Biome...)</code></a></li>
+</ul>
+</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="locateNearestBiome(org.bukkit.Location,int,int,int,org.bukkit.block.Biome...)">
+<h3>locateNearestBiome</h3>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a>
+</span><span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="util/BiomeSearchResult.html" title="interface in org.bukkit.util">BiomeSearchResult</a></span>&nbsp;<span class="element-name">locateNearestBiome</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Location.html" title="class in org.bukkit">Location</a>&nbsp;origin,
+ int&nbsp;radius,
+ int&nbsp;horizontalInterval,
+ int&nbsp;verticalInterval,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="block/Biome.html" title="enum class in org.bukkit.block">Biome</a>...&nbsp;biomes)</span></div>
+<div class="block">Find the closest nearby location with a biome matching the provided
+ <a href="block/Biome.html" title="enum class in org.bukkit.block"><code>Biome</code></a>(s). Finding biomes can, and will, block if the world is looking
+ in chunks that have not generated yet. This can lead to the world temporarily
+ freezing while locating a biome.
+ <p>
+ <b>Note:</b> This will <i>not</i> reflect changes made to the world after
+ generation, this method only sees the biome at the time of world generation.
+ This will <i>not</i> load or generate chunks.
+ <p>
+ If multiple biomes are provided <a href="util/BiomeSearchResult.html#getBiome()"><code>BiomeSearchResult.getBiome()</code></a> will
+ indicate which one was located. Higher values for <code>horizontalInterval</code>
+ and <code>verticalInterval</code> will result in faster searches, but may lead to
+ small biomes being missed.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>origin</code> - where to start looking for a biome</dd>
+<dd><code>radius</code> - the radius, in blocks, around which to search</dd>
+<dd><code>horizontalInterval</code> - the horizontal distance between each check</dd>
+<dd><code>verticalInterval</code> - the vertical distance between each check</dd>
+<dd><code>biomes</code> - the biomes to search for</dd>
+<dt>Returns:</dt>
+<dd>a BiomeSearchResult containing the closest <a href="Location.html" title="class in org.bukkit"><code>Location</code></a> and
+         <a href="block/Biome.html" title="enum class in org.bukkit.block"><code>Biome</code></a>, or null if no biome was found.</dd>
+<dt>See Also:</dt>
+<dd>
+<ul class="see-list-long">
+<li><a href="#locateNearestBiome(org.bukkit.Location,int,org.bukkit.block.Biome...)"><code>locateNearestBiome(Location, int, Biome...)</code></a></li>
+</ul>
+</dd>
+</dl>
 </section>
 </li>
 <li>
