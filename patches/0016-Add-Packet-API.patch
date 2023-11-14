@@ -963,10 +963,10 @@ index 0000000000000000000000000000000000000000..a4b9dcd4179fa4d4089d1929b639a6d6
 +    }
 +}
 diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
-index b207376792b62c5c4b8bd776fbe2724369dae6c5..67c02d9f7687e1d34581e32ae57625056b5f9f2a 100644
+index 7ca20a2b4a672f2c600a77898324f569c469c54e..d8beba2e84977c63e58b773f43b89178280aa1f1 100644
 --- a/src/main/java/org/bukkit/Bukkit.java
 +++ b/src/main/java/org/bukkit/Bukkit.java
-@@ -2811,6 +2811,20 @@ public final class Bukkit {
+@@ -2887,6 +2887,20 @@ public final class Bukkit {
      }
      // Paper end - Folia region threading API
  
@@ -1003,10 +1003,10 @@ index 918a045165cdcde264bc24082b7afebb407271de..0756634ad506aa81e8f3a789f5c28c84
      /**
       * Represents black
 diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
-index 1d697a021e460f279a76ff3267f0180e2d16ca51..1cb29f0ad291e13041dc8aac689b59294c02504d 100644
+index a2cd7ec153ffd88068736cc9506f46ba2c66ed61..cc88db86eca83a3e18144bc59c64f8d4984572a8 100644
 --- a/src/main/java/org/bukkit/Server.java
 +++ b/src/main/java/org/bukkit/Server.java
-@@ -2461,4 +2461,16 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
+@@ -2530,4 +2530,16 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
       */
      boolean isOwnedByCurrentRegion(@NotNull Entity entity);
      // Paper end - Folia region threading API
@@ -1024,7 +1024,7 @@ index 1d697a021e460f279a76ff3267f0180e2d16ca51..1cb29f0ad291e13041dc8aac689b5929
 +    // Daydream end - Add Packet API
  }
 diff --git a/src/main/java/org/bukkit/World.java b/src/main/java/org/bukkit/World.java
-index 66175c77f4db1682dd0ec71f9bfb9a5e6dc9ba3f..998859cdbc7f7fcad47eba6388047fc38153009b 100644
+index 900b392d080386da232616d30593c7c6c8c09ab7..1bd507478f011ac4b39b5484e8f2d10452889246 100644
 --- a/src/main/java/org/bukkit/World.java
 +++ b/src/main/java/org/bukkit/World.java
 @@ -1599,6 +1599,17 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
@@ -1070,7 +1070,7 @@ index d340ddcf6924cc834455de3acbbac91ab9c66e39..c53fbc05de52137922fa1e21901b3040
       * Gets the amount of ticks this entity has lived for.
       * <p>
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index d2e4198c5a4a27fe599da19fa03896b00d8cf296..6fa0ef0d4870bdbb98284567a09e120bfaa9c13b 100644
+index 26d626404fab95e156c47cbb346f46d6d60cc9c2..8e66b579694352dc9f97fe6d212860b4bfdac03f 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
 @@ -415,6 +415,16 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
