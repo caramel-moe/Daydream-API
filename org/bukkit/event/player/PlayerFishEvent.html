@@ -349,8 +349,9 @@ implements <a href="../Cancellable.html" title="interface in org.bukkit.event">C
 </span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../../inventory/EquipmentSlot.html" title="enum class in org.bukkit.inventory">EquipmentSlot</a></span>&nbsp;<span class="element-name">getHand</span>()</div>
 <div class="block">Get the hand that was used in this event.
  <p>
- The hand used is only present when the event state is <a href="PlayerFishEvent.State.html#FISHING"><code>PlayerFishEvent.State.FISHING</code></a>.
- In all other states, the hand is null.</div>
+ The hand used is only present for player interactions.
+ This means it will be null if state is set
+ to <a href="PlayerFishEvent.State.html#BITE"><code>PlayerFishEvent.State.BITE</code></a> or <a href="PlayerFishEvent.State.html#FAILED_ATTEMPT"><code>PlayerFishEvent.State.FAILED_ATTEMPT</code></a>.</div>
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>the hand</dd>

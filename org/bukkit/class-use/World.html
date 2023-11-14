@@ -107,21 +107,25 @@ loadScripts(document, 'script');</script>
 <div class="block">Classes to facilitate <a href="../World.html" title="interface in org.bukkit"><code>world</code></a> generation
  implementation.</div>
 </div>
-<div class="col-first odd-row-color"><a href="#org.bukkit.map">org.bukkit.map</a></div>
+<div class="col-first odd-row-color"><a href="#org.bukkit.inventory">org.bukkit.inventory</a></div>
 <div class="col-last odd-row-color">
+<div class="block">Classes involved in manipulating player inventories and item interactions.</div>
+</div>
+<div class="col-first even-row-color"><a href="#org.bukkit.map">org.bukkit.map</a></div>
+<div class="col-last even-row-color">
 <div class="block">Classes to facilitate plugin handling of <a href="../Material.html#MAP"><code>map</code></a> displays.</div>
 </div>
-<div class="col-first even-row-color"><a href="#org.bukkit.packs">org.bukkit.packs</a></div>
-<div class="col-last even-row-color">
+<div class="col-first odd-row-color"><a href="#org.bukkit.packs">org.bukkit.packs</a></div>
+<div class="col-last odd-row-color">
 <div class="block">Classes dedicated to handling data pack information.</div>
 </div>
-<div class="col-first odd-row-color"><a href="#org.bukkit.util">org.bukkit.util</a></div>
-<div class="col-last odd-row-color">
+<div class="col-first even-row-color"><a href="#org.bukkit.util">org.bukkit.util</a></div>
+<div class="col-last even-row-color">
 <div class="block">Multi and single purpose classes to facilitate various programmatic
  concepts.</div>
 </div>
-<div class="col-first even-row-color"><a href="#org.bukkit.util.noise">org.bukkit.util.noise</a></div>
-<div class="col-last even-row-color">
+<div class="col-first odd-row-color"><a href="#org.bukkit.util.noise">org.bukkit.util.noise</a></div>
+<div class="col-last odd-row-color">
 <div class="block">Classes dedicated to facilitating deterministic noise.</div>
 </div>
 </div>
@@ -469,14 +473,52 @@ loadScripts(document, 'script');</script>
 <div class="block">Copies the options from the specified world</div>
 </div>
 <div class="col-first odd-row-color"><code>static <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../inventory/ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a></code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">Bukkit.</span><code><a href="../Bukkit.html#craftItem(org.bukkit.inventory.ItemStack%5B%5D,org.bukkit.World,org.bukkit.entity.Player)" class="member-name-link">craftItem</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../inventory/ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>[]&nbsp;craftingMatrix,
+<div class="col-second odd-row-color"><span class="type-name-label">Bukkit.</span><code><a href="../Bukkit.html#craftItem(org.bukkit.inventory.ItemStack%5B%5D,org.bukkit.World)" class="member-name-link">craftItem</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../inventory/ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>[]&nbsp;craftingMatrix,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../World.html" title="interface in org.bukkit">World</a>&nbsp;world)</code></div>
+<div class="col-last odd-row-color">
+<div class="block">Get the crafted item using the list of <a href="../inventory/ItemStack.html" title="class in org.bukkit.inventory"><code>ItemStack</code></a> provided.</div>
+</div>
+<div class="col-first even-row-color"><code>static <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../inventory/ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a></code></div>
+<div class="col-second even-row-color"><span class="type-name-label">Bukkit.</span><code><a href="../Bukkit.html#craftItem(org.bukkit.inventory.ItemStack%5B%5D,org.bukkit.World,org.bukkit.entity.Player)" class="member-name-link">craftItem</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../inventory/ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>[]&nbsp;craftingMatrix,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../World.html" title="interface in org.bukkit">World</a>&nbsp;world,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../entity/Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;player)</code></div>
+<div class="col-last even-row-color">
+<div class="block">Get the crafted item using the list of <a href="../inventory/ItemStack.html" title="class in org.bukkit.inventory"><code>ItemStack</code></a> provided.</div>
+</div>
+<div class="col-first odd-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../inventory/ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a></code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">Server.</span><code><a href="../Server.html#craftItem(org.bukkit.inventory.ItemStack%5B%5D,org.bukkit.World)" class="member-name-link">craftItem</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../inventory/ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>[]&nbsp;craftingMatrix,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../World.html" title="interface in org.bukkit">World</a>&nbsp;world)</code></div>
 <div class="col-last odd-row-color">
 <div class="block">Get the crafted item using the list of <a href="../inventory/ItemStack.html" title="class in org.bukkit.inventory"><code>ItemStack</code></a> provided.</div>
 </div>
 <div class="col-first even-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../inventory/ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a></code></div>
 <div class="col-second even-row-color"><span class="type-name-label">Server.</span><code><a href="../Server.html#craftItem(org.bukkit.inventory.ItemStack%5B%5D,org.bukkit.World,org.bukkit.entity.Player)" class="member-name-link">craftItem</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../inventory/ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>[]&nbsp;craftingMatrix,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../World.html" title="interface in org.bukkit">World</a>&nbsp;world,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../entity/Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;player)</code></div>
+<div class="col-last even-row-color">
+<div class="block">Get the crafted item using the list of <a href="../inventory/ItemStack.html" title="class in org.bukkit.inventory"><code>ItemStack</code></a> provided.</div>
+</div>
+<div class="col-first odd-row-color"><code>static <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../inventory/ItemCraftResult.html" title="interface in org.bukkit.inventory">ItemCraftResult</a></code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">Bukkit.</span><code><a href="../Bukkit.html#craftItemResult(org.bukkit.inventory.ItemStack%5B%5D,org.bukkit.World)" class="member-name-link">craftItemResult</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../inventory/ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>[]&nbsp;craftingMatrix,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../World.html" title="interface in org.bukkit">World</a>&nbsp;world)</code></div>
+<div class="col-last odd-row-color">
+<div class="block">Get the crafted item using the list of <a href="../inventory/ItemStack.html" title="class in org.bukkit.inventory"><code>ItemStack</code></a> provided.</div>
+</div>
+<div class="col-first even-row-color"><code>static <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../inventory/ItemCraftResult.html" title="interface in org.bukkit.inventory">ItemCraftResult</a></code></div>
+<div class="col-second even-row-color"><span class="type-name-label">Bukkit.</span><code><a href="../Bukkit.html#craftItemResult(org.bukkit.inventory.ItemStack%5B%5D,org.bukkit.World,org.bukkit.entity.Player)" class="member-name-link">craftItemResult</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../inventory/ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>[]&nbsp;craftingMatrix,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../World.html" title="interface in org.bukkit">World</a>&nbsp;world,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../entity/Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;player)</code></div>
+<div class="col-last even-row-color">
+<div class="block">Get the crafted item using the list of <a href="../inventory/ItemStack.html" title="class in org.bukkit.inventory"><code>ItemStack</code></a> provided.</div>
+</div>
+<div class="col-first odd-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../inventory/ItemCraftResult.html" title="interface in org.bukkit.inventory">ItemCraftResult</a></code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">Server.</span><code><a href="../Server.html#craftItemResult(org.bukkit.inventory.ItemStack%5B%5D,org.bukkit.World)" class="member-name-link">craftItemResult</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../inventory/ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>[]&nbsp;craftingMatrix,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../World.html" title="interface in org.bukkit">World</a>&nbsp;world)</code></div>
+<div class="col-last odd-row-color">
+<div class="block">Get the crafted item using the list of <a href="../inventory/ItemStack.html" title="class in org.bukkit.inventory"><code>ItemStack</code></a> provided.</div>
+</div>
+<div class="col-first even-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../inventory/ItemCraftResult.html" title="interface in org.bukkit.inventory">ItemCraftResult</a></code></div>
+<div class="col-second even-row-color"><span class="type-name-label">Server.</span><code><a href="../Server.html#craftItemResult(org.bukkit.inventory.ItemStack%5B%5D,org.bukkit.World,org.bukkit.entity.Player)" class="member-name-link">craftItemResult</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../inventory/ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>[]&nbsp;craftingMatrix,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../World.html" title="interface in org.bukkit">World</a>&nbsp;world,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../entity/Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;player)</code></div>
 <div class="col-last even-row-color">
@@ -1083,6 +1125,27 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color">
 <div class="block"><span class="deprecated-label">Deprecated.</span>
 <div class="deprecation-comment">Use <a href="../generator/BlockPopulator.html#populate(org.bukkit.generator.WorldInfo,java.util.Random,int,int,org.bukkit.generator.LimitedRegion)"><code>BlockPopulator.populate(WorldInfo, Random, int, int, LimitedRegion)</code></a></div>
+</div>
+</div>
+</div>
+</section>
+</li>
+<li>
+<section class="detail" id="org.bukkit.inventory">
+<h2>Uses of <a href="../World.html" title="interface in org.bukkit">World</a> in <a href="../inventory/package-summary.html">org.bukkit.inventory</a></h2>
+<div class="caption"><span>Methods in <a href="../inventory/package-summary.html">org.bukkit.inventory</a> with parameters of type <a href="../World.html" title="interface in org.bukkit">World</a></span></div>
+<div class="summary-table three-column-summary">
+<div class="table-header col-first">Modifier and Type</div>
+<div class="table-header col-second">Method</div>
+<div class="table-header col-last">Description</div>
+<div class="col-first even-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../inventory/ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a></code></div>
+<div class="col-second even-row-color"><span class="type-name-label">ItemFactory.</span><code><a href="../inventory/ItemFactory.html#enchantItem(org.bukkit.World,org.bukkit.inventory.ItemStack,int,boolean)" class="member-name-link">enchantItem</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../World.html" title="interface in org.bukkit">World</a>&nbsp;world,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../inventory/ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;item,
+ int&nbsp;level,
+ boolean&nbsp;allowTreasures)</code></div>
+<div class="col-last even-row-color">
+<div class="block"><span class="deprecated-label">Deprecated.</span>
+<div class="deprecation-comment">use <a href="../inventory/ItemFactory.html#enchantWithLevels(org.bukkit.inventory.ItemStack,int,boolean,java.util.Random)"><code>ItemFactory.enchantWithLevels(ItemStack, int, boolean, java.util.Random)</code></a>.</div>
 </div>
 </div>
 </div>

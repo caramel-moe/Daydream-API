@@ -163,6 +163,16 @@ loadScripts(document, 'script');</script>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Gets the maximum level that this Enchantment may become.</div>
 </div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getMaxModifiedCost(int)" class="member-name-link">getMaxModifiedCost</a><wbr>(int&nbsp;level)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Gets the maximum modified cost of this enchantment at a specific level.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getMinModifiedCost(int)" class="member-name-link">getMinModifiedCost</a><wbr>(int&nbsp;level)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Gets the minimum modified cost of this enchantment at a specific level.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getName()" class="member-name-link">getName</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
@@ -444,6 +454,48 @@ loadScripts(document, 'script');</script>
 <dd><code><a href="Enchantment.html#isDiscoverable()">isDiscoverable</a></code>&nbsp;in class&nbsp;<code><a href="Enchantment.html" title="class in org.bukkit.enchantments">Enchantment</a></code></dd>
 <dt>Returns:</dt>
 <dd>true if the enchantment can be found in a table or by loot tables</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getMinModifiedCost(int)">
+<h3>getMinModifiedCost</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getMinModifiedCost</span><wbr><span class="parameters">(int&nbsp;level)</span></div>
+<div class="block"><span class="descfrm-type-label">Description copied from class:&nbsp;<code><a href="Enchantment.html#getMinModifiedCost(int)">Enchantment</a></code></span></div>
+<div class="block">Gets the minimum modified cost of this enchantment at a specific level.
+ <p>
+ Note this is not the number of experience levels needed, and does not directly translate to the levels shown in an enchanting table.
+ This value is used in combination with factors such as tool enchantability to determine a final cost.
+ See <a href="https://minecraft.wiki/w/Enchanting/Levels">https://minecraft.wiki/w/Enchanting/Levels</a> for more information.
+ </p></div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="Enchantment.html#getMinModifiedCost(int)">getMinModifiedCost</a></code>&nbsp;in class&nbsp;<code><a href="Enchantment.html" title="class in org.bukkit.enchantments">Enchantment</a></code></dd>
+<dt>Parameters:</dt>
+<dd><code>level</code> - The level of the enchantment</dd>
+<dt>Returns:</dt>
+<dd>The modified cost of this enchantment</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getMaxModifiedCost(int)">
+<h3>getMaxModifiedCost</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getMaxModifiedCost</span><wbr><span class="parameters">(int&nbsp;level)</span></div>
+<div class="block"><span class="descfrm-type-label">Description copied from class:&nbsp;<code><a href="Enchantment.html#getMaxModifiedCost(int)">Enchantment</a></code></span></div>
+<div class="block">Gets the maximum modified cost of this enchantment at a specific level.
+ <p>
+ Note this is not the number of experience levels needed, and does not directly translate to the levels shown in an enchanting table.
+ This value is used in combination with factors such as tool enchantability to determine a final cost.
+ See <a href="https://minecraft.wiki/w/Enchanting/Levels">https://minecraft.wiki/w/Enchanting/Levels</a> for more information.
+ </p></div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="Enchantment.html#getMaxModifiedCost(int)">getMaxModifiedCost</a></code>&nbsp;in class&nbsp;<code><a href="Enchantment.html" title="class in org.bukkit.enchantments">Enchantment</a></code></dd>
+<dt>Parameters:</dt>
+<dd><code>level</code> - The level of the enchantment</dd>
+<dt>Returns:</dt>
+<dd>The modified cost of this enchantment</dd>
 </dl>
 </section>
 </li>
