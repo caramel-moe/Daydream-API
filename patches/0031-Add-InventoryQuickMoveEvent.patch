@@ -1,0 +1,86 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: LemonCaramel <admin@caramel.moe>
+Date: Fri, 24 Nov 2023 03:18:28 +0900
+Subject: [PATCH] Add InventoryQuickMoveEvent
+
+
+diff --git a/src/main/java/moe/caramel/daydream/event/inventory/InventoryQuickMoveEvent.java b/src/main/java/moe/caramel/daydream/event/inventory/InventoryQuickMoveEvent.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..a96dabd130fdfb7bb95eaf1ab5ed7d312532caaa
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/event/inventory/InventoryQuickMoveEvent.java
+@@ -0,0 +1,74 @@
++package moe.caramel.daydream.event.inventory;
++
++import org.bukkit.event.HandlerList;
++import org.bukkit.event.inventory.InventoryInteractEvent;
++import org.bukkit.inventory.InventoryView;
++import org.bukkit.inventory.ItemStack;
++import org.jetbrains.annotations.ApiStatus;
++import org.jetbrains.annotations.NotNull;
++
++/**
++ * 플레이어가 인벤토리를 클릭하여 {@link org.bukkit.event.inventory.InventoryAction#MOVE_TO_OTHER_INVENTORY}의
++ * 처리가 시작되었을 때 호출됩니다. 이벤트 호출 결과가 기본 값인 {@link org.bukkit.event.Event.Result#ALLOW}인 경우
++ * 기존 로직을 그대로 수행하며, {@link org.bukkit.event.Event.Result#DEFAULT}인 경우 해당 슬롯의 처리를 건너뜁니다.
++ * {@link org.bukkit.event.Event.Result#DENY}의 경우 해당 슬롯을 포함하여 다음 슬롯의 처리까지 모두 취소합니다.
++ */
++@ApiStatus.Experimental
++public final class InventoryQuickMoveEvent extends InventoryInteractEvent {
++
++    private static final HandlerList HANDLER_LIST = new HandlerList();
++    public @NotNull HandlerList getHandlers() { return HANDLER_LIST; }
++    public static @NotNull HandlerList getHandlerList() { return HANDLER_LIST; }
++
++    private final ItemStack from;
++    private final ItemStack to;
++    private final int slot;
++    private final boolean checkEmpty;
++
++    public InventoryQuickMoveEvent(final @NotNull InventoryView view, final @NotNull ItemStack from, final @NotNull ItemStack to, final int slot, final boolean checkEmpty) {
++        super(view);
++        this.setResult(Result.ALLOW);
++        this.from = from;
++        this.to = to;
++        this.slot = slot;
++        this.checkEmpty = checkEmpty;
++    }
++
++    /**
++     * 빠른 아이템 이동의 대상 아이템을 가져옵니다.
++     *
++     * @return 이동 대상 아이템
++     */
++    @NotNull
++    public ItemStack getFrom() {
++        return from;
++    }
++
++    /**
++     * 병합 검사 중인 아이템을 가져옵니다.
++     *
++     * @return 병합 검사 중인 아이템
++     */
++    @NotNull
++    public ItemStack getTo() {
++        return to;
++    }
++
++    /**
++     * 병합 위치 슬롯을 가져옵니다.
++     *
++     * @return 병합 위치 슬롯
++     */
++    public int getSlot() {
++        return slot;
++    }
++
++    /**
++     * 빈 슬롯 확인 여부를 가져옵니다.
++     *
++     * @return {@code true}인 경우, 현재 빈 슬롯을 확인합니다.
++     */
++    public boolean isCheckEmpty() {
++        return checkEmpty;
++    }
++}
