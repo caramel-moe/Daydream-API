@@ -983,12 +983,7 @@ loadScripts(document, 'script');</script>
 </div>
 <div class="col-summary-item-name even-row-color"><a href="org/bukkit/event/player/PlayerChatEvent.html" title="class in org.bukkit.event.player">org.bukkit.event.player.PlayerChatEvent</a></div>
 <div class="col-last even-row-color">
-<div class="deprecation-comment">This event will fire from the main thread and allows the use of
-     all of the Bukkit API, unlike the <a href="org/bukkit/event/player/AsyncPlayerChatEvent.html" title="class in org.bukkit.event.player"><code>AsyncPlayerChatEvent</code></a>.
-     <p>
-     Listening to this event forces chat to wait for the main thread which
-     causes delays for chat. <a href="org/bukkit/event/player/AsyncPlayerChatEvent.html" title="class in org.bukkit.event.player"><code>AsyncPlayerChatEvent</code></a> is the encouraged
-     alternative for thread safe implementations.</div>
+<div class="deprecation-comment">Listening to this event forces chat to wait for the main thread, delaying chat messages. It is recommended to use <a href="io/papermc/paper/event/player/AsyncChatEvent.html" title="class in io.papermc.paper.event.player"><code>AsyncChatEvent</code></a> instead, wherever possible.</div>
 </div>
 <div class="col-summary-item-name odd-row-color"><a href="org/bukkit/event/player/PlayerChatTabCompleteEvent.html" title="class in org.bukkit.event.player">org.bukkit.event.player.PlayerChatTabCompleteEvent</a></div>
 <div class="col-last odd-row-color">
