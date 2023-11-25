@@ -83,38 +83,54 @@ loadScripts(document, 'script');</script>
 <section class="method-summary" id="method-summary">
 <h2>Method Summary</h2>
 <div id="method-summary-table">
-<div class="table-tabs" role="tablist" aria-orientation="horizontal"><button id="method-summary-table-tab0" role="tab" aria-selected="true" aria-controls="method-summary-table.tabpanel" tabindex="0" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table', 3)" class="active-table-tab">All Methods</button><button id="method-summary-table-tab2" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab2', 3)" class="table-tab">Instance Methods</button><button id="method-summary-table-tab3" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab3', 3)" class="table-tab">Abstract Methods</button></div>
+<div class="table-tabs" role="tablist" aria-orientation="horizontal"><button id="method-summary-table-tab0" role="tab" aria-selected="true" aria-controls="method-summary-table.tabpanel" tabindex="0" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table', 3)" class="active-table-tab">All Methods</button><button id="method-summary-table-tab2" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab2', 3)" class="table-tab">Instance Methods</button><button id="method-summary-table-tab3" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab3', 3)" class="table-tab">Abstract Methods</button><button id="method-summary-table-tab5" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab5', 3)" class="table-tab">Default Methods</button></div>
 <div id="method-summary-table.tabpanel" role="tabpanel">
 <div class="summary-table three-column-summary" aria-labelledby="method-summary-table-tab0">
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#activate(org.bukkit.plugin.Plugin,org.bukkit.entity.Player,long)" class="member-name-link">activate</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../org/bukkit/plugin/Plugin.html" title="interface in org.bukkit.plugin">Plugin</a>&nbsp;owner,
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#activate(org.bukkit.plugin.Plugin,moe.caramel.daydream.sidebar.SidebarDecorator,org.bukkit.entity.Player,long)" class="member-name-link">activate</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../org/bukkit/plugin/Plugin.html" title="interface in org.bukkit.plugin">Plugin</a>&nbsp;owner,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="SidebarDecorator.html" title="interface in moe.caramel.daydream.sidebar">SidebarDecorator</a>&nbsp;decorator,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../org/bukkit/entity/Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;holder,
  long&nbsp;updateInterval)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">특정 플레이어에게 개인 사이드바 기능을 활성화합니다.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#deactivate(org.bukkit.entity.Player)" class="member-name-link">deactivate</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../org/bukkit/entity/Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;holder)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#activated(java.util.UUID)" class="member-name-link">activated</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;uuid)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">특정 플레이어의 개인 사이드바 기능 사용 여부를 가져옵니다.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code>default boolean</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#activated(org.bukkit.entity.Player)" class="member-name-link">activated</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../org/bukkit/entity/Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;holder)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5">
+<div class="block">특정 플레이어의 개인 사이드바 기능 사용 여부를 가져옵니다.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#deactivate(java.util.UUID)" class="member-name-link">deactivate</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;uuid)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">특정 플레이어에게 개인 사이드바 기능을 비활성화합니다.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="SidebarDecorator.html" title="interface in moe.caramel.daydream.sidebar">SidebarDecorator</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#decorator()" class="member-name-link">decorator</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block"><a href="SidebarDecorator.html" title="interface in moe.caramel.daydream.sidebar"><code>SidebarDecorator</code></a>를 가져옵니다.</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code>default boolean</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#deactivate(org.bukkit.entity.Player)" class="member-name-link">deactivate</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../org/bukkit/entity/Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;holder)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5">
+<div class="block">특정 플레이어에게 개인 사이드바 기능을 비활성화합니다.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>long</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getUpdateInterval(org.bukkit.entity.Player)" class="member-name-link">getUpdateInterval</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../org/bukkit/entity/Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;holder)</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Set.html" title="class or interface in java.util" class="external-link">Set</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&gt;</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#trackedPlayers()" class="member-name-link">trackedPlayers</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">개인 사이드바가 활성화된 플레이어의 UUID 목록을 가져옵니다.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>long</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#updateInterval(java.util.UUID)" class="member-name-link">updateInterval</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;uuid)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">특정 플레이어의 개인 사이드바 업데이트 시간을 가져옵니다.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#isActivated(org.bukkit.entity.Player)" class="member-name-link">isActivated</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../org/bukkit/entity/Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;holder)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">특정 플레이어의 개인 사이드바 기능 사용 여부를 가져옵니다.</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code>default long</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#updateInterval(org.bukkit.entity.Player)" class="member-name-link">updateInterval</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../org/bukkit/entity/Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;holder)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5">
+<div class="block">특정 플레이어의 개인 사이드바 업데이트 시간을 가져옵니다.</div>
 </div>
 </div>
 </div>
@@ -131,22 +147,12 @@ loadScripts(document, 'script');</script>
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="decorator()">
-<h3>decorator</h3>
-<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
-</span><span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="SidebarDecorator.html" title="interface in moe.caramel.daydream.sidebar">SidebarDecorator</a></span>&nbsp;<span class="element-name">decorator</span>()</div>
-<div class="block"><a href="SidebarDecorator.html" title="interface in moe.caramel.daydream.sidebar"><code>SidebarDecorator</code></a>를 가져옵니다.</div>
-<dl class="notes">
-<dt>Returns:</dt>
-<dd>사용자 지정 <a href="SidebarDecorator.html" title="interface in moe.caramel.daydream.sidebar"><code>SidebarDecorator</code></a></dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="activate(org.bukkit.plugin.Plugin,org.bukkit.entity.Player,long)">
+<section class="detail" id="activate(org.bukkit.plugin.Plugin,moe.caramel.daydream.sidebar.SidebarDecorator,org.bukkit.entity.Player,long)">
 <h3>activate</h3>
 <div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">activate</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../org/bukkit/plugin/Plugin.html" title="interface in org.bukkit.plugin">Plugin</a>&nbsp;owner,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="SidebarDecorator.html" title="interface in moe.caramel.daydream.sidebar">SidebarDecorator</a>&nbsp;decorator,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../org/bukkit/entity/Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;holder,
  long&nbsp;updateInterval)</span></div>
@@ -154,6 +160,7 @@ loadScripts(document, 'script');</script>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>owner</code> - 소유 플러그인</dd>
+<dd><code>decorator</code> - 사용자 지정 <a href="SidebarDecorator.html" title="interface in moe.caramel.daydream.sidebar"><code>SidebarDecorator</code></a> 데코레이터</dd>
 <dd><code>holder</code> - 대상 플레이어</dd>
 <dd><code>updateInterval</code> - 사이드바 업데이트 시간(Tick), 0 이하일 수 없습니다.</dd>
 <dt>Returns:</dt>
@@ -164,7 +171,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="deactivate(org.bukkit.entity.Player)">
 <h3>deactivate</h3>
-<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">deactivate</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+<div class="member-signature"><span class="modifiers">default</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">deactivate</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../org/bukkit/entity/Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;holder)</span></div>
 <div class="block">특정 플레이어에게 개인 사이드바 기능을 비활성화합니다.</div>
 <dl class="notes">
@@ -176,9 +183,23 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="isActivated(org.bukkit.entity.Player)">
-<h3>isActivated</h3>
-<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">isActivated</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+<section class="detail" id="deactivate(java.util.UUID)">
+<h3>deactivate</h3>
+<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">deactivate</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;uuid)</span></div>
+<div class="block">특정 플레이어에게 개인 사이드바 기능을 비활성화합니다.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>uuid</code> - 대상 플레이어의 UUID</dd>
+<dt>Returns:</dt>
+<dd>활성화되어있지 않은 경우 <code>false</code>를 반환</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="activated(org.bukkit.entity.Player)">
+<h3>activated</h3>
+<div class="member-signature"><span class="modifiers">default</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">activated</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../org/bukkit/entity/Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;holder)</span></div>
 <div class="block">특정 플레이어의 개인 사이드바 기능 사용 여부를 가져옵니다.
  <br>다른 플러그인이 소유하고 있더라도 <code>true</code>를 반환합니다.</div>
@@ -191,18 +212,59 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="getUpdateInterval(org.bukkit.entity.Player)">
-<h3>getUpdateInterval</h3>
-<div class="member-signature"><span class="return-type">long</span>&nbsp;<span class="element-name">getUpdateInterval</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+<section class="detail" id="activated(java.util.UUID)">
+<h3>activated</h3>
+<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">activated</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;uuid)</span></div>
+<div class="block">특정 플레이어의 개인 사이드바 기능 사용 여부를 가져옵니다.
+ <br>다른 플러그인이 소유하고 있더라도 <code>true</code>를 반환합니다.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>uuid</code> - 대상 플레이어의 UUID</dd>
+<dt>Returns:</dt>
+<dd>개인 사이드바 기능 사용 여부</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="updateInterval(org.bukkit.entity.Player)">
+<h3>updateInterval</h3>
+<div class="member-signature"><span class="modifiers">default</span>&nbsp;<span class="return-type">long</span>&nbsp;<span class="element-name">updateInterval</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../org/bukkit/entity/Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;holder)</span></div>
 <div class="block">특정 플레이어의 개인 사이드바 업데이트 시간을 가져옵니다.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>holder</code> - 대상 플레이어</dd>
 <dt>Returns:</dt>
-<dd>개인 사이드바 기능 사용 여부</dd>
-<dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - 개인 사이드바 기능이 활성화되어있지 않은 경우</dd>
+<dd>개인 사이드바 업데이트 주기 (틱).
+ <code>-1</code>인 경우 비활성화 상태</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="updateInterval(java.util.UUID)">
+<h3>updateInterval</h3>
+<div class="member-signature"><span class="return-type">long</span>&nbsp;<span class="element-name">updateInterval</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;uuid)</span></div>
+<div class="block">특정 플레이어의 개인 사이드바 업데이트 시간을 가져옵니다.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>uuid</code> - 대상 플레이어의 UUID</dd>
+<dt>Returns:</dt>
+<dd>개인 사이드바 업데이트 주기 (틱).
+ <code>-1</code>인 경우 비활성화 상태</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="trackedPlayers()">
+<h3>trackedPlayers</h3>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+</span><span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Set.html" title="class or interface in java.util" class="external-link">Set</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&gt;</span>&nbsp;<span class="element-name">trackedPlayers</span>()</div>
+<div class="block">개인 사이드바가 활성화된 플레이어의 UUID 목록을 가져옵니다.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>UUID 목록</dd>
 </dl>
 </section>
 </li>
