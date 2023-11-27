@@ -119,7 +119,7 @@ implements <a href="../../../../org/bukkit/Keyed.html" title="interface in org.b
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../org/bukkit/inventory/RecipeChoice.html" title="interface in org.bukkit.inventory">RecipeChoice</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#createPredicateChoice(java.util.function.Predicate)" class="member-name-link">createPredicateChoice</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Predicate.html" title="class or interface in java.util.function" class="external-link">Predicate</a>&lt;<a href="../../../../org/bukkit/inventory/ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&gt;&nbsp;stackPredicate)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#createPredicateChoice(java.util.function.Predicate)" class="member-name-link">createPredicateChoice</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Predicate.html" title="class or interface in java.util.function" class="external-link">Predicate</a>&lt;? super <a href="../../../../org/bukkit/inventory/ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&gt;&nbsp;stackPredicate)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
 <div class="block">Create a <a href="../../../../org/bukkit/inventory/RecipeChoice.html" title="interface in org.bukkit.inventory"><code>RecipeChoice</code></a> based on a Predicate.</div>
 </div>
@@ -202,6 +202,24 @@ implements <a href="../../../../org/bukkit/Keyed.html" title="interface in org.b
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
+<section class="detail" id="createPredicateChoice(java.util.function.Predicate)">
+<h3>createPredicateChoice</h3>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Contract.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Contract</a>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Contract.html#value()" title="class or interface in org.jetbrains.annotations" class="external-link">value</a>="_ -&gt; new",
+          <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Contract.html#pure()" title="class or interface in org.jetbrains.annotations" class="external-link">pure</a>=true)
+<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+</span><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../org/bukkit/inventory/RecipeChoice.html" title="interface in org.bukkit.inventory">RecipeChoice</a></span>&nbsp;<span class="element-name">createPredicateChoice</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Predicate.html" title="class or interface in java.util.function" class="external-link">Predicate</a>&lt;? super <a href="../../../../org/bukkit/inventory/ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&gt;&nbsp;stackPredicate)</span></div>
+<div class="block">Create a <a href="../../../../org/bukkit/inventory/RecipeChoice.html" title="interface in org.bukkit.inventory"><code>RecipeChoice</code></a> based on a Predicate. These RecipeChoices are only
+ valid for <a href="PotionMix.html" title="class in io.papermc.paper.potion"><code>PotionMix</code></a>, not anywhere else RecipeChoices may be used.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>stackPredicate</code> - a predicate for an itemstack.</dd>
+<dt>Returns:</dt>
+<dd>a new RecipeChoice</dd>
+</dl>
+</section>
+</li>
+<li>
 <section class="detail" id="getKey()">
 <h3>getKey</h3>
 <div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
@@ -249,24 +267,6 @@ implements <a href="../../../../org/bukkit/Keyed.html" title="interface in org.b
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>the top slot input</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="createPredicateChoice(java.util.function.Predicate)">
-<h3>createPredicateChoice</h3>
-<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Contract.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Contract</a>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Contract.html#value()" title="class or interface in org.jetbrains.annotations" class="external-link">value</a>="_ -&gt; new",
-          <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Contract.html#pure()" title="class or interface in org.jetbrains.annotations" class="external-link">pure</a>=true)
-<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
-</span><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../org/bukkit/inventory/RecipeChoice.html" title="interface in org.bukkit.inventory">RecipeChoice</a></span>&nbsp;<span class="element-name">createPredicateChoice</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Predicate.html" title="class or interface in java.util.function" class="external-link">Predicate</a>&lt;<a href="../../../../org/bukkit/inventory/ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&gt;&nbsp;stackPredicate)</span></div>
-<div class="block">Create a <a href="../../../../org/bukkit/inventory/RecipeChoice.html" title="interface in org.bukkit.inventory"><code>RecipeChoice</code></a> based on a Predicate. These RecipeChoices are only
- valid for <a href="PotionMix.html" title="class in io.papermc.paper.potion"><code>PotionMix</code></a>, not anywhere else RecipeChoices may be used.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>stackPredicate</code> - a predicate for an itemstack.</dd>
-<dt>Returns:</dt>
-<dd>a new RecipeChoice</dd>
 </dl>
 </section>
 </li>

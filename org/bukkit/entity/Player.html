@@ -806,7 +806,7 @@ extends <a href="HumanEntity.html" title="interface in org.bukkit.entity">HumanE
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Instrument.html" title="enum class in org.bukkit">Instrument</a>&nbsp;instrument,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Note.html" title="class in org.bukkit">Note</a>&nbsp;note)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Play a note for a player at a location.</div>
+<div class="block">Play a note for the player at a location.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#playSound(org.bukkit.entity.Entity,java.lang.String,float,float)" class="member-name-link">playSound</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Entity.html" title="interface in org.bukkit.entity">Entity</a>&nbsp;entity,
@@ -826,19 +826,39 @@ extends <a href="HumanEntity.html" title="interface in org.bukkit.entity">HumanE
 <div class="block">Play a sound for a player at the location of the entity.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#playSound(org.bukkit.entity.Entity,org.bukkit.Sound,float,float)" class="member-name-link">playSound</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Entity.html" title="interface in org.bukkit.entity">Entity</a>&nbsp;entity,
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#playSound(org.bukkit.entity.Entity,java.lang.String,org.bukkit.SoundCategory,float,float,long)" class="member-name-link">playSound</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Entity.html" title="interface in org.bukkit.entity">Entity</a>&nbsp;entity,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;sound,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../SoundCategory.html" title="enum class in org.bukkit">SoundCategory</a>&nbsp;category,
+ float&nbsp;volume,
+ float&nbsp;pitch,
+ long&nbsp;seed)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Play a sound for a player at the location of the entity.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#playSound(org.bukkit.entity.Entity,org.bukkit.Sound,float,float)" class="member-name-link">playSound</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Entity.html" title="interface in org.bukkit.entity">Entity</a>&nbsp;entity,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Sound.html" title="enum class in org.bukkit">Sound</a>&nbsp;sound,
+ float&nbsp;volume,
+ float&nbsp;pitch)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Play a sound for a player at the location of the entity.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#playSound(org.bukkit.entity.Entity,org.bukkit.Sound,org.bukkit.SoundCategory,float,float)" class="member-name-link">playSound</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Entity.html" title="interface in org.bukkit.entity">Entity</a>&nbsp;entity,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Sound.html" title="enum class in org.bukkit">Sound</a>&nbsp;sound,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../SoundCategory.html" title="enum class in org.bukkit">SoundCategory</a>&nbsp;category,
  float&nbsp;volume,
  float&nbsp;pitch)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Play a sound for a player at the location of the entity.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#playSound(org.bukkit.entity.Entity,org.bukkit.Sound,org.bukkit.SoundCategory,float,float)" class="member-name-link">playSound</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Entity.html" title="interface in org.bukkit.entity">Entity</a>&nbsp;entity,
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#playSound(org.bukkit.entity.Entity,org.bukkit.Sound,org.bukkit.SoundCategory,float,float,long)" class="member-name-link">playSound</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Entity.html" title="interface in org.bukkit.entity">Entity</a>&nbsp;entity,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Sound.html" title="enum class in org.bukkit">Sound</a>&nbsp;sound,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../SoundCategory.html" title="enum class in org.bukkit">SoundCategory</a>&nbsp;category,
  float&nbsp;volume,
- float&nbsp;pitch)</code></div>
+ float&nbsp;pitch,
+ long&nbsp;seed)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Play a sound for a player at the location of the entity.</div>
 </div>
@@ -860,19 +880,39 @@ extends <a href="HumanEntity.html" title="interface in org.bukkit.entity">HumanE
 <div class="block">Play a sound for a player at the location.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#playSound(org.bukkit.Location,org.bukkit.Sound,float,float)" class="member-name-link">playSound</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;location,
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#playSound(org.bukkit.Location,java.lang.String,org.bukkit.SoundCategory,float,float,long)" class="member-name-link">playSound</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;location,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;sound,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../SoundCategory.html" title="enum class in org.bukkit">SoundCategory</a>&nbsp;category,
+ float&nbsp;volume,
+ float&nbsp;pitch,
+ long&nbsp;seed)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Play a sound for a player at the location.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#playSound(org.bukkit.Location,org.bukkit.Sound,float,float)" class="member-name-link">playSound</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;location,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Sound.html" title="enum class in org.bukkit">Sound</a>&nbsp;sound,
+ float&nbsp;volume,
+ float&nbsp;pitch)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Play a sound for a player at the location.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#playSound(org.bukkit.Location,org.bukkit.Sound,org.bukkit.SoundCategory,float,float)" class="member-name-link">playSound</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;location,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Sound.html" title="enum class in org.bukkit">Sound</a>&nbsp;sound,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../SoundCategory.html" title="enum class in org.bukkit">SoundCategory</a>&nbsp;category,
  float&nbsp;volume,
  float&nbsp;pitch)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Play a sound for a player at the location.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#playSound(org.bukkit.Location,org.bukkit.Sound,org.bukkit.SoundCategory,float,float)" class="member-name-link">playSound</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;location,
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#playSound(org.bukkit.Location,org.bukkit.Sound,org.bukkit.SoundCategory,float,float,long)" class="member-name-link">playSound</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;location,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Sound.html" title="enum class in org.bukkit">Sound</a>&nbsp;sound,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../SoundCategory.html" title="enum class in org.bukkit">SoundCategory</a>&nbsp;category,
  float&nbsp;volume,
- float&nbsp;pitch)</code></div>
+ float&nbsp;pitch,
+ long&nbsp;seed)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Play a sound for a player at the location.</div>
 </div>
@@ -1410,12 +1450,14 @@ extends <a href="HumanEntity.html" title="interface in org.bukkit.entity">HumanE
 <div class="deprecation-comment">in favour of <a href="#setResourcePack(java.lang.String,byte%5B%5D,net.kyori.adventure.text.Component)"><code>setResourcePack(String, byte[], net.kyori.adventure.text.Component)</code></a></div>
 </div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#setResourcePack(java.lang.String,byte%5B%5D,boolean)" class="member-name-link">setResourcePack</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;url,
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6"><code><a href="#setResourcePack(java.lang.String,byte%5B%5D,boolean)" class="member-name-link">setResourcePack</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;url,
  @org.jetbrains.annotations.Nullable byte[]&nbsp;hash,
  boolean&nbsp;force)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Request that the player's client download and switch resource packs.</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6">
+<div class="block"><span class="deprecated-label">Deprecated.</span>
+<div class="deprecation-comment">in favour of <a href="#setResourcePack(java.lang.String,byte%5B%5D,net.kyori.adventure.text.Component,boolean)"><code>setResourcePack(String, byte[], net.kyori.adventure.text.Component, boolean)</code></a></div>
+</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6"><code><a href="#setResourcePack(java.lang.String,byte%5B%5D,java.lang.String)" class="member-name-link">setResourcePack</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;url,
@@ -1432,9 +1474,7 @@ extends <a href="HumanEntity.html" title="interface in org.bukkit.entity">HumanE
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;prompt,
  boolean&nbsp;force)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6">
-<div class="block"><span class="deprecated-label">Deprecated.</span>
-<div class="deprecation-comment">in favour of <a href="#setResourcePack(java.lang.String,byte%5B%5D,net.kyori.adventure.text.Component,boolean)"><code>setResourcePack(String, byte[], net.kyori.adventure.text.Component, boolean)</code></a></div>
-</div>
+<div class="block"><span class="deprecated-label">Deprecated.</span></div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code>default void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#setResourcePack(java.lang.String,byte%5B%5D,net.kyori.adventure.text.Component)" class="member-name-link">setResourcePack</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;url,
@@ -2716,12 +2756,11 @@ extends <a href="HumanEntity.html" title="interface in org.bukkit.entity">HumanE
 <div class="deprecation-block"><span class="deprecated-label">Deprecated.</span>
 <div class="deprecation-comment">Magic value</div>
 </div>
-<div class="block">Play a note for a player at a location. This requires a note block
- at the particular location (as far as the client is concerned). This
- will not work without a note block. This will not work with cake.</div>
+<div class="block">Play a note for the player at a location. <br>
+ This <i>will</i> work with cake.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>loc</code> - The location of a note block.</dd>
+<dd><code>loc</code> - The location to play the note</dd>
 <dd><code>instrument</code> - The instrument ID.</dd>
 <dd><code>note</code> - The note ID.</dd>
 </dl>
@@ -2736,10 +2775,13 @@ extends <a href="HumanEntity.html" title="interface in org.bukkit.entity">HumanE
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Instrument.html" title="enum class in org.bukkit">Instrument</a>&nbsp;instrument,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Note.html" title="class in org.bukkit">Note</a>&nbsp;note)</span></div>
-<div class="block">Play a note for a player at a location.</div>
+<div class="block">Play a note for the player at a location. <br>
+ This <i>will</i> work with cake.
+ <p>
+ This method will fail silently when called with <a href="../Instrument.html#CUSTOM_HEAD"><code>Instrument.CUSTOM_HEAD</code></a>.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>loc</code> - The location of a note block</dd>
+<dd><code>loc</code> - The location to play the note</dd>
 <dd><code>instrument</code> - The instrument</dd>
 <dd><code>note</code> - The note</dd>
 </dl>
@@ -2840,6 +2882,62 @@ extends <a href="HumanEntity.html" title="interface in org.bukkit.entity">HumanE
 </section>
 </li>
 <li>
+<section class="detail" id="playSound(org.bukkit.Location,org.bukkit.Sound,org.bukkit.SoundCategory,float,float,long)">
+<h3>playSound</h3>
+<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">playSound</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;location,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Sound.html" title="enum class in org.bukkit">Sound</a>&nbsp;sound,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../SoundCategory.html" title="enum class in org.bukkit">SoundCategory</a>&nbsp;category,
+ float&nbsp;volume,
+ float&nbsp;pitch,
+ long&nbsp;seed)</span></div>
+<div class="block">Play a sound for a player at the location. For sounds with multiple
+ variations passing the same seed will always play the same variation.
+ <p>
+ This function will fail silently if Location or Sound are null.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>location</code> - The location to play the sound</dd>
+<dd><code>sound</code> - The sound to play</dd>
+<dd><code>category</code> - The category of the sound</dd>
+<dd><code>volume</code> - The volume of the sound</dd>
+<dd><code>pitch</code> - The pitch of the sound</dd>
+<dd><code>seed</code> - The seed for the sound</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="playSound(org.bukkit.Location,java.lang.String,org.bukkit.SoundCategory,float,float,long)">
+<h3>playSound</h3>
+<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">playSound</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;location,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;sound,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../SoundCategory.html" title="enum class in org.bukkit">SoundCategory</a>&nbsp;category,
+ float&nbsp;volume,
+ float&nbsp;pitch,
+ long&nbsp;seed)</span></div>
+<div class="block">Play a sound for a player at the location. For sounds with multiple
+ variations passing the same seed will always play the same variation.
+ <p>
+ This function will fail silently if Location or Sound are null. No sound
+ will be heard by the player if their client does not have the respective
+ sound for the value passed.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>location</code> - The location to play the sound</dd>
+<dd><code>sound</code> - The internal sound name to play</dd>
+<dd><code>category</code> - The category of the sound</dd>
+<dd><code>volume</code> - The volume of the sound</dd>
+<dd><code>pitch</code> - The pitch of the sound</dd>
+<dd><code>seed</code> - The seed for the sound</dd>
+</dl>
+</section>
+</li>
+<li>
 <section class="detail" id="playSound(org.bukkit.entity.Entity,org.bukkit.Sound,float,float)">
 <h3>playSound</h3>
 <div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">playSound</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
@@ -2926,6 +3024,60 @@ extends <a href="HumanEntity.html" title="interface in org.bukkit.entity">HumanE
 <dd><code>category</code> - The category of the sound</dd>
 <dd><code>volume</code> - The volume of the sound</dd>
 <dd><code>pitch</code> - The pitch of the sound</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="playSound(org.bukkit.entity.Entity,org.bukkit.Sound,org.bukkit.SoundCategory,float,float,long)">
+<h3>playSound</h3>
+<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">playSound</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Entity.html" title="interface in org.bukkit.entity">Entity</a>&nbsp;entity,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Sound.html" title="enum class in org.bukkit">Sound</a>&nbsp;sound,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../SoundCategory.html" title="enum class in org.bukkit">SoundCategory</a>&nbsp;category,
+ float&nbsp;volume,
+ float&nbsp;pitch,
+ long&nbsp;seed)</span></div>
+<div class="block">Play a sound for a player at the location of the entity. For sounds with
+ multiple variations passing the same seed will always play the same variation.
+ <p>
+ This function will fail silently if Entity or Sound are null.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>entity</code> - The entity to play the sound</dd>
+<dd><code>sound</code> - The sound to play</dd>
+<dd><code>category</code> - The category of the sound</dd>
+<dd><code>volume</code> - The volume of the sound</dd>
+<dd><code>pitch</code> - The pitch of the sound</dd>
+<dd><code>seed</code> - The seed for the sound</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="playSound(org.bukkit.entity.Entity,java.lang.String,org.bukkit.SoundCategory,float,float,long)">
+<h3>playSound</h3>
+<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">playSound</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Entity.html" title="interface in org.bukkit.entity">Entity</a>&nbsp;entity,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;sound,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../SoundCategory.html" title="enum class in org.bukkit">SoundCategory</a>&nbsp;category,
+ float&nbsp;volume,
+ float&nbsp;pitch,
+ long&nbsp;seed)</span></div>
+<div class="block">Play a sound for a player at the location of the entity. For sounds with
+ multiple variations passing the same seed will always play the same variation.
+ <p>
+ This function will fail silently if Entity or Sound are null.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>entity</code> - The entity to play the sound</dd>
+<dd><code>sound</code> - The sound to play</dd>
+<dd><code>category</code> - The category of the sound</dd>
+<dd><code>volume</code> - The volume of the sound</dd>
+<dd><code>pitch</code> - The pitch of the sound</dd>
+<dd><code>seed</code> - The seed for the sound</dd>
 </dl>
 </section>
 </li>
@@ -5247,6 +5399,9 @@ extends <a href="HumanEntity.html" title="interface in org.bukkit.entity">HumanE
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a>
  @org.jetbrains.annotations.Nullable byte[]&nbsp;hash,
  boolean&nbsp;force)</span></div>
+<div class="deprecation-block"><span class="deprecated-label">Deprecated.</span>
+<div class="deprecation-comment">in favour of <a href="#setResourcePack(java.lang.String,byte%5B%5D,net.kyori.adventure.text.Component,boolean)"><code>setResourcePack(String, byte[], net.kyori.adventure.text.Component, boolean)</code></a></div>
+</div>
 <div class="block">Request that the player's client download and switch resource packs.
  <p>
  The player's client will download the new resource pack asynchronously
@@ -5304,9 +5459,7 @@ extends <a href="HumanEntity.html" title="interface in org.bukkit.entity">HumanE
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;prompt,
  boolean&nbsp;force)</span></div>
-<div class="deprecation-block"><span class="deprecated-label">Deprecated.</span>
-<div class="deprecation-comment">in favour of <a href="#setResourcePack(java.lang.String,byte%5B%5D,net.kyori.adventure.text.Component,boolean)"><code>setResourcePack(String, byte[], net.kyori.adventure.text.Component, boolean)</code></a></div>
-</div>
+<div class="deprecation-block"><span class="deprecated-label">Deprecated.</span></div>
 <div class="block">Request that the player's client download and switch resource packs.
  <p>
  The player's client will download the new resource pack asynchronously
