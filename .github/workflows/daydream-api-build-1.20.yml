@@ -25,7 +25,7 @@ jobs:
   
       - name : Build with Gradle
         run: |
-         ./gradlew applyApiPatches --no-daemon
+         ./gradlew applyGeneratedApiPatches && applyApiPatches --no-daemon
          ./gradlew build --no-daemon
          
       - name: Generate Javadoc

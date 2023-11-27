@@ -5,7 +5,7 @@ Subject: [PATCH] Add more World API
 
 
 diff --git a/src/main/java/org/bukkit/World.java b/src/main/java/org/bukkit/World.java
-index 17d404d6d1a5b46b58d612fca38f17e71adee92e..502285651bcacd4ba2153d514e33e7d861c9ba88 100644
+index f72f0f0f8eee95f95adc969d55ba7de82ee30e2a..22ced78875d6b8331ef12f9959d550afad8bc7ff 100644
 --- a/src/main/java/org/bukkit/World.java
 +++ b/src/main/java/org/bukkit/World.java
 @@ -151,6 +151,16 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
@@ -25,7 +25,7 @@ index 17d404d6d1a5b46b58d612fca38f17e71adee92e..502285651bcacd4ba2153d514e33e7d8
      // Paper start - Add heightmap API
      /**
       * Returns the highest block's y-coordinate at the specified block coordinates that match the specified heightmap's conditions.
-@@ -3306,6 +3316,38 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
+@@ -3293,6 +3303,38 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
       */
      void playSound(@NotNull Location location, @NotNull String sound, @NotNull SoundCategory category, float volume, float pitch);
  
@@ -62,8 +62,8 @@ index 17d404d6d1a5b46b58d612fca38f17e71adee92e..502285651bcacd4ba2153d514e33e7d8
 +    // Daydream end - Add More World API (Sound)
 +
      /**
-      * Play a Sound at the location of the provided entity in the World.
-      * <p>
+      * Play a Sound at the provided Location in the World. For sounds with multiple
+      * variations passing the same seed will always play the same variation.
 diff --git a/src/main/java/org/bukkit/block/Block.java b/src/main/java/org/bukkit/block/Block.java
 index 49974558799830d827f9ccd65a8bafee3fb0376b..9e3d77480f119ce4ffd7b3e5a34c97a651b7305f 100644
 --- a/src/main/java/org/bukkit/block/Block.java

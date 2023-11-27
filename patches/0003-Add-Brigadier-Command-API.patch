@@ -5,10 +5,10 @@ Subject: [PATCH] Add Brigadier Command API
 
 
 diff --git a/build.gradle.kts b/build.gradle.kts
-index 639651972fddce4dff63a0f0a7e566a15b9e2dd6..b96791c432ae19907ac9c8737e9dae10342b11ab 100644
+index e827ee211e3c65dc68ac5867fd8476639df63645..3a4bb45ccfe0be40dae539b574bfb4b4cc0f681b 100644
 --- a/build.gradle.kts
 +++ b/build.gradle.kts
-@@ -50,6 +50,7 @@ dependencies {
+@@ -51,6 +51,7 @@ dependencies {
      implementation("org.ow2.asm:asm:9.4")
      implementation("org.ow2.asm:asm-commons:9.4")
      // Paper end
@@ -1345,7 +1345,7 @@ index 0000000000000000000000000000000000000000..ced8b19a02be4952784b7dbde45f01d6
 +    }
 +}
 diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
-index 884902cb7f86c0b56594ccafc7d05c6c7a23ab53..121218f0753f380954298cbb156430299f380878 100644
+index 4863d9f21f0a0f11974be85360edc587ffd7eab3..2c49aa6a57c634c6f5792e4342984f5b327fdce4 100644
 --- a/src/main/java/org/bukkit/Bukkit.java
 +++ b/src/main/java/org/bukkit/Bukkit.java
 @@ -1043,6 +1043,52 @@ public final class Bukkit {
@@ -1402,7 +1402,7 @@ index 884902cb7f86c0b56594ccafc7d05c6c7a23ab53..121218f0753f380954298cbb15643029
       * Writes loaded players to disk.
       */
 diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
-index 75ad441a0186f6f92d840c7647f2f3bf937613f4..e5dd6ae9ca79339d9a0d1b44abc3556d6b8e8e28 100644
+index 929859b9de0856e7686abbaa8ccdccd99341f0ba..2e7ee9cbbc57e1fe127f3491dfea859043347cc0 100644
 --- a/src/main/java/org/bukkit/Server.java
 +++ b/src/main/java/org/bukkit/Server.java
 @@ -885,6 +885,44 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
@@ -1519,7 +1519,7 @@ index 36da67bf9fda415c302afcf0e346c72e664fa6a3..0f4469db880f22406928cc26edcca378
 +    // Daydream end - Add Brigadier API
  }
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index 9240ea09206461d61cc08d4252e8507555bf41cf..210758be9306745c4ed5b307ece98496e50151de 100644
+index 9130a57cf6ef5d543703a03aeed07aa17b1ab7e8..229abc43157d230f1ffaf5db9ee1a1319827659a 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
 @@ -395,6 +395,16 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM

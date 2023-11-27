@@ -83,6 +83,14 @@ paperweight {
             apiOutputDir.set(layout.projectDirectory.dir("Daydream-API"))
         }
 
+        patchTasks {
+            register("generatedApi") {
+                isBareDirectory.set(true)
+                upstreamDirPath.set("paper-api-generator/generated")
+                outputDir.set(layout.projectDirectory.dir("paper-api-generator/generated"))
+            }
+        }
+
         reobfPackagesToFix.add("moe.caramel")
     }
 }

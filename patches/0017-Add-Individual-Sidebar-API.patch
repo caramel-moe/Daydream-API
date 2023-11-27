@@ -231,10 +231,10 @@ index 0000000000000000000000000000000000000000..737e6abd8c1c1369e2f15976f97e9ac2
 +}
 diff --git a/src/main/java/moe/caramel/daydream/sidebar/SidebarProcessor.java b/src/main/java/moe/caramel/daydream/sidebar/SidebarProcessor.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..ebf6498ddd8d8b4dbd666dfc8286a5845da72a1e
+index 0000000000000000000000000000000000000000..545cafad82bc93cebe17e59c1f125ce579354b1a
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/sidebar/SidebarProcessor.java
-@@ -0,0 +1,87 @@
+@@ -0,0 +1,85 @@
 +package moe.caramel.daydream.sidebar;
 +
 +import org.bukkit.entity.Player;
@@ -252,7 +252,7 @@ index 0000000000000000000000000000000000000000..ebf6498ddd8d8b4dbd666dfc8286a584
 +     * @param decorator 사용자 지정 {@link SidebarDecorator} 데코레이터
 +     * @param holder 대상 플레이어
 +     * @param updateInterval 사이드바 업데이트 시간(Tick), 0 이하일 수 없습니다.
-+     * @return 다른 플러그인 또는 다른 {@link org.bukkit.scoreboard.Objective}에서 이미 사용하고 있는 경우 {@code false}를 반환
++     * @return 이미 사용하고 있는 경우 {@code false}를 반환
 +     */
 +    boolean activate(final @NotNull Plugin owner, final @NotNull SidebarDecorator decorator, final @NotNull Player holder, final long updateInterval);
 +
@@ -276,7 +276,6 @@ index 0000000000000000000000000000000000000000..ebf6498ddd8d8b4dbd666dfc8286a584
 +
 +    /**
 +     * 특정 플레이어의 개인 사이드바 기능 사용 여부를 가져옵니다.
-+     * <br>다른 플러그인이 소유하고 있더라도 {@code true}를 반환합니다.
 +     *
 +     * @param holder 대상 플레이어
 +     * @return 개인 사이드바 기능 사용 여부
@@ -287,7 +286,6 @@ index 0000000000000000000000000000000000000000..ebf6498ddd8d8b4dbd666dfc8286a584
 +
 +    /**
 +     * 특정 플레이어의 개인 사이드바 기능 사용 여부를 가져옵니다.
-+     * <br>다른 플러그인이 소유하고 있더라도 {@code true}를 반환합니다.
 +     *
 +     * @param uuid 대상 플레이어의 UUID
 +     * @return 개인 사이드바 기능 사용 여부
