@@ -1,0 +1,27 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: LemonCaramel <admin@caramel.moe>
+Date: Wed, 29 Nov 2023 21:31:21 +0900
+Subject: [PATCH] Add ServerShutdownEvent
+
+
+diff --git a/src/main/java/moe/caramel/daydream/event/server/ServerShutdownEvent.java b/src/main/java/moe/caramel/daydream/event/server/ServerShutdownEvent.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..64ca59fa0a8f441e512bda49c0a028b565ce3e02
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/event/server/ServerShutdownEvent.java
+@@ -0,0 +1,15 @@
++package moe.caramel.daydream.event.server;
++
++import org.bukkit.event.HandlerList;
++import org.bukkit.event.server.ServerEvent;
++import org.jetbrains.annotations.NotNull;
++
++/**
++ * 서버가 종료될 때 호출됩니다.
++ */
++public final class ServerShutdownEvent extends ServerEvent {
++
++    private static final HandlerList HANDLER_LIST = new HandlerList();
++    public @NotNull HandlerList getHandlers() { return HANDLER_LIST; }
++    public static @NotNull HandlerList getHandlerList() { return HANDLER_LIST; }
++}
