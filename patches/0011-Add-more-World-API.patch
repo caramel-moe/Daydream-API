@@ -5,10 +5,10 @@ Subject: [PATCH] Add more World API
 
 
 diff --git a/src/main/java/org/bukkit/World.java b/src/main/java/org/bukkit/World.java
-index f72f0f0f8eee95f95adc969d55ba7de82ee30e2a..22ced78875d6b8331ef12f9959d550afad8bc7ff 100644
+index 567a36a4887da8994c9170e2885aa8cc357efa0c..7e741dc01079fad85455e9637766fb418b35ffa7 100644
 --- a/src/main/java/org/bukkit/World.java
 +++ b/src/main/java/org/bukkit/World.java
-@@ -151,6 +151,16 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
+@@ -175,6 +175,16 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      @NotNull
      public Block getHighestBlockAt(@NotNull Location location);
  
@@ -25,7 +25,7 @@ index f72f0f0f8eee95f95adc969d55ba7de82ee30e2a..22ced78875d6b8331ef12f9959d550af
      // Paper start - Add heightmap API
      /**
       * Returns the highest block's y-coordinate at the specified block coordinates that match the specified heightmap's conditions.
-@@ -3293,6 +3303,38 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
+@@ -3317,6 +3327,38 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
       */
      void playSound(@NotNull Location location, @NotNull String sound, @NotNull SoundCategory category, float volume, float pitch);
  
