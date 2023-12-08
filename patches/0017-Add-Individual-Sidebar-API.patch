@@ -6,16 +6,14 @@ Subject: [PATCH] Add Individual Sidebar API
 
 diff --git a/src/main/java/moe/caramel/daydream/sidebar/EntryBuilder.java b/src/main/java/moe/caramel/daydream/sidebar/EntryBuilder.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..5d41bf0d0c567b3b1b2c2814fb334260aab3ff3e
+index 0000000000000000000000000000000000000000..bb35693c75c94e640765191de196f6f612704136
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/sidebar/EntryBuilder.java
-@@ -0,0 +1,181 @@
+@@ -0,0 +1,165 @@
 +package moe.caramel.daydream.sidebar;
 +
-+import static net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer.legacySection;
-+import static org.bukkit.ChatColor.translateAlternateColorCodes;
-+import com.google.common.base.Preconditions;
 +import net.kyori.adventure.text.Component;
++import net.kyori.adventure.text.minimessage.MiniMessage;
 +import org.jetbrains.annotations.ApiStatus;
 +import org.jetbrains.annotations.NotNull;
 +import org.jetbrains.annotations.Nullable;
@@ -29,11 +27,10 @@ index 0000000000000000000000000000000000000000..5d41bf0d0c567b3b1b2c2814fb334260
 +public final class EntryBuilder {
 +
 +    public static final int MAX_ENTRY_SIZE = 15;
-+    private final List<Entry> entries = new ArrayList<>();
++    private final List<Entry> entries = new ArrayList<>(MAX_ENTRY_SIZE);
++    private EntryBuilder() { }
 +
 +    // ==============================================
-+
-+    private EntryBuilder() { }
 +
 +    /**
 +     * Entry 빌더를 생성합니다.
@@ -45,7 +42,14 @@ index 0000000000000000000000000000000000000000..5d41bf0d0c567b3b1b2c2814fb334260
 +        return new EntryBuilder();
 +    }
 +
-+    // ==============================================
++    /**
++     * 현재 {@link Entry} 리스트의 크기를 가져옵니다.
++     *
++     * @return 현재 {@link Entry} 리스트의 크기
++     */
++    public int size() {
++        return (this.entries.size());
++    }
 +
 +    /**
 +     * {@link Entry} 리스트에 빈 줄을 추가합니다.
@@ -54,94 +58,67 @@ index 0000000000000000000000000000000000000000..5d41bf0d0c567b3b1b2c2814fb334260
 +     */
 +    @NotNull
 +    public EntryBuilder blank() {
-+        return next(Component.empty());
++        return blank(null);
++    }
++
++    /**
++     * {@link Entry} 리스트에 빈 줄을 추가합니다.
++     *
++     * @param format 점수 표기 방식
++     * @return this
++     */
++    @NotNull
++    public EntryBuilder blank(final @Nullable NumberFormat format) {
++        return next(Component.empty(), format);
 +    }
 +
 +    /**
 +     * {@link Entry} 리스트에 제공한 텍스트를 추가합니다.
 +     *
-+     * @param name 리스트에 추가할 텍스트
++     * @param value 리스트에 추가할 텍스트
 +     * @return this
 +     */
 +    @NotNull
-+    public EntryBuilder next(final @NotNull String name) {
-+        return next(name, null);
++    public EntryBuilder next(final @NotNull String value) {
++        return next(value, null);
 +    }
 +
 +    /**
 +     * {@link Entry} 리스트에 제공한 텍스트를 추가합니다.
 +     *
-+     * @param name 리스트에 추가할 텍스트
-+     * @param callback {@link Entry}가 추가되거나 제거될 때 호출되는 콜백
++     * @param value 리스트에 추가할 텍스트
++     * @param format 점수 표기 방식
 +     * @return this
 +     */
 +    @NotNull
-+    public EntryBuilder next(final @NotNull String name, final @Nullable EntryCallback callback) {
-+        return next(legacySection().deserialize(translateAlternateColorCodes('&', name)), callback);
++    public EntryBuilder next(final @NotNull String value, final @Nullable NumberFormat format) {
++        return next(MiniMessage.miniMessage().deserialize(value), format);
 +    }
 +
 +    /**
 +     * {@link Entry} 리스트에 제공한 텍스트를 추가합니다.
 +     *
-+     * @param name 리스트에 추가할 텍스트
++     * @param value 리스트에 추가할 텍스트
 +     * @return this
 +     */
 +    @NotNull
-+    public EntryBuilder next(final @NotNull Component name) {
-+        return next(name, null);
++    public EntryBuilder next(final @NotNull Component value) {
++        return next(value, null);
 +    }
 +
 +    /**
 +     * {@link Entry} 리스트에 제공한 텍스트를 추가합니다.
 +     *
-+     * @param name 리스트에 추가할 텍스트
-+     * @param callback {@link Entry}가 추가되거나 제거될 때 호출되는 콜백
++     * @param value 리스트에 추가할 텍스트
++     * @param format 점수 표기 방식
 +     * @return this
 +     */
 +    @NotNull
-+    public EntryBuilder next(final @NotNull Component name, final @Nullable EntryCallback callback) {
-+        Preconditions.checkArgument(entries.size() < MAX_ENTRY_SIZE, "Entry 목록의 크기는 " + MAX_ENTRY_SIZE + "를 넘을 수 없습니다."); // TODO ?..
-+        this.entries.add(new Entry(name, callback));
++    public EntryBuilder next(final @NotNull Component value, final @Nullable NumberFormat format) {
++        if (entries.size() < MAX_ENTRY_SIZE) {
++            this.entries.add(new Entry(value, format));
++        }
 +        return this;
-+    }
-+
-+    // ==============================================
-+
-+    /**
-+     * 현재 {@link Entry} 리스트의 크기를 가져옵니다.
-+     *
-+     * @return 현재 {@link Entry} 리스트의 크기
-+     */
-+    public int getSize() {
-+        return (this.entries.size());
-+    }
-+
-+    /**
-+     * {@link Entry} 리스트를 가져옵니다.
-+     *
-+     * @return {@link Entry} 리스트
-+     */
-+    @NotNull
-+    public List<Entry> build() {
-+        return entries;
-+    }
-+
-+    // ==============================================
-+
-+    /**
-+     * {@link Entry}에 동작이 취해졌을 때 호출되는 콜백
-+     */
-+    @FunctionalInterface
-+    public interface EntryCallback {
-+
-+        /**
-+         * {@link Entry}가 추가되거나 제거되었을 때 수행할 동작을 작성합니다.
-+         *
-+         * @param entry 대상 {@link Entry}
-+         * @param remove 제거된 경우 {@code true}
-+         */
-+        @ApiStatus.Experimental
-+        void callback(final @NotNull Entry entry, final boolean remove);
 +    }
 +
 +    // ==============================================
@@ -151,29 +128,29 @@ index 0000000000000000000000000000000000000000..5d41bf0d0c567b3b1b2c2814fb334260
 +     */
 +    public static final class Entry {
 +
-+        private final Component name;
-+        private final EntryCallback callback;
++        private final Component value;
++        private final NumberFormat format;
 +
-+        Entry(final @NotNull Component name, final @Nullable EntryCallback callback) {
-+            this.name = name;
-+            this.callback = callback;
++        Entry(final @NotNull Component value, final @Nullable NumberFormat callback) {
++            this.value = value;
++            this.format = callback;
 +        }
 +
 +        @NotNull
-+        public Component getName() {
-+            return name;
++        public Component value() {
++            return value;
 +        }
 +
 +        @Nullable
-+        public EntryCallback getCallback() {
-+            return callback;
++        public NumberFormat numberFormat() {
++            return format;
 +        }
 +
 +        @Override
 +        public String toString() {
 +            return "Entry{" +
-+                   "name=" + name +
-+                   ", callback=" + callback +
++                   "value=" + value +
++                   ", format=" + format +
 +                   '}';
 +        }
 +
@@ -182,21 +159,139 @@ index 0000000000000000000000000000000000000000..5d41bf0d0c567b3b1b2c2814fb334260
 +            if (this == o) return true;
 +            if (o == null || getClass() != o.getClass()) return false;
 +            final Entry entry = (Entry) o;
-+            return name.equals(entry.name) && Objects.equals(callback, entry.callback);
++            return value.equals(entry.value) && Objects.equals(format, entry.format);
 +        }
 +
 +        @Override
 +        public int hashCode() {
-+            return Objects.hash(name, callback);
++            return Objects.hash(value, format);
++        }
++    }
++
++    // ==============================================
++
++    @NotNull @ApiStatus.Internal
++    public List<Entry> entries() {
++        return entries;
++    }
++}
+diff --git a/src/main/java/moe/caramel/daydream/sidebar/NumberFormat.java b/src/main/java/moe/caramel/daydream/sidebar/NumberFormat.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..10b286cf8d01ba6445e5382feb08559199af0632
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/sidebar/NumberFormat.java
+@@ -0,0 +1,105 @@
++package moe.caramel.daydream.sidebar;
++
++import net.kyori.adventure.text.Component;
++import net.kyori.adventure.text.format.Style;
++import net.kyori.adventure.text.minimessage.MiniMessage;
++import org.jetbrains.annotations.ApiStatus;
++import org.jetbrains.annotations.NotNull;
++import java.util.Objects;
++
++/**
++ * 점수 표기 방식
++ */
++public sealed interface NumberFormat permits NumberFormat.Blank, NumberFormat.Styled, NumberFormat.Fixed {
++
++    /**
++     * 점수를 표기하지 않음
++     */
++    @NotNull
++    static NumberFormat blank() {
++        return Blank.INSTANCE;
++    }
++
++    /**
++     * 점수의 표기 스타일만 변경
++     *
++     * @param style 표기 스타일
++     */
++    @NotNull
++    static NumberFormat styled(final @NotNull Style style) {
++        return new Styled(style);
++    }
++
++    /**
++     * 점수 위치에 고정된 문구를 표시
++     *
++     * @param text 표시할 문구
++     */
++    @NotNull
++    static NumberFormat fixed(final @NotNull String text) {
++        return fixed(MiniMessage.miniMessage().deserialize(text));
++    }
++
++    /**
++     * 점수 위치에 고정된 문구를 표시
++     *
++     * @param text 표시할 문구
++     */
++    @NotNull
++    static NumberFormat fixed(final @NotNull Component text) {
++        return new Fixed(text);
++    }
++
++    // ==============================================
++
++    final class Blank implements NumberFormat {
++        private static final Blank INSTANCE = new Blank();
++        private Blank() { }
++    }
++
++    final class Styled implements NumberFormat {
++        private final Style style;
++        private Styled(final @NotNull Style style) { this.style = style; }
++
++        @NotNull @ApiStatus.Internal
++        public Style style() {
++            return style;
++        }
++
++        @Override
++        public boolean equals(final Object o) {
++            if (this == o) return true;
++            if (o == null || getClass() != o.getClass()) return false;
++            final Styled styled = (Styled) o;
++            return Objects.equals(style, styled.style);
++        }
++
++        @Override
++        public int hashCode() {
++            return Objects.hash(style);
++        }
++    }
++
++    final class Fixed implements NumberFormat {
++        private final Component text;
++        private Fixed(final @NotNull Component text) { this.text = text; }
++
++        @NotNull @ApiStatus.Internal
++        public Component text() {
++            return text;
++        }
++
++        @Override
++        public boolean equals(final Object o) {
++            if (this == o) return true;
++            if (o == null || getClass() != o.getClass()) return false;
++            final Fixed fixed = (Fixed) o;
++            return Objects.equals(text, fixed.text);
++        }
++
++        @Override
++        public int hashCode() {
++            return Objects.hash(text);
 +        }
 +    }
 +}
 diff --git a/src/main/java/moe/caramel/daydream/sidebar/SidebarDecorator.java b/src/main/java/moe/caramel/daydream/sidebar/SidebarDecorator.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..737e6abd8c1c1369e2f15976f97e9ac2a4315867
+index 0000000000000000000000000000000000000000..98bc1e8c3a8ef9091b528232723089152d7b133b
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/sidebar/SidebarDecorator.java
-@@ -0,0 +1,32 @@
+@@ -0,0 +1,42 @@
 +package moe.caramel.daydream.sidebar;
 +
 +import net.kyori.adventure.text.Component;
@@ -205,9 +300,20 @@ index 0000000000000000000000000000000000000000..737e6abd8c1c1369e2f15976f97e9ac2
 +import org.jetbrains.annotations.Nullable;
 +
 +/**
-+ * 플레이어별 사이드바 데코레이터
++ * 사이드바 데코레이터
 + */
 +public interface SidebarDecorator {
++
++    /**
++     * 사이드바 글로벌 포맷을 가져옵니다.
++     *
++     * @param player 대상 플레이어
++     * @return 사이드바 글로벌 포맷
++     */
++    @Nullable
++    default NumberFormat globalFormat(final @NotNull Player player) {
++        return null;
++    }
 +
 +    /**
 +     * 플레이어별 사이드바에 표시할 제목을 가져옵니다.
@@ -215,19 +321,18 @@ index 0000000000000000000000000000000000000000..737e6abd8c1c1369e2f15976f97e9ac2
 +     * @param player 대상 플레이어
 +     * @return 사이드바에 표시할 제목
 +     */
-+    @Nullable
-+    Component getTitle(final @NotNull Player player);
++    @NotNull
++    Component title(final @NotNull Player player);
 +
 +    /**
-+     * 플레이어별 사이드바에 표시할 {@link moe.caramel.daydream.sidebar.EntryBuilder.Entry} 리스트를 가져옵니다.
-+     * <br>
-+     * {@code null}을 반환하는 경우 리스트를 업데이트하지 않습니다.
++     * 플레이어별 사이드바에 표시할 항목 리스트를 가져옵니다.
++     * <p>{@code null}을 반환하는 경우 리스트를 업데이트하지 않습니다.</p>
 +     *
 +     * @param player 대상 플레이어
-+     * @return 사이드바에 표시할 {@link moe.caramel.daydream.sidebar.EntryBuilder.Entry} 리스트
++     * @return 사이드바에 표시할 항목 리스트
 +     */
 +    @Nullable
-+    EntryBuilder getEntries(final @NotNull Player player);
++    EntryBuilder entries(final @NotNull Player player);
 +}
 diff --git a/src/main/java/moe/caramel/daydream/sidebar/SidebarProcessor.java b/src/main/java/moe/caramel/daydream/sidebar/SidebarProcessor.java
 new file mode 100644
@@ -321,7 +426,7 @@ index 0000000000000000000000000000000000000000..545cafad82bc93cebe17e59c1f125ce5
 +    Set<UUID> trackedPlayers();
 +}
 diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
-index d8beba2e84977c63e58b773f43b89178280aa1f1..10e5c975aa083b9192adb7a3b12a4d2401f5fd3c 100644
+index 30aec2fbcd059454005cc52f550ac36dc4be1989..b9c7a9150fb8b12e14a21050686ef6398b5eace0 100644
 --- a/src/main/java/org/bukkit/Bukkit.java
 +++ b/src/main/java/org/bukkit/Bukkit.java
 @@ -2901,6 +2901,18 @@ public final class Bukkit {
@@ -344,7 +449,7 @@ index d8beba2e84977c63e58b773f43b89178280aa1f1..10e5c975aa083b9192adb7a3b12a4d24
      public static Server.Spigot spigot() {
          return server.spigot();
 diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
-index cc88db86eca83a3e18144bc59c64f8d4984572a8..aefff142acb61839eab3b968713f5a140ccd4f2e 100644
+index 435c84785efc2051563f1dc727201ee8d4624373..8b795610f308e0f7bc5f3a7be004ff1f83512306 100644
 --- a/src/main/java/org/bukkit/Server.java
 +++ b/src/main/java/org/bukkit/Server.java
 @@ -2542,4 +2542,14 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi

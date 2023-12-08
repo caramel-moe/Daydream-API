@@ -5,14 +5,14 @@ Subject: [PATCH] Add Brigadier Command API
 
 
 diff --git a/build.gradle.kts b/build.gradle.kts
-index e827ee211e3c65dc68ac5867fd8476639df63645..3a4bb45ccfe0be40dae539b574bfb4b4cc0f681b 100644
+index e827ee211e3c65dc68ac5867fd8476639df63645..4629e17d2af492d78581736bc390e5cb30386990 100644
 --- a/build.gradle.kts
 +++ b/build.gradle.kts
 @@ -51,6 +51,7 @@ dependencies {
      implementation("org.ow2.asm:asm:9.4")
      implementation("org.ow2.asm:asm-commons:9.4")
      // Paper end
-+    api("com.mojang:brigadier:1.1.8") // Daydream - Add Brigadier Command API
++    api("com.mojang:brigadier:1.2.9") // Daydream - Add Brigadier Command API
  
      api("org.apache.maven:maven-resolver-provider:3.8.5")
      compileOnly("org.apache.maven.resolver:maven-resolver-connector-basic:1.7.3")
@@ -413,10 +413,10 @@ index 0000000000000000000000000000000000000000..7d4776c59b1ed9f5eadb9188cd2430e4
 +}
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/Arguments.java b/src/main/java/moe/caramel/daydream/brigadier/Arguments.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..43a4c036d627bf92d7ca7c273886a6e84cf19eff
+index 0000000000000000000000000000000000000000..abf12ad7215553b85709c39bad0292b0b9d0d51b
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/brigadier/Arguments.java
-@@ -0,0 +1,301 @@
+@@ -0,0 +1,309 @@
 +package moe.caramel.daydream.brigadier;
 +
 +import static moe.caramel.daydream.brigadier.BrigadierService.SERVICE;
@@ -427,6 +427,7 @@ index 0000000000000000000000000000000000000000..43a4c036d627bf92d7ca7c273886a6e8
 +import moe.caramel.daydream.util.NumberRange;
 +import net.kyori.adventure.nbt.api.BinaryTagHolder;
 +import net.kyori.adventure.text.Component;
++import net.kyori.adventure.text.format.Style;
 +import net.kyori.adventure.text.format.TextColor;
 +import org.bukkit.Axis;
 +import org.bukkit.GameMode;
@@ -530,6 +531,13 @@ index 0000000000000000000000000000000000000000..43a4c036d627bf92d7ca7c273886a6e8
 +     */
 +    @NotNull
 +    public static final SimpleArgument<Component> COMPONENT = SERVICE.getArgument("component");
++
++    /**
++     * Example: {"bold": true}
++     * @since Minecraft 1.20.3
++     */
++    @NotNull
++    public static final SimpleArgument<Style> STYLE = SERVICE.getArgument("style");
 +
 +    /**
 +     * Example: "Hello world!", "foo", "@e", "Hello @p :)"
@@ -1023,10 +1031,10 @@ index 0000000000000000000000000000000000000000..d15b2296a84dfbd5d757dca219b28974
 +}
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/argument/ScoreHolderArgument.java b/src/main/java/moe/caramel/daydream/brigadier/argument/ScoreHolderArgument.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..87556d48b160969b05a75166a24859463e4032ed
+index 0000000000000000000000000000000000000000..40f0fed2a521304728acd76ce1a01fbb03035c0e
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/brigadier/argument/ScoreHolderArgument.java
-@@ -0,0 +1,27 @@
+@@ -0,0 +1,28 @@
 +package moe.caramel.daydream.brigadier.argument;
 +
 +import com.mojang.brigadier.arguments.ArgumentType;
@@ -1034,6 +1042,7 @@ index 0000000000000000000000000000000000000000..87556d48b160969b05a75166a2485946
 +import com.mojang.brigadier.exceptions.CommandSyntaxException;
 +import com.mojang.brigadier.suggestion.SuggestionProvider;
 +import io.papermc.paper.command.brigadier.CommandSourceStack;
++import moe.caramel.daydream.brigadier.data.ScoreHolder;
 +import org.jetbrains.annotations.NotNull;
 +import java.util.Collection;
 +import java.util.function.Supplier;
@@ -1044,13 +1053,13 @@ index 0000000000000000000000000000000000000000..87556d48b160969b05a75166a2485946
 +
 +    @NotNull ArgumentType<?> getHolders();
 +
-+    @NotNull String getName(final @NotNull CommandContext<? extends CommandSourceStack> context, @NotNull String name) throws CommandSyntaxException;
++    @NotNull ScoreHolder getName(final @NotNull CommandContext<? extends CommandSourceStack> context, @NotNull String name) throws CommandSyntaxException;
 +
-+    @NotNull Collection<String> getNames(final @NotNull CommandContext<? extends CommandSourceStack> context, @NotNull String name) throws CommandSyntaxException;
++    @NotNull Collection<ScoreHolder> getNames(final @NotNull CommandContext<? extends CommandSourceStack> context, @NotNull String name) throws CommandSyntaxException;
 +
-+    @NotNull Collection<String> getNamesWithDefaultWildcard(final @NotNull CommandContext<? extends CommandSourceStack> context, @NotNull String name) throws CommandSyntaxException;
++    @NotNull Collection<ScoreHolder> getNamesWithDefaultWildcard(final @NotNull CommandContext<? extends CommandSourceStack> context, @NotNull String name) throws CommandSyntaxException;
 +
-+    @NotNull Collection<String> getNamesSupplier(final @NotNull CommandContext<? extends CommandSourceStack> context, @NotNull String name, @NotNull Supplier<Collection<String>> players) throws CommandSyntaxException;
++    @NotNull Collection<ScoreHolder> getNamesSupplier(final @NotNull CommandContext<? extends CommandSourceStack> context, @NotNull String name, @NotNull Supplier<Collection<String>> players) throws CommandSyntaxException;
 +
 +    @NotNull SuggestionProvider<CommandSourceStack> getSuggestion();
 +}
@@ -1164,6 +1173,29 @@ index 0000000000000000000000000000000000000000..911385fe601788cbc518d3197fba2c1c
 +    boolean isYRelative();
 +
 +    boolean isZRelative();
++}
+diff --git a/src/main/java/moe/caramel/daydream/brigadier/data/ScoreHolder.java b/src/main/java/moe/caramel/daydream/brigadier/data/ScoreHolder.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..c73176c671dce3164044ee1d20aa4dd87148190b
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/brigadier/data/ScoreHolder.java
+@@ -0,0 +1,17 @@
++package moe.caramel.daydream.brigadier.data;
++
++import net.kyori.adventure.text.Component;
++import org.jetbrains.annotations.NotNull;
++import org.jetbrains.annotations.Nullable;
++
++public interface ScoreHolder {
++
++    @NotNull
++    String scoreboardName();
++
++    @Nullable
++    Component displayName();
++
++    @NotNull
++    Component feedbackDisplayName();
 +}
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/suggestion/SimpleSuggestion.java b/src/main/java/moe/caramel/daydream/brigadier/suggestion/SimpleSuggestion.java
 new file mode 100644
@@ -1519,10 +1551,10 @@ index 36da67bf9fda415c302afcf0e346c72e664fa6a3..0f4469db880f22406928cc26edcca378
 +    // Daydream end - Add Brigadier API
  }
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index 9130a57cf6ef5d543703a03aeed07aa17b1ab7e8..229abc43157d230f1ffaf5db9ee1a1319827659a 100644
+index 962283d336e6d53941cebbc3a995d403ff989f66..9d76747d18910ef11085c4b23d21ff091e2698ab 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
-@@ -395,6 +395,16 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+@@ -396,6 +396,16 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
       */
      public boolean performCommand(@NotNull String command);
  

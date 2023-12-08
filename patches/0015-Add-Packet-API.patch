@@ -337,10 +337,10 @@ index 0000000000000000000000000000000000000000..637733777edce64f1ed852c676f41b55
 +}
 diff --git a/src/main/java/moe/caramel/daydream/network/packet/GameEventPacket.java b/src/main/java/moe/caramel/daydream/network/packet/GameEventPacket.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..091f30773662c104a6e5017209febee20deccee9
+index 0000000000000000000000000000000000000000..16c79821d5a702cfa2f9ffd3b57a49c9e0ba99a1
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/network/packet/GameEventPacket.java
-@@ -0,0 +1,31 @@
+@@ -0,0 +1,33 @@
 +package moe.caramel.daydream.network.packet;
 +
 +import moe.caramel.daydream.network.Packet;
@@ -360,6 +360,8 @@ index 0000000000000000000000000000000000000000..091f30773662c104a6e5017209febee2
 +    int PUFFER_FISH_STING = 9;
 +    int GUARDIAN_ELDER_EFFECT = 10;
 +    int IMMEDIATE_RESPAWN = 11;
++    int LIMITED_CRAFTING = 12;
++    int LEVEL_CHUNKS_LOAD_START = 13;
 +
 +    /**
 +     * 패킷을 생성합니다.
@@ -1046,10 +1048,10 @@ index 7e741dc01079fad85455e9637766fb418b35ffa7..ebc79eefc33b7d00607b9fa39bbec8ff
       * Returns a list of entities within a bounding box centered around a
       * Location.
 diff --git a/src/main/java/org/bukkit/entity/Entity.java b/src/main/java/org/bukkit/entity/Entity.java
-index 9e3cb75536ae260dc898ab9dafbc1d98398782bc..557cde021cf0891ce2c078de9904642bcffd7825 100644
+index 1d0fd7ff8449f815a7d980af0b378181ea8bf8d8..d1fb056d09cff7cbe5857dab9e15f861a74b1db5 100644
 --- a/src/main/java/org/bukkit/entity/Entity.java
 +++ b/src/main/java/org/bukkit/entity/Entity.java
-@@ -481,6 +481,19 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
+@@ -486,6 +486,19 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
      @NotNull
      public UUID getUniqueId();
  
@@ -1070,10 +1072,10 @@ index 9e3cb75536ae260dc898ab9dafbc1d98398782bc..557cde021cf0891ce2c078de9904642b
       * Gets the amount of ticks this entity has lived for.
       * <p>
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index 9730f9c24ffad3b92e77ba61407933136704cbfd..73c12944ab0508ec7073f6ff31714a1a7603acea 100644
+index e64da01200e336f4f4319fcda65d486554480593..84dc583c6269aeaaa2c856eb4bcec85b8e4f0f76 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
-@@ -415,6 +415,16 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+@@ -416,6 +416,16 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      public io.papermc.paper.command.brigadier.CommandSourceStack getCommandSource();
      // Daydream end - Add Brigadier API
  
@@ -1090,7 +1092,7 @@ index 9730f9c24ffad3b92e77ba61407933136704cbfd..73c12944ab0508ec7073f6ff31714a1a
      /**
       * Returns true if the entity is supported by a block.
       *
-@@ -966,6 +976,22 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+@@ -967,6 +977,22 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
       * @param buf bytebuf 오브젝트
       */
      public void sendCustomPayload(@NotNull org.bukkit.NamespacedKey channel, @NotNull io.netty.buffer.ByteBuf buf);

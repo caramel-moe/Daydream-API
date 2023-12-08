@@ -6,10 +6,10 @@ Subject: [PATCH] Add more Advancement API
 
 diff --git a/src/main/java/moe/caramel/daydream/advancement/AdvancementBuilder.java b/src/main/java/moe/caramel/daydream/advancement/AdvancementBuilder.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..1677ae58bca93ded040f1f0f759e36aa522b5ac0
+index 0000000000000000000000000000000000000000..f08bfb0c0aca287f23cc4f9f758dc2761aea25a4
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/advancement/AdvancementBuilder.java
-@@ -0,0 +1,168 @@
+@@ -0,0 +1,185 @@
 +package moe.caramel.daydream.advancement;
 +
 +import io.papermc.paper.advancement.AdvancementDisplay;
@@ -20,6 +20,8 @@ index 0000000000000000000000000000000000000000..1677ae58bca93ded040f1f0f759e36aa
 +import org.bukkit.inventory.ItemStack;
 +import org.jetbrains.annotations.NotNull;
 +import org.jetbrains.annotations.Nullable;
++import java.util.ArrayList;
++import java.util.List;
 +
 +/**
 + * 발전 과제 빌더
@@ -158,7 +160,22 @@ index 0000000000000000000000000000000000000000..1677ae58bca93ded040f1f0f759e36aa
 +     * @return this
 +     */
 +    @NotNull
-+    AdvancementBuilder requirements(@NotNull String[][] requirements);
++    default AdvancementBuilder requirements(@NotNull String[][] requirements) {
++        final List<List<String>> list = new ArrayList<>();
++        for (final String[] arr : requirements) {
++            list.add(List.of(arr));
++        }
++        return requirements(list);
++    }
++
++    /**
++     * 플레이어가 발전 과제를 완료하는 데 필요한 조건을 설정합니다.
++     *
++     * @param requirements 필요한 조건
++     * @return this
++     */
++    @NotNull
++    AdvancementBuilder requirements(@NotNull List<List<String>> requirements);
 +
 +    /**
 +     * 이 발전 과제에 카운트를 사용합니다. 기준 설정이 필요하지 않습니다.
@@ -456,10 +473,10 @@ index f9bc179da071e7bd57cefc50d6763317fb643b74..b0f7bd0bdc11123350a1faa3e3f9c6da
 +    // Daydream end - Add more Advancement API
  }
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index 0e3ff75327b10bde82771775892f16d27f20c1d4..6311bea6568e6d8b2977d7573c013deefbd8a5ab 100644
+index 3437b56ff50e89a54d3c063baf9c645e9a0526dc..e7f0530e450e82fd7b59d3cc3cd4872ae756d0bf 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
-@@ -2719,6 +2719,36 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+@@ -2767,6 +2767,36 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      @NotNull
      public AdvancementProgress getAdvancementProgress(@NotNull Advancement advancement);
  

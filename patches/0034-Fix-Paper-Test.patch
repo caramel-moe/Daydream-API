@@ -1,0 +1,145 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: LemonCaramel <admin@caramel.moe>
+Date: Fri, 8 Dec 2023 12:50:58 +0900
+Subject: [PATCH] Fix Paper Test
+
+
+diff --git a/src/main/java/com/destroystokyo/paper/MaterialTags.java b/src/main/java/com/destroystokyo/paper/MaterialTags.java
+index f59151cec84fc0e300a8d759c6d74a804cbd047f..63e0be182cdcd955ce3068b976a62dfa742a4bd5 100644
+--- a/src/main/java/com/destroystokyo/paper/MaterialTags.java
++++ b/src/main/java/com/destroystokyo/paper/MaterialTags.java
+@@ -103,7 +103,7 @@ public class MaterialTags {
+      */
+     public static final MaterialSetTag DOORS = new MaterialSetTag(keyFor("doors"))
+         .endsWith("_DOOR")
+-        .ensureSize("DOORS", 12).lock();
++        .ensureSize("DOORS", 20).lock(); // Daydream - Fix Paper Test
+ 
+     /**
+      * Covers all dyes.
+@@ -317,7 +317,7 @@ public class MaterialTags {
+      */
+     public static final MaterialSetTag SPAWN_EGGS = new MaterialSetTag(keyFor("spawn_eggs"))
+         .endsWith("_SPAWN_EGG")
+-        .ensureSize("SPAWN_EGGS", 77).lock();
++        .ensureSize("SPAWN_EGGS", 78).lock(); // Daydream - Fix Paper Test
+ 
+     /**
+      * Covers all colors of stained glass.
+@@ -338,7 +338,7 @@ public class MaterialTags {
+      */
+     public static final MaterialSetTag TRAPDOORS = new MaterialSetTag(keyFor("trapdoors"))
+         .endsWith("_TRAPDOOR")
+-        .ensureSize("TRAPDOORS", 12).lock();
++        .ensureSize("TRAPDOORS", 20).lock(); // Daydream - Fix Paper Test
+ 
+     /**
+      * Covers all wood variants of doors.
+@@ -346,7 +346,7 @@ public class MaterialTags {
+     public static final MaterialSetTag WOODEN_DOORS = new MaterialSetTag(keyFor("wooden_doors"))
+         .endsWith("_DOOR")
+         .not(Material.IRON_DOOR)
+-        .ensureSize("WOODEN_DOORS", 11).lock();
++        .ensureSize("WOODEN_DOORS", 19).lock(); // Daydream - Fix Paper Test
+ 
+     /**
+      * Covers all wood variants of fences.
+@@ -362,7 +362,7 @@ public class MaterialTags {
+     public static final MaterialSetTag WOODEN_TRAPDOORS = new MaterialSetTag(keyFor("wooden_trapdoors"))
+         .endsWith("_TRAPDOOR")
+         .not(Material.IRON_TRAPDOOR)
+-        .ensureSize("WOODEN_TRAPDOORS", 11).lock();
++        .ensureSize("WOODEN_TRAPDOORS", 19).lock(); // Daydream - Fix Paper Test
+ 
+     /**
+      * Covers the wood variants of gates.
+@@ -592,19 +592,19 @@ public class MaterialTags {
+      * Covers all oxidized copper blocks.
+      */
+     public static final MaterialSetTag OXIDIZED_COPPER_BLOCKS = new MaterialSetTag(keyFor("oxidized_copper_blocks"))
+-        .startsWith("OXIDIZED_").startsWith("WAXED_OXIDIZED_").ensureSize("OXIDIZED_COPPER_BLOCKS", 8).lock();
++        .startsWith("OXIDIZED_").startsWith("WAXED_OXIDIZED_").ensureSize("OXIDIZED_COPPER_BLOCKS", 18).lock(); // Daydream - Fix Paper Test
+ 
+     /**
+      * Covers all weathered copper blocks.
+      */
+     public static final MaterialSetTag WEATHERED_COPPER_BLOCKS = new MaterialSetTag(keyFor("weathered_copper_blocks"))
+-        .startsWith("WEATHERED_").startsWith("WAXED_WEATHERED_").ensureSize("WEATHERED_COPPER_BLOCKS", 8).lock();
++        .startsWith("WEATHERED_").startsWith("WAXED_WEATHERED_").ensureSize("WEATHERED_COPPER_BLOCKS", 18).lock(); // Daydream - Fix Paper Test
+ 
+     /**
+      * Covers all exposed copper blocks.
+      */
+     public static final MaterialSetTag EXPOSED_COPPER_BLOCKS = new MaterialSetTag(keyFor("exposed_copper_blocks"))
+-        .startsWith("EXPOSED_").startsWith("WAXED_EXPOSED_").ensureSize("EXPOSED_COPPER_BLOCKS", 8).lock();
++        .startsWith("EXPOSED_").startsWith("WAXED_EXPOSED_").ensureSize("EXPOSED_COPPER_BLOCKS", 18).lock(); // Daydream - Fix Paper Test
+ 
+     /**
+      * Covers all un-weathered copper blocks.
+@@ -618,7 +618,7 @@ public class MaterialTags {
+      * Combine with other copper-related tags to filter is-waxed or not.
+      */
+     public static final MaterialSetTag WAXED_COPPER_BLOCKS = new MaterialSetTag(keyFor("waxed_copper_blocks"))
+-        .add(m -> m.name().startsWith("WAXED_") && m.name().contains("COPPER")).ensureSize("WAXED_COPPER_BLOCKS", 16).lock();
++        .add(m -> m.name().startsWith("WAXED_") && m.name().contains("COPPER")).ensureSize("WAXED_COPPER_BLOCKS", 36).lock(); // Daydream - Fix Paper Test
+ 
+     /**
+      * Covers all un-waxed copper blocks.
+@@ -626,13 +626,13 @@ public class MaterialTags {
+      * Combine with other copper-related tags to filter is-un-waxed or not.
+      */
+     public static final MaterialSetTag UNWAXED_COPPER_BLOCKS = new MaterialSetTag(keyFor("unwaxed_copper_blocks"))
+-        .contains("CUT_COPPER").endsWith("_COPPER").notContains("WAXED").add(Material.COPPER_BLOCK).not(Material.RAW_COPPER).ensureSize("UNWAXED_COPPER_BLOCKS", 16).lock();
++        .contains("CUT_COPPER").endsWith("_COPPER").notContains("WAXED").add(Material.COPPER_BLOCK).not(Material.RAW_COPPER).ensureSize("UNWAXED_COPPER_BLOCKS", 20).lock(); // Daydream - Fix Paper Test
+ 
+     /**
+      * Covers all copper block variants.
+      */
+     public static final MaterialSetTag COPPER_BLOCKS = new MaterialSetTag(keyFor("copper_blocks"))
+-        .add(WAXED_COPPER_BLOCKS).add(UNWAXED_COPPER_BLOCKS).ensureSize("COPPER_BLOCKS", 32).lock();
++        .add(WAXED_COPPER_BLOCKS).add(UNWAXED_COPPER_BLOCKS).ensureSize("COPPER_BLOCKS", 56).lock(); // Daydream - Fix Paper Test
+ 
+     /**
+      * Covers all weathering/waxed states of the plain copper block.
+@@ -643,7 +643,7 @@ public class MaterialTags {
+         .contains("EXPOSED_COPPER")
+         .contains("COPPER_BLOCK")
+         .not(Material.RAW_COPPER_BLOCK)
+-        .ensureSize("FULL_COPPER_BLOCKS", 8).lock();
++        .ensureSize("FULL_COPPER_BLOCKS", 32).lock(); // Daydream - Fix Paper Test
+ 
+     /**
+      * Covers all weathering/waxed states of the cut copper block.
+diff --git a/src/main/java/io/papermc/paper/world/structure/ConfiguredStructure.java b/src/main/java/io/papermc/paper/world/structure/ConfiguredStructure.java
+index 1e7b53f9bc13dcd5a0a4a40004591e4f850496a0..162dd8c5fc4c1a566d280e278e851d5beb157056 100644
+--- a/src/main/java/io/papermc/paper/world/structure/ConfiguredStructure.java
++++ b/src/main/java/io/papermc/paper/world/structure/ConfiguredStructure.java
+@@ -53,6 +53,7 @@ public final class ConfiguredStructure implements Keyed {
+     public static final Reference<ConfiguredStructure> RUINED_PORTAL_OCEAN = create("ruined_portal_ocean");
+     public static final Reference<ConfiguredStructure> RUINED_PORTAL_NETHER = create("ruined_portal_nether");
+     // public static final Reference<ConfiguredStructure> ANCIENT_CITY = create("ancient_city"); // TODO remove when upstream adds "jigsaw" StructureType
++    public static final Reference<ConfiguredStructure> TRIAL_CHAMBERS = create("trial_chambers"); // Daydream - Fix Paper Test
+ 
+     private final NamespacedKey key;
+     private final StructureType structureType;
+diff --git a/src/main/java/org/bukkit/Effect.java b/src/main/java/org/bukkit/Effect.java
+index 9c18b58d37a2dc677ce7c22c5be833ef95bf7c03..b83cc0362e87624913bc26217e99ee65dafe25ea 100644
+--- a/src/main/java/org/bukkit/Effect.java
++++ b/src/main/java/org/bukkit/Effect.java
+@@ -337,6 +337,16 @@ public enum Effect {
+      * block.
+      */
+     OXIDISED_COPPER_SCRAPE(3005, Type.VISUAL),
++    // Daydream start - Fix Paper Test
++    CRAFTER_CRAFT(1049, Type.SOUND),
++    CRAFTER_FAIL(1050, Type.SOUND),
++    SHOOT_WHITE_SMOKE(2010, Type.VISUAL),
++    GUST_DUST(3010, Type.VISUAL),
++    TRIAL_SPAWNER_SPAWN(3011, Type.VISUAL),
++    TRIAL_SPAWNER_SPAWN_MOB_AT(3012, Type.VISUAL),
++    TRIAL_SPAWNER_DETECT_PLAYER(3013, Type.VISUAL),
++    TRIAL_SPAWNER_EJECT_ITEM_ANIMATION(3014, Type.VISUAL),
++    // Daydream end - Fix Paper Test
+     // Paper start - add missing effects
+     /**
+      * The sound of a wither spawning
