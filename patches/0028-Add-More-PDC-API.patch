@@ -5,13 +5,13 @@ Subject: [PATCH] Add More PDC API
 
 
 diff --git a/src/main/java/org/bukkit/persistence/PersistentDataContainer.java b/src/main/java/org/bukkit/persistence/PersistentDataContainer.java
-index 57609b7793122e135fa0c3b926500849379637b2..d737bc5a220c4738a9f60ab25f17a371dbef219c 100644
+index da59e75267f43581bec6df73dda9f889347617d4..55016c558da0378a7ae0a855a759b2b1daa4ae25 100644
 --- a/src/main/java/org/bukkit/persistence/PersistentDataContainer.java
 +++ b/src/main/java/org/bukkit/persistence/PersistentDataContainer.java
-@@ -198,4 +198,148 @@ public interface PersistentDataContainer {
+@@ -219,4 +219,155 @@ public interface PersistentDataContainer {
          this.readFromBytes(bytes, true);
      }
-     // Paper end
+     // Paper end - byte array serialization
 +
 +    // Daydream start - Add More PDC API
 +    /**
@@ -24,15 +24,15 @@ index 57609b7793122e135fa0c3b926500849379637b2..d737bc5a220c4738a9f60ab25f17a371
 +     *
 +     * @param key the key this value will be stored under
 +     * @param type the type this tag uses
-+     * @param value the value stored in the tag
++     * @param value the value to store in the tag
 +     * @param <T> the generic java type of the tag value
 +     * @param <Z> the generic type of the object to store
 +     *
-+     * @throws NullPointerException if the key is null
-+     * @throws NullPointerException if the type is null
-+     * @throws NullPointerException if the value is null. Removing a tag should
-+     * be done using {@link #remove(NamespacedKey)}
-+     * @throws IllegalArgumentException if no suitable adapter will be found for
++     * @throws IllegalArgumentException if the key is null
++     * @throws IllegalArgumentException if the type is null
++     * @throws IllegalArgumentException if the value is null. Removing a tag should
++     * be done using {@link #remove(String)}
++     * @throws IllegalArgumentException if no suitable adapter was found for
 +     * the {@link PersistentDataType#getPrimitiveType()}
 +     */
 +    <T, Z> void set(@NotNull String key, @NotNull PersistentDataType<T, Z> type, @NotNull Z value);
@@ -41,7 +41,7 @@ index 57609b7793122e135fa0c3b926500849379637b2..d737bc5a220c4738a9f60ab25f17a371
 +     * Returns if the persistent metadata provider has metadata registered
 +     * matching the provided parameters.
 +     * <p>
-+     * This method will only return if the found value has the same primitive
++     * This method will only return true if the found value has the same primitive
 +     * data type as the provided key.
 +     * <p>
 +     * Storing a value using a custom {@link PersistentDataType} implementation
@@ -52,21 +52,40 @@ index 57609b7793122e135fa0c3b926500849379637b2..d737bc5a220c4738a9f60ab25f17a371
 +     * bytes long.
 +     * <p>
 +     * This method is only usable for custom object keys. Overwriting existing
-+     * tags, like the the display name, will not work as the values are stored
++     * tags, like the display name, will not work as the values are stored
 +     * using your namespace.
 +     *
 +     * @param key the key the value is stored under
-+     * @param type the type which primitive storage type has to match the value
++     * @param type the type the primative stored value has to match
 +     * @param <T> the generic type of the stored primitive
 +     * @param <Z> the generic type of the eventually created complex object
 +     *
-+     * @return if a value
++     * @return if a value with the provided key and type exists
 +     *
-+     * @throws NullPointerException if the key to look up is null
-+     * @throws NullPointerException if the type to cast the found object to is
++     * @throws IllegalArgumentException if the key to look up is null
++     * @throws IllegalArgumentException if the type to cast the found object to is
 +     * null
 +     */
 +    <T, Z> boolean has(@NotNull String key, @NotNull PersistentDataType<T, Z> type);
++
++    /**
++     * Returns if the persistent metadata provider has metadata registered matching
++     * the provided parameters.
++     * <p>
++     * This method will return true as long as a value with the given key exists,
++     * regardless of its type.
++     * <p>
++     * This method is only usable for custom object keys. Overwriting existing tags,
++     * like the display name, will not work as the values are stored using your
++     * namespace.
++     *
++     * @param key the key the value is stored under
++     *
++     * @return if a value with the provided key exists
++     *
++     * @throws IllegalArgumentException if the key to look up is null
++     */
++    boolean has(@NotNull String key);
 +
 +    /**
 +     * Returns the metadata value that is stored on the
@@ -80,12 +99,12 @@ index 57609b7793122e135fa0c3b926500849379637b2..d737bc5a220c4738a9f60ab25f17a371
 +     * @return the value or {@code null} if no value was mapped under the given
 +     * value
 +     *
-+     * @throws NullPointerException if the key to look up is null
-+     * @throws NullPointerException if the type to cast the found object to is
++     * @throws IllegalArgumentException if the key to look up is null
++     * @throws IllegalArgumentException if the type to cast the found object to is
 +     * null
-+     * @throws IllegalArgumentException if the value exists under the given key,
-+     * but cannot be access using the given type
-+     * @throws IllegalArgumentException if no suitable adapter will be found for
++     * @throws IllegalArgumentException if a value exists under the given key,
++     * but cannot be accessed using the given type
++     * @throws IllegalArgumentException if no suitable adapter was found for
 +     * the {@link
 +     * PersistentDataType#getPrimitiveType()}
 +     */
@@ -105,21 +124,21 @@ index 57609b7793122e135fa0c3b926500849379637b2..d737bc5a220c4738a9f60ab25f17a371
 +     * @param <Z> the generic type of the eventually created complex object
 +     *
 +     * @return the value or the default value if no value was mapped under the
-+     * given value
++     * given key
 +     *
-+     * @throws NullPointerException if the key to look up is null
-+     * @throws NullPointerException if the type to cast the found object to is
++     * @throws IllegalArgumentException if the key to look up is null
++     * @throws IllegalArgumentException if the type to cast the found object to is
 +     * null
-+     * @throws IllegalArgumentException if the value exists under the given key,
-+     * but cannot be access using the given type
-+     * @throws IllegalArgumentException if no suitable adapter will be found for
++     * @throws IllegalArgumentException if a value exists under the given key,
++     * but cannot be accessed using the given type
++     * @throws IllegalArgumentException if no suitable adapter was found for
 +     * the {@link PersistentDataType#getPrimitiveType()}
 +     */
 +    @NotNull
 +    <T, Z> Z getOrDefault(@NotNull String key, @NotNull PersistentDataType<T, Z> type, @NotNull Z defaultValue);
 +
 +    /**
-+     * Get a set of keys present on this {@link PersistentDataContainer}
++     * Get the set of keys present on this {@link PersistentDataContainer}
 +     * instance.
 +     *
 +     * Any changes made to the returned set will not be reflected on the
@@ -133,23 +152,11 @@ index 57609b7793122e135fa0c3b926500849379637b2..d737bc5a220c4738a9f60ab25f17a371
 +    /**
 +     * Removes a custom key from the {@link PersistentDataHolder} instance.
 +     *
-+     * @param key the key
++     * @param key the key to remove
 +     *
-+     * @throws NullPointerException if the provided key is null
++     * @throws IllegalArgumentException if the provided key is null
 +     */
 +    void remove(@NotNull String key);
-+
-+    /**
-+     * Returns if the persistent metadata provider has metadata registered
-+     * matching the provided key.
-+     *
-+     * @param key the key for which existence should be checked.
-+     *
-+     * @return whether the key exists
-+     *
-+     * @throws NullPointerException if the key to look up is null
-+     */
-+    boolean has(@NotNull String key);
 +
 +    /**
 +     * Clears PersistentDataContainer instances.
