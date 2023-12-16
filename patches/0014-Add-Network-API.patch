@@ -5,10 +5,10 @@ Subject: [PATCH] Add Network API
 
 
 diff --git a/build.gradle.kts b/build.gradle.kts
-index 546e50adabf87d7779fd38eeaf1fcb0818d65c9d..d6deb38438e1f8caa3a9ed40ad3eb1c4c895e031 100644
+index 59a15d32fb7020803d684e9c36c28b1321e350e0..54b6c29034570c3a5194c1102f8794e4bdf3ad2e 100644
 --- a/build.gradle.kts
 +++ b/build.gradle.kts
-@@ -53,6 +53,16 @@ dependencies {
+@@ -57,6 +57,16 @@ dependencies {
      // Paper end
      api("com.mojang:brigadier:1.2.9") // Daydream - Add Brigadier Command API
      api("com.mojang:authlib:5.0.51") // Daydream - Mojang Authlib (keep in sync with major MC versions)
@@ -46,7 +46,7 @@ index 7b2af1bd72dfbcf4e962a982940fc49b851aa04f..dad505d4e12bcdbb379485c59e476c98
 +    // Daydream end - Add Network API
  }
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index e7f0530e450e82fd7b59d3cc3cd4872ae756d0bf..e64da01200e336f4f4319fcda65d486554480593 100644
+index 507b3c0e64cd13ebbe1940dbdb16766aca3fce96..e8855ee40593b6b8756bae317a3fffde19676b02 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
 @@ -951,6 +951,24 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM

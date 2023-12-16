@@ -5,12 +5,12 @@ Subject: [PATCH] Add Brigadier Command API
 
 
 diff --git a/build.gradle.kts b/build.gradle.kts
-index e827ee211e3c65dc68ac5867fd8476639df63645..4629e17d2af492d78581736bc390e5cb30386990 100644
+index 9d817bf3f26ffd484945a00a6538970eca22ee20..9a32281efa8e8e3ed372749a910e7d9779180949 100644
 --- a/build.gradle.kts
 +++ b/build.gradle.kts
-@@ -51,6 +51,7 @@ dependencies {
-     implementation("org.ow2.asm:asm:9.4")
-     implementation("org.ow2.asm:asm-commons:9.4")
+@@ -55,6 +55,7 @@ dependencies {
+     implementation("org.ow2.asm:asm:9.5")
+     implementation("org.ow2.asm:asm-commons:9.5")
      // Paper end
 +    api("com.mojang:brigadier:1.2.9") // Daydream - Add Brigadier Command API
  
@@ -1551,7 +1551,7 @@ index 36da67bf9fda415c302afcf0e346c72e664fa6a3..0f4469db880f22406928cc26edcca378
 +    // Daydream end - Add Brigadier API
  }
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index 962283d336e6d53941cebbc3a995d403ff989f66..9d76747d18910ef11085c4b23d21ff091e2698ab 100644
+index a8d3451ccfcd21a9e80adc2feab8fc9c2926c753..13b622d12a19ba6646e0afb5d8a6a1182a695716 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
 @@ -396,6 +396,16 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
