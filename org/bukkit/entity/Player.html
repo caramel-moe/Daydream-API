@@ -968,6 +968,18 @@ extends <a href="HumanEntity.html" title="interface in org.bukkit.entity">HumanE
  typing a message.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#removeResourcePack(java.util.UUID)" class="member-name-link">removeResourcePack</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;id)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Request that the player's client remove a resource pack sent by the
+ server.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#removeResourcePacks()" class="member-name-link">removeResourcePacks</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Request that the player's client remove all loaded resource pack sent by
+ the server.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#resetCooldown()" class="member-name-link">resetCooldown</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Reset the cooldown counter to 0, effectively starting the cooldown period.</div>
@@ -5372,6 +5384,8 @@ extends <a href="HumanEntity.html" title="interface in org.bukkit.entity">HumanE
      case this method will have no affect on them. Use the
      <a href="../event/player/PlayerResourcePackStatusEvent.html" title="class in org.bukkit.event.player"><code>PlayerResourcePackStatusEvent</code></a> to figure out whether or not
      the player loaded the pack!
+ <li>To remove a resource pack you can use
+     <a href="#removeResourcePack(java.util.UUID)"><code>removeResourcePack(UUID)</code></a> or <a href="#removeResourcePacks()"><code>removeResourcePacks()</code></a>.
  <li>The request is sent with empty string as the hash when the hash is
      not provided. This might result in newer versions not loading the
      pack correctly.
@@ -5474,6 +5488,8 @@ extends <a href="HumanEntity.html" title="interface in org.bukkit.entity">HumanE
      case this method will have no affect on them. Use the
      <a href="../event/player/PlayerResourcePackStatusEvent.html" title="class in org.bukkit.event.player"><code>PlayerResourcePackStatusEvent</code></a> to figure out whether or not
      the player loaded the pack!
+ <li>To remove a resource pack you can use
+     <a href="#removeResourcePack(java.util.UUID)"><code>removeResourcePack(UUID)</code></a> or <a href="#removeResourcePacks()"><code>removeResourcePacks()</code></a>.
  <li>The request is sent with empty string as the hash when the hash is
      not provided. This might result in newer versions not loading the
      pack correctly.
@@ -5529,6 +5545,8 @@ extends <a href="HumanEntity.html" title="interface in org.bukkit.entity">HumanE
      case this method will have no affect on them. Use the
      <a href="../event/player/PlayerResourcePackStatusEvent.html" title="class in org.bukkit.event.player"><code>PlayerResourcePackStatusEvent</code></a> to figure out whether or not
      the player loaded the pack!
+ <li>To remove a resource pack you can use
+     <a href="#removeResourcePack(java.util.UUID)"><code>removeResourcePack(UUID)</code></a> or <a href="#removeResourcePacks()"><code>removeResourcePacks()</code></a>.
  <li>The request is sent with empty string as the hash when the hash is
      not provided. This might result in newer versions not loading the
      pack correctly.
@@ -5641,6 +5659,8 @@ extends <a href="HumanEntity.html" title="interface in org.bukkit.entity">HumanE
      case this method will have no affect on them. Use the
      <a href="../event/player/PlayerResourcePackStatusEvent.html" title="class in org.bukkit.event.player"><code>PlayerResourcePackStatusEvent</code></a> to figure out whether or not
      the player loaded the pack!
+ <li>To remove a resource pack you can use
+     <a href="#removeResourcePack(java.util.UUID)"><code>removeResourcePack(UUID)</code></a> or <a href="#removeResourcePacks()"><code>removeResourcePacks()</code></a>.
  <li>The request is sent with empty string as the hash when the hash is
      not provided. This might result in newer versions not loading the
      pack correctly.
@@ -6059,6 +6079,29 @@ extends <a href="HumanEntity.html" title="interface in org.bukkit.entity">HumanE
 <dt>Returns:</dt>
 <dd>true if last status was successfully loaded</dd>
 </dl>
+</section>
+</li>
+<li>
+<section class="detail" id="removeResourcePack(java.util.UUID)">
+<h3>removeResourcePack</h3>
+<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">removeResourcePack</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;id)</span></div>
+<div class="block">Request that the player's client remove a resource pack sent by the
+ server.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>id</code> - the id of the resource pack.</dd>
+<dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - If the ID is null.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="removeResourcePacks()">
+<h3>removeResourcePacks</h3>
+<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">removeResourcePacks</span>()</div>
+<div class="block">Request that the player's client remove all loaded resource pack sent by
+ the server.</div>
 </section>
 </li>
 <li>
