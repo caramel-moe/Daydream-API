@@ -5,7 +5,7 @@ Subject: [PATCH] Add Brigadier Command API
 
 
 diff --git a/build.gradle.kts b/build.gradle.kts
-index 9d817bf3f26ffd484945a00a6538970eca22ee20..9a32281efa8e8e3ed372749a910e7d9779180949 100644
+index 3e3ea0e4e4ceb3283ad2b99957e3795d66a9a716..c669d3e5a8873194212c0033b27f00086cfce033 100644
 --- a/build.gradle.kts
 +++ b/build.gradle.kts
 @@ -55,6 +55,7 @@ dependencies {
@@ -14,8 +14,8 @@ index 9d817bf3f26ffd484945a00a6538970eca22ee20..9a32281efa8e8e3ed372749a910e7d97
      // Paper end
 +    api("com.mojang:brigadier:1.2.9") // Daydream - Add Brigadier Command API
  
-     api("org.apache.maven:maven-resolver-provider:3.8.5")
-     compileOnly("org.apache.maven.resolver:maven-resolver-connector-basic:1.7.3")
+     api("org.apache.maven:maven-resolver-provider:3.9.6") // Paper - make API dependency for Paper Plugins
+     compileOnly("org.apache.maven.resolver:maven-resolver-connector-basic:1.9.18")
 diff --git a/src/main/java/io/papermc/paper/command/brigadier/CommandSourceStack.java b/src/main/java/io/papermc/paper/command/brigadier/CommandSourceStack.java
 new file mode 100644
 index 0000000000000000000000000000000000000000..e8b04204dbad8450096c9aedc789865f0545331e
@@ -1377,10 +1377,10 @@ index 0000000000000000000000000000000000000000..ced8b19a02be4952784b7dbde45f01d6
 +    }
 +}
 diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
-index 4863d9f21f0a0f11974be85360edc587ffd7eab3..2c49aa6a57c634c6f5792e4342984f5b327fdce4 100644
+index 48fab492609e0bae459d20cc2eae78b87e37ab75..735ebdfbb32d7aa9438e5e49845b154b846e3fd5 100644
 --- a/src/main/java/org/bukkit/Bukkit.java
 +++ b/src/main/java/org/bukkit/Bukkit.java
-@@ -1043,6 +1043,52 @@ public final class Bukkit {
+@@ -1053,6 +1053,52 @@ public final class Bukkit {
          return server.getPluginCommand(name);
      }
  
@@ -1434,10 +1434,10 @@ index 4863d9f21f0a0f11974be85360edc587ffd7eab3..2c49aa6a57c634c6f5792e4342984f5b
       * Writes loaded players to disk.
       */
 diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
-index 929859b9de0856e7686abbaa8ccdccd99341f0ba..2e7ee9cbbc57e1fe127f3491dfea859043347cc0 100644
+index 9c6646f6ca1c4ffe555bedb99f1e9b7d649849b7..1d221e2de649d7622285dfaf26e7d1cca0c2810b 100644
 --- a/src/main/java/org/bukkit/Server.java
 +++ b/src/main/java/org/bukkit/Server.java
-@@ -885,6 +885,44 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
+@@ -893,6 +893,44 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
      @Nullable
      public PluginCommand getPluginCommand(@NotNull String name);
  
@@ -1551,7 +1551,7 @@ index 36da67bf9fda415c302afcf0e346c72e664fa6a3..0f4469db880f22406928cc26edcca378
 +    // Daydream end - Add Brigadier API
  }
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index a8d3451ccfcd21a9e80adc2feab8fc9c2926c753..13b622d12a19ba6646e0afb5d8a6a1182a695716 100644
+index ec937534f049ba25fb359c3e022ebe52ead6abef..005edf5c525e795f0d1dcffa4129b6fc0f9c6d73 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
 @@ -396,6 +396,16 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM

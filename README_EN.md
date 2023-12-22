@@ -45,7 +45,7 @@ Maven
 <dependency>
     <groupId>moe.caramel</groupId>
     <artifactId>daydream-api</artifactId>
-    <version>1.20.2-R0.1-SNAPSHOT</version>
+    <version>1.20.4-R0.1-SNAPSHOT</version>
     <scope>provided</scope>
 </dependency>
 ```
@@ -61,6 +61,6 @@ repositories {
 
 dependencies {
     // Daydream API
-    compileOnly("moe.caramel", "daydream-api", "1.20.2-R0.1-SNAPSHOT")
+    compileOnly("moe.caramel", "daydream-api", "1.20.4-R0.1-SNAPSHOT")
 }
 ```

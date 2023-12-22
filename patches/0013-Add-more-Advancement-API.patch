@@ -318,10 +318,10 @@ index 0000000000000000000000000000000000000000..712bb1844eaf39525aeb9ec1be0620eb
 +    }
 +}
 diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
-index 2c49aa6a57c634c6f5792e4342984f5b327fdce4..e75053c376547ae1b51dbed2e7b2086bf09a1849 100644
+index 735ebdfbb32d7aa9438e5e49845b154b846e3fd5..baa62ff9046ec4eb1c56e5c34abdab845ff856fc 100644
 --- a/src/main/java/org/bukkit/Bukkit.java
 +++ b/src/main/java/org/bukkit/Bukkit.java
-@@ -2382,6 +2382,19 @@ public final class Bukkit {
+@@ -2392,6 +2392,19 @@ public final class Bukkit {
          return server.getAdvancement(key);
      }
  
@@ -342,10 +342,10 @@ index 2c49aa6a57c634c6f5792e4342984f5b327fdce4..e75053c376547ae1b51dbed2e7b2086b
       * Get an iterator through all advancements. Advancements cannot be removed
       * from this iterator,
 diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
-index 2e7ee9cbbc57e1fe127f3491dfea859043347cc0..21dc285b0060b93694356e53fc3326c1cd0cb4db 100644
+index 1d221e2de649d7622285dfaf26e7d1cca0c2810b..2dcc8ea4a2d55f3b36eaa3ee0332ce089d5d8f53 100644
 --- a/src/main/java/org/bukkit/Server.java
 +++ b/src/main/java/org/bukkit/Server.java
-@@ -2042,6 +2042,17 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
+@@ -2050,6 +2050,17 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
      @Nullable
      Advancement getAdvancement(@NotNull NamespacedKey key);
  
@@ -473,10 +473,10 @@ index f9bc179da071e7bd57cefc50d6763317fb643b74..b0f7bd0bdc11123350a1faa3e3f9c6da
 +    // Daydream end - Add more Advancement API
  }
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index 2ae204143940ff7a6eb845a7b6e449abbf27c2ed..507b3c0e64cd13ebbe1940dbdb16766aca3fce96 100644
+index 5c4ce81ce41a37c4acd524ab706184ffdefa6d9d..0f29f36c122c35a99c9e2d304fb44acfce5cf12e 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
-@@ -3047,6 +3047,36 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+@@ -3070,6 +3070,36 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      @NotNull
      public AdvancementProgress getAdvancementProgress(@NotNull Advancement advancement);
  

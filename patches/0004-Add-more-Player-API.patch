@@ -5,7 +5,7 @@ Subject: [PATCH] Add more Player API
 
 
 diff --git a/build.gradle.kts b/build.gradle.kts
-index 9a32281efa8e8e3ed372749a910e7d9779180949..59a15d32fb7020803d684e9c36c28b1321e350e0 100644
+index c669d3e5a8873194212c0033b27f00086cfce033..f307f49f7d163e0075a7367f42187710f811aa2f 100644
 --- a/build.gradle.kts
 +++ b/build.gradle.kts
 @@ -56,6 +56,7 @@ dependencies {
@@ -14,13 +14,13 @@ index 9a32281efa8e8e3ed372749a910e7d9779180949..59a15d32fb7020803d684e9c36c28b13
      api("com.mojang:brigadier:1.2.9") // Daydream - Add Brigadier Command API
 +    api("com.mojang:authlib:5.0.51") // Daydream - Mojang Authlib (keep in sync with major MC versions)
  
-     api("org.apache.maven:maven-resolver-provider:3.8.5")
-     compileOnly("org.apache.maven.resolver:maven-resolver-connector-basic:1.7.3")
+     api("org.apache.maven:maven-resolver-provider:3.9.6") // Paper - make API dependency for Paper Plugins
+     compileOnly("org.apache.maven.resolver:maven-resolver-connector-basic:1.9.18")
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index 13b622d12a19ba6646e0afb5d8a6a1182a695716..c9d6fdeea3142103649d8f20a0dc96a81b666057 100644
+index 005edf5c525e795f0d1dcffa4129b6fc0f9c6d73..d22772f1d2077ba17b93a9f484ec4ec8220eae60 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
-@@ -2544,6 +2544,104 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+@@ -2552,6 +2552,104 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
       */
      org.bukkit.event.player.PlayerResourcePackStatusEvent.@Nullable Status getResourcePackStatus();
  
@@ -125,7 +125,7 @@ index 13b622d12a19ba6646e0afb5d8a6a1182a695716..c9d6fdeea3142103649d8f20a0dc96a8
      /**
       * Gets the most recent pack hash from the player.
       *
-@@ -3135,6 +3233,16 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+@@ -3158,6 +3256,16 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      }
      // Paper end
  
