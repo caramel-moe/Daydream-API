@@ -283,6 +283,16 @@ extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/ja
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Get the object by its key.</div>
 </div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code>default <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="NamespacedKey.html" title="class in org.bukkit">NamespacedKey</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#getKey(T)" class="member-name-link">getKey</a><wbr>(<a href="Registry.html" title="type parameter in Registry">T</a>&nbsp;value)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5">
+<div class="block">Get the key for this object.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code>default <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="NamespacedKey.html" title="class in org.bukkit">NamespacedKey</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#getKeyOrThrow(T)" class="member-name-link">getKeyOrThrow</a><wbr>(<a href="Registry.html" title="type parameter in Registry">T</a>&nbsp;value)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5">
+<div class="block">Gets the key for this object or throws if it doesn't exist.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5 method-summary-table-tab6"><code>default <a href="Registry.html" title="type parameter in Registry">T</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5 method-summary-table-tab6"><code><a href="#match(java.lang.String)" class="member-name-link">match</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;input)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5 method-summary-table-tab6">
@@ -773,6 +783,58 @@ extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/ja
 <dd><code>key</code> - non-null key</dd>
 <dt>Returns:</dt>
 <dd>item or null if does not exist</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getKeyOrThrow(T)">
+<h3 id="getKeyOrThrow(org.bukkit.Keyed)">getKeyOrThrow</h3>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+</span><span class="modifiers">default</span>&nbsp;<span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="NamespacedKey.html" title="class in org.bukkit">NamespacedKey</a></span>&nbsp;<span class="element-name">getKeyOrThrow</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="Registry.html" title="type parameter in Registry">T</a>&nbsp;value)</span></div>
+<div class="block">Gets the key for this object or throws if it doesn't exist.
+ <p>
+ Some types can exist without being in a registry
+ and such will have no key associated with them. This
+ method throw an exception if it isn't in this registry.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>value</code> - the value to get the key of in this registry</dd>
+<dt>Returns:</dt>
+<dd>the key for the value</dd>
+<dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/NoSuchElementException.html" title="class or interface in java.util" class="external-link">NoSuchElementException</a></code> - if the value doesn't exist in this registry</dd>
+<dt>See Also:</dt>
+<dd>
+<ul class="see-list">
+<li><a href="#getKey(T)"><code>getKey(Keyed)</code></a></li>
+</ul>
+</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getKey(T)">
+<h3 id="getKey(org.bukkit.Keyed)">getKey</h3>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a>
+</span><span class="modifiers">default</span>&nbsp;<span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="NamespacedKey.html" title="class in org.bukkit">NamespacedKey</a></span>&nbsp;<span class="element-name">getKey</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="Registry.html" title="type parameter in Registry">T</a>&nbsp;value)</span></div>
+<div class="block">Get the key for this object.
+ <p>
+ Some types can exist without being in a registry
+ and such will have no key associated with them. This
+ method will return null.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>value</code> - the value to get the key of in this registry</dd>
+<dt>Returns:</dt>
+<dd>the key for the value or null if not in the registry</dd>
+<dt>See Also:</dt>
+<dd>
+<ul class="see-list">
+<li><a href="#getKeyOrThrow(T)"><code>getKeyOrThrow(Keyed)</code></a></li>
+</ul>
+</dd>
 </dl>
 </section>
 </li>
