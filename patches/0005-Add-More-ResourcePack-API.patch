@@ -1,0 +1,34 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: LemonCaramel <admin@caramel.moe>
+Date: Fri, 6 Aug 2021 20:08:04 +0900
+Subject: [PATCH] Add More ResourcePack API
+
+
+diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
+index 451c5432f1e4e921014b3216adce0eeefb79dadd..690c974b209e81acc37d2ab15bb7470b5b9b17a2 100644
+--- a/src/main/java/org/bukkit/entity/Player.java
++++ b/src/main/java/org/bukkit/entity/Player.java
+@@ -2617,6 +2617,23 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+      */
+     org.bukkit.event.player.PlayerResourcePackStatusEvent.@Nullable Status getResourcePackStatus();
+ 
++    // Daydream start - Add More ResourcePack API
++    /**
++     * 적용된 리소스팩 목록을 가져옵니다.
++     *
++     * @return 리소스팩 목록
++     */
++    @NotNull java.util.Set<@NotNull UUID> getAppliedResourcePacks();
++
++    /**
++     * 리소스팩 적용 상태를 가져옵니다.
++     *
++     * @param uuid 리소스팩의 고유 ID
++     * @return 적용을 하지 않았거나, 클라이언트에게 응답을 받지 않은 경우 {@code null}을 반환할 수도 있습니다.
++     */
++    @Nullable org.bukkit.event.player.PlayerResourcePackStatusEvent.Status getResourcePackStatus(@NotNull UUID uuid);
++    // Daydream end - Add More ResourcePack API
++
+     /**
+      * Gets the most recent pack hash from the player.
+      *

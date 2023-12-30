@@ -1,0 +1,39 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: LemonCaramel <admin@caramel.moe>
+Date: Fri, 6 Aug 2021 20:08:04 +0900
+Subject: [PATCH] Expose Player GameProfile
+
+
+diff --git a/build.gradle.kts b/build.gradle.kts
+index e8be7692a9637313dde844d9cd4a3a3d108ebb6d..16e29eaa1c94751b918e14540032bddb497f98fe 100644
+--- a/build.gradle.kts
++++ b/build.gradle.kts
+@@ -56,6 +56,7 @@ dependencies {
+     implementation("org.ow2.asm:asm-commons:9.5")
+     // Paper end
+     api("com.mojang:brigadier:1.2.9") // Daydream - Add Brigadier Command API
++    api("com.mojang:authlib:5.0.51") // Daydream - Mojang Authlib (keep in sync with major MC versions)
+ 
+     api("org.apache.maven:maven-resolver-provider:3.9.6") // Paper - make API dependency for Paper Plugins
+     compileOnly("org.apache.maven.resolver:maven-resolver-connector-basic:1.9.18")
+diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
+index e43c099a0a381fee0e57313b9e92285a95193d44..451c5432f1e4e921014b3216adce0eeefb79dadd 100644
+--- a/src/main/java/org/bukkit/entity/Player.java
++++ b/src/main/java/org/bukkit/entity/Player.java
+@@ -3225,6 +3225,16 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+     }
+     // Paper end
+ 
++    // Daydream start - Add more Player API
++    /**
++     * Gets this player's game profile.
++     *
++     * @return player's game profile object
++     */
++    @NotNull
++    com.mojang.authlib.GameProfile getProfile();
++    // Daydream end - Add more Player API
++
+     // Paper start - Player Profile API
+     /**
+      * Gets a copy of this players profile

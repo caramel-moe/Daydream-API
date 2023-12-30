@@ -5,27 +5,10 @@ Subject: [PATCH] Add more World API
 
 
 diff --git a/src/main/java/org/bukkit/World.java b/src/main/java/org/bukkit/World.java
-index 567a36a4887da8994c9170e2885aa8cc357efa0c..7e741dc01079fad85455e9637766fb418b35ffa7 100644
+index d3081d4445af73c2c7b23c5fc60861f184ac808e..a164beff38a8ab18be1979e92192de89d444f11c 100644
 --- a/src/main/java/org/bukkit/World.java
 +++ b/src/main/java/org/bukkit/World.java
-@@ -175,6 +175,16 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
-     @NotNull
-     public Block getHighestBlockAt(@NotNull Location location);
- 
-+    // Daydream start - Add more World API
-+    /**
-+     * 특정 범위 내에 블록이 있는지 확인합니다.
-+     *
-+     * @param boundingBox 확인할 범위
-+     * @return 만약 범위 내에 블록이 있다면 {@code false}를 반환
-+     */
-+    boolean noBlocksAround(@NotNull BoundingBox boundingBox);
-+    // Daydream end - Add more World API
-+
-     // Paper start - Add heightmap API
-     /**
-      * Returns the highest block's y-coordinate at the specified block coordinates that match the specified heightmap's conditions.
-@@ -3317,6 +3327,38 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
+@@ -3331,6 +3331,38 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
       */
      void playSound(@NotNull Location location, @NotNull String sound, @NotNull SoundCategory category, float volume, float pitch);
  
