@@ -6,7 +6,7 @@ Subject: [PATCH] Add Client Detector
 
 diff --git a/src/main/java/moe/caramel/daydream/event/player/AsyncPlayerClientDetectedEvent.java b/src/main/java/moe/caramel/daydream/event/player/AsyncPlayerClientDetectedEvent.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..513d3383e11d3e8beea3bff2fab592bae38fd6ac
+index 0000000000000000000000000000000000000000..63119143806844b89037557c150a143383091389
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/event/player/AsyncPlayerClientDetectedEvent.java
 @@ -0,0 +1,64 @@
@@ -68,7 +68,7 @@ index 0000000000000000000000000000000000000000..513d3383e11d3e8beea3bff2fab592ba
 +    /**
 +     * 플레이어를 서버에서 추방하기로 큰 결심을 한 경우, 추방 사유를 설정합니다.
 +     *
-+     * @return 플레이어 추방 사유 ({@code null}인 경우 추방하지 않습니다.)
++     * @param disconnectReason 플레이어 추방 사유 ({@code null}인 경우 추방하지 않습니다.)
 +     */
 +    public void disconnectReason(final @Nullable Component disconnectReason) {
 +        this.disconnectReason = disconnectReason;
