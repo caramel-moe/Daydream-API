@@ -6,15 +6,17 @@ Subject: [PATCH] Add ServerShutdownEvent
 
 diff --git a/src/main/java/moe/caramel/daydream/event/server/ServerShutdownEvent.java b/src/main/java/moe/caramel/daydream/event/server/ServerShutdownEvent.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..64ca59fa0a8f441e512bda49c0a028b565ce3e02
+index 0000000000000000000000000000000000000000..6ded10bcec11fb4f446b1c7ffc6cc3de7117a3fb
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/event/server/ServerShutdownEvent.java
-@@ -0,0 +1,15 @@
+@@ -0,0 +1,52 @@
 +package moe.caramel.daydream.event.server;
 +
++import net.kyori.adventure.text.Component;
 +import org.bukkit.event.HandlerList;
 +import org.bukkit.event.server.ServerEvent;
 +import org.jetbrains.annotations.NotNull;
++import org.jetbrains.annotations.Nullable;
 +
 +/**
 + * 서버가 종료될 때 호출됩니다.
@@ -24,4 +26,39 @@ index 0000000000000000000000000000000000000000..64ca59fa0a8f441e512bda49c0a028b5
 +    private static final HandlerList HANDLER_LIST = new HandlerList();
 +    public @NotNull HandlerList getHandlers() { return HANDLER_LIST; }
 +    public static @NotNull HandlerList getHandlerList() { return HANDLER_LIST; }
++
++    private final boolean restarting;
++    private Component overrideReason;
++
++    public ServerShutdownEvent(final boolean restarting) {
++        this.restarting = restarting;
++    }
++
++    /**
++     * 서버 재시작 여부를 가져옵니다.
++     *
++     * @return 서버 재시작 여부
++     */
++    public boolean isRestarting() {
++        return restarting;
++    }
++
++    /**
++     * 덮어 씌울 서버 종료 이유를 가져옵니다.
++     *
++     * @return 서버 종료 이유
++     */
++    @Nullable
++    public Component getOverrideReason() {
++        return overrideReason;
++    }
++
++    /**
++     * 덮어 씌울 서버 종료 이유를 설정합니다.
++     *
++     * @param overrideReason 서버 종료 이유
++     */
++    public void setOverrideReason(final @Nullable Component overrideReason) {
++        this.overrideReason = overrideReason;
++    }
 +}

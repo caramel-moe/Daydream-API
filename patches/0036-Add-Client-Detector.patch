@@ -4,6 +4,76 @@ Date: Sun, 10 Dec 2023 16:28:01 +0900
 Subject: [PATCH] Add Client Detector
 
 
+diff --git a/src/main/java/moe/caramel/daydream/event/player/AsyncPlayerClientDetectedEvent.java b/src/main/java/moe/caramel/daydream/event/player/AsyncPlayerClientDetectedEvent.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..513d3383e11d3e8beea3bff2fab592bae38fd6ac
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/event/player/AsyncPlayerClientDetectedEvent.java
+@@ -0,0 +1,64 @@
++package moe.caramel.daydream.event.player;
++
++import moe.caramel.daydream.player.ClientType;
++import net.kyori.adventure.text.Component;
++import org.bukkit.entity.Player;
++import org.bukkit.event.HandlerList;
++import org.bukkit.event.player.PlayerEvent;
++import org.jetbrains.annotations.NotNull;
++import org.jetbrains.annotations.Nullable;
++
++/**
++ * 플레이어의 클라이언트 종류를 감지 완료하였을 때 호출됩니다.
++ */
++public final class AsyncPlayerClientDetectedEvent extends PlayerEvent {
++
++    private static final HandlerList HANDLER_LIST = new HandlerList();
++    public @NotNull HandlerList getHandlers() { return HANDLER_LIST; }
++    public static @NotNull HandlerList getHandlerList() { return HANDLER_LIST; }
++
++    private Component disconnectReason;
++
++    public AsyncPlayerClientDetectedEvent(final @NotNull Player who) {
++        super(who, true);
++    }
++
++    /**
++     * 감지된 클라이언트의 타입을 가져옵니다.
++     *
++     * @return 클라이언트의 타입
++     */
++    @NotNull
++    public ClientType clientType() {
++        return player.getClientType();
++    }
++
++    /**
++     * 클라이언트의 브랜드 이름을 가져옵니다.
++     *
++     * @return 브랜드 이름 (수정된 클라이언트가 서버로 정보를 전송하지 않을 수도 있음)
++     */
++    @Nullable
++    public String clientBrandName() {
++        return player.getClientBrandName();
++    }
++
++    /**
++     * 플레이어 추방 사유를 가져옵니다.
++     *
++     * @return 플레이어 추방 사유
++     */
++    @Nullable
++    public Component disconnectReason() {
++        return disconnectReason;
++    }
++
++    /**
++     * 플레이어를 서버에서 추방하기로 큰 결심을 한 경우, 추방 사유를 설정합니다.
++     *
++     * @return 플레이어 추방 사유 ({@code null}인 경우 추방하지 않습니다.)
++     */
++    public void disconnectReason(final @Nullable Component disconnectReason) {
++        this.disconnectReason = disconnectReason;
++    }
++}
 diff --git a/src/main/java/moe/caramel/daydream/player/ClientType.java b/src/main/java/moe/caramel/daydream/player/ClientType.java
 new file mode 100644
 index 0000000000000000000000000000000000000000..963d3aa970ef24bafd2aaa17bde4b8c2bed88c57
