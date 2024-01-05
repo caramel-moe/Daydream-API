@@ -5,7 +5,7 @@ Subject: [PATCH] Add EnhancedModelEngine Support
 
 
 diff --git a/src/main/java/org/bukkit/UnsafeValues.java b/src/main/java/org/bukkit/UnsafeValues.java
-index 5e0e969a10df75411eedd00a63ead65a00c413b6..86c9e12cc950ac6dc97a84cbdff6e74652041212 100644
+index 5e0e969a10df75411eedd00a63ead65a00c413b6..5c358a197eca883de2414a9773af9ac91d67a871 100644
 --- a/src/main/java/org/bukkit/UnsafeValues.java
 +++ b/src/main/java/org/bukkit/UnsafeValues.java
 @@ -305,4 +305,29 @@ public interface UnsafeValues {
@@ -22,7 +22,7 @@ index 5e0e969a10df75411eedd00a63ead65a00c413b6..86c9e12cc950ac6dc97a84cbdff6e746
 +    void eme$setMobMoveControl(@NotNull Object nmsMob, @NotNull Object moveControl);
 +    void eme$setMobJumpControl(@NotNull Object nmsMob, @NotNull Object jumpControl);
 +    void eme$setMobBodyRotationControl(@NotNull Object nmsMob, @NotNull Object bodyRotationControl);
-+    @NotNull Object eme$getMobNavigation(@NotNull Object nmsMob);
++    void eme$setMobNavigation(@NotNull Object nmsMob, @NotNull Object navigation);
 +
 +    /* Other */
 +    @NotNull Object eme$getLevelThreadSafeRandom(@NotNull Object level);
