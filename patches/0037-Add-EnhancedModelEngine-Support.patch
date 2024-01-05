@@ -1,0 +1,40 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: LemonCaramel <admin@caramel.moe>
+Date: Sat, 6 Jan 2024 04:23:40 +0900
+Subject: [PATCH] Add EnhancedModelEngine Support
+
+
+diff --git a/src/main/java/org/bukkit/UnsafeValues.java b/src/main/java/org/bukkit/UnsafeValues.java
+index 5e0e969a10df75411eedd00a63ead65a00c413b6..86c9e12cc950ac6dc97a84cbdff6e74652041212 100644
+--- a/src/main/java/org/bukkit/UnsafeValues.java
++++ b/src/main/java/org/bukkit/UnsafeValues.java
+@@ -305,4 +305,29 @@ public interface UnsafeValues {
+     @org.jetbrains.annotations.NotNull
+     ItemStack newItem(@org.jetbrains.annotations.NotNull org.bukkit.Material material, int count);
+     // Daydream end - Add ItemStack utility API
++
++    // Daydream start - Add EnhancedModelEngine Support
++    /* Entity */
++    void eme$setEntityDimensions(@NotNull Object nmsEntity, @NotNull Object entityDimensions);
++    void eme$setEntityEyeHeight(@NotNull Object nmsEntity, float eyeHeight);
++    void eme$setLivingEntityNoJumpDelay(@NotNull Object nmsLivingEntity, int noJumpDelay);
++    void eme$setMobLookControl(@NotNull Object nmsMob, @NotNull Object lookControl);
++    void eme$setMobMoveControl(@NotNull Object nmsMob, @NotNull Object moveControl);
++    void eme$setMobJumpControl(@NotNull Object nmsMob, @NotNull Object jumpControl);
++    void eme$setMobBodyRotationControl(@NotNull Object nmsMob, @NotNull Object bodyRotationControl);
++    @NotNull Object eme$getMobNavigation(@NotNull Object nmsMob);
++
++    /* Other */
++    @NotNull Object eme$getLevelThreadSafeRandom(@NotNull Object level);
++    int eme$invokeTrackedEntityGetEffectiveRange(@NotNull Object trackedEntity);
++    int eme$getTrackedEntityRange(@NotNull Object trackedEntity);
++    void eme$setTrackedEntityRange(@NotNull Object trackedEntity, int range);
++    @NotNull Object eme$invokeInstrumentItemGetInstrument(@NotNull Object instrumentItem, @NotNull Object itemStack);
++
++    /* Connection */
++    @FunctionalInterface interface InteractPacketCallback { void invoke(@NotNull Object packet, @NotNull Object serveLevel, @NotNull Object serverPlayer, @Nullable Object targetEntity); }
++    void eme$invokeGameConnectionHandleInteract(@NotNull Object gamePacketListener, @NotNull Object interactPacket, @NotNull InteractPacketCallback beforePlayerCheck, @NotNull InteractPacketCallback afterPlayerCheck);
++    void eme$invokeGameConnectionHandleUseItem(@NotNull Object gamePacketListener, @NotNull Object useItemPacket, @NotNull java.util.function.Consumer<Object> interactionResult);
++    void eme$setGameConnectionClientIsFloating(@NotNull Object gamePacketListener, boolean clientIsFloating);
++    // Daydream end - Add EnhancedModelEngine Support
+ }
