@@ -140,6 +140,12 @@ loadScripts(document, 'script');</script>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/net/InetAddress.html" title="class or interface in java.net" class="external-link">InetAddress</a>&nbsp;ipAddress,
  boolean&nbsp;async)</code></div>
 <div class="col-last even-row-color">&nbsp;</div>
+<div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(java.util.UUID,java.lang.String,java.net.InetAddress,boolean,boolean)" class="member-name-link">PlayerConnectionCloseEvent</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;playerUniqueId,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;playerName,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/net/InetAddress.html" title="class or interface in java.net" class="external-link">InetAddress</a>&nbsp;ipAddress,
+ boolean&nbsp;async,
+ boolean&nbsp;loginPhase)</code></div>
+<div class="col-last odd-row-color">&nbsp;</div>
 </div>
 </section>
 </li>
@@ -175,6 +181,11 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Returns the <code>UUID</code> of the player disconnecting.</div>
 </div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isLoginPhase()" class="member-name-link">isLoginPhase</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">현재 플레이어가 Login 페이즈에 있는지 여부를 가져옵니다.</div>
+</div>
 </div>
 </div>
 </div>
@@ -207,6 +218,19 @@ loadScripts(document, 'script');</script>
  boolean&nbsp;async)</span></div>
 </section>
 </li>
+<li>
+<section class="detail" id="&lt;init&gt;(java.util.UUID,java.lang.String,java.net.InetAddress,boolean,boolean)">
+<h3>PlayerConnectionCloseEvent</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">PlayerConnectionCloseEvent</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;playerUniqueId,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;playerName,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/net/InetAddress.html" title="class or interface in java.net" class="external-link">InetAddress</a>&nbsp;ipAddress,
+ boolean&nbsp;async,
+ boolean&nbsp;loginPhase)</span></div>
+</section>
+</li>
 </ul>
 </section>
 </li>
@@ -215,6 +239,18 @@ loadScripts(document, 'script');</script>
 <section class="method-details" id="method-detail">
 <h2>Method Details</h2>
 <ul class="member-list">
+<li>
+<section class="detail" id="isLoginPhase()">
+<h3>isLoginPhase</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isLoginPhase</span>()</div>
+<div class="block">현재 플레이어가 Login 페이즈에 있는지 여부를 가져옵니다.
+ (플레이어 인증 및 협상 중일 때는 이벤트가 호출되지 않음)</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>플레이어가 Login 페이즈에 있었다면 <code>true</code>를 반환</dd>
+</dl>
+</section>
+</li>
 <li>
 <section class="detail" id="getPlayerUniqueId()">
 <h3>getPlayerUniqueId</h3>
