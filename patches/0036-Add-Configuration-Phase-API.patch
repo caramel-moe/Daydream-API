@@ -1,0 +1,213 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: LemonCaramel <admin@caramel.moe>
+Date: Tue, 9 Jan 2024 10:58:07 +0900
+Subject: [PATCH] Add Configuration Phase API
+
+
+diff --git a/src/main/java/com/destroystokyo/paper/event/player/PlayerConnectionCloseEvent.java b/src/main/java/com/destroystokyo/paper/event/player/PlayerConnectionCloseEvent.java
+index 12c1c6fe9dc8dc5f5faf6dcf99f6857219ef22b8..127439aef37ca442a86518fe2ea5123cbaec9f9b 100644
+--- a/src/main/java/com/destroystokyo/paper/event/player/PlayerConnectionCloseEvent.java
++++ b/src/main/java/com/destroystokyo/paper/event/player/PlayerConnectionCloseEvent.java
+@@ -52,10 +52,29 @@ public class PlayerConnectionCloseEvent extends Event {
+     @NotNull private final InetAddress ipAddress;
+ 
+     public PlayerConnectionCloseEvent(@NotNull final UUID playerUniqueId, @NotNull final String playerName, @NotNull final InetAddress ipAddress, final boolean async) {
++        // Daydream start - Add Connection Phase API
++        this(playerUniqueId, playerName, ipAddress, async, false);
++    }
++
++    private final boolean loginPhase;
++
++    /**
++     * 현재 플레이어가 Login 페이즈에 있는지 여부를 가져옵니다.
++     * (플레이어 인증 및 협상 중일 때는 이벤트가 호출되지 않음)
++     *
++     * @return 플레이어가 Login 페이즈에 있었다면 {@code true}를 반환
++     */
++    public boolean isLoginPhase() {
++        return loginPhase;
++    }
++
++    public PlayerConnectionCloseEvent(@NotNull final UUID playerUniqueId, @NotNull final String playerName, @NotNull final InetAddress ipAddress, final boolean async, final boolean loginPhase) {
++        // Daydream end - Add Connection Phase API
+         super(async);
+         this.playerUniqueId = playerUniqueId;
+         this.playerName = playerName;
+         this.ipAddress = ipAddress;
++        this.loginPhase = loginPhase; // Daydream - Add Connection Phase API
+     }
+ 
+     /**
+diff --git a/src/main/java/moe/caramel/daydream/event/configure/ConfigurationPhaseEvent.java b/src/main/java/moe/caramel/daydream/event/configure/ConfigurationPhaseEvent.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..4c380e4ddbc9cd2d42a1e3d23cb3493dbe5df752
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/event/configure/ConfigurationPhaseEvent.java
+@@ -0,0 +1,15 @@
++package moe.caramel.daydream.event.configure;
++
++import org.bukkit.entity.Player;
++import org.bukkit.event.player.PlayerEvent;
++import org.jetbrains.annotations.NotNull;
++
++/**
++ * Configuration 페이즈에서 호출되는 이벤트
++ */
++public abstract class ConfigurationPhaseEvent extends PlayerEvent {
++
++    public ConfigurationPhaseEvent(final @NotNull Player who, final boolean async) {
++        super(who, async);
++    }
++}
+diff --git a/src/main/java/moe/caramel/daydream/event/configure/ConfigurationResourcePackRequestEvent.java b/src/main/java/moe/caramel/daydream/event/configure/ConfigurationResourcePackRequestEvent.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..996f69496f46a5ce3bd528562d880cdbce5eff6f
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/event/configure/ConfigurationResourcePackRequestEvent.java
+@@ -0,0 +1,146 @@
++package moe.caramel.daydream.event.configure;
++
++import net.kyori.adventure.resource.ResourcePackCallback;
++import net.kyori.adventure.resource.ResourcePackInfoLike;
++import net.kyori.adventure.resource.ResourcePackRequest;
++import net.kyori.adventure.resource.ResourcePackStatus;
++import net.kyori.adventure.text.Component;
++import org.bukkit.entity.Player;
++import org.bukkit.event.HandlerList;
++import org.jetbrains.annotations.NotNull;
++import org.jetbrains.annotations.Nullable;
++import java.util.ArrayList;
++import java.util.List;
++
++/**
++ * Configuration 페이즈에서 리소스팩을 설정할 수 있습니다.
++ * <p>이 이벤트를 사용하여 리소스팩을 적용하는 경우, server.properties의 리소스팩 로직이 무시됩니다.</p>
++ */
++public final class ConfigurationResourcePackRequestEvent extends ConfigurationPhaseEvent {
++
++    private static final HandlerList HANDLER_LIST = new HandlerList();
++    public @NotNull HandlerList getHandlers() { return HANDLER_LIST; }
++    public static @NotNull HandlerList getHandlerList() { return HANDLER_LIST; }
++
++    private final List<ResourcePackInfoLike> packs;
++    private final List<ResourcePackCallback> callbacks;
++    private Component prompt, disconnectMessage;
++    private boolean strictCheck;
++
++    public ConfigurationResourcePackRequestEvent(final @NotNull Player what) {
++        super(what, true);
++        this.packs = new ArrayList<>();
++        this.callbacks = new ArrayList<>();
++    }
++
++    /**
++     * 리소스팩 대기열에 리소스팩을 추가합니다.
++     *
++     * @return this
++     */
++    @NotNull
++    public ConfigurationResourcePackRequestEvent pack(final @NotNull ResourcePackInfoLike packInfo) {
++        this.packs.add(packInfo);
++        return this;
++    }
++
++    /**
++     * 리소스팩 적용 시 실행될 콜백을 추가합니다.
++     *
++     * @return this
++     */
++    @NotNull
++    public ConfigurationResourcePackRequestEvent callback(final @NotNull ResourcePackCallback callback) {
++        this.callbacks.add(callback);
++        return this;
++    }
++
++    /**
++     * 리소스팩 프롬프트를 설정합니다.
++     *
++     * @return this
++     */
++    @NotNull
++    public ConfigurationResourcePackRequestEvent prompt(final @NotNull Component prompt) {
++        this.prompt = prompt;
++        return this;
++    }
++
++    /**
++     * 리소스팩 적용 실패 시 서버에서 추방할 때 사용할 메시지를 설정합니다.
++     * 다른 플러그인이 덮어 씌울 수도 있습니다.
++     *
++     * @param disconnectMessage 서버 추방 메시지 ({@code null}인 경우 바닐라 메시지를 사용합니다.)
++     * @return this
++     */
++    @NotNull
++    public ConfigurationResourcePackRequestEvent disconnectMessage(final @Nullable Component disconnectMessage) {
++        this.disconnectMessage = disconnectMessage;
++        return this;
++    }
++
++    /**
++     * 리소스팩 적용 실패 시 서버에서 추방할 때 사용할 메시지를 가져옵니다.
++     *
++     * @return 서버 추방 메시지
++     */
++    @Nullable
++    public Component disconnectMessage() {
++        return disconnectMessage;
++    }
++
++    /**
++     * 엄격한 검사를 활성화합니다. 클라이언트의 반환이
++     * {@link ResourcePackStatus#SUCCESSFULLY_LOADED}가
++     * 아닌 경우, 플레이어를 서버에서 추방합니다.
++     * <p>
++     * 바닐라의 기본 동작은 오류로 인해 플레이어가 리소스팩
++     * 적용에 실패하였을 때 플레이어를 추방하지 않습니다.
++     * </p>
++     *
++     * @return this
++     */
++    public ConfigurationResourcePackRequestEvent enableStrictCheck() {
++        this.strictCheck = true;
++        return this;
++    }
++
++    /**
++     * 엄격한 검사 활성화 여부를 가져옵니다.
++     *
++     * @return 엄격한 검사가 활성화 되어있는 경우 {@code true}를 반환
++     */
++    public boolean isStrictCheck() {
++        return strictCheck;
++    }
++
++    /**
++     * 리소스팩 대기열이 비어있는지 확인합니다.
++     *
++     * @return 대기열이 비어있는 경우 {@code true}를 반환
++     */
++    public boolean isEmpty() {
++        return packs.isEmpty();
++    }
++
++    /**
++     * 리소스팩 요청을 빌드합니다.
++     *
++     * @return 빌드된 리소스팩 요청
++     */
++    @NotNull
++    public ResourcePackRequest build() {
++        return ResourcePackRequest
++            .resourcePackRequest()
++            .packs(this.packs)
++            .callback((uuid, status, audience) -> {
++                for (final ResourcePackCallback callback : this.callbacks) {
++                    callback.packEventReceived(uuid, status, audience);
++                }
++            })
++            .prompt(this.prompt)
++            .replace(true)
++            .required(true)
++            .build();
++    }
++}
