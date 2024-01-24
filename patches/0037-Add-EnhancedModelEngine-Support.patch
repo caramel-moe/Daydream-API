@@ -5,10 +5,10 @@ Subject: [PATCH] Add EnhancedModelEngine Support
 
 
 diff --git a/src/main/java/org/bukkit/UnsafeValues.java b/src/main/java/org/bukkit/UnsafeValues.java
-index 5e0e969a10df75411eedd00a63ead65a00c413b6..5c358a197eca883de2414a9773af9ac91d67a871 100644
+index 5e0e969a10df75411eedd00a63ead65a00c413b6..ec50592ccba552b859aff9a9ae3f62aba3f14d9e 100644
 --- a/src/main/java/org/bukkit/UnsafeValues.java
 +++ b/src/main/java/org/bukkit/UnsafeValues.java
-@@ -305,4 +305,29 @@ public interface UnsafeValues {
+@@ -305,4 +305,30 @@ public interface UnsafeValues {
      @org.jetbrains.annotations.NotNull
      ItemStack newItem(@org.jetbrains.annotations.NotNull org.bukkit.Material material, int count);
      // Daydream end - Add ItemStack utility API
@@ -17,6 +17,7 @@ index 5e0e969a10df75411eedd00a63ead65a00c413b6..5c358a197eca883de2414a9773af9ac9
 +    /* Entity */
 +    void eme$setEntityDimensions(@NotNull Object nmsEntity, @NotNull Object entityDimensions);
 +    void eme$setEntityEyeHeight(@NotNull Object nmsEntity, float eyeHeight);
++    void eme$setEntityBukkitEntity(@NotNull Object nmsEntity, @Nullable org.bukkit.entity.Entity entity);
 +    void eme$setLivingEntityNoJumpDelay(@NotNull Object nmsLivingEntity, int noJumpDelay);
 +    void eme$setMobLookControl(@NotNull Object nmsMob, @NotNull Object lookControl);
 +    void eme$setMobMoveControl(@NotNull Object nmsMob, @NotNull Object moveControl);

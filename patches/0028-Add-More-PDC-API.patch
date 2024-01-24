@@ -5,7 +5,7 @@ Subject: [PATCH] Add More PDC API
 
 
 diff --git a/src/main/java/org/bukkit/persistence/PersistentDataContainer.java b/src/main/java/org/bukkit/persistence/PersistentDataContainer.java
-index da59e75267f43581bec6df73dda9f889347617d4..55016c558da0378a7ae0a855a759b2b1daa4ae25 100644
+index decf3b1949d4653a9fb01684b93ff91048137076..7b37b9ca6ca506d66d1f131c5a968cf605c111a1 100644
 --- a/src/main/java/org/bukkit/persistence/PersistentDataContainer.java
 +++ b/src/main/java/org/bukkit/persistence/PersistentDataContainer.java
 @@ -219,4 +219,155 @@ public interface PersistentDataContainer {
@@ -25,8 +25,8 @@ index da59e75267f43581bec6df73dda9f889347617d4..55016c558da0378a7ae0a855a759b2b1
 +     * @param key the key this value will be stored under
 +     * @param type the type this tag uses
 +     * @param value the value to store in the tag
-+     * @param <T> the generic java type of the tag value
-+     * @param <Z> the generic type of the object to store
++     * @param <P> the generic java type of the tag value
++     * @param <C> the generic type of the object to store
 +     *
 +     * @throws IllegalArgumentException if the key is null
 +     * @throws IllegalArgumentException if the type is null
@@ -35,7 +35,7 @@ index da59e75267f43581bec6df73dda9f889347617d4..55016c558da0378a7ae0a855a759b2b1
 +     * @throws IllegalArgumentException if no suitable adapter was found for
 +     * the {@link PersistentDataType#getPrimitiveType()}
 +     */
-+    <T, Z> void set(@NotNull String key, @NotNull PersistentDataType<T, Z> type, @NotNull Z value);
++    <P, C> void set(@NotNull String key, @NotNull PersistentDataType<P, C> type, @NotNull C value);
 +
 +    /**
 +     * Returns if the persistent metadata provider has metadata registered
@@ -57,8 +57,8 @@ index da59e75267f43581bec6df73dda9f889347617d4..55016c558da0378a7ae0a855a759b2b1
 +     *
 +     * @param key the key the value is stored under
 +     * @param type the type the primative stored value has to match
-+     * @param <T> the generic type of the stored primitive
-+     * @param <Z> the generic type of the eventually created complex object
++     * @param <P> the generic type of the stored primitive
++     * @param <C> the generic type of the eventually created complex object
 +     *
 +     * @return if a value with the provided key and type exists
 +     *
@@ -66,7 +66,7 @@ index da59e75267f43581bec6df73dda9f889347617d4..55016c558da0378a7ae0a855a759b2b1
 +     * @throws IllegalArgumentException if the type to cast the found object to is
 +     * null
 +     */
-+    <T, Z> boolean has(@NotNull String key, @NotNull PersistentDataType<T, Z> type);
++    <P, C> boolean has(@NotNull String key, @NotNull PersistentDataType<P, C> type);
 +
 +    /**
 +     * Returns if the persistent metadata provider has metadata registered matching
@@ -93,8 +93,8 @@ index da59e75267f43581bec6df73dda9f889347617d4..55016c558da0378a7ae0a855a759b2b1
 +     *
 +     * @param key the key to look up in the custom tag map
 +     * @param type the type the value must have and will be casted to
-+     * @param <T> the generic type of the stored primitive
-+     * @param <Z> the generic type of the eventually created complex object
++     * @param <P> the generic type of the stored primitive
++     * @param <C> the generic type of the eventually created complex object
 +     *
 +     * @return the value or {@code null} if no value was mapped under the given
 +     * value
@@ -109,7 +109,7 @@ index da59e75267f43581bec6df73dda9f889347617d4..55016c558da0378a7ae0a855a759b2b1
 +     * PersistentDataType#getPrimitiveType()}
 +     */
 +    @Nullable
-+    <T, Z> Z get(@NotNull String key, @NotNull PersistentDataType<T, Z> type);
++    <P, C> C get(@NotNull String key, @NotNull PersistentDataType<P, C> type);
 +
 +    /**
 +     * Returns the metadata value that is stored on the
@@ -120,8 +120,8 @@ index da59e75267f43581bec6df73dda9f889347617d4..55016c558da0378a7ae0a855a759b2b1
 +     * @param type the type the value must have and will be casted to
 +     * @param defaultValue the default value to return if no value was found for
 +     * the provided key
-+     * @param <T> the generic type of the stored primitive
-+     * @param <Z> the generic type of the eventually created complex object
++     * @param <P> the generic type of the stored primitive
++     * @param <C> the generic type of the eventually created complex object
 +     *
 +     * @return the value or the default value if no value was mapped under the
 +     * given key
@@ -135,7 +135,7 @@ index da59e75267f43581bec6df73dda9f889347617d4..55016c558da0378a7ae0a855a759b2b1
 +     * the {@link PersistentDataType#getPrimitiveType()}
 +     */
 +    @NotNull
-+    <T, Z> Z getOrDefault(@NotNull String key, @NotNull PersistentDataType<T, Z> type, @NotNull Z defaultValue);
++    <P, C> C getOrDefault(@NotNull String key, @NotNull PersistentDataType<P, C> type, @NotNull C defaultValue);
 +
 +    /**
 +     * Get the set of keys present on this {@link PersistentDataContainer}

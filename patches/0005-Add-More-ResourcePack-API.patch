@@ -4,8 +4,128 @@ Date: Fri, 6 Aug 2021 20:08:04 +0900
 Subject: [PATCH] Add More ResourcePack API
 
 
+diff --git a/src/main/java/moe/caramel/daydream/player/ResourcePack.java b/src/main/java/moe/caramel/daydream/player/ResourcePack.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..46702d7db63fca173b78a507b4900e031b89a4a0
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/player/ResourcePack.java
+@@ -0,0 +1,114 @@
++package moe.caramel.daydream.player;
++
++import net.kyori.adventure.resource.ResourcePackInfo;
++import net.kyori.adventure.resource.ResourcePackStatus;
++import org.bukkit.event.player.PlayerResourcePackStatusEvent.Status;
++import org.jetbrains.annotations.Contract;
++import org.jetbrains.annotations.NotNull;
++import org.jetbrains.annotations.Nullable;
++import java.net.URI;
++import java.util.UUID;
++
++/**
++ * 리소스팩 데이터
++ */
++public interface ResourcePack {
++
++    /**
++     * 리소스팩 정보를 가져옵니다.
++     *
++     * @return 리소스팩 정보
++     */
++    @NotNull
++    ResourcePackInfo info();
++
++    /**
++     * 리소스팩의 UUID를 가져옵니다.
++     *
++     * @return 리소스팩의 UUID
++     */
++    @NotNull
++    default UUID id() {
++        return info().id();
++    }
++
++    /**
++     * 리소스팩의 URI를 가져옵니다.
++     *
++     * @return 리소스팩의 URI
++     */
++    @NotNull
++    default URI uri() {
++        return info().uri();
++    }
++
++    /**
++     * 리소스팩의 해시를 가져옵니다.
++     *
++     * @return 리소스팩의 해시
++     */
++    @NotNull
++    default String hash() {
++        return info().hash();
++    }
++
++    /**
++     * 리소스팩 적용 상태를 Adventure 형식으로 가져옵니다.
++     *
++     * @return 리소스팩 적용 상태
++     */
++    @Nullable
++    ResourcePackStatus status();
++
++    /**
++     * 리소스팩 적용 상태를 Bukkit 형식으로 가져옵니다.
++     *
++     * @return 리소스팩 적용 상태
++     */
++    @Nullable
++    default Status bukkitStatus() {
++        return adventureToBukkit(status());
++    }
++
++    // ===========================
++
++    /**
++     * Adventure 리소스팩 상태를 Bukkit 형식으로 변환합니다.
++     *
++     * @param status Adventure 상태
++     * @return Bukkit 상태
++     */
++    @Contract("!null -> !null; null -> null")
++    static @Nullable Status adventureToBukkit(final @Nullable ResourcePackStatus status) {
++        return (status == null) ? null : switch (status) {
++            case SUCCESSFULLY_LOADED -> Status.SUCCESSFULLY_LOADED;
++            case DECLINED -> Status.DECLINED;
++            case FAILED_DOWNLOAD -> Status.FAILED_DOWNLOAD;
++            case ACCEPTED -> Status.ACCEPTED;
++            case DOWNLOADED -> Status.DOWNLOADED;
++            case INVALID_URL -> Status.INVALID_URL;
++            case FAILED_RELOAD -> Status.FAILED_RELOAD;
++            case DISCARDED -> Status.DISCARDED;
++        };
++    }
++
++    /**
++     *  Bukkit 리소스팩 상태를 Adventure 형식으로 변환합니다.
++     *
++     * @param status Bukkit 상태
++     * @return Adventure 상태
++     */
++    @Contract("!null -> !null; null -> null")
++    static @Nullable ResourcePackStatus bukkitToAdventure(final @Nullable Status status) {
++        return (status == null) ? null : switch (status) {
++            case SUCCESSFULLY_LOADED -> ResourcePackStatus.SUCCESSFULLY_LOADED;
++            case DECLINED -> ResourcePackStatus.DECLINED;
++            case FAILED_DOWNLOAD -> ResourcePackStatus.FAILED_DOWNLOAD;
++            case ACCEPTED -> ResourcePackStatus.ACCEPTED;
++            case DOWNLOADED -> ResourcePackStatus.DOWNLOADED;
++            case INVALID_URL -> ResourcePackStatus.INVALID_URL;
++            case FAILED_RELOAD -> ResourcePackStatus.FAILED_RELOAD;
++            case DISCARDED -> ResourcePackStatus.DISCARDED;
++        };
++    }
++}
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index 451c5432f1e4e921014b3216adce0eeefb79dadd..690c974b209e81acc37d2ab15bb7470b5b9b17a2 100644
+index 451c5432f1e4e921014b3216adce0eeefb79dadd..37c75babc67d2867e2e11f81988533bcd9404ae3 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
 @@ -2617,6 +2617,23 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
@@ -18,7 +138,7 @@ index 451c5432f1e4e921014b3216adce0eeefb79dadd..690c974b209e81acc37d2ab15bb7470b
 +     *
 +     * @return 리소스팩 목록
 +     */
-+    @NotNull java.util.Set<@NotNull UUID> getAppliedResourcePacks();
++    @NotNull Collection<? extends moe.caramel.daydream.player.ResourcePack> getAppliedResourcePacks();
 +
 +    /**
 +     * 리소스팩 적용 상태를 가져옵니다.

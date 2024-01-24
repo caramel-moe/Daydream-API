@@ -1,0 +1,125 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: LemonCaramel <admin@caramel.moe>
+Date: Thu, 5 Aug 2021 15:44:59 +0900
+Subject: [PATCH] Add Daydream Config
+
+
+diff --git a/src/main/java/co/aikar/timings/Timings.java b/src/main/java/co/aikar/timings/Timings.java
+index 9812d668ad945aba486fbf6d5bf83c4292cb5d03..dd922a3dd74d1d8429bd7de9ba2e24da397a96b4 100644
+--- a/src/main/java/co/aikar/timings/Timings.java
++++ b/src/main/java/co/aikar/timings/Timings.java
+@@ -152,6 +152,12 @@ public final class Timings {
+ 
+     private static void warnAboutDeprecationOnEnable() {
+         if (timingsEnabled && !warnedAboutDeprecationOnEnable) {
++            // Daydream start - Add Daydream Config
++            if (moe.caramel.daydream.InternalDaydreamConfig.logger$disableSparkRecommendLog()) {
++                Timings.warnedAboutDeprecationOnEnable = true;
++                return;
++            }
++            // Daydream end - Add Daydream Config
+             Bukkit.getLogger().warning(PlainTextComponentSerializer.plainText().serialize(deprecationMessage()));
+             warnedAboutDeprecationOnEnable = true;
+         }
+diff --git a/src/main/java/co/aikar/timings/TimingsManager.java b/src/main/java/co/aikar/timings/TimingsManager.java
+index 5e1558ca3ffeeaf2645fa003965474a442d650bf..fd20b58ce3cae844c6c093a4d39a83321df805fe 100644
+--- a/src/main/java/co/aikar/timings/TimingsManager.java
++++ b/src/main/java/co/aikar/timings/TimingsManager.java
+@@ -155,7 +155,8 @@ public final class TimingsManager {
+         final Server server = Bukkit.getServer();
+         if (!(  server == null || pluginName == null ||
+                 "minecraft".equals(pluginName) || "bukkit".equals(pluginName) ||
+-                "spigot".equalsIgnoreCase(pluginName) || "paper".equals(pluginName)
++                "spigot".equalsIgnoreCase(pluginName) || "paper".equals(pluginName) ||
++                "daydream".equals(pluginName) // Daydream - Add Daydream Config (Rebrand to Daydream)
+         )) {
+             plugin = server.getPluginManager().getPlugin(pluginName);
+         }
+diff --git a/src/main/java/moe/caramel/daydream/InternalDaydreamConfig.java b/src/main/java/moe/caramel/daydream/InternalDaydreamConfig.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..ee7141524a2b01dcba434c8b619f8b376da99bf0
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/InternalDaydreamConfig.java
+@@ -0,0 +1,42 @@
++package moe.caramel.daydream;
++
++import org.bukkit.Bukkit;
++import org.bukkit.configuration.file.YamlConfiguration;
++import org.jetbrains.annotations.ApiStatus;
++import org.jetbrains.annotations.NotNull;
++
++/**
++ * Internal Daydream Config
++ */
++@ApiStatus.Internal
++public interface InternalDaydreamConfig {
++
++    /**
++     * Daydream 설정을 가져옵니다.
++     * <p>이 메서드를 호출할 때마다 파일 읽기가 발생합니다.</p>
++     *
++     * @return Daydream 설정
++     */
++    @NotNull
++    static YamlConfiguration config() {
++        return Bukkit.spigot().getDaydreamConfig();
++    }
++
++    /**
++     * 라이브러리 로더에 의해 종속성이 다운로드될 때 로그를 표시할지 여부를 결정합니다.
++     *
++     * @return {@code true}인 경우, 종속성 로드와 관련된 로그를 표시하지 않습니다.
++     */
++    static boolean logger$ignoreLibraryLoaderLog() {
++        return config().getBoolean("logger.ignore-library-loader-log", false);
++    }
++
++    /**
++     * Spark 사용 권장 로그를 비활성화할지 여부를 결정합니다.
++     *
++     * @return {@code true}인 경우, Spark 사용 권장 로그를 비활성화합니다.
++     */
++    static boolean logger$disableSparkRecommendLog() {
++        return config().getBoolean("logger.disable-spark-recommend-log", false);
++    }
++}
+diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
+index 9af4bc16da09e59009c47911219e99450cdf2aa5..2d0c16e0be926cb130735f116085669a5250de4c 100644
+--- a/src/main/java/org/bukkit/Server.java
++++ b/src/main/java/org/bukkit/Server.java
+@@ -2198,6 +2198,14 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
+         }
+         // Paper end
+ 
++        // Daydream start - Add Daydream Config
++        @NotNull
++        public org.bukkit.configuration.file.YamlConfiguration getDaydreamConfig()
++        {
++            throw new UnsupportedOperationException("Not supported yet.");
++        }
++        // Daydream end - Add Daydream Config
++
+         /**
+          * Sends the component to the player
+          *
+diff --git a/src/main/java/org/bukkit/plugin/java/LibraryLoader.java b/src/main/java/org/bukkit/plugin/java/LibraryLoader.java
+index 653135352c104a6ddeb74a1b6d4916c6952d6271..fa864a02aab7f0b43bc3b865ad43b8565ad6720b 100644
+--- a/src/main/java/org/bukkit/plugin/java/LibraryLoader.java
++++ b/src/main/java/org/bukkit/plugin/java/LibraryLoader.java
+@@ -71,7 +71,7 @@ public class LibraryLoader
+         } );
+         session.setReadOnly();
+ 
+-        this.repositories = repository.newResolutionRepositories( session, Arrays.asList( new RemoteRepository.Builder( "central", "default", "https://repo.maven.apache.org/maven2" ).build() ) );
++        this.repositories = repository.newResolutionRepositories( session, Arrays.asList( new RemoteRepository.Builder( "central", "default", "https://repo.maven.apache.org/maven2" ).build(), new RemoteRepository.Builder( "caramel-repo", "default", "https://repo.caramel.moe/repository/maven-public" ).build() ) ); // Daydream - Add Daydream Config (Add caramel.moe repository to LibraryLoader)
+     }
+ 
+     @Nullable
+@@ -119,6 +119,7 @@ public class LibraryLoader
+             }
+ 
+             jarFiles.add( url );
++            if (!moe.caramel.daydream.InternalDaydreamConfig.logger$ignoreLibraryLoaderLog()) // Daydream - Add Daydream Config
+             logger.log( Level.INFO, "[{0}] Loaded library {1}", new Object[]
+             {
+                 java.util.Objects.requireNonNullElseGet(desc.getPrefix(), desc::getName), file // Paper - use configured log prefix

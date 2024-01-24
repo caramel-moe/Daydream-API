@@ -61,10 +61,10 @@ index 0000000000000000000000000000000000000000..4c380e4ddbc9cd2d42a1e3d23cb3493d
 +}
 diff --git a/src/main/java/moe/caramel/daydream/event/configure/ConfigurationResourcePackRequestEvent.java b/src/main/java/moe/caramel/daydream/event/configure/ConfigurationResourcePackRequestEvent.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..832eb6907f1dabd8bd5bbe43cc4fe8c2033e03f1
+index 0000000000000000000000000000000000000000..b0dcc22b7fe1f6163e09924241023961fb64a014
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/event/configure/ConfigurationResourcePackRequestEvent.java
-@@ -0,0 +1,174 @@
+@@ -0,0 +1,175 @@
 +package moe.caramel.daydream.event.configure;
 +
 +import net.kyori.adventure.resource.ResourcePackCallback;
@@ -72,6 +72,7 @@ index 0000000000000000000000000000000000000000..832eb6907f1dabd8bd5bbe43cc4fe8c2
 +import net.kyori.adventure.resource.ResourcePackRequest;
 +import net.kyori.adventure.resource.ResourcePackStatus;
 +import net.kyori.adventure.text.Component;
++import org.bukkit.Bukkit;
 +import org.bukkit.entity.Player;
 +import org.bukkit.event.HandlerList;
 +import org.jetbrains.annotations.NotNull;
@@ -96,7 +97,7 @@ index 0000000000000000000000000000000000000000..832eb6907f1dabd8bd5bbe43cc4fe8c2
 +    private boolean strictCheck;
 +
 +    public ConfigurationResourcePackRequestEvent(final @NotNull Player what) {
-+        super(what, true);
++        super(what, !Bukkit.isPrimaryThread());
 +        this.packs = new ArrayList<>();
 +        this.callbacks = new ArrayList<>();
 +    }
