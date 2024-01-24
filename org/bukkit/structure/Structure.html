@@ -157,7 +157,20 @@ extends <a href="../persistence/PersistentDataHolder.html" title="interface in o
 <div class="block">Place a structure in the world.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#place(org.bukkit.RegionAccessor,org.bukkit.util.BlockVector,boolean,org.bukkit.block.structure.StructureRotation,org.bukkit.block.structure.Mirror,int,float,java.util.Random)" class="member-name-link">place</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../RegionAccessor.html" title="interface in org.bukkit">RegionAccessor</a>&nbsp;regionAccessor,
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#place(org.bukkit.Location,boolean,org.bukkit.block.structure.StructureRotation,org.bukkit.block.structure.Mirror,int,float,java.util.Random,java.util.Collection,java.util.Collection)" class="member-name-link">place</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;location,
+ boolean&nbsp;includeEntities,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../block/structure/StructureRotation.html" title="enum class in org.bukkit.block.structure">StructureRotation</a>&nbsp;structureRotation,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../block/structure/Mirror.html" title="enum class in org.bukkit.block.structure">Mirror</a>&nbsp;mirror,
+ int&nbsp;palette,
+ float&nbsp;integrity,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Random.html" title="class or interface in java.util" class="external-link">Random</a>&nbsp;random,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Collection.html" title="class or interface in java.util" class="external-link">Collection</a>&lt;<a href="../util/BlockTransformer.html" title="interface in org.bukkit.util">BlockTransformer</a>&gt;&nbsp;blockTransformers,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Collection.html" title="class or interface in java.util" class="external-link">Collection</a>&lt;<a href="../util/EntityTransformer.html" title="interface in org.bukkit.util">EntityTransformer</a>&gt;&nbsp;entityTransformers)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Place a structure in the world.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#place(org.bukkit.RegionAccessor,org.bukkit.util.BlockVector,boolean,org.bukkit.block.structure.StructureRotation,org.bukkit.block.structure.Mirror,int,float,java.util.Random)" class="member-name-link">place</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../RegionAccessor.html" title="interface in org.bukkit">RegionAccessor</a>&nbsp;regionAccessor,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../util/BlockVector.html" title="class in org.bukkit.util">BlockVector</a>&nbsp;location,
  boolean&nbsp;includeEntities,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../block/structure/StructureRotation.html" title="enum class in org.bukkit.block.structure">StructureRotation</a>&nbsp;structureRotation,
@@ -165,6 +178,20 @@ extends <a href="../persistence/PersistentDataHolder.html" title="interface in o
  int&nbsp;palette,
  float&nbsp;integrity,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Random.html" title="class or interface in java.util" class="external-link">Random</a>&nbsp;random)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Place a structure in the world.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#place(org.bukkit.RegionAccessor,org.bukkit.util.BlockVector,boolean,org.bukkit.block.structure.StructureRotation,org.bukkit.block.structure.Mirror,int,float,java.util.Random,java.util.Collection,java.util.Collection)" class="member-name-link">place</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../RegionAccessor.html" title="interface in org.bukkit">RegionAccessor</a>&nbsp;regionAccessor,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../util/BlockVector.html" title="class in org.bukkit.util">BlockVector</a>&nbsp;location,
+ boolean&nbsp;includeEntities,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../block/structure/StructureRotation.html" title="enum class in org.bukkit.block.structure">StructureRotation</a>&nbsp;structureRotation,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../block/structure/Mirror.html" title="enum class in org.bukkit.block.structure">Mirror</a>&nbsp;mirror,
+ int&nbsp;palette,
+ float&nbsp;integrity,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Random.html" title="class or interface in java.util" class="external-link">Random</a>&nbsp;random,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Collection.html" title="class or interface in java.util" class="external-link">Collection</a>&lt;<a href="../util/BlockTransformer.html" title="interface in org.bukkit.util">BlockTransformer</a>&gt;&nbsp;blockTransformers,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Collection.html" title="class or interface in java.util" class="external-link">Collection</a>&lt;<a href="../util/EntityTransformer.html" title="interface in org.bukkit.util">EntityTransformer</a>&gt;&nbsp;entityTransformers)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Place a structure in the world.</div>
 </div>
@@ -282,6 +309,45 @@ extends <a href="../persistence/PersistentDataHolder.html" title="interface in o
 </section>
 </li>
 <li>
+<section class="detail" id="place(org.bukkit.Location,boolean,org.bukkit.block.structure.StructureRotation,org.bukkit.block.structure.Mirror,int,float,java.util.Random,java.util.Collection,java.util.Collection)">
+<h3>place</h3>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/ApiStatus.Experimental.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Experimental</a>
+</span><span class="return-type">void</span>&nbsp;<span class="element-name">place</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;location,
+ boolean&nbsp;includeEntities,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../block/structure/StructureRotation.html" title="enum class in org.bukkit.block.structure">StructureRotation</a>&nbsp;structureRotation,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../block/structure/Mirror.html" title="enum class in org.bukkit.block.structure">Mirror</a>&nbsp;mirror,
+ int&nbsp;palette,
+ float&nbsp;integrity,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Random.html" title="class or interface in java.util" class="external-link">Random</a>&nbsp;random,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Collection.html" title="class or interface in java.util" class="external-link">Collection</a>&lt;<a href="../util/BlockTransformer.html" title="interface in org.bukkit.util">BlockTransformer</a>&gt;&nbsp;blockTransformers,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Collection.html" title="class or interface in java.util" class="external-link">Collection</a>&lt;<a href="../util/EntityTransformer.html" title="interface in org.bukkit.util">EntityTransformer</a>&gt;&nbsp;entityTransformers)</span></div>
+<div class="block">Place a structure in the world.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>location</code> - The location to place the structure at.</dd>
+<dd><code>includeEntities</code> - If the entities present in the structure should be
+ spawned.</dd>
+<dd><code>structureRotation</code> - The rotation of the structure.</dd>
+<dd><code>mirror</code> - The mirror settings of the structure.</dd>
+<dd><code>palette</code> - The palette index of the structure to use, starting at
+ <code>0</code>, or <code>-1</code> to pick a random palette.</dd>
+<dd><code>integrity</code> - Determines how damaged the building should look by
+ randomly skipping blocks to place. This value can range from 0 to 1. With
+ 0 removing all blocks and 1 spawning the structure in pristine condition.</dd>
+<dd><code>random</code> - The randomizer used for setting the structure's
+ <a href="../loot/LootTable.html" title="interface in org.bukkit.loot"><code>LootTable</code></a>s and integrity.</dd>
+<dd><code>blockTransformers</code> - A collection of <a href="../util/BlockTransformer.html" title="interface in org.bukkit.util"><code>BlockTransformer</code></a>s to apply to the structure.</dd>
+<dd><code>entityTransformers</code> - A collection of <a href="../util/EntityTransformer.html" title="interface in org.bukkit.util"><code>EntityTransformer</code></a>s to apply to the structure.</dd>
+</dl>
+</section>
+</li>
+<li>
 <section class="detail" id="place(org.bukkit.RegionAccessor,org.bukkit.util.BlockVector,boolean,org.bukkit.block.structure.StructureRotation,org.bukkit.block.structure.Mirror,int,float,java.util.Random)">
 <h3>place</h3>
 <div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">place</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
@@ -313,6 +379,48 @@ extends <a href="../persistence/PersistentDataHolder.html" title="interface in o
  0 removing all blocks and 1 spawning the structure in pristine condition.</dd>
 <dd><code>random</code> - The randomizer used for setting the structure's
  <a href="../loot/LootTable.html" title="interface in org.bukkit.loot"><code>LootTable</code></a>s and integrity.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="place(org.bukkit.RegionAccessor,org.bukkit.util.BlockVector,boolean,org.bukkit.block.structure.StructureRotation,org.bukkit.block.structure.Mirror,int,float,java.util.Random,java.util.Collection,java.util.Collection)">
+<h3>place</h3>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/ApiStatus.Experimental.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Experimental</a>
+</span><span class="return-type">void</span>&nbsp;<span class="element-name">place</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../RegionAccessor.html" title="interface in org.bukkit">RegionAccessor</a>&nbsp;regionAccessor,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../util/BlockVector.html" title="class in org.bukkit.util">BlockVector</a>&nbsp;location,
+ boolean&nbsp;includeEntities,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../block/structure/StructureRotation.html" title="enum class in org.bukkit.block.structure">StructureRotation</a>&nbsp;structureRotation,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../block/structure/Mirror.html" title="enum class in org.bukkit.block.structure">Mirror</a>&nbsp;mirror,
+ int&nbsp;palette,
+ float&nbsp;integrity,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Random.html" title="class or interface in java.util" class="external-link">Random</a>&nbsp;random,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Collection.html" title="class or interface in java.util" class="external-link">Collection</a>&lt;<a href="../util/BlockTransformer.html" title="interface in org.bukkit.util">BlockTransformer</a>&gt;&nbsp;blockTransformers,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Collection.html" title="class or interface in java.util" class="external-link">Collection</a>&lt;<a href="../util/EntityTransformer.html" title="interface in org.bukkit.util">EntityTransformer</a>&gt;&nbsp;entityTransformers)</span></div>
+<div class="block">Place a structure in the world.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>regionAccessor</code> - The world to place the structure in.</dd>
+<dd><code>location</code> - The location to place the structure at.</dd>
+<dd><code>includeEntities</code> - If the entities present in the structure should be
+ spawned.</dd>
+<dd><code>structureRotation</code> - The rotation of the structure.</dd>
+<dd><code>mirror</code> - The mirror settings of the structure.</dd>
+<dd><code>palette</code> - The palette index of the structure to use, starting at
+ <code>0</code>, or <code>-1</code> to pick a random palette.</dd>
+<dd><code>integrity</code> - Determines how damaged the building should look by
+ randomly skipping blocks to place. This value can range from 0 to 1. With
+ 0 removing all blocks and 1 spawning the structure in pristine condition.</dd>
+<dd><code>random</code> - The randomizer used for setting the structure's
+ <a href="../loot/LootTable.html" title="interface in org.bukkit.loot"><code>LootTable</code></a>s and integrity.</dd>
+<dd><code>blockTransformers</code> - A collection of <a href="../util/BlockTransformer.html" title="interface in org.bukkit.util"><code>BlockTransformer</code></a>s to apply to the structure.</dd>
+<dd><code>entityTransformers</code> - A collection of <a href="../util/EntityTransformer.html" title="interface in org.bukkit.util"><code>EntityTransformer</code></a>s to apply to the structure.</dd>
 </dl>
 </section>
 </li>

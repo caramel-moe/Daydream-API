@@ -273,7 +273,11 @@ extends <a href="Entity.html" title="interface in org.bukkit.entity">Entity</a><
 <section class="detail" id="setAbsorptionAmount(double)">
 <h3>setAbsorptionAmount</h3>
 <div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">setAbsorptionAmount</span><wbr><span class="parameters">(double&nbsp;amount)</span></div>
-<div class="block">Sets the entity's absorption amount.</div>
+<div class="block">Sets the entity's absorption amount.
+ <p>
+ Note: The amount is capped to the value of
+ <a href="../attribute/Attribute.html#GENERIC_MAX_ABSORPTION"><code>Attribute.GENERIC_MAX_ABSORPTION</code></a>. The effect of this method on
+ that attribute is currently unspecified and subject to change.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>amount</code> - new absorption amount from 0</dd>
