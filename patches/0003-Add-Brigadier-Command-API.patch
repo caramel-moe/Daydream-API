@@ -62,10 +62,10 @@ index 0000000000000000000000000000000000000000..e8b04204dbad8450096c9aedc789865f
 +}
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/AbstractCommand.java b/src/main/java/moe/caramel/daydream/brigadier/AbstractCommand.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..7d4776c59b1ed9f5eadb9188cd2430e4a7b70c74
+index 0000000000000000000000000000000000000000..d719368e06234dbcbe79dd7801469a7956722018
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/brigadier/AbstractCommand.java
-@@ -0,0 +1,345 @@
+@@ -0,0 +1,319 @@
 +package moe.caramel.daydream.brigadier;
 +
 +import com.mojang.brigadier.arguments.ArgumentType;
@@ -80,11 +80,7 @@ index 0000000000000000000000000000000000000000..7d4776c59b1ed9f5eadb9188cd2430e4
 +import org.bukkit.command.CommandSender;
 +import org.jetbrains.annotations.NotNull;
 +import org.jetbrains.annotations.Nullable;
-+import java.util.ArrayList;
-+import java.util.Arrays;
 +import java.util.Collection;
-+import java.util.HashMap;
-+import java.util.List;
 +import java.util.Map;
 +import java.util.concurrent.CompletableFuture;
 +import java.util.function.Consumer;
@@ -94,6 +90,7 @@ index 0000000000000000000000000000000000000000..7d4776c59b1ed9f5eadb9188cd2430e4
 + * Brigadier 명령어 빌더
 + */
 +@SuppressWarnings("unused")
++@Deprecated(forRemoval = true, since = "1.21")
 +public abstract class AbstractCommand {
 +
 +    private String[] aliases;
@@ -255,41 +252,42 @@ index 0000000000000000000000000000000000000000..7d4776c59b1ed9f5eadb9188cd2430e4
 +     */
 +    @NotNull
 +    protected LiteralArgumentBuilder<CommandSourceStack> literal(@NotNull String literal) {
-+        return LiteralArgumentBuilder.literal(literal);
++        return BrigadierCommand.literal(literal);
 +    }
 +
 +    /**
-+     * 필수 입력 인자를 생성합니다.
++     * 입력 인자를 생성합니다.
 +     *
 +     * @param name 입력 인자의 이름
 +     * @param type 입력 인자의 타입 인스턴스
-+     * @return 필수 입력 인자
++     * @return 필수 입력
++     * @param <T> 인자의 타입
 +     */
 +    @NotNull
 +    protected <T> RequiredArgumentBuilder<CommandSourceStack, T> argument(@NotNull String name, @NotNull ArgumentType<T> type) {
-+        return RequiredArgumentBuilder.argument(name, type);
++        return BrigadierCommand.argument(name, type);
 +    }
 +
 +    /**
-+     * 명령어 발신자를 가져옵니다.
++     * 명령어 실행 주체를 가져옵니다.
 +     *
 +     * @param context 명령 컨텍스트
-+     * @return Bukkit 명령어 발신자
++     * @return Bukkit 명령어 실행 주체
 +     */
 +    @NotNull
 +    protected CommandSender sender(@NotNull CommandContext<CommandSourceStack> context) {
-+        return sender(context.getSource());
++        return BrigadierCommand.sender(context);
 +    }
 +
 +    /**
-+     * 명령어 발신자를 가져옵니다.
++     * 명령어 실행 주체를 가져옵니다.
 +     *
-+     * @param source 명령 제공자
-+     * @return Bukkit 명령어 발신자
++     * @param source 명령어 실행 주체
++     * @return Bukkit 명령어 실행 주체
 +     */
 +    @NotNull
 +    protected CommandSender sender(@NotNull CommandSourceStack source) {
-+        return source.getSender();
++        return BrigadierCommand.sender(source);
 +    }
 +
 +
@@ -298,77 +296,69 @@ index 0000000000000000000000000000000000000000..7d4776c59b1ed9f5eadb9188cd2430e4
 +     */
 +
 +    /**
-+     * 정적 명령어 제안을 생성합니다.
++     * (정적) 명령어 제안을 생성합니다.
 +     *
 +     * @param strings 제안 목록
 +     * @return 생성된 제안 프로바이더
 +     */
 +    @NotNull
 +    protected SuggestionProvider<CommandSourceStack> suggest(@NotNull String... strings) {
-+        return suggest(List.of(strings));
++        return BrigadierCommand.suggest(strings);
 +    }
 +
 +    /**
-+     * 정적 명령어 제안을 생성합니다.
++     * (정적) 명령어 제안을 생성합니다.
 +     *
 +     * @param strings 제안 목록
 +     * @return 생성된 제안 프로바이더
 +     */
 +    @NotNull
 +    protected SuggestionProvider<CommandSourceStack> suggest(@NotNull Collection<String> strings) {
-+        return (c, b) -> suggest(b, strings);
++        return BrigadierCommand.suggest(strings);
 +    }
 +
 +    /**
-+     * 동적 명령어 제안을 생성합니다.
++     * (동적) 명령어 제안을 생성합니다.
 +     *
 +     * @param strings 제안 목록
 +     * @return 생성된 제안 프로바이더
 +     */
 +    @NotNull
 +    protected SuggestionProvider<CommandSourceStack> suggest(@NotNull Supplier<String[]> strings) {
-+        return suggest(list -> list.addAll(Arrays.asList(strings.get())));
++        return BrigadierCommand.suggest(strings);
 +    }
 +
 +    /**
-+     * 동적 명령어 제안을 생성합니다.
++     * (동적) 명령어 제안을 생성합니다.
 +     *
 +     * @param strings 제안 목록
 +     * @return 생성된 제안 프로바이더
 +     */
 +    @NotNull
 +    protected SuggestionProvider<CommandSourceStack> suggest(@NotNull Consumer<Collection<String>> strings) {
-+        return (c, b) -> {
-+            final List<String> list = new ArrayList<>();
-+            strings.accept(list);
-+            return suggest(b, list);
-+        };
++        return BrigadierCommand.suggest(strings);
 +    }
 +
 +    /**
-+     * 툴팁이 포함된 정적 명령어 제안을 생성합니다.
++     * (정적) 툴팁이 포함된 명령어 제안을 생성합니다.
 +     *
 +     * @param suggestions 툴팁이 포함된 제안 목록
 +     * @return 생성된 제안 프로바이더
 +     */
 +    @NotNull
 +    protected SuggestionProvider<CommandSourceStack> hoverSuggest(@NotNull Map<String, Component> suggestions) {
-+        return (c, b) -> suggest(b, suggestions);
++        return BrigadierCommand.hoverSuggest(suggestions);
 +    }
 +
 +    /**
-+     * 툴팁이 포함된 동적 명령어 제안을 생성합니다.
++     * (동적) 툴팁이 포함된 명령어 제안을 생성합니다.
 +     *
 +     * @param suggestions 툴팁이 포함된 제안 목록
 +     * @return 생성된 제안 프로바이더
 +     */
 +    @NotNull
 +    protected SuggestionProvider<CommandSourceStack> hoverSuggest(@NotNull Consumer<Map<String, Component>> suggestions) {
-+        return (c, b) -> {
-+            final Map<String, Component> map = new HashMap<>();
-+            suggestions.accept(map);
-+            return suggest(b, map);
-+        };
++        return BrigadierCommand.hoverSuggest(suggestions);
 +    }
 +
 +    /**
@@ -380,14 +370,7 @@ index 0000000000000000000000000000000000000000..7d4776c59b1ed9f5eadb9188cd2430e4
 +     */
 +    @NotNull
 +    public static CompletableFuture<Suggestions> suggest(@NotNull SuggestionsBuilder builder, @NotNull Iterable<String> suggestions) {
-+        final String token = builder.getRemainingLowerCase();
-+        for (final String s : suggestions) {
-+            if (s.toLowerCase().startsWith(token)) {
-+                builder.suggest(s);
-+            }
-+        }
-+
-+        return builder.buildFuture();
++        return BrigadierCommand.suggest(builder, suggestions);
 +    }
 +
 +    /**
@@ -399,16 +382,7 @@ index 0000000000000000000000000000000000000000..7d4776c59b1ed9f5eadb9188cd2430e4
 +     */
 +    @NotNull
 +    public static CompletableFuture<Suggestions> suggest(@NotNull SuggestionsBuilder builder, @NotNull Map<String, Component> suggestions) {
-+        final String token = builder.getRemainingLowerCase();
-+        for (final var entry : suggestions.entrySet()) {
-+            final String s = entry.getKey();
-+            if (s.toLowerCase().startsWith(token)) {
-+                final Component message = entry.getValue();
-+                builder.suggest(s, BrigadierService.SERVICE.getMessage(message));
-+            }
-+        }
-+
-+        return builder.buildFuture();
++        return BrigadierCommand.suggest(builder, suggestions);
 +    }
 +}
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/Arguments.java b/src/main/java/moe/caramel/daydream/brigadier/Arguments.java
@@ -726,6 +700,242 @@ index 0000000000000000000000000000000000000000..abf12ad7215553b85709c39bad0292b0
 +    @NotNull
 +    public static final SimpleArgument<UUID> UUID = SERVICE.getArgument("uuid");
 +}
+diff --git a/src/main/java/moe/caramel/daydream/brigadier/BrigadierCommand.java b/src/main/java/moe/caramel/daydream/brigadier/BrigadierCommand.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..56338bbfca08443b8899f4a6fc93aa44222011c9
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/brigadier/BrigadierCommand.java
+@@ -0,0 +1,230 @@
++package moe.caramel.daydream.brigadier;
++
++import com.mojang.brigadier.CommandDispatcher;
++import com.mojang.brigadier.arguments.ArgumentType;
++import com.mojang.brigadier.builder.LiteralArgumentBuilder;
++import com.mojang.brigadier.builder.RequiredArgumentBuilder;
++import com.mojang.brigadier.context.CommandContext;
++import com.mojang.brigadier.suggestion.SuggestionProvider;
++import com.mojang.brigadier.suggestion.Suggestions;
++import com.mojang.brigadier.suggestion.SuggestionsBuilder;
++import com.mojang.brigadier.tree.CommandNode;
++import io.papermc.paper.command.brigadier.CommandSourceStack;
++import net.kyori.adventure.text.Component;
++import org.bukkit.command.CommandSender;
++import org.jetbrains.annotations.NotNull;
++import java.util.ArrayList;
++import java.util.Collection;
++import java.util.HashMap;
++import java.util.List;
++import java.util.Map;
++import java.util.concurrent.CompletableFuture;
++import java.util.function.Consumer;
++import java.util.function.Supplier;
++
++/**
++ * Brigadier 명령어
++ */
++@SuppressWarnings("unused")
++public abstract class BrigadierCommand extends HybridCommandBase<CommandSourceStack> {
++
++    protected final CommandNode<CommandSourceStack> command;
++
++    /**
++     * Brigadier 기반 명령어를 생성합니다.
++     *
++     * @param name 명령어의 이름
++     */
++    protected BrigadierCommand(final @NotNull String name) {
++        super(name);
++
++        // Create Brigadier command
++        final LiteralArgumentBuilder<CommandSourceStack> builder = literal(this.getName());
++        this.buildCommand(builder);
++        this.command = builder.build();
++    }
++
++    // =========================== (Commands)
++
++    /**
++     * Brigadier 명령어를 생성합니다.
++     *
++     * @param builder 명령어 빌더
++     */
++    public abstract void buildCommand(final @NotNull LiteralArgumentBuilder<CommandSourceStack> builder);
++
++    @Override
++    public final @NotNull CommandNode<CommandSourceStack> getCommand() {
++        return command;
++    }
++
++    @Override
++    protected final @NotNull CommandDispatcher<CommandSourceStack> getDispatcher() {
++        final CommandDispatcher<CommandSourceStack> dispatcher = new CommandDispatcher<>();
++        dispatcher.getRoot().addChild(this.command);
++        return dispatcher;
++    }
++
++    // =========================== (Utilities)
++
++    /**
++     * 리터럴 인자를 생성합니다.
++     *
++     * @param literal 리터럴 인자의 이름
++     * @return 리터럴 인자
++     */
++    @NotNull
++    public static LiteralArgumentBuilder<CommandSourceStack> literal(final @NotNull String literal) {
++        return LiteralArgumentBuilder.literal(literal);
++    }
++
++    /**
++     * 입력 인자를 생성합니다.
++     *
++     * @param name 입력 인자의 이름
++     * @param type 입력 인자의 타입 인스턴스
++     * @return 필수 입력
++     * @param <T> 인자의 타입
++     */
++    @NotNull
++    public static <T> RequiredArgumentBuilder<CommandSourceStack, T> argument(final @NotNull String name, final @NotNull ArgumentType<T> type) {
++        return RequiredArgumentBuilder.argument(name, type);
++    }
++
++    /**
++     * 명령어 실행 주체를 가져옵니다.
++     *
++     * @param context 명령 컨텍스트
++     * @return Bukkit 명령어 실행 주체
++     */
++    @NotNull
++    public static CommandSender sender(final @NotNull CommandContext<CommandSourceStack> context) {
++        return sender(context.getSource());
++    }
++
++    /**
++     * 명령어 실행 주체를 가져옵니다.
++     *
++     * @param source 명령어 실행 주체
++     * @return Bukkit 명령어 실행 주체
++     */
++    @NotNull
++    public static CommandSender sender(final @NotNull CommandSourceStack source) {
++        return source.getSender();
++    }
++
++    // =========================== (Suggestion)
++
++    /**
++     * (정적) 명령어 제안을 생성합니다.
++     *
++     * @param strings 제안 목록
++     * @return 생성된 제안 프로바이더
++     */
++    @NotNull
++    public static SuggestionProvider<CommandSourceStack> suggest(final @NotNull String... strings) {
++        return suggest(List.of(strings));
++    }
++
++    /**
++     * (정적) 명령어 제안을 생성합니다.
++     *
++     * @param strings 제안 목록
++     * @return 생성된 제안 프로바이더
++     */
++    @NotNull
++    public static SuggestionProvider<CommandSourceStack> suggest(final @NotNull Collection<String> strings) {
++        return (c, b) -> suggest(b, strings);
++    }
++
++    /**
++     * (동적) 명령어 제안을 생성합니다.
++     *
++     * @param strings 제안 목록
++     * @return 생성된 제안 프로바이더
++     */
++    @NotNull
++    public static SuggestionProvider<CommandSourceStack> suggest(final @NotNull Supplier<String[]> strings) {
++        return suggest(list -> list.addAll(List.of(strings.get())));
++    }
++
++    /**
++     * (동적) 명령어 제안을 생성합니다.
++     *
++     * @param strings 제안 목록
++     * @return 생성된 제안 프로바이더
++     */
++    @NotNull
++    public static SuggestionProvider<CommandSourceStack> suggest(final @NotNull Consumer<Collection<String>> strings) {
++        return (c, b) -> {
++            final List<String> list = new ArrayList<>();
++            strings.accept(list);
++            return suggest(b, list);
++        };
++    }
++
++    /**
++     * (정적) 툴팁이 포함된 명령어 제안을 생성합니다.
++     *
++     * @param suggestions 툴팁이 포함된 제안 목록
++     * @return 생성된 제안 프로바이더
++     */
++    @NotNull
++    public static SuggestionProvider<CommandSourceStack> hoverSuggest(final @NotNull Map<String, Component> suggestions) {
++        return (c, b) -> suggest(b, suggestions);
++    }
++
++    /**
++     * (동적) 툴팁이 포함된 명령어 제안을 생성합니다.
++     *
++     * @param suggestions 툴팁이 포함된 제안 목록
++     * @return 생성된 제안 프로바이더
++     */
++    @NotNull
++    public static SuggestionProvider<CommandSourceStack> hoverSuggest(final @NotNull Consumer<Map<String, Component>> suggestions) {
++        return (c, b) -> {
++            final Map<String, Component> map = new HashMap<>();
++            suggestions.accept(map);
++            return suggest(b, map);
++        };
++    }
++
++    /**
++     * 입력 내용에 기반하여 제안 빌더와 일치하는 제안을 가져옵니다.
++     *
++     * @param builder 제안 빌더
++     * @param suggestions 제안 목록
++     * @return 제안
++     */
++    @NotNull
++    public static CompletableFuture<Suggestions> suggest(final @NotNull SuggestionsBuilder builder, final @NotNull Iterable<String> suggestions) {
++        final String token = builder.getRemainingLowerCase();
++        for (final String suggestion : suggestions) {
++            if (suggestion.toLowerCase().startsWith(token)) {
++                builder.suggest(suggestion);
++            }
++        }
++
++        return builder.buildFuture();
++    }
++
++    /**
++     * 입력 내용에 기반하여 제안 빌더와 일치하는 툴팁이 포함된 제안을 가져옵니다.
++     *
++     * @param builder 제안 빌더
++     * @param suggestions 제안 목록
++     * @return 제안
++     */
++    @NotNull
++    public static CompletableFuture<Suggestions> suggest(final @NotNull SuggestionsBuilder builder, final @NotNull Map<String, Component> suggestions) {
++        final String token = builder.getRemainingLowerCase();
++        for (final Map.Entry<String, Component> entry : suggestions.entrySet()) {
++            final String suggestion = entry.getKey();
++            if (suggestion.toLowerCase().startsWith(token)) {
++                builder.suggest(suggestion, BrigadierService.SERVICE.getMessage(entry.getValue()));
++            }
++        }
++
++        return builder.buildFuture();
++    }
++}
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/BrigadierService.java b/src/main/java/moe/caramel/daydream/brigadier/BrigadierService.java
 new file mode 100644
 index 0000000000000000000000000000000000000000..810f99efc85a9ee71b45618346e3b6a1cae152ee
@@ -786,6 +996,106 @@ index 0000000000000000000000000000000000000000..810f99efc85a9ee71b45618346e3b6a1
 +         */
 +        @NotNull
 +        Message getMessage(@NotNull Component component);
++    }
++}
+diff --git a/src/main/java/moe/caramel/daydream/brigadier/HybridCommandBase.java b/src/main/java/moe/caramel/daydream/brigadier/HybridCommandBase.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..1f5fe818da414b8aabbe70a4e53476bda0fcc33e
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/brigadier/HybridCommandBase.java
+@@ -0,0 +1,94 @@
++package moe.caramel.daydream.brigadier;
++
++import static net.kyori.adventure.text.Component.text;
++import static net.kyori.adventure.text.format.NamedTextColor.RED;
++import com.mojang.brigadier.CommandDispatcher;
++import com.mojang.brigadier.ParseResults;
++import com.mojang.brigadier.exceptions.CommandSyntaxException;
++import com.mojang.brigadier.tree.CommandNode;
++import io.papermc.paper.command.brigadier.CommandSourceStack;
++import org.bukkit.command.Command;
++import org.bukkit.command.CommandException;
++import org.bukkit.command.CommandSender;
++import org.jetbrains.annotations.NotNull;
++import java.util.ArrayList;
++import java.util.List;
++
++/**
++ * Brigadier 기반의 하이브리드 명령어
++ * <p>
++ * 일반적으로 Brigadier 기반으로 작동되나,
++ * 필요에 따라 레거시 기반으로 작동될 수도 있습니다.
++ * </p>
++ *
++ * @param <S> 명령어 실행 주체
++ */
++abstract class HybridCommandBase<S extends CommandSourceStack> extends Command {
++
++    /**
++     * Brigadier 기반의 하이브리드 명령어
++     *
++     * @param name 명령어의 이름
++     */
++    protected HybridCommandBase(final @NotNull String name) {
++        super(name);
++    }
++
++    /**
++     * 명령어 디스패처를 가져옵니다.
++     * <p>
++     * 이 명령어가 레거시 기반으로 작동되는 경우 가상 디스패처가 필요합니다.
++     * </p>
++     *
++     * @return 명령어 디스패처
++     */
++    @NotNull
++    protected abstract CommandDispatcher<S> getDispatcher();
++
++    /**
++     * 명령어 노드를 가져옵니다.
++     *
++     * @return 명령어 노드
++     */
++    @NotNull
++    public abstract CommandNode<S> getCommand();
++
++    // =========================== (Legacy)
++
++    @Override
++    public final boolean execute(final @NotNull CommandSender sender, final @NotNull String label, final @NotNull String[] args) {
++        if (!this.testPermission(sender)) {
++            return true;
++        }
++
++        try {
++            this.getDispatcher().execute(commandLine(label, args), sender.getCommandSource());
++            return true;
++        } catch (final CommandSyntaxException exception) {
++            sender.sendMessage(text("Usage: " + this.usageMessage, RED));
++            return false;
++        } catch (final Throwable exception) {
++            throw new CommandException("Unhandled exception executing '" + label + "' in " + this.getName(), exception);
++        }
++    }
++
++    @Override
++    public final @NotNull List<String> tabComplete(final @NotNull CommandSender sender, final @NotNull String label, final @NotNull String[] args) {
++        final List<String> results = new ArrayList<>();
++
++        final CommandDispatcher<S> dispatcher = this.getDispatcher();
++        final ParseResults<S> parsed = dispatcher.parse(commandLine(label, args), sender.getCommandSource());
++        dispatcher.getCompletionSuggestions(parsed).thenAccept((suggestions) -> {
++            suggestions.getList().forEach(suggestion -> {
++                results.add(suggestion.getText());
++            });
++        });
++
++        return results;
++    }
++
++    @NotNull
++    private String commandLine(final @NotNull String label, final @NotNull String[] args) {
++        return (label + ((args.length > 0) ? (" " + String.join(" ", args)) : ""));
 +    }
 +}
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/Suggestions.java b/src/main/java/moe/caramel/daydream/brigadier/Suggestions.java
@@ -1377,14 +1687,24 @@ index 0000000000000000000000000000000000000000..ced8b19a02be4952784b7dbde45f01d6
 +    }
 +}
 diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
-index 48fab492609e0bae459d20cc2eae78b87e37ab75..735ebdfbb32d7aa9438e5e49845b154b846e3fd5 100644
+index 2d53675907f411046978b0a234c0b6f33c909973..bdd3e160b7e45d32c0029afdffc86390f61c195f 100644
 --- a/src/main/java/org/bukkit/Bukkit.java
 +++ b/src/main/java/org/bukkit/Bukkit.java
-@@ -1053,6 +1053,52 @@ public final class Bukkit {
+@@ -1053,6 +1053,63 @@ public final class Bukkit {
          return server.getPluginCommand(name);
      }
  
-+    // Daydream start - Add Brigadier API
++    // Daydream start - Add Brigadier Command API
++    /**
++     * Brigadier 명령어를 등록합니다.
++     *
++     * @param plugin 대상 플러그인
++     * @param command 명령어 노드
++     */
++    public static void registerCommand(@NotNull org.bukkit.plugin.Plugin plugin, @NotNull moe.caramel.daydream.brigadier.BrigadierCommand command) {
++        server.registerCommand(plugin, command);
++    }
++
 +    /**
 +     * Brigadier를 사용하여 명령어를 등록합니다.
 +     *
@@ -1392,6 +1712,7 @@ index 48fab492609e0bae459d20cc2eae78b87e37ab75..735ebdfbb32d7aa9438e5e49845b154b
 +     * @param label 명령어 레이블
 +     * @param command 명령어 노드
 +     */
++    @Deprecated(forRemoval = true, since = "1.21")
 +    public static void registerCommand(@NotNull org.bukkit.plugin.Plugin plugin, @NotNull String label, @NotNull moe.caramel.daydream.brigadier.AbstractCommand command) {
 +        server.registerCommand(plugin, label, command);
 +    }
@@ -1425,23 +1746,31 @@ index 48fab492609e0bae459d20cc2eae78b87e37ab75..735ebdfbb32d7aa9438e5e49845b154b
 +     * @return 명령어 디스패처
 +     */
 +    @NotNull
-+    public static com.mojang.brigadier.CommandDispatcher<io.papermc.paper.command.brigadier.CommandSourceStack> getCommandDispatcher() {
++    public static <S extends io.papermc.paper.command.brigadier.CommandSourceStack> com.mojang.brigadier.CommandDispatcher<S> getCommandDispatcher() {
 +        return server.getCommandDispatcher();
 +    }
-+    // Daydream end - Add Brigadier API
++    // Daydream end - Add Brigadier Command API
 +
      /**
       * Writes loaded players to disk.
       */
 diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
-index 2d0c16e0be926cb130735f116085669a5250de4c..589a989b36d2e69c83236bb51f40088003ba5d79 100644
+index 2d0c16e0be926cb130735f116085669a5250de4c..2ba0d0940120e36a88a9cc752ef0e45ab93f6a93 100644
 --- a/src/main/java/org/bukkit/Server.java
 +++ b/src/main/java/org/bukkit/Server.java
-@@ -893,6 +893,44 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
+@@ -893,6 +893,53 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
      @Nullable
      public PluginCommand getPluginCommand(@NotNull String name);
  
-+    // Daydream start - Add Brigadier API
++    // Daydream start - Add Brigadier Command API
++    /**
++     * Brigadier 명령어를 등록합니다.
++     *
++     * @param plugin 대상 플러그인
++     * @param command 명령어 노드
++     */
++    public void registerCommand(@NotNull org.bukkit.plugin.Plugin plugin, @NotNull moe.caramel.daydream.brigadier.BrigadierCommand command);
++
 +    /**
 +     * Brigadier를 사용하여 명령어를 등록합니다.
 +     *
@@ -1449,6 +1778,7 @@ index 2d0c16e0be926cb130735f116085669a5250de4c..589a989b36d2e69c83236bb51f400880
 +     * @param label 명령어 레이블
 +     * @param command 명령어 노드
 +     */
++    @Deprecated(forRemoval = true, since = "1.21")
 +    public void registerCommand(@NotNull org.bukkit.plugin.Plugin plugin, @NotNull String label, @NotNull moe.caramel.daydream.brigadier.AbstractCommand command);
 +
 +    /**
@@ -1476,101 +1806,78 @@ index 2d0c16e0be926cb130735f116085669a5250de4c..589a989b36d2e69c83236bb51f400880
 +     * @return 명령어 디스패처
 +     */
 +    @NotNull
-+    public com.mojang.brigadier.CommandDispatcher<io.papermc.paper.command.brigadier.CommandSourceStack> getCommandDispatcher();
-+    // Daydream end - Add Brigadier API
++    public <S extends io.papermc.paper.command.brigadier.CommandSourceStack> com.mojang.brigadier.CommandDispatcher<S> getCommandDispatcher();
++    // Daydream end - Add Brigadier Command API
 +
      /**
       * Writes loaded players to disk.
       */
 diff --git a/src/main/java/org/bukkit/command/Command.java b/src/main/java/org/bukkit/command/Command.java
-index b791358f90fe92bc2264d9a26492245763813af3..77223bd6c320097839bd26a283fa787fd2644382 100644
+index b791358f90fe92bc2264d9a26492245763813af3..dbe2daa2beefecfb4a6d4272d5fb644e8a6e83de 100644
 --- a/src/main/java/org/bukkit/command/Command.java
 +++ b/src/main/java/org/bukkit/command/Command.java
-@@ -35,6 +35,10 @@ public abstract class Command {
-     private net.kyori.adventure.text.Component permissionMessage; // Paper
-     public co.aikar.timings.Timing timings; // Paper
-     @NotNull public String getTimingName() {return getName();} // Paper
-+    // Daydream start - Add Brigadier API
-+    protected boolean brigadierCommand;
-+    public boolean isBrigadierCommand() { return brigadierCommand; }
-+    // Daydream end - Add Brigadier API
- 
-     protected Command(@NotNull String name) {
-         this(name, "", "/" + name, new ArrayList<String>());
-diff --git a/src/main/java/org/bukkit/command/SimpleCommandMap.java b/src/main/java/org/bukkit/command/SimpleCommandMap.java
-index 64c54057915016148611375fe6d7fca054bfaed0..a837e7d3e229c5ae3e9457cd70afa969acab3d04 100644
---- a/src/main/java/org/bukkit/command/SimpleCommandMap.java
-+++ b/src/main/java/org/bukkit/command/SimpleCommandMap.java
-@@ -308,4 +308,48 @@ public class SimpleCommandMap implements CommandMap {
-         return knownCommands;
+@@ -343,6 +343,22 @@ public abstract class Command {
+         return usageMessage;
      }
-     // Paper end
-+
-+    // Daydream start - Add Brigadier API
-+    @NotNull
-+    public synchronized List<String> unregisterBrigadierCommands(@NotNull org.bukkit.plugin.Plugin plugin, @NotNull String... commands) {
-+        final List<String> removedCommand = new ArrayList<>();
-+        final String fallback = plugin.getName().toLowerCase(java.util.Locale.ENGLISH);
-+        for (String name : commands) {
-+            name = name.toLowerCase(java.util.Locale.ENGLISH);
-+            // Label
-+            if (this.removeCommand(plugin, name)) {
-+                removedCommand.add(name);
-+                knownCommands.remove(name);
-+            }
-+            // Fallback Label
-+            final String fallbackLabel = (fallback + ":" + name);
-+            if (this.removeCommand(plugin, fallbackLabel)) {
-+                removedCommand.add(fallbackLabel);
-+                knownCommands.remove(fallbackLabel);
-+            }
-+        }
-+        return removedCommand;
-+    }
-+
-+    @NotNull
-+    public synchronized List<String> unregisterAllBrigadierCommands(@NotNull org.bukkit.plugin.Plugin plugin) {
-+        final List<String> removedCommand = new ArrayList<>();
-+        final Iterator<String> iterator = knownCommands.keySet().iterator();
-+        while (iterator.hasNext()) {
-+            final String name = iterator.next();
-+            if (!this.removeCommand(plugin, name)) continue;
-+            removedCommand.add(name);
-+            iterator.remove();
-+        }
-+        return removedCommand;
-+    }
-+
-+    private synchronized boolean removeCommand(@NotNull org.bukkit.plugin.Plugin plugin, @NotNull String name) {
-+        final Command command = knownCommands.get(name);
-+        if (!(command instanceof org.bukkit.command.PluginIdentifiableCommand pluginCmd)) return false;
-+        if (!command.isBrigadierCommand() || pluginCmd.getPlugin() != plugin) return false;
-+        command.unregister(this);
-+        return true;
-+    }
-+    // Daydream end - Add Brigadier API
- }
-diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index ae61a39b25267b84fe0b8766e4b12d9b24b44ded..e43c099a0a381fee0e57313b9e92285a95193d44 100644
---- a/src/main/java/org/bukkit/entity/Player.java
-+++ b/src/main/java/org/bukkit/entity/Player.java
-@@ -396,6 +396,16 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
-      */
-     public boolean performCommand(@NotNull String command);
  
-+    // Daydream start - Add Brigadier API
++    // Daydream start - Add Brigadier Command API (Command Utility)
 +    /**
-+     * CommandSource를 생성합니다.
++     * Sets the list of aliases to request on registration for this command.
++     * This is not effective outside of defining aliases in the {@link
++     * PluginDescriptionFile#getCommands()} (under the
++     * `<code>aliases</code>' node) is equivalent to this method.
 +     *
-+     * @return 명령 제공자
++     * @param aliases aliases to register to this command
++     * @return this command object, for chaining
 +     */
 +    @NotNull
-+    public io.papermc.paper.command.brigadier.CommandSourceStack getCommandSource();
-+    // Daydream end - Add Brigadier API
++    public Command setAliases(@NotNull String... aliases) {
++        return setAliases(List.of(aliases));
++    }
++    // Daydream end - Add Brigadier Command API (Command Utility)
 +
      /**
-      * Returns true if the entity is supported by a block.
+      * Sets the list of aliases to request on registration for this command.
+      * This is not effective outside of defining aliases in the {@link
+diff --git a/src/main/java/org/bukkit/command/CommandSender.java b/src/main/java/org/bukkit/command/CommandSender.java
+index 04e7cd0e4e2d0eb38fb2862ce6688a4470f30d6b..fac1d908d22024f87e74445ab9227c7496284598 100644
+--- a/src/main/java/org/bukkit/command/CommandSender.java
++++ b/src/main/java/org/bukkit/command/CommandSender.java
+@@ -63,6 +63,16 @@ public interface CommandSender extends net.kyori.adventure.audience.Audience, Pe
+     @NotNull
+     public Server getServer();
+ 
++    // Daydream start - Add Brigadier Command API
++    /**
++     * Brigadier 명령어 실행 주체를 생성합니다.
++     *
++     * @return 명령어 실행 주체
++     */
++    @NotNull
++    public <S extends io.papermc.paper.command.brigadier.CommandSourceStack> S getCommandSource();
++    // Daydream end - Add Brigadier Command API
++
+     /**
+      * Gets the name of this command sender
       *
+diff --git a/src/main/java/org/bukkit/command/MessageCommandSender.java b/src/main/java/org/bukkit/command/MessageCommandSender.java
+index 9d263ab3afb938c215c0b64d9171345fca6ceb2c..ab63f82029c09cbf5d9717a89d1d55c3e063ded8 100644
+--- a/src/main/java/org/bukkit/command/MessageCommandSender.java
++++ b/src/main/java/org/bukkit/command/MessageCommandSender.java
+@@ -43,6 +43,13 @@ public interface MessageCommandSender extends CommandSender {
+         return Bukkit.getServer();
+     }
+ 
++    // Daydream start - Add Brigadier Command API
++    @Override
++    default @NotNull <S extends io.papermc.paper.command.brigadier.CommandSourceStack> S getCommandSource() {
++        throw new UnsupportedOperationException();
++    }
++    // Daydream end - Add Brigadier Command API
++
+     // Paper start
+     @Override
+     default net.kyori.adventure.text.@org.jetbrains.annotations.NotNull Component name() {
 diff --git a/src/main/java/org/bukkit/event/command/UnknownCommandEvent.java b/src/main/java/org/bukkit/event/command/UnknownCommandEvent.java
 index e4f8a0d14ae66468bbb0a5d6bf9c1ee417dc866c..def7e364b543e598f9df31ef65e7c56fe2b54631 100644
 --- a/src/main/java/org/bukkit/event/command/UnknownCommandEvent.java
@@ -1605,20 +1912,30 @@ index e4f8a0d14ae66468bbb0a5d6bf9c1ee417dc866c..def7e364b543e598f9df31ef65e7c56f
  
      /**
 diff --git a/src/main/java/org/bukkit/plugin/java/JavaPlugin.java b/src/main/java/org/bukkit/plugin/java/JavaPlugin.java
-index 5cd236965de12392d8c7aa81307c0ff1cc8673b1..4cb8c2b0d8ff4acee6862a2612e1437f2d9b9ddc 100644
+index 5cd236965de12392d8c7aa81307c0ff1cc8673b1..5ae0c4fbbbec7e6703cebb2d3067047d9c1d8469 100644
 --- a/src/main/java/org/bukkit/plugin/java/JavaPlugin.java
 +++ b/src/main/java/org/bukkit/plugin/java/JavaPlugin.java
-@@ -348,6 +348,39 @@ public abstract class JavaPlugin extends PluginBase {
+@@ -348,6 +348,49 @@ public abstract class JavaPlugin extends PluginBase {
          }
      }
  
 +    // Daydream start - Add Brigadier Command API
++    /**
++     * Brigadier 명령어를 등록합니다.
++     *
++     * @param command 명령어 노드
++     */
++    public void registerCommand(@NotNull moe.caramel.daydream.brigadier.BrigadierCommand command) {
++        this.getServer().registerCommand(this, command);
++    }
++
 +    /**
 +     * Brigadier를 사용하여 명령어를 등록합니다.
 +     *
 +     * @param label 명령어 레이블
 +     * @param command 명령어 노드
 +     */
++    @Deprecated(forRemoval = true, since = "1.21")
 +    public void registerCommand(@NotNull String label, @NotNull moe.caramel.daydream.brigadier.AbstractCommand command) {
 +        this.getServer().registerCommand(this, label, command);
 +    }
