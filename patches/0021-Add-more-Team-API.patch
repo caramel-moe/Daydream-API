@@ -1,7 +1,7 @@
 From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: LemonCaramel <admin@caramel.moe>
 Date: Thu, 9 Mar 2023 19:46:01 +0900
-Subject: [PATCH] Add More Team API
+Subject: [PATCH] Add more Team API
 
 
 diff --git a/src/main/java/moe/caramel/daydream/team/TeamListener.java b/src/main/java/moe/caramel/daydream/team/TeamListener.java
@@ -63,14 +63,14 @@ index 0000000000000000000000000000000000000000..8d2ef759e1f132053162442baee82482
 +    }
 +}
 diff --git a/src/main/java/org/bukkit/scoreboard/Team.java b/src/main/java/org/bukkit/scoreboard/Team.java
-index cacb58d25c249e2ecd6083ed0f30d5ffb345220a..2ddfc116f2960d29a8928f571c8ced673d6fe181 100644
+index cacb58d25c249e2ecd6083ed0f30d5ffb345220a..5e7266df82dfe794342ca855fd3203c096e92ab4 100644
 --- a/src/main/java/org/bukkit/scoreboard/Team.java
 +++ b/src/main/java/org/bukkit/scoreboard/Team.java
 @@ -514,6 +514,46 @@ public interface Team extends net.kyori.adventure.audience.ForwardingAudience {
      boolean hasEntity(@NotNull org.bukkit.entity.Entity entity) throws IllegalStateException, IllegalArgumentException;
      // Paper end - improve scoreboard entries
  
-+    // Daydream start - Add More Team API
++    // Daydream start - Add more Team API
 +    /**
 +     * 팀 리스너를 가져옵니다.
 +     *
@@ -108,7 +108,7 @@ index cacb58d25c249e2ecd6083ed0f30d5ffb345220a..2ddfc116f2960d29a8928f571c8ced67
 +     * @throws IllegalStateException if this team has been unregistered
 +     */
 +    boolean removePlayers(@NotNull java.util.Collection<? extends OfflinePlayer> players);
-+    // Daydream end - Add More Team API
++    // Daydream end - Add more Team API
 +
      /**
       * Represents an option which may be applied to this team.

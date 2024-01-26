@@ -5,14 +5,14 @@ Subject: [PATCH] Add Event Metadata API
 
 
 diff --git a/src/main/java/org/bukkit/event/Event.java b/src/main/java/org/bukkit/event/Event.java
-index 8ec56cd6b8e0f5c5dd8c7c88b4671e18dcf109d0..8470733d63005b7911fc9f1a0ee09fd23c18b87f 100644
+index 8ec56cd6b8e0f5c5dd8c7c88b4671e18dcf109d0..7791aa0ca77acbfc9486c7ca04078f8613465d5f 100644
 --- a/src/main/java/org/bukkit/event/Event.java
 +++ b/src/main/java/org/bukkit/event/Event.java
 @@ -51,6 +51,20 @@ public abstract class Event {
      }
      // Paper end
  
-+    // Daydream start
++    // Daydream start - Add Event Metadata API
 +    private final java.util.Map<String, Object> metadata = new java.util.HashMap<>();
 +
 +    /**
@@ -24,7 +24,7 @@ index 8ec56cd6b8e0f5c5dd8c7c88b4671e18dcf109d0..8470733d63005b7911fc9f1a0ee09fd2
 +    public java.util.Map<String, Object> getEventMetadata() {
 +        return metadata;
 +    }
-+    // Daydream end
++    // Daydream end - Add Event Metadata API
 +
      /**
       * Convenience method for providing a user-friendly identifier. By

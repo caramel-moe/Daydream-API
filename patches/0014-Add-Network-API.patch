@@ -5,13 +5,13 @@ Subject: [PATCH] Add Network API
 
 
 diff --git a/build.gradle.kts b/build.gradle.kts
-index 60bfd8d069b0b9488b4d5d42962ef360bd56a189..62abd1543e5f9dd0345df262a613f2bb25de4840 100644
+index 11a00baaa4522c8d773e00b154c13594db73b62d..5421c1f493eee81f928bb0a0ad539204f4316286 100644
 --- a/build.gradle.kts
 +++ b/build.gradle.kts
 @@ -57,6 +57,16 @@ dependencies {
      // Paper end
      api("com.mojang:brigadier:1.2.9") // Daydream - Add Brigadier Command API
-     api("com.mojang:authlib:6.0.52") // Daydream - Mojang Authlib (keep in sync with major MC versions)
+     api("com.mojang:authlib:6.0.52") // Daydream - Add more Player API (Mojang Authlib; keep in sync with major MC versions)
 +    // Daydream start - Add Network API
 +    val nettyVersion = "4.1.97.Final"
 +    api("io.netty:netty-buffer:$nettyVersion")
@@ -46,14 +46,14 @@ index 7b2af1bd72dfbcf4e962a982940fc49b851aa04f..dad505d4e12bcdbb379485c59e476c98
 +    // Daydream end - Add Network API
  }
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index b2e0966b6e2e19c72ec91609b15248de8f3e9e7e..aea0cd4bee02273b926d6668fa67a5821ca5b645 100644
+index d5380dac3401392194d921db88326b18f685eaa9..ee25512d339f9a82cc17ebc6e4ca7da9101bf593 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
 @@ -941,6 +941,24 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
       */
      public void sendEquipmentChange(@NotNull LivingEntity entity, @NotNull Map<EquipmentSlot, ItemStack> items);
  
-+    // Daydream start
++    // Daydream start - Add Network API
 +    /**
 +     * 이 플레이어에게 커스텀 페이로드를 전송합니다.
 +     *
@@ -69,7 +69,7 @@ index b2e0966b6e2e19c72ec91609b15248de8f3e9e7e..aea0cd4bee02273b926d6668fa67a582
 +     * @param buf bytebuf 오브젝트
 +     */
 +    public void sendCustomPayload(@NotNull org.bukkit.NamespacedKey channel, @NotNull io.netty.buffer.ByteBuf buf);
-+    // Daydream end
++    // Daydream end - Add Network API
 +
      // Paper start
      /**

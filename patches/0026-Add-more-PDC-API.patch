@@ -1,11 +1,11 @@
 From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: LemonCaramel <admin@caramel.moe>
 Date: Thu, 20 Jul 2023 04:32:28 +0900
-Subject: [PATCH] Add More PDC API
+Subject: [PATCH] Add more PDC API
 
 
 diff --git a/src/main/java/org/bukkit/persistence/PersistentDataContainer.java b/src/main/java/org/bukkit/persistence/PersistentDataContainer.java
-index decf3b1949d4653a9fb01684b93ff91048137076..7b37b9ca6ca506d66d1f131c5a968cf605c111a1 100644
+index decf3b1949d4653a9fb01684b93ff91048137076..07d0b8117740eec35e318addd5bca5a9882ed63f 100644
 --- a/src/main/java/org/bukkit/persistence/PersistentDataContainer.java
 +++ b/src/main/java/org/bukkit/persistence/PersistentDataContainer.java
 @@ -219,4 +219,155 @@ public interface PersistentDataContainer {
@@ -13,7 +13,7 @@ index decf3b1949d4653a9fb01684b93ff91048137076..7b37b9ca6ca506d66d1f131c5a968cf6
      }
      // Paper end - byte array serialization
 +
-+    // Daydream start - Add More PDC API
++    // Daydream start - Add more PDC API
 +    /**
 +     * Stores a metadata value on the {@link PersistentDataHolder} instance.
 +     * <p>
@@ -162,17 +162,17 @@ index decf3b1949d4653a9fb01684b93ff91048137076..7b37b9ca6ca506d66d1f131c5a968cf6
 +     * Clears PersistentDataContainer instances.
 +     */
 +    void clear();
-+    // Daydream end - Add More PDC API
++    // Daydream end - Add more PDC API
  }
 diff --git a/src/main/java/org/bukkit/persistence/PersistentDataHolder.java b/src/main/java/org/bukkit/persistence/PersistentDataHolder.java
-index 80b277cc57f092f04fbf7810ac78d250b207b775..43eee3b1ad70189679140a30863d050a8dd84331 100644
+index 80b277cc57f092f04fbf7810ac78d250b207b775..9baa25a9b7bf66b47ac05385f3be12c353eab00b 100644
 --- a/src/main/java/org/bukkit/persistence/PersistentDataHolder.java
 +++ b/src/main/java/org/bukkit/persistence/PersistentDataHolder.java
 @@ -20,4 +20,19 @@ public interface PersistentDataHolder {
      @NotNull
      PersistentDataContainer getPersistentDataContainer();
  
-+    // Daydream start - Add More PDC API
++    // Daydream start - Add more PDC API
 +    /**
 +     * Returns a custom tag container capable of storing tags on the object.
 +     *
@@ -186,5 +186,5 @@ index 80b277cc57f092f04fbf7810ac78d250b207b775..43eee3b1ad70189679140a30863d050a
 +    default PersistentDataContainer getPdc() {
 +        return getPersistentDataContainer();
 +    }
-+    // Daydream end - Add More PDC API
++    // Daydream end - Add more PDC API
  }

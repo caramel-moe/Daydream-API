@@ -1,0 +1,157 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: LemonCaramel <admin@caramel.moe>
+Date: Fri, 6 Aug 2021 20:08:04 +0900
+Subject: [PATCH] Add more Player API
+
+
+diff --git a/build.gradle.kts b/build.gradle.kts
+index e8be7692a9637313dde844d9cd4a3a3d108ebb6d..11a00baaa4522c8d773e00b154c13594db73b62d 100644
+--- a/build.gradle.kts
++++ b/build.gradle.kts
+@@ -56,6 +56,7 @@ dependencies {
+     implementation("org.ow2.asm:asm-commons:9.5")
+     // Paper end
+     api("com.mojang:brigadier:1.2.9") // Daydream - Add Brigadier Command API
++    api("com.mojang:authlib:6.0.52") // Daydream - Add more Player API (Mojang Authlib; keep in sync with major MC versions)
+ 
+     api("org.apache.maven:maven-resolver-provider:3.9.6") // Paper - make API dependency for Paper Plugins
+     compileOnly("org.apache.maven.resolver:maven-resolver-connector-basic:1.9.18")
+diff --git a/src/main/java/io/papermc/paper/event/player/AbstractChatEvent.java b/src/main/java/io/papermc/paper/event/player/AbstractChatEvent.java
+index ed8e885f226b02b9875b23ae2294a9056d2e8b29..b8f6ebd8198accab13fb7f98608ff52d1916b271 100644
+--- a/src/main/java/io/papermc/paper/event/player/AbstractChatEvent.java
++++ b/src/main/java/io/papermc/paper/event/player/AbstractChatEvent.java
+@@ -25,6 +25,38 @@ public abstract class AbstractChatEvent extends PlayerEvent implements Cancellab
+     private ChatRenderer renderer;
+     private Component message;
+     private boolean cancelled = false;
++    // Daydream start - Add more Player API (Improve Chat System)
++    private net.kyori.adventure.chat.ChatType chatType = null;
++
++    /**
++     * Get the player message wrapper.
++     *
++     * @return player message wrapper
++     */
++    @NotNull
++    public moe.caramel.daydream.network.chat.PlayerMessage playerMessage() {
++        return (moe.caramel.daydream.network.chat.PlayerMessage) signedMessage;
++    }
++
++    /**
++     * 채팅 포맷을 가져옵니다.
++     *
++     * @return 채팅 포맷
++     */
++    @org.jetbrains.annotations.Nullable
++    public net.kyori.adventure.chat.ChatType chatType() {
++        return chatType;
++    }
++
++    /**
++     * 채팅 포맷을 설정합니다.
++     *
++     * @param chatType 채팅 포맷
++     */
++    public void chatType(@NotNull net.kyori.adventure.chat.ChatType chatType) {
++        this.chatType = chatType;
++    }
++    // Daydream end - Add more Player API (Improve Chat System)
+ 
+     AbstractChatEvent(final boolean async, final @NotNull Player player, final @NotNull Set<Audience> viewers, final @NotNull ChatRenderer renderer, final @NotNull Component message, final @NotNull Component originalMessage, final @NotNull SignedMessage signedMessage) {
+         super(player, async);
+diff --git a/src/main/java/io/papermc/paper/event/player/ChatEvent.java b/src/main/java/io/papermc/paper/event/player/ChatEvent.java
+index af025704e978dc0b11be277ab4646da77eb3a60b..5e8a57811b1a5655bf03351b40266bac9fa00698 100644
+--- a/src/main/java/io/papermc/paper/event/player/ChatEvent.java
++++ b/src/main/java/io/papermc/paper/event/player/ChatEvent.java
+@@ -29,6 +29,13 @@ public final class ChatEvent extends AbstractChatEvent {
+         super(false, player, viewers, renderer, message, originalMessage, signedMessage);
+     }
+ 
++    // Daydream start - Add more Player API (Improve Chat System)
++    @Override
++    public @NotNull moe.caramel.daydream.network.chat.PlayerMessage playerMessage() {
++        throw new UnsupportedOperationException("Async Only");
++    }
++    // Daydream end - Add more Player API (Improve Chat System)
++
+     @NotNull
+     @Override
+     public HandlerList getHandlers() {
+diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
+index 815631a6157b87a9ead270fe0b11ac3892a3fbf4..1a36a7fc15de261cd268baed018de9bb03cdc4b3 100644
+--- a/src/main/java/org/bukkit/entity/Player.java
++++ b/src/main/java/org/bukkit/entity/Player.java
+@@ -1846,6 +1846,22 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+      */
+     public void setAllowFlight(boolean flight);
+ 
++    // Daydream start - Add more Player API
++    /**
++     * FOV 크기를 가져옵니다.
++     *
++     * @return FOV 크기 (기본 값: {@code 1.0f})
++     */
++    public float getFovScale();
++
++    /**
++     * FOV 크기를 설정합니다.
++     *
++     * @param fov FOV 크기
++     */
++    public void setFovScale(final float fov);
++    // Daydream end - Add more Player API
++
+     // Paper start - flying fall damage
+     /**
+      * Allows you to enable fall damage while {@link #getAllowFlight()} is {@code true}
+@@ -3219,6 +3235,16 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+     }
+     // Paper end
+ 
++    // Daydream start - Add more Player API (Expose Game Profile)
++    /**
++     * Gets this player's game profile.
++     *
++     * @return player's game profile object
++     */
++    @NotNull
++    com.mojang.authlib.GameProfile getProfile();
++    // Daydream end - Add more Player API (Expose Game Profile)
++
+     // Paper start - Player Profile API
+     /**
+      * Gets a copy of this players profile
+diff --git a/src/main/java/org/bukkit/event/player/AsyncPlayerPreLoginEvent.java b/src/main/java/org/bukkit/event/player/AsyncPlayerPreLoginEvent.java
+index f8b69b52ec8efa103e4e78e1b5c6a015e73d2a75..e276c5eae73f3d3c3f246b83f1d0ebce7fd2bccd 100644
+--- a/src/main/java/org/bukkit/event/player/AsyncPlayerPreLoginEvent.java
++++ b/src/main/java/org/bukkit/event/player/AsyncPlayerPreLoginEvent.java
+@@ -283,6 +283,29 @@ public class AsyncPlayerPreLoginEvent extends Event {
+     }
+     // Paper end
+ 
++    // Daydream start - Add more Player API (Initial locale)
++    private java.util.Locale initialLocale;
++
++    /**
++     * 플레이어의 초기 언어를 가져옵니다.
++     *
++     * @return 플레이어의 초기 언어
++     */
++    @org.jetbrains.annotations.Nullable
++    public java.util.Locale initialLocale() {
++        return initialLocale;
++    }
++
++    /**
++     * 플레이어의 초기 언어를 설정합니다.
++     *
++     * @param initialLocale 플레이어의 초기 언어
++     */
++    public void initialLocale(final @org.jetbrains.annotations.Nullable java.util.Locale initialLocale) {
++        this.initialLocale = initialLocale;
++    }
++    // Daydream end - Add more Player API (Initial locale)
++
+     @NotNull
+     @Override
+     public HandlerList getHandlers() {

@@ -5,14 +5,14 @@ Subject: [PATCH] Add more World API
 
 
 diff --git a/src/main/java/org/bukkit/World.java b/src/main/java/org/bukkit/World.java
-index bf4b94ea2577e9d7e344385209fc0644a4e6bfbb..c8b28617b73df1185ab6a1bf1baf1fe5ff4947bb 100644
+index efa2043e044b0e461780e808c347d6ec00f6da0a..c38de8426e40f1607a93feb736cac84e7999b8bf 100644
 --- a/src/main/java/org/bukkit/World.java
 +++ b/src/main/java/org/bukkit/World.java
 @@ -3331,6 +3331,38 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
       */
      void playSound(@NotNull Location location, @NotNull String sound, @NotNull SoundCategory category, float volume, float pitch);
  
-+    // Daydream start - Add More World API (Sound)
++    // Daydream start - Add more World API (Sound)
 +    /**
 +     * Play a Sound at the provided Location in the World.
 +     * <p>
@@ -42,13 +42,13 @@ index bf4b94ea2577e9d7e344385209fc0644a4e6bfbb..c8b28617b73df1185ab6a1bf1baf1fe5
 +     * @param pitch The pitch of the sound
 +     */
 +    void playSound(@NotNull Player except, @NotNull Location location, @NotNull String sound, @NotNull SoundCategory category, float volume, float pitch);
-+    // Daydream end - Add More World API (Sound)
++    // Daydream end - Add more World API (Sound)
 +
      /**
       * Play a Sound at the provided Location in the World. For sounds with multiple
       * variations passing the same seed will always play the same variation.
 diff --git a/src/main/java/org/bukkit/block/Block.java b/src/main/java/org/bukkit/block/Block.java
-index 49974558799830d827f9ccd65a8bafee3fb0376b..9e3d77480f119ce4ffd7b3e5a34c97a651b7305f 100644
+index 25650e9a31bcaf672acd115547abc1ec41a1de34..1533b28fb0e8600e443abe214b8d24494a106dc4 100644
 --- a/src/main/java/org/bukkit/block/Block.java
 +++ b/src/main/java/org/bukkit/block/Block.java
 @@ -590,6 +590,20 @@ public interface Block extends Metadatable, Translatable, net.kyori.adventure.tr

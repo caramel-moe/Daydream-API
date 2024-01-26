@@ -1,19 +1,19 @@
 From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: LemonCaramel <admin@caramel.moe>
 Date: Wed, 5 Apr 2023 00:53:49 +0900
-Subject: [PATCH] Add ItemStack utility API
+Subject: [PATCH] Add ItemStack Utilities
 
 
 diff --git a/src/main/java/org/bukkit/UnsafeValues.java b/src/main/java/org/bukkit/UnsafeValues.java
-index 05bfe1cb8fdfb1f8b0be5475b0be32fa8cc4fd07..5e0e969a10df75411eedd00a63ead65a00c413b6 100644
+index eafbab3375720d6f663cf475bccebb11d1a444eb..c4f35b6ae7ddfabbb87927ca405417386b3a7937 100644
 --- a/src/main/java/org/bukkit/UnsafeValues.java
 +++ b/src/main/java/org/bukkit/UnsafeValues.java
 @@ -291,4 +291,18 @@ public interface UnsafeValues {
      // Paper end
  
-     @NotNull moe.caramel.daydream.world.DamageMata getDamageMeta(@NotNull Object damageSource); // Daydream - Add More API for EntityDamageEvent
+     @NotNull moe.caramel.daydream.world.DamageMata getDamageMeta(@NotNull Object damageSource); // Daydream - Add more API for EntityDamageEvent
 +
-+    // Daydream start - Add ItemStack utility API
++    // Daydream start - Add ItemStack Utilities
 +    /**
 +     * Create a new ItemStack
 +     * (for Paper Compatibility)
@@ -25,17 +25,17 @@ index 05bfe1cb8fdfb1f8b0be5475b0be32fa8cc4fd07..5e0e969a10df75411eedd00a63ead65a
 +     */
 +    @org.jetbrains.annotations.NotNull
 +    ItemStack newItem(@org.jetbrains.annotations.NotNull org.bukkit.Material material, int count);
-+    // Daydream end - Add ItemStack utility API
++    // Daydream end - Add ItemStack Utilities
  }
 diff --git a/src/main/java/org/bukkit/inventory/ItemStack.java b/src/main/java/org/bukkit/inventory/ItemStack.java
-index 36e3fbc727cd748aa138f52976154ba32954cd87..be6f74d1e47bf91653481e23c4fa34f667c8231f 100644
+index 36e3fbc727cd748aa138f52976154ba32954cd87..dca7ac8f5f4d913c1db035e65c3ab9a9a5e40e3e 100644
 --- a/src/main/java/org/bukkit/inventory/ItemStack.java
 +++ b/src/main/java/org/bukkit/inventory/ItemStack.java
 @@ -34,6 +34,99 @@ public class ItemStack implements Cloneable, ConfigurationSerializable, Translat
      @Utility
      protected ItemStack() {}
  
-+    // Daydream start - Add ItemStack utility API
++    // Daydream start - Add ItemStack Utilities
 +    /**
 +     * Defaults stack size to 1, with no extra data.
 +     * <p>
@@ -126,20 +126,20 @@ index 36e3fbc727cd748aa138f52976154ba32954cd87..be6f74d1e47bf91653481e23c4fa34f6
 +        item.editMeta(metaClass, consumer);
 +        return item;
 +    }
-+    // Daydream end - Add ItemStack utility API
++    // Daydream end - Add ItemStack Utilities
 +
      /**
       * Defaults stack size to 1, with no extra data.
       * <p>
 diff --git a/src/main/java/org/bukkit/inventory/meta/ItemMeta.java b/src/main/java/org/bukkit/inventory/meta/ItemMeta.java
-index ea64d5b1ebaa652785ddbc7b515808174f636a62..1a302d0ab77f8152561fed8d70d3f51fdbe4fa16 100644
+index ea64d5b1ebaa652785ddbc7b515808174f636a62..600d48a63e1f120a376a0ea668605e308e820039 100644
 --- a/src/main/java/org/bukkit/inventory/meta/ItemMeta.java
 +++ b/src/main/java/org/bukkit/inventory/meta/ItemMeta.java
 @@ -339,6 +339,23 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
       */
      void setUnbreakable(boolean unbreakable);
  
-+    // Daydream start - Add GlowItem API
++    // Daydream start - Add ItemStack Utilities
 +    /**
 +     * 아이템의 빛남 여부를 가져옵니다.
 +     *
@@ -154,7 +154,7 @@ index ea64d5b1ebaa652785ddbc7b515808174f636a62..1a302d0ab77f8152561fed8d70d3f51f
 +     * @param glowing 만약 {@code true}라면 빛나게 설정
 +     */
 +    void setGlowing(boolean glowing);
-+    // Daydream end - Add GlowItem API
++    // Daydream end - Add ItemStack Utilities
 +
      /**
       * Checks for the existence of any AttributeModifiers.

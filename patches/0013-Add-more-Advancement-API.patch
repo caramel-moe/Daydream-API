@@ -195,6 +195,96 @@ index 0000000000000000000000000000000000000000..f08bfb0c0aca287f23cc4f9f758dc276
 +    @NotNull
 +    Advancement register(boolean save);
 +}
+diff --git a/src/main/java/moe/caramel/daydream/event/packet/PlayerAdvancementScreenEvent.java b/src/main/java/moe/caramel/daydream/event/packet/PlayerAdvancementScreenEvent.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..c28145485940fd9c8114355fb0106c4515491eae
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/event/packet/PlayerAdvancementScreenEvent.java
+@@ -0,0 +1,84 @@
++package moe.caramel.daydream.event.packet;
++
++import org.bukkit.NamespacedKey;
++import org.bukkit.entity.Player;
++import org.bukkit.event.Cancellable;
++import org.bukkit.event.HandlerList;
++import org.bukkit.event.player.PlayerEvent;
++import org.jetbrains.annotations.NotNull;
++import org.jetbrains.annotations.Nullable;
++
++/**
++ * 플레이어가 발전 과제 화면을 열거나 닫았을 경우 호출됩니다.
++ */
++public final class PlayerAdvancementScreenEvent extends PlayerEvent implements Cancellable {
++
++    private static final HandlerList HANDLER_LIST = new HandlerList();
++    public @NotNull HandlerList getHandlers() { return HANDLER_LIST; }
++    public static @NotNull HandlerList getHandlerList() { return HANDLER_LIST; }
++
++    private final Action action;
++    private final NamespacedKey key;
++    private boolean cancelled;
++
++    public PlayerAdvancementScreenEvent(@NotNull Player player, @NotNull Action action, @Nullable NamespacedKey key) {
++        super(player);
++        this.action = action;
++        this.key = key;
++    }
++
++    /**
++     * 발전 과제 화면을 닫을지의 여부를 가져옵니다.
++     *
++     * @return {@code true}인 경우 스크린을 닫습니다.
++     * {@link Action#CLOSED_SCREEN}인 경우 작동하지 않습니다.
++     */
++    @Override
++    public boolean isCancelled() {
++        return this.cancelled;
++    }
++
++    /**
++     * 스크린을 닫을지의 여부를 가져옵니다.
++     * 인수가 {@code true}인 경우 스크린을 닫으나, {@link Action#CLOSED_SCREEN}인 경우 작동하지 않습니다.
++     */
++    @Override
++    public void setCancelled(boolean cancel) {
++        this.cancelled = cancel;
++    }
++
++    /**
++     * 플레이어가 요청한 액션을 가져옵니다.
++     *
++     * @return 플레이어의 요청
++     */
++    @NotNull
++    public Action getAction() {
++        return action;
++    }
++
++    /**
++     * 플레이어가 요청한 탭의 {@link NamespacedKey}를 가져옵니다.
++     *
++     * @return 플레이어가 요청한 탭의 {@link NamespacedKey}.
++     * {@link Action#CLOSED_SCREEN}인 경우 {@code null}을 반환합니다.
++     */
++    @Nullable
++    public NamespacedKey getKey() {
++        return key;
++    }
++
++    /**
++     * 발전 과제 요청 목록
++     */
++    public enum Action {
++        /**
++         * 새로운 발전 과제 탭을 오픈하는 경우
++         */
++        OPENED_TAB,
++        /**
++         * 발전 과제 화면을 닫는 경우
++         */
++        CLOSED_SCREEN
++    }
++}
 diff --git a/src/main/java/moe/caramel/daydream/event/player/PlayerAdvancementPreLoadEvent.java b/src/main/java/moe/caramel/daydream/event/player/PlayerAdvancementPreLoadEvent.java
 new file mode 100644
 index 0000000000000000000000000000000000000000..ae9ff3fdbe7c3138de79eb1e3569fa83d60def5d
@@ -364,7 +454,7 @@ index 2ba0d0940120e36a88a9cc752ef0e45ab93f6a93..fdcbb0c3d47860c8844329735741ad8f
       * Get an iterator through all advancements. Advancements cannot be removed
       * from this iterator,
 diff --git a/src/main/java/org/bukkit/UnsafeValues.java b/src/main/java/org/bukkit/UnsafeValues.java
-index 93c56ec7e1baca71aacb51d91816dd3d65a971f6..05bfe1cb8fdfb1f8b0be5475b0be32fa8cc4fd07 100644
+index cfc27f4d20a5f75f8a5e0d4fdb86e578e0cc4465..eafbab3375720d6f663cf475bccebb11d1a444eb 100644
 --- a/src/main/java/org/bukkit/UnsafeValues.java
 +++ b/src/main/java/org/bukkit/UnsafeValues.java
 @@ -75,6 +75,35 @@ public interface UnsafeValues {
@@ -473,10 +563,10 @@ index f9bc179da071e7bd57cefc50d6763317fb643b74..b0f7bd0bdc11123350a1faa3e3f9c6da
 +    // Daydream end - Add more Advancement API
  }
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index df420c5aa3f60530920d837cd28b4e9e67bc15d4..b2e0966b6e2e19c72ec91609b15248de8f3e9e7e 100644
+index 75f3f33ac575d89e8d1f31ada978b54a64567233..0e2d8cb0bcf550a17369c7d7b09cc212204e50fe 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
-@@ -3046,6 +3046,36 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+@@ -3062,6 +3062,36 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      @NotNull
      public AdvancementProgress getAdvancementProgress(@NotNull Advancement advancement);
  

@@ -1026,14 +1026,14 @@ index fdcbb0c3d47860c8844329735741ad8f3796da5d..f583bcd68d26997337840c39f0963b0e
 +    // Daydream end - Add Packet API
  }
 diff --git a/src/main/java/org/bukkit/World.java b/src/main/java/org/bukkit/World.java
-index 5f48f264ad39481eba04cbe0a322ade1b5b7fd2a..8525311c998062fbaf1430cf87b483e6fb4159ac 100644
+index c38de8426e40f1607a93feb736cac84e7999b8bf..205e4086d86cbc54bdd89de3e3564d851aefa5aa 100644
 --- a/src/main/java/org/bukkit/World.java
 +++ b/src/main/java/org/bukkit/World.java
 @@ -1585,6 +1585,17 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      public Entity getEntity(@NotNull java.util.UUID uuid);
      // Paper end
  
-+    // Daydream start - Add Packet API (getEntity by ID API)
++    // Daydream start - Add Packet API (getEntityById)
 +    /**
 +     * Gets an entity in this world by its ID
 +     *
@@ -1042,13 +1042,13 @@ index 5f48f264ad39481eba04cbe0a322ade1b5b7fd2a..8525311c998062fbaf1430cf87b483e6
 +     */
 +    @Nullable
 +    public Entity getEntity(int id);
-+    // Daydream end
++    // Daydream end - Add Packet API
 +
      /**
       * Returns a list of entities within a bounding box centered around a
       * Location.
 diff --git a/src/main/java/org/bukkit/entity/Entity.java b/src/main/java/org/bukkit/entity/Entity.java
-index 6ace3581f8d0c2a1b7e2188d5b6af5c984b74a0e..1376b1c8388aa96edb1c787ce2fc622f2ed1dd21 100644
+index 6ace3581f8d0c2a1b7e2188d5b6af5c984b74a0e..72324b823027edad59c9b916db238394198e5762 100644
 --- a/src/main/java/org/bukkit/entity/Entity.java
 +++ b/src/main/java/org/bukkit/entity/Entity.java
 @@ -486,6 +486,19 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
@@ -1066,13 +1066,13 @@ index 6ace3581f8d0c2a1b7e2188d5b6af5c984b74a0e..1376b1c8388aa96edb1c787ce2fc622f
 +    @Nullable
 +    @org.jetbrains.annotations.ApiStatus.Experimental
 +    public Object getMetadata(int index);
-+    // Daydream end
++    // Daydream end - Add Packet API
 +
      /**
       * Gets the amount of ticks this entity has lived for.
       * <p>
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index aea0cd4bee02273b926d6668fa67a5821ca5b645..be7b69aeea7c6f063dcd22a811d6e66f6f20c866 100644
+index ee25512d339f9a82cc17ebc6e4ca7da9101bf593..c2f30e2b21f66bc1615ed75dd73751f60b592319 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
 @@ -406,6 +406,16 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
@@ -1092,11 +1092,11 @@ index aea0cd4bee02273b926d6668fa67a5821ca5b645..be7b69aeea7c6f063dcd22a811d6e66f
      /**
       * Returns true if the entity is supported by a block.
       *
-@@ -957,6 +967,22 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
-      * @param buf bytebuf 오브젝트
-      */
+@@ -959,6 +969,24 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      public void sendCustomPayload(@NotNull org.bukkit.NamespacedKey channel, @NotNull io.netty.buffer.ByteBuf buf);
-+
+     // Daydream end - Add Network API
+ 
++    // Daydream start - Add Packet API
 +    /**
 +     * 플레이어에게 raw 패킷을 전송합니다.
 +     *
@@ -1104,7 +1104,7 @@ index aea0cd4bee02273b926d6668fa67a5821ca5b645..be7b69aeea7c6f063dcd22a811d6e66f
 +     * @deprecated {@link Player#sendPacket(moe.caramel.daydream.network.Packet)}를 사용해주세요
 +     */
 +    @Deprecated
-+    public void sendRawPacket(@NotNull Object packet);
++    public void sendRawPacket(@NotNull Object nmsPacket);
 +
 +    /**
 +     * 플레이어에게 패킷을 전송합니다.
@@ -1112,6 +1112,8 @@ index aea0cd4bee02273b926d6668fa67a5821ca5b645..be7b69aeea7c6f063dcd22a811d6e66f
 +     * @param packet 패킷 인스턴스
 +     */
 +    public void sendPacket(@NotNull moe.caramel.daydream.network.Packet packet);
-     // Daydream end
- 
++    // Daydream end - Add Packet API
++
      // Paper start
+     /**
+      * Send a sign change. This fakes a sign change packet for a user at
