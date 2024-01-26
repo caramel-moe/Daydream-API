@@ -5,14 +5,21 @@ Subject: [PATCH] Add more Entity API
 
 
 diff --git a/src/main/java/org/bukkit/entity/Entity.java b/src/main/java/org/bukkit/entity/Entity.java
-index 72324b823027edad59c9b916db238394198e5762..1e7f01be06ed465a96b228972aff1ddb33cbee90 100644
+index 72324b823027edad59c9b916db238394198e5762..be19584591f30ed9780bf05e5dfc91b2cd57f3fd 100644
 --- a/src/main/java/org/bukkit/entity/Entity.java
 +++ b/src/main/java/org/bukkit/entity/Entity.java
-@@ -325,6 +325,26 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
+@@ -325,6 +325,33 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
      void lockFreezeTicks(boolean locked);
      // Paper end - Freeze Tick Lock API
  
 +    // Daydream start - Add more Entity API (Disable Entity Update)
++    /**
++     * 엔티티 업데이트 비활성화를 예약합니다.
++     * <p>엔티티 업데이트가 완료된 후에 다음 틱 시간부터 업데이트를 하지 않습니다.</p>
++     */
++    @ApiStatus.Experimental
++    void scheduleDisableEntityUpdate();
++
 +    /**
 +     * 엔티티 업데이트 중지 여부를 가져옵니다.
 +     * <p>활성화 시, 위치 보정 및 엔티티 데이터 업데이트가 중지됩니다.</p>
@@ -35,7 +42,7 @@ index 72324b823027edad59c9b916db238394198e5762..1e7f01be06ed465a96b228972aff1ddb
      /**
       * Mark the entity's removal.
       *
-@@ -486,6 +506,16 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
+@@ -486,6 +513,16 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
      @NotNull
      public UUID getUniqueId();
  
