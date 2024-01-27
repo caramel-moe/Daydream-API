@@ -169,19 +169,24 @@ loadScripts(document, 'script');</script>
 <div class="block">Reset the crystals located on the obsidian pillars (remove their beam
  targets and invulnerability).</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#setRespawnPhase(org.bukkit.boss.DragonBattle.RespawnPhase)" class="member-name-link">setRespawnPhase</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="DragonBattle.RespawnPhase.html" title="enum class in org.bukkit.boss">DragonBattle.RespawnPhase</a>&nbsp;phase)</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#setPreviouslyKilled(boolean)" class="member-name-link">setPreviouslyKilled</a><wbr>(boolean&nbsp;previouslyKilled)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Set the dragon's respawn phase.</div>
+<div class="block">Sets whether the first dragon has been killed already.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#spawnNewGateway()" class="member-name-link">spawnNewGateway</a>()</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#setRespawnPhase(org.bukkit.boss.DragonBattle.RespawnPhase)" class="member-name-link">setRespawnPhase</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="DragonBattle.RespawnPhase.html" title="enum class in org.bukkit.boss">DragonBattle.RespawnPhase</a>&nbsp;phase)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Set the dragon's respawn phase.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#spawnNewGateway()" class="member-name-link">spawnNewGateway</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Tries to spawn a new end gateway using default game mechanics.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#spawnNewGateway(io.papermc.paper.math.Position)" class="member-name-link">spawnNewGateway</a><wbr>(<a href="../../../io/papermc/paper/math/Position.html" title="interface in io.papermc.paper.math">Position</a>&nbsp;position)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#spawnNewGateway(io.papermc.paper.math.Position)" class="member-name-link">spawnNewGateway</a><wbr>(<a href="../../../io/papermc/paper/math/Position.html" title="interface in io.papermc.paper.math">Position</a>&nbsp;position)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Spawns a new end gateway at the specified position.</div>
 </div>
 </div>
@@ -259,6 +264,21 @@ loadScripts(document, 'script');</script>
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>true if killed before, false otherwise</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="setPreviouslyKilled(boolean)">
+<h3>setPreviouslyKilled</h3>
+<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">setPreviouslyKilled</span><wbr><span class="parameters">(boolean&nbsp;previouslyKilled)</span></div>
+<div class="block">Sets whether the first dragon has been killed already.
+ <br>
+ If the dragon has not previously been killed, a portal will be generated
+ when it is finally killed.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>previouslyKilled</code> - true if the dragon has been killed before, false
+ otherwise</dd>
 </dl>
 </section>
 </li>
