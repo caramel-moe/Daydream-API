@@ -90,13 +90,13 @@ loadScripts(document, 'script');</script>
 </dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">DragonEggFormEvent</span>
-<span class="extends-implements">extends <a href="../../../../../org/bukkit/event/block/BlockFormEvent.html" title="class in org.bukkit.event.block">BlockFormEvent</a>
-implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="interface in org.bukkit.event">Cancellable</a></span></div>
+<span class="extends-implements">extends <a href="../../../../../org/bukkit/event/block/BlockFormEvent.html" title="class in org.bukkit.event.block">BlockFormEvent</a></span></div>
 <div class="block">Called when the <a href="../../../../../org/bukkit/entity/EnderDragon.html" title="interface in org.bukkit.entity"><code>EnderDragon</code></a> is defeated (killed) in a <a href="../../../../../org/bukkit/boss/DragonBattle.html" title="interface in org.bukkit.boss"><code>DragonBattle</code></a>,
  causing a <a href="../../../../../org/bukkit/Material.html#DRAGON_EGG"><code>Material.DRAGON_EGG</code></a> (more formally: <a href="../../../../../org/bukkit/event/block/BlockGrowEvent.html#getNewState()"><code>BlockGrowEvent.getNewState()</code></a>)
- to possibly appear depending on <a href="#isCancelled()"><code>isCancelled()</code></a>.
+ to possibly appear depending on <a href="../../../../../org/bukkit/event/block/BlockGrowEvent.html#isCancelled()"><code>BlockGrowEvent.isCancelled()</code></a>.
+ <p>
  <b>This event might be cancelled by default depending on
- eg. <a href="../../../../../org/bukkit/boss/DragonBattle.html#hasBeenPreviouslyKilled()"><code>DragonBattle.hasBeenPreviouslyKilled()</code></a> and server configuration.</b></div>
+ e.g. <a href="../../../../../org/bukkit/boss/DragonBattle.html#hasBeenPreviouslyKilled()"><code>DragonBattle.hasBeenPreviouslyKilled()</code></a> and server configuration.</b></div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -155,22 +155,12 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/event/HandlerList.html" title="class in org.bukkit.event">HandlerList</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getHandlers()" class="member-name-link">getHandlers</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isCancelled()" class="member-name-link">isCancelled</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Gets the cancellation state of this event.</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setCancelled(boolean)" class="member-name-link">setCancelled</a><wbr>(boolean&nbsp;cancelled)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Sets the cancellation state of this event.</div>
-</div>
 </div>
 </div>
 </div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-org.bukkit.event.block.BlockGrowEvent">Methods inherited from class&nbsp;org.bukkit.event.block.<a href="../../../../../org/bukkit/event/block/BlockGrowEvent.html" title="class in org.bukkit.event.block">BlockGrowEvent</a></h3>
-<code><a href="../../../../../org/bukkit/event/block/BlockGrowEvent.html#getNewState()">getNewState</a></code></div>
+<code><a href="../../../../../org/bukkit/event/block/BlockGrowEvent.html#getNewState()">getNewState</a>, <a href="../../../../../org/bukkit/event/block/BlockGrowEvent.html#isCancelled()">isCancelled</a>, <a href="../../../../../org/bukkit/event/block/BlockGrowEvent.html#setCancelled(boolean)">setCancelled</a></code></div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-org.bukkit.event.block.BlockEvent">Methods inherited from class&nbsp;org.bukkit.event.block.<a href="../../../../../org/bukkit/event/block/BlockEvent.html" title="class in org.bukkit.event.block">BlockEvent</a></h3>
 <code><a href="../../../../../org/bukkit/event/block/BlockEvent.html#getBlock()">getBlock</a></code></div>
@@ -194,7 +184,8 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <li>
 <section class="detail" id="&lt;init&gt;(org.bukkit.block.Block,org.bukkit.block.BlockState,org.bukkit.boss.DragonBattle)">
 <h3>DragonEggFormEvent</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">DragonEggFormEvent</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/ApiStatus.Internal.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Internal</a>
+</span><span class="modifiers">public</span>&nbsp;<span class="element-name">DragonEggFormEvent</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/block/Block.html" title="interface in org.bukkit.block">Block</a>&nbsp;block,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/block/BlockState.html" title="interface in org.bukkit.block">BlockState</a>&nbsp;newState,
@@ -210,40 +201,6 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <section class="method-details" id="method-detail">
 <h2>Method Details</h2>
 <ul class="member-list">
-<li>
-<section class="detail" id="isCancelled()">
-<h3>isCancelled</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isCancelled</span>()</div>
-<div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="../../../../../org/bukkit/event/Cancellable.html#isCancelled()">Cancellable</a></code></span></div>
-<div class="block">Gets the cancellation state of this event. A cancelled event will not
- be executed in the server, but will still pass to other plugins</div>
-<dl class="notes">
-<dt>Specified by:</dt>
-<dd><code><a href="../../../../../org/bukkit/event/Cancellable.html#isCancelled()">isCancelled</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../org/bukkit/event/Cancellable.html" title="interface in org.bukkit.event">Cancellable</a></code></dd>
-<dt>Overrides:</dt>
-<dd><code><a href="../../../../../org/bukkit/event/block/BlockGrowEvent.html#isCancelled()">isCancelled</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../org/bukkit/event/block/BlockGrowEvent.html" title="class in org.bukkit.event.block">BlockGrowEvent</a></code></dd>
-<dt>Returns:</dt>
-<dd>true if this event is cancelled</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="setCancelled(boolean)">
-<h3>setCancelled</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setCancelled</span><wbr><span class="parameters">(boolean&nbsp;cancelled)</span></div>
-<div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="../../../../../org/bukkit/event/Cancellable.html#setCancelled(boolean)">Cancellable</a></code></span></div>
-<div class="block">Sets the cancellation state of this event. A cancelled event will not
- be executed in the server, but will still pass to other plugins.</div>
-<dl class="notes">
-<dt>Specified by:</dt>
-<dd><code><a href="../../../../../org/bukkit/event/Cancellable.html#setCancelled(boolean)">setCancelled</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../org/bukkit/event/Cancellable.html" title="interface in org.bukkit.event">Cancellable</a></code></dd>
-<dt>Overrides:</dt>
-<dd><code><a href="../../../../../org/bukkit/event/block/BlockGrowEvent.html#setCancelled(boolean)">setCancelled</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../org/bukkit/event/block/BlockGrowEvent.html" title="class in org.bukkit.event.block">BlockGrowEvent</a></code></dd>
-<dt>Parameters:</dt>
-<dd><code>cancelled</code> - true if you wish to cancel this event</dd>
-</dl>
-</section>
-</li>
 <li>
 <section class="detail" id="getDragonBattle()">
 <h3>getDragonBattle</h3>

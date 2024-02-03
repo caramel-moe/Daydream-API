@@ -82,7 +82,7 @@ loadScripts(document, 'script');</script>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">ProfileWhitelistVerifyEvent</span>
 <span class="extends-implements">extends <a href="../../../../../org/bukkit/event/Event.html" title="class in org.bukkit.event">Event</a></span></div>
 <div class="block">Fires when the server needs to verify if a player is whitelisted.
-
+ <p>
  Plugins may override/control the servers whitelist with this event,
  and dynamically change the kick message.</div>
 </section>
@@ -200,6 +200,7 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="&lt;init&gt;(com.destroystokyo.paper.profile.PlayerProfile,boolean,boolean,boolean,java.lang.String)">
 <h3>ProfileWhitelistVerifyEvent</h3>
 <div class="member-signature"><span class="annotations"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Deprecated.html" title="class or interface in java.lang" class="external-link">@Deprecated</a>
+<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/ApiStatus.Internal.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Internal</a>
 </span><span class="modifiers">public</span>&nbsp;<span class="element-name">ProfileWhitelistVerifyEvent</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../profile/PlayerProfile.html" title="interface in com.destroystokyo.paper.profile">PlayerProfile</a>&nbsp;profile,
  boolean&nbsp;whitelistEnabled,
@@ -213,7 +214,8 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="&lt;init&gt;(com.destroystokyo.paper.profile.PlayerProfile,boolean,boolean,boolean,net.kyori.adventure.text.Component)">
 <h3>ProfileWhitelistVerifyEvent</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">ProfileWhitelistVerifyEvent</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/ApiStatus.Internal.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Internal</a>
+</span><span class="modifiers">public</span>&nbsp;<span class="element-name">ProfileWhitelistVerifyEvent</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../profile/PlayerProfile.html" title="interface in com.destroystokyo.paper.profile">PlayerProfile</a>&nbsp;profile,
  boolean&nbsp;whitelistEnabled,
  boolean&nbsp;whitelisted,
@@ -256,7 +258,7 @@ loadScripts(document, 'script');</script>
 </div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>kickMessage</code> - The message to send to the player on kick if not whitelisted. May set to null to use the server configured default</dd>
+<dd><code>kickMessage</code> - The message to send to the player on kick if not whitelisted. May set to <code>null</code> to use the server configured default</dd>
 </dl>
 </section>
 </li>
@@ -278,7 +280,7 @@ loadScripts(document, 'script');</script>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="https://jd.advntr.dev/api/4.15.0/net/kyori/adventure/text/Component.html" title="class or interface in net.kyori.adventure.text" class="external-link">Component</a>&nbsp;kickMessage)</span></div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>kickMessage</code> - The message to send to the player on kick if not whitelisted. May set to null to use the server configured default</dd>
+<dd><code>kickMessage</code> - The message to send to the player on kick if not whitelisted. May set to <code>null</code> to use the server configured default</dd>
 </dl>
 </section>
 </li>
@@ -307,7 +309,7 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="setWhitelisted(boolean)">
 <h3>setWhitelisted</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setWhitelisted</span><wbr><span class="parameters">(boolean&nbsp;whitelisted)</span></div>
-<div class="block">Changes the players whitelisted state. false will deny the login</div>
+<div class="block">Changes the players whitelisted state. <code>false</code> will deny the login</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>whitelisted</code> - The new whitelisted state</dd>

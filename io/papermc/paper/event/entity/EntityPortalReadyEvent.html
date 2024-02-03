@@ -198,7 +198,8 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <li>
 <section class="detail" id="&lt;init&gt;(org.bukkit.entity.Entity,org.bukkit.World,org.bukkit.PortalType)">
 <h3>EntityPortalReadyEvent</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">EntityPortalReadyEvent</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/ApiStatus.Internal.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Internal</a>
+</span><span class="modifiers">public</span>&nbsp;<span class="element-name">EntityPortalReadyEvent</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/entity/Entity.html" title="interface in org.bukkit.entity">Entity</a>&nbsp;entity,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../../../../../org/bukkit/World.html" title="interface in org.bukkit">World</a>&nbsp;targetWorld,
@@ -220,7 +221,7 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a>
 </span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../../../../../org/bukkit/World.html" title="interface in org.bukkit">World</a></span>&nbsp;<span class="element-name">getTargetWorld</span>()</div>
 <div class="block">Gets the world this portal will teleport to.
- Can be null if "allow-nether" is false in server.properties
+ Can be <code>null</code> if "allow-nether" is false in server.properties
  or if there is another situation where there is no world to teleport to.
  <p>
  This world may be modified by later events such as <a href="../../../../../org/bukkit/event/player/PlayerPortalEvent.html" title="class in org.bukkit.event.player"><code>PlayerPortalEvent</code></a>
@@ -236,7 +237,7 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <h3>setTargetWorld</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setTargetWorld</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../../../../../org/bukkit/World.html" title="interface in org.bukkit">World</a>&nbsp;targetWorld)</span></div>
-<div class="block">Sets the world this portal will teleport to. A null value
+<div class="block">Sets the world this portal will teleport to. A <code>null</code> value
  will essentially cancel the teleport and prevent further events
  such as <a href="../../../../../org/bukkit/event/player/PlayerPortalEvent.html" title="class in org.bukkit.event.player"><code>PlayerPortalEvent</code></a> from firing.
  <p>

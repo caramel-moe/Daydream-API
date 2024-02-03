@@ -137,7 +137,7 @@ loadScripts(document, 'script');</script>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/entity/EntityType.html" title="enum class in org.bukkit.entity">EntityType</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getHatchingType()" class="member-name-link">getHatchingType</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Get the type of the mob being hatched (EntityType.CHICKEN by default)</div>
+<div class="block">Get the type of the mob being hatched (<a href="../../../../../org/bukkit/entity/EntityType.html#CHICKEN"><code>EntityType.CHICKEN</code></a> by default)</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>byte</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getNumHatches()" class="member-name-link">getNumHatches</a>()</code></div>
@@ -187,7 +187,8 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="&lt;init&gt;(org.bukkit.entity.Egg,boolean,byte,org.bukkit.entity.EntityType)">
 <h3>ThrownEggHatchEvent</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">ThrownEggHatchEvent</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/ApiStatus.Internal.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Internal</a>
+</span><span class="modifiers">public</span>&nbsp;<span class="element-name">ThrownEggHatchEvent</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/entity/Egg.html" title="interface in org.bukkit.entity">Egg</a>&nbsp;egg,
  boolean&nbsp;hatching,
  byte&nbsp;numHatches,
@@ -234,7 +235,7 @@ loadScripts(document, 'script');</script>
 <div class="block">Sets whether the egg will hatch or not.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>hatching</code> - true if you want the egg to hatch, false if you want it
+<dd><code>hatching</code> - <code>true</code> if you want the egg to hatch, <code>false</code> if you want it
      not to</dd>
 </dl>
 </section>
@@ -244,7 +245,7 @@ loadScripts(document, 'script');</script>
 <h3>getHatchingType</h3>
 <div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
 </span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/entity/EntityType.html" title="enum class in org.bukkit.entity">EntityType</a></span>&nbsp;<span class="element-name">getHatchingType</span>()</div>
-<div class="block">Get the type of the mob being hatched (EntityType.CHICKEN by default)</div>
+<div class="block">Get the type of the mob being hatched (<a href="../../../../../org/bukkit/entity/EntityType.html#CHICKEN"><code>EntityType.CHICKEN</code></a> by default)</div>
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>The type of the mob being hatched by the egg</dd>
@@ -270,9 +271,9 @@ loadScripts(document, 'script');</script>
 <div class="block">Get the number of mob hatches from the egg. By default the number will
  be the number the server would've done
  <ul>
- <li>7/8 chance of being 0
- <li>31/256 ~= 1/8 chance to be 1
- <li>1/256 chance to be 4
+  <li>7/8 chance of being 0
+  <li>31/256 ~= 1/8 chance to be 1
+  <li>1/256 chance to be 4
  </ul></div>
 <dl class="notes">
 <dt>Returns:</dt>
@@ -286,8 +287,8 @@ loadScripts(document, 'script');</script>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setNumHatches</span><wbr><span class="parameters">(byte&nbsp;numHatches)</span></div>
 <div class="block">Change the number of mobs coming out of the hatched egg
  <p>
- The boolean hatching will override this number. Ie. If hatching =
- false, this number will not matter</div>
+ The boolean hatching will override this number. I.e. If hatching is
+ <code>false</code>, this number will not matter</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>numHatches</code> - The number of mobs coming out of the egg</dd>

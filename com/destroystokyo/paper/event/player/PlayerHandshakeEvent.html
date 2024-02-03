@@ -87,9 +87,9 @@ loadScripts(document, 'script');</script>
 <span class="extends-implements">extends <a href="../../../../../org/bukkit/event/Event.html" title="class in org.bukkit.event">Event</a>
 implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="interface in org.bukkit.event">Cancellable</a></span></div>
 <div class="block">This event is fired during a player handshake.
-
- <p>If there are no listeners listening to this event, the logic default
- to your server platform will be ran.</p>
+ <p>
+ If there are no listeners listening to this event, the logic default
+ to your server platform will be run.
 
  <p>WARNING: TAMPERING WITH THIS EVENT CAN BE DANGEROUS</p></div>
 </section>
@@ -115,16 +115,12 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(java.lang.String,boolean)" class="member-name-link">PlayerHandshakeEvent</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;originalHandshake,
  boolean&nbsp;cancelled)</code></div>
 <div class="col-last even-row-color">
-<div class="block"><span class="deprecated-label">Deprecated.</span>
-<div class="deprecation-comment">in favour of <a href="#%3Cinit%3E(java.lang.String,java.lang.String,boolean)"><code>PlayerHandshakeEvent(@org.jetbrains.annotations.NotNull java.lang.String,@org.jetbrains.annotations.NotNull java.lang.String,boolean)</code></a></div>
-</div>
+<div class="block"><span class="deprecated-label">Deprecated.</span></div>
 </div>
 <div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(java.lang.String,java.lang.String,boolean)" class="member-name-link">PlayerHandshakeEvent</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;originalHandshake,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;originalSocketAddressHostname,
  boolean&nbsp;cancelled)</code></div>
-<div class="col-last odd-row-color">
-<div class="block">Creates a new <a href="PlayerHandshakeEvent.html" title="class in com.destroystokyo.paper.event.player"><code>PlayerHandshakeEvent</code></a>.</div>
-</div>
+<div class="col-last odd-row-color">&nbsp;</div>
 </div>
 </section>
 </li>
@@ -203,7 +199,7 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <div class="block">Determines if authentication failed.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setCancelled(boolean)" class="member-name-link">setCancelled</a><wbr>(boolean&nbsp;cancelled)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setCancelled(boolean)" class="member-name-link">setCancelled</a><wbr>(boolean&nbsp;cancel)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Sets if this event is cancelled.</div>
 </div>
@@ -263,35 +259,22 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <section class="detail" id="&lt;init&gt;(java.lang.String,boolean)">
 <h3>PlayerHandshakeEvent</h3>
 <div class="member-signature"><span class="annotations"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Deprecated.html" title="class or interface in java.lang" class="external-link">@Deprecated</a>
+<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/ApiStatus.Internal.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Internal</a>
 </span><span class="modifiers">public</span>&nbsp;<span class="element-name">PlayerHandshakeEvent</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;originalHandshake,
  boolean&nbsp;cancelled)</span></div>
-<div class="deprecation-block"><span class="deprecated-label">Deprecated.</span>
-<div class="deprecation-comment">in favour of <a href="#%3Cinit%3E(java.lang.String,java.lang.String,boolean)"><code>PlayerHandshakeEvent(@org.jetbrains.annotations.NotNull java.lang.String,@org.jetbrains.annotations.NotNull java.lang.String,boolean)</code></a></div>
-</div>
-<div class="block">Creates a new <a href="PlayerHandshakeEvent.html" title="class in com.destroystokyo.paper.event.player"><code>PlayerHandshakeEvent</code></a>.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>originalHandshake</code> - the original handshake string</dd>
-<dd><code>cancelled</code> - if this event is enabled</dd>
-</dl>
+<div class="deprecation-block"><span class="deprecated-label">Deprecated.</span></div>
 </section>
 </li>
 <li>
 <section class="detail" id="&lt;init&gt;(java.lang.String,java.lang.String,boolean)">
 <h3>PlayerHandshakeEvent</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">PlayerHandshakeEvent</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/ApiStatus.Internal.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Internal</a>
+</span><span class="modifiers">public</span>&nbsp;<span class="element-name">PlayerHandshakeEvent</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;originalHandshake,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;originalSocketAddressHostname,
  boolean&nbsp;cancelled)</span></div>
-<div class="block">Creates a new <a href="PlayerHandshakeEvent.html" title="class in com.destroystokyo.paper.event.player"><code>PlayerHandshakeEvent</code></a>.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>originalHandshake</code> - the original handshake string</dd>
-<dd><code>originalSocketAddressHostname</code> - the original socket address hostname</dd>
-<dd><code>cancelled</code> - if this event is enabled</dd>
-</dl>
 </section>
 </li>
 </ul>
@@ -307,9 +290,9 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <h3>isCancelled</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isCancelled</span>()</div>
 <div class="block">Determines if this event is cancelled.
-
- <p>When this event is cancelled, custom handshake logic will not
- be processed.</p></div>
+ <p>
+ When this event is cancelled, custom handshake logic will not
+ be processed.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../../../../../org/bukkit/event/Cancellable.html#isCancelled()">isCancelled</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../org/bukkit/event/Cancellable.html" title="interface in org.bukkit.event">Cancellable</a></code></dd>
@@ -321,16 +304,16 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <li>
 <section class="detail" id="setCancelled(boolean)">
 <h3>setCancelled</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setCancelled</span><wbr><span class="parameters">(boolean&nbsp;cancelled)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setCancelled</span><wbr><span class="parameters">(boolean&nbsp;cancel)</span></div>
 <div class="block">Sets if this event is cancelled.
-
- <p>When this event is cancelled, custom handshake logic will not
- be processed.</p></div>
+ <p>
+ When this event is cancelled, custom handshake logic will not
+ be processed.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../../../../../org/bukkit/event/Cancellable.html#setCancelled(boolean)">setCancelled</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../org/bukkit/event/Cancellable.html" title="interface in org.bukkit.event">Cancellable</a></code></dd>
 <dt>Parameters:</dt>
-<dd><code>cancelled</code> - <code>true</code> if this event is cancelled, <code>false</code> otherwise</dd>
+<dd><code>cancel</code> - <code>true</code> if this event is cancelled, <code>false</code> otherwise</dd>
 </dl>
 </section>
 </li>
@@ -460,9 +443,9 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <h3>isFailed</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isFailed</span>()</div>
 <div class="block">Determines if authentication failed.
-
- <p>When <code>true</code>, the client connecting will be disconnected
- with the <a href="#getFailMessage()"><code>fail message</code></a>.</p></div>
+ <p>
+ When <code>true</code>, the client connecting will be disconnected
+ with the <a href="#getFailMessage()"><code>fail message</code></a>.</div>
 <dl class="notes">
 <dt>Returns:</dt>
 <dd><code>true</code> if authentication failed, <code>false</code> otherwise</dd>
@@ -474,9 +457,9 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <h3>setFailed</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setFailed</span><wbr><span class="parameters">(boolean&nbsp;failed)</span></div>
 <div class="block">Sets if authentication failed and the client should be disconnected.
-
- <p>When <code>true</code>, the client connecting will be disconnected
- with the <a href="#getFailMessage()"><code>fail message</code></a>.</p></div>
+ <p>
+ When <code>true</code>, the client connecting will be disconnected
+ with the <a href="#getFailMessage()"><code>fail message</code></a>.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>failed</code> - <code>true</code> if authentication failed, <code>false</code> otherwise</dd>

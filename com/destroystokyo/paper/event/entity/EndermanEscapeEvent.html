@@ -193,7 +193,8 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <li>
 <section class="detail" id="&lt;init&gt;(org.bukkit.entity.Enderman,com.destroystokyo.paper.event.entity.EndermanEscapeEvent.Reason)">
 <h3>EndermanEscapeEvent</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">EndermanEscapeEvent</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/ApiStatus.Internal.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Internal</a>
+</span><span class="modifiers">public</span>&nbsp;<span class="element-name">EndermanEscapeEvent</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/entity/Enderman.html" title="interface in org.bukkit.entity">Enderman</a>&nbsp;entity,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="EndermanEscapeEvent.Reason.html" title="enum class in com.destroystokyo.paper.event.entity">EndermanEscapeEvent.Reason</a>&nbsp;reason)</span></div>
@@ -234,24 +235,6 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 </section>
 </li>
 <li>
-<section class="detail" id="getHandlers()">
-<h3>getHandlers</h3>
-<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
-</span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/event/HandlerList.html" title="class in org.bukkit.event">HandlerList</a></span>&nbsp;<span class="element-name">getHandlers</span>()</div>
-<dl class="notes">
-<dt>Specified by:</dt>
-<dd><code><a href="../../../../../org/bukkit/event/Event.html#getHandlers()">getHandlers</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../org/bukkit/event/Event.html" title="class in org.bukkit.event">Event</a></code></dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="getHandlerList()">
-<h3>getHandlerList</h3>
-<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
-</span><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/event/HandlerList.html" title="class in org.bukkit.event">HandlerList</a></span>&nbsp;<span class="element-name">getHandlerList</span>()</div>
-</section>
-</li>
-<li>
 <section class="detail" id="isCancelled()">
 <h3>isCancelled</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isCancelled</span>()</div>
@@ -271,7 +254,7 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <h3>setCancelled</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setCancelled</span><wbr><span class="parameters">(boolean&nbsp;cancel)</span></div>
 <div class="block">Cancels the escape.
-
+ <p>
  If this escape normally would of resulted in damage avoidance such as indirect,
  the enderman will now take damage.</div>
 <dl class="notes">
@@ -280,6 +263,24 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <dt>Parameters:</dt>
 <dd><code>cancel</code> - true if you wish to cancel this event</dd>
 </dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getHandlers()">
+<h3>getHandlers</h3>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/event/HandlerList.html" title="class in org.bukkit.event">HandlerList</a></span>&nbsp;<span class="element-name">getHandlers</span>()</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="../../../../../org/bukkit/event/Event.html#getHandlers()">getHandlers</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../org/bukkit/event/Event.html" title="class in org.bukkit.event">Event</a></code></dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getHandlerList()">
+<h3>getHandlerList</h3>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+</span><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/event/HandlerList.html" title="class in org.bukkit.event">HandlerList</a></span>&nbsp;<span class="element-name">getHandlerList</span>()</div>
 </section>
 </li>
 </ul>

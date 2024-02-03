@@ -88,7 +88,8 @@ loadScripts(document, 'script');</script>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">PlayerSetSpawnEvent</span>
 <span class="extends-implements">extends <a href="../../../../../org/bukkit/event/player/PlayerEvent.html" title="class in org.bukkit.event.player">PlayerEvent</a>
 implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="interface in org.bukkit.event">Cancellable</a></span></div>
-<div class="block">Called when a player's spawn is set, either by themselves or otherwise.<br>
+<div class="block">Called when a player's spawn is set, either by themselves or otherwise.
+ <br>
  Cancelling this event will prevent the spawn from being set.</div>
 </section>
 <section class="summary">
@@ -128,7 +129,7 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <div class="summary-table two-column-summary">
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
-<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(org.bukkit.entity.Player,com.destroystokyo.paper.event.player.PlayerSetSpawnEvent.Cause,org.bukkit.Location,boolean,boolean,net.kyori.adventure.text.Component)" class="member-name-link">PlayerSetSpawnEvent</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/entity/Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;who,
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(org.bukkit.entity.Player,com.destroystokyo.paper.event.player.PlayerSetSpawnEvent.Cause,org.bukkit.Location,boolean,boolean,net.kyori.adventure.text.Component)" class="member-name-link">PlayerSetSpawnEvent</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/entity/Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;player,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="PlayerSetSpawnEvent.Cause.html" title="enum class in com.destroystokyo.paper.event.player">PlayerSetSpawnEvent.Cause</a>&nbsp;cause,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../../../../../org/bukkit/Location.html" title="class in org.bukkit">Location</a>&nbsp;location,
  boolean&nbsp;forced,
@@ -239,8 +240,9 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <li>
 <section class="detail" id="&lt;init&gt;(org.bukkit.entity.Player,com.destroystokyo.paper.event.player.PlayerSetSpawnEvent.Cause,org.bukkit.Location,boolean,boolean,net.kyori.adventure.text.Component)">
 <h3>PlayerSetSpawnEvent</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">PlayerSetSpawnEvent</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/entity/Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;who,
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/ApiStatus.Internal.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Internal</a>
+</span><span class="modifiers">public</span>&nbsp;<span class="element-name">PlayerSetSpawnEvent</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/entity/Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;player,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="PlayerSetSpawnEvent.Cause.html" title="enum class in com.destroystokyo.paper.event.player">PlayerSetSpawnEvent.Cause</a>&nbsp;cause,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a>
@@ -282,7 +284,7 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
  <a href="../../../../../org/bukkit/Location.html#clone()"><code>Location.clone()</code></a> to get a copy of this location.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>the spawn location, or null if removing the location</dd>
+<dd>the spawn location, or <code>null</code> if removing the location</dd>
 </dl>
 </section>
 </li>
@@ -295,7 +297,7 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
  of this location is the spawn angle.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>location</code> - the spawn location, or null to remove the spawn location</dd>
+<dd><code>location</code> - the spawn location, or <code>null</code> to remove the spawn location</dd>
 </dl>
 </section>
 </li>
@@ -306,7 +308,7 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <div class="block">Gets if this is a force spawn location</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>true if forced</dd>
+<dd><code>true</code> if forced</dd>
 </dl>
 </section>
 </li>
@@ -317,7 +319,7 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <div class="block">Sets if this is a forced spawn location</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>forced</code> - true to force</dd>
+<dd><code>forced</code> - <code>true</code> to force</dd>
 </dl>
 </section>
 </li>
@@ -329,7 +331,7 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
  has been set.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>true to notify</dd>
+<dd><code>true</code> to notify</dd>
 </dl>
 </section>
 </li>
@@ -341,7 +343,7 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
  has been set.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>notifyPlayer</code> - true to notify</dd>
+<dd><code>notifyPlayer</code> - <code>true</code> to notify</dd>
 </dl>
 </section>
 </li>
@@ -354,7 +356,7 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
  if <a href="#willNotifyPlayer()"><code>willNotifyPlayer()</code></a> returns true.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>null if no notification</dd>
+<dd><code>null</code> if no notification</dd>
 </dl>
 </section>
 </li>
@@ -366,7 +368,7 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <div class="block">Sets the notification message that will be sent to the player.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>notification</code> - null to send no message</dd>
+<dd><code>notification</code> - <code>null</code> to send no message</dd>
 </dl>
 </section>
 </li>

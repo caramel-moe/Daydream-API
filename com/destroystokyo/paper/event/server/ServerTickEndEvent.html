@@ -160,7 +160,8 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="&lt;init&gt;(int,double,long)">
 <h3>ServerTickEndEvent</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">ServerTickEndEvent</span><wbr><span class="parameters">(int&nbsp;tickNumber,
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/ApiStatus.Internal.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Internal</a>
+</span><span class="modifiers">public</span>&nbsp;<span class="element-name">ServerTickEndEvent</span><wbr><span class="parameters">(int&nbsp;tickNumber,
  double&nbsp;tickDuration,
  long&nbsp;timeRemaining)</span></div>
 </section>
@@ -198,9 +199,9 @@ loadScripts(document, 'script');</script>
 <h3>getTimeRemaining</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">long</span>&nbsp;<span class="element-name">getTimeRemaining</span>()</div>
 <div class="block">Amount of nanoseconds remaining before the next tick should start.
-
+ <p>
  If this value is negative, then that means the server has exceeded the tick time limit and TPS has been lost.
-
+ <p>
  Method will continuously return the updated time remaining value. (return value is not static)</div>
 <dl class="notes">
 <dt>Returns:</dt>

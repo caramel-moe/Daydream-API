@@ -89,7 +89,7 @@ loadScripts(document, 'script');</script>
 <span class="extends-implements">extends <a href="../../../../../org/bukkit/event/entity/EntityEvent.html" title="class in org.bukkit.event.entity">EntityEvent</a>
 implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="interface in org.bukkit.event">Cancellable</a></span></div>
 <div class="block">Fired when an Entity decides to start moving towards a location.
-
+ <p>
  This event does not fire for the entities actual movement. Only when it
  is choosing to start moving to a location.</div>
 </section>
@@ -122,7 +122,7 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(org.bukkit.entity.Entity,org.bukkit.Location,org.bukkit.entity.Entity)" class="member-name-link">EntityPathfindEvent</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/entity/Entity.html" title="interface in org.bukkit.entity">Entity</a>&nbsp;entity,
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/Location.html" title="class in org.bukkit">Location</a>&nbsp;loc,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/Location.html" title="class in org.bukkit">Location</a>&nbsp;location,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../../../../../org/bukkit/entity/Entity.html" title="interface in org.bukkit.entity">Entity</a>&nbsp;targetEntity)</code></div>
 <div class="col-last even-row-color">&nbsp;</div>
 </div>
@@ -196,10 +196,11 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <li>
 <section class="detail" id="&lt;init&gt;(org.bukkit.entity.Entity,org.bukkit.Location,org.bukkit.entity.Entity)">
 <h3>EntityPathfindEvent</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">EntityPathfindEvent</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/ApiStatus.Internal.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Internal</a>
+</span><span class="modifiers">public</span>&nbsp;<span class="element-name">EntityPathfindEvent</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/entity/Entity.html" title="interface in org.bukkit.entity">Entity</a>&nbsp;entity,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/Location.html" title="class in org.bukkit">Location</a>&nbsp;loc,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/Location.html" title="class in org.bukkit">Location</a>&nbsp;location,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../../../../../org/bukkit/entity/Entity.html" title="interface in org.bukkit.entity">Entity</a>&nbsp;targetEntity)</span></div>
 </section>
@@ -232,11 +233,11 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a>
 </span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../../../../../org/bukkit/entity/Entity.html" title="interface in org.bukkit.entity">Entity</a></span>&nbsp;<span class="element-name">getTargetEntity</span>()</div>
 <div class="block">If the Entity is trying to pathfind to an entity, this is the entity in relation.
-
- Otherwise this will return null.</div>
+ <br>
+ Otherwise this will return <code>null</code>.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>The entity target or null</dd>
+<dd>The entity target or <code>null</code></dd>
 </dl>
 </section>
 </li>
@@ -246,30 +247,12 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
 </span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/Location.html" title="class in org.bukkit">Location</a></span>&nbsp;<span class="element-name">getLoc</span>()</div>
 <div class="block">The Location of where the entity is about to move to.
-
+ <br>
  Note that if the target happened to of been an entity</div>
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>Location of where the entity is trying to pathfind to.</dd>
 </dl>
-</section>
-</li>
-<li>
-<section class="detail" id="getHandlers()">
-<h3>getHandlers</h3>
-<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
-</span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/event/HandlerList.html" title="class in org.bukkit.event">HandlerList</a></span>&nbsp;<span class="element-name">getHandlers</span>()</div>
-<dl class="notes">
-<dt>Specified by:</dt>
-<dd><code><a href="../../../../../org/bukkit/event/Event.html#getHandlers()">getHandlers</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../org/bukkit/event/Event.html" title="class in org.bukkit.event">Event</a></code></dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="getHandlerList()">
-<h3>getHandlerList</h3>
-<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
-</span><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/event/HandlerList.html" title="class in org.bukkit.event">HandlerList</a></span>&nbsp;<span class="element-name">getHandlerList</span>()</div>
 </section>
 </li>
 <li>
@@ -300,6 +283,24 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <dt>Parameters:</dt>
 <dd><code>cancel</code> - true if you wish to cancel this event</dd>
 </dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getHandlers()">
+<h3>getHandlers</h3>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/event/HandlerList.html" title="class in org.bukkit.event">HandlerList</a></span>&nbsp;<span class="element-name">getHandlers</span>()</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="../../../../../org/bukkit/event/Event.html#getHandlers()">getHandlers</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../org/bukkit/event/Event.html" title="class in org.bukkit.event">Event</a></code></dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getHandlerList()">
+<h3>getHandlerList</h3>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+</span><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/event/HandlerList.html" title="class in org.bukkit.event">HandlerList</a></span>&nbsp;<span class="element-name">getHandlerList</span>()</div>
 </section>
 </li>
 </ul>

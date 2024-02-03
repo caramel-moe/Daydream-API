@@ -85,36 +85,25 @@ loadScripts(document, 'script');</script>
  This event is invoked when a player has disconnected. It is guaranteed that,
  if the server is in online-mode, that the provided uuid and username have been
  validated.
- </p>
-
  <p>
  The event is invoked for players who have not yet logged into the world, whereas
  <a href="../../../../../org/bukkit/event/player/PlayerQuitEvent.html" title="class in org.bukkit.event.player"><code>PlayerQuitEvent</code></a> is only invoked on players who have logged into the world.
- </p>
-
  <p>
  The event is invoked for players who have already logged into the world,
  although whether or not the player exists in the world at the time of
  firing is undefined. (That is, whether the plugin can retrieve a Player object
  using the event parameters is undefined). However, it is guaranteed that this
  event is invoked AFTER <a href="../../../../../org/bukkit/event/player/PlayerQuitEvent.html" title="class in org.bukkit.event.player"><code>PlayerQuitEvent</code></a>, if the player has already logged into the world.
- </p>
-
  <p>
  This event is guaranteed to never fire unless <a href="../../../../../org/bukkit/event/player/AsyncPlayerPreLoginEvent.html" title="class in org.bukkit.event.player"><code>AsyncPlayerPreLoginEvent</code></a> has
  been fired beforehand, and this event may not be called in parallel with
  <a href="../../../../../org/bukkit/event/player/AsyncPlayerPreLoginEvent.html" title="class in org.bukkit.event.player"><code>AsyncPlayerPreLoginEvent</code></a> for the same connection.
- </p>
-
  <p>
  Cancelling the <a href="../../../../../org/bukkit/event/player/AsyncPlayerPreLoginEvent.html" title="class in org.bukkit.event.player"><code>AsyncPlayerPreLoginEvent</code></a> guarantees the corresponding
  <code>PlayerConnectionCloseEvent</code> is never called.
- </p>
-
  <p>
  The event may be invoked asynchronously or synchronously. Plugins should check
- <a href="../../../../../org/bukkit/event/Event.html#isAsynchronous()"><code>Event.isAsynchronous()</code></a> and handle accordingly.
- </p></div>
+ <a href="../../../../../org/bukkit/event/Event.html#isAsynchronous()"><code>Event.isAsynchronous()</code></a> and handle accordingly.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -209,7 +198,8 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="&lt;init&gt;(java.util.UUID,java.lang.String,java.net.InetAddress,boolean)">
 <h3>PlayerConnectionCloseEvent</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">PlayerConnectionCloseEvent</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/ApiStatus.Internal.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Internal</a>
+</span><span class="modifiers">public</span>&nbsp;<span class="element-name">PlayerConnectionCloseEvent</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;playerUniqueId,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;playerName,
@@ -221,7 +211,8 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="&lt;init&gt;(java.util.UUID,java.lang.String,java.net.InetAddress,boolean,boolean)">
 <h3>PlayerConnectionCloseEvent</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">PlayerConnectionCloseEvent</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/ApiStatus.Internal.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Internal</a>
+</span><span class="modifiers">public</span>&nbsp;<span class="element-name">PlayerConnectionCloseEvent</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;playerUniqueId,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;playerName,

@@ -208,7 +208,8 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <li>
 <section class="detail" id="&lt;init&gt;(org.bukkit.entity.Player,org.bukkit.entity.ItemFrame,org.bukkit.inventory.ItemStack,io.papermc.paper.event.player.PlayerItemFrameChangeEvent.ItemFrameChangeAction)">
 <h3>PlayerItemFrameChangeEvent</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">PlayerItemFrameChangeEvent</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/ApiStatus.Internal.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Internal</a>
+</span><span class="modifiers">public</span>&nbsp;<span class="element-name">PlayerItemFrameChangeEvent</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/entity/Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;player,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/entity/ItemFrame.html" title="interface in org.bukkit.entity">ItemFrame</a>&nbsp;itemFrame,
@@ -245,7 +246,8 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 </span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/inventory/ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a></span>&nbsp;<span class="element-name">getItemStack</span>()</div>
 <div class="block">Gets the <a href="../../../../../org/bukkit/inventory/ItemStack.html" title="class in org.bukkit.inventory"><code>ItemStack</code></a> involved in this event.
  This is the item being added, rotated, or removed from the <a href="../../../../../org/bukkit/entity/ItemFrame.html" title="interface in org.bukkit.entity"><code>ItemFrame</code></a>.
- <p>If this method returns air, then the resulting item in the ItemFrame will be empty.</p></div>
+ <p>
+ If this method returns air, then the resulting item in the ItemFrame will be empty.</div>
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>the <a href="../../../../../org/bukkit/inventory/ItemStack.html" title="class in org.bukkit.inventory"><code>ItemStack</code></a> being added, rotated, or removed</dd>
@@ -258,7 +260,7 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setItemStack</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../../../../../org/bukkit/inventory/ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;itemStack)</span></div>
 <div class="block">Sets the <a href="../../../../../org/bukkit/inventory/ItemStack.html" title="class in org.bukkit.inventory"><code>ItemStack</code></a> that this <a href="../../../../../org/bukkit/entity/ItemFrame.html" title="interface in org.bukkit.entity"><code>ItemFrame</code></a> holds.
- If null is provided, the ItemStack will become air and the result in the ItemFrame will be empty.</div>
+ If <code>null</code> is provided, the ItemStack will become air and the result in the ItemFrame will be empty.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>itemStack</code> - <a href="../../../../../org/bukkit/entity/ItemFrame.html" title="interface in org.bukkit.entity"><code>ItemFrame</code></a> item</dd>
@@ -274,12 +276,6 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>action performed on the item frame in this event</dd>
-<dt>See Also:</dt>
-<dd>
-<ul class="see-list-long">
-<li><a href="PlayerItemFrameChangeEvent.ItemFrameChangeAction.html" title="enum class in io.papermc.paper.event.player"><code>PlayerItemFrameChangeEvent.ItemFrameChangeAction</code></a></li>
-</ul>
-</dd>
 </dl>
 </section>
 </li>

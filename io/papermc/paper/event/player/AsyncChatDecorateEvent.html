@@ -97,15 +97,9 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
  before <a href="AsyncChatEvent.html" title="class in io.papermc.paper.event.player"><code>AsyncChatEvent</code></a> and the other chat events. It is recommended that you modify the
  message here, and use the chat events for modifying receivers and later the chat type. If you
  want to keep the message as "signed" for the clients who get it, be sure to include the entire
- original message somewhere in the final message.</div>
-<dl class="notes">
-<dt>See Also:</dt>
-<dd>
-<ul class="see-list-long">
-<li><a href="AsyncChatCommandDecorateEvent.html" title="class in io.papermc.paper.event.player"><code>for the decoration of messages sent via commands</code></a></li>
-</ul>
-</dd>
-</dl>
+ original message somewhere in the final message.
+ <br>
+ See <a href="AsyncChatCommandDecorateEvent.html" title="class in io.papermc.paper.event.player"><code>AsyncChatCommandDecorateEvent</code></a> for the decoration of messages sent via commands</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -241,7 +235,7 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
  which is why this is possibly null.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>the player or null</dd>
+<dd>the player or <code>null</code></dd>
 </dl>
 </section>
 </li>
@@ -264,7 +258,7 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 </span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://jd.advntr.dev/api/4.15.0/net/kyori/adventure/text/Component.html" title="class or interface in net.kyori.adventure.text" class="external-link">Component</a></span>&nbsp;<span class="element-name">result</span>()</div>
 <div class="block">Gets the decoration result. This may already be different from
  <a href="#originalMessage()"><code>originalMessage()</code></a> if some other listener to this event
- <b>OR</b> the legacy preview event (<a href="../../../../../org/bukkit/event/player/AsyncPlayerChatPreviewEvent.html" title="class in org.bukkit.event.player"><code>AsyncPlayerChatPreviewEvent</code></a>
+ <b>OR</b> the legacy preview event (<a href="../../../../../org/bukkit/event/player/AsyncPlayerChatPreviewEvent.html" title="class in org.bukkit.event.player"><code>AsyncPlayerChatPreviewEvent</code></a>)
  changed the result.</div>
 <dl class="notes">
 <dt>Returns:</dt>
@@ -287,7 +281,8 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <li>
 <section class="detail" id="isPreview()">
 <h3>isPreview</h3>
-<div class="member-signature"><span class="annotations"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Deprecated.html" title="class or interface in java.lang" class="external-link">@Deprecated</a>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Deprecated.html#forRemoval()" title="class or interface in java.lang" class="external-link">forRemoval</a>=true)
+<div class="member-signature"><span class="annotations"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Deprecated.html" title="class or interface in java.lang" class="external-link">@Deprecated</a>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Deprecated.html#forRemoval()" title="class or interface in java.lang" class="external-link">forRemoval</a>=true,
+            <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Deprecated.html#since()" title="class or interface in java.lang" class="external-link">since</a>="1.19.3")
 <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/ApiStatus.ScheduledForRemoval.html" title="class or interface in org.jetbrains.annotations" class="external-link">@ScheduledForRemoval</a>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/ApiStatus.ScheduledForRemoval.html#inVersion()" title="class or interface in org.jetbrains.annotations" class="external-link">inVersion</a>="1.21")
 <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Contract.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Contract</a>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Contract.html#value()" title="class or interface in org.jetbrains.annotations" class="external-link">value</a>="-&gt; false",
           <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Contract.html#pure()" title="class or interface in org.jetbrains.annotations" class="external-link">pure</a>=true)
@@ -298,7 +293,7 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <div class="block">If this decorating is part of a preview request/response.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>true if part of previewing</dd>
+<dd><code>true</code> if part of previewing</dd>
 </dl>
 </section>
 </li>

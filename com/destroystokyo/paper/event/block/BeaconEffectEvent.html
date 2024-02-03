@@ -164,7 +164,7 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <div class="block">Gets whether the effect is a primary beacon effect.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setCancelled(boolean)" class="member-name-link">setCancelled</a><wbr>(boolean&nbsp;cancelled)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setCancelled(boolean)" class="member-name-link">setCancelled</a><wbr>(boolean&nbsp;cancel)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Sets the cancellation state of this event.</div>
 </div>
@@ -199,7 +199,8 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <li>
 <section class="detail" id="&lt;init&gt;(org.bukkit.block.Block,org.bukkit.potion.PotionEffect,org.bukkit.entity.Player,boolean)">
 <h3>BeaconEffectEvent</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">BeaconEffectEvent</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/ApiStatus.Internal.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Internal</a>
+</span><span class="modifiers">public</span>&nbsp;<span class="element-name">BeaconEffectEvent</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/block/Block.html" title="interface in org.bukkit.block">Block</a>&nbsp;block,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/potion/PotionEffect.html" title="class in org.bukkit.potion">PotionEffect</a>&nbsp;effect,
@@ -216,36 +217,6 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <section class="method-details" id="method-detail">
 <h2>Method Details</h2>
 <ul class="member-list">
-<li>
-<section class="detail" id="isCancelled()">
-<h3>isCancelled</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isCancelled</span>()</div>
-<div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="../../../../../org/bukkit/event/Cancellable.html#isCancelled()">Cancellable</a></code></span></div>
-<div class="block">Gets the cancellation state of this event. A cancelled event will not
- be executed in the server, but will still pass to other plugins</div>
-<dl class="notes">
-<dt>Specified by:</dt>
-<dd><code><a href="../../../../../org/bukkit/event/Cancellable.html#isCancelled()">isCancelled</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../org/bukkit/event/Cancellable.html" title="interface in org.bukkit.event">Cancellable</a></code></dd>
-<dt>Returns:</dt>
-<dd>true if this event is cancelled</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="setCancelled(boolean)">
-<h3>setCancelled</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setCancelled</span><wbr><span class="parameters">(boolean&nbsp;cancelled)</span></div>
-<div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="../../../../../org/bukkit/event/Cancellable.html#setCancelled(boolean)">Cancellable</a></code></span></div>
-<div class="block">Sets the cancellation state of this event. A cancelled event will not
- be executed in the server, but will still pass to other plugins.</div>
-<dl class="notes">
-<dt>Specified by:</dt>
-<dd><code><a href="../../../../../org/bukkit/event/Cancellable.html#setCancelled(boolean)">setCancelled</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../org/bukkit/event/Cancellable.html" title="interface in org.bukkit.event">Cancellable</a></code></dd>
-<dt>Parameters:</dt>
-<dd><code>cancelled</code> - true if you wish to cancel this event</dd>
-</dl>
-</section>
-</li>
 <li>
 <section class="detail" id="getEffect()">
 <h3>getEffect</h3>
@@ -289,7 +260,37 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <div class="block">Gets whether the effect is a primary beacon effect.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>true if this event represents a primary effect</dd>
+<dd><code>true</code> if this event represents a primary effect</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="isCancelled()">
+<h3>isCancelled</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isCancelled</span>()</div>
+<div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="../../../../../org/bukkit/event/Cancellable.html#isCancelled()">Cancellable</a></code></span></div>
+<div class="block">Gets the cancellation state of this event. A cancelled event will not
+ be executed in the server, but will still pass to other plugins</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="../../../../../org/bukkit/event/Cancellable.html#isCancelled()">isCancelled</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../org/bukkit/event/Cancellable.html" title="interface in org.bukkit.event">Cancellable</a></code></dd>
+<dt>Returns:</dt>
+<dd>true if this event is cancelled</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="setCancelled(boolean)">
+<h3>setCancelled</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setCancelled</span><wbr><span class="parameters">(boolean&nbsp;cancel)</span></div>
+<div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="../../../../../org/bukkit/event/Cancellable.html#setCancelled(boolean)">Cancellable</a></code></span></div>
+<div class="block">Sets the cancellation state of this event. A cancelled event will not
+ be executed in the server, but will still pass to other plugins.</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="../../../../../org/bukkit/event/Cancellable.html#setCancelled(boolean)">setCancelled</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../org/bukkit/event/Cancellable.html" title="interface in org.bukkit.event">Cancellable</a></code></dd>
+<dt>Parameters:</dt>
+<dd><code>cancel</code> - true if you wish to cancel this event</dd>
 </dl>
 </section>
 </li>

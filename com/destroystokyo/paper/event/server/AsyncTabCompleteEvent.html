@@ -86,8 +86,12 @@ loadScripts(document, 'script');</script>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">AsyncTabCompleteEvent</span>
 <span class="extends-implements">extends <a href="../../../../../org/bukkit/event/Event.html" title="class in org.bukkit.event">Event</a>
 implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="interface in org.bukkit.event">Cancellable</a></span></div>
-<div class="block">Allows plugins to compute tab completion results asynchronously. If this event provides completions, then the standard synchronous process will not be fired to populate the results. However, the synchronous TabCompleteEvent will fire with the Async results.
-
+<div class="block">Allows plugins to compute tab completion results asynchronously.
+ <p>
+ If this event provides completions, then the standard synchronous process
+ will not be fired to populate the results.
+ However, the synchronous TabCompleteEvent will fire with the Async results.
+ <p>
  Only 1 process will be allowed to provide completions, the Async Event, or the standard process.</div>
 </section>
 <section class="summary">
@@ -192,13 +196,13 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isHandled()" class="member-name-link">isHandled</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">If true, the standard process of calling <a href="../../../../../org/bukkit/command/Command.html#tabComplete(org.bukkit.command.CommandSender,java.lang.String,java.lang.String%5B%5D)"><code>Command.tabComplete(CommandSender, String, String[])</code></a>
+<div class="block">If <code>true</code>, the standard process of calling <a href="../../../../../org/bukkit/command/Command.html#tabComplete(org.bukkit.command.CommandSender,java.lang.String,java.lang.String%5B%5D)"><code>Command.tabComplete(CommandSender, String, String[])</code></a>
  or current player names will not be called.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setCancelled(boolean)" class="member-name-link">setCancelled</a><wbr>(boolean&nbsp;cancelled)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setCancelled(boolean)" class="member-name-link">setCancelled</a><wbr>(boolean&nbsp;cancel)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Will provide no completions, and will not fire the synchronous process</div>
+<div class="block">Sets the cancellation state of this event.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setCompletions(java.util.List)" class="member-name-link">setCompletions</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;&nbsp;completions)</code></div>
@@ -208,7 +212,7 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setHandled(boolean)" class="member-name-link">setHandled</a><wbr>(boolean&nbsp;handled)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Sets whether or not to consider the completion request handled.</div>
+<div class="block">Sets whether to consider the completion request handled.</div>
 </div>
 </div>
 </div>
@@ -233,7 +237,8 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <li>
 <section class="detail" id="&lt;init&gt;(org.bukkit.command.CommandSender,java.lang.String,boolean,org.bukkit.Location)">
 <h3>AsyncTabCompleteEvent</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">AsyncTabCompleteEvent</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/ApiStatus.Internal.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Internal</a>
+</span><span class="modifiers">public</span>&nbsp;<span class="element-name">AsyncTabCompleteEvent</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/command/CommandSender.html" title="interface in org.bukkit.command">CommandSender</a>&nbsp;sender,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;buffer,
@@ -246,6 +251,7 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <section class="detail" id="&lt;init&gt;(org.bukkit.command.CommandSender,java.util.List,java.lang.String,boolean,org.bukkit.Location)">
 <h3>AsyncTabCompleteEvent</h3>
 <div class="member-signature"><span class="annotations"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Deprecated.html" title="class or interface in java.lang" class="external-link">@Deprecated</a>
+<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/ApiStatus.Internal.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Internal</a>
 </span><span class="modifiers">public</span>&nbsp;<span class="element-name">AsyncTabCompleteEvent</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/command/CommandSender.html" title="interface in org.bukkit.command">CommandSender</a>&nbsp;sender,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
@@ -285,7 +291,7 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 </span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;</span>&nbsp;<span class="element-name">getCompletions</span>()</div>
 <div class="block">The list of completions which will be offered to the sender, in order.
  This list is mutable and reflects what will be offered.
-
+ <p>
  If this collection is not empty after the event is fired, then
  the standard process of calling <a href="../../../../../org/bukkit/command/Command.html#tabComplete(org.bukkit.command.CommandSender,java.lang.String,java.lang.String%5B%5D)"><code>Command.tabComplete(CommandSender, String, String[])</code></a>
  or current player names will not be called.</div>
@@ -304,8 +310,8 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
  If this collection is not empty after the event is fired, then
  the standard process of calling <a href="../../../../../org/bukkit/command/Command.html#tabComplete(org.bukkit.command.CommandSender,java.lang.String,java.lang.String%5B%5D)"><code>Command.tabComplete(CommandSender, String, String[])</code></a>
  or current player names will not be called.
-
- The passed collection will be cloned to a new List. You must call {<a href="#getCompletions()"><code>getCompletions()</code></a>} to mutate from here</div>
+ <p>
+ The passed collection will be cloned to a new <code>List</code>. You must call {<a href="#getCompletions()"><code>getCompletions()</code></a>} to mutate from here</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>completions</code> - the new completions</dd>
@@ -339,7 +345,7 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
  the standard process of calling <a href="../../../../../org/bukkit/command/Command.html#tabComplete(org.bukkit.command.CommandSender,java.lang.String,java.lang.String%5B%5D)"><code>Command.tabComplete(CommandSender, String, String[])</code></a>
  or current player names will not be called.
  <p>
- The passed collection will be cloned to a new List. You must call {<a href="#completions()"><code>completions()</code></a>} to mutate from here</div>
+ The passed collection will be cloned to a new <code>List</code>. You must call <a href="#completions()"><code>completions()</code></a> to mutate from here</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>newCompletions</code> - the new completions</dd>
@@ -364,7 +370,7 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isCommand</span>()</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>True if it is a command being tab completed, false if it is a chat message.</dd>
+<dd><code>true</code> if it is a command being tab completed, <code>false</code> if it is a chat message.</dd>
 </dl>
 </section>
 </li>
@@ -375,7 +381,7 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 </span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../../../../../org/bukkit/Location.html" title="class in org.bukkit">Location</a></span>&nbsp;<span class="element-name">getLocation</span>()</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>The position looked at by the sender, or null if none</dd>
+<dd>The position looked at by the sender, or <code>null</code> if none</dd>
 </dl>
 </section>
 </li>
@@ -383,11 +389,11 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <section class="detail" id="isHandled()">
 <h3>isHandled</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isHandled</span>()</div>
-<div class="block">If true, the standard process of calling <a href="../../../../../org/bukkit/command/Command.html#tabComplete(org.bukkit.command.CommandSender,java.lang.String,java.lang.String%5B%5D)"><code>Command.tabComplete(CommandSender, String, String[])</code></a>
+<div class="block">If <code>true</code>, the standard process of calling <a href="../../../../../org/bukkit/command/Command.html#tabComplete(org.bukkit.command.CommandSender,java.lang.String,java.lang.String%5B%5D)"><code>Command.tabComplete(CommandSender, String, String[])</code></a>
  or current player names will not be called.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>Is completions considered handled. Always true if completions is not empty.</dd>
+<dd>Is completions considered handled. Always <code>true</code> if completions is not empty.</dd>
 </dl>
 </section>
 </li>
@@ -395,8 +401,8 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <section class="detail" id="setHandled(boolean)">
 <h3>setHandled</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setHandled</span><wbr><span class="parameters">(boolean&nbsp;handled)</span></div>
-<div class="block">Sets whether or not to consider the completion request handled.
- If true, the standard process of calling <a href="../../../../../org/bukkit/command/Command.html#tabComplete(org.bukkit.command.CommandSender,java.lang.String,java.lang.String%5B%5D)"><code>Command.tabComplete(CommandSender, String, String[])</code></a>
+<div class="block">Sets whether to consider the completion request handled.
+ If <code>true</code>, the standard process of calling <a href="../../../../../org/bukkit/command/Command.html#tabComplete(org.bukkit.command.CommandSender,java.lang.String,java.lang.String%5B%5D)"><code>Command.tabComplete(CommandSender, String, String[])</code></a>
  or current player names will not be called.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
@@ -422,13 +428,16 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <li>
 <section class="detail" id="setCancelled(boolean)">
 <h3>setCancelled</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setCancelled</span><wbr><span class="parameters">(boolean&nbsp;cancelled)</span></div>
-<div class="block">Will provide no completions, and will not fire the synchronous process</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setCancelled</span><wbr><span class="parameters">(boolean&nbsp;cancel)</span></div>
+<div class="block">Sets the cancellation state of this event. A cancelled event will not
+ be executed in the server, but will still pass to other plugins.
+ <br>
+ Will provide no completions, and will not fire the synchronous process</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../../../../../org/bukkit/event/Cancellable.html#setCancelled(boolean)">setCancelled</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../org/bukkit/event/Cancellable.html" title="interface in org.bukkit.event">Cancellable</a></code></dd>
 <dt>Parameters:</dt>
-<dd><code>cancelled</code> - true if you wish to cancel this event</dd>
+<dd><code>cancel</code> - true if you wish to cancel this event</dd>
 </dl>
 </section>
 </li>

@@ -91,7 +91,7 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <div class="block">Called when the server detects the player is jumping.
  <p>
  Added to avoid the overhead and special case logic that many plugins use
- when checking for jumps via PlayerMoveEvent, this event is fired whenever
+ when checking for jumps via <a href="../../../../../org/bukkit/event/player/PlayerMoveEvent.html" title="class in org.bukkit.event.player"><code>PlayerMoveEvent</code></a>, this event is fired whenever
  the server detects that the player is jumping.</div>
 </section>
 <section class="summary">
@@ -154,10 +154,7 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/Location.html" title="class in org.bukkit">Location</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getTo()" class="member-name-link">getTo</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Gets the location this player jumped to
-
- This information is based on what the client sends, it typically
- has little relation to the arc of the jump at any given point.</div>
+<div class="block">Gets the location this player jumped to</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isCancelled()" class="member-name-link">isCancelled</a>()</code></div>
@@ -200,7 +197,8 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <li>
 <section class="detail" id="&lt;init&gt;(org.bukkit.entity.Player,org.bukkit.Location,org.bukkit.Location)">
 <h3>PlayerJumpEvent</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">PlayerJumpEvent</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/ApiStatus.Internal.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Internal</a>
+</span><span class="modifiers">public</span>&nbsp;<span class="element-name">PlayerJumpEvent</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/entity/Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;player,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/Location.html" title="class in org.bukkit">Location</a>&nbsp;from,
@@ -224,13 +222,13 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
  be executed in the server, but will still pass to other plugins
  <p>
  If a jump event is cancelled, the player will be moved or
- teleported back to the Location as defined by getFrom(). This will not
+ teleported back to the Location as defined by <a href="#getFrom()"><code>getFrom()</code></a>. This will not
  fire an event</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../../../../../org/bukkit/event/Cancellable.html#isCancelled()">isCancelled</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../org/bukkit/event/Cancellable.html" title="interface in org.bukkit.event">Cancellable</a></code></dd>
 <dt>Returns:</dt>
-<dd>true if this event is cancelled</dd>
+<dd><code>true</code> if this event is cancelled</dd>
 </dl>
 </section>
 </li>
@@ -239,16 +237,16 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <h3>setCancelled</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setCancelled</span><wbr><span class="parameters">(boolean&nbsp;cancel)</span></div>
 <div class="block">Sets the cancellation state of this event. A cancelled event will not
- be executed in the server, but will still pass to other plugins
+ be executed in the server, but will still pass to other plugins.
  <p>
  If a jump event is cancelled, the player will be moved or
- teleported back to the Location as defined by getFrom(). This will not
+ teleported back to the Location as defined by <a href="#getFrom()"><code>getFrom()</code></a>. This will not
  fire an event</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../../../../../org/bukkit/event/Cancellable.html#setCancelled(boolean)">setCancelled</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../org/bukkit/event/Cancellable.html" title="interface in org.bukkit.event">Cancellable</a></code></dd>
 <dt>Parameters:</dt>
-<dd><code>cancel</code> - true if you wish to cancel this event</dd>
+<dd><code>cancel</code> - <code>true</code> if you wish to cancel this event</dd>
 </dl>
 </section>
 </li>
@@ -282,7 +280,7 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
 </span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/Location.html" title="class in org.bukkit">Location</a></span>&nbsp;<span class="element-name">getTo</span>()</div>
 <div class="block">Gets the location this player jumped to
-
+ <p>
  This information is based on what the client sends, it typically
  has little relation to the arc of the jump at any given point.</div>
 <dl class="notes">

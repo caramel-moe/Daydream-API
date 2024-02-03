@@ -90,13 +90,13 @@ loadScripts(document, 'script');</script>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">PreCreatureSpawnEvent</span>
 <span class="extends-implements">extends <a href="../../../../../org/bukkit/event/Event.html" title="class in org.bukkit.event">Event</a>
 implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="interface in org.bukkit.event">Cancellable</a></span></div>
-<div class="block">WARNING: This event only fires for a limited number of cases, and not for every case that CreatureSpawnEvent does.
-
- You should still listen to CreatureSpawnEvent as a backup, and only use this event as an "enhancement".
+<div class="block">WARNING: This event only fires for a limited number of cases, and not for every case that <a href="../../../../../org/bukkit/event/entity/CreatureSpawnEvent.html" title="class in org.bukkit.event.entity"><code>CreatureSpawnEvent</code></a> does.
+ <p>
+ You should still listen to <a href="../../../../../org/bukkit/event/entity/CreatureSpawnEvent.html" title="class in org.bukkit.event.entity"><code>CreatureSpawnEvent</code></a> as a backup, and only use this event as an "enhancement".
  The intent of this event is to improve server performance, so it fires even if the spawning might fail later, for
  example when the entity would be unable to spawn due to limited space or lighting.
- 
- Currently: NATURAL and SPAWNER based reasons. Please submit a Pull Request for future additions.
+ <p>
+ Currently: NATURAL and SPAWNER based reasons. <!-- Please submit a Pull Request for future additions. -->
  Also, Plugins that replace Entity Registrations with their own custom entities might not fire this event.</div>
 </section>
 <section class="summary">
@@ -159,7 +159,7 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setCancelled(boolean)" class="member-name-link">setCancelled</a><wbr>(boolean&nbsp;cancel)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Cancelling this event is more efficient than cancelling CreatureSpawnEvent</div>
+<div class="block">Cancelling this event is more efficient than cancelling <a href="../../../../../org/bukkit/event/entity/CreatureSpawnEvent.html" title="class in org.bukkit.event.entity"><code>CreatureSpawnEvent</code></a></div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setShouldAbortSpawn(boolean)" class="member-name-link">setShouldAbortSpawn</a><wbr>(boolean&nbsp;shouldAbortSpawn)</code></div>
@@ -193,7 +193,8 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <li>
 <section class="detail" id="&lt;init&gt;(org.bukkit.Location,org.bukkit.entity.EntityType,org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason)">
 <h3>PreCreatureSpawnEvent</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">PreCreatureSpawnEvent</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/ApiStatus.Internal.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Internal</a>
+</span><span class="modifiers">public</span>&nbsp;<span class="element-name">PreCreatureSpawnEvent</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/Location.html" title="class in org.bukkit">Location</a>&nbsp;location,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/entity/EntityType.html" title="enum class in org.bukkit.entity">EntityType</a>&nbsp;type,
@@ -265,24 +266,6 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 </section>
 </li>
 <li>
-<section class="detail" id="getHandlers()">
-<h3>getHandlers</h3>
-<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
-</span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/event/HandlerList.html" title="class in org.bukkit.event">HandlerList</a></span>&nbsp;<span class="element-name">getHandlers</span>()</div>
-<dl class="notes">
-<dt>Specified by:</dt>
-<dd><code><a href="../../../../../org/bukkit/event/Event.html#getHandlers()">getHandlers</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../org/bukkit/event/Event.html" title="class in org.bukkit.event">Event</a></code></dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="getHandlerList()">
-<h3>getHandlerList</h3>
-<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
-</span><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/event/HandlerList.html" title="class in org.bukkit.event">HandlerList</a></span>&nbsp;<span class="element-name">getHandlerList</span>()</div>
-</section>
-</li>
-<li>
 <section class="detail" id="isCancelled()">
 <h3>isCancelled</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isCancelled</span>()</div>
@@ -301,13 +284,31 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <section class="detail" id="setCancelled(boolean)">
 <h3>setCancelled</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setCancelled</span><wbr><span class="parameters">(boolean&nbsp;cancel)</span></div>
-<div class="block">Cancelling this event is more efficient than cancelling CreatureSpawnEvent</div>
+<div class="block">Cancelling this event is more efficient than cancelling <a href="../../../../../org/bukkit/event/entity/CreatureSpawnEvent.html" title="class in org.bukkit.event.entity"><code>CreatureSpawnEvent</code></a></div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../../../../../org/bukkit/event/Cancellable.html#setCancelled(boolean)">setCancelled</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../org/bukkit/event/Cancellable.html" title="interface in org.bukkit.event">Cancellable</a></code></dd>
 <dt>Parameters:</dt>
-<dd><code>cancel</code> - true if you wish to cancel this event, and abort the spawn of this creature</dd>
+<dd><code>cancel</code> - <code>true</code> if you wish to cancel this event, and abort the spawn of this creature</dd>
 </dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getHandlers()">
+<h3>getHandlers</h3>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/event/HandlerList.html" title="class in org.bukkit.event">HandlerList</a></span>&nbsp;<span class="element-name">getHandlers</span>()</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="../../../../../org/bukkit/event/Event.html#getHandlers()">getHandlers</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../org/bukkit/event/Event.html" title="class in org.bukkit.event">Event</a></code></dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getHandlerList()">
+<h3>getHandlerList</h3>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+</span><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/event/HandlerList.html" title="class in org.bukkit.event">HandlerList</a></span>&nbsp;<span class="element-name">getHandlerList</span>()</div>
 </section>
 </li>
 </ul>

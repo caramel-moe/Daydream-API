@@ -83,15 +83,9 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">BlockLockCheckEvent</span>
 <span class="extends-implements">extends <a href="../../../../../org/bukkit/event/block/BlockEvent.html" title="class in org.bukkit.event.block">BlockEvent</a></span></div>
-<div class="block">Called when the server tries to check the lock on a lockable tile entity.</div>
-<dl class="notes">
-<dt>See Also:</dt>
-<dd>
-<ul class="see-list">
-<li><a href="#setResult(org.bukkit.event.Event.Result)"><code>to change behavior</code></a></li>
-</ul>
-</dd>
-</dl>
+<div class="block">Called when the server tries to check the lock on a lockable block entity.
+ <br>
+ See <a href="#setResult(org.bukkit.event.Event.Result)"><code>setResult(Result)</code></a> to change behavior</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -151,7 +145,7 @@ loadScripts(document, 'script');</script>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../block/LockableTileState.html" title="interface in io.papermc.paper.block">LockableTileState</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getBlockState()" class="member-name-link">getBlockState</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Gets the snapshot <a href="../../block/LockableTileState.html" title="interface in io.papermc.paper.block"><code>LockableTileState</code></a> of the tile entity
+<div class="block">Gets the snapshot <a href="../../block/LockableTileState.html" title="interface in io.papermc.paper.block"><code>LockableTileState</code></a> of the block entity
  whose lock is being checked.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/event/HandlerList.html" title="class in org.bukkit.event">HandlerList</a></code></div>
@@ -245,7 +239,8 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="&lt;init&gt;(org.bukkit.block.Block,io.papermc.paper.block.LockableTileState,org.bukkit.entity.Player,net.kyori.adventure.text.Component,net.kyori.adventure.sound.Sound)">
 <h3>BlockLockCheckEvent</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">BlockLockCheckEvent</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/ApiStatus.Internal.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Internal</a>
+</span><span class="modifiers">public</span>&nbsp;<span class="element-name">BlockLockCheckEvent</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/block/Block.html" title="interface in org.bukkit.block">Block</a>&nbsp;block,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../block/LockableTileState.html" title="interface in io.papermc.paper.block">LockableTileState</a>&nbsp;state,
@@ -270,7 +265,7 @@ loadScripts(document, 'script');</script>
 <h3>getBlockState</h3>
 <div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
 </span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../block/LockableTileState.html" title="interface in io.papermc.paper.block">LockableTileState</a></span>&nbsp;<span class="element-name">getBlockState</span>()</div>
-<div class="block">Gets the snapshot <a href="../../block/LockableTileState.html" title="interface in io.papermc.paper.block"><code>LockableTileState</code></a> of the tile entity
+<div class="block">Gets the snapshot <a href="../../block/LockableTileState.html" title="interface in io.papermc.paper.block"><code>LockableTileState</code></a> of the block entity
  whose lock is being checked.</div>
 <dl class="notes">
 <dt>Returns:</dt>
@@ -319,7 +314,7 @@ loadScripts(document, 'script');</script>
 <div class="block">Sets the itemstack that will be used as the key item.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>stack</code> - the stack to use as a key (or null to fall back to the player's main hand item)</dd>
+<dd><code>stack</code> - the stack to use as a key</dd>
 <dt>See Also:</dt>
 <dd>
 <ul class="see-list">
@@ -343,7 +338,7 @@ loadScripts(document, 'script');</script>
 <div class="block">Checks if a custom key stack has been set.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>true if a custom key itemstack has been set</dd>
+<dd><code>true</code> if a custom key itemstack has been set</dd>
 </dl>
 </section>
 </li>
@@ -392,8 +387,8 @@ loadScripts(document, 'script');</script>
  the locked message and locked sound.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>lockedMessage</code> - the message to show if locked (or null for none)</dd>
-<dd><code>lockedSound</code> - the sound to play if locked (or null for none)</dd>
+<dd><code>lockedMessage</code> - the message to show if locked (or <code>null</code> for none)</dd>
+<dd><code>lockedSound</code> - the sound to play if locked (or <code>null</code> for none)</dd>
 </dl>
 </section>
 </li>
@@ -406,7 +401,7 @@ loadScripts(document, 'script');</script>
  player cannot open the block.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>the locked message (or null if none)</dd>
+<dd>the locked message (or <code>null</code> if none)</dd>
 </dl>
 </section>
 </li>
@@ -419,7 +414,7 @@ loadScripts(document, 'script');</script>
  player cannot open the block.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>lockedMessage</code> - the locked message (or null for none)</dd>
+<dd><code>lockedMessage</code> - the locked message (or <code>null</code> for none)</dd>
 </dl>
 </section>
 </li>
@@ -432,7 +427,7 @@ loadScripts(document, 'script');</script>
  player cannot open the block.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>the locked sound (or null if none)</dd>
+<dd>the locked sound (or <code>null</code> if none)</dd>
 </dl>
 </section>
 </li>
@@ -445,7 +440,7 @@ loadScripts(document, 'script');</script>
  player cannot open the block.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>lockedSound</code> - the locked sound (or null for none)</dd>
+<dd><code>lockedSound</code> - the locked sound (or <code>null</code> for none)</dd>
 </dl>
 </section>
 </li>

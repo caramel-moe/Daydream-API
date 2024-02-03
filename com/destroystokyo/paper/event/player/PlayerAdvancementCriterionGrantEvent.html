@@ -119,7 +119,7 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <div class="summary-table two-column-summary">
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
-<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(org.bukkit.entity.Player,org.bukkit.advancement.Advancement,java.lang.String)" class="member-name-link">PlayerAdvancementCriterionGrantEvent</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/entity/Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;who,
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(org.bukkit.entity.Player,org.bukkit.advancement.Advancement,java.lang.String)" class="member-name-link">PlayerAdvancementCriterionGrantEvent</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/entity/Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;player,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/advancement/Advancement.html" title="interface in org.bukkit.advancement">Advancement</a>&nbsp;advancement,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;criterion)</code></div>
 <div class="col-last even-row-color">&nbsp;</div>
@@ -194,8 +194,9 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <li>
 <section class="detail" id="&lt;init&gt;(org.bukkit.entity.Player,org.bukkit.advancement.Advancement,java.lang.String)">
 <h3>PlayerAdvancementCriterionGrantEvent</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">PlayerAdvancementCriterionGrantEvent</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/entity/Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;who,
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/ApiStatus.Internal.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Internal</a>
+</span><span class="modifiers">public</span>&nbsp;<span class="element-name">PlayerAdvancementCriterionGrantEvent</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/entity/Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;player,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/advancement/Advancement.html" title="interface in org.bukkit.advancement">Advancement</a>&nbsp;advancement,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
@@ -235,6 +236,18 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 </section>
 </li>
 <li>
+<section class="detail" id="getAdvancementProgress()">
+<h3>getAdvancementProgress</h3>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/advancement/AdvancementProgress.html" title="interface in org.bukkit.advancement">AdvancementProgress</a></span>&nbsp;<span class="element-name">getAdvancementProgress</span>()</div>
+<div class="block">Gets the current AdvancementProgress.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>advancement progress</dd>
+</dl>
+</section>
+</li>
+<li>
 <section class="detail" id="isCancelled()">
 <h3>isCancelled</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isCancelled</span>()</div>
@@ -246,19 +259,6 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <dd><code><a href="../../../../../org/bukkit/event/Cancellable.html#isCancelled()">isCancelled</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../org/bukkit/event/Cancellable.html" title="interface in org.bukkit.event">Cancellable</a></code></dd>
 <dt>Returns:</dt>
 <dd>true if this event is cancelled</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="getAdvancementProgress()">
-<h3>getAdvancementProgress</h3>
-<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
-</span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/advancement/AdvancementProgress.html" title="interface in org.bukkit.advancement">AdvancementProgress</a></span>&nbsp;<span class="element-name">getAdvancementProgress</span>()</div>
-<div class="block">Gets the current AdvancementProgress.
- See <a href="PlayerAdvancementCriterionGrantEvent.html" title="class in com.destroystokyo.paper.event.player"><code>PlayerAdvancementCriterionGrantEvent</code></a></div>
-<dl class="notes">
-<dt>Returns:</dt>
-<dd>advancement progress</dd>
 </dl>
 </section>
 </li>

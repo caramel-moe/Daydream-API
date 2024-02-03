@@ -168,7 +168,7 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setIncreaseTradeUses(boolean)" class="member-name-link">setIncreaseTradeUses</a><wbr>(boolean&nbsp;increaseTradeUses)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Sets whether or not the trade will count as a use</div>
+<div class="block">Sets whether the trade will count as a use</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setRewardExp(boolean)" class="member-name-link">setRewardExp</a><wbr>(boolean&nbsp;rewardExp)</code></div>
@@ -209,7 +209,8 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <li>
 <section class="detail" id="&lt;init&gt;(org.bukkit.entity.Player,org.bukkit.inventory.MerchantRecipe,boolean,boolean)">
 <h3>PlayerPurchaseEvent</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">PlayerPurchaseEvent</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/ApiStatus.Internal.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Internal</a>
+</span><span class="modifiers">public</span>&nbsp;<span class="element-name">PlayerPurchaseEvent</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/entity/Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;player,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/inventory/MerchantRecipe.html" title="class in org.bukkit.inventory">MerchantRecipe</a>&nbsp;trade,
@@ -276,7 +277,7 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">willIncreaseTradeUses</span>()</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>whether or not the trade will count as a use of the trade</dd>
+<dd>whether the trade will count as a use of the trade</dd>
 </dl>
 </section>
 </li>
@@ -284,10 +285,10 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <section class="detail" id="setIncreaseTradeUses(boolean)">
 <h3>setIncreaseTradeUses</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setIncreaseTradeUses</span><wbr><span class="parameters">(boolean&nbsp;increaseTradeUses)</span></div>
-<div class="block">Sets whether or not the trade will count as a use</div>
+<div class="block">Sets whether the trade will count as a use</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>increaseTradeUses</code> - true to count/false to not count</dd>
+<dd><code>increaseTradeUses</code> - <code>true</code> to count, <code>false</code> otherwise</dd>
 </dl>
 </section>
 </li>
@@ -295,6 +296,7 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <section class="detail" id="isCancelled()">
 <h3>isCancelled</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isCancelled</span>()</div>
+<div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="../../../../../org/bukkit/event/Cancellable.html#isCancelled()">Cancellable</a></code></span></div>
 <div class="block">Gets the cancellation state of this event. A cancelled event will not
  be executed in the server, but will still pass to other plugins</div>
 <dl class="notes">
@@ -309,6 +311,7 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <section class="detail" id="setCancelled(boolean)">
 <h3>setCancelled</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setCancelled</span><wbr><span class="parameters">(boolean&nbsp;cancel)</span></div>
+<div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="../../../../../org/bukkit/event/Cancellable.html#setCancelled(boolean)">Cancellable</a></code></span></div>
 <div class="block">Sets the cancellation state of this event. A cancelled event will not
  be executed in the server, but will still pass to other plugins.</div>
 <dl class="notes">

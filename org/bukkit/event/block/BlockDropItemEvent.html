@@ -88,15 +88,19 @@ loadScripts(document, 'script');</script>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">BlockDropItemEvent</span>
 <span class="extends-implements">extends <a href="BlockEvent.html" title="class in org.bukkit.event.block">BlockEvent</a>
 implements <a href="../Cancellable.html" title="interface in org.bukkit.event">Cancellable</a></span></div>
-<div class="block">Called if a block broken by a player drops an item.
+<div class="block">Called after a block is broken by a player and potential drops are computed, even if said blocks loot table
+ does not define any drops at the point the event is constructed.
 
  If the block break is cancelled, this event won't be called.
 
- If isDropItems in BlockBreakEvent is set to false, this event won't be
+ If isDropItems in <a href="BlockBreakEvent.html" title="class in org.bukkit.event.block"><code>BlockBreakEvent</code></a> is set to false, this event won't be
  called.
 
+ If a block is broken and isDropItems is set to true, this event will be called even if the block does
+ not drop any items, for example glass broken by hand. In this case, #getItems() will be empty.
+
  This event will also be called if the player breaks a multi block structure,
- for example a torch on top of a stone. Both items will have an event call.
+ for example a torch on top of a stone. Both items will be included in the #getItems() list.
 
  The Block is already broken as this event is called, so #getBlock() will be
  AIR in most cases. Use #getBlockState() for more Information about the broken

@@ -263,6 +263,7 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <section class="detail" id="&lt;init&gt;(com.destroystokyo.paper.network.StatusClient,java.lang.String,int,int,java.lang.String,int,org.bukkit.util.CachedServerIcon)">
 <h3>PaperServerListPingEvent</h3>
 <div class="member-signature"><span class="annotations"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Deprecated.html" title="class or interface in java.lang" class="external-link">@Deprecated</a>
+<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/ApiStatus.Internal.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Internal</a>
 </span><span class="modifiers">public</span>&nbsp;<span class="element-name">PaperServerListPingEvent</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../network/StatusClient.html" title="interface in com.destroystokyo.paper.network">StatusClient</a>&nbsp;client,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
@@ -280,7 +281,8 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <li>
 <section class="detail" id="&lt;init&gt;(com.destroystokyo.paper.network.StatusClient,net.kyori.adventure.text.Component,int,int,java.lang.String,int,org.bukkit.util.CachedServerIcon)">
 <h3>PaperServerListPingEvent</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">PaperServerListPingEvent</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/ApiStatus.Internal.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Internal</a>
+</span><span class="modifiers">public</span>&nbsp;<span class="element-name">PaperServerListPingEvent</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../network/StatusClient.html" title="interface in com.destroystokyo.paper.network">StatusClient</a>&nbsp;client,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
  <a href="https://jd.advntr.dev/api/4.15.0/net/kyori/adventure/text/Component.html" title="class or interface in net.kyori.adventure.text" class="external-link">Component</a>&nbsp;motd,
@@ -334,9 +336,9 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <h3>setNumPlayers</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setNumPlayers</span><wbr><span class="parameters">(int&nbsp;numPlayers)</span></div>
 <div class="block">Sets the number of players displayed in the server list.
-
- <p>Note that this won't have any effect if <a href="#shouldHidePlayers()"><code>shouldHidePlayers()</code></a>
- is enabled.</p></div>
+ <p>
+ Note that this won't have any effect if <a href="#shouldHidePlayers()"><code>shouldHidePlayers()</code></a>
+ is enabled.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>numPlayers</code> - The number of online players</dd>
@@ -348,9 +350,9 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <h3>getMaxPlayers</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getMaxPlayers</span>()</div>
 <div class="block">Get the maximum number of players sent.
-
- <p>Returns <code>-1</code> if players are hidden using
- <a href="#shouldHidePlayers()"><code>shouldHidePlayers()</code></a>.</p></div>
+ <p>
+ Returns <code>-1</code> if players are hidden using
+ <a href="#shouldHidePlayers()"><code>shouldHidePlayers()</code></a>.</div>
 <dl class="notes">
 <dt>Overrides:</dt>
 <dd><code><a href="../../../../../org/bukkit/event/server/ServerListPingEvent.html#getMaxPlayers()">getMaxPlayers</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../org/bukkit/event/server/ServerListPingEvent.html" title="class in org.bukkit.event.server">ServerListPingEvent</a></code></dd>
@@ -366,9 +368,9 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <div class="block">Returns whether all player related information is hidden in the server
  list. This will cause <a href="#getNumPlayers()"><code>getNumPlayers()</code></a>, <a href="#getMaxPlayers()"><code>getMaxPlayers()</code></a>
  and <a href="#getPlayerSample()"><code>getPlayerSample()</code></a> to be skipped in the response.
-
- <p>The Vanilla Minecraft client will display the player count as <code>???</code>
- when this option is enabled.</p></div>
+ <p>
+ The Vanilla Minecraft client will display the player count as <code>???</code>
+ when this option is enabled.</div>
 <dl class="notes">
 <dt>Returns:</dt>
 <dd><code>true</code> if the player count is hidden</dd>
@@ -382,9 +384,9 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <div class="block">Sets whether all player related information is hidden in the server
  list. This will cause <a href="#getNumPlayers()"><code>getNumPlayers()</code></a>, <a href="#getMaxPlayers()"><code>getMaxPlayers()</code></a>
  and <a href="#getPlayerSample()"><code>getPlayerSample()</code></a> to be skipped in the response.
-
- <p>The Vanilla Minecraft client will display the player count as <code>???</code>
- when this option is enabled.</p></div>
+ <p>
+ The Vanilla Minecraft client will display the player count as <code>???</code>
+ when this option is enabled.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>hidePlayers</code> - <code>true</code> if the player count should be hidden</dd>
@@ -398,9 +400,9 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 </span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../../profile/PlayerProfile.html" title="interface in com.destroystokyo.paper.profile">PlayerProfile</a>&gt;</span>&nbsp;<span class="element-name">getPlayerSample</span>()</div>
 <div class="block">Returns a mutable list of <a href="../../profile/PlayerProfile.html" title="interface in com.destroystokyo.paper.profile"><code>PlayerProfile</code></a> that will be displayed
  as online players on the client.
-
- <p>The Vanilla Minecraft client will display them when hovering the
- player count with the mouse.</p></div>
+ <p>
+ The Vanilla Minecraft client will display them when hovering the
+ player count with the mouse.</div>
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>The mutable player sample list</dd>
@@ -488,9 +490,9 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isCancelled</span>()</div>
 <div class="block">Gets the cancellation state of this event. A cancelled event will not
  be executed in the server, but will still pass to other plugins
-
- <p>Cancelling this event will cause the connection to be closed immediately,
- without sending a response to the client.</p></div>
+ <p>
+ Cancelling this event will cause the connection to be closed immediately,
+ without sending a response to the client.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../../../../../org/bukkit/event/Cancellable.html#isCancelled()">isCancelled</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../org/bukkit/event/Cancellable.html" title="interface in org.bukkit.event">Cancellable</a></code></dd>
@@ -505,9 +507,9 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setCancelled</span><wbr><span class="parameters">(boolean&nbsp;cancel)</span></div>
 <div class="block">Sets the cancellation state of this event. A cancelled event will not
  be executed in the server, but will still pass to other plugins.
-
- <p>Cancelling this event will cause the connection to be closed immediately,
- without sending a response to the client.</p></div>
+ <p>
+ Cancelling this event will cause the connection to be closed immediately,
+ without sending a response to the client.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../../../../../org/bukkit/event/Cancellable.html#setCancelled(boolean)">setCancelled</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../org/bukkit/event/Cancellable.html" title="interface in org.bukkit.event">Cancellable</a></code></dd>
@@ -530,10 +532,10 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
  <br>
  <b>Note:</b> The players here will not be shown in the server info if
  <a href="../../../../../org/bukkit/Bukkit.html#getHideOnlinePlayers()"><code>Bukkit.getHideOnlinePlayers()</code></a> is true.
-
- <p><b>Note:</b> For compatibility reasons, this method will return all
+ <p>
+ <b>Note:</b> For compatibility reasons, this method will return all
  online players, not just the ones referenced in <a href="#getPlayerSample()"><code>getPlayerSample()</code></a>.
- Removing a player will:</p>
+ Removing a player will:
 
  <ul>
      <li>Decrement the online player count (if and only if) the player

@@ -81,17 +81,12 @@ loadScripts(document, 'script');</script>
 </div>
 <section class="class-description" id="class-description">
 <dl class="notes">
-<dt>All Implemented Interfaces:</dt>
-<dd><code><a href="../../../../../org/bukkit/event/Cancellable.html" title="interface in org.bukkit.event">Cancellable</a></code></dd>
-</dl>
-<dl class="notes">
 <dt>Direct Known Subclasses:</dt>
 <dd><code><a href="ReceivePlayerInputPacketEvent.html" title="class in moe.caramel.daydream.event.network">ReceivePlayerInputPacketEvent</a></code>, <code><a href="ReceivePlayerPongPacketEvent.html" title="class in moe.caramel.daydream.event.network">ReceivePlayerPongPacketEvent</a></code></dd>
 </dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">ReceivePacketEvent</span>
-<span class="extends-implements">extends <a href="../../../../../org/bukkit/event/player/PlayerEvent.html" title="class in org.bukkit.event.player">PlayerEvent</a>
-implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="interface in org.bukkit.event">Cancellable</a></span></div>
+<span class="extends-implements">extends <a href="../../../../../org/bukkit/event/player/PlayerEvent.html" title="class in org.bukkit.event.player">PlayerEvent</a></span></div>
 <div class="block">서버가 클라이언트로부터 패킷을 전달받았을 때 호출됩니다.</div>
 </section>
 <section class="summary">
@@ -151,16 +146,6 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">클라이언트가 보낸 패킷의 종류를 가져옵니다.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isCancelled()" class="member-name-link">isCancelled</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Gets the cancellation state of this event.</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setCancelled(boolean)" class="member-name-link">setCancelled</a><wbr>(boolean&nbsp;cancel)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Sets the cancellation state of this event.</div>
-</div>
 </div>
 </div>
 </div>
@@ -187,7 +172,8 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <li>
 <section class="detail" id="&lt;init&gt;(org.bukkit.entity.Player,moe.caramel.daydream.event.network.PacketType.Client,boolean)">
 <h3>ReceivePacketEvent</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">ReceivePacketEvent</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/ApiStatus.Internal.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Internal</a>
+</span><span class="modifiers">public</span>&nbsp;<span class="element-name">ReceivePacketEvent</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/entity/Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;who,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
  <a href="PacketType.Client.html" title="enum class in moe.caramel.daydream.event.network">PacketType.Client</a>&nbsp;packetType,
@@ -229,36 +215,6 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>클라이언트가 보낸 패킷의 종류</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="isCancelled()">
-<h3>isCancelled</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isCancelled</span>()</div>
-<div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="../../../../../org/bukkit/event/Cancellable.html#isCancelled()">Cancellable</a></code></span></div>
-<div class="block">Gets the cancellation state of this event. A cancelled event will not
- be executed in the server, but will still pass to other plugins</div>
-<dl class="notes">
-<dt>Specified by:</dt>
-<dd><code><a href="../../../../../org/bukkit/event/Cancellable.html#isCancelled()">isCancelled</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../org/bukkit/event/Cancellable.html" title="interface in org.bukkit.event">Cancellable</a></code></dd>
-<dt>Returns:</dt>
-<dd>true if this event is cancelled</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="setCancelled(boolean)">
-<h3>setCancelled</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setCancelled</span><wbr><span class="parameters">(boolean&nbsp;cancel)</span></div>
-<div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="../../../../../org/bukkit/event/Cancellable.html#setCancelled(boolean)">Cancellable</a></code></span></div>
-<div class="block">Sets the cancellation state of this event. A cancelled event will not
- be executed in the server, but will still pass to other plugins.</div>
-<dl class="notes">
-<dt>Specified by:</dt>
-<dd><code><a href="../../../../../org/bukkit/event/Cancellable.html#setCancelled(boolean)">setCancelled</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../org/bukkit/event/Cancellable.html" title="interface in org.bukkit.event">Cancellable</a></code></dd>
-<dt>Parameters:</dt>
-<dd><code>cancel</code> - true if you wish to cancel this event</dd>
 </dl>
 </section>
 </li>
