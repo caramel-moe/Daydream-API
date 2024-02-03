@@ -6,10 +6,10 @@ Subject: [PATCH] Add PlayerBottleIntoItemEvent
 
 diff --git a/src/main/java/moe/caramel/daydream/event/player/PlayerBottleIntoItemEvent.java b/src/main/java/moe/caramel/daydream/event/player/PlayerBottleIntoItemEvent.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..1f0971e0d9be109fdef7e1683ccb40e84016993b
+index 0000000000000000000000000000000000000000..250f5f943131d02800af05cadcde1892e5f156ea
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/event/player/PlayerBottleIntoItemEvent.java
-@@ -0,0 +1,93 @@
+@@ -0,0 +1,95 @@
 +package moe.caramel.daydream.event.player;
 +
 +import org.bukkit.block.Block;
@@ -18,6 +18,7 @@ index 0000000000000000000000000000000000000000..1f0971e0d9be109fdef7e1683ccb40e8
 +import org.bukkit.event.Cancellable;
 +import org.bukkit.event.HandlerList;
 +import org.bukkit.event.player.PlayerEvent;
++import org.jetbrains.annotations.ApiStatus;
 +import org.jetbrains.annotations.NotNull;
 +import org.jetbrains.annotations.Nullable;
 +
@@ -33,11 +34,12 @@ index 0000000000000000000000000000000000000000..1f0971e0d9be109fdef7e1683ccb40e8
 +    private final ItemType type;
 +    private final Block clickedBlock;
 +    private final Entity clickedEntity;
-+    private boolean cancel;
++    private boolean cancelled;
 +
++    @ApiStatus.Internal
 +    public PlayerBottleIntoItemEvent(
-+        @NotNull Player player, @NotNull ItemType type,
-+        @Nullable Block clickedBlock, @Nullable Entity clickedEntity
++        final @NotNull Player player, final @NotNull ItemType type,
++        final @Nullable Block clickedBlock, final @Nullable Entity clickedEntity
 +    ) {
 +        super(player);
 +        this.type = type;
@@ -47,12 +49,12 @@ index 0000000000000000000000000000000000000000..1f0971e0d9be109fdef7e1683ccb40e8
 +
 +    @Override
 +    public boolean isCancelled() {
-+        return cancel;
++        return cancelled;
 +    }
 +
 +    @Override
-+    public void setCancelled(boolean cancel) {
-+        this.cancel = cancel;
++    public void setCancelled(final boolean cancel) {
++        this.cancelled = cancel;
 +    }
 +
 +    /**

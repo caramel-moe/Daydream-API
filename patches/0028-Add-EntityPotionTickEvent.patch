@@ -6,10 +6,10 @@ Subject: [PATCH] Add EntityPotionTickEvent
 
 diff --git a/src/main/java/moe/caramel/daydream/event/entity/EntityPotionTickEvent.java b/src/main/java/moe/caramel/daydream/event/entity/EntityPotionTickEvent.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..b4fd75ca48c95956687c94be36ee0f63be82b644
+index 0000000000000000000000000000000000000000..a1e91e0a852c9768dfaedfa9fc944ca8a74ca9c6
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/event/entity/EntityPotionTickEvent.java
-@@ -0,0 +1,62 @@
+@@ -0,0 +1,64 @@
 +package moe.caramel.daydream.event.entity;
 +
 +import org.bukkit.entity.LivingEntity;
@@ -17,6 +17,7 @@ index 0000000000000000000000000000000000000000..b4fd75ca48c95956687c94be36ee0f63
 +import org.bukkit.event.HandlerList;
 +import org.bukkit.event.entity.EntityEvent;
 +import org.bukkit.potion.PotionEffectType;
++import org.jetbrains.annotations.ApiStatus;
 +import org.jetbrains.annotations.NotNull;
 +
 +/**
@@ -32,7 +33,8 @@ index 0000000000000000000000000000000000000000..b4fd75ca48c95956687c94be36ee0f63
 +    private final int amplifier;
 +    private boolean cancelled;
 +
-+    public EntityPotionTickEvent(@NotNull LivingEntity what, @NotNull PotionEffectType type, final int amplifier) {
++    @ApiStatus.Internal
++    public EntityPotionTickEvent(final @NotNull LivingEntity what, final @NotNull PotionEffectType type, final int amplifier) {
 +        super(what);
 +        this.type = type;
 +        this.amplifier = amplifier;
@@ -68,7 +70,7 @@ index 0000000000000000000000000000000000000000..b4fd75ca48c95956687c94be36ee0f63
 +    }
 +
 +    @Override
-+    public void setCancelled(boolean cancel) {
++    public void setCancelled(final boolean cancel) {
 +        this.cancelled = cancel;
 +    }
 +}

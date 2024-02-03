@@ -6,15 +6,16 @@ Subject: [PATCH] Add ServerShutdownEvent
 
 diff --git a/src/main/java/moe/caramel/daydream/event/server/ServerShutdownEvent.java b/src/main/java/moe/caramel/daydream/event/server/ServerShutdownEvent.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..6ded10bcec11fb4f446b1c7ffc6cc3de7117a3fb
+index 0000000000000000000000000000000000000000..87c9cf6d420114821539f782075ce6763ac1b824
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/event/server/ServerShutdownEvent.java
-@@ -0,0 +1,52 @@
+@@ -0,0 +1,54 @@
 +package moe.caramel.daydream.event.server;
 +
 +import net.kyori.adventure.text.Component;
 +import org.bukkit.event.HandlerList;
 +import org.bukkit.event.server.ServerEvent;
++import org.jetbrains.annotations.ApiStatus;
 +import org.jetbrains.annotations.NotNull;
 +import org.jetbrains.annotations.Nullable;
 +
@@ -30,6 +31,7 @@ index 0000000000000000000000000000000000000000..6ded10bcec11fb4f446b1c7ffc6cc3de
 +    private final boolean restarting;
 +    private Component overrideReason;
 +
++    @ApiStatus.Internal
 +    public ServerShutdownEvent(final boolean restarting) {
 +        this.restarting = restarting;
 +    }

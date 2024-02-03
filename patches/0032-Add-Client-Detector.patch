@@ -6,16 +6,17 @@ Subject: [PATCH] Add Client Detector
 
 diff --git a/src/main/java/moe/caramel/daydream/event/configure/PlayerClientDetectedEvent.java b/src/main/java/moe/caramel/daydream/event/configure/PlayerClientDetectedEvent.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..807f72743db0952c8dcce778a96e94f7a694a0b0
+index 0000000000000000000000000000000000000000..03491a210acccc8a794ac9137096fb293d1b875a
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/event/configure/PlayerClientDetectedEvent.java
-@@ -0,0 +1,63 @@
+@@ -0,0 +1,65 @@
 +package moe.caramel.daydream.event.configure;
 +
 +import moe.caramel.daydream.player.ClientType;
 +import net.kyori.adventure.text.Component;
 +import org.bukkit.entity.Player;
 +import org.bukkit.event.HandlerList;
++import org.jetbrains.annotations.ApiStatus;
 +import org.jetbrains.annotations.NotNull;
 +import org.jetbrains.annotations.Nullable;
 +
@@ -30,6 +31,7 @@ index 0000000000000000000000000000000000000000..807f72743db0952c8dcce778a96e94f7
 +
 +    private Component disconnectReason;
 +
++    @ApiStatus.Internal
 +    public PlayerClientDetectedEvent(final @NotNull Player who) {
 +        super(who, true);
 +    }

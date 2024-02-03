@@ -6,10 +6,10 @@ Subject: [PATCH] Add InventoryQuickMoveEvent
 
 diff --git a/src/main/java/moe/caramel/daydream/event/inventory/InventoryQuickMoveEvent.java b/src/main/java/moe/caramel/daydream/event/inventory/InventoryQuickMoveEvent.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..e3b9a83ab50ff0b07b11a183367ce82afbb84a19
+index 0000000000000000000000000000000000000000..188f6ffba4c7ac4fb9c82ced1c4c0cec6eb2c8bb
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/event/inventory/InventoryQuickMoveEvent.java
-@@ -0,0 +1,85 @@
+@@ -0,0 +1,86 @@
 +package moe.caramel.daydream.event.inventory;
 +
 +import org.bukkit.event.HandlerList;
@@ -37,6 +37,7 @@ index 0000000000000000000000000000000000000000..e3b9a83ab50ff0b07b11a183367ce82a
 +    private final boolean checkEmpty;
 +    private int slot;
 +
++    @ApiStatus.Internal
 +    public InventoryQuickMoveEvent(final @NotNull InventoryView view, final @NotNull ItemStack from, final @NotNull ItemStack to, final int slot, final boolean checkEmpty) {
 +        super(view);
 +        this.setResult(Result.ALLOW);

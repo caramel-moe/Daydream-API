@@ -6,15 +6,16 @@ Subject: [PATCH] Add PlayerSendIllegalPacketEvent
 
 diff --git a/src/main/java/moe/caramel/daydream/event/packet/PlayerSendIllegalPacketEvent.java b/src/main/java/moe/caramel/daydream/event/packet/PlayerSendIllegalPacketEvent.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..7e7b21ee49f15fa0ed4748cc9f4342b50dd86a86
+index 0000000000000000000000000000000000000000..099c162dcd3335df5f5bd77400ae46027baf8ec6
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/event/packet/PlayerSendIllegalPacketEvent.java
-@@ -0,0 +1,74 @@
+@@ -0,0 +1,76 @@
 +package moe.caramel.daydream.event.packet;
 +
 +import org.bukkit.entity.Player;
 +import org.bukkit.event.HandlerList;
 +import org.bukkit.event.player.PlayerEvent;
++import org.jetbrains.annotations.ApiStatus;
 +import org.jetbrains.annotations.NotNull;
 +import org.jetbrains.annotations.Nullable;
 +
@@ -30,7 +31,8 @@ index 0000000000000000000000000000000000000000..7e7b21ee49f15fa0ed4748cc9f4342b5
 +    private final Action action;
 +    private final String value;
 +
-+    public PlayerSendIllegalPacketEvent(@NotNull Player player, @NotNull Action action, @Nullable String value) {
++    @ApiStatus.Internal
++    public PlayerSendIllegalPacketEvent(final @NotNull Player player, final @NotNull Action action, final @Nullable String value) {
 +        super(player);
 +        this.action = action;
 +        this.value = value;

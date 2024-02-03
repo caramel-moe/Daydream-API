@@ -5,12 +5,12 @@ Subject: [PATCH] Add Configuration Phase API
 
 
 diff --git a/src/main/java/com/destroystokyo/paper/event/player/PlayerConnectionCloseEvent.java b/src/main/java/com/destroystokyo/paper/event/player/PlayerConnectionCloseEvent.java
-index 12c1c6fe9dc8dc5f5faf6dcf99f6857219ef22b8..127439aef37ca442a86518fe2ea5123cbaec9f9b 100644
+index d0fb13adc140f1ca74d0c3448f92baa60684f3e2..9929b31fd0514198c26fafe6598663cf0d170c02 100644
 --- a/src/main/java/com/destroystokyo/paper/event/player/PlayerConnectionCloseEvent.java
 +++ b/src/main/java/com/destroystokyo/paper/event/player/PlayerConnectionCloseEvent.java
-@@ -52,10 +52,29 @@ public class PlayerConnectionCloseEvent extends Event {
-     @NotNull private final InetAddress ipAddress;
+@@ -45,10 +45,30 @@ public class PlayerConnectionCloseEvent extends Event {
  
+     @ApiStatus.Internal
      public PlayerConnectionCloseEvent(@NotNull final UUID playerUniqueId, @NotNull final String playerName, @NotNull final InetAddress ipAddress, final boolean async) {
 +        // Daydream start - Add Connection Phase API
 +        this(playerUniqueId, playerName, ipAddress, async, false);
@@ -28,6 +28,7 @@ index 12c1c6fe9dc8dc5f5faf6dcf99f6857219ef22b8..127439aef37ca442a86518fe2ea5123c
 +        return loginPhase;
 +    }
 +
++    @ApiStatus.Internal
 +    public PlayerConnectionCloseEvent(@NotNull final UUID playerUniqueId, @NotNull final String playerName, @NotNull final InetAddress ipAddress, final boolean async, final boolean loginPhase) {
 +        // Daydream end - Add Connection Phase API
          super(async);
@@ -40,14 +41,15 @@ index 12c1c6fe9dc8dc5f5faf6dcf99f6857219ef22b8..127439aef37ca442a86518fe2ea5123c
      /**
 diff --git a/src/main/java/moe/caramel/daydream/event/configure/ConfigurationPhaseEvent.java b/src/main/java/moe/caramel/daydream/event/configure/ConfigurationPhaseEvent.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..4c380e4ddbc9cd2d42a1e3d23cb3493dbe5df752
+index 0000000000000000000000000000000000000000..8bf5087ef97b22a3d981adb2312e7296ab85d094
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/event/configure/ConfigurationPhaseEvent.java
-@@ -0,0 +1,15 @@
+@@ -0,0 +1,17 @@
 +package moe.caramel.daydream.event.configure;
 +
 +import org.bukkit.entity.Player;
 +import org.bukkit.event.player.PlayerEvent;
++import org.jetbrains.annotations.ApiStatus;
 +import org.jetbrains.annotations.NotNull;
 +
 +/**
@@ -55,16 +57,17 @@ index 0000000000000000000000000000000000000000..4c380e4ddbc9cd2d42a1e3d23cb3493d
 + */
 +public abstract class ConfigurationPhaseEvent extends PlayerEvent {
 +
++    @ApiStatus.Internal
 +    public ConfigurationPhaseEvent(final @NotNull Player who, final boolean async) {
 +        super(who, async);
 +    }
 +}
 diff --git a/src/main/java/moe/caramel/daydream/event/configure/ConfigurationResourcePackRequestEvent.java b/src/main/java/moe/caramel/daydream/event/configure/ConfigurationResourcePackRequestEvent.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..b0dcc22b7fe1f6163e09924241023961fb64a014
+index 0000000000000000000000000000000000000000..894016d21418cdf0044fef7def099260adade292
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/event/configure/ConfigurationResourcePackRequestEvent.java
-@@ -0,0 +1,175 @@
+@@ -0,0 +1,177 @@
 +package moe.caramel.daydream.event.configure;
 +
 +import net.kyori.adventure.resource.ResourcePackCallback;
@@ -75,6 +78,7 @@ index 0000000000000000000000000000000000000000..b0dcc22b7fe1f6163e09924241023961
 +import org.bukkit.Bukkit;
 +import org.bukkit.entity.Player;
 +import org.bukkit.event.HandlerList;
++import org.jetbrains.annotations.ApiStatus;
 +import org.jetbrains.annotations.NotNull;
 +import org.jetbrains.annotations.Nullable;
 +import java.util.ArrayList;
@@ -96,6 +100,7 @@ index 0000000000000000000000000000000000000000..b0dcc22b7fe1f6163e09924241023961
 +    private boolean replacePacks;
 +    private boolean strictCheck;
 +
++    @ApiStatus.Internal
 +    public ConfigurationResourcePackRequestEvent(final @NotNull Player what) {
 +        super(what, !Bukkit.isPrimaryThread());
 +        this.packs = new ArrayList<>();

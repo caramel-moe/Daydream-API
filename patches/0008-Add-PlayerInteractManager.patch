@@ -6,16 +6,17 @@ Subject: [PATCH] Add PlayerInteractManager
 
 diff --git a/src/main/java/moe/caramel/daydream/event/player/PlayerIPSChangeEvent.java b/src/main/java/moe/caramel/daydream/event/player/PlayerIPSChangeEvent.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..c8aed0e9fdf27d87646cdea7603d294a19105c8d
+index 0000000000000000000000000000000000000000..f475e84175a917ec709dd7ccc61ff028d0eef951
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/event/player/PlayerIPSChangeEvent.java
-@@ -0,0 +1,64 @@
+@@ -0,0 +1,66 @@
 +package moe.caramel.daydream.event.player;
 +
 +import moe.caramel.daydream.player.InteractManager.Key;
 +import org.bukkit.entity.Player;
 +import org.bukkit.event.HandlerList;
 +import org.bukkit.event.player.PlayerEvent;
++import org.jetbrains.annotations.ApiStatus;
 +import org.jetbrains.annotations.NotNull;
 +
 +/**
@@ -30,7 +31,8 @@ index 0000000000000000000000000000000000000000..c8aed0e9fdf27d87646cdea7603d294a
 +    private final int current, max;
 +    private final Key key;
 +
-+    public PlayerIPSChangeEvent(@NotNull Player player, @NotNull Key key, int current, int max) {
++    @ApiStatus.Internal
++    public PlayerIPSChangeEvent(final @NotNull Player player, final @NotNull Key key, final int current, final int max) {
 +        super(player);
 +        this.current = current;
 +        this.max = max;
@@ -186,7 +188,7 @@ index 0000000000000000000000000000000000000000..b8acc4f1d9b313842772a56d239ba03e
 +    }
 +}
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index 37c75babc67d2867e2e11f81988533bcd9404ae3..0b8124d940ef88c6607fd5a8176e069f6afe29ec 100644
+index 70729a82bc1d8c5b528c81c72df82ddd195b2acf..176c915ba7f7bf29a6ca90335479220f14c8c104 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
 @@ -54,6 +54,16 @@ import org.jetbrains.annotations.Nullable;

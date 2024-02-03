@@ -6,10 +6,10 @@ Subject: [PATCH] Add SendEntityEquipmentEvent
 
 diff --git a/src/main/java/moe/caramel/daydream/event/packet/SendEntityEquipmentEvent.java b/src/main/java/moe/caramel/daydream/event/packet/SendEntityEquipmentEvent.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..df5bc5fdecde55306bb27ee185518fc6425f40d2
+index 0000000000000000000000000000000000000000..8dcf5e4a73a0742b9caa26ffb4c24fe86b3ffc24
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/event/packet/SendEntityEquipmentEvent.java
-@@ -0,0 +1,87 @@
+@@ -0,0 +1,89 @@
 +package moe.caramel.daydream.event.packet;
 +
 +import org.bukkit.entity.Entity;
@@ -19,6 +19,7 @@ index 0000000000000000000000000000000000000000..df5bc5fdecde55306bb27ee185518fc6
 +import org.bukkit.event.entity.EntityEvent;
 +import org.bukkit.inventory.EquipmentSlot;
 +import org.bukkit.inventory.ItemStack;
++import org.jetbrains.annotations.ApiStatus;
 +import org.jetbrains.annotations.NotNull;
 +import java.util.Map;
 +
@@ -36,7 +37,8 @@ index 0000000000000000000000000000000000000000..df5bc5fdecde55306bb27ee185518fc6
 +    private final Map<EquipmentSlot, ItemStack> data;
 +    private boolean cancelled;
 +
-+    public SendEntityEquipmentEvent(@NotNull Entity source, @NotNull Reason reason, @NotNull Player target, @NotNull Map<EquipmentSlot, ItemStack> data) {
++    @ApiStatus.Internal
++    public SendEntityEquipmentEvent(final @NotNull Entity source, final @NotNull Reason reason, final @NotNull Player target, final @NotNull Map<EquipmentSlot, ItemStack> data) {
 +        super(source);
 +        this.reason = reason;
 +        this.target = target;
@@ -79,8 +81,8 @@ index 0000000000000000000000000000000000000000..df5bc5fdecde55306bb27ee185518fc6
 +    }
 +
 +    @Override
-+    public void setCancelled(boolean cancelled) {
-+        this.cancelled = cancelled;
++    public void setCancelled(final boolean cancel) {
++        this.cancelled = cancel;
 +    }
 +
 +    /**

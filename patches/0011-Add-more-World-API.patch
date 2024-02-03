@@ -72,6 +72,37 @@ index 25650e9a31bcaf672acd115547abc1ec41a1de34..1533b28fb0e8600e443abe214b8d2449
      /**
       * Causes the block to be ticked, this is different from {@link Block#randomTick()},
       * in that it is usually scheduled to occur, for example
+diff --git a/src/main/java/org/bukkit/event/world/ChunkLoadEvent.java b/src/main/java/org/bukkit/event/world/ChunkLoadEvent.java
+index 7873d387f337b1580d8ea1a85595c033c1d7787c..5620c665fac8b8f5a19a17998e56fbf9de719246 100644
+--- a/src/main/java/org/bukkit/event/world/ChunkLoadEvent.java
++++ b/src/main/java/org/bukkit/event/world/ChunkLoadEvent.java
+@@ -13,8 +13,26 @@ public class ChunkLoadEvent extends ChunkEvent {
+     private final boolean newChunk;
+ 
+     public ChunkLoadEvent(@NotNull final Chunk chunk, final boolean newChunk) {
++        // Daydream start - Add more World API
++        this(chunk, newChunk, null);
++    }
++    private final Object rawLevelChunk;
++
++    /**
++     * NMS 청크를 가져옵니다.
++     *
++     * @return NMS 청크
++     */
++    @NotNull
++    public Object getRawLevelChunk() {
++        return rawLevelChunk;
++    }
++
++    public ChunkLoadEvent(@NotNull final Chunk chunk, final boolean newChunk, @NotNull final Object rawLevelChunk) {
++        // Daydream end - Add more World API
+         super(chunk);
+         this.newChunk = newChunk;
++        this.rawLevelChunk = rawLevelChunk; // Daydream - Add more World API
+     }
+ 
+     /**
 diff --git a/src/main/java/org/bukkit/util/StructureSearchResult.java b/src/main/java/org/bukkit/util/StructureSearchResult.java
 index 129c14ef4a89bcd14b31343a756773bde43d48ab..05dec9d6faf9b4c343ac235a79b7b15cb96ee348 100644
 --- a/src/main/java/org/bukkit/util/StructureSearchResult.java

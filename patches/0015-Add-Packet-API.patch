@@ -29,31 +29,31 @@ index 0000000000000000000000000000000000000000..c3882dfcb5c5f26d662af4a43a152f54
 +}
 diff --git a/src/main/java/moe/caramel/daydream/event/network/ReceivePacketEvent.java b/src/main/java/moe/caramel/daydream/event/network/ReceivePacketEvent.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..e73ff2530dfeb0e1c12b75797e92d3265a16f571
+index 0000000000000000000000000000000000000000..e95e5963341986631aa0582beea07788b130520f
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/event/network/ReceivePacketEvent.java
-@@ -0,0 +1,45 @@
+@@ -0,0 +1,35 @@
 +package moe.caramel.daydream.event.network;
 +
 +import org.bukkit.entity.Player;
-+import org.bukkit.event.Cancellable;
 +import org.bukkit.event.HandlerList;
 +import org.bukkit.event.player.PlayerEvent;
++import org.jetbrains.annotations.ApiStatus;
 +import org.jetbrains.annotations.NotNull;
 +
 +/**
 + * 서버가 클라이언트로부터 패킷을 전달받았을 때 호출됩니다.
 + */
-+public class ReceivePacketEvent extends PlayerEvent implements Cancellable {
++public class ReceivePacketEvent extends PlayerEvent {
 +
 +    private static final HandlerList HANDLER_LIST = new HandlerList();
 +    public @NotNull HandlerList getHandlers() { return HANDLER_LIST; }
 +    public static @NotNull HandlerList getHandlerList() { return HANDLER_LIST; }
 +
 +    private final PacketType.Client packetType;
-+    private boolean cancelled;
 +
-+    public ReceivePacketEvent(@NotNull Player who, @NotNull PacketType.Client packetType, boolean async) {
++    @ApiStatus.Internal
++    public ReceivePacketEvent(final @NotNull Player who, final @NotNull PacketType.Client packetType, final boolean async) {
 +        super(who, async);
 +        this.packetType = packetType;
 +    }
@@ -67,37 +67,31 @@ index 0000000000000000000000000000000000000000..e73ff2530dfeb0e1c12b75797e92d326
 +    public PacketType.Client getPacketType() {
 +        return packetType;
 +    }
-+
-+    @Override
-+    public boolean isCancelled() {
-+        return this.cancelled;
-+    }
-+
-+    @Override
-+    public void setCancelled(boolean cancel) {
-+        this.cancelled = cancel;
-+    }
 +}
 diff --git a/src/main/java/moe/caramel/daydream/event/network/ReceivePlayerInputPacketEvent.java b/src/main/java/moe/caramel/daydream/event/network/ReceivePlayerInputPacketEvent.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..04d5a513bb261af0ee6d82ecec36c94dd5b42bf7
+index 0000000000000000000000000000000000000000..8e3ffc63958eaf33d315ab9bbbd25580b759e2c8
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/event/network/ReceivePlayerInputPacketEvent.java
-@@ -0,0 +1,106 @@
+@@ -0,0 +1,120 @@
 +package moe.caramel.daydream.event.network;
 +
 +import org.bukkit.entity.Player;
++import org.bukkit.event.Cancellable;
++import org.jetbrains.annotations.ApiStatus;
 +import org.jetbrains.annotations.NotNull;
 +
 +/**
 + * 서버가 클라이언트로부터 {@link PacketType.Client#PLAYER_INPUT}패킷을 전달받았을 때 호출됩니다.
 + */
-+public final class ReceivePlayerInputPacketEvent extends ReceivePacketEvent {
++public final class ReceivePlayerInputPacketEvent extends ReceivePacketEvent implements Cancellable {
 +
 +    private float sideways, forward;
 +    private boolean jumping, shiftKeyDown;
++    private boolean cancelled;
 +
-+    public ReceivePlayerInputPacketEvent(@NotNull Player who, float sideways, float forward, boolean jumping, boolean shiftKeyDown) {
++    @ApiStatus.Internal
++    public ReceivePlayerInputPacketEvent(final @NotNull Player who, final float sideways, final float forward, final boolean jumping, final boolean shiftKeyDown) {
 +        super(who, PacketType.Client.PLAYER_INPUT, false);
 +        this.sideways = sideways;
 +        this.forward = forward;
@@ -119,7 +113,7 @@ index 0000000000000000000000000000000000000000..04d5a513bb261af0ee6d82ecec36c94d
 +     *
 +     * @param sideways new sideways value
 +     */
-+    public void setSideways(float sideways) {
++    public void setSideways(final float sideways) {
 +        this.sideways = sideways;
 +    }
 +
@@ -137,7 +131,7 @@ index 0000000000000000000000000000000000000000..04d5a513bb261af0ee6d82ecec36c94d
 +     *
 +     * @param forward new forward value
 +     */
-+    public void setForward(float forward) {
++    public void setForward(final float forward) {
 +        this.forward = forward;
 +    }
 +
@@ -155,7 +149,7 @@ index 0000000000000000000000000000000000000000..04d5a513bb261af0ee6d82ecec36c94d
 +     *
 +     * @param jumping new jumping value
 +     */
-+    public void setJumping(boolean jumping) {
++    public void setJumping(final boolean jumping) {
 +        this.jumping = jumping;
 +    }
 +
@@ -173,32 +167,43 @@ index 0000000000000000000000000000000000000000..04d5a513bb261af0ee6d82ecec36c94d
 +     *
 +     * @param shiftKeyDown new shiftKeyDown value
 +     */
-+    public void setShiftKeyDown(boolean shiftKeyDown) {
++    public void setShiftKeyDown(final boolean shiftKeyDown) {
 +        this.shiftKeyDown = shiftKeyDown;
++    }
++
++    @Override
++    public boolean isCancelled() {
++        return this.cancelled;
++    }
++
++    @Override
++    public void setCancelled(final boolean cancel) {
++        this.cancelled = cancel;
 +    }
 +
 +    @Override
 +    public String toString() {
 +        return "ReceivePlayerInputPacketEvent{" +
-+            "packetType=" + this.getPacketType() +
-+            ", player=" + this.getPlayer() +
-+            ", sideways=" + sideways +
-+            ", forward=" + forward +
-+            ", jumping=" + jumping +
-+            ", shiftKeyDown=" + shiftKeyDown +
-+            ", cancelled=" + this.isCancelled() +
-+            '}';
++               "packetType=" + this.getPacketType() +
++               ", player=" + this.getPlayer() +
++               ", sideways=" + sideways +
++               ", forward=" + forward +
++               ", jumping=" + jumping +
++               ", shiftKeyDown=" + shiftKeyDown +
++               ", cancelled=" + this.isCancelled() +
++               '}';
 +    }
 +}
 diff --git a/src/main/java/moe/caramel/daydream/event/network/ReceivePlayerPongPacketEvent.java b/src/main/java/moe/caramel/daydream/event/network/ReceivePlayerPongPacketEvent.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..2110ec8c9f53be8c805b05f02669a4a1cd488694
+index 0000000000000000000000000000000000000000..0397d831b118208e014fd927a8ff14a87583bf3f
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/event/network/ReceivePlayerPongPacketEvent.java
-@@ -0,0 +1,43 @@
+@@ -0,0 +1,35 @@
 +package moe.caramel.daydream.event.network;
 +
 +import org.bukkit.entity.Player;
++import org.jetbrains.annotations.ApiStatus;
 +import org.jetbrains.annotations.NotNull;
 +
 +/**
@@ -208,7 +213,8 @@ index 0000000000000000000000000000000000000000..2110ec8c9f53be8c805b05f02669a4a1
 +
 +    private final int id;
 +
-+    public ReceivePlayerPongPacketEvent(@NotNull Player who, int id) {
++    @ApiStatus.Internal
++    public ReceivePlayerPongPacketEvent(final @NotNull Player who, final int id) {
 +        super(who, PacketType.Client.PONG, true);
 +        this.id = id;
 +    }
@@ -222,21 +228,11 @@ index 0000000000000000000000000000000000000000..2110ec8c9f53be8c805b05f02669a4a1
 +        return id;
 +    }
 +
-+    /**
-+     * 이 패킷은 서버에서 아무 처리도 하지 않아 취소할 수 없습니다.
-+     *
-+     * @param cancel 취소할 수 없음
-+     */
-+    @Override
-+    @Deprecated
-+    public void setCancelled(boolean cancel) {
-+    }
-+
 +    @Override
 +    public String toString() {
 +        return "ReceivePlayerPongPacketEvent{" +
-+            "id=" + id +
-+            '}';
++               "id=" + id +
++               '}';
 +    }
 +}
 diff --git a/src/main/java/moe/caramel/daydream/network/Packet.java b/src/main/java/moe/caramel/daydream/network/Packet.java

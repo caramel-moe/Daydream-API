@@ -197,10 +197,10 @@ index 0000000000000000000000000000000000000000..f08bfb0c0aca287f23cc4f9f758dc276
 +}
 diff --git a/src/main/java/moe/caramel/daydream/event/packet/PlayerAdvancementScreenEvent.java b/src/main/java/moe/caramel/daydream/event/packet/PlayerAdvancementScreenEvent.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..c28145485940fd9c8114355fb0106c4515491eae
+index 0000000000000000000000000000000000000000..53bcddc45137bf2589e053925e88f4e72209ca83
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/event/packet/PlayerAdvancementScreenEvent.java
-@@ -0,0 +1,84 @@
+@@ -0,0 +1,86 @@
 +package moe.caramel.daydream.event.packet;
 +
 +import org.bukkit.NamespacedKey;
@@ -208,6 +208,7 @@ index 0000000000000000000000000000000000000000..c28145485940fd9c8114355fb0106c45
 +import org.bukkit.event.Cancellable;
 +import org.bukkit.event.HandlerList;
 +import org.bukkit.event.player.PlayerEvent;
++import org.jetbrains.annotations.ApiStatus;
 +import org.jetbrains.annotations.NotNull;
 +import org.jetbrains.annotations.Nullable;
 +
@@ -224,7 +225,8 @@ index 0000000000000000000000000000000000000000..c28145485940fd9c8114355fb0106c45
 +    private final NamespacedKey key;
 +    private boolean cancelled;
 +
-+    public PlayerAdvancementScreenEvent(@NotNull Player player, @NotNull Action action, @Nullable NamespacedKey key) {
++    @ApiStatus.Internal
++    public PlayerAdvancementScreenEvent(final @NotNull Player player, final @NotNull Action action, final @Nullable NamespacedKey key) {
 +        super(player);
 +        this.action = action;
 +        this.key = key;
@@ -246,7 +248,7 @@ index 0000000000000000000000000000000000000000..c28145485940fd9c8114355fb0106c45
 +     * 인수가 {@code true}인 경우 스크린을 닫으나, {@link Action#CLOSED_SCREEN}인 경우 작동하지 않습니다.
 +     */
 +    @Override
-+    public void setCancelled(boolean cancel) {
++    public void setCancelled(final boolean cancel) {
 +        this.cancelled = cancel;
 +    }
 +
@@ -287,16 +289,17 @@ index 0000000000000000000000000000000000000000..c28145485940fd9c8114355fb0106c45
 +}
 diff --git a/src/main/java/moe/caramel/daydream/event/player/PlayerAdvancementPreLoadEvent.java b/src/main/java/moe/caramel/daydream/event/player/PlayerAdvancementPreLoadEvent.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..ae9ff3fdbe7c3138de79eb1e3569fa83d60def5d
+index 0000000000000000000000000000000000000000..7e0a83b90e754fbd336d1f45475fa01dec318cf6
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/event/player/PlayerAdvancementPreLoadEvent.java
-@@ -0,0 +1,64 @@
+@@ -0,0 +1,66 @@
 +package moe.caramel.daydream.event.player;
 +
 +import com.google.gson.JsonElement;
 +import org.bukkit.entity.Player;
 +import org.bukkit.event.HandlerList;
 +import org.bukkit.event.player.PlayerEvent;
++import org.jetbrains.annotations.ApiStatus;
 +import org.jetbrains.annotations.NotNull;
 +import org.jetbrains.annotations.Nullable;
 +
@@ -314,7 +317,8 @@ index 0000000000000000000000000000000000000000..ae9ff3fdbe7c3138de79eb1e3569fa83
 +    private JsonElement jsonElement;
 +    private boolean useDataFixer = true;
 +
-+    public PlayerAdvancementPreLoadEvent(@NotNull Player who) {
++    @ApiStatus.Internal
++    public PlayerAdvancementPreLoadEvent(final @NotNull Player who) {
 +        super(who);
 +    }
 +
@@ -331,10 +335,10 @@ index 0000000000000000000000000000000000000000..ae9ff3fdbe7c3138de79eb1e3569fa83
 +    /**
 +     * 로드할 발전 과제 Json을 설정합니다.
 +     *
-+     * @param jsonElement 발전 과제 Json
++     * @param json 발전 과제 Json
 +     */
-+    public void setJsonElement(@NotNull JsonElement jsonElement) {
-+        this.jsonElement = jsonElement;
++    public void setJsonElement(final @NotNull JsonElement json) {
++        this.jsonElement = json;
 +    }
 +
 +    /**
@@ -351,16 +355,16 @@ index 0000000000000000000000000000000000000000..ae9ff3fdbe7c3138de79eb1e3569fa83
 +     *
 +     * @param useDataFixer 만약 {@code true}인 경우, Mojang의 DataFixer를 사용
 +     */
-+    public void useDataFixer(boolean useDataFixer) {
++    public void useDataFixer(final boolean useDataFixer) {
 +        this.useDataFixer = useDataFixer;
 +    }
 +}
 diff --git a/src/main/java/moe/caramel/daydream/event/player/PlayerAdvancementSaveEvent.java b/src/main/java/moe/caramel/daydream/event/player/PlayerAdvancementSaveEvent.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..712bb1844eaf39525aeb9ec1be0620eb2d0ab049
+index 0000000000000000000000000000000000000000..f2645e1be0feb562f8247db686ce7436ea1bdbb6
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/event/player/PlayerAdvancementSaveEvent.java
-@@ -0,0 +1,46 @@
+@@ -0,0 +1,48 @@
 +package moe.caramel.daydream.event.player;
 +
 +import com.google.gson.JsonElement;
@@ -368,6 +372,7 @@ index 0000000000000000000000000000000000000000..712bb1844eaf39525aeb9ec1be0620eb
 +import org.bukkit.event.Cancellable;
 +import org.bukkit.event.HandlerList;
 +import org.bukkit.event.player.PlayerEvent;
++import org.jetbrains.annotations.ApiStatus;
 +import org.jetbrains.annotations.NotNull;
 +
 +/**
@@ -382,7 +387,8 @@ index 0000000000000000000000000000000000000000..712bb1844eaf39525aeb9ec1be0620eb
 +    private final JsonElement jsonElement;
 +    private boolean cancel;
 +
-+    public PlayerAdvancementSaveEvent(@NotNull Player who, @NotNull JsonElement jsonElement) {
++    @ApiStatus.Internal
++    public PlayerAdvancementSaveEvent(final @NotNull Player who, final @NotNull JsonElement jsonElement) {
 +        super(who);
 +        this.jsonElement = jsonElement;
 +    }
@@ -393,7 +399,7 @@ index 0000000000000000000000000000000000000000..712bb1844eaf39525aeb9ec1be0620eb
 +    }
 +
 +    @Override
-+    public void setCancelled(boolean cancel) {
++    public void setCancelled(final boolean cancel) {
 +        this.cancel = cancel;
 +    }
 +
@@ -454,7 +460,7 @@ index 2ba0d0940120e36a88a9cc752ef0e45ab93f6a93..fdcbb0c3d47860c8844329735741ad8f
       * Get an iterator through all advancements. Advancements cannot be removed
       * from this iterator,
 diff --git a/src/main/java/org/bukkit/UnsafeValues.java b/src/main/java/org/bukkit/UnsafeValues.java
-index cfc27f4d20a5f75f8a5e0d4fdb86e578e0cc4465..eafbab3375720d6f663cf475bccebb11d1a444eb 100644
+index d07cd759d6314afd2a16208ba005158bf7edd8fa..0c3ec1a0e69e98c09d272ecfa6a60599633f3008 100644
 --- a/src/main/java/org/bukkit/UnsafeValues.java
 +++ b/src/main/java/org/bukkit/UnsafeValues.java
 @@ -75,6 +75,35 @@ public interface UnsafeValues {

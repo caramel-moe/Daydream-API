@@ -6,16 +6,17 @@ Subject: [PATCH] Add PlayerStatisticOpenEvent
 
 diff --git a/src/main/java/moe/caramel/daydream/event/packet/PlayerStatisticOpenEvent.java b/src/main/java/moe/caramel/daydream/event/packet/PlayerStatisticOpenEvent.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..73d0f6f9bcb155288674bb1103fb28cf6881eed1
+index 0000000000000000000000000000000000000000..9b4623dabfd202ac8b0966a1a5fb663e129450ac
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/event/packet/PlayerStatisticOpenEvent.java
-@@ -0,0 +1,47 @@
+@@ -0,0 +1,49 @@
 +package moe.caramel.daydream.event.packet;
 +
 +import org.bukkit.entity.Player;
 +import org.bukkit.event.Cancellable;
 +import org.bukkit.event.HandlerList;
 +import org.bukkit.event.player.PlayerEvent;
++import org.jetbrains.annotations.ApiStatus;
 +import org.jetbrains.annotations.NotNull;
 +
 +/**
@@ -29,7 +30,8 @@ index 0000000000000000000000000000000000000000..73d0f6f9bcb155288674bb1103fb28cf
 +
 +    private boolean cancelled;
 +
-+    public PlayerStatisticOpenEvent(@NotNull Player player) {
++    @ApiStatus.Internal
++    public PlayerStatisticOpenEvent(final @NotNull Player player) {
 +        super(player);
 +    }
 +
@@ -53,7 +55,7 @@ index 0000000000000000000000000000000000000000..73d0f6f9bcb155288674bb1103fb28cf
 +     * @param cancel {@code true}인 경우 통계 패킷을 전송하지 않습니다.
 +     */
 +    @Override
-+    public void setCancelled(boolean cancel) {
++    public void setCancelled(final boolean cancel) {
 +        this.cancelled = cancel;
 +    }
 +}

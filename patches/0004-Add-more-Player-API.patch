@@ -17,13 +17,13 @@ index 5637dc6b5a565a3c71b02bc026c73801d4aa251b..387a40a9b0d34dc9e95a3fdde31d78e3
      api("org.apache.maven:maven-resolver-provider:3.9.6") // Paper - make API dependency for Paper Plugins
      compileOnly("org.apache.maven.resolver:maven-resolver-connector-basic:1.9.18")
 diff --git a/src/main/java/io/papermc/paper/event/player/AbstractChatEvent.java b/src/main/java/io/papermc/paper/event/player/AbstractChatEvent.java
-index ed8e885f226b02b9875b23ae2294a9056d2e8b29..b8f6ebd8198accab13fb7f98608ff52d1916b271 100644
+index a0fd845bc9b2540c398fe1dbbf821803a7017a28..b19c79a40c1bbf1f7b9584bd265baf4c366375be 100644
 --- a/src/main/java/io/papermc/paper/event/player/AbstractChatEvent.java
 +++ b/src/main/java/io/papermc/paper/event/player/AbstractChatEvent.java
-@@ -25,6 +25,38 @@ public abstract class AbstractChatEvent extends PlayerEvent implements Cancellab
-     private ChatRenderer renderer;
+@@ -27,6 +27,38 @@ public abstract class AbstractChatEvent extends PlayerEvent implements Cancellab
      private Component message;
-     private boolean cancelled = false;
+ 
+     private boolean cancelled;
 +    // Daydream start - Add more Player API (Improve Chat System)
 +    private net.kyori.adventure.chat.ChatType chatType = null;
 +
@@ -52,7 +52,7 @@ index ed8e885f226b02b9875b23ae2294a9056d2e8b29..b8f6ebd8198accab13fb7f98608ff52d
 +     *
 +     * @param chatType 채팅 포맷
 +     */
-+    public void chatType(@NotNull net.kyori.adventure.chat.ChatType chatType) {
++    public void chatType(final @NotNull net.kyori.adventure.chat.ChatType chatType) {
 +        this.chatType = chatType;
 +    }
 +    // Daydream end - Add more Player API (Improve Chat System)
@@ -60,10 +60,10 @@ index ed8e885f226b02b9875b23ae2294a9056d2e8b29..b8f6ebd8198accab13fb7f98608ff52d
      AbstractChatEvent(final boolean async, final @NotNull Player player, final @NotNull Set<Audience> viewers, final @NotNull ChatRenderer renderer, final @NotNull Component message, final @NotNull Component originalMessage, final @NotNull SignedMessage signedMessage) {
          super(player, async);
 diff --git a/src/main/java/io/papermc/paper/event/player/ChatEvent.java b/src/main/java/io/papermc/paper/event/player/ChatEvent.java
-index af025704e978dc0b11be277ab4646da77eb3a60b..5e8a57811b1a5655bf03351b40266bac9fa00698 100644
+index 7411f58f9f36beaadcc47c2264a4af313956ee03..18506bef176ffaba5bd45bf496b0591fb6108123 100644
 --- a/src/main/java/io/papermc/paper/event/player/ChatEvent.java
 +++ b/src/main/java/io/papermc/paper/event/player/ChatEvent.java
-@@ -29,6 +29,13 @@ public final class ChatEvent extends AbstractChatEvent {
+@@ -28,6 +28,13 @@ public final class ChatEvent extends AbstractChatEvent {
          super(false, player, viewers, renderer, message, originalMessage, signedMessage);
      }
  
@@ -122,10 +122,10 @@ index 31aa6ef5fc2b3b88c72f5a15b8cc7a0e50c29f46..c20ed717c773f8ecbc7ccc7d344ae8fa
      /**
       * Gets a copy of this players profile
 diff --git a/src/main/java/org/bukkit/event/player/AsyncPlayerPreLoginEvent.java b/src/main/java/org/bukkit/event/player/AsyncPlayerPreLoginEvent.java
-index f8b69b52ec8efa103e4e78e1b5c6a015e73d2a75..e276c5eae73f3d3c3f246b83f1d0ebce7fd2bccd 100644
+index bdb7d2345e7d3a48a2f0561832ce126a16781e89..5e1003de98c57b8200c21e7336eb1bd60b118438 100644
 --- a/src/main/java/org/bukkit/event/player/AsyncPlayerPreLoginEvent.java
 +++ b/src/main/java/org/bukkit/event/player/AsyncPlayerPreLoginEvent.java
-@@ -283,6 +283,29 @@ public class AsyncPlayerPreLoginEvent extends Event {
+@@ -282,6 +282,29 @@ public class AsyncPlayerPreLoginEvent extends Event {
      }
      // Paper end
  
