@@ -74,8 +74,10 @@ loadScripts(document, 'script');</script>
 </div>
 <div class="inheritance" title="Inheritance Tree"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">java.lang.Object</a>
 <div class="inheritance"><a href="../../../../../org/bukkit/event/Event.html" title="class in org.bukkit.event">org.bukkit.event.Event</a>
-<div class="inheritance"><a href="../../../../../org/bukkit/event/entity/EntityEvent.html" title="class in org.bukkit.event.entity">org.bukkit.event.entity.EntityEvent</a>
+<div class="inheritance"><a href="../../../../../org/bukkit/event/player/PlayerEvent.html" title="class in org.bukkit.event.player">org.bukkit.event.player.PlayerEvent</a>
+<div class="inheritance"><a href="SendPacketEvent.html" title="class in moe.caramel.daydream.event.packet">moe.caramel.daydream.event.packet.SendPacketEvent</a>
 <div class="inheritance">moe.caramel.daydream.event.packet.SendEntityEquipmentEvent</div>
+</div>
 </div>
 </div>
 </div>
@@ -86,9 +88,9 @@ loadScripts(document, 'script');</script>
 </dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public final class </span><span class="element-name type-name-label">SendEntityEquipmentEvent</span>
-<span class="extends-implements">extends <a href="../../../../../org/bukkit/event/entity/EntityEvent.html" title="class in org.bukkit.event.entity">EntityEvent</a>
+<span class="extends-implements">extends <a href="SendPacketEvent.html" title="class in moe.caramel.daydream.event.packet">SendPacketEvent</a>
 implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="interface in org.bukkit.event">Cancellable</a></span></div>
-<div class="block">Entity Equipment 패킷이 전송될 때 호출되는 이벤트</div>
+<div class="block">서버가 클라이언트에게 <a href="PacketType.Server.html#ENTITY_EQUIPMENT"><code>PacketType.Server.ENTITY_EQUIPMENT</code></a> 패킷을 전송할 때 호출됩니다.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -117,8 +119,8 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <section class="field-summary" id="field-summary">
 <h2>Field Summary</h2>
 <div class="inherited-list">
-<h3 id="fields-inherited-from-class-org.bukkit.event.entity.EntityEvent">Fields inherited from class&nbsp;org.bukkit.event.entity.<a href="../../../../../org/bukkit/event/entity/EntityEvent.html" title="class in org.bukkit.event.entity">EntityEvent</a></h3>
-<code><a href="../../../../../org/bukkit/event/entity/EntityEvent.html#entity">entity</a></code></div>
+<h3 id="fields-inherited-from-class-org.bukkit.event.player.PlayerEvent">Fields inherited from class&nbsp;org.bukkit.event.player.<a href="../../../../../org/bukkit/event/player/PlayerEvent.html" title="class in org.bukkit.event.player">PlayerEvent</a></h3>
+<code><a href="../../../../../org/bukkit/event/player/PlayerEvent.html#player">player</a></code></div>
 </section>
 </li>
 <!-- ======== CONSTRUCTOR SUMMARY ======== -->
@@ -129,9 +131,9 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <div class="summary-table two-column-summary">
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
-<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(org.bukkit.entity.Entity,moe.caramel.daydream.event.packet.SendEntityEquipmentEvent.Reason,org.bukkit.entity.Player,java.util.Map)" class="member-name-link">SendEntityEquipmentEvent</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/entity/Entity.html" title="interface in org.bukkit.entity">Entity</a>&nbsp;source,
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(org.bukkit.entity.Player,org.bukkit.entity.Entity,moe.caramel.daydream.event.packet.SendEntityEquipmentEvent.Reason,java.util.Map)" class="member-name-link">SendEntityEquipmentEvent</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/entity/Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;player,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/entity/Entity.html" title="interface in org.bukkit.entity">Entity</a>&nbsp;target,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="SendEntityEquipmentEvent.Reason.html" title="enum class in moe.caramel.daydream.event.packet">SendEntityEquipmentEvent.Reason</a>&nbsp;reason,
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/entity/Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;target,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="../../../../../org/bukkit/inventory/EquipmentSlot.html" title="enum class in org.bukkit.inventory">EquipmentSlot</a>,<wbr><a href="../../../../../org/bukkit/inventory/ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&gt;&nbsp;data)</code></div>
 <div class="col-last even-row-color">&nbsp;</div>
 </div>
@@ -164,10 +166,10 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">이벤트 호출 사유를 가져옵니다.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/entity/Player.html" title="interface in org.bukkit.entity">Player</a></code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/entity/Entity.html" title="interface in org.bukkit.entity">Entity</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getTarget()" class="member-name-link">getTarget</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">이 패킷의 전송 대상을 반환합니다.</div>
+<div class="block">이 패킷의 대상 엔티티를 가져옵니다.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isCancelled()" class="member-name-link">isCancelled</a>()</code></div>
@@ -183,8 +185,11 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 </div>
 </div>
 <div class="inherited-list">
-<h3 id="methods-inherited-from-class-org.bukkit.event.entity.EntityEvent">Methods inherited from class&nbsp;org.bukkit.event.entity.<a href="../../../../../org/bukkit/event/entity/EntityEvent.html" title="class in org.bukkit.event.entity">EntityEvent</a></h3>
-<code><a href="../../../../../org/bukkit/event/entity/EntityEvent.html#getEntity()">getEntity</a>, <a href="../../../../../org/bukkit/event/entity/EntityEvent.html#getEntityType()">getEntityType</a></code></div>
+<h3 id="methods-inherited-from-class-moe.caramel.daydream.event.packet.SendPacketEvent">Methods inherited from class&nbsp;moe.caramel.daydream.event.packet.<a href="SendPacketEvent.html" title="class in moe.caramel.daydream.event.packet">SendPacketEvent</a></h3>
+<code><a href="SendPacketEvent.html#getPacketType()">getPacketType</a></code></div>
+<div class="inherited-list">
+<h3 id="methods-inherited-from-class-org.bukkit.event.player.PlayerEvent">Methods inherited from class&nbsp;org.bukkit.event.player.<a href="../../../../../org/bukkit/event/player/PlayerEvent.html" title="class in org.bukkit.event.player">PlayerEvent</a></h3>
+<code><a href="../../../../../org/bukkit/event/player/PlayerEvent.html#getPlayer()">getPlayer</a></code></div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-org.bukkit.event.Event">Methods inherited from class&nbsp;org.bukkit.event.<a href="../../../../../org/bukkit/event/Event.html" title="class in org.bukkit.event">Event</a></h3>
 <code><a href="../../../../../org/bukkit/event/Event.html#callEvent()">callEvent</a>, <a href="../../../../../org/bukkit/event/Event.html#getEventMetadata()">getEventMetadata</a>, <a href="../../../../../org/bukkit/event/Event.html#getEventName()">getEventName</a>, <a href="../../../../../org/bukkit/event/Event.html#isAsynchronous()">isAsynchronous</a></code></div>
@@ -203,15 +208,15 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <h2>Constructor Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="&lt;init&gt;(org.bukkit.entity.Entity,moe.caramel.daydream.event.packet.SendEntityEquipmentEvent.Reason,org.bukkit.entity.Player,java.util.Map)">
+<section class="detail" id="&lt;init&gt;(org.bukkit.entity.Player,org.bukkit.entity.Entity,moe.caramel.daydream.event.packet.SendEntityEquipmentEvent.Reason,java.util.Map)">
 <h3>SendEntityEquipmentEvent</h3>
 <div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/ApiStatus.Internal.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Internal</a>
 </span><span class="modifiers">public</span>&nbsp;<span class="element-name">SendEntityEquipmentEvent</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/entity/Entity.html" title="interface in org.bukkit.entity">Entity</a>&nbsp;source,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/entity/Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;player,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/entity/Entity.html" title="interface in org.bukkit.entity">Entity</a>&nbsp;target,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="SendEntityEquipmentEvent.Reason.html" title="enum class in moe.caramel.daydream.event.packet">SendEntityEquipmentEvent.Reason</a>&nbsp;reason,
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/entity/Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;target,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="../../../../../org/bukkit/inventory/EquipmentSlot.html" title="enum class in org.bukkit.inventory">EquipmentSlot</a>,<wbr><a href="../../../../../org/bukkit/inventory/ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&gt;&nbsp;data)</span></div>
 </section>
@@ -230,8 +235,8 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
 </span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/event/HandlerList.html" title="class in org.bukkit.event">HandlerList</a></span>&nbsp;<span class="element-name">getHandlers</span>()</div>
 <dl class="notes">
-<dt>Specified by:</dt>
-<dd><code><a href="../../../../../org/bukkit/event/Event.html#getHandlers()">getHandlers</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../org/bukkit/event/Event.html" title="class in org.bukkit.event">Event</a></code></dd>
+<dt>Overrides:</dt>
+<dd><code><a href="SendPacketEvent.html#getHandlers()">getHandlers</a></code>&nbsp;in class&nbsp;<code><a href="SendPacketEvent.html" title="class in moe.caramel.daydream.event.packet">SendPacketEvent</a></code></dd>
 </dl>
 </section>
 </li>
@@ -243,6 +248,18 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 </section>
 </li>
 <li>
+<section class="detail" id="getTarget()">
+<h3>getTarget</h3>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/entity/Entity.html" title="interface in org.bukkit.entity">Entity</a></span>&nbsp;<span class="element-name">getTarget</span>()</div>
+<div class="block">이 패킷의 대상 엔티티를 가져옵니다.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>패킷의 대상 엔티티</dd>
+</dl>
+</section>
+</li>
+<li>
 <section class="detail" id="getReason()">
 <h3>getReason</h3>
 <div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
@@ -251,18 +268,6 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>이벤트 호출 사유</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="getTarget()">
-<h3>getTarget</h3>
-<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
-</span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/entity/Player.html" title="interface in org.bukkit.entity">Player</a></span>&nbsp;<span class="element-name">getTarget</span>()</div>
-<div class="block">이 패킷의 전송 대상을 반환합니다.</div>
-<dl class="notes">
-<dt>Returns:</dt>
-<dd>패킷 전송 대상</dd>
 </dl>
 </section>
 </li>
