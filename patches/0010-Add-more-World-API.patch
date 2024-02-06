@@ -48,14 +48,14 @@ index efa2043e044b0e461780e808c347d6ec00f6da0a..c38de8426e40f1607a93feb736cac84e
       * Play a Sound at the provided Location in the World. For sounds with multiple
       * variations passing the same seed will always play the same variation.
 diff --git a/src/main/java/org/bukkit/block/Block.java b/src/main/java/org/bukkit/block/Block.java
-index 25650e9a31bcaf672acd115547abc1ec41a1de34..1533b28fb0e8600e443abe214b8d24494a106dc4 100644
+index 38cf77e32b76bc7d9db7523f7f21427ebb72f913..c53235c794be7fd1f80c7179f68799f5d3f50bc0 100644
 --- a/src/main/java/org/bukkit/block/Block.java
 +++ b/src/main/java/org/bukkit/block/Block.java
 @@ -590,6 +590,20 @@ public interface Block extends Metadatable, Translatable, net.kyori.adventure.tr
       */
      boolean breakNaturally(@NotNull ItemStack tool, boolean triggerEffect, boolean dropExperience);
  
-+    // Daydream start - Add more World API
++    // Daydream start - Add more World API (Block)
 +    /**
 +     * Breaks the block and spawns items as if a player had digged it with a
 +     * specific tool
@@ -67,20 +67,20 @@ index 25650e9a31bcaf672acd115547abc1ec41a1de34..1533b28fb0e8600e443abe214b8d2449
 +     * @return true if the block was destroyed
 +     */
 +    boolean breakNaturally(@NotNull ItemStack tool, boolean triggerEffect, boolean dropExperience, boolean dropItem);
-+    // Daydream end - Add more World API
++    // Daydream end - Add more World API (Block)
 +
      /**
       * Causes the block to be ticked, this is different from {@link Block#randomTick()},
       * in that it is usually scheduled to occur, for example
 diff --git a/src/main/java/org/bukkit/event/world/ChunkLoadEvent.java b/src/main/java/org/bukkit/event/world/ChunkLoadEvent.java
-index 7873d387f337b1580d8ea1a85595c033c1d7787c..5620c665fac8b8f5a19a17998e56fbf9de719246 100644
+index 7873d387f337b1580d8ea1a85595c033c1d7787c..e14706ffe7cd756b261ddb22bacb450721be9aeb 100644
 --- a/src/main/java/org/bukkit/event/world/ChunkLoadEvent.java
 +++ b/src/main/java/org/bukkit/event/world/ChunkLoadEvent.java
 @@ -13,8 +13,26 @@ public class ChunkLoadEvent extends ChunkEvent {
      private final boolean newChunk;
  
      public ChunkLoadEvent(@NotNull final Chunk chunk, final boolean newChunk) {
-+        // Daydream start - Add more World API
++        // Daydream start - Add more World API (Chunk)
 +        this(chunk, newChunk, null);
 +    }
 +    private final Object rawLevelChunk;
@@ -96,15 +96,15 @@ index 7873d387f337b1580d8ea1a85595c033c1d7787c..5620c665fac8b8f5a19a17998e56fbf9
 +    }
 +
 +    public ChunkLoadEvent(@NotNull final Chunk chunk, final boolean newChunk, @NotNull final Object rawLevelChunk) {
-+        // Daydream end - Add more World API
++        // Daydream end - Add more World API (Chunk)
          super(chunk);
          this.newChunk = newChunk;
-+        this.rawLevelChunk = rawLevelChunk; // Daydream - Add more World API
++        this.rawLevelChunk = rawLevelChunk; // Daydream - Add more World API (Chunk)
      }
  
      /**
 diff --git a/src/main/java/org/bukkit/util/StructureSearchResult.java b/src/main/java/org/bukkit/util/StructureSearchResult.java
-index 129c14ef4a89bcd14b31343a756773bde43d48ab..05dec9d6faf9b4c343ac235a79b7b15cb96ee348 100644
+index 129c14ef4a89bcd14b31343a756773bde43d48ab..3126ac3adc0dc6c8681b02d45c14813575e9f102 100644
 --- a/src/main/java/org/bukkit/util/StructureSearchResult.java
 +++ b/src/main/java/org/bukkit/util/StructureSearchResult.java
 @@ -29,4 +29,14 @@ public interface StructureSearchResult {
@@ -112,7 +112,7 @@ index 129c14ef4a89bcd14b31343a756773bde43d48ab..05dec9d6faf9b4c343ac235a79b7b15c
      @NotNull
      Location getLocation();
 +
-+    // Daydream start - Add more World API
++    // Daydream start - Add more World API (Structure)
 +    /**
 +     * 구조물의 경계 상자를 가져옵니다.
 +     *
@@ -120,5 +120,5 @@ index 129c14ef4a89bcd14b31343a756773bde43d48ab..05dec9d6faf9b4c343ac235a79b7b15c
 +     */
 +    @NotNull
 +    BoundingBox getBoundingBox();
-+    // Daydream end - Add more World API
++    // Daydream end - Add more World API (Structure)
  }

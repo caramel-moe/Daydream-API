@@ -4,11 +4,11 @@ Date: Sun, 10 Dec 2023 16:28:01 +0900
 Subject: [PATCH] Add Client Detector
 
 
-diff --git a/src/main/java/moe/caramel/daydream/event/configure/PlayerClientDetectedEvent.java b/src/main/java/moe/caramel/daydream/event/configure/PlayerClientDetectedEvent.java
+diff --git a/src/main/java/moe/caramel/daydream/event/configure/ConfigurationClientTypeDetectedEvent.java b/src/main/java/moe/caramel/daydream/event/configure/ConfigurationClientTypeDetectedEvent.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..03491a210acccc8a794ac9137096fb293d1b875a
+index 0000000000000000000000000000000000000000..a555ade030fafd5a2407aa9de4712e3790df048c
 --- /dev/null
-+++ b/src/main/java/moe/caramel/daydream/event/configure/PlayerClientDetectedEvent.java
++++ b/src/main/java/moe/caramel/daydream/event/configure/ConfigurationClientTypeDetectedEvent.java
 @@ -0,0 +1,65 @@
 +package moe.caramel.daydream.event.configure;
 +
@@ -23,7 +23,7 @@ index 0000000000000000000000000000000000000000..03491a210acccc8a794ac9137096fb29
 +/**
 + * Configuration 페이즈에서 플레이어의 클라이언트 종류를 감지 완료하였을 때 호출됩니다.
 + */
-+public final class PlayerClientDetectedEvent extends ConfigurationPhaseEvent {
++public final class ConfigurationClientTypeDetectedEvent extends ConfigurationPhaseEvent {
 +
 +    private static final HandlerList HANDLER_LIST = new HandlerList();
 +    public @NotNull HandlerList getHandlers() { return HANDLER_LIST; }
@@ -32,7 +32,7 @@ index 0000000000000000000000000000000000000000..03491a210acccc8a794ac9137096fb29
 +    private Component disconnectReason;
 +
 +    @ApiStatus.Internal
-+    public PlayerClientDetectedEvent(final @NotNull Player who) {
++    public ConfigurationClientTypeDetectedEvent(final @NotNull Player who) {
 +        super(who, true);
 +    }
 +
@@ -116,7 +116,7 @@ index 0000000000000000000000000000000000000000..963d3aa970ef24bafd2aaa17bde4b8c2
 +    NEOFORGE,
 +}
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index 6f4f7d272cd501815f2c55d5828de11e4d19f3c5..6f8b728ac53ff4171d1d6548ee06f01eaeabdde6 100644
+index d88921c1537e6835da34c49cbf5fc8ff4fd5cdaf..4172ecaf00259a662d67cefcd69f07e08e370c0f 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
 @@ -3611,6 +3611,19 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM

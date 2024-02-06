@@ -1283,7 +1283,7 @@ index 0000000000000000000000000000000000000000..1bcb7d8901140e9e0f9516c2fcd156da
 +}
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/argument/MessageArgument.java b/src/main/java/moe/caramel/daydream/brigadier/argument/MessageArgument.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..5d0eb87f741f24fe9f68abe0a36d0b80f3fa7d3e
+index 0000000000000000000000000000000000000000..d744bbb4a2ec59000f396bb34408677025dcde9e
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/brigadier/argument/MessageArgument.java
 @@ -0,0 +1,20 @@
@@ -1292,7 +1292,7 @@ index 0000000000000000000000000000000000000000..5d0eb87f741f24fe9f68abe0a36d0b80
 +import com.mojang.brigadier.context.CommandContext;
 +import com.mojang.brigadier.exceptions.CommandSyntaxException;
 +import io.papermc.paper.command.brigadier.CommandSourceStack;
-+import moe.caramel.daydream.network.chat.PlayerMessage;
++import moe.caramel.daydream.player.PlayerMessage;
 +import net.kyori.adventure.text.Component;
 +import org.bukkit.util.Consumer;
 +import org.jetbrains.annotations.NotNull;
@@ -1524,13 +1524,13 @@ index 0000000000000000000000000000000000000000..ba04177bbccb9f65cb1eeb22f0f92dea
 +    @NotNull
 +    SuggestionProvider<CommandSourceStack> getSuggestion();
 +}
-diff --git a/src/main/java/moe/caramel/daydream/network/chat/PlayerMessage.java b/src/main/java/moe/caramel/daydream/network/chat/PlayerMessage.java
+diff --git a/src/main/java/moe/caramel/daydream/player/PlayerMessage.java b/src/main/java/moe/caramel/daydream/player/PlayerMessage.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..e3247497bbf39051ed4b65c87d6c3cfe60971216
+index 0000000000000000000000000000000000000000..022fcc7e87b298285e28bcbf54b27ebf0b48ab19
 --- /dev/null
-+++ b/src/main/java/moe/caramel/daydream/network/chat/PlayerMessage.java
++++ b/src/main/java/moe/caramel/daydream/player/PlayerMessage.java
 @@ -0,0 +1,76 @@
-+package moe.caramel.daydream.network.chat;
++package moe.caramel.daydream.player;
 +
 +import net.kyori.adventure.chat.SignedMessage;
 +import net.kyori.adventure.text.Component;
@@ -1538,7 +1538,7 @@ index 0000000000000000000000000000000000000000..e3247497bbf39051ed4b65c87d6c3cfe
 +import java.time.Instant;
 +import java.util.UUID;
 +
-+public interface PlayerMessage extends SignedMessage  {
++public interface PlayerMessage extends SignedMessage {
 +
 +    /**
 +     * 메시지를 발신한 대상의 UUID를 가져옵니다.
@@ -1592,7 +1592,7 @@ index 0000000000000000000000000000000000000000..e3247497bbf39051ed4b65c87d6c3cfe
 +     *
 +     * @param message 서명되지 않은 메시지
 +     */
-+    void unsignedContent(final @NotNull Component message);
++    void unsignedContent(@NotNull Component message);
 +
 +    /**
 +     * 서명되지 않은 메시지를 제거합니다. 받는 대상은 원본 메시지로 표시됩니다.

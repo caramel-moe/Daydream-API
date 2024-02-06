@@ -17,7 +17,7 @@ index 5637dc6b5a565a3c71b02bc026c73801d4aa251b..387a40a9b0d34dc9e95a3fdde31d78e3
      api("org.apache.maven:maven-resolver-provider:3.9.6") // Paper - make API dependency for Paper Plugins
      compileOnly("org.apache.maven.resolver:maven-resolver-connector-basic:1.9.18")
 diff --git a/src/main/java/io/papermc/paper/event/player/AbstractChatEvent.java b/src/main/java/io/papermc/paper/event/player/AbstractChatEvent.java
-index a0fd845bc9b2540c398fe1dbbf821803a7017a28..b19c79a40c1bbf1f7b9584bd265baf4c366375be 100644
+index a0fd845bc9b2540c398fe1dbbf821803a7017a28..91c0a765ac78e076aebbf2b4f5aa27b86e408aab 100644
 --- a/src/main/java/io/papermc/paper/event/player/AbstractChatEvent.java
 +++ b/src/main/java/io/papermc/paper/event/player/AbstractChatEvent.java
 @@ -27,6 +27,38 @@ public abstract class AbstractChatEvent extends PlayerEvent implements Cancellab
@@ -33,8 +33,8 @@ index a0fd845bc9b2540c398fe1dbbf821803a7017a28..b19c79a40c1bbf1f7b9584bd265baf4c
 +     * @return player message wrapper
 +     */
 +    @NotNull
-+    public moe.caramel.daydream.network.chat.PlayerMessage playerMessage() {
-+        return (moe.caramel.daydream.network.chat.PlayerMessage) signedMessage;
++    public moe.caramel.daydream.player.PlayerMessage playerMessage() {
++        return (moe.caramel.daydream.player.PlayerMessage) signedMessage;
 +    }
 +
 +    /**
@@ -60,7 +60,7 @@ index a0fd845bc9b2540c398fe1dbbf821803a7017a28..b19c79a40c1bbf1f7b9584bd265baf4c
      AbstractChatEvent(final boolean async, final @NotNull Player player, final @NotNull Set<Audience> viewers, final @NotNull ChatRenderer renderer, final @NotNull Component message, final @NotNull Component originalMessage, final @NotNull SignedMessage signedMessage) {
          super(player, async);
 diff --git a/src/main/java/io/papermc/paper/event/player/ChatEvent.java b/src/main/java/io/papermc/paper/event/player/ChatEvent.java
-index 7411f58f9f36beaadcc47c2264a4af313956ee03..18506bef176ffaba5bd45bf496b0591fb6108123 100644
+index 7411f58f9f36beaadcc47c2264a4af313956ee03..201fe24d393beb8d0be4c4212aff56439076edc9 100644
 --- a/src/main/java/io/papermc/paper/event/player/ChatEvent.java
 +++ b/src/main/java/io/papermc/paper/event/player/ChatEvent.java
 @@ -28,6 +28,13 @@ public final class ChatEvent extends AbstractChatEvent {
@@ -69,7 +69,7 @@ index 7411f58f9f36beaadcc47c2264a4af313956ee03..18506bef176ffaba5bd45bf496b0591f
  
 +    // Daydream start - Add more Player API (Improve Chat System)
 +    @Override
-+    public @NotNull moe.caramel.daydream.network.chat.PlayerMessage playerMessage() {
++    public @NotNull moe.caramel.daydream.player.PlayerMessage playerMessage() {
 +        throw new UnsupportedOperationException("Async Only");
 +    }
 +    // Daydream end - Add more Player API (Improve Chat System)

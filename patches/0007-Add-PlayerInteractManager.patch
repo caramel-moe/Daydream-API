@@ -4,11 +4,11 @@ Date: Sun, 8 Aug 2021 13:37:09 +0900
 Subject: [PATCH] Add PlayerInteractManager
 
 
-diff --git a/src/main/java/moe/caramel/daydream/event/player/PlayerIPSChangeEvent.java b/src/main/java/moe/caramel/daydream/event/player/PlayerIPSChangeEvent.java
+diff --git a/src/main/java/moe/caramel/daydream/event/player/PlayerInputUpdateEvent.java b/src/main/java/moe/caramel/daydream/event/player/PlayerInputUpdateEvent.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..f475e84175a917ec709dd7ccc61ff028d0eef951
+index 0000000000000000000000000000000000000000..d56a5e7c3e445280442a59ac5a19a767c5bace47
 --- /dev/null
-+++ b/src/main/java/moe/caramel/daydream/event/player/PlayerIPSChangeEvent.java
++++ b/src/main/java/moe/caramel/daydream/event/player/PlayerInputUpdateEvent.java
 @@ -0,0 +1,66 @@
 +package moe.caramel.daydream.event.player;
 +
@@ -22,7 +22,7 @@ index 0000000000000000000000000000000000000000..f475e84175a917ec709dd7ccc61ff028
 +/**
 + * 플레이어의 IPS(Interacts Per Second)가 변경되었을 때 호출됩니다.
 + */
-+public final class PlayerIPSChangeEvent extends PlayerEvent {
++public final class PlayerInputUpdateEvent extends PlayerEvent {
 +
 +    private static final HandlerList HANDLER_LIST = new HandlerList();
 +    public @NotNull HandlerList getHandlers() { return HANDLER_LIST; }
@@ -32,7 +32,7 @@ index 0000000000000000000000000000000000000000..f475e84175a917ec709dd7ccc61ff028
 +    private final Key key;
 +
 +    @ApiStatus.Internal
-+    public PlayerIPSChangeEvent(final @NotNull Player player, final @NotNull Key key, final int current, final int max) {
++    public PlayerInputUpdateEvent(final @NotNull Player player, final @NotNull Key key, final int current, final int max) {
 +        super(player);
 +        this.current = current;
 +        this.max = max;

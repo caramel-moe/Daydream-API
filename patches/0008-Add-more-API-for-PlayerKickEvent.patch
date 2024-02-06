@@ -1,0 +1,89 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: LemonCaramel <admin@caramel.moe>
+Date: Sun, 8 Aug 2021 14:54:35 +0900
+Subject: [PATCH] Add more API for PlayerKickEvent
+
+
+diff --git a/src/main/java/org/bukkit/event/player/PlayerKickEvent.java b/src/main/java/org/bukkit/event/player/PlayerKickEvent.java
+index f7f864a2b46129e4d61bc87f3e23c343417aa094..df9f8cef5709777a57f65a5ae6e829c58bf1616f 100644
+--- a/src/main/java/org/bukkit/event/player/PlayerKickEvent.java
++++ b/src/main/java/org/bukkit/event/player/PlayerKickEvent.java
+@@ -22,6 +22,7 @@ public class PlayerKickEvent extends PlayerEvent implements Cancellable {
+         this.leaveMessage = net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer.legacySection().deserialize(leaveMessage); // Paper
+         this.cause  = Cause.UNKNOWN; // Paper
+         this.cancel = false;
++        this.value = null; // Daydream - Add more API for PlayerKickEvent
+     }
+     // Paper start
+     @Deprecated
+@@ -31,6 +32,7 @@ public class PlayerKickEvent extends PlayerEvent implements Cancellable {
+         this.leaveMessage = leaveMessage;
+         this.cancel = false;
+         this.cause = Cause.UNKNOWN;
++        this.value = null; // Daydream - Add more API for PlayerKickEvent
+     }
+ 
+     @org.jetbrains.annotations.ApiStatus.Internal
+@@ -40,6 +42,7 @@ public class PlayerKickEvent extends PlayerEvent implements Cancellable {
+         this.leaveMessage = leaveMessage;
+         this.cancel = false;
+         this.cause = cause;
++        this.value = null; // Daydream - Add more API for PlayerKickEvent
+     }
+ 
+     /**
+@@ -79,6 +82,30 @@ public class PlayerKickEvent extends PlayerEvent implements Cancellable {
+     }
+     // Paper end
+ 
++    // Daydream start - Add more API for PlayerKickEvent
++    private final Object value;
++
++    @org.jetbrains.annotations.ApiStatus.Internal
++    public PlayerKickEvent(@NotNull final Player playerKicked, @NotNull final net.kyori.adventure.text.Component kickReason, @NotNull final net.kyori.adventure.text.Component leaveMessage, @NotNull final Cause cause, @org.jetbrains.annotations.Nullable final Object value) {
++        super(playerKicked);
++        this.kickReason = kickReason;
++        this.leaveMessage = leaveMessage;
++        this.cancel = false;
++        this.cause = cause;
++        this.value = value;
++    }
++
++    /**
++     * 클라이언트가 서버에 전송한 값을 가져옵니다.
++     *
++     * @return 클라이언트가 서버에 전송한 값이 올바른 값일 경우 {@code null}일 수도 있음
++     */
++    @org.jetbrains.annotations.Nullable
++    public Object getValue() {
++        return value;
++    }
++    // Daydream end - Add more API for PlayerKickEvent
++
+     /**
+      * Gets the reason why the player is getting kicked
+      *
+@@ -216,6 +243,23 @@ public class PlayerKickEvent extends PlayerEvent implements Cancellable {
+          * Fallback cause
+          */
+         UNKNOWN,
++
++        // Daydream start - Add more API for PlayerKickEvent
++        /**
++         * 클라이언트가 탭 자동완성을 이용하여 서버의 플러그인 목록을 조회하려고 할 때
++         */
++        TAB_COMPLETE_EXPLOIT,
++
++        /**
++         * 클라이언트가 서버의 월드 난이도를 변경하려고 할 때
++         */
++        DIFFICULTY_CHANGE,
++
++        /**
++         * 클라이언트가 서버의 월드 난이도를 잠그려고 할 때
++         */
++        DIFFICULTY_LOCK;
++        // Daydream end - Add more API for PlayerKickEvent
+     }
+     // Paper end
+ }
