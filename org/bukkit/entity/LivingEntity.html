@@ -363,6 +363,16 @@ extends <a href="../attribute/Attributable.html" title="interface in org.bukkit.
 <div class="block">Returns the value of the memory specified.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>int</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getNextArrowRemoval()" class="member-name-link">getNextArrowRemoval</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Gets the amount of ticks before the next arrow gets removed from the entities body.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>int</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getNextBeeStingerRemoval()" class="member-name-link">getNextBeeStingerRemoval</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Gets the amount of ticks before the next bee stinger gets removed from the entities body.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>int</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getNoActionTicks()" class="member-name-link">getNoActionTicks</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Get the ticks that this entity has performed no action.</div>
@@ -737,6 +747,16 @@ extends <a href="../attribute/Attributable.html" title="interface in org.bukkit.
  T&nbsp;memoryValue)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Sets the value of the memory specified.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#setNextArrowRemoval(int)" class="member-name-link">setNextArrowRemoval</a><wbr>(@org.jetbrains.annotations.Range(from=0L, to=2147483647L) int&nbsp;ticks)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Sets the amount of ticks before the next arrow gets removed from the entities body.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#setNextBeeStingerRemoval(int)" class="member-name-link">setNextBeeStingerRemoval</a><wbr>(@org.jetbrains.annotations.Range(from=0L, to=2147483647L) int&nbsp;ticks)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Sets the amount of ticks before the next bee stinger gets removed from the entities body.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#setNoActionTicks(int)" class="member-name-link">setNoActionTicks</a><wbr>(int&nbsp;ticks)</code></div>
@@ -1401,6 +1421,30 @@ extends <a href="../attribute/Attributable.html" title="interface in org.bukkit.
 </section>
 </li>
 <li>
+<section class="detail" id="setNextArrowRemoval(int)">
+<h3>setNextArrowRemoval</h3>
+<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">setNextArrowRemoval</span><wbr><span class="parameters">(@org.jetbrains.annotations.Range(from=0L, to=2147483647L) int&nbsp;ticks)</span></div>
+<div class="block">Sets the amount of ticks before the next arrow gets removed from the entities body.
+ <p>
+ A value of 0 will cause the server to re-calculate the amount of ticks on the next tick.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>ticks</code> - Amount of ticks</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getNextArrowRemoval()">
+<h3>getNextArrowRemoval</h3>
+<div class="member-signature"><span class="return-type">int</span>&nbsp;<span class="element-name">getNextArrowRemoval</span>()</div>
+<div class="block">Gets the amount of ticks before the next arrow gets removed from the entities body.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>ticks Amount of ticks</dd>
+</dl>
+</section>
+</li>
+<li>
 <section class="detail" id="getBeeStingerCooldown()">
 <h3>getBeeStingerCooldown</h3>
 <div class="member-signature"><span class="return-type">int</span>&nbsp;<span class="element-name">getBeeStingerCooldown</span>()</div>
@@ -1441,6 +1485,30 @@ extends <a href="../attribute/Attributable.html" title="interface in org.bukkit.
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>count</code> - amount of bee stingers in entity's body</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="setNextBeeStingerRemoval(int)">
+<h3>setNextBeeStingerRemoval</h3>
+<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">setNextBeeStingerRemoval</span><wbr><span class="parameters">(@org.jetbrains.annotations.Range(from=0L, to=2147483647L) int&nbsp;ticks)</span></div>
+<div class="block">Sets the amount of ticks before the next bee stinger gets removed from the entities body.
+ <p>
+ A value of 0 will cause the server to re-calculate the amount of ticks on the next tick.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>ticks</code> - Amount of ticks</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getNextBeeStingerRemoval()">
+<h3>getNextBeeStingerRemoval</h3>
+<div class="member-signature"><span class="return-type">int</span>&nbsp;<span class="element-name">getNextBeeStingerRemoval</span>()</div>
+<div class="block">Gets the amount of ticks before the next bee stinger gets removed from the entities body.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>ticks Amount of ticks</dd>
 </dl>
 </section>
 </li>
