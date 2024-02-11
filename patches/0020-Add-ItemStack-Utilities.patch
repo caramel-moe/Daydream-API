@@ -5,11 +5,11 @@ Subject: [PATCH] Add ItemStack Utilities
 
 
 diff --git a/src/main/java/org/bukkit/UnsafeValues.java b/src/main/java/org/bukkit/UnsafeValues.java
-index 0c3ec1a0e69e98c09d272ecfa6a60599633f3008..60a5785f55317d3117e1395e5b0b56b3dff928c4 100644
+index a585555328732ce22f32887c89a221dbace9a3ad..0813483bdfbaa5ce5ea8a3af14df86a4728b0230 100644
 --- a/src/main/java/org/bukkit/UnsafeValues.java
 +++ b/src/main/java/org/bukkit/UnsafeValues.java
-@@ -304,4 +304,18 @@ public interface UnsafeValues {
-     // Paper end - spawn egg color visibility
+@@ -314,4 +314,18 @@ public interface UnsafeValues {
+     @NotNull java.util.List<net.kyori.adventure.text.Component> computeTooltipLines(@NotNull ItemStack itemStack, @NotNull io.papermc.paper.inventory.tooltip.TooltipContext tooltipContext, @Nullable org.bukkit.entity.Player player); // Paper - expose itemstack tooltip lines
  
      @NotNull moe.caramel.daydream.world.DamageMata getDamageMeta(@NotNull Object damageSource); // Daydream - Add more API for EntityDamageEvent
 +
@@ -28,7 +28,7 @@ index 0c3ec1a0e69e98c09d272ecfa6a60599633f3008..60a5785f55317d3117e1395e5b0b56b3
 +    // Daydream end - Add ItemStack Utilities
  }
 diff --git a/src/main/java/org/bukkit/inventory/ItemStack.java b/src/main/java/org/bukkit/inventory/ItemStack.java
-index 7adf54c561d64e6337af8a2d86f6b574b083edb5..2bf9b673899ee7b0f38084448c8102891dab34b9 100644
+index 245a730a54c4b241a9a67eccceefafd2763bd238..e55f7c30a3426cdf412bbdac7ec9ed3f3ea3f23d 100644
 --- a/src/main/java/org/bukkit/inventory/ItemStack.java
 +++ b/src/main/java/org/bukkit/inventory/ItemStack.java
 @@ -34,6 +34,99 @@ public class ItemStack implements Cloneable, ConfigurationSerializable, Translat

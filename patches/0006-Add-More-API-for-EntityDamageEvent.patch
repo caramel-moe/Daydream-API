@@ -255,13 +255,13 @@ index 0000000000000000000000000000000000000000..aca7b9e9076a6c48cf3f27f42f841cd0
 +    void setOverrideKnockback(final @Nullable Vector knockback);
 +}
 diff --git a/src/main/java/org/bukkit/UnsafeValues.java b/src/main/java/org/bukkit/UnsafeValues.java
-index 923d8655a84e26960d35d8dc6e4ebc0b10c295d5..d07cd759d6314afd2a16208ba005158bf7edd8fa 100644
+index c6222fe754dee53f269944c7578dde8106377f20..ef7fdb558170e705bbf29d0c0e973b3e9c1d9c32 100644
 --- a/src/main/java/org/bukkit/UnsafeValues.java
 +++ b/src/main/java/org/bukkit/UnsafeValues.java
-@@ -273,4 +273,6 @@ public interface UnsafeValues {
-      */
-     @Nullable org.bukkit.Color getSpawnEggLayerColor(org.bukkit.entity.EntityType entityType, int layer);
-     // Paper end - spawn egg color visibility
+@@ -283,4 +283,6 @@ public interface UnsafeValues {
+     // Paper end - lifecycle event API
+ 
+     @NotNull java.util.List<net.kyori.adventure.text.Component> computeTooltipLines(@NotNull ItemStack itemStack, @NotNull io.papermc.paper.inventory.tooltip.TooltipContext tooltipContext, @Nullable org.bukkit.entity.Player player); // Paper - expose itemstack tooltip lines
 +
 +    @NotNull moe.caramel.daydream.world.DamageMata getDamageMeta(@NotNull Object damageSource); // Daydream - Add more API for EntityDamageEvent
  }
