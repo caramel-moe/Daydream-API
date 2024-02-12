@@ -1171,6 +1171,21 @@ extends <a href="RegionAccessor.html" title="interface in org.bukkit">RegionAcce
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Gets the default spawn <a href="Location.html" title="class in org.bukkit"><code>Location</code></a> of this world</div>
 </div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Collection.html" title="class or interface in java.util" class="external-link">Collection</a>&lt;<a href="generator/structure/GeneratedStructure.html" title="interface in org.bukkit.generator.structure">GeneratedStructure</a>&gt;</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getStructures(int,int)" class="member-name-link">getStructures</a><wbr>(int&nbsp;x,
+ int&nbsp;z)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Gets all generated structures that intersect the chunk at the given
+ coordinates.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Collection.html" title="class or interface in java.util" class="external-link">Collection</a>&lt;<a href="generator/structure/GeneratedStructure.html" title="interface in org.bukkit.generator.structure">GeneratedStructure</a>&gt;</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getStructures(int,int,org.bukkit.generator.structure.Structure)" class="member-name-link">getStructures</a><wbr>(int&nbsp;x,
+ int&nbsp;z,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="generator/structure/Structure.html" title="class in org.bukkit.generator.structure">Structure</a>&nbsp;structure)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Gets all generated structures of a given <a href="generator/structure/Structure.html" title="class in org.bukkit.generator.structure"><code>Structure</code></a> that intersect
+ the chunk at the given coordinates.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6"><code>double</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6"><code><a href="#getTemperature(int,int)" class="member-name-link">getTemperature</a><wbr>(int&nbsp;x,
  int&nbsp;z)</code></div>
@@ -2092,152 +2107,73 @@ extends <a href="RegionAccessor.html" title="interface in org.bukkit">RegionAcce
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Set the remaining time in ticks of the current conditions.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="entity/Arrow.html" title="interface in org.bukkit.entity">Arrow</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#spawnArrow(org.bukkit.Location,org.bukkit.util.Vector,float,float)" class="member-name-link">spawnArrow</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Location.html" title="class in org.bukkit">Location</a>&nbsp;location,
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>&lt;T extends <a href="entity/LivingEntity.html" title="interface in org.bukkit.entity">LivingEntity</a>&gt;<br>T</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#spawn(org.bukkit.Location,java.lang.Class,org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason,boolean,java.util.function.Consumer)" class="member-name-link">spawn</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Location.html" title="class in org.bukkit">Location</a>&nbsp;location,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Class.html" title="class or interface in java.lang" class="external-link">Class</a>&lt;T&gt;&nbsp;clazz,
+ <a href="event/entity/CreatureSpawnEvent.SpawnReason.html" title="enum class in org.bukkit.event.entity">CreatureSpawnEvent.SpawnReason</a>&nbsp;spawnReason,
+ boolean&nbsp;randomizeData,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Consumer.html" title="class or interface in java.util.function" class="external-link">Consumer</a>&lt;? super T&gt;&nbsp;function)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Creates a new entity at the given <a href="Location.html" title="class in org.bukkit"><code>Location</code></a> with the supplied
+ function run before the entity is added to the world.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="entity/Arrow.html" title="interface in org.bukkit.entity">Arrow</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#spawnArrow(org.bukkit.Location,org.bukkit.util.Vector,float,float)" class="member-name-link">spawnArrow</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Location.html" title="class in org.bukkit">Location</a>&nbsp;location,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="util/Vector.html" title="class in org.bukkit.util">Vector</a>&nbsp;direction,
  float&nbsp;speed,
  float&nbsp;spread)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Creates an <a href="entity/Arrow.html" title="interface in org.bukkit.entity"><code>Arrow</code></a> entity at the given <a href="Location.html" title="class in org.bukkit"><code>Location</code></a></div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>&lt;T extends <a href="entity/AbstractArrow.html" title="interface in org.bukkit.entity">AbstractArrow</a>&gt;<br>T</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#spawnArrow(org.bukkit.Location,org.bukkit.util.Vector,float,float,java.lang.Class)" class="member-name-link">spawnArrow</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Location.html" title="class in org.bukkit">Location</a>&nbsp;location,
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>&lt;T extends <a href="entity/AbstractArrow.html" title="interface in org.bukkit.entity">AbstractArrow</a>&gt;<br>T</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#spawnArrow(org.bukkit.Location,org.bukkit.util.Vector,float,float,java.lang.Class)" class="member-name-link">spawnArrow</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Location.html" title="class in org.bukkit">Location</a>&nbsp;location,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="util/Vector.html" title="class in org.bukkit.util">Vector</a>&nbsp;direction,
  float&nbsp;speed,
  float&nbsp;spread,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Class.html" title="class or interface in java.lang" class="external-link">Class</a>&lt;T&gt;&nbsp;clazz)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Creates an arrow entity of the given class at the given <a href="Location.html" title="class in org.bukkit"><code>Location</code></a></div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="entity/FallingBlock.html" title="interface in org.bukkit.entity">FallingBlock</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6"><code><a href="#spawnFallingBlock(org.bukkit.Location,org.bukkit.block.data.BlockData)" class="member-name-link">spawnFallingBlock</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Location.html" title="class in org.bukkit">Location</a>&nbsp;location,
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="block/data/BlockData.html" title="interface in org.bukkit.block.data">BlockData</a>&nbsp;data)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6">
-<div class="block"><span class="deprecated-label">Deprecated.</span>
-<div class="deprecation-comment">Use <a href="RegionAccessor.html#spawn(org.bukkit.Location,java.lang.Class,java.util.function.Consumer)"><code>RegionAccessor.spawn(Location, Class, Consumer)</code></a> (or a variation thereof) in combination with <a href="entity/FallingBlock.html#setBlockData(org.bukkit.block.data.BlockData)"><code>FallingBlock.setBlockData(BlockData)</code></a></div>
-</div>
-</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="entity/FallingBlock.html" title="interface in org.bukkit.entity">FallingBlock</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6"><code><a href="#spawnFallingBlock(org.bukkit.Location,org.bukkit.material.MaterialData)" class="member-name-link">spawnFallingBlock</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Location.html" title="class in org.bukkit">Location</a>&nbsp;location,
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="material/MaterialData.html" title="class in org.bukkit.material">MaterialData</a>&nbsp;data)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6"><code><a href="#spawnFallingBlock(org.bukkit.Location,org.bukkit.block.data.BlockData)" class="member-name-link">spawnFallingBlock</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Location.html" title="class in org.bukkit">Location</a>&nbsp;location,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="block/data/BlockData.html" title="interface in org.bukkit.block.data">BlockData</a>&nbsp;data)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6">
 <div class="block"><span class="deprecated-label">Deprecated.</span>
 <div class="deprecation-comment">Use <a href="RegionAccessor.html#spawn(org.bukkit.Location,java.lang.Class,java.util.function.Consumer)"><code>RegionAccessor.spawn(Location, Class, Consumer)</code></a> (or a variation thereof) in combination with <a href="entity/FallingBlock.html#setBlockData(org.bukkit.block.data.BlockData)"><code>FallingBlock.setBlockData(BlockData)</code></a></div>
 </div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="entity/FallingBlock.html" title="interface in org.bukkit.entity">FallingBlock</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6"><code><a href="#spawnFallingBlock(org.bukkit.Location,org.bukkit.Material,byte)" class="member-name-link">spawnFallingBlock</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Location.html" title="class in org.bukkit">Location</a>&nbsp;location,
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6"><code><a href="#spawnFallingBlock(org.bukkit.Location,org.bukkit.material.MaterialData)" class="member-name-link">spawnFallingBlock</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Location.html" title="class in org.bukkit">Location</a>&nbsp;location,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="material/MaterialData.html" title="class in org.bukkit.material">MaterialData</a>&nbsp;data)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6">
+<div class="block"><span class="deprecated-label">Deprecated.</span>
+<div class="deprecation-comment">Use <a href="RegionAccessor.html#spawn(org.bukkit.Location,java.lang.Class,java.util.function.Consumer)"><code>RegionAccessor.spawn(Location, Class, Consumer)</code></a> (or a variation thereof) in combination with <a href="entity/FallingBlock.html#setBlockData(org.bukkit.block.data.BlockData)"><code>FallingBlock.setBlockData(BlockData)</code></a></div>
+</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="entity/FallingBlock.html" title="interface in org.bukkit.entity">FallingBlock</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6"><code><a href="#spawnFallingBlock(org.bukkit.Location,org.bukkit.Material,byte)" class="member-name-link">spawnFallingBlock</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Location.html" title="class in org.bukkit">Location</a>&nbsp;location,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Material.html" title="enum class in org.bukkit">Material</a>&nbsp;material,
  byte&nbsp;data)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6">
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6">
 <div class="block"><span class="deprecated-label">Deprecated.</span>
 <div class="deprecation-comment">Magic value.</div>
 </div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#spawnParticle(org.bukkit.Particle,double,double,double,int)" class="member-name-link">spawnParticle</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Particle.html" title="enum class in org.bukkit">Particle</a>&nbsp;particle,
- double&nbsp;x,
- double&nbsp;y,
- double&nbsp;z,
- int&nbsp;count)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Spawns the particle (the number of times specified by count)
- at the target location.</div>
-</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#spawnParticle(org.bukkit.Particle,double,double,double,int,double,double,double)" class="member-name-link">spawnParticle</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Particle.html" title="enum class in org.bukkit">Particle</a>&nbsp;particle,
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#spawnParticle(org.bukkit.Particle,double,double,double,int)" class="member-name-link">spawnParticle</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Particle.html" title="enum class in org.bukkit">Particle</a>&nbsp;particle,
  double&nbsp;x,
  double&nbsp;y,
  double&nbsp;z,
- int&nbsp;count,
- double&nbsp;offsetX,
- double&nbsp;offsetY,
- double&nbsp;offsetZ)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Spawns the particle (the number of times specified by count)
- at the target location.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#spawnParticle(org.bukkit.Particle,double,double,double,int,double,double,double,double)" class="member-name-link">spawnParticle</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Particle.html" title="enum class in org.bukkit">Particle</a>&nbsp;particle,
- double&nbsp;x,
- double&nbsp;y,
- double&nbsp;z,
- int&nbsp;count,
- double&nbsp;offsetX,
- double&nbsp;offsetY,
- double&nbsp;offsetZ,
- double&nbsp;extra)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Spawns the particle (the number of times specified by count)
- at the target location.</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code>default &lt;T&gt;&nbsp;void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#spawnParticle(org.bukkit.Particle,double,double,double,int,double,double,double,double,T)" class="member-name-link">spawnParticle</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Particle.html" title="enum class in org.bukkit">Particle</a>&nbsp;particle,
- double&nbsp;x,
- double&nbsp;y,
- double&nbsp;z,
- int&nbsp;count,
- double&nbsp;offsetX,
- double&nbsp;offsetY,
- double&nbsp;offsetZ,
- double&nbsp;extra,
- T&nbsp;data)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5">
-<div class="block">Spawns the particle (the number of times specified by count)
- at the target location.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>&lt;T&gt;&nbsp;void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#spawnParticle(org.bukkit.Particle,double,double,double,int,double,double,double,double,T,boolean)" class="member-name-link">spawnParticle</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Particle.html" title="enum class in org.bukkit">Particle</a>&nbsp;particle,
- double&nbsp;x,
- double&nbsp;y,
- double&nbsp;z,
- int&nbsp;count,
- double&nbsp;offsetX,
- double&nbsp;offsetY,
- double&nbsp;offsetZ,
- double&nbsp;extra,
- T&nbsp;data,
- boolean&nbsp;force)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Spawns the particle (the number of times specified by count)
- at the target location.</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>&lt;T&gt;&nbsp;void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#spawnParticle(org.bukkit.Particle,double,double,double,int,double,double,double,T)" class="member-name-link">spawnParticle</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Particle.html" title="enum class in org.bukkit">Particle</a>&nbsp;particle,
- double&nbsp;x,
- double&nbsp;y,
- double&nbsp;z,
- int&nbsp;count,
- double&nbsp;offsetX,
- double&nbsp;offsetY,
- double&nbsp;offsetZ,
- T&nbsp;data)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Spawns the particle (the number of times specified by count)
- at the target location.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>&lt;T&gt;&nbsp;void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#spawnParticle(org.bukkit.Particle,double,double,double,int,T)" class="member-name-link">spawnParticle</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Particle.html" title="enum class in org.bukkit">Particle</a>&nbsp;particle,
- double&nbsp;x,
- double&nbsp;y,
- double&nbsp;z,
- int&nbsp;count,
- T&nbsp;data)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Spawns the particle (the number of times specified by count)
- at the target location.</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#spawnParticle(org.bukkit.Particle,org.bukkit.Location,int)" class="member-name-link">spawnParticle</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Particle.html" title="enum class in org.bukkit">Particle</a>&nbsp;particle,
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Location.html" title="class in org.bukkit">Location</a>&nbsp;location,
  int&nbsp;count)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Spawns the particle (the number of times specified by count)
  at the target location.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#spawnParticle(org.bukkit.Particle,org.bukkit.Location,int,double,double,double)" class="member-name-link">spawnParticle</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Particle.html" title="enum class in org.bukkit">Particle</a>&nbsp;particle,
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Location.html" title="class in org.bukkit">Location</a>&nbsp;location,
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#spawnParticle(org.bukkit.Particle,double,double,double,int,double,double,double)" class="member-name-link">spawnParticle</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Particle.html" title="enum class in org.bukkit">Particle</a>&nbsp;particle,
+ double&nbsp;x,
+ double&nbsp;y,
+ double&nbsp;z,
  int&nbsp;count,
  double&nbsp;offsetX,
  double&nbsp;offsetY,
@@ -2247,69 +2183,21 @@ extends <a href="RegionAccessor.html" title="interface in org.bukkit">RegionAcce
  at the target location.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#spawnParticle(org.bukkit.Particle,org.bukkit.Location,int,double,double,double,double)" class="member-name-link">spawnParticle</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Particle.html" title="enum class in org.bukkit">Particle</a>&nbsp;particle,
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Location.html" title="class in org.bukkit">Location</a>&nbsp;location,
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#spawnParticle(org.bukkit.Particle,double,double,double,int,double,double,double,double)" class="member-name-link">spawnParticle</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Particle.html" title="enum class in org.bukkit">Particle</a>&nbsp;particle,
+ double&nbsp;x,
+ double&nbsp;y,
+ double&nbsp;z,
  int&nbsp;count,
  double&nbsp;offsetX,
  double&nbsp;offsetY,
  double&nbsp;offsetZ,
  double&nbsp;extra)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Spawns the particle (the number of times specified by count)
- at the target location.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>&lt;T&gt;&nbsp;void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#spawnParticle(org.bukkit.Particle,org.bukkit.Location,int,double,double,double,double,T)" class="member-name-link">spawnParticle</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Particle.html" title="enum class in org.bukkit">Particle</a>&nbsp;particle,
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Location.html" title="class in org.bukkit">Location</a>&nbsp;location,
- int&nbsp;count,
- double&nbsp;offsetX,
- double&nbsp;offsetY,
- double&nbsp;offsetZ,
- double&nbsp;extra,
- T&nbsp;data)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Spawns the particle (the number of times specified by count)
- at the target location.</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>&lt;T&gt;&nbsp;void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#spawnParticle(org.bukkit.Particle,org.bukkit.Location,int,double,double,double,double,T,boolean)" class="member-name-link">spawnParticle</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Particle.html" title="enum class in org.bukkit">Particle</a>&nbsp;particle,
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Location.html" title="class in org.bukkit">Location</a>&nbsp;location,
- int&nbsp;count,
- double&nbsp;offsetX,
- double&nbsp;offsetY,
- double&nbsp;offsetZ,
- double&nbsp;extra,
- T&nbsp;data,
- boolean&nbsp;force)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Spawns the particle (the number of times specified by count)
- at the target location.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>&lt;T&gt;&nbsp;void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#spawnParticle(org.bukkit.Particle,org.bukkit.Location,int,double,double,double,T)" class="member-name-link">spawnParticle</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Particle.html" title="enum class in org.bukkit">Particle</a>&nbsp;particle,
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Location.html" title="class in org.bukkit">Location</a>&nbsp;location,
- int&nbsp;count,
- double&nbsp;offsetX,
- double&nbsp;offsetY,
- double&nbsp;offsetZ,
- T&nbsp;data)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Spawns the particle (the number of times specified by count)
- at the target location.</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>&lt;T&gt;&nbsp;void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#spawnParticle(org.bukkit.Particle,org.bukkit.Location,int,T)" class="member-name-link">spawnParticle</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Particle.html" title="enum class in org.bukkit">Particle</a>&nbsp;particle,
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Location.html" title="class in org.bukkit">Location</a>&nbsp;location,
- int&nbsp;count,
- T&nbsp;data)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Spawns the particle (the number of times specified by count)
  at the target location.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code>default &lt;T&gt;&nbsp;void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#spawnParticle(org.bukkit.Particle,java.util.List,org.bukkit.entity.Player,double,double,double,int,double,double,double,double,T)" class="member-name-link">spawnParticle</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Particle.html" title="enum class in org.bukkit">Particle</a>&nbsp;particle,
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="entity/Player.html" title="interface in org.bukkit.entity">Player</a>&gt;&nbsp;receivers,
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="entity/Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;source,
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#spawnParticle(org.bukkit.Particle,double,double,double,int,double,double,double,double,T)" class="member-name-link">spawnParticle</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Particle.html" title="enum class in org.bukkit">Particle</a>&nbsp;particle,
  double&nbsp;x,
  double&nbsp;y,
  double&nbsp;z,
@@ -2324,9 +2212,7 @@ extends <a href="RegionAccessor.html" title="interface in org.bukkit">RegionAcce
  at the target location.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>&lt;T&gt;&nbsp;void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#spawnParticle(org.bukkit.Particle,java.util.List,org.bukkit.entity.Player,double,double,double,int,double,double,double,double,T,boolean)" class="member-name-link">spawnParticle</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Particle.html" title="enum class in org.bukkit">Particle</a>&nbsp;particle,
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="entity/Player.html" title="interface in org.bukkit.entity">Player</a>&gt;&nbsp;receivers,
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="entity/Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;source,
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#spawnParticle(org.bukkit.Particle,double,double,double,int,double,double,double,double,T,boolean)" class="member-name-link">spawnParticle</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Particle.html" title="enum class in org.bukkit">Particle</a>&nbsp;particle,
  double&nbsp;x,
  double&nbsp;y,
  double&nbsp;z,
@@ -2341,46 +2227,185 @@ extends <a href="RegionAccessor.html" title="interface in org.bukkit">RegionAcce
 <div class="block">Spawns the particle (the number of times specified by count)
  at the target location.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="World.Spigot.html" title="class in org.bukkit">World.Spigot</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6"><code><a href="#spigot()" class="member-name-link">spigot</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>&lt;T&gt;&nbsp;void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#spawnParticle(org.bukkit.Particle,double,double,double,int,double,double,double,T)" class="member-name-link">spawnParticle</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Particle.html" title="enum class in org.bukkit">Particle</a>&nbsp;particle,
+ double&nbsp;x,
+ double&nbsp;y,
+ double&nbsp;z,
+ int&nbsp;count,
+ double&nbsp;offsetX,
+ double&nbsp;offsetY,
+ double&nbsp;offsetZ,
+ T&nbsp;data)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Spawns the particle (the number of times specified by count)
+ at the target location.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>&lt;T&gt;&nbsp;void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#spawnParticle(org.bukkit.Particle,double,double,double,int,T)" class="member-name-link">spawnParticle</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Particle.html" title="enum class in org.bukkit">Particle</a>&nbsp;particle,
+ double&nbsp;x,
+ double&nbsp;y,
+ double&nbsp;z,
+ int&nbsp;count,
+ T&nbsp;data)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Spawns the particle (the number of times specified by count)
+ at the target location.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#spawnParticle(org.bukkit.Particle,org.bukkit.Location,int)" class="member-name-link">spawnParticle</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Particle.html" title="enum class in org.bukkit">Particle</a>&nbsp;particle,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Location.html" title="class in org.bukkit">Location</a>&nbsp;location,
+ int&nbsp;count)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Spawns the particle (the number of times specified by count)
+ at the target location.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#spawnParticle(org.bukkit.Particle,org.bukkit.Location,int,double,double,double)" class="member-name-link">spawnParticle</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Particle.html" title="enum class in org.bukkit">Particle</a>&nbsp;particle,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Location.html" title="class in org.bukkit">Location</a>&nbsp;location,
+ int&nbsp;count,
+ double&nbsp;offsetX,
+ double&nbsp;offsetY,
+ double&nbsp;offsetZ)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Spawns the particle (the number of times specified by count)
+ at the target location.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#spawnParticle(org.bukkit.Particle,org.bukkit.Location,int,double,double,double,double)" class="member-name-link">spawnParticle</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Particle.html" title="enum class in org.bukkit">Particle</a>&nbsp;particle,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Location.html" title="class in org.bukkit">Location</a>&nbsp;location,
+ int&nbsp;count,
+ double&nbsp;offsetX,
+ double&nbsp;offsetY,
+ double&nbsp;offsetZ,
+ double&nbsp;extra)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Spawns the particle (the number of times specified by count)
+ at the target location.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>&lt;T&gt;&nbsp;void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#spawnParticle(org.bukkit.Particle,org.bukkit.Location,int,double,double,double,double,T)" class="member-name-link">spawnParticle</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Particle.html" title="enum class in org.bukkit">Particle</a>&nbsp;particle,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Location.html" title="class in org.bukkit">Location</a>&nbsp;location,
+ int&nbsp;count,
+ double&nbsp;offsetX,
+ double&nbsp;offsetY,
+ double&nbsp;offsetZ,
+ double&nbsp;extra,
+ T&nbsp;data)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Spawns the particle (the number of times specified by count)
+ at the target location.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>&lt;T&gt;&nbsp;void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#spawnParticle(org.bukkit.Particle,org.bukkit.Location,int,double,double,double,double,T,boolean)" class="member-name-link">spawnParticle</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Particle.html" title="enum class in org.bukkit">Particle</a>&nbsp;particle,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Location.html" title="class in org.bukkit">Location</a>&nbsp;location,
+ int&nbsp;count,
+ double&nbsp;offsetX,
+ double&nbsp;offsetY,
+ double&nbsp;offsetZ,
+ double&nbsp;extra,
+ T&nbsp;data,
+ boolean&nbsp;force)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Spawns the particle (the number of times specified by count)
+ at the target location.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>&lt;T&gt;&nbsp;void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#spawnParticle(org.bukkit.Particle,org.bukkit.Location,int,double,double,double,T)" class="member-name-link">spawnParticle</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Particle.html" title="enum class in org.bukkit">Particle</a>&nbsp;particle,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Location.html" title="class in org.bukkit">Location</a>&nbsp;location,
+ int&nbsp;count,
+ double&nbsp;offsetX,
+ double&nbsp;offsetY,
+ double&nbsp;offsetZ,
+ T&nbsp;data)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Spawns the particle (the number of times specified by count)
+ at the target location.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>&lt;T&gt;&nbsp;void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#spawnParticle(org.bukkit.Particle,org.bukkit.Location,int,T)" class="member-name-link">spawnParticle</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Particle.html" title="enum class in org.bukkit">Particle</a>&nbsp;particle,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Location.html" title="class in org.bukkit">Location</a>&nbsp;location,
+ int&nbsp;count,
+ T&nbsp;data)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Spawns the particle (the number of times specified by count)
+ at the target location.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code>default &lt;T&gt;&nbsp;void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#spawnParticle(org.bukkit.Particle,java.util.List,org.bukkit.entity.Player,double,double,double,int,double,double,double,double,T)" class="member-name-link">spawnParticle</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Particle.html" title="enum class in org.bukkit">Particle</a>&nbsp;particle,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="entity/Player.html" title="interface in org.bukkit.entity">Player</a>&gt;&nbsp;receivers,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="entity/Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;source,
+ double&nbsp;x,
+ double&nbsp;y,
+ double&nbsp;z,
+ int&nbsp;count,
+ double&nbsp;offsetX,
+ double&nbsp;offsetY,
+ double&nbsp;offsetZ,
+ double&nbsp;extra,
+ T&nbsp;data)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5">
+<div class="block">Spawns the particle (the number of times specified by count)
+ at the target location.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>&lt;T&gt;&nbsp;void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#spawnParticle(org.bukkit.Particle,java.util.List,org.bukkit.entity.Player,double,double,double,int,double,double,double,double,T,boolean)" class="member-name-link">spawnParticle</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Particle.html" title="enum class in org.bukkit">Particle</a>&nbsp;particle,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="entity/Player.html" title="interface in org.bukkit.entity">Player</a>&gt;&nbsp;receivers,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="entity/Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;source,
+ double&nbsp;x,
+ double&nbsp;y,
+ double&nbsp;z,
+ int&nbsp;count,
+ double&nbsp;offsetX,
+ double&nbsp;offsetY,
+ double&nbsp;offsetZ,
+ double&nbsp;extra,
+ T&nbsp;data,
+ boolean&nbsp;force)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Spawns the particle (the number of times specified by count)
+ at the target location.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="World.Spigot.html" title="class in org.bukkit">World.Spigot</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6"><code><a href="#spigot()" class="member-name-link">spigot</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6">
 <div class="block"><span class="deprecated-label">Deprecated.</span>
 <div class="deprecation-comment">Unsupported api</div>
 </div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="entity/LightningStrike.html" title="interface in org.bukkit.entity">LightningStrike</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#strikeLightning(org.bukkit.Location)" class="member-name-link">strikeLightning</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Location.html" title="class in org.bukkit">Location</a>&nbsp;loc)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="entity/LightningStrike.html" title="interface in org.bukkit.entity">LightningStrike</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#strikeLightning(org.bukkit.Location)" class="member-name-link">strikeLightning</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Location.html" title="class in org.bukkit">Location</a>&nbsp;loc)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Strikes lightning at the given <a href="Location.html" title="class in org.bukkit"><code>Location</code></a></div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="entity/LightningStrike.html" title="interface in org.bukkit.entity">LightningStrike</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#strikeLightningEffect(org.bukkit.Location)" class="member-name-link">strikeLightningEffect</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Location.html" title="class in org.bukkit">Location</a>&nbsp;loc)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="entity/LightningStrike.html" title="interface in org.bukkit.entity">LightningStrike</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#strikeLightningEffect(org.bukkit.Location)" class="member-name-link">strikeLightningEffect</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Location.html" title="class in org.bukkit">Location</a>&nbsp;loc)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Strikes lightning at the given <a href="Location.html" title="class in org.bukkit"><code>Location</code></a> without doing damage</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#unloadChunk(int,int)" class="member-name-link">unloadChunk</a><wbr>(int&nbsp;x,
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#unloadChunk(int,int)" class="member-name-link">unloadChunk</a><wbr>(int&nbsp;x,
  int&nbsp;z)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Safely unloads and saves the <a href="Chunk.html" title="interface in org.bukkit"><code>Chunk</code></a> at the specified coordinates</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#unloadChunk(int,int,boolean)" class="member-name-link">unloadChunk</a><wbr>(int&nbsp;x,
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#unloadChunk(int,int,boolean)" class="member-name-link">unloadChunk</a><wbr>(int&nbsp;x,
  int&nbsp;z,
  boolean&nbsp;save)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Safely unloads and optionally saves the <a href="Chunk.html" title="interface in org.bukkit"><code>Chunk</code></a> at the specified
  coordinates.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#unloadChunk(org.bukkit.Chunk)" class="member-name-link">unloadChunk</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Chunk.html" title="interface in org.bukkit">Chunk</a>&nbsp;chunk)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#unloadChunk(org.bukkit.Chunk)" class="member-name-link">unloadChunk</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Chunk.html" title="interface in org.bukkit">Chunk</a>&nbsp;chunk)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Safely unloads and saves the <a href="Chunk.html" title="interface in org.bukkit"><code>Chunk</code></a> at the specified coordinates</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#unloadChunkRequest(int,int)" class="member-name-link">unloadChunkRequest</a><wbr>(int&nbsp;x,
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#unloadChunkRequest(int,int)" class="member-name-link">unloadChunkRequest</a><wbr>(int&nbsp;x,
  int&nbsp;z)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Safely queues the <a href="Chunk.html" title="interface in org.bukkit"><code>Chunk</code></a> at the specified coordinates for
  unloading.</div>
 </div>
@@ -6123,6 +6148,61 @@ extends <a href="RegionAccessor.html" title="interface in org.bukkit">RegionAcce
 </section>
 </li>
 <li>
+<section class="detail" id="spawn(org.bukkit.Location,java.lang.Class,org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason,boolean,java.util.function.Consumer)">
+<h3>spawn</h3>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+</span><span class="type-parameters">&lt;T extends <a href="entity/LivingEntity.html" title="interface in org.bukkit.entity">LivingEntity</a>&gt;</span>&nbsp;<span class="return-type">T</span>&nbsp;<span class="element-name">spawn</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Location.html" title="class in org.bukkit">Location</a>&nbsp;location,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Class.html" title="class or interface in java.lang" class="external-link">Class</a>&lt;T&gt;&nbsp;clazz,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="event/entity/CreatureSpawnEvent.SpawnReason.html" title="enum class in org.bukkit.event.entity">CreatureSpawnEvent.SpawnReason</a>&nbsp;spawnReason,
+ boolean&nbsp;randomizeData,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Consumer.html" title="class or interface in java.util.function" class="external-link">Consumer</a>&lt;? super T&gt;&nbsp;function)</span>
+                          throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></span></div>
+<div class="block">Creates a new entity at the given <a href="Location.html" title="class in org.bukkit"><code>Location</code></a> with the supplied
+ function run before the entity is added to the world.
+ <br>
+ Note that when the function is run, the entity will not be actually in
+ the world. Any operation involving such as teleporting the entity is undefined
+ until after this function returns.
+ The passed function however is run after the potential entity's spawn
+ randomization and hence already allows access to the values of the mob,
+ whether or not those were randomized, such as attributes or the entity
+ equipment.</div>
+<dl class="notes">
+<dt>Type Parameters:</dt>
+<dd><code>T</code> - the generic type of the entity that is being created.</dd>
+<dt>Parameters:</dt>
+<dd><code>location</code> - the location at which the entity will be spawned.</dd>
+<dd><code>clazz</code> - the class of the <a href="entity/LivingEntity.html" title="interface in org.bukkit.entity"><code>LivingEntity</code></a> that is to be spawned.</dd>
+<dd><code>spawnReason</code> - the reason provided during the <a href="event/entity/CreatureSpawnEvent.html" title="class in org.bukkit.event.entity"><code>CreatureSpawnEvent</code></a> call.</dd>
+<dd><code>randomizeData</code> - whether or not the entity's data should be randomised
+                      before spawning. By default entities are randomised
+                      before spawning in regards to their equipment, age,
+                      attributes, etc.
+                      An example of this randomization would be the color of
+                      a sheep, random enchantments on the equipment of mobs
+                      or even a zombie becoming a chicken jockey.
+                      If set to false, the entity will not be randomised
+                      before spawning, meaning all their data will remain
+                      in their default state and not further modifications
+                      to the entity will be made.
+                      Notably only entities that extend the
+                      <a href="entity/Mob.html" title="interface in org.bukkit.entity"><code>Mob</code></a> interface provide
+                      randomisation logic for their spawn.
+                      This parameter is hence useless for any other type
+                      of entity.</dd>
+<dd><code>function</code> - the function to be run before the entity is spawned.</dd>
+<dt>Returns:</dt>
+<dd>the spawned entity instance.</dd>
+<dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if either the world or clazz parameter are null.</dd>
+</dl>
+</section>
+</li>
+<li>
 <section class="detail" id="spawnFallingBlock(org.bukkit.Location,org.bukkit.material.MaterialData)">
 <h3>spawnFallingBlock</h3>
 <div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
@@ -9078,6 +9158,47 @@ extends <a href="RegionAccessor.html" title="interface in org.bukkit">RegionAcce
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>viewDistance</code> - view distance in [2, 32] or -1</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getStructures(int,int)">
+<h3>getStructures</h3>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+</span><span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Collection.html" title="class or interface in java.util" class="external-link">Collection</a>&lt;<a href="generator/structure/GeneratedStructure.html" title="interface in org.bukkit.generator.structure">GeneratedStructure</a>&gt;</span>&nbsp;<span class="element-name">getStructures</span><wbr><span class="parameters">(int&nbsp;x,
+ int&nbsp;z)</span></div>
+<div class="block">Gets all generated structures that intersect the chunk at the given
+ coordinates. <br>
+ If no structures are present an empty collection will be returned.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>x</code> - X-coordinate of the chunk</dd>
+<dd><code>z</code> - Z-coordinate of the chunk</dd>
+<dt>Returns:</dt>
+<dd>a collection of placed structures in the chunk at the given
+ coordinates</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getStructures(int,int,org.bukkit.generator.structure.Structure)">
+<h3>getStructures</h3>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+</span><span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Collection.html" title="class or interface in java.util" class="external-link">Collection</a>&lt;<a href="generator/structure/GeneratedStructure.html" title="interface in org.bukkit.generator.structure">GeneratedStructure</a>&gt;</span>&nbsp;<span class="element-name">getStructures</span><wbr><span class="parameters">(int&nbsp;x,
+ int&nbsp;z,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="generator/structure/Structure.html" title="class in org.bukkit.generator.structure">Structure</a>&nbsp;structure)</span></div>
+<div class="block">Gets all generated structures of a given <a href="generator/structure/Structure.html" title="class in org.bukkit.generator.structure"><code>Structure</code></a> that intersect
+ the chunk at the given coordinates. <br>
+ If no structures are present an empty collection will be returned.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>x</code> - X-coordinate of the chunk</dd>
+<dd><code>z</code> - Z-coordinate of the chunk</dd>
+<dd><code>structure</code> - the structure to find</dd>
+<dt>Returns:</dt>
+<dd>a collection of placed structures in the chunk at the given
+ coordinates</dd>
 </dl>
 </section>
 </li>

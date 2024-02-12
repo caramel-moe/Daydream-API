@@ -115,30 +115,67 @@ extends <a href="Cow.html" title="interface in org.bukkit.entity">Cow</a>, <a hr
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5 method-summary-table-tab6"><code>default int</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5 method-summary-table-tab6"><code><a href="#getStewEffectDuration()" class="member-name-link">getStewEffectDuration</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5 method-summary-table-tab6">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#addEffectToNextStew(org.bukkit.potion.PotionEffect,boolean)" class="member-name-link">addEffectToNextStew</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../potion/PotionEffect.html" title="class in org.bukkit.potion">PotionEffect</a>&nbsp;effect,
+ boolean&nbsp;overwrite)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Adds a custom potion effect to be applied to the next suspicious stew
+ received from milking this <a href="MushroomCow.html" title="interface in org.bukkit.entity"><code>MushroomCow</code></a>.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#clearEffectsForNextStew()" class="member-name-link">clearEffectsForNextStew</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Removes all custom potion effects to be applied to the next suspicious
+ stew received from milking this <a href="MushroomCow.html" title="interface in org.bukkit.entity"><code>MushroomCow</code></a>.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../potion/PotionEffect.html" title="class in org.bukkit.potion">PotionEffect</a>&gt;</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getEffectsForNextStew()" class="member-name-link">getEffectsForNextStew</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Gets an immutable list containing all custom potion effects applied to
+ the next suspicious stew received from milking this <a href="MushroomCow.html" title="interface in org.bukkit.entity"><code>MushroomCow</code></a>.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5 method-summary-table-tab6"><code>default int</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5 method-summary-table-tab6"><code><a href="#getStewEffectDuration()" class="member-name-link">getStewEffectDuration</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5 method-summary-table-tab6">
 <div class="block"><span class="deprecated-label">Deprecated, for removal: This API element is subject to removal in a future version.</span>
 <div class="deprecation-comment">Mushroom cows can now hold multiple effects, use <a href="#getStewEffects()"><code>getStewEffects()</code></a></div>
 </div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Unmodifiable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Unmodifiable</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../../../io/papermc/paper/potion/SuspiciousEffectEntry.html" title="interface in io.papermc.paper.potion">SuspiciousEffectEntry</a>&gt;</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getStewEffects()" class="member-name-link">getStewEffects</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Unmodifiable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Unmodifiable</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../../../io/papermc/paper/potion/SuspiciousEffectEntry.html" title="interface in io.papermc.paper.potion">SuspiciousEffectEntry</a>&gt;</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getStewEffects()" class="member-name-link">getStewEffects</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Returns an immutable collection of the effects applied to stew
  items for this mushroom cow.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5 method-summary-table-tab6"><code>default <a href="../potion/PotionEffectType.html" title="class in org.bukkit.potion">PotionEffectType</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5 method-summary-table-tab6"><code><a href="#getStewEffectType()" class="member-name-link">getStewEffectType</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5 method-summary-table-tab6">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5 method-summary-table-tab6"><code>default <a href="../potion/PotionEffectType.html" title="class in org.bukkit.potion">PotionEffectType</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5 method-summary-table-tab6"><code><a href="#getStewEffectType()" class="member-name-link">getStewEffectType</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5 method-summary-table-tab6">
 <div class="block"><span class="deprecated-label">Deprecated, for removal: This API element is subject to removal in a future version.</span>
 <div class="deprecation-comment">Mushroom cows can now hold multiple effects, use <a href="#getStewEffects()"><code>getStewEffects()</code></a></div>
 </div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="MushroomCow.Variant.html" title="enum class in org.bukkit.entity">MushroomCow.Variant</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getVariant()" class="member-name-link">getVariant</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="MushroomCow.Variant.html" title="enum class in org.bukkit.entity">MushroomCow.Variant</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getVariant()" class="member-name-link">getVariant</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Get the variant of this cow.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#hasEffectForNextStew(org.bukkit.potion.PotionEffectType)" class="member-name-link">hasEffectForNextStew</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../potion/PotionEffectType.html" title="class in org.bukkit.potion">PotionEffectType</a>&nbsp;type)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Checks for a specific custom potion effect type to be applied to the next
+ suspicious stew received from milking this <a href="MushroomCow.html" title="interface in org.bukkit.entity"><code>MushroomCow</code></a>.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#hasEffectsForNextStew()" class="member-name-link">hasEffectsForNextStew</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Checks for the presence of custom potion effects to be applied to the
+ next suspicious stew received from milking this <a href="MushroomCow.html" title="interface in org.bukkit.entity"><code>MushroomCow</code></a>.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#removeEffectFromNextStew(org.bukkit.potion.PotionEffectType)" class="member-name-link">removeEffectFromNextStew</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../potion/PotionEffectType.html" title="class in org.bukkit.potion">PotionEffectType</a>&nbsp;type)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Removes a custom potion effect from being applied to the next suspicious
+ stew received from milking this <a href="MushroomCow.html" title="interface in org.bukkit.entity"><code>MushroomCow</code></a>.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5 method-summary-table-tab6"><code>default void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5 method-summary-table-tab6"><code><a href="#setStewEffect(org.bukkit.potion.PotionEffectType)" class="member-name-link">setStewEffect</a><wbr>(<a href="../potion/PotionEffectType.html" title="class in org.bukkit.potion">PotionEffectType</a>&nbsp;type)</code></div>
@@ -187,7 +224,7 @@ extends <a href="Cow.html" title="interface in org.bukkit.entity">Cow</a>, <a hr
 <code><a href="../command/CommandSender.html#getCommandSource()">getCommandSource</a>, <a href="../command/CommandSender.html#getName()">getName</a>, <a href="../command/CommandSender.html#name()">name</a>, <a href="../command/CommandSender.html#sendMessage(java.lang.String)">sendMessage</a>, <a href="../command/CommandSender.html#sendMessage(java.lang.String...)">sendMessage</a>, <a href="../command/CommandSender.html#sendMessage(net.kyori.adventure.identity.Identity,net.kyori.adventure.text.Component,net.kyori.adventure.audience.MessageType)">sendMessage</a>, <a href="../command/CommandSender.html#sendMessage(net.md_5.bungee.api.chat.BaseComponent...)">sendMessage</a>, <a href="../command/CommandSender.html#sendMessage(java.util.UUID,java.lang.String)">sendMessage</a>, <a href="../command/CommandSender.html#sendMessage(java.util.UUID,java.lang.String...)">sendMessage</a>, <a href="../command/CommandSender.html#sendMessage(net.md_5.bungee.api.chat.BaseComponent)">sendMessage</a>, <a href="../command/CommandSender.html#sendPlainMessage(java.lang.String)">sendPlainMessage</a>, <a href="../command/CommandSender.html#sendRichMessage(java.lang.String)">sendRichMessage</a>, <a href="../command/CommandSender.html#sendRichMessage(java.lang.String,net.kyori.adventure.text.minimessage.tag.resolver.TagResolver...)">sendRichMessage</a></code></div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-org.bukkit.entity.Damageable">Methods inherited from interface&nbsp;org.bukkit.entity.<a href="Damageable.html" title="interface in org.bukkit.entity">Damageable</a></h3>
-<code><a href="Damageable.html#damage(double)">damage</a>, <a href="Damageable.html#damage(double,org.bukkit.entity.Entity)">damage</a>, <a href="Damageable.html#getAbsorptionAmount()">getAbsorptionAmount</a>, <a href="Damageable.html#getHealth()">getHealth</a>, <a href="Damageable.html#getMaxHealth()">getMaxHealth</a>, <a href="Damageable.html#resetMaxHealth()">resetMaxHealth</a>, <a href="Damageable.html#setAbsorptionAmount(double)">setAbsorptionAmount</a>, <a href="Damageable.html#setHealth(double)">setHealth</a>, <a href="Damageable.html#setMaxHealth(double)">setMaxHealth</a></code></div>
+<code><a href="Damageable.html#damage(double)">damage</a>, <a href="Damageable.html#damage(double,org.bukkit.damage.DamageSource)">damage</a>, <a href="Damageable.html#damage(double,org.bukkit.entity.Entity)">damage</a>, <a href="Damageable.html#getAbsorptionAmount()">getAbsorptionAmount</a>, <a href="Damageable.html#getHealth()">getHealth</a>, <a href="Damageable.html#getMaxHealth()">getMaxHealth</a>, <a href="Damageable.html#resetMaxHealth()">resetMaxHealth</a>, <a href="Damageable.html#setAbsorptionAmount(double)">setAbsorptionAmount</a>, <a href="Damageable.html#setHealth(double)">setHealth</a>, <a href="Damageable.html#setMaxHealth(double)">setMaxHealth</a></code></div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-org.bukkit.entity.Entity">Methods inherited from interface&nbsp;org.bukkit.entity.<a href="Entity.html" title="interface in org.bukkit.entity">Entity</a></h3>
 <code><a href="Entity.html#addPassenger(org.bukkit.entity.Entity)">addPassenger</a>, <a href="Entity.html#addScoreboardTag(java.lang.String)">addScoreboardTag</a>, <a href="Entity.html#asHoverEvent(java.util.function.UnaryOperator)">asHoverEvent</a>, <a href="Entity.html#collidesAt(org.bukkit.Location)">collidesAt</a>, <a href="Entity.html#copy()">copy</a>, <a href="Entity.html#copy(org.bukkit.Location)">copy</a>, <a href="Entity.html#createSnapshot()">createSnapshot</a>, <a href="Entity.html#disableEntityUpdate()">disableEntityUpdate</a>, <a href="Entity.html#disableEntityUpdate(boolean)">disableEntityUpdate</a>, <a href="Entity.html#eject()">eject</a>, <a href="Entity.html#fromMobSpawner()">fromMobSpawner</a>, <a href="Entity.html#getBoundingBox()">getBoundingBox</a>, <a href="Entity.html#getChunk()">getChunk</a>, <a href="Entity.html#getEntityId()">getEntityId</a>, <a href="Entity.html#getEntitySpawnReason()">getEntitySpawnReason</a>, <a href="Entity.html#getFacing()">getFacing</a>, <a href="Entity.html#getFallDistance()">getFallDistance</a>, <a href="Entity.html#getFireTicks()">getFireTicks</a>, <a href="Entity.html#getFreezeTicks()">getFreezeTicks</a>, <a href="Entity.html#getHeight()">getHeight</a>, <a href="Entity.html#getLastDamageCause()">getLastDamageCause</a>, <a href="Entity.html#getLocation()">getLocation</a>, <a href="Entity.html#getLocation(org.bukkit.Location)">getLocation</a>, <a href="Entity.html#getMaxFireTicks()">getMaxFireTicks</a>, <a href="Entity.html#getMaxFreezeTicks()">getMaxFreezeTicks</a>, <a href="Entity.html#getMetadata(int)">getMetadata</a>, <a href="Entity.html#getNearbyEntities(double,double,double)">getNearbyEntities</a>, <a href="Entity.html#getOrigin()">getOrigin</a>, <a href="Entity.html#getPassenger()">getPassenger</a>, <a href="Entity.html#getPassengers()">getPassengers</a>, <a href="Entity.html#getPistonMoveReaction()">getPistonMoveReaction</a>, <a href="Entity.html#getPitch()">getPitch</a>, <a href="Entity.html#getPortalCooldown()">getPortalCooldown</a>, <a href="Entity.html#getPose()">getPose</a>, <a href="Entity.html#getScheduler()">getScheduler</a>, <a href="Entity.html#getScoreboardEntryName()">getScoreboardEntryName</a>, <a href="Entity.html#getScoreboardTags()">getScoreboardTags</a>, <a href="Entity.html#getServer()">getServer</a>, <a href="Entity.html#getSpawnCategory()">getSpawnCategory</a>, <a href="Entity.html#getStringUniqueId()">getStringUniqueId</a>, <a href="Entity.html#getSwimHighSpeedSplashSound()">getSwimHighSpeedSplashSound</a>, <a href="Entity.html#getSwimSound()">getSwimSound</a>, <a href="Entity.html#getSwimSplashSound()">getSwimSplashSound</a>, <a href="Entity.html#getTicksLived()">getTicksLived</a>, <a href="Entity.html#getTrackedBy()">getTrackedBy</a>, <a href="Entity.html#getTrackedPlayers()">getTrackedPlayers</a>, <a href="Entity.html#getType()">getType</a>, <a href="Entity.html#getUniqueId()">getUniqueId</a>, <a href="Entity.html#getVehicle()">getVehicle</a>, <a href="Entity.html#getVelocity()">getVelocity</a>, <a href="Entity.html#getWidth()">getWidth</a>, <a href="Entity.html#getWorld()">getWorld</a>, <a href="Entity.html#getX()">getX</a>, <a href="Entity.html#getY()">getY</a>, <a href="Entity.html#getYaw()">getYaw</a>, <a href="Entity.html#getZ()">getZ</a>, <a href="Entity.html#hasFixedPose()">hasFixedPose</a>, <a href="Entity.html#hasGravity()">hasGravity</a>, <a href="Entity.html#isCustomNameVisible()">isCustomNameVisible</a>, <a href="Entity.html#isDead()">isDead</a>, <a href="Entity.html#isEmpty()">isEmpty</a>, <a href="Entity.html#isFreezeTickingLocked()">isFreezeTickingLocked</a>, <a href="Entity.html#isFrozen()">isFrozen</a>, <a href="Entity.html#isGlowing()">isGlowing</a>, <a href="Entity.html#isInBubbleColumn()">isInBubbleColumn</a>, <a href="Entity.html#isInLava()">isInLava</a>, <a href="Entity.html#isInPowderedSnow()">isInPowderedSnow</a>, <a href="Entity.html#isInRain()">isInRain</a>, <a href="Entity.html#isInsideVehicle()">isInsideVehicle</a>, <a href="Entity.html#isInvulnerable()">isInvulnerable</a>, <a href="Entity.html#isInWater()">isInWater</a>, <a href="Entity.html#isInWaterOrBubbleColumn()">isInWaterOrBubbleColumn</a>, <a href="Entity.html#isInWaterOrRain()">isInWaterOrRain</a>, <a href="Entity.html#isInWaterOrRainOrBubbleColumn()">isInWaterOrRainOrBubbleColumn</a>, <a href="Entity.html#isInWorld()">isInWorld</a>, <a href="Entity.html#isOnGround()">isOnGround</a>, <a href="Entity.html#isPersistent()">isPersistent</a>, <a href="Entity.html#isSilent()">isSilent</a>, <a href="Entity.html#isSneaking()">isSneaking</a>, <a href="Entity.html#isTicking()">isTicking</a>, <a href="Entity.html#isUnderWater()">isUnderWater</a>, <a href="Entity.html#isValid()">isValid</a>, <a href="Entity.html#isVisibleByDefault()">isVisibleByDefault</a>, <a href="Entity.html#isVisualFire()">isVisualFire</a>, <a href="Entity.html#leaveVehicle()">leaveVehicle</a>, <a href="Entity.html#lockFreezeTicks(boolean)">lockFreezeTicks</a>, <a href="Entity.html#playEffect(org.bukkit.EntityEffect)">playEffect</a>, <a href="Entity.html#remove()">remove</a>, <a href="Entity.html#removePassenger(org.bukkit.entity.Entity)">removePassenger</a>, <a href="Entity.html#removeScoreboardTag(java.lang.String)">removeScoreboardTag</a>, <a href="Entity.html#scheduleDisableEntityUpdate()">scheduleDisableEntityUpdate</a>, <a href="Entity.html#setCustomNameVisible(boolean)">setCustomNameVisible</a>, <a href="Entity.html#setFallDistance(float)">setFallDistance</a>, <a href="Entity.html#setFireTicks(int)">setFireTicks</a>, <a href="Entity.html#setFreezeTicks(int)">setFreezeTicks</a>, <a href="Entity.html#setGlowing(boolean)">setGlowing</a>, <a href="Entity.html#setGravity(boolean)">setGravity</a>, <a href="Entity.html#setInvulnerable(boolean)">setInvulnerable</a>, <a href="Entity.html#setLastDamageCause(org.bukkit.event.entity.EntityDamageEvent)">setLastDamageCause</a>, <a href="Entity.html#setPassenger(org.bukkit.entity.Entity)">setPassenger</a>, <a href="Entity.html#setPersistent(boolean)">setPersistent</a>, <a href="Entity.html#setPortalCooldown(int)">setPortalCooldown</a>, <a href="Entity.html#setPose(org.bukkit.entity.Pose)">setPose</a>, <a href="Entity.html#setPose(org.bukkit.entity.Pose,boolean)">setPose</a>, <a href="Entity.html#setRotation(float,float)">setRotation</a>, <a href="Entity.html#setSilent(boolean)">setSilent</a>, <a href="Entity.html#setSneaking(boolean)">setSneaking</a>, <a href="Entity.html#setTicksLived(int)">setTicksLived</a>, <a href="Entity.html#setVelocity(org.bukkit.util.Vector)">setVelocity</a>, <a href="Entity.html#setVisibleByDefault(boolean)">setVisibleByDefault</a>, <a href="Entity.html#setVisualFire(boolean)">setVisualFire</a>, <a href="Entity.html#spawnAt(org.bukkit.Location)">spawnAt</a>, <a href="Entity.html#spawnAt(org.bukkit.Location,org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason)">spawnAt</a>, <a href="Entity.html#spigot()">spigot</a>, <a href="Entity.html#teamDisplayName()">teamDisplayName</a>, <a href="Entity.html#teleport(org.bukkit.entity.Entity)">teleport</a>, <a href="Entity.html#teleport(org.bukkit.entity.Entity,org.bukkit.event.player.PlayerTeleportEvent.TeleportCause)">teleport</a>, <a href="Entity.html#teleport(org.bukkit.Location)">teleport</a>, <a href="Entity.html#teleport(org.bukkit.Location,io.papermc.paper.entity.TeleportFlag...)">teleport</a>, <a href="Entity.html#teleport(org.bukkit.Location,org.bukkit.event.player.PlayerTeleportEvent.TeleportCause)">teleport</a>, <a href="Entity.html#teleport(org.bukkit.Location,org.bukkit.event.player.PlayerTeleportEvent.TeleportCause,io.papermc.paper.entity.TeleportFlag...)">teleport</a>, <a href="Entity.html#teleportAsync(org.bukkit.Location)">teleportAsync</a>, <a href="Entity.html#teleportAsync(org.bukkit.Location,org.bukkit.event.player.PlayerTeleportEvent.TeleportCause)">teleportAsync</a>, <a href="Entity.html#wouldCollideUsing(org.bukkit.util.BoundingBox)">wouldCollideUsing</a></code></div>
@@ -241,6 +278,92 @@ extends <a href="Cow.html" title="interface in org.bukkit.entity">Cow</a>, <a hr
 <section class="method-details" id="method-detail">
 <h2>Method Details</h2>
 <ul class="member-list">
+<li>
+<section class="detail" id="hasEffectsForNextStew()">
+<h3>hasEffectsForNextStew</h3>
+<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">hasEffectsForNextStew</span>()</div>
+<div class="block">Checks for the presence of custom potion effects to be applied to the
+ next suspicious stew received from milking this <a href="MushroomCow.html" title="interface in org.bukkit.entity"><code>MushroomCow</code></a>.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>true if custom potion effects are applied to the stew</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getEffectsForNextStew()">
+<h3>getEffectsForNextStew</h3>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+</span><span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../potion/PotionEffect.html" title="class in org.bukkit.potion">PotionEffect</a>&gt;</span>&nbsp;<span class="element-name">getEffectsForNextStew</span>()</div>
+<div class="block">Gets an immutable list containing all custom potion effects applied to
+ the next suspicious stew received from milking this <a href="MushroomCow.html" title="interface in org.bukkit.entity"><code>MushroomCow</code></a>.
+ <p>
+ Plugins should check that hasCustomEffects() returns true before calling
+ this method.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>an immutable list of custom potion effects</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="addEffectToNextStew(org.bukkit.potion.PotionEffect,boolean)">
+<h3>addEffectToNextStew</h3>
+<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">addEffectToNextStew</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../potion/PotionEffect.html" title="class in org.bukkit.potion">PotionEffect</a>&nbsp;effect,
+ boolean&nbsp;overwrite)</span></div>
+<div class="block">Adds a custom potion effect to be applied to the next suspicious stew
+ received from milking this <a href="MushroomCow.html" title="interface in org.bukkit.entity"><code>MushroomCow</code></a>.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>effect</code> - the potion effect to add</dd>
+<dd><code>overwrite</code> - true if any existing effect of the same type should be
+ overwritten</dd>
+<dt>Returns:</dt>
+<dd>true if the effects to be applied to the suspicious stew changed
+ as a result of this call</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="removeEffectFromNextStew(org.bukkit.potion.PotionEffectType)">
+<h3>removeEffectFromNextStew</h3>
+<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">removeEffectFromNextStew</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../potion/PotionEffectType.html" title="class in org.bukkit.potion">PotionEffectType</a>&nbsp;type)</span></div>
+<div class="block">Removes a custom potion effect from being applied to the next suspicious
+ stew received from milking this <a href="MushroomCow.html" title="interface in org.bukkit.entity"><code>MushroomCow</code></a>.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>type</code> - the potion effect type to remove</dd>
+<dt>Returns:</dt>
+<dd>true if the effects to be applied to the suspicious stew changed
+ as a result of this call</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="hasEffectForNextStew(org.bukkit.potion.PotionEffectType)">
+<h3>hasEffectForNextStew</h3>
+<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">hasEffectForNextStew</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../potion/PotionEffectType.html" title="class in org.bukkit.potion">PotionEffectType</a>&nbsp;type)</span></div>
+<div class="block">Checks for a specific custom potion effect type to be applied to the next
+ suspicious stew received from milking this <a href="MushroomCow.html" title="interface in org.bukkit.entity"><code>MushroomCow</code></a>.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>type</code> - the potion effect type to check for</dd>
+<dt>Returns:</dt>
+<dd>true if the suspicious stew to be generated has this effect</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="clearEffectsForNextStew()">
+<h3>clearEffectsForNextStew</h3>
+<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">clearEffectsForNextStew</span>()</div>
+<div class="block">Removes all custom potion effects to be applied to the next suspicious
+ stew received from milking this <a href="MushroomCow.html" title="interface in org.bukkit.entity"><code>MushroomCow</code></a>.</div>
+</section>
+</li>
 <li>
 <section class="detail" id="getVariant()">
 <h3>getVariant</h3>

@@ -191,6 +191,17 @@ extends <a href="persistence/PersistentDataHolder.html" title="interface in org.
 <div class="block">Retrieves a collection specifying which plugins have tickets for this
  chunk.</div>
 </div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Collection.html" title="class or interface in java.util" class="external-link">Collection</a>&lt;<a href="generator/structure/GeneratedStructure.html" title="interface in org.bukkit.generator.structure">GeneratedStructure</a>&gt;</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getStructures()" class="member-name-link">getStructures</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Gets all generated structures that intersect this chunk.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Collection.html" title="class or interface in java.util" class="external-link">Collection</a>&lt;<a href="generator/structure/GeneratedStructure.html" title="interface in org.bukkit.generator.structure">GeneratedStructure</a>&gt;</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getStructures(org.bukkit.generator.structure.Structure)" class="member-name-link">getStructures</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="generator/structure/Structure.html" title="class in org.bukkit.generator.structure">Structure</a>&nbsp;structure)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Gets all generated structures of a given <a href="generator/structure/Structure.html" title="class in org.bukkit.generator.structure"><code>Structure</code></a> that intersect
+ this chunk.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code>default <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="block/BlockState.html" title="interface in org.bukkit.block">BlockState</a>[]</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#getTileEntities()" class="member-name-link">getTileEntities</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5">
@@ -778,6 +789,36 @@ extends <a href="persistence/PersistentDataHolder.html" title="interface in org.
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>the load level</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getStructures()">
+<h3>getStructures</h3>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+</span><span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Collection.html" title="class or interface in java.util" class="external-link">Collection</a>&lt;<a href="generator/structure/GeneratedStructure.html" title="interface in org.bukkit.generator.structure">GeneratedStructure</a>&gt;</span>&nbsp;<span class="element-name">getStructures</span>()</div>
+<div class="block">Gets all generated structures that intersect this chunk. <br>
+ If no structures are present an empty collection will be returned.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>a collection of placed structures in this chunk</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getStructures(org.bukkit.generator.structure.Structure)">
+<h3>getStructures</h3>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+</span><span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Collection.html" title="class or interface in java.util" class="external-link">Collection</a>&lt;<a href="generator/structure/GeneratedStructure.html" title="interface in org.bukkit.generator.structure">GeneratedStructure</a>&gt;</span>&nbsp;<span class="element-name">getStructures</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="generator/structure/Structure.html" title="class in org.bukkit.generator.structure">Structure</a>&nbsp;structure)</span></div>
+<div class="block">Gets all generated structures of a given <a href="generator/structure/Structure.html" title="class in org.bukkit.generator.structure"><code>Structure</code></a> that intersect
+ this chunk. <br>
+ If no structures are present an empty collection will be returned.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>structure</code> - the structure to find</dd>
+<dt>Returns:</dt>
+<dd>a collection of placed structures in this chunk</dd>
 </dl>
 </section>
 </li>

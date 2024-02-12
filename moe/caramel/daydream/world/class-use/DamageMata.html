@@ -59,8 +59,12 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color">
 <div class="block">The root package of the Bukkit API, contains generalized API classes.</div>
 </div>
-<div class="col-first odd-row-color"><a href="#org.bukkit.event.entity">org.bukkit.event.entity</a></div>
+<div class="col-first odd-row-color"><a href="#org.bukkit.damage">org.bukkit.damage</a></div>
 <div class="col-last odd-row-color">
+<div class="block">Classes concerning damage types and sources applicable to living entities.</div>
+</div>
+<div class="col-first even-row-color"><a href="#org.bukkit.event.entity">org.bukkit.event.entity</a></div>
+<div class="col-last even-row-color">
 <div class="block"><a href="../../../../../org/bukkit/event/Event.html" title="class in org.bukkit.event"><code>Events</code></a> relating to <a href="../../../../../org/bukkit/entity/Entity.html" title="interface in org.bukkit.entity"><code>entities</code></a>, excluding some directly referencing
  some more specific entity types.</div>
 </div>
@@ -84,6 +88,22 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
+<section class="detail" id="org.bukkit.damage">
+<h2>Uses of <a href="../DamageMata.html" title="interface in moe.caramel.daydream.world">DamageMata</a> in <a href="../../../../../org/bukkit/damage/package-summary.html">org.bukkit.damage</a></h2>
+<div class="caption"><span>Methods in <a href="../../../../../org/bukkit/damage/package-summary.html">org.bukkit.damage</a> that return <a href="../DamageMata.html" title="interface in moe.caramel.daydream.world">DamageMata</a></span></div>
+<div class="summary-table three-column-summary">
+<div class="table-header col-first">Modifier and Type</div>
+<div class="table-header col-second">Method</div>
+<div class="table-header col-last">Description</div>
+<div class="col-first even-row-color"><code><a href="../DamageMata.html" title="interface in moe.caramel.daydream.world">DamageMata</a></code></div>
+<div class="col-second even-row-color"><span class="type-name-label">DamageSource.</span><code><a href="../../../../../org/bukkit/damage/DamageSource.html#getDamageMeta()" class="member-name-link">getDamageMeta</a>()</code></div>
+<div class="col-last even-row-color">
+<div class="block">대미지 메타데이터를 가져옵니다.</div>
+</div>
+</div>
+</section>
+</li>
+<li>
 <section class="detail" id="org.bukkit.event.entity">
 <h2>Uses of <a href="../DamageMata.html" title="interface in moe.caramel.daydream.world">DamageMata</a> in <a href="../../../../../org/bukkit/event/entity/package-summary.html">org.bukkit.event.entity</a></h2>
 <div class="caption"><span>Methods in <a href="../../../../../org/bukkit/event/entity/package-summary.html">org.bukkit.event.entity</a> that return <a href="../DamageMata.html" title="interface in moe.caramel.daydream.world">DamageMata</a></span></div>
@@ -96,37 +116,6 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color">
 <div class="block">대미지 메타데이터를 가져옵니다.</div>
 </div>
-</div>
-<div class="caption"><span>Constructors in <a href="../../../../../org/bukkit/event/entity/package-summary.html">org.bukkit.event.entity</a> with parameters of type <a href="../DamageMata.html" title="interface in moe.caramel.daydream.world">DamageMata</a></span></div>
-<div class="summary-table three-column-summary">
-<div class="table-header col-first">Modifier</div>
-<div class="table-header col-second">Constructor</div>
-<div class="table-header col-last">Description</div>
-<div class="col-first even-row-color"><code>&nbsp;</code></div>
-<div class="col-second even-row-color"><code><a href="../../../../../org/bukkit/event/entity/EntityDamageByBlockEvent.html#%3Cinit%3E(org.bukkit.block.Block,org.bukkit.entity.Entity,org.bukkit.event.entity.EntityDamageEvent.DamageCause,java.util.Map,java.util.Map,org.bukkit.block.BlockState,moe.caramel.daydream.world.DamageMata)" class="member-name-link">EntityDamageByBlockEvent</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../../../../../org/bukkit/block/Block.html" title="interface in org.bukkit.block">Block</a>&nbsp;damager,
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/entity/Entity.html" title="interface in org.bukkit.entity">Entity</a>&nbsp;damagee,
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/event/entity/EntityDamageEvent.DamageCause.html" title="enum class in org.bukkit.event.entity">EntityDamageEvent.DamageCause</a>&nbsp;cause,
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="../../../../../org/bukkit/event/entity/EntityDamageEvent.DamageModifier.html" title="enum class in org.bukkit.event.entity">EntityDamageEvent.DamageModifier</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Double.html" title="class or interface in java.lang" class="external-link">Double</a>&gt;&nbsp;modifiers,
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="../../../../../org/bukkit/event/entity/EntityDamageEvent.DamageModifier.html" title="enum class in org.bukkit.event.entity">EntityDamageEvent.DamageModifier</a>,<wbr>? extends <a href="https://guava.dev/releases/32.1.2-jre/api/docs/com/google/common/base/Function.html" title="class or interface in com.google.common.base" class="external-link">Function</a>&lt;? super <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Double.html" title="class or interface in java.lang" class="external-link">Double</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Double.html" title="class or interface in java.lang" class="external-link">Double</a>&gt;&gt;&nbsp;modifierFunctions,
- <a href="../../../../../org/bukkit/block/BlockState.html" title="interface in org.bukkit.block">BlockState</a>&nbsp;damagerBlockState,
- <a href="../DamageMata.html" title="interface in moe.caramel.daydream.world">DamageMata</a>&nbsp;damageMata)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
-<div class="col-first odd-row-color"><code>&nbsp;</code></div>
-<div class="col-second odd-row-color"><code><a href="../../../../../org/bukkit/event/entity/EntityDamageByEntityEvent.html#%3Cinit%3E(org.bukkit.entity.Entity,org.bukkit.entity.Entity,org.bukkit.event.entity.EntityDamageEvent.DamageCause,java.util.Map,java.util.Map,boolean,moe.caramel.daydream.world.DamageMata)" class="member-name-link">EntityDamageByEntityEvent</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/entity/Entity.html" title="interface in org.bukkit.entity">Entity</a>&nbsp;damager,
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/entity/Entity.html" title="interface in org.bukkit.entity">Entity</a>&nbsp;damagee,
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/event/entity/EntityDamageEvent.DamageCause.html" title="enum class in org.bukkit.event.entity">EntityDamageEvent.DamageCause</a>&nbsp;cause,
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="../../../../../org/bukkit/event/entity/EntityDamageEvent.DamageModifier.html" title="enum class in org.bukkit.event.entity">EntityDamageEvent.DamageModifier</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Double.html" title="class or interface in java.lang" class="external-link">Double</a>&gt;&nbsp;modifiers,
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="../../../../../org/bukkit/event/entity/EntityDamageEvent.DamageModifier.html" title="enum class in org.bukkit.event.entity">EntityDamageEvent.DamageModifier</a>,<wbr>? extends <a href="https://guava.dev/releases/32.1.2-jre/api/docs/com/google/common/base/Function.html" title="class or interface in com.google.common.base" class="external-link">Function</a>&lt;? super <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Double.html" title="class or interface in java.lang" class="external-link">Double</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Double.html" title="class or interface in java.lang" class="external-link">Double</a>&gt;&gt;&nbsp;modifierFunctions,
- boolean&nbsp;critical,
- <a href="../DamageMata.html" title="interface in moe.caramel.daydream.world">DamageMata</a>&nbsp;damageMata)</code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
-<div class="col-first even-row-color"><code>&nbsp;</code></div>
-<div class="col-second even-row-color"><code><a href="../../../../../org/bukkit/event/entity/EntityDamageEvent.html#%3Cinit%3E(org.bukkit.entity.Entity,org.bukkit.event.entity.EntityDamageEvent.DamageCause,java.util.Map,java.util.Map,moe.caramel.daydream.world.DamageMata)" class="member-name-link">EntityDamageEvent</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/entity/Entity.html" title="interface in org.bukkit.entity">Entity</a>&nbsp;damagee,
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/event/entity/EntityDamageEvent.DamageCause.html" title="enum class in org.bukkit.event.entity">EntityDamageEvent.DamageCause</a>&nbsp;cause,
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="../../../../../org/bukkit/event/entity/EntityDamageEvent.DamageModifier.html" title="enum class in org.bukkit.event.entity">EntityDamageEvent.DamageModifier</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Double.html" title="class or interface in java.lang" class="external-link">Double</a>&gt;&nbsp;modifiers,
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="../../../../../org/bukkit/event/entity/EntityDamageEvent.DamageModifier.html" title="enum class in org.bukkit.event.entity">EntityDamageEvent.DamageModifier</a>,<wbr>? extends <a href="https://guava.dev/releases/32.1.2-jre/api/docs/com/google/common/base/Function.html" title="class or interface in com.google.common.base" class="external-link">Function</a>&lt;? super <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Double.html" title="class or interface in java.lang" class="external-link">Double</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Double.html" title="class or interface in java.lang" class="external-link">Double</a>&gt;&gt;&nbsp;modifierFunctions,
- <a href="../DamageMata.html" title="interface in moe.caramel.daydream.world">DamageMata</a>&nbsp;damageMata)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
 </div>
 </section>
 </li>

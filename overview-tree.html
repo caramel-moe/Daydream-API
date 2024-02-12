@@ -155,6 +155,7 @@ loadScripts(document, 'script');</script>
 <li><a href="org/bukkit/configuration/file/package-tree.html">org.bukkit.configuration.file</a>, </li>
 <li><a href="org/bukkit/configuration/serialization/package-tree.html">org.bukkit.configuration.serialization</a>, </li>
 <li><a href="org/bukkit/conversations/package-tree.html">org.bukkit.conversations</a>, </li>
+<li><a href="org/bukkit/damage/package-tree.html">org.bukkit.damage</a>, </li>
 <li><a href="org/bukkit/enchantments/package-tree.html">org.bukkit.enchantments</a>, </li>
 <li><a href="org/bukkit/entity/package-tree.html">org.bukkit.entity</a>, </li>
 <li><a href="org/bukkit/entity/memory/package-tree.html">org.bukkit.entity.memory</a>, </li>
@@ -539,6 +540,11 @@ loadScripts(document, 'script');</script>
 <li class="circle">io.papermc.paper.event.entity.<a href="io/papermc/paper/event/entity/EntityInsideBlockEvent.html" class="type-name-link" title="class in io.papermc.paper.event.entity">EntityInsideBlockEvent</a> (implements org.bukkit.event.<a href="org/bukkit/event/Cancellable.html" title="interface in org.bukkit.event">Cancellable</a>)</li>
 <li class="circle">org.bukkit.event.entity.<a href="org/bukkit/event/entity/EntityInteractEvent.html" class="type-name-link" title="class in org.bukkit.event.entity">EntityInteractEvent</a> (implements org.bukkit.event.<a href="org/bukkit/event/Cancellable.html" title="interface in org.bukkit.event">Cancellable</a>)</li>
 <li class="circle">com.destroystokyo.paper.event.entity.<a href="com/destroystokyo/paper/event/entity/EntityJumpEvent.html" class="type-name-link" title="class in com.destroystokyo.paper.event.entity">EntityJumpEvent</a> (implements org.bukkit.event.<a href="org/bukkit/event/Cancellable.html" title="interface in org.bukkit.event">Cancellable</a>)</li>
+<li class="circle">org.bukkit.event.entity.<a href="org/bukkit/event/entity/EntityKnockbackEvent.html" class="type-name-link" title="class in org.bukkit.event.entity">EntityKnockbackEvent</a> (implements org.bukkit.event.<a href="org/bukkit/event/Cancellable.html" title="interface in org.bukkit.event">Cancellable</a>)
+<ul>
+<li class="circle">org.bukkit.event.entity.<a href="org/bukkit/event/entity/EntityKnockbackByEntityEvent.html" class="type-name-link" title="class in org.bukkit.event.entity">EntityKnockbackByEntityEvent</a></li>
+</ul>
+</li>
 <li class="circle">io.papermc.paper.event.entity.<a href="io/papermc/paper/event/entity/EntityLoadCrossbowEvent.html" class="type-name-link" title="class in io.papermc.paper.event.entity">EntityLoadCrossbowEvent</a> (implements org.bukkit.event.<a href="org/bukkit/event/Cancellable.html" title="interface in org.bukkit.event">Cancellable</a>)</li>
 <li class="circle">org.bukkit.event.entity.<a href="org/bukkit/event/entity/EntityMountEvent.html" class="type-name-link" title="class in org.bukkit.event.entity">EntityMountEvent</a> (implements org.bukkit.event.<a href="org/bukkit/event/Cancellable.html" title="interface in org.bukkit.event">Cancellable</a>)</li>
 <li class="circle">org.spigotmc.event.entity.<a href="org/spigotmc/event/entity/EntityMountEvent.html" class="type-name-link" title="class in org.spigotmc.event.entity">EntityMountEvent</a> (implements org.bukkit.event.<a href="org/bukkit/event/Cancellable.html" title="interface in org.bukkit.event">Cancellable</a>)</li>
@@ -2261,7 +2267,10 @@ loadScripts(document, 'script');</script>
 <li class="circle">org.bukkit.conversations.<a href="org/bukkit/conversations/ConversationPrefix.html" class="type-name-link" title="interface in org.bukkit.conversations">ConversationPrefix</a></li>
 <li class="circle">org.bukkit.scoreboard.<a href="org/bukkit/scoreboard/Criteria.html" class="type-name-link" title="interface in org.bukkit.scoreboard">Criteria</a></li>
 <li class="circle">org.bukkit.inventory.meta.tags.<a href="org/bukkit/inventory/meta/tags/CustomItemTagContainer.html" class="type-name-link" title="interface in org.bukkit.inventory.meta.tags">CustomItemTagContainer</a></li>
+<li class="circle">org.bukkit.damage.<a href="org/bukkit/damage/DamageEffect.html" class="type-name-link" title="interface in org.bukkit.damage">DamageEffect</a></li>
 <li class="circle">moe.caramel.daydream.world.<a href="moe/caramel/daydream/world/DamageMata.html" class="type-name-link" title="interface in moe.caramel.daydream.world">DamageMata</a></li>
+<li class="circle">org.bukkit.damage.<a href="org/bukkit/damage/DamageSource.html" class="type-name-link" title="interface in org.bukkit.damage">DamageSource</a></li>
+<li class="circle">org.bukkit.damage.<a href="org/bukkit/damage/DamageSource.Builder.html" class="type-name-link" title="interface in org.bukkit.damage">DamageSource.Builder</a></li>
 <li class="circle">io.papermc.paper.datapack.<a href="io/papermc/paper/datapack/Datapack.html" class="type-name-link" title="interface in io.papermc.paper.datapack">Datapack</a></li>
 <li class="circle">io.papermc.paper.datapack.<a href="io/papermc/paper/datapack/DatapackManager.html" class="type-name-link" title="interface in io.papermc.paper.datapack">DatapackManager</a></li>
 <li class="circle">org.bukkit.packs.<a href="org/bukkit/packs/DataPackManager.html" class="type-name-link" title="interface in org.bukkit.packs">DataPackManager</a></li>
@@ -3314,6 +3323,7 @@ loadScripts(document, 'script');</script>
 <ul>
 <li class="circle">org.bukkit.advancement.<a href="org/bukkit/advancement/Advancement.html" class="type-name-link" title="interface in org.bukkit.advancement">Advancement</a></li>
 <li class="circle">org.bukkit.inventory.<a href="org/bukkit/inventory/ComplexRecipe.html" class="type-name-link" title="interface in org.bukkit.inventory">ComplexRecipe</a> (also extends org.bukkit.inventory.<a href="org/bukkit/inventory/Recipe.html" title="interface in org.bukkit.inventory">Recipe</a>)</li>
+<li class="circle">org.bukkit.damage.<a href="org/bukkit/damage/DamageType.html" class="type-name-link" title="interface in org.bukkit.damage">DamageType</a> (also extends org.bukkit.<a href="org/bukkit/Translatable.html" title="interface in org.bukkit">Translatable</a>)</li>
 <li class="circle">org.bukkit.packs.<a href="org/bukkit/packs/DataPack.html" class="type-name-link" title="interface in org.bukkit.packs">DataPack</a></li>
 <li class="circle">org.bukkit.<a href="org/bukkit/FeatureFlag.html" class="type-name-link" title="interface in org.bukkit">FeatureFlag</a></li>
 <li class="circle">org.bukkit.boss.<a href="org/bukkit/boss/KeyedBossBar.html" class="type-name-link" title="interface in org.bukkit.boss">KeyedBossBar</a> (also extends org.bukkit.boss.<a href="org/bukkit/boss/BossBar.html" title="interface in org.bukkit.boss">BossBar</a>)</li>
@@ -5382,6 +5392,7 @@ loadScripts(document, 'script');</script>
 </li>
 </ul>
 </li>
+<li class="circle">org.bukkit.generator.structure.<a href="org/bukkit/generator/structure/GeneratedStructure.html" class="type-name-link" title="interface in org.bukkit.generator.structure">GeneratedStructure</a></li>
 <li class="circle">org.bukkit.inventory.meta.<a href="org/bukkit/inventory/meta/ItemMeta.html" class="type-name-link" title="interface in org.bukkit.inventory.meta">ItemMeta</a> (also extends java.lang.<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Cloneable.html" title="class or interface in java.lang" class="external-link">Cloneable</a>, org.bukkit.configuration.serialization.<a href="org/bukkit/configuration/serialization/ConfigurationSerializable.html" title="interface in org.bukkit.configuration.serialization">ConfigurationSerializable</a>)
 <ul>
 <li class="circle">org.bukkit.inventory.meta.<a href="org/bukkit/inventory/meta/ArmorMeta.html" class="type-name-link" title="interface in org.bukkit.inventory.meta">ArmorMeta</a>
@@ -6429,6 +6440,7 @@ loadScripts(document, 'script');</script>
 <li class="circle">io.papermc.paper.threadedregions.scheduler.<a href="io/papermc/paper/threadedregions/scheduler/RegionScheduler.html" class="type-name-link" title="interface in io.papermc.paper.threadedregions.scheduler">RegionScheduler</a></li>
 <li class="circle">io.papermc.paper.plugin.lifecycle.event.registrar.<a href="io/papermc/paper/plugin/lifecycle/event/registrar/Registrar.html" class="type-name-link" title="interface in io.papermc.paper.plugin.lifecycle.event.registrar">Registrar</a></li>
 <li class="circle">moe.caramel.daydream.player.<a href="moe/caramel/daydream/player/ResourcePack.html" class="type-name-link" title="interface in moe.caramel.daydream.player">ResourcePack</a></li>
+<li class="circle">org.bukkit.packs.<a href="org/bukkit/packs/ResourcePack.html" class="type-name-link" title="interface in org.bukkit.packs">ResourcePack</a></li>
 <li class="circle">io.papermc.paper.math.<a href="io/papermc/paper/math/Rotations.html" class="type-name-link" title="interface in io.papermc.paper.math">Rotations</a></li>
 <li class="circle">io.papermc.paper.threadedregions.scheduler.<a href="io/papermc/paper/threadedregions/scheduler/ScheduledTask.html" class="type-name-link" title="interface in io.papermc.paper.threadedregions.scheduler">ScheduledTask</a></li>
 <li class="circle">org.bukkit.scoreboard.<a href="org/bukkit/scoreboard/Score.html" class="type-name-link" title="interface in org.bukkit.scoreboard">Score</a></li>
@@ -7514,6 +7526,7 @@ loadScripts(document, 'script');</script>
 </li>
 <li class="circle">org.bukkit.<a href="org/bukkit/SoundGroup.html" class="type-name-link" title="interface in org.bukkit">SoundGroup</a></li>
 <li class="circle">org.bukkit.structure.<a href="org/bukkit/structure/StructureManager.html" class="type-name-link" title="interface in org.bukkit.structure">StructureManager</a></li>
+<li class="circle">org.bukkit.generator.structure.<a href="org/bukkit/generator/structure/StructurePiece.html" class="type-name-link" title="interface in org.bukkit.generator.structure">StructurePiece</a></li>
 <li class="circle">org.bukkit.util.<a href="org/bukkit/util/StructureSearchResult.html" class="type-name-link" title="interface in org.bukkit.util">StructureSearchResult</a></li>
 <li class="circle">io.papermc.paper.potion.<a href="io/papermc/paper/potion/SuspiciousEffectEntry.html" class="type-name-link" title="interface in io.papermc.paper.potion">SuspiciousEffectEntry</a></li>
 <li class="circle">org.bukkit.command.<a href="org/bukkit/command/TabCompleter.html" class="type-name-link" title="interface in org.bukkit.command">TabCompleter</a>
@@ -7536,6 +7549,7 @@ loadScripts(document, 'script');</script>
 <li class="circle">org.bukkit.<a href="org/bukkit/Translatable.html" class="type-name-link" title="interface in org.bukkit">Translatable</a>
 <ul>
 <li class="circle">org.bukkit.block.<a href="org/bukkit/block/Block.html" class="type-name-link" title="interface in org.bukkit.block">Block</a> (also extends org.bukkit.metadata.<a href="org/bukkit/metadata/Metadatable.html" title="interface in org.bukkit.metadata">Metadatable</a>, net.kyori.adventure.translation.<a href="https://jd.advntr.dev/api/4.15.0/net/kyori/adventure/translation/Translatable.html" title="class or interface in net.kyori.adventure.translation" class="external-link">Translatable</a>)</li>
+<li class="circle">org.bukkit.damage.<a href="org/bukkit/damage/DamageType.html" class="type-name-link" title="interface in org.bukkit.damage">DamageType</a> (also extends org.bukkit.<a href="org/bukkit/Keyed.html" title="interface in org.bukkit">Keyed</a>)</li>
 </ul>
 </li>
 <li class="circle">org.bukkit.<a href="org/bukkit/UnsafeValues.html" class="type-name-link" title="interface in org.bukkit">UnsafeValues</a></li>
@@ -7621,9 +7635,11 @@ loadScripts(document, 'script');</script>
 <li class="circle">org.bukkit.event.entity.<a href="org/bukkit/event/entity/CreatureSpawnEvent.SpawnReason.html" class="type-name-link" title="enum class in org.bukkit.event.entity">CreatureSpawnEvent.SpawnReason</a></li>
 <li class="circle">org.bukkit.event.entity.<a href="org/bukkit/event/entity/CreeperPowerEvent.PowerCause.html" class="type-name-link" title="enum class in org.bukkit.event.entity">CreeperPowerEvent.PowerCause</a></li>
 <li class="circle">org.bukkit.<a href="org/bukkit/CropState.html" class="type-name-link" title="enum class in org.bukkit">CropState</a></li>
+<li class="circle">org.bukkit.damage.<a href="org/bukkit/damage/DamageScaling.html" class="type-name-link" title="enum class in org.bukkit.damage">DamageScaling</a></li>
 <li class="circle">io.papermc.paper.datapack.<a href="io/papermc/paper/datapack/Datapack.Compatibility.html" class="type-name-link" title="enum class in io.papermc.paper.datapack">Datapack.Compatibility</a></li>
 <li class="circle">org.bukkit.packs.<a href="org/bukkit/packs/DataPack.Compatibility.html" class="type-name-link" title="enum class in org.bukkit.packs">DataPack.Compatibility</a></li>
 <li class="circle">org.bukkit.packs.<a href="org/bukkit/packs/DataPack.Source.html" class="type-name-link" title="enum class in org.bukkit.packs">DataPack.Source</a></li>
+<li class="circle">org.bukkit.damage.<a href="org/bukkit/damage/DeathMessageType.html" class="type-name-link" title="enum class in org.bukkit.damage">DeathMessageType</a></li>
 <li class="circle">org.bukkit.block.<a href="org/bukkit/block/DecoratedPot.Side.html" class="type-name-link" title="enum class in org.bukkit.block">DecoratedPot.Side</a></li>
 <li class="circle">org.bukkit.<a href="org/bukkit/Difficulty.html" class="type-name-link" title="enum class in org.bukkit">Difficulty</a> (implements net.kyori.adventure.translation.<a href="https://jd.advntr.dev/api/4.15.0/net/kyori/adventure/translation/Translatable.html" title="class or interface in net.kyori.adventure.translation" class="external-link">Translatable</a>)</li>
 <li class="circle">org.bukkit.entity.<a href="org/bukkit/entity/Display.Billboard.html" class="type-name-link" title="enum class in org.bukkit.entity">Display.Billboard</a></li>
@@ -7643,6 +7659,7 @@ loadScripts(document, 'script');</script>
 <li class="circle">org.bukkit.event.entity.<a href="org/bukkit/event/entity/EntityDamageEvent.DamageModifier.html" class="type-name-link" title="enum class in org.bukkit.event.entity">EntityDamageEvent.DamageModifier</a></li>
 <li class="circle">org.bukkit.<a href="org/bukkit/EntityEffect.html" class="type-name-link" title="enum class in org.bukkit">EntityEffect</a></li>
 <li class="circle">org.bukkit.event.entity.<a href="org/bukkit/event/entity/EntityExhaustionEvent.ExhaustionReason.html" class="type-name-link" title="enum class in org.bukkit.event.entity">EntityExhaustionEvent.ExhaustionReason</a></li>
+<li class="circle">org.bukkit.event.entity.<a href="org/bukkit/event/entity/EntityKnockbackEvent.KnockbackCause.html" class="type-name-link" title="enum class in org.bukkit.event.entity">EntityKnockbackEvent.KnockbackCause</a></li>
 <li class="circle">org.bukkit.event.entity.<a href="org/bukkit/event/entity/EntityPotionEffectEvent.Action.html" class="type-name-link" title="enum class in org.bukkit.event.entity">EntityPotionEffectEvent.Action</a></li>
 <li class="circle">org.bukkit.event.entity.<a href="org/bukkit/event/entity/EntityPotionEffectEvent.Cause.html" class="type-name-link" title="enum class in org.bukkit.event.entity">EntityPotionEffectEvent.Cause</a></li>
 <li class="circle">org.bukkit.event.entity.<a href="org/bukkit/event/entity/EntityRegainHealthEvent.RegainReason.html" class="type-name-link" title="enum class in org.bukkit.event.entity">EntityRegainHealthEvent.RegainReason</a></li>
