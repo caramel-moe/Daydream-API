@@ -152,10 +152,10 @@ index 0000000000000000000000000000000000000000..394159310ec31777c5c423f94405d9ec
 +    boolean wasCancelled();
 +}
 diff --git a/src/main/java/org/bukkit/World.java b/src/main/java/org/bukkit/World.java
-index 205e4086d86cbc54bdd89de3e3564d851aefa5aa..dd15734002eccbfa96b74febe140ee0175e47312 100644
+index 672c4624cf7f6357a4ec9592ddfa8b029bc3ca9b..78dc018ce1fdd31443968a09e24062f7d23a55a6 100644
 --- a/src/main/java/org/bukkit/World.java
 +++ b/src/main/java/org/bukkit/World.java
-@@ -2157,6 +2157,182 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
+@@ -2159,6 +2159,182 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
       */
      public boolean createExplosion(double x, double y, double z, float power, boolean setFire, boolean breakBlocks, @Nullable Entity source);
  
@@ -394,13 +394,14 @@ index 7dcbb75170296c1dd1d784a032bf369602328b29..e6eb7694d572fb6409c3ab88194ff6ba
  
      @Override
 diff --git a/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java b/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java
-index 3528d526da1161862d72db6bf64a96a586b15881..8aabd560a9769a7d2d7f48c1676793572e3681d4 100644
+index 0defdf1cc8722e8aef497fa5bb00138d836498e6..d75b85f2f38b70f116774ab4bf08e6f5fb8f91d8 100644
 --- a/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java
 +++ b/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java
-@@ -51,6 +51,16 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
-         return damageMata;
+@@ -58,6 +58,16 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
+     public moe.caramel.daydream.world.DamageMata getDamageMeta() {
+         return damageSource.getDamageMeta();
      }
- 
++
 +    /**
 +     * 폭발 래퍼를 가져옵니다.
 +     *
@@ -408,12 +409,11 @@ index 3528d526da1161862d72db6bf64a96a586b15881..8aabd560a9769a7d2d7f48c167679357
 +     */
 +    @org.jetbrains.annotations.Nullable
 +    public moe.caramel.daydream.world.Explosion getExplosion() {
-+        return damageMata.getExplosion();
++        return getDamageMeta().getExplosion();
 +    }
-+
-     public EntityDamageEvent(@NotNull final Entity damagee, @NotNull final DamageCause cause, @NotNull final Map<DamageModifier, Double> modifiers, @NotNull final Map<DamageModifier, ? extends Function<? super Double, Double>> modifierFunctions, @NotNull moe.caramel.daydream.world.DamageMata damageMata) {
-         // Daydream end - Add more API for EntityDamageEvent
-         super(damagee);
+     // Daydream end - Add more API for EntityDamageEvent
+ 
+     @Override
 diff --git a/src/main/java/org/bukkit/event/entity/EntityExplodeEvent.java b/src/main/java/org/bukkit/event/entity/EntityExplodeEvent.java
 index 099efafa14c10910e4ed04abb1823f0c1a96b6a6..66ca6572c4b4312d03308c45793bcc907b1b7b0f 100644
 --- a/src/main/java/org/bukkit/event/entity/EntityExplodeEvent.java

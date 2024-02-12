@@ -1094,10 +1094,10 @@ index 0000000000000000000000000000000000000000..a4b9dcd4179fa4d4089d1929b639a6d6
 +    }
 +}
 diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
-index 7ba1ded5d629e6300dd065435c4374c9c304ab08..af7b5d7100c232519283fdedaba7feee44501c9c 100644
+index 77bfa20942122bdc00b009bdfc3f5e708b9b82e4..d03e701b432b275909e072c2d8579f8729813fcb 100644
 --- a/src/main/java/org/bukkit/Bukkit.java
 +++ b/src/main/java/org/bukkit/Bukkit.java
-@@ -2908,6 +2908,20 @@ public final class Bukkit {
+@@ -2928,6 +2928,20 @@ public final class Bukkit {
      }
      // Paper end - Folia region threading API
  
@@ -1134,10 +1134,10 @@ index 918a045165cdcde264bc24082b7afebb407271de..0756634ad506aa81e8f3a789f5c28c84
      /**
       * Represents black
 diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
-index fdcbb0c3d47860c8844329735741ad8f3796da5d..0f4eb85bf37723228e7fa3319fdcded9c52f4c6b 100644
+index 00d957708782fd2219f639d9a9145858236fbee1..e58225db6a1335f474ea439c3edfaa90903e74e0 100644
 --- a/src/main/java/org/bukkit/Server.java
 +++ b/src/main/java/org/bukkit/Server.java
-@@ -2547,4 +2547,16 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
+@@ -2563,4 +2563,16 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
       */
      boolean isOwnedByCurrentRegion(@NotNull Entity entity);
      // Paper end - Folia region threading API
@@ -1155,10 +1155,10 @@ index fdcbb0c3d47860c8844329735741ad8f3796da5d..0f4eb85bf37723228e7fa3319fdcded9
 +    // Daydream end - Add Packet API
  }
 diff --git a/src/main/java/org/bukkit/World.java b/src/main/java/org/bukkit/World.java
-index c38de8426e40f1607a93feb736cac84e7999b8bf..205e4086d86cbc54bdd89de3e3564d851aefa5aa 100644
+index 7deafda6c4b96398b3ac334df9dee9e2c7112ac5..672c4624cf7f6357a4ec9592ddfa8b029bc3ca9b 100644
 --- a/src/main/java/org/bukkit/World.java
 +++ b/src/main/java/org/bukkit/World.java
-@@ -1585,6 +1585,17 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
+@@ -1587,6 +1587,17 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      public Entity getEntity(@NotNull java.util.UUID uuid);
      // Paper end
  
@@ -1177,7 +1177,7 @@ index c38de8426e40f1607a93feb736cac84e7999b8bf..205e4086d86cbc54bdd89de3e3564d85
       * Returns a list of entities within a bounding box centered around a
       * Location.
 diff --git a/src/main/java/org/bukkit/entity/Entity.java b/src/main/java/org/bukkit/entity/Entity.java
-index 6ace3581f8d0c2a1b7e2188d5b6af5c984b74a0e..72324b823027edad59c9b916db238394198e5762 100644
+index 9022567f32a58b94ed030db22524876d8f1df4aa..873549171a74fc52598e51fbddab738f2f91a504 100644
 --- a/src/main/java/org/bukkit/entity/Entity.java
 +++ b/src/main/java/org/bukkit/entity/Entity.java
 @@ -486,6 +486,19 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
@@ -1201,10 +1201,10 @@ index 6ace3581f8d0c2a1b7e2188d5b6af5c984b74a0e..72324b823027edad59c9b916db238394
       * Gets the amount of ticks this entity has lived for.
       * <p>
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index d7f449b113f14a9c6257cb4256c157e9ed723a74..d88921c1537e6835da34c49cbf5fc8ff4fd5cdaf 100644
+index f9873c2cdbc4a9c783cc35e6efda846c7a839de0..102d729b44e3deb929e4c8705c3b49dba9b81fd3 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
-@@ -406,6 +406,16 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+@@ -408,6 +408,16 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
       */
      public boolean performCommand(@NotNull String command);
  
@@ -1221,7 +1221,7 @@ index d7f449b113f14a9c6257cb4256c157e9ed723a74..d88921c1537e6835da34c49cbf5fc8ff
      /**
       * Returns true if the entity is supported by a block.
       *
-@@ -1000,6 +1010,24 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+@@ -1002,6 +1012,24 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      public void sendCustomPayload(@NotNull org.bukkit.NamespacedKey channel, @NotNull io.netty.buffer.ByteBuf buf);
      // Daydream end - Add Network API
  
