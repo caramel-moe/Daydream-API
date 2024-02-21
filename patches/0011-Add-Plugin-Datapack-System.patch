@@ -1,0 +1,120 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: LemonCaramel <admin@caramel.moe>
+Date: Sun, 11 Feb 2024 15:17:38 +0900
+Subject: [PATCH] Add Plugin Datapack System
+
+
+diff --git a/src/main/java/io/papermc/paper/plugin/configuration/PluginMeta.java b/src/main/java/io/papermc/paper/plugin/configuration/PluginMeta.java
+index bcf91d048d84144f6acf9bfd2095df9ada2e585f..db9634519abed54df3f5c004204935f7d4ce91c7 100644
+--- a/src/main/java/io/papermc/paper/plugin/configuration/PluginMeta.java
++++ b/src/main/java/io/papermc/paper/plugin/configuration/PluginMeta.java
+@@ -200,4 +200,24 @@ public interface PluginMeta {
+     @Nullable
+     String getAPIVersion();
+ 
++    // Daydream start - Add Plugin Datapack System
++    /**
++     * 플러그인 내장 데이터팩 로더 클래스 이름을 가져옵니다.
++     *
++     * @return 클래스 이름
++     */
++    @Nullable
++    default String getDatapackLoader() {
++        return null;
++    }
++
++    /**
++     * 플러그인 내장 데이터팩을 가지고 있는지 확인합니다.
++     *
++     * @return 내장 데이터팩 여부
++     */
++    default boolean hasEmbeddedDatapack() {
++        return false;
++    }
++    // Daydream end - Add Plugin Datapack System
+ }
+diff --git a/src/main/java/moe/caramel/daydream/plugin/PluginDatapackLoader.java b/src/main/java/moe/caramel/daydream/plugin/PluginDatapackLoader.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..6c878c968be02870c8552eb8db3d7b652e605540
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/plugin/PluginDatapackLoader.java
+@@ -0,0 +1,12 @@
++package moe.caramel.daydream.plugin;
++
++import org.jetbrains.annotations.ApiStatus;
++import org.jetbrains.annotations.NotNull;
++
++/**
++ * 서버 데이터팩을 로드할 때 인스턴스가 생성됩니다.
++ */
++@ApiStatus.OverrideOnly
++@ApiStatus.Experimental
++public interface PluginDatapackLoader {
++}
+diff --git a/src/main/java/org/bukkit/plugin/PluginDescriptionFile.java b/src/main/java/org/bukkit/plugin/PluginDescriptionFile.java
+index c0691a849831f99268fdcb7b0f471f80a1a2a70e..2ae2974f20c95d8750e7e716aca7802672ab6389 100644
+--- a/src/main/java/org/bukkit/plugin/PluginDescriptionFile.java
++++ b/src/main/java/org/bukkit/plugin/PluginDescriptionFile.java
+@@ -265,6 +265,28 @@ public final class PluginDescriptionFile implements io.papermc.paper.plugin.conf
+      */
+     @org.jetbrains.annotations.ApiStatus.Internal
+     public PluginDescriptionFile(String rawName, String name, List<String> provides, String main, String classLoaderOf, List<String> depend, List<String> softDepend, List<String> loadBefore, String version, Map<String, Map<String, Object>> commands, String description, List<String> authors, List<String> contributors, String website, String prefix, PluginLoadOrder order, List<Permission> permissions, PermissionDefault defaultPerm, Set<PluginAwareness> awareness, String apiVersion, List<String> libraries) {
++        // Daydream start - Add Plugin Datapack System
++        this(rawName, name, provides, main, classLoaderOf, depend, softDepend, loadBefore, version, commands, description, authors, contributors, website, prefix, order, permissions, defaultPerm, awareness, apiVersion, libraries, null, false);
++    }
++
++    private String datapackLoader;
++    private boolean hasEmbeddedDatapack;
++
++    @Override
++    public @Nullable String getDatapackLoader() {
++        return datapackLoader;
++    }
++
++    @Override
++    public boolean hasEmbeddedDatapack() {
++        return hasEmbeddedDatapack;
++    }
++
++    @org.jetbrains.annotations.ApiStatus.Internal
++    public PluginDescriptionFile(String rawName, String name, List<String> provides, String main, String classLoaderOf, List<String> depend, List<String> softDepend, List<String> loadBefore, String version, Map<String, Map<String, Object>> commands, String description, List<String> authors, List<String> contributors, String website, String prefix, PluginLoadOrder order, List<Permission> permissions, PermissionDefault defaultPerm, Set<PluginAwareness> awareness, String apiVersion, List<String> libraries, String datapackLoader, boolean hasDatapack) {
++        this.datapackLoader = datapackLoader;
++        this.hasEmbeddedDatapack = hasDatapack;
++        // Daydream end - Add Plugin Datapack System
+         this.rawName = rawName;
+         this.name = name;
+         this.provides = provides;
+@@ -1136,6 +1158,16 @@ public final class PluginDescriptionFile implements io.papermc.paper.plugin.conf
+             classLoaderOf = map.get("class-loader-of").toString();
+         }
+ 
++        // Daydream start - Add Plugin Datapack System
++        if (map.get("datapack-loader") != null) {
++            datapackLoader = map.get("datapack-loader").toString();
++        }
++
++        if (map.get("has-embedded-datapack") != null) {
++            hasEmbeddedDatapack = Boolean.parseBoolean(map.get("has-embedded-datapack").toString());
++        }
++        // Daydream end - Add Plugin Datapack System
++
+         depend = makePluginNameList(map, "depend");
+         softDepend = makePluginNameList(map, "softdepend");
+         loadBefore = makePluginNameList(map, "loadbefore");
+@@ -1315,6 +1347,16 @@ public final class PluginDescriptionFile implements io.papermc.paper.plugin.conf
+             map.put("class-loader-of", classLoaderOf);
+         }
+ 
++        // Daydream start - Add Plugin Datapack System
++        if (datapackLoader != null) {
++            map.put("datapack-loader", datapackLoader);
++        }
++
++        if (hasEmbeddedDatapack) {
++            map.put("has-embedded-datapack", true);
++        }
++        // Daydream end - Add Plugin Datapack System
++
+         if (prefix != null) {
+             map.put("prefix", prefix);
+         }

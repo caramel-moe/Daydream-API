@@ -6,12 +6,13 @@ Subject: [PATCH] Add Individual Sidebar API
 
 diff --git a/src/main/java/moe/caramel/daydream/sidebar/EntryBuilder.java b/src/main/java/moe/caramel/daydream/sidebar/EntryBuilder.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..bb35693c75c94e640765191de196f6f612704136
+index 0000000000000000000000000000000000000000..581e3a7f19cea2bc6d2b1832638be56be1a9b51a
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/sidebar/EntryBuilder.java
-@@ -0,0 +1,165 @@
+@@ -0,0 +1,166 @@
 +package moe.caramel.daydream.sidebar;
 +
++import io.papermc.paper.scoreboard.numbers.NumberFormat;
 +import net.kyori.adventure.text.Component;
 +import net.kyori.adventure.text.minimessage.MiniMessage;
 +import org.jetbrains.annotations.ApiStatus;
@@ -175,125 +176,15 @@ index 0000000000000000000000000000000000000000..bb35693c75c94e640765191de196f6f6
 +        return entries;
 +    }
 +}
-diff --git a/src/main/java/moe/caramel/daydream/sidebar/NumberFormat.java b/src/main/java/moe/caramel/daydream/sidebar/NumberFormat.java
-new file mode 100644
-index 0000000000000000000000000000000000000000..10b286cf8d01ba6445e5382feb08559199af0632
---- /dev/null
-+++ b/src/main/java/moe/caramel/daydream/sidebar/NumberFormat.java
-@@ -0,0 +1,105 @@
-+package moe.caramel.daydream.sidebar;
-+
-+import net.kyori.adventure.text.Component;
-+import net.kyori.adventure.text.format.Style;
-+import net.kyori.adventure.text.minimessage.MiniMessage;
-+import org.jetbrains.annotations.ApiStatus;
-+import org.jetbrains.annotations.NotNull;
-+import java.util.Objects;
-+
-+/**
-+ * 점수 표기 방식
-+ */
-+public sealed interface NumberFormat permits NumberFormat.Blank, NumberFormat.Styled, NumberFormat.Fixed {
-+
-+    /**
-+     * 점수를 표기하지 않음
-+     */
-+    @NotNull
-+    static NumberFormat blank() {
-+        return Blank.INSTANCE;
-+    }
-+
-+    /**
-+     * 점수의 표기 스타일만 변경
-+     *
-+     * @param style 표기 스타일
-+     */
-+    @NotNull
-+    static NumberFormat styled(final @NotNull Style style) {
-+        return new Styled(style);
-+    }
-+
-+    /**
-+     * 점수 위치에 고정된 문구를 표시
-+     *
-+     * @param text 표시할 문구
-+     */
-+    @NotNull
-+    static NumberFormat fixed(final @NotNull String text) {
-+        return fixed(MiniMessage.miniMessage().deserialize(text));
-+    }
-+
-+    /**
-+     * 점수 위치에 고정된 문구를 표시
-+     *
-+     * @param text 표시할 문구
-+     */
-+    @NotNull
-+    static NumberFormat fixed(final @NotNull Component text) {
-+        return new Fixed(text);
-+    }
-+
-+    // ==============================================
-+
-+    final class Blank implements NumberFormat {
-+        private static final Blank INSTANCE = new Blank();
-+        private Blank() { }
-+    }
-+
-+    final class Styled implements NumberFormat {
-+        private final Style style;
-+        private Styled(final @NotNull Style style) { this.style = style; }
-+
-+        @NotNull @ApiStatus.Internal
-+        public Style style() {
-+            return style;
-+        }
-+
-+        @Override
-+        public boolean equals(final Object o) {
-+            if (this == o) return true;
-+            if (o == null || getClass() != o.getClass()) return false;
-+            final Styled styled = (Styled) o;
-+            return Objects.equals(style, styled.style);
-+        }
-+
-+        @Override
-+        public int hashCode() {
-+            return Objects.hash(style);
-+        }
-+    }
-+
-+    final class Fixed implements NumberFormat {
-+        private final Component text;
-+        private Fixed(final @NotNull Component text) { this.text = text; }
-+
-+        @NotNull @ApiStatus.Internal
-+        public Component text() {
-+            return text;
-+        }
-+
-+        @Override
-+        public boolean equals(final Object o) {
-+            if (this == o) return true;
-+            if (o == null || getClass() != o.getClass()) return false;
-+            final Fixed fixed = (Fixed) o;
-+            return Objects.equals(text, fixed.text);
-+        }
-+
-+        @Override
-+        public int hashCode() {
-+            return Objects.hash(text);
-+        }
-+    }
-+}
 diff --git a/src/main/java/moe/caramel/daydream/sidebar/SidebarDecorator.java b/src/main/java/moe/caramel/daydream/sidebar/SidebarDecorator.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..98bc1e8c3a8ef9091b528232723089152d7b133b
+index 0000000000000000000000000000000000000000..42dde15ad6550ed64a0442b449d9f5d2c91469b9
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/sidebar/SidebarDecorator.java
-@@ -0,0 +1,42 @@
+@@ -0,0 +1,43 @@
 +package moe.caramel.daydream.sidebar;
 +
++import io.papermc.paper.scoreboard.numbers.NumberFormat;
 +import net.kyori.adventure.text.Component;
 +import org.bukkit.entity.Player;
 +import org.jetbrains.annotations.NotNull;
@@ -426,10 +317,10 @@ index 0000000000000000000000000000000000000000..545cafad82bc93cebe17e59c1f125ce5
 +    Set<UUID> trackedPlayers();
 +}
 diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
-index d03e701b432b275909e072c2d8579f8729813fcb..304498f0eb6bde3bf4ab06cc0774e60ecf259b7d 100644
+index df71e03e0a99fe7cf966b5b22c380e0e84b2a021..6fb081b03458ae5460185c9556de1dcd9753ecda 100644
 --- a/src/main/java/org/bukkit/Bukkit.java
 +++ b/src/main/java/org/bukkit/Bukkit.java
-@@ -2942,6 +2942,18 @@ public final class Bukkit {
+@@ -2929,6 +2929,18 @@ public final class Bukkit {
      }
      // Daydream end - Add Packet API
  
@@ -449,10 +340,10 @@ index d03e701b432b275909e072c2d8579f8729813fcb..304498f0eb6bde3bf4ab06cc0774e60e
      public static Server.Spigot spigot() {
          return server.spigot();
 diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
-index e58225db6a1335f474ea439c3edfaa90903e74e0..26feff71ec2822ad1f7baced095d4f9389089cb4 100644
+index 9aaa5e08b560cd68a0dfb09ec95ec528a67b9fdf..e530e303fe7591de4e3182cc2b574a51f89923ff 100644
 --- a/src/main/java/org/bukkit/Server.java
 +++ b/src/main/java/org/bukkit/Server.java
-@@ -2575,4 +2575,14 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
+@@ -2564,4 +2564,14 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
      @NotNull
      <T extends moe.caramel.daydream.packet.Packet> T createPacket(@NotNull Class<T> packet);
      // Daydream end - Add Packet API
