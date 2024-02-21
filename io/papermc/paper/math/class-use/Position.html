@@ -161,49 +161,54 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color"><code>boolean</code></div>
-<div class="col-second even-row-color"><span class="type-name-label">World.</span><code><a href="../../../../../org/bukkit/World.html#hasStructureAt(io.papermc.paper.math.Position,org.bukkit.generator.structure.Structure)" class="member-name-link">hasStructureAt</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Position.html" title="interface in io.papermc.paper.math">Position</a>&nbsp;position,
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/generator/structure/Structure.html" title="class in org.bukkit.generator.structure">Structure</a>&nbsp;structure)</code></div>
+<div class="col-first even-row-color"><code>default <a href="../../block/fluid/FluidData.html" title="interface in io.papermc.paper.block.fluid">FluidData</a></code></div>
+<div class="col-second even-row-color"><span class="type-name-label">RegionAccessor.</span><code><a href="../../../../../org/bukkit/RegionAccessor.html#getFluidData(io.papermc.paper.math.Position)" class="member-name-link">getFluidData</a><wbr>(<a href="../Position.html" title="interface in io.papermc.paper.math">Position</a>&nbsp;position)</code></div>
 <div class="col-last even-row-color">
-<div class="block">Check if the naturally-generated structure exists at the position.</div>
-</div>
-<div class="col-first odd-row-color"><code>static boolean</code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">Bukkit.</span><code><a href="../../../../../org/bukkit/Bukkit.html#isOwnedByCurrentRegion(org.bukkit.World,io.papermc.paper.math.Position)" class="member-name-link">isOwnedByCurrentRegion</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/World.html" title="interface in org.bukkit">World</a>&nbsp;world,
- <a href="../Position.html" title="interface in io.papermc.paper.math">Position</a>&nbsp;position)</code></div>
-<div class="col-last odd-row-color">
-<div class="block">Returns whether the current thread is ticking a region and that the region being ticked
- owns the chunk at the specified world and block position.</div>
-</div>
-<div class="col-first even-row-color"><code>static boolean</code></div>
-<div class="col-second even-row-color"><span class="type-name-label">Bukkit.</span><code><a href="../../../../../org/bukkit/Bukkit.html#isOwnedByCurrentRegion(org.bukkit.World,io.papermc.paper.math.Position,int)" class="member-name-link">isOwnedByCurrentRegion</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/World.html" title="interface in org.bukkit">World</a>&nbsp;world,
- <a href="../Position.html" title="interface in io.papermc.paper.math">Position</a>&nbsp;position,
- int&nbsp;squareRadiusChunks)</code></div>
-<div class="col-last even-row-color">
-<div class="block">Returns whether the current thread is ticking a region and that the region being ticked
- owns the chunks centered at the specified block position within the specified square radius.</div>
+<div class="block">Gets the <a href="../../block/fluid/FluidData.html" title="interface in io.papermc.paper.block.fluid"><code>FluidData</code></a> at the given position</div>
 </div>
 <div class="col-first odd-row-color"><code>boolean</code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">Server.</span><code><a href="../../../../../org/bukkit/Server.html#isOwnedByCurrentRegion(org.bukkit.World,io.papermc.paper.math.Position)" class="member-name-link">isOwnedByCurrentRegion</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/World.html" title="interface in org.bukkit">World</a>&nbsp;world,
- <a href="../Position.html" title="interface in io.papermc.paper.math">Position</a>&nbsp;position)</code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">World.</span><code><a href="../../../../../org/bukkit/World.html#hasStructureAt(io.papermc.paper.math.Position,org.bukkit.generator.structure.Structure)" class="member-name-link">hasStructureAt</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Position.html" title="interface in io.papermc.paper.math">Position</a>&nbsp;position,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/generator/structure/Structure.html" title="class in org.bukkit.generator.structure">Structure</a>&nbsp;structure)</code></div>
 <div class="col-last odd-row-color">
+<div class="block">Check if the naturally-generated structure exists at the position.</div>
+</div>
+<div class="col-first even-row-color"><code>static boolean</code></div>
+<div class="col-second even-row-color"><span class="type-name-label">Bukkit.</span><code><a href="../../../../../org/bukkit/Bukkit.html#isOwnedByCurrentRegion(org.bukkit.World,io.papermc.paper.math.Position)" class="member-name-link">isOwnedByCurrentRegion</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/World.html" title="interface in org.bukkit">World</a>&nbsp;world,
+ <a href="../Position.html" title="interface in io.papermc.paper.math">Position</a>&nbsp;position)</code></div>
+<div class="col-last even-row-color">
 <div class="block">Returns whether the current thread is ticking a region and that the region being ticked
  owns the chunk at the specified world and block position.</div>
 </div>
-<div class="col-first even-row-color"><code>boolean</code></div>
-<div class="col-second even-row-color"><span class="type-name-label">Server.</span><code><a href="../../../../../org/bukkit/Server.html#isOwnedByCurrentRegion(org.bukkit.World,io.papermc.paper.math.Position,int)" class="member-name-link">isOwnedByCurrentRegion</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/World.html" title="interface in org.bukkit">World</a>&nbsp;world,
+<div class="col-first odd-row-color"><code>static boolean</code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">Bukkit.</span><code><a href="../../../../../org/bukkit/Bukkit.html#isOwnedByCurrentRegion(org.bukkit.World,io.papermc.paper.math.Position,int)" class="member-name-link">isOwnedByCurrentRegion</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/World.html" title="interface in org.bukkit">World</a>&nbsp;world,
  <a href="../Position.html" title="interface in io.papermc.paper.math">Position</a>&nbsp;position,
  int&nbsp;squareRadiusChunks)</code></div>
-<div class="col-last even-row-color">
+<div class="col-last odd-row-color">
 <div class="block">Returns whether the current thread is ticking a region and that the region being ticked
  owns the chunks centered at the specified block position within the specified square radius.</div>
 </div>
-<div class="col-first odd-row-color"><code>default boolean</code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">World.</span><code><a href="../../../../../org/bukkit/World.html#isPositionLoaded(io.papermc.paper.math.Position)" class="member-name-link">isPositionLoaded</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Position.html" title="interface in io.papermc.paper.math">Position</a>&nbsp;position)</code></div>
+<div class="col-first even-row-color"><code>boolean</code></div>
+<div class="col-second even-row-color"><span class="type-name-label">Server.</span><code><a href="../../../../../org/bukkit/Server.html#isOwnedByCurrentRegion(org.bukkit.World,io.papermc.paper.math.Position)" class="member-name-link">isOwnedByCurrentRegion</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/World.html" title="interface in org.bukkit">World</a>&nbsp;world,
+ <a href="../Position.html" title="interface in io.papermc.paper.math">Position</a>&nbsp;position)</code></div>
+<div class="col-last even-row-color">
+<div class="block">Returns whether the current thread is ticking a region and that the region being ticked
+ owns the chunk at the specified world and block position.</div>
+</div>
+<div class="col-first odd-row-color"><code>boolean</code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">Server.</span><code><a href="../../../../../org/bukkit/Server.html#isOwnedByCurrentRegion(org.bukkit.World,io.papermc.paper.math.Position,int)" class="member-name-link">isOwnedByCurrentRegion</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/World.html" title="interface in org.bukkit">World</a>&nbsp;world,
+ <a href="../Position.html" title="interface in io.papermc.paper.math">Position</a>&nbsp;position,
+ int&nbsp;squareRadiusChunks)</code></div>
 <div class="col-last odd-row-color">
+<div class="block">Returns whether the current thread is ticking a region and that the region being ticked
+ owns the chunks centered at the specified block position within the specified square radius.</div>
+</div>
+<div class="col-first even-row-color"><code>default boolean</code></div>
+<div class="col-second even-row-color"><span class="type-name-label">World.</span><code><a href="../../../../../org/bukkit/World.html#isPositionLoaded(io.papermc.paper.math.Position)" class="member-name-link">isPositionLoaded</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Position.html" title="interface in io.papermc.paper.math">Position</a>&nbsp;position)</code></div>
+<div class="col-last even-row-color">
 <div class="block">Checks if this position is loaded.</div>
 </div>
-<div class="col-first even-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../../../../../org/bukkit/util/RayTraceResult.html" title="class in org.bukkit.util">RayTraceResult</a></code></div>
-<div class="col-second even-row-color"><span class="type-name-label">World.</span><code><a href="../../../../../org/bukkit/World.html#rayTrace(io.papermc.paper.math.Position,org.bukkit.util.Vector,double,org.bukkit.FluidCollisionMode,boolean,double,java.util.function.Predicate,java.util.function.Predicate)" class="member-name-link">rayTrace</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Position.html" title="interface in io.papermc.paper.math">Position</a>&nbsp;start,
+<div class="col-first odd-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../../../../../org/bukkit/util/RayTraceResult.html" title="class in org.bukkit.util">RayTraceResult</a></code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">World.</span><code><a href="../../../../../org/bukkit/World.html#rayTrace(io.papermc.paper.math.Position,org.bukkit.util.Vector,double,org.bukkit.FluidCollisionMode,boolean,double,java.util.function.Predicate,java.util.function.Predicate)" class="member-name-link">rayTrace</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Position.html" title="interface in io.papermc.paper.math">Position</a>&nbsp;start,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/util/Vector.html" title="class in org.bukkit.util">Vector</a>&nbsp;direction,
  double&nbsp;maxDistance,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/FluidCollisionMode.html" title="enum class in org.bukkit">FluidCollisionMode</a>&nbsp;fluidCollisionMode,
@@ -211,27 +216,27 @@ loadScripts(document, 'script');</script>
  double&nbsp;raySize,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Predicate.html" title="class or interface in java.util.function" class="external-link">Predicate</a>&lt;? super <a href="../../../../../org/bukkit/entity/Entity.html" title="interface in org.bukkit.entity">Entity</a>&gt;&nbsp;filter,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Predicate.html" title="class or interface in java.util.function" class="external-link">Predicate</a>&lt;? super <a href="../../../../../org/bukkit/block/Block.html" title="interface in org.bukkit.block">Block</a>&gt;&nbsp;canCollide)</code></div>
-<div class="col-last even-row-color">
+<div class="col-last odd-row-color">
 <div class="block">Performs a ray trace that checks for both block and entity collisions.</div>
 </div>
-<div class="col-first odd-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../../../../../org/bukkit/util/RayTraceResult.html" title="class in org.bukkit.util">RayTraceResult</a></code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">World.</span><code><a href="../../../../../org/bukkit/World.html#rayTraceBlocks(io.papermc.paper.math.Position,org.bukkit.util.Vector,double,org.bukkit.FluidCollisionMode,boolean,java.util.function.Predicate)" class="member-name-link">rayTraceBlocks</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Position.html" title="interface in io.papermc.paper.math">Position</a>&nbsp;start,
+<div class="col-first even-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../../../../../org/bukkit/util/RayTraceResult.html" title="class in org.bukkit.util">RayTraceResult</a></code></div>
+<div class="col-second even-row-color"><span class="type-name-label">World.</span><code><a href="../../../../../org/bukkit/World.html#rayTraceBlocks(io.papermc.paper.math.Position,org.bukkit.util.Vector,double,org.bukkit.FluidCollisionMode,boolean,java.util.function.Predicate)" class="member-name-link">rayTraceBlocks</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Position.html" title="interface in io.papermc.paper.math">Position</a>&nbsp;start,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/util/Vector.html" title="class in org.bukkit.util">Vector</a>&nbsp;direction,
  double&nbsp;maxDistance,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/FluidCollisionMode.html" title="enum class in org.bukkit">FluidCollisionMode</a>&nbsp;fluidCollisionMode,
  boolean&nbsp;ignorePassableBlocks,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Predicate.html" title="class or interface in java.util.function" class="external-link">Predicate</a>&lt;? super <a href="../../../../../org/bukkit/block/Block.html" title="interface in org.bukkit.block">Block</a>&gt;&nbsp;canCollide)</code></div>
-<div class="col-last odd-row-color">
+<div class="col-last even-row-color">
 <div class="block">Performs a ray trace that checks for block collisions using the blocks'
  precise collision shapes.</div>
 </div>
-<div class="col-first even-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../../../../../org/bukkit/util/RayTraceResult.html" title="class in org.bukkit.util">RayTraceResult</a></code></div>
-<div class="col-second even-row-color"><span class="type-name-label">World.</span><code><a href="../../../../../org/bukkit/World.html#rayTraceEntities(io.papermc.paper.math.Position,org.bukkit.util.Vector,double,double,java.util.function.Predicate)" class="member-name-link">rayTraceEntities</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Position.html" title="interface in io.papermc.paper.math">Position</a>&nbsp;start,
+<div class="col-first odd-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../../../../../org/bukkit/util/RayTraceResult.html" title="class in org.bukkit.util">RayTraceResult</a></code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">World.</span><code><a href="../../../../../org/bukkit/World.html#rayTraceEntities(io.papermc.paper.math.Position,org.bukkit.util.Vector,double,double,java.util.function.Predicate)" class="member-name-link">rayTraceEntities</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Position.html" title="interface in io.papermc.paper.math">Position</a>&nbsp;start,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/util/Vector.html" title="class in org.bukkit.util">Vector</a>&nbsp;direction,
  double&nbsp;maxDistance,
  double&nbsp;raySize,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Predicate.html" title="class or interface in java.util.function" class="external-link">Predicate</a>&lt;? super <a href="../../../../../org/bukkit/entity/Entity.html" title="interface in org.bukkit.entity">Entity</a>&gt;&nbsp;filter)</code></div>
-<div class="col-last even-row-color">
+<div class="col-last odd-row-color">
 <div class="block">Performs a ray trace that checks for entity collisions.</div>
 </div>
 </div>

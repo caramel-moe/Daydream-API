@@ -140,6 +140,17 @@ loadScripts(document, 'script');</script>
  be used by the <code>/trigger</code> command executed
  by the owner of this score.</div>
 </div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="../../../io/papermc/paper/scoreboard/numbers/NumberFormat.html" title="interface in io.papermc.paper.scoreboard.numbers">NumberFormat</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#numberFormat()" class="member-name-link">numberFormat</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Gets the number format for this score or null if the score has not been set yet
+ or the objective's default is being used.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#numberFormat(io.papermc.paper.scoreboard.numbers.NumberFormat)" class="member-name-link">numberFormat</a><wbr>(<a href="../../../io/papermc/paper/scoreboard/numbers/NumberFormat.html" title="interface in io.papermc.paper.scoreboard.numbers">NumberFormat</a>&nbsp;format)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Sets the number format for this score.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#resetScore()" class="member-name-link">resetScore</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
@@ -347,6 +358,37 @@ loadScripts(document, 'script');</script>
 <dd><code>customName</code> - the custom name or null to reset</dd>
 <dt>Throws:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalStateException.html" title="class or interface in java.lang" class="external-link">IllegalStateException</a></code> - if the associated objective has been unregistered</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="numberFormat()">
+<h3>numberFormat</h3>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a>
+</span><span class="return-type"><a href="../../../io/papermc/paper/scoreboard/numbers/NumberFormat.html" title="interface in io.papermc.paper.scoreboard.numbers">NumberFormat</a></span>&nbsp;<span class="element-name">numberFormat</span>()</div>
+<div class="block">Gets the number format for this score or null if the score has not been set yet
+ or the objective's default is being used.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>this score's number format, or null if the objective's default is used or the score doesn't exist</dd>
+<dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalStateException.html" title="class or interface in java.lang" class="external-link">IllegalStateException</a></code> - if the associated objective has been
+     unregistered</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="numberFormat(io.papermc.paper.scoreboard.numbers.NumberFormat)">
+<h3>numberFormat</h3>
+<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">numberFormat</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a>
+ <a href="../../../io/papermc/paper/scoreboard/numbers/NumberFormat.html" title="interface in io.papermc.paper.scoreboard.numbers">NumberFormat</a>&nbsp;format)</span></div>
+<div class="block">Sets the number format for this score. If this score has not been set yet <a href="#isScoreSet()"><code>isScoreSet()</code></a>, it will be created</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>format</code> - the number format to set, pass null to reset format to default</dd>
+<dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalStateException.html" title="class or interface in java.lang" class="external-link">IllegalStateException</a></code> - if the associated objective has been
+     unregistered</dd>
 </dl>
 </section>
 </li>

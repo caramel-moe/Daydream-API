@@ -119,7 +119,7 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(org.bukkit.entity.Player,com.google.gson.JsonElement)" class="member-name-link">PlayerAdvancementSaveEvent</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/entity/Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;who,
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://www.javadoc.io/doc/com.google.code.gson/gson/2.10.1/com.google.gson/com/google/gson/JsonElement.html" title="class or interface in com.google.gson" class="external-link">JsonElement</a>&nbsp;jsonElement)</code></div>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://www.javadoc.io/doc/com.google.code.gson/gson/2.10.1/com.google.gson/com/google/gson/JsonElement.html" title="class or interface in com.google.gson" class="external-link">JsonElement</a>&nbsp;json)</code></div>
 <div class="col-last even-row-color">&nbsp;</div>
 </div>
 </section>
@@ -142,9 +142,9 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getHandlers()" class="member-name-link">getHandlers</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://www.javadoc.io/doc/com.google.code.gson/gson/2.10.1/com.google.gson/com/google/gson/JsonElement.html" title="class or interface in com.google.gson" class="external-link">JsonElement</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getJsonElement()" class="member-name-link">getJsonElement</a>()</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getJson()" class="member-name-link">getJson</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">저장될 발전 과제 Json을 가져옵니다.</div>
+<div class="block">저장될 발전 과제 데이터를 가져옵니다.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isCancelled()" class="member-name-link">isCancelled</a>()</code></div>
@@ -186,7 +186,7 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 </span><span class="modifiers">public</span>&nbsp;<span class="element-name">PlayerAdvancementSaveEvent</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/entity/Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;who,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://www.javadoc.io/doc/com.google.code.gson/gson/2.10.1/com.google.gson/com/google/gson/JsonElement.html" title="class or interface in com.google.gson" class="external-link">JsonElement</a>&nbsp;jsonElement)</span></div>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://www.javadoc.io/doc/com.google.code.gson/gson/2.10.1/com.google.gson/com/google/gson/JsonElement.html" title="class or interface in com.google.gson" class="external-link">JsonElement</a>&nbsp;json)</span></div>
 </section>
 </li>
 </ul>
@@ -246,14 +246,14 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 </section>
 </li>
 <li>
-<section class="detail" id="getJsonElement()">
-<h3>getJsonElement</h3>
+<section class="detail" id="getJson()">
+<h3>getJson</h3>
 <div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
-</span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://www.javadoc.io/doc/com.google.code.gson/gson/2.10.1/com.google.gson/com/google/gson/JsonElement.html" title="class or interface in com.google.gson" class="external-link">JsonElement</a></span>&nbsp;<span class="element-name">getJsonElement</span>()</div>
-<div class="block">저장될 발전 과제 Json을 가져옵니다.</div>
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://www.javadoc.io/doc/com.google.code.gson/gson/2.10.1/com.google.gson/com/google/gson/JsonElement.html" title="class or interface in com.google.gson" class="external-link">JsonElement</a></span>&nbsp;<span class="element-name">getJson</span>()</div>
+<div class="block">저장될 발전 과제 데이터를 가져옵니다.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>발전 과제 Json</dd>
+<dd>발전 과제 데이터</dd>
 </dl>
 </section>
 </li>

@@ -57,10 +57,8 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color"><a href="#moe.caramel.daydream.advancement">moe.caramel.daydream.advancement</a></div>
 <div class="col-last even-row-color">&nbsp;</div>
-<div class="col-first odd-row-color"><a href="#org.bukkit">org.bukkit</a></div>
-<div class="col-last odd-row-color">
-<div class="block">The root package of the Bukkit API, contains generalized API classes.</div>
-</div>
+<div class="col-first odd-row-color"><a href="#moe.caramel.daydream.plugin">moe.caramel.daydream.plugin</a></div>
+<div class="col-last odd-row-color">&nbsp;</div>
 </div>
 <section class="class-uses">
 <ul class="block-list">
@@ -75,7 +73,7 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../AdvancementBuilder.html" title="interface in moe.caramel.daydream.advancement">AdvancementBuilder</a></code></div>
 <div class="col-second even-row-color"><span class="type-name-label">AdvancementBuilder.</span><code><a href="../AdvancementBuilder.html#addImpossibleCriterion(java.lang.String)" class="member-name-link">addImpossibleCriterion</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
 <div class="col-last even-row-color">
-<div class="block">기준을 추가합니다.</div>
+<div class="block">달성 기준을 추가합니다.</div>
 </div>
 <div class="col-first odd-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../AdvancementBuilder.html" title="interface in moe.caramel.daydream.advancement">AdvancementBuilder</a></code></div>
 <div class="col-second odd-row-color"><span class="type-name-label">AdvancementBuilder.</span><code><a href="../AdvancementBuilder.html#alwaysVisible()" class="member-name-link">alwaysVisible</a>()</code></div>
@@ -83,59 +81,69 @@ loadScripts(document, 'script');</script>
 <div class="block">이 발전 과제가 항상 보여야 되는 경우에 사용합니다.</div>
 </div>
 <div class="col-first even-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../AdvancementBuilder.html" title="interface in moe.caramel.daydream.advancement">AdvancementBuilder</a></code></div>
-<div class="col-second even-row-color"><span class="type-name-label">AdvancementBuilder.</span><code><a href="../AdvancementBuilder.html#display(org.bukkit.inventory.ItemStack,net.kyori.adventure.text.Component,net.kyori.adventure.text.Component,org.bukkit.NamespacedKey,io.papermc.paper.advancement.AdvancementDisplay.Frame,boolean,boolean,boolean)" class="member-name-link">display</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/inventory/ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;icon,
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://jd.advntr.dev/api/4.15.0/net/kyori/adventure/text/Component.html" title="class or interface in net.kyori.adventure.text" class="external-link">Component</a>&nbsp;title,
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="https://jd.advntr.dev/api/4.15.0/net/kyori/adventure/text/Component.html" title="class or interface in net.kyori.adventure.text" class="external-link">Component</a>&nbsp;description,
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../../../../../org/bukkit/NamespacedKey.html" title="class in org.bukkit">NamespacedKey</a>&nbsp;background,
- <a href="../../../../../io/papermc/paper/advancement/AdvancementDisplay.Frame.html" title="enum class in io.papermc.paper.advancement">AdvancementDisplay.Frame</a>&nbsp;frame,
- boolean&nbsp;showToast,
- boolean&nbsp;announceToChat,
- boolean&nbsp;hidden)</code></div>
+<div class="col-second even-row-color"><span class="type-name-label">AdvancementBuilder.</span><code><a href="../AdvancementBuilder.html#display(io.papermc.paper.advancement.AdvancementDisplay)" class="member-name-link">display</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../io/papermc/paper/advancement/AdvancementDisplay.html" title="interface in io.papermc.paper.advancement">AdvancementDisplay</a>&nbsp;display)</code></div>
 <div class="col-last even-row-color">
-<div class="block">이 발전 과제의 디스플레이 정보를 설정합니다.</div>
-</div>
-<div class="col-first odd-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../AdvancementBuilder.html" title="interface in moe.caramel.daydream.advancement">AdvancementBuilder</a></code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">AdvancementBuilder.</span><code><a href="../AdvancementBuilder.html#display(org.bukkit.inventory.ItemStack,net.kyori.adventure.text.Component,net.kyori.adventure.text.Component,org.bukkit.NamespacedKey,io.papermc.paper.advancement.AdvancementDisplay.Frame,float,float,boolean,boolean,boolean)" class="member-name-link">display</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/inventory/ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;icon,
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://jd.advntr.dev/api/4.15.0/net/kyori/adventure/text/Component.html" title="class or interface in net.kyori.adventure.text" class="external-link">Component</a>&nbsp;title,
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="https://jd.advntr.dev/api/4.15.0/net/kyori/adventure/text/Component.html" title="class or interface in net.kyori.adventure.text" class="external-link">Component</a>&nbsp;description,
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../../../../../org/bukkit/NamespacedKey.html" title="class in org.bukkit">NamespacedKey</a>&nbsp;background,
- <a href="../../../../../io/papermc/paper/advancement/AdvancementDisplay.Frame.html" title="enum class in io.papermc.paper.advancement">AdvancementDisplay.Frame</a>&nbsp;frame,
- float&nbsp;x,
- float&nbsp;y,
- boolean&nbsp;showToast,
- boolean&nbsp;announceToChat,
- boolean&nbsp;hidden)</code></div>
-<div class="col-last odd-row-color">
-<div class="block">이 발전 과제의 디스플레이 정보를 설정합니다.</div>
-</div>
-<div class="col-first even-row-color"><code>default <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../AdvancementBuilder.html" title="interface in moe.caramel.daydream.advancement">AdvancementBuilder</a></code></div>
-<div class="col-second even-row-color"><span class="type-name-label">AdvancementBuilder.</span><code><a href="../AdvancementBuilder.html#display(org.bukkit.Material,net.kyori.adventure.text.Component,net.kyori.adventure.text.Component,org.bukkit.NamespacedKey,io.papermc.paper.advancement.AdvancementDisplay.Frame,boolean,boolean,boolean)" class="member-name-link">display</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/Material.html" title="enum class in org.bukkit">Material</a>&nbsp;icon,
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://jd.advntr.dev/api/4.15.0/net/kyori/adventure/text/Component.html" title="class or interface in net.kyori.adventure.text" class="external-link">Component</a>&nbsp;title,
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="https://jd.advntr.dev/api/4.15.0/net/kyori/adventure/text/Component.html" title="class or interface in net.kyori.adventure.text" class="external-link">Component</a>&nbsp;description,
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../../../../../org/bukkit/NamespacedKey.html" title="class in org.bukkit">NamespacedKey</a>&nbsp;background,
- <a href="../../../../../io/papermc/paper/advancement/AdvancementDisplay.Frame.html" title="enum class in io.papermc.paper.advancement">AdvancementDisplay.Frame</a>&nbsp;frame,
- boolean&nbsp;showToast,
- boolean&nbsp;announceToChat,
- boolean&nbsp;hidden)</code></div>
-<div class="col-last even-row-color">
-<div class="block">이 발전 과제의 디스플레이 정보를 설정합니다.</div>
+<div class="block">이 발전 과제의 디스플레이를 설정합니다.</div>
 </div>
 <div class="col-first odd-row-color"><code>default <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../AdvancementBuilder.html" title="interface in moe.caramel.daydream.advancement">AdvancementBuilder</a></code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">AdvancementBuilder.</span><code><a href="../AdvancementBuilder.html#display(org.bukkit.Material,net.kyori.adventure.text.Component,net.kyori.adventure.text.Component,org.bukkit.NamespacedKey,io.papermc.paper.advancement.AdvancementDisplay.Frame,float,float,boolean,boolean,boolean)" class="member-name-link">display</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/Material.html" title="enum class in org.bukkit">Material</a>&nbsp;icon,
+<div class="col-second odd-row-color"><span class="type-name-label">AdvancementBuilder.</span><code><a href="../AdvancementBuilder.html#display(org.bukkit.inventory.ItemStack,net.kyori.adventure.text.Component,net.kyori.adventure.text.Component,org.bukkit.NamespacedKey,io.papermc.paper.advancement.AdvancementDisplay.Frame,boolean,boolean,boolean)" class="member-name-link">display</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/inventory/ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;icon,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://jd.advntr.dev/api/4.15.0/net/kyori/adventure/text/Component.html" title="class or interface in net.kyori.adventure.text" class="external-link">Component</a>&nbsp;title,
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="https://jd.advntr.dev/api/4.15.0/net/kyori/adventure/text/Component.html" title="class or interface in net.kyori.adventure.text" class="external-link">Component</a>&nbsp;description,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://jd.advntr.dev/api/4.15.0/net/kyori/adventure/text/Component.html" title="class or interface in net.kyori.adventure.text" class="external-link">Component</a>&nbsp;description,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../../../../../org/bukkit/NamespacedKey.html" title="class in org.bukkit">NamespacedKey</a>&nbsp;background,
+ <a href="../../../../../io/papermc/paper/advancement/AdvancementDisplay.Frame.html" title="enum class in io.papermc.paper.advancement">AdvancementDisplay.Frame</a>&nbsp;frame,
+ boolean&nbsp;showToast,
+ boolean&nbsp;announceChat,
+ boolean&nbsp;hidden)</code></div>
+<div class="col-last odd-row-color">
+<div class="block">이 발전 과제의 디스플레이를 설정합니다.</div>
+</div>
+<div class="col-first even-row-color"><code>default <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../AdvancementBuilder.html" title="interface in moe.caramel.daydream.advancement">AdvancementBuilder</a></code></div>
+<div class="col-second even-row-color"><span class="type-name-label">AdvancementBuilder.</span><code><a href="../AdvancementBuilder.html#display(org.bukkit.inventory.ItemStack,net.kyori.adventure.text.Component,net.kyori.adventure.text.Component,org.bukkit.NamespacedKey,io.papermc.paper.advancement.AdvancementDisplay.Frame,float,float,boolean,boolean,boolean)" class="member-name-link">display</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/inventory/ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;icon,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://jd.advntr.dev/api/4.15.0/net/kyori/adventure/text/Component.html" title="class or interface in net.kyori.adventure.text" class="external-link">Component</a>&nbsp;title,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://jd.advntr.dev/api/4.15.0/net/kyori/adventure/text/Component.html" title="class or interface in net.kyori.adventure.text" class="external-link">Component</a>&nbsp;description,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../../../../../org/bukkit/NamespacedKey.html" title="class in org.bukkit">NamespacedKey</a>&nbsp;background,
  <a href="../../../../../io/papermc/paper/advancement/AdvancementDisplay.Frame.html" title="enum class in io.papermc.paper.advancement">AdvancementDisplay.Frame</a>&nbsp;frame,
  float&nbsp;x,
  float&nbsp;y,
  boolean&nbsp;showToast,
- boolean&nbsp;announceToChat,
+ boolean&nbsp;announceChat,
+ boolean&nbsp;hidden)</code></div>
+<div class="col-last even-row-color">
+<div class="block">이 발전 과제의 디스플레이를 고정된 위치로 설정합니다.</div>
+</div>
+<div class="col-first odd-row-color"><code>default <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../AdvancementBuilder.html" title="interface in moe.caramel.daydream.advancement">AdvancementBuilder</a></code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">AdvancementBuilder.</span><code><a href="../AdvancementBuilder.html#display(org.bukkit.Material,net.kyori.adventure.text.Component,net.kyori.adventure.text.Component,org.bukkit.NamespacedKey,io.papermc.paper.advancement.AdvancementDisplay.Frame,boolean,boolean,boolean)" class="member-name-link">display</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/Material.html" title="enum class in org.bukkit">Material</a>&nbsp;icon,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://jd.advntr.dev/api/4.15.0/net/kyori/adventure/text/Component.html" title="class or interface in net.kyori.adventure.text" class="external-link">Component</a>&nbsp;title,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://jd.advntr.dev/api/4.15.0/net/kyori/adventure/text/Component.html" title="class or interface in net.kyori.adventure.text" class="external-link">Component</a>&nbsp;description,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../../../../../org/bukkit/NamespacedKey.html" title="class in org.bukkit">NamespacedKey</a>&nbsp;background,
+ <a href="../../../../../io/papermc/paper/advancement/AdvancementDisplay.Frame.html" title="enum class in io.papermc.paper.advancement">AdvancementDisplay.Frame</a>&nbsp;frame,
+ boolean&nbsp;showToast,
+ boolean&nbsp;announceChat,
  boolean&nbsp;hidden)</code></div>
 <div class="col-last odd-row-color">
-<div class="block">이 발전 과제의 디스플레이 정보를 설정합니다.</div>
+<div class="block">이 발전 과제의 디스플레이를 설정합니다.</div>
+</div>
+<div class="col-first even-row-color"><code>default <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../AdvancementBuilder.html" title="interface in moe.caramel.daydream.advancement">AdvancementBuilder</a></code></div>
+<div class="col-second even-row-color"><span class="type-name-label">AdvancementBuilder.</span><code><a href="../AdvancementBuilder.html#display(org.bukkit.Material,net.kyori.adventure.text.Component,net.kyori.adventure.text.Component,org.bukkit.NamespacedKey,io.papermc.paper.advancement.AdvancementDisplay.Frame,float,float,boolean,boolean,boolean)" class="member-name-link">display</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/Material.html" title="enum class in org.bukkit">Material</a>&nbsp;icon,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://jd.advntr.dev/api/4.15.0/net/kyori/adventure/text/Component.html" title="class or interface in net.kyori.adventure.text" class="external-link">Component</a>&nbsp;title,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://jd.advntr.dev/api/4.15.0/net/kyori/adventure/text/Component.html" title="class or interface in net.kyori.adventure.text" class="external-link">Component</a>&nbsp;description,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../../../../../org/bukkit/NamespacedKey.html" title="class in org.bukkit">NamespacedKey</a>&nbsp;background,
+ <a href="../../../../../io/papermc/paper/advancement/AdvancementDisplay.Frame.html" title="enum class in io.papermc.paper.advancement">AdvancementDisplay.Frame</a>&nbsp;frame,
+ float&nbsp;x,
+ float&nbsp;y,
+ boolean&nbsp;showToast,
+ boolean&nbsp;announceChat,
+ boolean&nbsp;hidden)</code></div>
+<div class="col-last even-row-color">
+<div class="block">이 발전 과제의 디스플레이를 고정된 위치로 설정합니다.</div>
+</div>
+<div class="col-first odd-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../AdvancementBuilder.html" title="interface in moe.caramel.daydream.advancement">AdvancementBuilder</a></code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">AdvancementBuilder.</span><code><a href="../AdvancementBuilder.html#enableCount(int)" class="member-name-link">enableCount</a><wbr>(int&nbsp;count)</code></div>
+<div class="col-last odd-row-color">
+<div class="block">이 발전 과제에 카운트를 사용합니다.</div>
 </div>
 <div class="col-first even-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../AdvancementBuilder.html" title="interface in moe.caramel.daydream.advancement">AdvancementBuilder</a></code></div>
-<div class="col-second even-row-color"><span class="type-name-label">AdvancementBuilder.</span><code><a href="../AdvancementBuilder.html#parent(org.bukkit.advancement.Advancement)" class="member-name-link">parent</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/advancement/Advancement.html" title="interface in org.bukkit.advancement">Advancement</a>&nbsp;advancement)</code></div>
+<div class="col-second even-row-color"><span class="type-name-label">AdvancementBuilder.</span><code><a href="../AdvancementBuilder.html#parent(org.bukkit.advancement.Advancement)" class="member-name-link">parent</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/advancement/Advancement.html" title="interface in org.bukkit.advancement">Advancement</a>&nbsp;parent)</code></div>
 <div class="col-last even-row-color">
 <div class="block">부모 발전 과제를 설정합니다.</div>
 </div>
@@ -144,60 +152,38 @@ loadScripts(document, 'script');</script>
 <div class="col-last odd-row-color">
 <div class="block">플레이어가 발전 과제를 완료하는 데 필요한 조건을 설정합니다.</div>
 </div>
-<div class="col-first even-row-color"><code>default <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../AdvancementBuilder.html" title="interface in moe.caramel.daydream.advancement">AdvancementBuilder</a></code></div>
-<div class="col-second even-row-color"><span class="type-name-label">AdvancementBuilder.</span><code><a href="../AdvancementBuilder.html#requirements(java.lang.String%5B%5D%5B%5D)" class="member-name-link">requirements</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>[][]&nbsp;requirements)</code></div>
-<div class="col-last even-row-color">
-<div class="block">플레이어가 발전 과제를 완료하는 데 필요한 조건을 설정합니다.</div>
-</div>
-<div class="col-first odd-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../AdvancementBuilder.html" title="interface in moe.caramel.daydream.advancement">AdvancementBuilder</a></code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">AdvancementBuilder.</span><code><a href="../AdvancementBuilder.html#requirements(java.util.List)" class="member-name-link">requirements</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;&gt;&nbsp;requirements)</code></div>
-<div class="col-last odd-row-color">
-<div class="block">플레이어가 발전 과제를 완료하는 데 필요한 조건을 설정합니다.</div>
-</div>
 <div class="col-first even-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../AdvancementBuilder.html" title="interface in moe.caramel.daydream.advancement">AdvancementBuilder</a></code></div>
-<div class="col-second even-row-color"><span class="type-name-label">AdvancementBuilder.</span><code><a href="../AdvancementBuilder.html#useCount(int)" class="member-name-link">useCount</a><wbr>(int&nbsp;count)</code></div>
+<div class="col-second even-row-color"><span class="type-name-label">AdvancementBuilder.</span><code><a href="../AdvancementBuilder.html#requirements(java.util.List)" class="member-name-link">requirements</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;&gt;&nbsp;requirements)</code></div>
 <div class="col-last even-row-color">
-<div class="block">이 발전 과제에 카운트를 사용합니다.</div>
+<div class="block">플레이어가 발전 과제를 완료하는 데 필요한 조건을 설정합니다.</div>
 </div>
 </div>
 </section>
 </li>
 <li>
-<section class="detail" id="org.bukkit">
-<h2>Uses of <a href="../AdvancementBuilder.html" title="interface in moe.caramel.daydream.advancement">AdvancementBuilder</a> in <a href="../../../../../org/bukkit/package-summary.html">org.bukkit</a></h2>
-<div class="caption"><span>Methods in <a href="../../../../../org/bukkit/package-summary.html">org.bukkit</a> that return <a href="../AdvancementBuilder.html" title="interface in moe.caramel.daydream.advancement">AdvancementBuilder</a></span></div>
+<section class="detail" id="moe.caramel.daydream.plugin">
+<h2>Uses of <a href="../AdvancementBuilder.html" title="interface in moe.caramel.daydream.advancement">AdvancementBuilder</a> in <a href="../../plugin/package-summary.html">moe.caramel.daydream.plugin</a></h2>
+<div class="caption"><span>Methods in <a href="../../plugin/package-summary.html">moe.caramel.daydream.plugin</a> that return <a href="../AdvancementBuilder.html" title="interface in moe.caramel.daydream.advancement">AdvancementBuilder</a></span></div>
 <div class="summary-table three-column-summary">
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color"><code>static <a href="../AdvancementBuilder.html" title="interface in moe.caramel.daydream.advancement">AdvancementBuilder</a></code></div>
-<div class="col-second even-row-color"><span class="type-name-label">Bukkit.</span><code><a href="../../../../../org/bukkit/Bukkit.html#createAdvancement(org.bukkit.NamespacedKey)" class="member-name-link">createAdvancement</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/NamespacedKey.html" title="class in org.bukkit">NamespacedKey</a>&nbsp;key)</code></div>
+<div class="col-first even-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../AdvancementBuilder.html" title="interface in moe.caramel.daydream.advancement">AdvancementBuilder</a></code></div>
+<div class="col-second even-row-color"><span class="type-name-label">AdvancementProvider.</span><code><a href="../../plugin/AdvancementProvider.html#createBuilder()" class="member-name-link">createBuilder</a>()</code></div>
 <div class="col-last even-row-color">
 <div class="block">발전 과제 빌더를 생성합니다.</div>
 </div>
-<div class="col-first odd-row-color"><code><a href="../AdvancementBuilder.html" title="interface in moe.caramel.daydream.advancement">AdvancementBuilder</a></code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">Server.</span><code><a href="../../../../../org/bukkit/Server.html#createAdvancement(org.bukkit.NamespacedKey)" class="member-name-link">createAdvancement</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/NamespacedKey.html" title="class in org.bukkit">NamespacedKey</a>&nbsp;key)</code></div>
-<div class="col-last odd-row-color">
-<div class="block">발전 과제 빌더를 생성합니다.</div>
 </div>
-</div>
-<div class="caption"><span>Methods in <a href="../../../../../org/bukkit/package-summary.html">org.bukkit</a> with parameters of type <a href="../AdvancementBuilder.html" title="interface in moe.caramel.daydream.advancement">AdvancementBuilder</a></span></div>
+<div class="caption"><span>Methods in <a href="../../plugin/package-summary.html">moe.caramel.daydream.plugin</a> with parameters of type <a href="../AdvancementBuilder.html" title="interface in moe.caramel.daydream.advancement">AdvancementBuilder</a></span></div>
 <div class="summary-table three-column-summary">
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color"><code>default <a href="../../../../../org/bukkit/advancement/Advancement.html" title="interface in org.bukkit.advancement">Advancement</a></code></div>
-<div class="col-second even-row-color"><span class="type-name-label">UnsafeValues.</span><code><a href="../../../../../org/bukkit/UnsafeValues.html#loadAdvancement(moe.caramel.daydream.advancement.AdvancementBuilder)" class="member-name-link">loadAdvancement</a><wbr>(<a href="../AdvancementBuilder.html" title="interface in moe.caramel.daydream.advancement">AdvancementBuilder</a>&nbsp;builder)</code></div>
+<div class="col-first even-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/advancement/Advancement.html" title="interface in org.bukkit.advancement">Advancement</a></code></div>
+<div class="col-second even-row-color"><span class="type-name-label">AdvancementProvider.</span><code><a href="../../plugin/AdvancementProvider.html#register(org.bukkit.NamespacedKey,moe.caramel.daydream.advancement.AdvancementBuilder)" class="member-name-link">register</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/NamespacedKey.html" title="class in org.bukkit">NamespacedKey</a>&nbsp;key,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../AdvancementBuilder.html" title="interface in moe.caramel.daydream.advancement">AdvancementBuilder</a>&nbsp;builder)</code></div>
 <div class="col-last even-row-color">
-<div class="block"><span class="deprecated-label">Deprecated.</span></div>
-<div class="block">Load an advancement represented by the specified builder into the server.</div>
-</div>
-<div class="col-first odd-row-color"><code><a href="../../../../../org/bukkit/advancement/Advancement.html" title="interface in org.bukkit.advancement">Advancement</a></code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">UnsafeValues.</span><code><a href="../../../../../org/bukkit/UnsafeValues.html#loadAdvancement(moe.caramel.daydream.advancement.AdvancementBuilder,boolean)" class="member-name-link">loadAdvancement</a><wbr>(<a href="../AdvancementBuilder.html" title="interface in moe.caramel.daydream.advancement">AdvancementBuilder</a>&nbsp;builder,
- boolean&nbsp;save)</code></div>
-<div class="col-last odd-row-color">
-<div class="block"><span class="deprecated-label">Deprecated.</span></div>
-<div class="block">Load an advancement represented by the specified builder into the server.</div>
+<div class="block">발전 과제를 서버에 등록합니다.</div>
 </div>
 </div>
 </section>

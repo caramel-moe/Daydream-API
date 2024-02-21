@@ -151,9 +151,35 @@ loadScripts(document, 'script');</script>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Gets whether this advancement is hidden.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://jd.advntr.dev/api/4.15.0/net/kyori/adventure/text/Component.html" title="class or interface in net.kyori.adventure.text" class="external-link">Component</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#title()" class="member-name-link">title</a>()</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#isPositionLocked()" class="member-name-link">isPositionLocked</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">발전 과제 디스플레이의 위치가 재계산되지 않도록 고정되어 있는지를 확인합니다.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="AdvancementDisplay.html" title="interface in io.papermc.paper.advancement">AdvancementDisplay</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#position(float,float)" class="member-name-link">position</a><wbr>(float&nbsp;x,
+ float&nbsp;y)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">발전 과제 디스플레이의 위치를 설정합니다.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>float</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#positionX()" class="member-name-link">positionX</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">발전 과제 디스플레이의 X 위치를 가져옵니다.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>float</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#positionY()" class="member-name-link">positionY</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">발전 과제 디스플레이의 Y 위치를 가져옵니다.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="AdvancementDisplay.html" title="interface in io.papermc.paper.advancement">AdvancementDisplay</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#setPositionLock(boolean)" class="member-name-link">setPositionLock</a><wbr>(boolean&nbsp;lock)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">발전 과제 디스플레이의 위치가 재계산되지 않도록 고정되어 있는지를 설정합니다.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://jd.advntr.dev/api/4.15.0/net/kyori/adventure/text/Component.html" title="class or interface in net.kyori.adventure.text" class="external-link">Component</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#title()" class="member-name-link">title</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Gets the advancement title.</div>
 </div>
 </div>
@@ -300,6 +326,69 @@ loadScripts(document, 'script');</script>
 <li><a href="../../../../org/bukkit/advancement/Advancement.html#displayName()"><code>Advancement.displayName()</code></a></li>
 </ul>
 </dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="isPositionLocked()">
+<h3>isPositionLocked</h3>
+<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">isPositionLocked</span>()</div>
+<div class="block">발전 과제 디스플레이의 위치가 재계산되지 않도록 고정되어 있는지를 확인합니다.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>고정 여부</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="setPositionLock(boolean)">
+<h3>setPositionLock</h3>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+</span><span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="AdvancementDisplay.html" title="interface in io.papermc.paper.advancement">AdvancementDisplay</a></span>&nbsp;<span class="element-name">setPositionLock</span><wbr><span class="parameters">(boolean&nbsp;lock)</span></div>
+<div class="block">발전 과제 디스플레이의 위치가 재계산되지 않도록 고정되어 있는지를 설정합니다.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>lock</code> - 고정 여부</dd>
+<dt>Returns:</dt>
+<dd>this</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="positionX()">
+<h3>positionX</h3>
+<div class="member-signature"><span class="return-type">float</span>&nbsp;<span class="element-name">positionX</span>()</div>
+<div class="block">발전 과제 디스플레이의 X 위치를 가져옵니다.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>X 위치</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="positionY()">
+<h3>positionY</h3>
+<div class="member-signature"><span class="return-type">float</span>&nbsp;<span class="element-name">positionY</span>()</div>
+<div class="block">발전 과제 디스플레이의 Y 위치를 가져옵니다.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>Y 위치</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="position(float,float)">
+<h3>position</h3>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+</span><span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="AdvancementDisplay.html" title="interface in io.papermc.paper.advancement">AdvancementDisplay</a></span>&nbsp;<span class="element-name">position</span><wbr><span class="parameters">(float&nbsp;x,
+ float&nbsp;y)</span></div>
+<div class="block">발전 과제 디스플레이의 위치를 설정합니다.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>x</code> - X 위치</dd>
+<dd><code>y</code> - Y 위치</dd>
+<dt>Returns:</dt>
+<dd>this</dd>
 </dl>
 </section>
 </li>
