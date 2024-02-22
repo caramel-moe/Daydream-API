@@ -256,12 +256,78 @@ index 0000000000000000000000000000000000000000..f50ba2c8c039dfc7ba3dd2b3cc0adc86
 +    @NotNull
 +    AdvancementBuilder enableCount(final int count);
 +}
+diff --git a/src/main/java/moe/caramel/daydream/advancement/AdvancementSaveFormat.java b/src/main/java/moe/caramel/daydream/advancement/AdvancementSaveFormat.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..f7924313d2e08cef47561f4470194193292a1be0
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/advancement/AdvancementSaveFormat.java
+@@ -0,0 +1,60 @@
++package moe.caramel.daydream.advancement;
++
++import com.google.gson.JsonElement;
++import org.jetbrains.annotations.NotNull;
++import java.util.Objects;
++
++/**
++ * 발전 과제 저장 포맷
++ *
++ * @param <T> 타입
++ */
++public final class AdvancementSaveFormat<T> {
++
++    /**
++     * Json (기본)
++     */
++    public static final AdvancementSaveFormat<JsonElement> JSON = new AdvancementSaveFormat<>("json", false);
++    /**
++     * 압축된 Json
++     */
++    public static final AdvancementSaveFormat<JsonElement> COMPRESSED_JSON = new AdvancementSaveFormat<>("compressed_json", true);
++    /**
++     * NBT
++     */
++    public static final AdvancementSaveFormat<byte[]> NBT = new AdvancementSaveFormat<>("nbt", false);
++    /**
++     * 압축된 NBT
++     */
++    public static final AdvancementSaveFormat<byte[]> COMPRESSED_NBT = new AdvancementSaveFormat<>("compressed_nbt", true);
++
++    private final String name;
++    private final boolean compressed;
++
++    private AdvancementSaveFormat(final @NotNull String name, final boolean compressed) {
++        this.name = name;
++        this.compressed = compressed;
++    }
++
++    /**
++     * 요구하는 데이터 형식이 압축된 데이터 형식인지 확인합니다.
++     *
++     * @return 만약 {@code true}인 경우 압축된 데이터를 요구합니다
++     */
++    public boolean isCompressed() {
++        return compressed;
++    }
++
++    @Override
++    public boolean equals(final Object o) {
++        if (this == o) return true;
++        if (o == null || getClass() != o.getClass()) return false;
++        final AdvancementSaveFormat<?> that = (AdvancementSaveFormat<?>) o;
++        return (compressed == that.compressed) && Objects.equals(name, that.name);
++    }
++
++    @Override
++    public int hashCode() {
++        return Objects.hash(name, compressed);
++    }
++}
 diff --git a/src/main/java/moe/caramel/daydream/event/player/PlayerAdvancementPreLoadEvent.java b/src/main/java/moe/caramel/daydream/event/player/PlayerAdvancementPreLoadEvent.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..2861f0a9f9e76d8a0bb46922b722f8a73c5701c2
+index 0000000000000000000000000000000000000000..cf54b470c6022f30429fda27c064f1f4982a9d38
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/event/player/PlayerAdvancementPreLoadEvent.java
-@@ -0,0 +1,66 @@
+@@ -0,0 +1,79 @@
 +package moe.caramel.daydream.event.player;
 +
 +import com.google.gson.JsonElement;
@@ -275,65 +341,78 @@ index 0000000000000000000000000000000000000000..2861f0a9f9e76d8a0bb46922b722f8a7
 +/**
 + * 플레이어의 발전 과제 데이터를 로드하기 직전에 호출됩니다.
 + * <p>일반적으로 {@link org.bukkit.event.player.PlayerJoinEvent} 이전에 호출됩니다.</p>
++ *
++ * @param <T> 타입
 + */
-+public final class PlayerAdvancementPreLoadEvent extends PlayerEvent {
++public sealed class PlayerAdvancementPreLoadEvent<T> extends PlayerEvent {
 +
 +    private static final HandlerList HANDLER_LIST = new HandlerList();
 +    public @NotNull HandlerList getHandlers() { return HANDLER_LIST; }
 +    public static @NotNull HandlerList getHandlerList() { return HANDLER_LIST; }
 +
-+    private JsonElement json;
-+    private boolean useDataFixer;
++    private final boolean compressed;
++    private T data;
 +
 +    @ApiStatus.Internal
-+    public PlayerAdvancementPreLoadEvent(final @NotNull Player who) {
++    public PlayerAdvancementPreLoadEvent(final @NotNull Player who, final boolean compressed) {
 +        super(who);
-+        this.useDataFixer = true;
++        this.compressed = compressed;
 +    }
 +
 +    /**
-+     * 로드할 발전 과제 Json을 가져옵니다.
++     * 요구하는 데이터 형식이 압축된 데이터 형식인지 확인합니다.
 +     *
-+     * @return 발전 과제 Json
++     * @return 만약 {@code true}인 경우 압축된 데이터를 요구합니다
++     */
++    public boolean isCompressed() {
++        return compressed;
++    }
++
++    /**
++     * 로드할 발전 과제 데이터를 가져옵니다.
++     *
++     * @return 발전 과제 데이터
 +     */
 +    @Nullable
-+    public JsonElement getReplaceJson() {
-+        return json;
++    public T getReplaceData() {
++        return data;
 +    }
 +
 +    /**
-+     * 로드할 발전 과제 Json을 설정합니다.
++     * 로드할 발전 과제 데이터를 설정합니다.
 +     *
-+     * @param json 발전 과제 Json
++     * @param data 발전 과제 데이터
 +     */
-+    public void setReplaceJson(final @NotNull JsonElement json) {
-+        this.json = json;
++    public void setReplaceData(final @NotNull T data) {
++        this.data = data;
 +    }
 +
 +    /**
-+     * Mojang의 DataFixer를 사용할지 여부를 가져옵니다.
-+     *
-+     * @return 만약 {@code true}인 경우, Mojang의 DataFixer를 사용
++     * 서버가 Json 형식으로 데이터를 저장하는 경우
 +     */
-+    public boolean useDataFixer() {
-+        return this.useDataFixer;
++    public static final class Json extends PlayerAdvancementPreLoadEvent<JsonElement> {
++
++        public Json(final @NotNull Player who, final boolean compressed) {
++            super(who, compressed);
++        }
 +    }
 +
 +    /**
-+     * Mojang의 DataFixer를 사용할지 여부를 설정합니다.
-+     *
-+     * @param useDataFixer 만약 {@code true}인 경우, Mojang의 DataFixer를 사용
++     * 서버가 Json 형식으로 데이터를 저장하는 경우
 +     */
-+    public void useDataFixer(final boolean useDataFixer) {
-+        this.useDataFixer = useDataFixer;
++    public static final class Nbt extends PlayerAdvancementPreLoadEvent<byte[]> {
++
++        public Nbt(final @NotNull Player who, final boolean compressed) {
++            super(who, compressed);
++        }
 +    }
 +}
 diff --git a/src/main/java/moe/caramel/daydream/event/player/PlayerAdvancementSaveEvent.java b/src/main/java/moe/caramel/daydream/event/player/PlayerAdvancementSaveEvent.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..67cf97b09397ea981e6fc1237da1ced35755d664
+index 0000000000000000000000000000000000000000..5f967920a7795f55ecad4c1d0819c969ebb478e6
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/event/player/PlayerAdvancementSaveEvent.java
-@@ -0,0 +1,48 @@
+@@ -0,0 +1,81 @@
 +package moe.caramel.daydream.event.player;
 +
 +import com.google.gson.JsonElement;
@@ -346,20 +425,33 @@ index 0000000000000000000000000000000000000000..67cf97b09397ea981e6fc1237da1ced3
 +
 +/**
 + * 플레이어 발전 과제 데이터가 저장될 때 호출됩니다.
++ *
++ * @param <T> 타입
 + */
-+public final class PlayerAdvancementSaveEvent extends PlayerEvent implements Cancellable {
++public sealed class PlayerAdvancementSaveEvent<T> extends PlayerEvent implements Cancellable {
 +
 +    private static final HandlerList HANDLER_LIST = new HandlerList();
 +    public @NotNull HandlerList getHandlers() { return HANDLER_LIST; }
 +    public static @NotNull HandlerList getHandlerList() { return HANDLER_LIST; }
 +
-+    private final JsonElement json;
++    private final T data;
++    private final boolean compressed;
 +    private boolean cancelled;
 +
 +    @ApiStatus.Internal
-+    public PlayerAdvancementSaveEvent(final @NotNull Player who, final @NotNull JsonElement json) {
++    public PlayerAdvancementSaveEvent(final @NotNull Player who, final @NotNull T data, final boolean compressed) {
 +        super(who);
-+        this.json = json;
++        this.data = data;
++        this.compressed = compressed;
++    }
++
++    /**
++     * 요구하는 데이터 형식이 압축된 데이터 형식인지 확인합니다.
++     *
++     * @return 만약 {@code true}인 경우 압축된 데이터를 요구합니다
++     */
++    public boolean isCompressed() {
++        return compressed;
 +    }
 +
 +    @Override
@@ -378,8 +470,28 @@ index 0000000000000000000000000000000000000000..67cf97b09397ea981e6fc1237da1ced3
 +     * @return 발전 과제 데이터
 +     */
 +    @NotNull
-+    public JsonElement getJson() {
-+        return json;
++    public T getData() {
++        return data;
++    }
++
++    /**
++     * 서버가 Json 형식으로 데이터를 저장하는 경우
++     */
++    public static final class Json extends PlayerAdvancementSaveEvent<JsonElement> {
++
++        public Json(final @NotNull Player who, final @NotNull JsonElement json, final boolean compressed) {
++            super(who, json, compressed);
++        }
++    }
++
++    /**
++     * 서버가 Json 형식으로 데이터를 저장하는 경우
++     */
++    public static final class Nbt extends PlayerAdvancementSaveEvent<byte[]> {
++
++        public Nbt(final @NotNull Player who, final @NotNull byte[] nbt, final boolean compressed) {
++            super(who, nbt, compressed);
++        }
 +    }
 +}
 diff --git a/src/main/java/moe/caramel/daydream/event/player/PlayerAdvancementScreenEvent.java b/src/main/java/moe/caramel/daydream/event/player/PlayerAdvancementScreenEvent.java
@@ -656,10 +768,10 @@ index f9bc179da071e7bd57cefc50d6763317fb643b74..3b1b55977d94de338f536896babedc7e
 +    // Daydream end - Add more Advancement API
  }
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index a5876d5afe401d18148fad07c2d360726fa1d1b2..86f04082de95d022da2b5ba0484d4ccaa85a3c7d 100644
+index a5876d5afe401d18148fad07c2d360726fa1d1b2..c2dd8e4928d5be5eb7d1b37359af0066ab053087 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
-@@ -3171,6 +3171,36 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+@@ -3171,6 +3171,27 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      @NotNull
      public AdvancementProgress getAdvancementProgress(@NotNull Advancement advancement);
  
@@ -667,21 +779,12 @@ index a5876d5afe401d18148fad07c2d360726fa1d1b2..86f04082de95d022da2b5ba0484d4cca
 +    /**
 +     * 플레이어의 직렬화된 발전 과제 데이터를 가져옵니다.
 +     *
++     * @param format 저장 형식
 +     * @return 직렬화된 발전 과제 데이터
++     * @param <T> 데이터 타입
 +     */
 +    @NotNull
-+    default com.google.gson.JsonElement serializedAdvancementProgress() {
-+        return serializedAdvancementProgress(false);
-+    }
-+
-+    /**
-+     * 플레이어의 직렬화된 발전 과제 데이터를 가져옵니다.
-+     *
-+     * @param withDataVersion 데이터 버전 포함 여부
-+     * @return 직렬화된 발전 과제 데이터
-+     */
-+    @NotNull
-+    public com.google.gson.JsonElement serializedAdvancementProgress(boolean withDataVersion);
++    public <T> T serializeAdvancementProgress(@NotNull moe.caramel.daydream.advancement.AdvancementSaveFormat<T> format);
 +
 +    /**
 +     * 플레이어에게 발전 과제 알림을 전송합니다.
