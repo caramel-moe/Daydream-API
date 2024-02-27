@@ -59,12 +59,13 @@ index 19202e17f362fdffca472178b102d1336349590c..0581b8b425d2e7553fe64bed695253c9
       * the color used with the {@link #title() advancement name}.
 diff --git a/src/main/java/moe/caramel/daydream/advancement/AdvancementBuilder.java b/src/main/java/moe/caramel/daydream/advancement/AdvancementBuilder.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..f50ba2c8c039dfc7ba3dd2b3cc0adc860d9c5e1e
+index 0000000000000000000000000000000000000000..670b08b10185e388c088c5807aafda67a3da6972
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/advancement/AdvancementBuilder.java
-@@ -0,0 +1,193 @@
+@@ -0,0 +1,285 @@
 +package moe.caramel.daydream.advancement;
 +
++import com.google.gson.JsonElement;
 +import io.papermc.paper.advancement.AdvancementDisplay;
 +import moe.caramel.daydream.plugin.AdvancementProvider;
 +import net.kyori.adventure.text.Component;
@@ -90,6 +91,23 @@ index 0000000000000000000000000000000000000000..f50ba2c8c039dfc7ba3dd2b3cc0adc86
 +     */
 +    @NotNull
 +    AdvancementProvider getProvider();
++
++    // ===========================
++
++    /**
++     * 기본 발전 과제 저장 구역
++     */
++    NamespacedKey MAIN_SAVE_SECTION = NamespacedKey.minecraft("main");
++
++    /**
++     * 발전 과제 저장 구역을 설정합니다.
++     * <p>기본 저장 구역인 {@link #MAIN_SAVE_SECTION}이 아닌 경우, 개발자가 진행도 저장을 직접 구현해야합니다.</p>
++     *
++     * @param section 저장 구역
++     * @return this
++     */
++    @NotNull
++    AdvancementBuilder saveSection(final @NotNull NamespacedKey section);
 +
 +    // ===========================
 +
@@ -221,6 +239,60 @@ index 0000000000000000000000000000000000000000..f50ba2c8c039dfc7ba3dd2b3cc0adc86
 +    // ===========================
 +
 +    /**
++     * 이 발전 과제의 보상을 설정합니다.
++     *
++     * @param experience 제공할 경험치
++     * @param loot 전리품 테이블 키
++     * @param recipes 레시피 키
++     * @param function 실행할 함수
++     * @return 발전 과제 보상
++     */
++    @NotNull
++    default AdvancementBuilder reward(
++        final int experience,
++        final @NotNull List<NamespacedKey> loot, final @NotNull List<NamespacedKey> recipes,
++        final @Nullable NamespacedKey function
++    ) {
++        return reward(this.getProvider().createReward(experience, loot, recipes, function));
++    }
++
++    /**
++     * 이 발전 과제의 보상을 설정합니다.
++     *
++     * @param reward 보상
++     * @return this
++     */
++    @NotNull
++    AdvancementBuilder reward(final @NotNull AdvancementReward reward);
++
++    // ===========================
++
++    /**
++     * 달성 기준을 추가합니다. 트리거는 JSON 형식입니다.
++     *
++     * @param name 달성 기준의 이름
++     * @param criterion JSON 예시 <pre>{@code {
++     *   "conditions": {
++     *     "player": [
++     *       {
++     *         "condition": "minecraft:entity_properties",
++     *         "entity": "this",
++     *         "predicate": {
++     *           "location": {
++     *             "biome": "minecraft:badlands"
++     *           }
++     *         }
++     *       }
++     *     ]
++     *   },
++     *   "trigger": "minecraft:location"
++     * }}</pre>
++     * @return this
++     */
++    @NotNull
++    AdvancementBuilder addCriterion(final @NotNull String name, final @NotNull JsonElement criterion);
++
++    /**
 +     * 달성 기준을 추가합니다. 트리거는 Impossible 트리거로 고정됩니다.
 +     *
 +     * @param name 달성 기준의 이름
@@ -228,6 +300,16 @@ index 0000000000000000000000000000000000000000..f50ba2c8c039dfc7ba3dd2b3cc0adc86
 +     */
 +    @NotNull
 +    AdvancementBuilder addImpossibleCriterion(final @NotNull String name);
++
++    /**
++     * 사용자 지정 트리거를 사용한 달성 기준을 추가합니다.
++     *
++     * @param name 달성 기준의 이름
++     * @param key 사용자 지정 트리거 ID
++     * @return this
++     */
++    @NotNull
++    AdvancementBuilder addCustomTriggerCriterion(final @NotNull String name, final @NotNull NamespacedKey key);
 +
 +    /**
 +     * 플레이어가 발전 과제를 완료하는 데 필요한 조건을 설정합니다.
@@ -255,6 +337,83 @@ index 0000000000000000000000000000000000000000..f50ba2c8c039dfc7ba3dd2b3cc0adc86
 +     */
 +    @NotNull
 +    AdvancementBuilder enableCount(final int count);
++
++    /**
++     * 이 발전 과제에 카운트를 사용합니다.
++     *
++     * @param count 최대 카운트
++     * @param triggerId 사용자 지정 트리거 ID
++     * @return this
++     */
++    @NotNull
++    AdvancementBuilder enableCount(final int count, final @NotNull NamespacedKey triggerId);
++}
+diff --git a/src/main/java/moe/caramel/daydream/advancement/AdvancementReward.java b/src/main/java/moe/caramel/daydream/advancement/AdvancementReward.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..74347bc8c9a45be1cb9af9fb41641e903f86b95f
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/advancement/AdvancementReward.java
+@@ -0,0 +1,61 @@
++package moe.caramel.daydream.advancement;
++
++import org.bukkit.NamespacedKey;
++import org.bukkit.inventory.Recipe;
++import org.bukkit.loot.LootTable;
++import org.jetbrains.annotations.NotNull;
++import org.jetbrains.annotations.Nullable;
++import java.util.List;
++
++/**
++ * 발전 과제 보상
++ */
++public interface AdvancementReward {
++
++    /**
++     * 플레이어가 받게 될 경험치를 가져옵니다.
++     *
++     * @return 경험치
++     */
++    int experience();
++
++    /**
++     * 전리품 테이블의 키 목록을 가져옵니다.
++     *
++     * @return 전리품 테이블의 키 목록
++     */
++    @NotNull
++    List<NamespacedKey> lootKeys();
++
++    /**
++     * 전리품 테이블 목록을 가져옵니다.
++     *
++     * @return 전리품 테이블 목록
++     */
++    @NotNull
++    List<LootTable> loot();
++
++    /**
++     * 레시피의 키 목록을 가져옵니다.
++     *
++     * @return 레시피의 키 목록
++     */
++    @NotNull
++    List<NamespacedKey> recipeKeys();
++
++    /**
++     * 레시피 목록을 가져옵니다.
++     *
++     * @return 레시피 목록
++     */
++    @NotNull
++    List<Recipe> recipes();
++
++    /**
++     * 실행될 함수의 키를 가져옵니다.
++     *
++     * @return 실행될 함수의 키
++     */
++    @Nullable
++    NamespacedKey function();
 +}
 diff --git a/src/main/java/moe/caramel/daydream/advancement/AdvancementSaveFormat.java b/src/main/java/moe/caramel/daydream/advancement/AdvancementSaveFormat.java
 new file mode 100644
@@ -324,10 +483,10 @@ index 0000000000000000000000000000000000000000..f7924313d2e08cef47561f4470194193
 +}
 diff --git a/src/main/java/moe/caramel/daydream/event/player/PlayerAdvancementPreLoadEvent.java b/src/main/java/moe/caramel/daydream/event/player/PlayerAdvancementPreLoadEvent.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..cf54b470c6022f30429fda27c064f1f4982a9d38
+index 0000000000000000000000000000000000000000..21bbda2d1fae053aa5734652c5670a74b6e1d06c
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/event/player/PlayerAdvancementPreLoadEvent.java
-@@ -0,0 +1,79 @@
+@@ -0,0 +1,81 @@
 +package moe.caramel.daydream.event.player;
 +
 +import com.google.gson.JsonElement;
@@ -336,7 +495,8 @@ index 0000000000000000000000000000000000000000..cf54b470c6022f30429fda27c064f1f4
 +import org.bukkit.event.player.PlayerEvent;
 +import org.jetbrains.annotations.ApiStatus;
 +import org.jetbrains.annotations.NotNull;
-+import org.jetbrains.annotations.Nullable;
++import java.util.ArrayList;
++import java.util.List;
 +
 +/**
 + * 플레이어의 발전 과제 데이터를 로드하기 직전에 호출됩니다.
@@ -351,12 +511,13 @@ index 0000000000000000000000000000000000000000..cf54b470c6022f30429fda27c064f1f4
 +    public static @NotNull HandlerList getHandlerList() { return HANDLER_LIST; }
 +
 +    private final boolean compressed;
-+    private T data;
++    private List<T> data;
 +
 +    @ApiStatus.Internal
 +    public PlayerAdvancementPreLoadEvent(final @NotNull Player who, final boolean compressed) {
 +        super(who);
 +        this.compressed = compressed;
++        this.data = new ArrayList<>();
 +    }
 +
 +    /**
@@ -373,8 +534,8 @@ index 0000000000000000000000000000000000000000..cf54b470c6022f30429fda27c064f1f4
 +     *
 +     * @return 발전 과제 데이터
 +     */
-+    @Nullable
-+    public T getReplaceData() {
++    @NotNull
++    public List<T> getReplaceData() {
 +        return data;
 +    }
 +
@@ -383,8 +544,8 @@ index 0000000000000000000000000000000000000000..cf54b470c6022f30429fda27c064f1f4
 +     *
 +     * @param data 발전 과제 데이터
 +     */
-+    public void setReplaceData(final @NotNull T data) {
-+        this.data = data;
++    public void addReplaceData(final @NotNull T data) {
++        this.data.add(data);
 +    }
 +
 +    /**
@@ -409,13 +570,14 @@ index 0000000000000000000000000000000000000000..cf54b470c6022f30429fda27c064f1f4
 +}
 diff --git a/src/main/java/moe/caramel/daydream/event/player/PlayerAdvancementSaveEvent.java b/src/main/java/moe/caramel/daydream/event/player/PlayerAdvancementSaveEvent.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..5f967920a7795f55ecad4c1d0819c969ebb478e6
+index 0000000000000000000000000000000000000000..81cf8963c7a1ec67fb0368c2f457a3a77561b589
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/event/player/PlayerAdvancementSaveEvent.java
-@@ -0,0 +1,81 @@
+@@ -0,0 +1,95 @@
 +package moe.caramel.daydream.event.player;
 +
 +import com.google.gson.JsonElement;
++import org.bukkit.NamespacedKey;
 +import org.bukkit.entity.Player;
 +import org.bukkit.event.Cancellable;
 +import org.bukkit.event.HandlerList;
@@ -434,15 +596,28 @@ index 0000000000000000000000000000000000000000..5f967920a7795f55ecad4c1d0819c969
 +    public @NotNull HandlerList getHandlers() { return HANDLER_LIST; }
 +    public static @NotNull HandlerList getHandlerList() { return HANDLER_LIST; }
 +
++    private final NamespacedKey section;
 +    private final T data;
 +    private final boolean compressed;
 +    private boolean cancelled;
 +
 +    @ApiStatus.Internal
-+    public PlayerAdvancementSaveEvent(final @NotNull Player who, final @NotNull T data, final boolean compressed) {
++    public PlayerAdvancementSaveEvent(final @NotNull Player who, final @NotNull NamespacedKey section, final @NotNull T data, final boolean compressed) {
 +        super(who);
++        this.section = section;
 +        this.data = data;
 +        this.compressed = compressed;
++    }
++
++    /**
++     * 발전 과제의 저장 구역을 가져옵니다.
++     * <p>실제 파일로는 바닐라 메인 구역 데이터만 저장됩니다.</p>
++     *
++     * @return 저장 구역
++     */
++    @NotNull
++    public NamespacedKey getSection() {
++        return section;
 +    }
 +
 +    /**
@@ -479,8 +654,8 @@ index 0000000000000000000000000000000000000000..5f967920a7795f55ecad4c1d0819c969
 +     */
 +    public static final class Json extends PlayerAdvancementSaveEvent<JsonElement> {
 +
-+        public Json(final @NotNull Player who, final @NotNull JsonElement json, final boolean compressed) {
-+            super(who, json, compressed);
++        public Json(final @NotNull Player who, final @NotNull NamespacedKey section, final @NotNull JsonElement json, final boolean compressed) {
++            super(who, section, json, compressed);
 +        }
 +    }
 +
@@ -489,8 +664,8 @@ index 0000000000000000000000000000000000000000..5f967920a7795f55ecad4c1d0819c969
 +     */
 +    public static final class Nbt extends PlayerAdvancementSaveEvent<byte[]> {
 +
-+        public Nbt(final @NotNull Player who, final @NotNull byte[] nbt, final boolean compressed) {
-+            super(who, nbt, compressed);
++        public Nbt(final @NotNull Player who, final @NotNull NamespacedKey section, final @NotNull byte[] nbt, final boolean compressed) {
++            super(who, section, nbt, compressed);
 +        }
 +    }
 +}
@@ -588,15 +763,16 @@ index 0000000000000000000000000000000000000000..cb2e32a8d978d4b7492f62f7e4f446ce
 +}
 diff --git a/src/main/java/moe/caramel/daydream/plugin/AdvancementProvider.java b/src/main/java/moe/caramel/daydream/plugin/AdvancementProvider.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..43862b4d2f26e89f9eac72fb3d99a01b0128d43f
+index 0000000000000000000000000000000000000000..bfb751ba57b7761dfa81df76d044c6c3c8efc584
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/plugin/AdvancementProvider.java
-@@ -0,0 +1,92 @@
+@@ -0,0 +1,110 @@
 +package moe.caramel.daydream.plugin;
 +
 +import com.google.gson.JsonElement;
 +import io.papermc.paper.advancement.AdvancementDisplay;
 +import moe.caramel.daydream.advancement.AdvancementBuilder;
++import moe.caramel.daydream.advancement.AdvancementReward;
 +import net.kyori.adventure.text.Component;
 +import org.bukkit.Material;
 +import org.bukkit.NamespacedKey;
@@ -605,6 +781,7 @@ index 0000000000000000000000000000000000000000..43862b4d2f26e89f9eac72fb3d99a01b
 +import org.jetbrains.annotations.ApiStatus;
 +import org.jetbrains.annotations.NotNull;
 +import org.jetbrains.annotations.Nullable;
++import java.util.List;
 +
 +/**
 + * Advancement Provider
@@ -662,6 +839,22 @@ index 0000000000000000000000000000000000000000..43862b4d2f26e89f9eac72fb3d99a01b
 +        final boolean showToast, final boolean announceChat, final boolean hidden
 +    );
 +
++    /**
++     * 발전 과제 보상을 생성합니다.
++     *
++     * @param experience 제공할 경험치
++     * @param loot 전리품 테이블 키
++     * @param recipes 레시피 키
++     * @param function 실행할 함수
++     * @return 발전 과제 보상
++     */
++    @NotNull
++    AdvancementReward createReward(
++        final int experience,
++        final @NotNull List<NamespacedKey> loot, final @NotNull List<NamespacedKey> recipes,
++        final @Nullable NamespacedKey function
++    );
++
 +    // ===========================
 +
 +    /**
@@ -702,15 +895,76 @@ index 6c878c968be02870c8552eb8db3d7b652e605540..1a2fe817bc62661171a3ad925d6a4a56
 +    default void registerAdvancement(final @NotNull AdvancementProvider provider) { }
 +    // Daydream end - Add more Advancement API
  }
+diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
+index a3ade93b28e160a4d260130debeda0eb648d1e25..b3fc9efa2e513dd1dfea0f97ff5c757afcaefb34 100644
+--- a/src/main/java/org/bukkit/Bukkit.java
++++ b/src/main/java/org/bukkit/Bukkit.java
+@@ -2434,6 +2434,18 @@ public final class Bukkit {
+         return server.advancementIterator();
+     }
+ 
++    // Daydream start - Add more Advancement API
++    /**
++     * 사용자 지정 트리거를 실행합니다.
++     *
++     * @param player 대상 플레이어
++     * @param triggerId 트리거 ID
++     */
++    public static void triggerCustomCriteria(@NotNull Player player, @NotNull NamespacedKey triggerId) {
++        server.triggerCustomCriteria(player, triggerId);
++    }
++    // Daydream end - Add more Advancement API
++
+     /**
+      * Creates a new {@link BlockData} instance for the specified Material, with
+      * all properties initialized to unspecified defaults.
+diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
+index 72227fb5d032e8d73d508c1c7552c364fe743ca7..9b1cbea146dffb0c5affee3e3ce67ac4725620ca 100644
+--- a/src/main/java/org/bukkit/Server.java
++++ b/src/main/java/org/bukkit/Server.java
+@@ -2084,6 +2084,16 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
+     @NotNull
+     Iterator<Advancement> advancementIterator();
+ 
++    // Daydream start - Add more Advancement API
++    /**
++     * 사용자 지정 트리거를 실행합니다.
++     *
++     * @param player 대상 플레이어
++     * @param triggerId 트리거 ID
++     */
++    void triggerCustomCriteria(@NotNull Player player, @NotNull NamespacedKey triggerId);
++    // Daydream end - Add more Advancement API
++
+     /**
+      * Creates a new {@link BlockData} instance for the specified Material, with
+      * all properties initialized to unspecified defaults.
 diff --git a/src/main/java/org/bukkit/advancement/Advancement.java b/src/main/java/org/bukkit/advancement/Advancement.java
-index 243e5f2debad7f12210169e15ef0b29763e988bb..7f6d8c2018d2b8be2ed40ee080b278fe47cce380 100644
+index 243e5f2debad7f12210169e15ef0b29763e988bb..0c690067883fdbe627d8a739c2fda7e74446636d 100644
 --- a/src/main/java/org/bukkit/advancement/Advancement.java
 +++ b/src/main/java/org/bukkit/advancement/Advancement.java
-@@ -68,4 +68,19 @@ public interface Advancement extends Keyed {
+@@ -68,4 +68,36 @@ public interface Advancement extends Keyed {
      @NotNull
      Advancement getRoot();
      // Paper end
++
 +    // Daydream start - Add more Advancement API
++    /**
++     * 이 발전 과제의 저장 구역을 가져옵니다.
++     *
++     * @return 저장 구역
++     */
++    @NotNull
++    org.bukkit.NamespacedKey getSaveSection();
++
++    /**
++     * 발전 과제 보상을 가져옵니다.
++     *
++     * @return 발전 과제 보상
++     */
++    @NotNull
++    moe.caramel.daydream.advancement.AdvancementReward getReward();
++
 +    /**
 +     * 발전 과제가 카운트를 사용하는지 확인합니다.
 +     *
@@ -768,10 +1022,10 @@ index f9bc179da071e7bd57cefc50d6763317fb643b74..3b1b55977d94de338f536896babedc7e
 +    // Daydream end - Add more Advancement API
  }
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index a5876d5afe401d18148fad07c2d360726fa1d1b2..c2dd8e4928d5be5eb7d1b37359af0066ab053087 100644
+index a5876d5afe401d18148fad07c2d360726fa1d1b2..a64aa85e022c72bf50c5466d3d1a13d1d14fed5c 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
-@@ -3171,6 +3171,27 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+@@ -3171,6 +3171,38 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      @NotNull
      public AdvancementProgress getAdvancementProgress(@NotNull Advancement advancement);
  
@@ -785,6 +1039,17 @@ index a5876d5afe401d18148fad07c2d360726fa1d1b2..c2dd8e4928d5be5eb7d1b37359af0066
 +     */
 +    @NotNull
 +    public <T> T serializeAdvancementProgress(@NotNull moe.caramel.daydream.advancement.AdvancementSaveFormat<T> format);
++
++    /**
++     * 플레이어의 직렬화된 발전 과제 데이터를 가져옵니다.
++     *
++     * @param format 저장 형식
++     * @param saveSection 저장 구역
++     * @return 직렬화된 발전 과제 데이터
++     * @param <T> 데이터 타입
++     */
++    @NotNull
++    public <T> T serializeAdvancementProgress(@NotNull moe.caramel.daydream.advancement.AdvancementSaveFormat<T> format, @NotNull org.bukkit.NamespacedKey saveSection);
 +
 +    /**
 +     * 플레이어에게 발전 과제 알림을 전송합니다.

@@ -5,12 +5,12 @@ Subject: [PATCH] Add Plugin Datapack System
 
 
 diff --git a/src/main/java/io/papermc/paper/plugin/configuration/PluginMeta.java b/src/main/java/io/papermc/paper/plugin/configuration/PluginMeta.java
-index bcf91d048d84144f6acf9bfd2095df9ada2e585f..db9634519abed54df3f5c004204935f7d4ce91c7 100644
+index bcf91d048d84144f6acf9bfd2095df9ada2e585f..74598572ffee4d2c780f3dc7262cb7a27e71583b 100644
 --- a/src/main/java/io/papermc/paper/plugin/configuration/PluginMeta.java
 +++ b/src/main/java/io/papermc/paper/plugin/configuration/PluginMeta.java
-@@ -200,4 +200,24 @@ public interface PluginMeta {
-     @Nullable
-     String getAPIVersion();
+@@ -56,6 +56,27 @@ public interface PluginMeta {
+     @NotNull
+     String getMainClass();
  
 +    // Daydream start - Add Plugin Datapack System
 +    /**
@@ -32,6 +32,15 @@ index bcf91d048d84144f6acf9bfd2095df9ada2e585f..db9634519abed54df3f5c004204935f7
 +        return false;
 +    }
 +    // Daydream end - Add Plugin Datapack System
++
+     /**
+      * Returns the phase of the server startup logic that the plugin should be loaded.
+      *
+@@ -199,5 +220,4 @@ public interface PluginMeta {
+      */
+     @Nullable
+     String getAPIVersion();
+-
  }
 diff --git a/src/main/java/moe/caramel/daydream/plugin/PluginDatapackLoader.java b/src/main/java/moe/caramel/daydream/plugin/PluginDatapackLoader.java
 new file mode 100644
