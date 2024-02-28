@@ -62,6 +62,35 @@ index 0000000000000000000000000000000000000000..8d2ef759e1f132053162442baee82482
 +    default void removePlayer(final @NotNull OfflinePlayer player) {
 +    }
 +}
+diff --git a/src/main/java/org/bukkit/scoreboard/Score.java b/src/main/java/org/bukkit/scoreboard/Score.java
+index fba8e475c1f1a410c44a95fcc474cce19e0f515c..11519711bb99531f2ddca4f3533b10324e32d8cb 100644
+--- a/src/main/java/org/bukkit/scoreboard/Score.java
++++ b/src/main/java/org/bukkit/scoreboard/Score.java
+@@ -151,4 +151,24 @@ public interface Score {
+     void numberFormat(@Nullable io.papermc.paper.scoreboard.numbers.NumberFormat format);
+     // Paper end - number format api
+ 
++    // Daydream start - Add more Team API (Score)
++    /**
++     * 점수 업데이트 패킷 비활성화 여부를 가져옵니다.
++     *
++     * @return 패킷 비활성화 여부
++     */
++    boolean updateDisabled();
++
++    /**
++     * 점수 업데이트 패킷 비활성화 여부를 설정합니다.
++     *
++     * @param disable {@code true}인 경우 점수 업데이트 패킷을 전송하지 않습니다.
++     */
++    void updateDisable(final boolean disable);
++
++    /**
++     * 강제로 점수 업데이트 패킷을 전송합니다.
++     */
++    void forceSendScoreToPlayers();
++    // Daydream end - Add more Team API (Score)
+ }
 diff --git a/src/main/java/org/bukkit/scoreboard/Team.java b/src/main/java/org/bukkit/scoreboard/Team.java
 index cacb58d25c249e2ecd6083ed0f30d5ffb345220a..5e7266df82dfe794342ca855fd3203c096e92ab4 100644
 --- a/src/main/java/org/bukkit/scoreboard/Team.java
