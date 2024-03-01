@@ -1094,10 +1094,10 @@ index 0000000000000000000000000000000000000000..a4b9dcd4179fa4d4089d1929b639a6d6
 +    }
 +}
 diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
-index b3fc9efa2e513dd1dfea0f97ff5c757afcaefb34..4966a99b64838d8cac189da1b8b60cf2160717a4 100644
+index 3ede33a2269805cef78effe5bdae5883a726a53b..e245b38d24b43f52bd68750db84d716c430a950e 100644
 --- a/src/main/java/org/bukkit/Bukkit.java
 +++ b/src/main/java/org/bukkit/Bukkit.java
-@@ -2927,6 +2927,20 @@ public final class Bukkit {
+@@ -2950,6 +2950,20 @@ public final class Bukkit {
      }
      // Paper end - Folia region threading API
  
@@ -1134,10 +1134,10 @@ index 918a045165cdcde264bc24082b7afebb407271de..0756634ad506aa81e8f3a789f5c28c84
      /**
       * Represents black
 diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
-index 9b1cbea146dffb0c5affee3e3ce67ac4725620ca..cc46cdd214ba805c4c58eb19cd784409f58eb781 100644
+index 407ebae95cfb66ea4671fac00c46485067abae4f..733862f325a9dbf9f7744d9ce34cc5ac9bb82edc 100644
 --- a/src/main/java/org/bukkit/Server.java
 +++ b/src/main/java/org/bukkit/Server.java
-@@ -2562,4 +2562,16 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
+@@ -2581,4 +2581,16 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
       */
      boolean isOwnedByCurrentRegion(@NotNull Entity entity);
      // Paper end - Folia region threading API
@@ -1201,7 +1201,7 @@ index d9929d9311e4b2b0ae13a8f6f13563257263f298..aa01787527e1796d47c294dd0fdfa01d
       * Gets the amount of ticks this entity has lived for.
       * <p>
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index 0eae35580e78d23ed06b316bb71b262550c4c5b4..8617278c55d6636cf5a74ba6e781b6ed4c6334c9 100644
+index c2d8831df9f97cde8aa230bdb79ea61ccdcb5f54..49325a322c14980a5a2bec23091bc8ea1fefff1c 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
 @@ -408,6 +408,16 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
