@@ -878,10 +878,10 @@ index 0000000000000000000000000000000000000000..bfb751ba57b7761dfa81df76d044c6c3
 +    Advancement register(final @NotNull NamespacedKey key, final @NotNull JsonElement json);
 +}
 diff --git a/src/main/java/moe/caramel/daydream/plugin/PluginDatapackLoader.java b/src/main/java/moe/caramel/daydream/plugin/PluginDatapackLoader.java
-index 6c878c968be02870c8552eb8db3d7b652e605540..1a2fe817bc62661171a3ad925d6a4a56fb505522 100644
+index 6c878c968be02870c8552eb8db3d7b652e605540..9bc89a99c134ff4ee4904a60cf73fbd73dce4715 100644
 --- a/src/main/java/moe/caramel/daydream/plugin/PluginDatapackLoader.java
 +++ b/src/main/java/moe/caramel/daydream/plugin/PluginDatapackLoader.java
-@@ -9,4 +9,13 @@ import org.jetbrains.annotations.NotNull;
+@@ -9,4 +9,25 @@ import org.jetbrains.annotations.NotNull;
  @ApiStatus.OverrideOnly
  @ApiStatus.Experimental
  public interface PluginDatapackLoader {
@@ -890,8 +890,20 @@ index 6c878c968be02870c8552eb8db3d7b652e605540..1a2fe817bc62661171a3ad925d6a4a56
 +    /**
 +     * 발전 과제를 서버에 등록할 때 호출됩니다.
 +     *
++     * @param dataFolder 플러그인 데이터 폴더
 +     * @param provider 발전 과제 제공자
 +     */
++    default void registerAdvancement(final @NotNull java.io.File dataFolder, final @NotNull AdvancementProvider provider) {
++        this.registerAdvancement(provider);
++    }
++
++    /**
++     * 발전 과제를 서버에 등록할 때 호출됩니다.
++     *
++     * @param provider 발전 과제 제공자
++     * @deprecated {@link #registerAdvancement(java.io.File, AdvancementProvider)}를 사용해주세요.
++     */
++    @Deprecated(forRemoval = true)
 +    default void registerAdvancement(final @NotNull AdvancementProvider provider) { }
 +    // Daydream end - Add more Advancement API
  }
