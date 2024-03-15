@@ -5,7 +5,7 @@ Subject: [PATCH] Add more Player API
 
 
 diff --git a/build.gradle.kts b/build.gradle.kts
-index 5637dc6b5a565a3c71b02bc026c73801d4aa251b..387a40a9b0d34dc9e95a3fdde31d78e30bef51b0 100644
+index 940fe6fd297c18e23586b6b2c9cfcb571aaece48..dbf0611b0729165d8eb34bceff7d679d0fb128ed 100644
 --- a/build.gradle.kts
 +++ b/build.gradle.kts
 @@ -56,6 +56,7 @@ dependencies {
@@ -78,10 +78,10 @@ index 7411f58f9f36beaadcc47c2264a4af313956ee03..201fe24d393beb8d0be4c4212aff5643
      @Override
      public HandlerList getHandlers() {
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index 254a02ddb5dc867c9dd6c2086791f7ab94247fd3..dd7baf3860e3cb969801e49f3d139c3dfb829091 100644
+index c6cb4f17469a8f2e60dd3e28d41402851ce5fb21..e95cb88e22b607e193bade4eadf635b4704d14e0 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
-@@ -1915,6 +1915,22 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+@@ -1939,6 +1939,22 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
       */
      public void setAllowFlight(boolean flight);
  
@@ -104,7 +104,7 @@ index 254a02ddb5dc867c9dd6c2086791f7ab94247fd3..dd7baf3860e3cb969801e49f3d139c3d
      // Paper start - flying fall damage
      /**
       * Allows you to enable fall damage while {@link #getAllowFlight()} is {@code true}
-@@ -3328,6 +3344,16 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+@@ -3352,6 +3368,16 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      }
      // Paper end
  

@@ -20,7 +20,7 @@ repositories {
 }
 
 dependencies {
-    remapper("net.fabricmc:tiny-remapper:0.8.10:fat")
+    remapper("net.fabricmc:tiny-remapper:0.10.1:fat")
     paperclip("io.papermc:paperclip:3.0.3")
 }
 
