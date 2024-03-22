@@ -181,9 +181,14 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Returns the entity that damaged the defender.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isCritical()" class="member-name-link">isCritical</a>()</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../damage/DamageSource.html" title="interface in org.bukkit.damage">DamageSource</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getDamageSource()" class="member-name-link">getDamageSource</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Get the source of damage.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isCritical()" class="member-name-link">isCritical</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Shows this damage instance was critical.</div>
 </div>
 </div>
@@ -191,7 +196,7 @@ loadScripts(document, 'script');</script>
 </div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-org.bukkit.event.entity.EntityDamageEvent">Methods inherited from class&nbsp;org.bukkit.event.entity.<a href="EntityDamageEvent.html" title="class in org.bukkit.event.entity">EntityDamageEvent</a></h3>
-<code><a href="EntityDamageEvent.html#getCause()">getCause</a>, <a href="EntityDamageEvent.html#getDamage()">getDamage</a>, <a href="EntityDamageEvent.html#getDamage(org.bukkit.event.entity.EntityDamageEvent.DamageModifier)">getDamage</a>, <a href="EntityDamageEvent.html#getDamageMeta()">getDamageMeta</a>, <a href="EntityDamageEvent.html#getDamageSource()">getDamageSource</a>, <a href="EntityDamageEvent.html#getExplosion()">getExplosion</a>, <a href="EntityDamageEvent.html#getFinalDamage()">getFinalDamage</a>, <a href="EntityDamageEvent.html#getHandlerList()">getHandlerList</a>, <a href="EntityDamageEvent.html#getHandlers()">getHandlers</a>, <a href="EntityDamageEvent.html#getOriginalDamage(org.bukkit.event.entity.EntityDamageEvent.DamageModifier)">getOriginalDamage</a>, <a href="EntityDamageEvent.html#isApplicable(org.bukkit.event.entity.EntityDamageEvent.DamageModifier)">isApplicable</a>, <a href="EntityDamageEvent.html#isCancelled()">isCancelled</a>, <a href="EntityDamageEvent.html#setCancelled(boolean)">setCancelled</a>, <a href="EntityDamageEvent.html#setDamage(double)">setDamage</a>, <a href="EntityDamageEvent.html#setDamage(org.bukkit.event.entity.EntityDamageEvent.DamageModifier,double)">setDamage</a></code></div>
+<code><a href="EntityDamageEvent.html#getCause()">getCause</a>, <a href="EntityDamageEvent.html#getDamage()">getDamage</a>, <a href="EntityDamageEvent.html#getDamage(org.bukkit.event.entity.EntityDamageEvent.DamageModifier)">getDamage</a>, <a href="EntityDamageEvent.html#getDamageMeta()">getDamageMeta</a>, <a href="EntityDamageEvent.html#getExplosion()">getExplosion</a>, <a href="EntityDamageEvent.html#getFinalDamage()">getFinalDamage</a>, <a href="EntityDamageEvent.html#getHandlerList()">getHandlerList</a>, <a href="EntityDamageEvent.html#getHandlers()">getHandlers</a>, <a href="EntityDamageEvent.html#getOriginalDamage(org.bukkit.event.entity.EntityDamageEvent.DamageModifier)">getOriginalDamage</a>, <a href="EntityDamageEvent.html#isApplicable(org.bukkit.event.entity.EntityDamageEvent.DamageModifier)">isApplicable</a>, <a href="EntityDamageEvent.html#isCancelled()">isCancelled</a>, <a href="EntityDamageEvent.html#setCancelled(boolean)">setCancelled</a>, <a href="EntityDamageEvent.html#setDamage(double)">setDamage</a>, <a href="EntityDamageEvent.html#setDamage(org.bukkit.event.entity.EntityDamageEvent.DamageModifier,double)">setDamage</a></code></div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-org.bukkit.event.entity.EntityEvent">Methods inherited from class&nbsp;org.bukkit.event.entity.<a href="EntityEvent.html" title="class in org.bukkit.event.entity">EntityEvent</a></h3>
 <code><a href="EntityEvent.html#getEntity()">getEntity</a>, <a href="EntityEvent.html#getEntityType()">getEntityType</a></code></div>
@@ -321,6 +326,24 @@ loadScripts(document, 'script');</script>
 <li><a href="https://minecraft.wiki/wiki/Damage#Critical_hit">https://minecraft.wiki/wiki/Damage#Critical_hit</a></li>
 </ul>
 </dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getDamageSource()">
+<h3>getDamageSource</h3>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../damage/DamageSource.html" title="interface in org.bukkit.damage">DamageSource</a></span>&nbsp;<span class="element-name">getDamageSource</span>()</div>
+<div class="block">Get the source of damage.
+ <p>
+ The <a href="../../damage/DamageSource.html#getDirectEntity()"><code>DamageSource.getDirectEntity()</code></a> may be different from the <a href="#getDamager()"><code>getDamager()</code></a>
+ if the Minecraft damage source did not originally include an damager entity, but one was included
+ for this event <a href="#getDamager()"><code>getDamager()</code></a>.</div>
+<dl class="notes">
+<dt>Overrides:</dt>
+<dd><code><a href="EntityDamageEvent.html#getDamageSource()">getDamageSource</a></code>&nbsp;in class&nbsp;<code><a href="EntityDamageEvent.html" title="class in org.bukkit.event.entity">EntityDamageEvent</a></code></dd>
+<dt>Returns:</dt>
+<dd>a DamageSource detailing the source of the damage.</dd>
 </dl>
 </section>
 </li>
