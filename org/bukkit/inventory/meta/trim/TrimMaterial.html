@@ -75,11 +75,11 @@ loadScripts(document, 'script');</script>
 <section class="class-description" id="class-description">
 <dl class="notes">
 <dt>All Superinterfaces:</dt>
-<dd><code>net.kyori.adventure.key.Keyed</code>, <code><a href="../../../Keyed.html" title="interface in org.bukkit">Keyed</a></code></dd>
+<dd><code>net.kyori.adventure.key.Keyed</code>, <code><a href="../../../Keyed.html" title="interface in org.bukkit">Keyed</a></code>, <code><a href="../../../Translatable.html" title="interface in org.bukkit">Translatable</a></code></dd>
 </dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public interface </span><span class="element-name type-name-label">TrimMaterial</span><span class="extends-implements">
-extends <a href="../../../Keyed.html" title="interface in org.bukkit">Keyed</a></span></div>
+extends <a href="../../../Keyed.html" title="interface in org.bukkit">Keyed</a>, <a href="../../../Translatable.html" title="interface in org.bukkit">Translatable</a></span></div>
 <div class="block">Represents a material that may be used in an <a href="ArmorTrim.html" title="class in org.bukkit.inventory.meta.trim"><code>ArmorTrim</code></a>.</div>
 </section>
 <section class="summary">
@@ -157,11 +157,24 @@ extends <a href="../../../Keyed.html" title="interface in org.bukkit">Keyed</a><
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../NamespacedKey.html" title="class in org.bukkit">NamespacedKey</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6"><code><a href="#getKey()" class="member-name-link">getKey</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://jd.advntr.dev/api/4.16.0/net/kyori/adventure/text/Component.html" title="class or interface in net.kyori.adventure.text" class="external-link">Component</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#description()" class="member-name-link">description</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Get the description of this <a href="TrimMaterial.html" title="interface in org.bukkit.inventory.meta.trim"><code>TrimMaterial</code></a>.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../NamespacedKey.html" title="class in org.bukkit">NamespacedKey</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6"><code><a href="#getKey()" class="member-name-link">getKey</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6">
 <div class="block"><span class="deprecated-label">Deprecated, for removal: This API element is subject to removal in a future version.</span>
 <div class="deprecation-comment">use <a href="../../../Registry.html#getKey(T)"><code>Registry.getKey(Keyed)</code></a> and <a href="../../../Registry.html#TRIM_MATERIAL"><code>Registry.TRIM_MATERIAL</code></a>.</div>
+</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6"><code><a href="#getTranslationKey()" class="member-name-link">getTranslationKey</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6">
+<div class="block"><span class="deprecated-label">Deprecated, for removal: This API element is subject to removal in a future version.</span>
+<div class="deprecation-comment">this method assumes that <a href="#description()"><code>description()</code></a> will
+ always be a translatable component which is not guaranteed.</div>
 </div>
 </div>
 </div>
@@ -259,6 +272,37 @@ extends <a href="../../../Keyed.html" title="interface in org.bukkit">Keyed</a><
 <section class="method-details" id="method-detail">
 <h2>Method Details</h2>
 <ul class="member-list">
+<li>
+<section class="detail" id="description()">
+<h3>description</h3>
+<div class="member-signature"><span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://jd.advntr.dev/api/4.16.0/net/kyori/adventure/text/Component.html" title="class or interface in net.kyori.adventure.text" class="external-link">Component</a></span>&nbsp;<span class="element-name">description</span>()</div>
+<div class="block">Get the description of this <a href="TrimMaterial.html" title="interface in org.bukkit.inventory.meta.trim"><code>TrimMaterial</code></a>.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the description</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getTranslationKey()">
+<h3>getTranslationKey</h3>
+<div class="member-signature"><span class="annotations"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Deprecated.html" title="class or interface in java.lang" class="external-link">@Deprecated</a>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Deprecated.html#forRemoval()" title="class or interface in java.lang" class="external-link">forRemoval</a>=true)
+<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+</span><span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">getTranslationKey</span>()</div>
+<div class="deprecation-block"><span class="deprecated-label">Deprecated, for removal: This API element is subject to removal in a future version.</span>
+<div class="deprecation-comment">this method assumes that <a href="#description()"><code>description()</code></a> will
+ always be a translatable component which is not guaranteed.</div>
+</div>
+<div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="../../../Translatable.html#getTranslationKey()">Translatable</a></code></span></div>
+<div class="block">Get the translation key, suitable for use in a translation component.</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="../../../Translatable.html#getTranslationKey()">getTranslationKey</a></code>&nbsp;in interface&nbsp;<code><a href="../../../Translatable.html" title="interface in org.bukkit">Translatable</a></code></dd>
+<dt>Returns:</dt>
+<dd>the translation key</dd>
+</dl>
+</section>
+</li>
 <li>
 <section class="detail" id="getKey()">
 <h3>getKey</h3>
