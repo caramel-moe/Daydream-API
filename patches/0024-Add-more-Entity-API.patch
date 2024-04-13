@@ -5,10 +5,10 @@ Subject: [PATCH] Add more Entity API
 
 
 diff --git a/src/main/java/org/bukkit/entity/Entity.java b/src/main/java/org/bukkit/entity/Entity.java
-index aa01787527e1796d47c294dd0fdfa01d744869bd..2be3ab864b3756ed69bce2a633971ebad77fdb5b 100644
+index 53405025bbf6f23ce28a95c003c2ffb0ec180408..61df057572bf2790fd1c1c05f5967881cb5442e0 100644
 --- a/src/main/java/org/bukkit/entity/Entity.java
 +++ b/src/main/java/org/bukkit/entity/Entity.java
-@@ -325,6 +325,33 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
+@@ -365,6 +365,33 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
      void lockFreezeTicks(boolean locked);
      // Paper end - Freeze Tick Lock API
  
@@ -42,7 +42,7 @@ index aa01787527e1796d47c294dd0fdfa01d744869bd..2be3ab864b3756ed69bce2a633971eba
      /**
       * Mark the entity's removal.
       *
-@@ -488,6 +515,16 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
+@@ -528,6 +555,16 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
      @NotNull
      public UUID getUniqueId();
  
@@ -60,10 +60,10 @@ index aa01787527e1796d47c294dd0fdfa01d744869bd..2be3ab864b3756ed69bce2a633971eba
      /**
       * Gets the metadata of the entity.
 diff --git a/src/main/java/org/bukkit/entity/LivingEntity.java b/src/main/java/org/bukkit/entity/LivingEntity.java
-index e67455efc84f1e06d3396291d104ce65fee4591b..9a3c02e62b0d9096af86464f91e04cb664280912 100644
+index 65112eae8b92344796850b1e4c89e75443eab2fe..ad87cf3189bde14df38d0e68b51788e03589aabd 100644
 --- a/src/main/java/org/bukkit/entity/LivingEntity.java
 +++ b/src/main/java/org/bukkit/entity/LivingEntity.java
-@@ -664,6 +664,32 @@ public interface LivingEntity extends Attributable, Damageable, ProjectileSource
+@@ -696,6 +696,32 @@ public interface LivingEntity extends Attributable, Damageable, ProjectileSource
      public boolean hasLineOfSight(@NotNull Location location);
      // Paper end
  

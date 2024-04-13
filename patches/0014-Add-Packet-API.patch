@@ -1094,10 +1094,10 @@ index 0000000000000000000000000000000000000000..a4b9dcd4179fa4d4089d1929b639a6d6
 +    }
 +}
 diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
-index ab1bd34e124159a16f5f5080c79038c5ad607bdb..2d32d51b33528c66e4672de24342414f6319fb2a 100644
+index 2e8d0fde25c20df7cf5e3c754bf8a9b74b87dddf..6e088539fd72605fc52322497f0f85c14375a619 100644
 --- a/src/main/java/org/bukkit/Bukkit.java
 +++ b/src/main/java/org/bukkit/Bukkit.java
-@@ -2966,6 +2966,20 @@ public final class Bukkit {
+@@ -2972,6 +2972,20 @@ public final class Bukkit {
      }
      // Paper end - Folia region threading API
  
@@ -1134,10 +1134,10 @@ index 918a045165cdcde264bc24082b7afebb407271de..0756634ad506aa81e8f3a789f5c28c84
      /**
       * Represents black
 diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
-index babde50e382290f827e27416958065c17699e8a8..61bbc564deb23f34f4b18ebc65241075a9a1f140 100644
+index edb0f9bec89626c3a16e07fd772e90c56201bbf3..d840a84cad36457fcbdeef5bf489fd44c6018c65 100644
 --- a/src/main/java/org/bukkit/Server.java
 +++ b/src/main/java/org/bukkit/Server.java
-@@ -2596,4 +2596,16 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
+@@ -2602,4 +2602,16 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
       */
      boolean isOwnedByCurrentRegion(@NotNull Entity entity);
      // Paper end - Folia region threading API
@@ -1155,10 +1155,10 @@ index babde50e382290f827e27416958065c17699e8a8..61bbc564deb23f34f4b18ebc65241075
 +    // Daydream end - Add Packet API
  }
 diff --git a/src/main/java/org/bukkit/World.java b/src/main/java/org/bukkit/World.java
-index 7deafda6c4b96398b3ac334df9dee9e2c7112ac5..672c4624cf7f6357a4ec9592ddfa8b029bc3ca9b 100644
+index 7eb42ba8ec2df1a5924f760e5cafc1a98230a549..9743c964b66e8f7ff1c4abe4187b95cadab62ce3 100644
 --- a/src/main/java/org/bukkit/World.java
 +++ b/src/main/java/org/bukkit/World.java
-@@ -1587,6 +1587,17 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
+@@ -1596,6 +1596,17 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      public Entity getEntity(@NotNull java.util.UUID uuid);
      // Paper end
  
@@ -1177,10 +1177,10 @@ index 7deafda6c4b96398b3ac334df9dee9e2c7112ac5..672c4624cf7f6357a4ec9592ddfa8b02
       * Returns a list of entities within a bounding box centered around a
       * Location.
 diff --git a/src/main/java/org/bukkit/entity/Entity.java b/src/main/java/org/bukkit/entity/Entity.java
-index d9929d9311e4b2b0ae13a8f6f13563257263f298..aa01787527e1796d47c294dd0fdfa01d744869bd 100644
+index 23def071492ccd715693d534cc506936e18f0f46..53405025bbf6f23ce28a95c003c2ffb0ec180408 100644
 --- a/src/main/java/org/bukkit/entity/Entity.java
 +++ b/src/main/java/org/bukkit/entity/Entity.java
-@@ -488,6 +488,19 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
+@@ -528,6 +528,19 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
      @NotNull
      public UUID getUniqueId();
  

@@ -5,12 +5,12 @@ Subject: [PATCH] Add Brigadier Command API
 
 
 diff --git a/build.gradle.kts b/build.gradle.kts
-index 50dd795c67557c7d2668068af0bba87a1ec8dc43..5637dc6b5a565a3c71b02bc026c73801d4aa251b 100644
+index 04853c43b99951bf0d4c96ef73724625bdaf018f..27a4f6d273b116563f0d8788eee7321b014b65bc 100644
 --- a/build.gradle.kts
 +++ b/build.gradle.kts
 @@ -55,6 +55,7 @@ dependencies {
-     implementation("org.ow2.asm:asm:9.5")
-     implementation("org.ow2.asm:asm-commons:9.5")
+     implementation("org.ow2.asm:asm:9.7")
+     implementation("org.ow2.asm:asm-commons:9.7")
      // Paper end
 +    api("com.mojang:brigadier:1.2.9") // Daydream - Add Brigadier Command API
  
@@ -1526,10 +1526,10 @@ index 0000000000000000000000000000000000000000..ba04177bbccb9f65cb1eeb22f0f92dea
 +}
 diff --git a/src/main/java/moe/caramel/daydream/player/PlayerMessage.java b/src/main/java/moe/caramel/daydream/player/PlayerMessage.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..022fcc7e87b298285e28bcbf54b27ebf0b48ab19
+index 0000000000000000000000000000000000000000..252e17fe8b650e5da1570eca97ac91e6f730e6c2
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/player/PlayerMessage.java
-@@ -0,0 +1,76 @@
+@@ -0,0 +1,81 @@
 +package moe.caramel.daydream.player;
 +
 +import net.kyori.adventure.chat.SignedMessage;
@@ -1591,13 +1591,18 @@ index 0000000000000000000000000000000000000000..022fcc7e87b298285e28bcbf54b27ebf
 +     * 서명되지 않은 메시지를 설정합니다. 주로 메시지를 꾸미는 용도로 사용합니다.
 +     *
 +     * @param message 서명되지 않은 메시지
++     * @return 새 메시지 인스턴스
 +     */
-+    void unsignedContent(@NotNull Component message);
++    @NotNull
++    PlayerMessage unsignedContent(@NotNull Component message);
 +
 +    /**
 +     * 서명되지 않은 메시지를 제거합니다. 받는 대상은 원본 메시지로 표시됩니다.
++     *
++     * @return 새 메시지 인스턴스
 +     */
-+    void removeUnsignedContent();
++    @NotNull
++    PlayerMessage removeUnsignedContent();
 +
 +    /**
 +     * 메시지가 모두 필터링 되었는지의 여부를 가져옵니다.
@@ -1687,10 +1692,10 @@ index 0000000000000000000000000000000000000000..ced8b19a02be4952784b7dbde45f01d6
 +    }
 +}
 diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
-index ca27559cf4aa1c2e44fdca2022e213b1b1c80f4e..a3ade93b28e160a4d260130debeda0eb648d1e25 100644
+index 9a428153f34291bdc026a71f7e60e285b7794b0c..6cc9108f03b00ae1d91e74fb7f0c03073649dab7 100644
 --- a/src/main/java/org/bukkit/Bukkit.java
 +++ b/src/main/java/org/bukkit/Bukkit.java
-@@ -1073,6 +1073,63 @@ public final class Bukkit {
+@@ -1079,6 +1079,63 @@ public final class Bukkit {
          return server.getPluginCommand(name);
      }
  
@@ -1755,10 +1760,10 @@ index ca27559cf4aa1c2e44fdca2022e213b1b1c80f4e..a3ade93b28e160a4d260130debeda0eb
       * Writes loaded players to disk.
       */
 diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
-index dea487c07b09009591c444e43cbf12e65fa71af8..72227fb5d032e8d73d508c1c7552c364fe743ca7 100644
+index 99dbd28777ce717975803ccd4793da522f9268ca..73768a2aaf24809eaae3910a83c3e6847751bc15 100644
 --- a/src/main/java/org/bukkit/Server.java
 +++ b/src/main/java/org/bukkit/Server.java
-@@ -909,6 +909,53 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
+@@ -915,6 +915,53 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
      @Nullable
      public PluginCommand getPluginCommand(@NotNull String name);
  

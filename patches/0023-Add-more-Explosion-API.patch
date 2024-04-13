@@ -152,10 +152,10 @@ index 0000000000000000000000000000000000000000..394159310ec31777c5c423f94405d9ec
 +    boolean wasCancelled();
 +}
 diff --git a/src/main/java/org/bukkit/World.java b/src/main/java/org/bukkit/World.java
-index 672c4624cf7f6357a4ec9592ddfa8b029bc3ca9b..78dc018ce1fdd31443968a09e24062f7d23a55a6 100644
+index 9743c964b66e8f7ff1c4abe4187b95cadab62ce3..51fbae9e05c0894a21d145406ee56fb105a7bc6c 100644
 --- a/src/main/java/org/bukkit/World.java
 +++ b/src/main/java/org/bukkit/World.java
-@@ -2159,6 +2159,182 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
+@@ -2168,6 +2168,182 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
       */
      public boolean createExplosion(double x, double y, double z, float power, boolean setFire, boolean breakBlocks, @Nullable Entity source);
  
@@ -415,7 +415,7 @@ index 31d1cd2e0cbefad6a4bbb10d9d3a4b5d6e954c09..9afa99fcf1a41efb4fe07484757eed9d
  
      @Override
 diff --git a/src/main/java/org/bukkit/event/entity/EntityExplodeEvent.java b/src/main/java/org/bukkit/event/entity/EntityExplodeEvent.java
-index 099efafa14c10910e4ed04abb1823f0c1a96b6a6..66ca6572c4b4312d03308c45793bcc907b1b7b0f 100644
+index 8506fa03293c575c35b55b052224807470fdbd98..e8982f00a6cd2e5fb6a11b47d283eb2ff80f085c 100644
 --- a/src/main/java/org/bukkit/event/entity/EntityExplodeEvent.java
 +++ b/src/main/java/org/bukkit/event/entity/EntityExplodeEvent.java
 @@ -21,11 +21,29 @@ public class EntityExplodeEvent extends EntityEvent implements Cancellable {

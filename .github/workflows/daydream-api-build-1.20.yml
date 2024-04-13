@@ -9,10 +9,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Set up JDK
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           java-version: '17'
           distribution: 'zulu'
@@ -20,29 +20,29 @@ jobs:
 
       - name: Setup git config
         run: |
-         git config --global user.email "no-reply@github.com"
-         git config --global user.name "Github Action"
-  
-      - name : Build with Gradle
+          git config --global user.email "no-reply@github.com"
+          git config --global user.name "Github Action"
+
+      - name : Build and Publish API with Gradle
         run: |
-         ./gradlew applyGeneratedApiPatches applyApiPatches --no-daemon
-         ./gradlew build --no-daemon
-         
-      - name: Generate Javadoc
-        run: |
-         cd Daydream-API
-         ../gradlew javadoc --no-daemon
+          echo "::group::Apply Patches"
+          ./gradlew applyGeneratedApiPatches applyApiPatches
+          echo "::endgroup::"
+          echo "::group::Build API"
+          ./gradlew Daydream-API:build
+          echo "::endgroup::"
+          echo "::group::Generate Javadoc"
+          ./gradlew Daydream-API:javadoc
+          echo "::endgroup::"
+          echo "::group::Publish API to Maven Repository"
+          ./gradlew Daydream-API:publishAllPublicationsToMavenRepository
+          echo "::endgroup::"
+        env:
+          DEPLOY_ID: ${{ secrets.DEPLOY_ID }}
+          DEPLOY_PW: ${{ secrets.DEPLOY_PW }}
 
       - name: Deploy Javadoc
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
           folder: Daydream-API/build/docs/javadoc
-
-      - name: Publish package
-        uses: gradle/gradle-build-action@v2
-        with:
-          arguments: publishAllPublicationsToMavenRepository
-        env:
-          DEPLOY_ID: ${{ secrets.DEPLOY_ID }}
-          DEPLOY_PW: ${{ secrets.DEPLOY_PW }}

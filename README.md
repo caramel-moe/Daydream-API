@@ -1,8 +1,8 @@
 <div align="center">
 
-## Daydream
+## Daydream (API Only)
 
-<p>Daydream은 Paper의 Fork로 높은 성능 및 다양한 API 사용을 목표로 제작되었습니다.</p>
+<p>Daydream은 Paper의 Fork로 다양한 API 사용을 목표로 제작되었습니다.</p>
 
 [![caramel.moe](https://img.shields.io/badge/made%20by.-caramel.moe-red)](https://caramel.moe)
 [![Build Status](https://img.shields.io/github/actions/workflow/status/LemonCaramel/Daydream-API/daydream-api-build-1.20.yml)](https://github.com/LemonCaramel/Daydream-API/actions/workflows/daydream-api-build-1.20.yml)
@@ -12,16 +12,9 @@ KOREAN, [ENGLISH](README_EN.md)
 
 </div>
 
-- 모든 패치에는 `// Daydream` 주석이 필요합니다.
-    - 필요에 따라 `// Daydream start` 와 `// Daydream end` 를 사용할 수도 있습니다.
-- 새로운 패치는 브랜치 생성(또는 포크) 후에 추가하여 Pull Request를 열고 검수 받아야합니다.
-- 이 저장소는 API만 포함되므로, 서버 측 패치는 Daydream Repository 에서 Pull Request 해야합니다.
-
----
-
 ## 라이선스
 
-모든 API 패치는 Patch 헤더에 라이선스가 명시되어 있지 않는 한, MIT 라이선스가 부여됩니다. (서버의 경우 GPL-3.0)
+모든 **API 패치**는 Patch 헤더에 라이선스가 명시되어 있지 않는 한, MIT 라이선스가 부여됩니다.
 
 Daydream은 Upstream 프로젝트로부터 라이선스를 상속받습니다.
 
@@ -49,7 +42,7 @@ Maven
 </dependency>
 ```
 
-Gradle KTS
+Gradle
 ```kotlin
 repositories {
     // caramel.moe Repository

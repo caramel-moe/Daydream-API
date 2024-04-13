@@ -1,8 +1,8 @@
 <div align="center">
 
-## Daydream
+## Daydream (API Only)
 
-<p>Daydream is Paper's Fork with the aim of high performance and using various API.</p>
+<p>Daydream is Paper's Fork with the aim of using various API.</p>
 
 [![caramel.moe](https://img.shields.io/badge/made%20by.-caramel.moe-red)](https://caramel.moe)
 [![Build Status](https://img.shields.io/github/actions/workflow/status/LemonCaramel/Daydream-API/daydream-api-build-1.20.yml)](https://github.com/LemonCaramel/Daydream-API/actions/workflows/daydream-api-build-1.20.yml)
@@ -12,16 +12,9 @@
 
 </div>
 
-- All patches require `// Daydream` annotations.
-    - You can also use `// Daydream start` and `// Daydream end` as needed.
-- New patches should be added after branch creation (or fork) to open the Pull Request and be inspected.
-- Since this repository contains only APIs, server-side patches must be requested in the Daydream Repository.
-
----
-
 ## License
 
-All API patches are licensed under the MIT license, unless otherwise noted in the patch headers. (Server is GPL-3.0)
+All **API patches** are licensed under the MIT license, unless otherwise noted in the patch headers.
 
 Daydream inherits its licensing from upstream projects.
 
@@ -50,7 +43,7 @@ Maven
 </dependency>
 ```
 
-Gradle KTS
+Gradle
 ```kotlin
 repositories {
     // caramel.moe Repository
