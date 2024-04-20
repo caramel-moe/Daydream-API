@@ -5,10 +5,28 @@ Subject: [PATCH] Add more Entity API
 
 
 diff --git a/src/main/java/org/bukkit/entity/Entity.java b/src/main/java/org/bukkit/entity/Entity.java
-index 53405025bbf6f23ce28a95c003c2ffb0ec180408..61df057572bf2790fd1c1c05f5967881cb5442e0 100644
+index 53405025bbf6f23ce28a95c003c2ffb0ec180408..46c2343284cc34a89fa8fadc355cbc506731f5b9 100644
 --- a/src/main/java/org/bukkit/entity/Entity.java
 +++ b/src/main/java/org/bukkit/entity/Entity.java
-@@ -365,6 +365,33 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
+@@ -111,6 +111,17 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
+      */
+     public boolean isInWater();
+ 
++    // Daydream start - Add more Entity API (Fluid Height)
++    /**
++     * 플레이어 위치의 유체 높이를 가져옵니다.
++     *
++     * @param fluid 유체 타입
++     * @return 유체의 높이
++     * @throws IllegalArgumentException 인자로 {@link org.bukkit.Fluid#EMPTY}를 전달할 경우 던져집니다.
++     */
++    public double getFluidHeight(@NotNull org.bukkit.Fluid fluid);
++    // Daydream end - Add more Entity API (Fluid Height)
++
+     /**
+      * Gets the current world this entity resides in
+      *
+@@ -365,6 +376,33 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
      void lockFreezeTicks(boolean locked);
      // Paper end - Freeze Tick Lock API
  
@@ -42,7 +60,7 @@ index 53405025bbf6f23ce28a95c003c2ffb0ec180408..61df057572bf2790fd1c1c05f5967881
      /**
       * Mark the entity's removal.
       *
-@@ -528,6 +555,16 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
+@@ -528,6 +566,16 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
      @NotNull
      public UUID getUniqueId();
  
