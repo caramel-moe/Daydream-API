@@ -31,18 +31,9 @@ jobs:
           echo "::group::Build API"
           ./gradlew Daydream-API:build
           echo "::endgroup::"
-          echo "::group::Generate Javadoc"
-          ./gradlew Daydream-API:javadoc
-          echo "::endgroup::"
           echo "::group::Publish API to Maven Repository"
           ./gradlew Daydream-API:publishAllPublicationsToMavenRepository
           echo "::endgroup::"
         env:
           DEPLOY_ID: ${{ secrets.DEPLOY_ID }}
           DEPLOY_PW: ${{ secrets.DEPLOY_PW }}
-
-      - name: Deploy Javadoc
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          branch: gh-pages
-          folder: Daydream-API/build/docs/javadoc
