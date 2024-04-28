@@ -5,7 +5,7 @@ Subject: [PATCH] Add Brigadier Command API
 
 
 diff --git a/build.gradle.kts b/build.gradle.kts
-index 04853c43b99951bf0d4c96ef73724625bdaf018f..27a4f6d273b116563f0d8788eee7321b014b65bc 100644
+index 65e67b8726f1e19a6bcb1fe2f448e4ab68df11d1..2a104d01238c60a7f3f0319e4bf447ebb7d17eeb 100644
 --- a/build.gradle.kts
 +++ b/build.gradle.kts
 @@ -55,6 +55,7 @@ dependencies {
@@ -387,15 +387,16 @@ index 0000000000000000000000000000000000000000..d719368e06234dbcbe79dd7801469a79
 +}
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/Arguments.java b/src/main/java/moe/caramel/daydream/brigadier/Arguments.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..abf12ad7215553b85709c39bad0292b0b9d0d51b
+index 0000000000000000000000000000000000000000..b522b014d6b5826f2dc50026724d1e257c9ef948
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/brigadier/Arguments.java
-@@ -0,0 +1,309 @@
+@@ -0,0 +1,335 @@
 +package moe.caramel.daydream.brigadier;
 +
 +import static moe.caramel.daydream.brigadier.BrigadierService.SERVICE;
 +import com.mojang.authlib.GameProfile;
 +import io.papermc.paper.command.brigadier.CommandSourceStack;
++import it.unimi.dsi.fastutil.ints.IntList;
 +import moe.caramel.daydream.brigadier.argument.*;
 +import moe.caramel.daydream.brigadier.data.*;
 +import moe.caramel.daydream.util.NumberRange;
@@ -602,6 +603,13 @@ index 0000000000000000000000000000000000000000..abf12ad7215553b85709c39bad0292b0
 +    public static final SimpleArgument<Integer> SLOT = SERVICE.getArgument("item_slot");
 +
 +    /**
++     * Example: "container.*", "container.5", "weapon"
++     * @since Minecraft 1.20.5
++     */
++    @NotNull
++    public static final SimpleArgument<IntList> SLOTS = SERVICE.getArgument("item_slots");
++
++    /**
 +     * Example: "foo", "foo:bar", "012"
 +     */
 +    @NotNull
@@ -699,6 +707,24 @@ index 0000000000000000000000000000000000000000..abf12ad7215553b85709c39bad0292b0
 +     */
 +    @NotNull
 +    public static final SimpleArgument<UUID> UUID = SERVICE.getArgument("uuid");
++
++    /*
++     * Example: "foo", "foo:bar", "012"
++     * @since Minecraft 1.20.5
++     * LOOT_TABLE
++     */
++
++    /*
++     * Example: "foo", "foo:bar", "012"
++     * @since Minecraft 1.20.5
++     * LOOT_PREDICATE
++     */
++
++    /*
++     * Example: "foo", "foo:bar", "012"
++     * @since Minecraft 1.20.5
++     * LOOT_MODIFIER
++     */
 +}
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/BrigadierCommand.java b/src/main/java/moe/caramel/daydream/brigadier/BrigadierCommand.java
 new file mode 100644
@@ -1692,10 +1718,10 @@ index 0000000000000000000000000000000000000000..ced8b19a02be4952784b7dbde45f01d6
 +    }
 +}
 diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
-index 9a428153f34291bdc026a71f7e60e285b7794b0c..6cc9108f03b00ae1d91e74fb7f0c03073649dab7 100644
+index 687bd8f54c9bfb5f5ab1f7ad9d232daf2433cc76..db1e4ea53747fd60f485feb2d5cf5b7dbd7dda6b 100644
 --- a/src/main/java/org/bukkit/Bukkit.java
 +++ b/src/main/java/org/bukkit/Bukkit.java
-@@ -1079,6 +1079,63 @@ public final class Bukkit {
+@@ -1081,6 +1081,63 @@ public final class Bukkit {
          return server.getPluginCommand(name);
      }
  
@@ -1760,10 +1786,10 @@ index 9a428153f34291bdc026a71f7e60e285b7794b0c..6cc9108f03b00ae1d91e74fb7f0c0307
       * Writes loaded players to disk.
       */
 diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
-index 99dbd28777ce717975803ccd4793da522f9268ca..73768a2aaf24809eaae3910a83c3e6847751bc15 100644
+index b71577e88d8c19ed0caeb11a4bb51f88691fc0fb..7f670e4c28bf72c79154e3bc2c95ff6dc24c2473 100644
 --- a/src/main/java/org/bukkit/Server.java
 +++ b/src/main/java/org/bukkit/Server.java
-@@ -915,6 +915,53 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
+@@ -917,6 +917,53 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
      @Nullable
      public PluginCommand getPluginCommand(@NotNull String name);
  
@@ -1818,10 +1844,10 @@ index 99dbd28777ce717975803ccd4793da522f9268ca..73768a2aaf24809eaae3910a83c3e684
       * Writes loaded players to disk.
       */
 diff --git a/src/main/java/org/bukkit/command/Command.java b/src/main/java/org/bukkit/command/Command.java
-index b791358f90fe92bc2264d9a26492245763813af3..dbe2daa2beefecfb4a6d4272d5fb644e8a6e83de 100644
+index b3a2c274f05156fd603bcc7a68ab41265f2eaf44..4733163c471501de2dafb9c6fbae5f88c33d0ea4 100644
 --- a/src/main/java/org/bukkit/command/Command.java
 +++ b/src/main/java/org/bukkit/command/Command.java
-@@ -343,6 +343,22 @@ public abstract class Command {
+@@ -348,6 +348,22 @@ public abstract class Command {
          return usageMessage;
      }
  
@@ -1883,40 +1909,6 @@ index 9d263ab3afb938c215c0b64d9171345fca6ceb2c..ab63f82029c09cbf5d9717a89d1d55c3
      // Paper start
      @Override
      default net.kyori.adventure.text.@org.jetbrains.annotations.NotNull Component name() {
-diff --git a/src/main/java/org/bukkit/event/command/UnknownCommandEvent.java b/src/main/java/org/bukkit/event/command/UnknownCommandEvent.java
-index 9bdeeecdb6021d61fd9141270011e56b06a58a76..0231a38067e4194587217e6e585eb82ca287e4e0 100644
---- a/src/main/java/org/bukkit/event/command/UnknownCommandEvent.java
-+++ b/src/main/java/org/bukkit/event/command/UnknownCommandEvent.java
-@@ -23,10 +23,29 @@ public class UnknownCommandEvent extends Event {
- 
-     @ApiStatus.Internal
-     public UnknownCommandEvent(@NotNull final CommandSender sender, @NotNull final String commandLine, @Nullable final Component message) {
-+        // Daydream start - Add Brigadier Command API
-+        this(sender, commandLine, message, false);
-+    }
-+
-+    private final boolean brigadier;
-+
-+    /**
-+     * Brigadier 명령어 여부를 가져옵니다.
-+     *
-+     * @return Brigadier 명령어라면 {@code true}를 반환
-+     */
-+    public boolean isBrigadier() {
-+        return brigadier;
-+    }
-+
-+    @ApiStatus.Internal
-+    public UnknownCommandEvent(@NotNull final CommandSender sender, @NotNull final String commandLine, @Nullable final Component message, final boolean brigadier) {
-+        // Daydream end - Add Brigadier Command API
-         super(false);
-         this.sender = sender;
-         this.commandLine = commandLine;
-         this.message = message;
-+        this.brigadier = brigadier; // Daydream - Add Brigadier Command API
-     }
- 
-     /**
 diff --git a/src/main/java/org/bukkit/plugin/java/JavaPlugin.java b/src/main/java/org/bukkit/plugin/java/JavaPlugin.java
 index 34037d3da2c536bac088e0ff629ee8f1daccc65b..afb0bf721db2ab5cd1405193a4be4a0c11fa5fa8 100644
 --- a/src/main/java/org/bukkit/plugin/java/JavaPlugin.java

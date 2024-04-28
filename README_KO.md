@@ -2,27 +2,27 @@
 
 ## Daydream (API Only)
 
-<p>Daydream is Paper's Fork with the aim of using various API.</p>
+<p>Daydream은 Paper의 Fork로 다양한 API 사용을 목표로 제작되었습니다.</p>
 
 [![caramel.moe](https://img.shields.io/badge/made%20by.-caramel.moe-red)](https://caramel.moe)
 [![Build Status](https://img.shields.io/github/actions/workflow/status/LemonCaramel/Daydream-API/daydream-api-build-1.20.yml)](https://github.com/LemonCaramel/Daydream-API/actions/workflows/daydream-api-build-1.20.yml)
 [![Discord](https://img.shields.io/discord/534586842079821824.svg?label=use%20server&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/f9qGtYF)
 
-[KOREAN](README.md), ENGLISH
+KOREAN, [ENGLISH](README)
 
 </div>
 
-## License
+## 라이선스
 
-All **API patches** are licensed under the MIT license, unless otherwise noted in the patch headers.
+모든 **API 패치**는 Patch 헤더에 라이선스가 명시되어 있지 않은 한 MIT 라이선스가 부여됩니다.
 
-Daydream inherits its licensing from upstream projects.
+Daydream은 Upstream 프로젝트로부터 라이선스를 상속받습니다.
 
 [PaperMC/Paper](https://github.com/PaperMC/Paper)
 
 ## API
 
-### Dependency Information
+### Dependency 정보
 Maven
 ```xml
 <repository>
@@ -34,11 +34,10 @@ Maven
     <url>https://papermc.io/repo/repository/maven-public/</url>
 </repository>
 
-
 <dependency>
     <groupId>moe.caramel</groupId>
     <artifactId>daydream-api</artifactId>
-    <version>1.20.4-R0.1-SNAPSHOT</version>
+    <version>1.20.6-R0.1-SNAPSHOT</version>
     <scope>provided</scope>
 </dependency>
 ```
@@ -54,6 +53,6 @@ repositories {
 
 dependencies {
     // Daydream API
-    compileOnly("moe.caramel", "daydream-api", "1.20.4-R0.1-SNAPSHOT")
+    compileOnly("moe.caramel", "daydream-api", "1.20.6-R0.1-SNAPSHOT")
 }
 ```

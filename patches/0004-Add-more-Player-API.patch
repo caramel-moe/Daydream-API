@@ -78,10 +78,10 @@ index 7411f58f9f36beaadcc47c2264a4af313956ee03..201fe24d393beb8d0be4c4212aff5643
      @Override
      public HandlerList getHandlers() {
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index c6cb4f17469a8f2e60dd3e28d41402851ce5fb21..e95cb88e22b607e193bade4eadf635b4704d14e0 100644
+index 8a1e39474af88188f2e1765731b57d349f0ee645..5de0926b745c3477b794e803daa9cb0b8b7a240f 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
-@@ -1939,6 +1939,22 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+@@ -1983,6 +1983,22 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
       */
      public void setAllowFlight(boolean flight);
  
@@ -104,7 +104,7 @@ index c6cb4f17469a8f2e60dd3e28d41402851ce5fb21..e95cb88e22b607e193bade4eadf635b4
      // Paper start - flying fall damage
      /**
       * Allows you to enable fall damage while {@link #getAllowFlight()} is {@code true}
-@@ -3352,6 +3368,16 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+@@ -3396,6 +3412,16 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      }
      // Paper end
  
@@ -122,10 +122,10 @@ index c6cb4f17469a8f2e60dd3e28d41402851ce5fb21..e95cb88e22b607e193bade4eadf635b4
      /**
       * Gets a copy of this players profile
 diff --git a/src/main/java/org/bukkit/event/player/AsyncPlayerPreLoginEvent.java b/src/main/java/org/bukkit/event/player/AsyncPlayerPreLoginEvent.java
-index bdb7d2345e7d3a48a2f0561832ce126a16781e89..5e1003de98c57b8200c21e7336eb1bd60b118438 100644
+index ae02788536d0c6736aba4ccf812844df4f9789f1..6b900914f66b0adb6f1b30dadf9ef7cf95d703c7 100644
 --- a/src/main/java/org/bukkit/event/player/AsyncPlayerPreLoginEvent.java
 +++ b/src/main/java/org/bukkit/event/player/AsyncPlayerPreLoginEvent.java
-@@ -282,6 +282,29 @@ public class AsyncPlayerPreLoginEvent extends Event {
+@@ -288,6 +288,29 @@ public class AsyncPlayerPreLoginEvent extends Event {
      }
      // Paper end
  
@@ -152,6 +152,6 @@ index bdb7d2345e7d3a48a2f0561832ce126a16781e89..5e1003de98c57b8200c21e7336eb1bd6
 +    }
 +    // Daydream end - Add more Player API (Initial locale)
 +
-     @NotNull
-     @Override
-     public HandlerList getHandlers() {
+     /**
+      * Gets if this connection has been transferred from another server.
+      *

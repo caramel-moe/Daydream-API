@@ -5,10 +5,10 @@ Subject: [PATCH] Add ItemStack Utilities
 
 
 diff --git a/src/main/java/org/bukkit/UnsafeValues.java b/src/main/java/org/bukkit/UnsafeValues.java
-index d0a42ee3e77f3a8db323e3c2eca1ded9e205d1ab..a868eb8c227e330abe00f695655dd24a1a7c51eb 100644
+index 6597476f8ce506f94c390bff3691d36235123e35..ddd8b46238b4a5ebd111485145d21b13eaef2418 100644
 --- a/src/main/java/org/bukkit/UnsafeValues.java
 +++ b/src/main/java/org/bukkit/UnsafeValues.java
-@@ -304,4 +304,18 @@ public interface UnsafeValues {
+@@ -275,4 +275,18 @@ public interface UnsafeValues {
      @NotNull java.util.List<net.kyori.adventure.text.Component> computeTooltipLines(@NotNull ItemStack itemStack, @NotNull io.papermc.paper.inventory.tooltip.TooltipContext tooltipContext, @Nullable org.bukkit.entity.Player player); // Paper - expose itemstack tooltip lines
  
      @NotNull moe.caramel.daydream.world.DamageMata getDamageMeta(@NotNull Object damageSource); // Daydream - Add more API for EntityDamageEvent
@@ -28,7 +28,7 @@ index d0a42ee3e77f3a8db323e3c2eca1ded9e205d1ab..a868eb8c227e330abe00f695655dd24a
 +    // Daydream end - Add ItemStack Utilities
  }
 diff --git a/src/main/java/org/bukkit/inventory/ItemStack.java b/src/main/java/org/bukkit/inventory/ItemStack.java
-index 7414b4fa690d393a8e9557cc1fd1ce12fa426940..e8413bf04ff118b918d9c9f3421cdd017e8d3c3c 100644
+index 91083a135a7e979e32cbb3531b5ef69b7a28f305..66fd706f9318187670b483684f501eae5f4bdccb 100644
 --- a/src/main/java/org/bukkit/inventory/ItemStack.java
 +++ b/src/main/java/org/bukkit/inventory/ItemStack.java
 @@ -34,6 +34,99 @@ public class ItemStack implements Cloneable, ConfigurationSerializable, Translat
@@ -131,31 +131,3 @@ index 7414b4fa690d393a8e9557cc1fd1ce12fa426940..e8413bf04ff118b918d9c9f3421cdd01
      /**
       * Defaults stack size to 1, with no extra data.
       * <p>
-diff --git a/src/main/java/org/bukkit/inventory/meta/ItemMeta.java b/src/main/java/org/bukkit/inventory/meta/ItemMeta.java
-index 478b6d2acbc5788f72db81f387daa08df7837a5d..0c8641ad116cc56bcc831409603591d9ecbd2e70 100644
---- a/src/main/java/org/bukkit/inventory/meta/ItemMeta.java
-+++ b/src/main/java/org/bukkit/inventory/meta/ItemMeta.java
-@@ -344,6 +344,23 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
-      */
-     void setUnbreakable(boolean unbreakable);
- 
-+    // Daydream start - Add ItemStack Utilities
-+    /**
-+     * 아이템의 빛남 여부를 가져옵니다.
-+     *
-+     * @return 만약 {@code true}라면 아이템이 빛남
-+     */
-+    boolean isGlowing();
-+
-+    /**
-+     * 아이템의 빛남 여부를 설정합니다. 일반적으로 허용하지 않는 방법을 통해 아이템에 글로우 효과를 추가하므로,
-+     * 여러 문제가 발생할 수 있습니다. 이 기능을 사용하는 경우 모든 인첸트가 해제되며, 인첸트가 추가되는 경우 해제됩니다.
-+     *
-+     * @param glowing 만약 {@code true}라면 빛나게 설정
-+     */
-+    void setGlowing(boolean glowing);
-+    // Daydream end - Add ItemStack Utilities
-+
-     /**
-      * Checks for the existence of any AttributeModifiers.
-      *

@@ -152,10 +152,10 @@ index 0000000000000000000000000000000000000000..394159310ec31777c5c423f94405d9ec
 +    boolean wasCancelled();
 +}
 diff --git a/src/main/java/org/bukkit/World.java b/src/main/java/org/bukkit/World.java
-index 9743c964b66e8f7ff1c4abe4187b95cadab62ce3..51fbae9e05c0894a21d145406ee56fb105a7bc6c 100644
+index 10a3e40a3e7ce8135f3193361b6040776d45cd4c..68ac60b343ec5f5e777071b1990aa72f86ba7620 100644
 --- a/src/main/java/org/bukkit/World.java
 +++ b/src/main/java/org/bukkit/World.java
-@@ -2168,6 +2168,182 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
+@@ -2174,6 +2174,186 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
       */
      public boolean createExplosion(double x, double y, double z, float power, boolean setFire, boolean breakBlocks, @Nullable Entity source);
  
@@ -195,7 +195,7 @@ index 9743c964b66e8f7ff1c4abe4187b95cadab62ce3..51fbae9e05c0894a21d145406ee56fb1
 +    default moe.caramel.daydream.world.Explosion explosion(double x, double y, double z, float power, boolean setFire, boolean breakBlocks, @Nullable Entity source) {
 +        return explosion(
 +            x, y, z, power, setFire, (breakBlocks ? ExplosionAction.MOB : ExplosionAction.NONE),
-+            Particle.EXPLOSION_LARGE, null, Particle.EXPLOSION_HUGE, null,
++            Particle.EXPLOSION, null, Particle.EXPLOSION_EMITTER, null,
 +            Sound.ENTITY_GENERIC_EXPLODE, source
 +        );
 +    }
@@ -331,7 +331,11 @@ index 9743c964b66e8f7ff1c4abe4187b95cadab62ce3..51fbae9e05c0894a21d145406ee56fb1
 +        /**
 +         * 현재 {@link org.bukkit.entity.WindCharge}에서 취급
 +         */
-+        BLOW
++        BLOW,
++        /**
++         * Spigot의 커스텀 동작
++         */
++        STANDARD
 +    }
 +    // Daydream end - Add more Explosion API
 +

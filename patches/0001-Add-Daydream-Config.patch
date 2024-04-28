@@ -84,10 +84,10 @@ index 0000000000000000000000000000000000000000..ee7141524a2b01dcba434c8b619f8b37
 +    }
 +}
 diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
-index 4ff1b38eb65f97344257204cf018f176f247ed36..99dbd28777ce717975803ccd4793da522f9268ca 100644
+index 27084402cf0e46dcd171074629b7c4156e48aa44..b71577e88d8c19ed0caeb11a4bb51f88691fc0fb 100644
 --- a/src/main/java/org/bukkit/Server.java
 +++ b/src/main/java/org/bukkit/Server.java
-@@ -2235,6 +2235,14 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
+@@ -2254,6 +2254,14 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
          }
          // Paper end
  
@@ -103,11 +103,11 @@ index 4ff1b38eb65f97344257204cf018f176f247ed36..99dbd28777ce717975803ccd4793da52
           * Sends the component to the player
           *
 diff --git a/src/main/java/org/bukkit/plugin/java/LibraryLoader.java b/src/main/java/org/bukkit/plugin/java/LibraryLoader.java
-index 653135352c104a6ddeb74a1b6d4916c6952d6271..fa864a02aab7f0b43bc3b865ad43b8565ad6720b 100644
+index f4d655a158410039305ac68cebe0d79000f73df8..ad413d54ccec37b885dd11a1a97b85261e3be089 100644
 --- a/src/main/java/org/bukkit/plugin/java/LibraryLoader.java
 +++ b/src/main/java/org/bukkit/plugin/java/LibraryLoader.java
-@@ -71,7 +71,7 @@ public class LibraryLoader
-         } );
+@@ -76,7 +76,7 @@ public class LibraryLoader
+         session.setSystemProperties( System.getProperties() );
          session.setReadOnly();
  
 -        this.repositories = repository.newResolutionRepositories( session, Arrays.asList( new RemoteRepository.Builder( "central", "default", "https://repo.maven.apache.org/maven2" ).build() ) );
@@ -115,7 +115,7 @@ index 653135352c104a6ddeb74a1b6d4916c6952d6271..fa864a02aab7f0b43bc3b865ad43b856
      }
  
      @Nullable
-@@ -119,6 +119,7 @@ public class LibraryLoader
+@@ -124,6 +124,7 @@ public class LibraryLoader
              }
  
              jarFiles.add( url );

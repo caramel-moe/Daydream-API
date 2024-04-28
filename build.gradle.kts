@@ -4,8 +4,7 @@ import org.gradle.api.tasks.testing.logging.TestLogEvent
 
 plugins {
     java
-    id("com.github.johnrengelman.shadow") version "8.1.1" apply false
-    id("io.papermc.paperweight.patcher") version "1.5.15"
+    id("io.papermc.paperweight.patcher") version "1.6.2"
 }
 
 val caramelMavenPublicUrl = "https://repo.caramel.moe/repository/maven-public";
@@ -30,12 +29,12 @@ subprojects {
 
     java {
         toolchain {
-            languageVersion.set(JavaLanguageVersion.of(17))
+            languageVersion.set(JavaLanguageVersion.of(21))
         }
     }
     tasks.withType<JavaCompile>().configureEach {
         options.encoding = "UTF-8"
-        options.release.set(17)
+        options.release.set(21)
     }
     tasks.withType<Javadoc> {
         options.encoding = Charsets.UTF_8.name()
@@ -57,6 +56,7 @@ subprojects {
         mavenCentral()
         maven(caramelMavenPublicUrl) // Daydream
         maven(paperMavenPublicUrl)
+        maven("https://s01.oss.sonatype.org/content/repositories/snapshots/") // TODO Remove in 1.20.6 Release (for Adventure snapshot)
     }
 
     configure<PublishingExtension> {
@@ -87,6 +87,7 @@ paperweight {
             register("generatedApi") {
                 isBareDirectory.set(true)
                 upstreamDirPath.set("paper-api-generator/generated")
+                patchDir.set(layout.projectDirectory.dir("patches-api-generator")) // TODO Remove in 1.20.6 Release
                 outputDir.set(layout.projectDirectory.dir("paper-api-generator/generated"))
             }
         }
