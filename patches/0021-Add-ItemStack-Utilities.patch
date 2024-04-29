@@ -5,10 +5,10 @@ Subject: [PATCH] Add ItemStack Utilities
 
 
 diff --git a/src/main/java/org/bukkit/UnsafeValues.java b/src/main/java/org/bukkit/UnsafeValues.java
-index 6597476f8ce506f94c390bff3691d36235123e35..ddd8b46238b4a5ebd111485145d21b13eaef2418 100644
+index 6597476f8ce506f94c390bff3691d36235123e35..5766691dec7074f66870ad6216f66c475efe5108 100644
 --- a/src/main/java/org/bukkit/UnsafeValues.java
 +++ b/src/main/java/org/bukkit/UnsafeValues.java
-@@ -275,4 +275,18 @@ public interface UnsafeValues {
+@@ -275,4 +275,37 @@ public interface UnsafeValues {
      @NotNull java.util.List<net.kyori.adventure.text.Component> computeTooltipLines(@NotNull ItemStack itemStack, @NotNull io.papermc.paper.inventory.tooltip.TooltipContext tooltipContext, @Nullable org.bukkit.entity.Player player); // Paper - expose itemstack tooltip lines
  
      @NotNull moe.caramel.daydream.world.DamageMata getDamageMeta(@NotNull Object damageSource); // Daydream - Add more API for EntityDamageEvent
@@ -23,12 +23,31 @@ index 6597476f8ce506f94c390bff3691d36235123e35..ddd8b46238b4a5ebd111485145d21b13
 +     * @return ItemStack
 +     * @see <a href=https://github.com/PaperMC/Paper/pull/8711>here</a>
 +     */
-+    @org.jetbrains.annotations.NotNull
-+    ItemStack newItem(@org.jetbrains.annotations.NotNull org.bukkit.Material material, int count);
++    @NotNull
++    ItemStack newItem(@NotNull org.bukkit.Material material, int count);
++
++    /**
++     * Inventory Iterator를 생성합니다.
++     *
++     * @param inventory 대상 인벤토리
++     * @return Iterator
++     */
++    @NotNull
++    java.util.ListIterator<ItemStack> createInventoryIterator(@NotNull org.bukkit.inventory.Inventory inventory);
++
++    /**
++     * Inventory Iterator를 생성합니다.
++     *
++     * @param inventory 대상 인벤토리
++     * @param nextIndex 다음 인덱스
++     * @return Iterator
++     */
++    @NotNull
++    java.util.ListIterator<ItemStack> createInventoryIterator(@NotNull org.bukkit.inventory.Inventory inventory, int nextIndex);
 +    // Daydream end - Add ItemStack Utilities
  }
 diff --git a/src/main/java/org/bukkit/inventory/ItemStack.java b/src/main/java/org/bukkit/inventory/ItemStack.java
-index 91083a135a7e979e32cbb3531b5ef69b7a28f305..66fd706f9318187670b483684f501eae5f4bdccb 100644
+index 84a7bf0936d35bf42b5ed038d295d5c31740f472..d987a659708705ac7485db4464cac322af57dc48 100644
 --- a/src/main/java/org/bukkit/inventory/ItemStack.java
 +++ b/src/main/java/org/bukkit/inventory/ItemStack.java
 @@ -34,6 +34,99 @@ public class ItemStack implements Cloneable, ConfigurationSerializable, Translat
