@@ -4,7 +4,7 @@ import org.gradle.api.tasks.testing.logging.TestLogEvent
 
 plugins {
     java
-    id("io.papermc.paperweight.patcher") version "1.6.2"
+    id("io.papermc.paperweight.patcher") version "1.6.3"
 }
 
 val caramelMavenPublicUrl = "https://repo.caramel.moe/repository/maven-public";
@@ -87,7 +87,6 @@ paperweight {
             register("generatedApi") {
                 isBareDirectory.set(true)
                 upstreamDirPath.set("paper-api-generator/generated")
-                patchDir.set(layout.projectDirectory.dir("patches-api-generator")) // TODO Remove in 1.20.6 Release
                 outputDir.set(layout.projectDirectory.dir("paper-api-generator/generated"))
             }
         }
