@@ -98,7 +98,7 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public interface </span><span class="element-name type-name-label">LeatherArmorMeta</span><span class="extends-implements">
 extends <a href="ItemMeta.html" title="interface in org.bukkit.inventory.meta">ItemMeta</a></span></div>
-<div class="block">Represents leather armor (<a href="../../Material.html#LEATHER_BOOTS"><code>Material.LEATHER_BOOTS</code></a>, <a href="../../Material.html#LEATHER_CHESTPLATE"><code>Material.LEATHER_CHESTPLATE</code></a>, <a href="../../Material.html#LEATHER_HELMET"><code>Material.LEATHER_HELMET</code></a>, or <a href="../../Material.html#LEATHER_LEGGINGS"><code>Material.LEATHER_LEGGINGS</code></a>) that can be colored.</div>
+<div class="block">Represents leather armor (<a href="../../Material.html#LEATHER_BOOTS"><code>Material.LEATHER_BOOTS</code></a>, <a href="../../Material.html#LEATHER_LEGGINGS"><code>Material.LEATHER_LEGGINGS</code></a>, <a href="../../Material.html#LEATHER_CHESTPLATE"><code>Material.LEATHER_CHESTPLATE</code></a>, <a href="../../Material.html#LEATHER_HELMET"><code>Material.LEATHER_HELMET</code></a>, or <a href="../../Material.html#LEATHER_HORSE_ARMOR"><code>Material.LEATHER_HORSE_ARMOR</code></a>) that can be colored.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -121,9 +121,15 @@ extends <a href="ItemMeta.html" title="interface in org.bukkit.inventory.meta">I
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Gets the color of the armor.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#setColor(org.bukkit.Color)" class="member-name-link">setColor</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../../Color.html" title="class in org.bukkit">Color</a>&nbsp;color)</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#isDyed()" class="member-name-link">isDyed</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Checks whether this leather armor is dyed
+ (i.e.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#setColor(org.bukkit.Color)" class="member-name-link">setColor</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../../Color.html" title="class in org.bukkit">Color</a>&nbsp;color)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Sets the color of the armor.</div>
 </div>
 </div>
@@ -183,6 +189,18 @@ extends <a href="ItemMeta.html" title="interface in org.bukkit.inventory.meta">I
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="ItemMeta.html#clone()">clone</a></code>&nbsp;in interface&nbsp;<code><a href="ItemMeta.html" title="interface in org.bukkit.inventory.meta">ItemMeta</a></code></dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="isDyed()">
+<h3>isDyed</h3>
+<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">isDyed</span>()</div>
+<div class="block">Checks whether this leather armor is dyed
+ (i.e. has a color different from <a href="../ItemFactory.html#getDefaultLeatherColor()"><code>ItemFactory.getDefaultLeatherColor()</code></a>)</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>whether this leather armor is dyed</dd>
 </dl>
 </section>
 </li>
