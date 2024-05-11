@@ -200,6 +200,11 @@ extends <a href="ItemMeta.html" title="interface in org.bukkit.inventory.meta">I
 <dt>Throws:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if the blockState is null
          or invalid for this item.</dd>
+<dt>API Note:</dt>
+<dd>As of 1.20.5 the block state carries a copy of the item's data deviations.
+ As such, setting the block state via this method will reset secondary deviations of the item meta.
+ This can manifest in the addition to an existing lore failing or a change of a previously added display name.
+ It is hence recommended to first mutate the block state, set it back, and then mutate the item meta.</dd>
 </dl>
 </section>
 </li>
