@@ -56,7 +56,6 @@ subprojects {
         mavenCentral()
         maven(caramelMavenPublicUrl) // Daydream
         maven(paperMavenPublicUrl)
-        maven("https://s01.oss.sonatype.org/content/repositories/snapshots/") // TODO Remove in 1.20.6 Release (for Adventure snapshot)
     }
 
     configure<PublishingExtension> {
