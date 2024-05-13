@@ -6,10 +6,10 @@ Subject: [PATCH] Add more API for EntityDamageEvent
 
 diff --git a/src/main/java/moe/caramel/daydream/world/DamageMata.java b/src/main/java/moe/caramel/daydream/world/DamageMata.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..aca7b9e9076a6c48cf3f27f42f841cd076dca587
+index 0000000000000000000000000000000000000000..bb62ae43c0bb778c4a5d761d0e14515bb491bc6c
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/world/DamageMata.java
-@@ -0,0 +1,244 @@
+@@ -0,0 +1,199 @@
 +package moe.caramel.daydream.world;
 +
 +import org.bukkit.entity.Entity;
@@ -119,53 +119,6 @@ index 0000000000000000000000000000000000000000..aca7b9e9076a6c48cf3f27f42f841cd0
 +     */
 +    boolean isPoison();
 +
-+    // ====================== (DamageTypes)
-+
-+    boolean isTypeInFire();
-+    boolean isTypeLightningBolt();
-+    boolean isTypeOnFire();
-+    boolean isTypeLava();
-+    boolean isTypeHotFloor();
-+    boolean isTypeInWall();
-+    boolean isTypeCramming();
-+    boolean isTypeDrown();
-+    boolean isTypeStarve();
-+    boolean isTypeCactus();
-+    boolean isTypeFall();
-+    boolean isTypeFlyIntoWall();
-+    boolean isTypeFellOutOfWorld();
-+    boolean isTypeGeneric();
-+    boolean isTypeMagic();
-+    boolean isTypeWither();
-+    boolean isTypeDragonBreath();
-+    boolean isTypeDryOut();
-+    boolean isTypeSweetBerryBush();
-+    boolean isTypeFreeze();
-+    boolean isTypeStalagmite();
-+    boolean isTypeFallingBlock();
-+    boolean isTypeFallingAnvil();
-+    boolean isTypeFallingStalactite();
-+    boolean isTypeSting();
-+    boolean isTypeMobAttack();
-+    boolean isTypeMobAttackNoAggro();
-+    boolean isTypePlayerAttack();
-+    boolean isTypeArrow();
-+    boolean isTypeTrident();
-+    boolean isTypeMobProjectile();
-+    boolean isTypeFireworks();
-+    boolean isTypeFireball();
-+    boolean isTypeUnattributedFireball();
-+    boolean isTypeWitherSkull();
-+    boolean isTypeThrown();
-+    boolean isTypeIndirectMagic();
-+    boolean isTypeThorns();
-+    boolean isTypeExplosion();
-+    boolean isTypePlayerExplosion();
-+    boolean isTypeSonicBoom();
-+    boolean isTypeBadRespawnPoint();
-+    boolean isTypeOutsideBorder();
-+    boolean isTypeGenericKill();
-+
 +    // ====================== (Tags)
 +
 +    boolean hasTagDamagesHelmet();
@@ -197,6 +150,8 @@ index 0000000000000000000000000000000000000000..aca7b9e9076a6c48cf3f27f42f841cd0
 +    boolean hasTagNoKnockback();
 +    boolean hasTagAlwaysKillsArmorStands();
 +    boolean hasTagCanBreakArmorStand();
++    boolean hasTagBypassesWolfArmor();
++    boolean hasTagIsPlayerAttack();
 +
 +    // ==============================================
 +
@@ -255,10 +210,10 @@ index 0000000000000000000000000000000000000000..aca7b9e9076a6c48cf3f27f42f841cd0
 +    void setOverrideKnockback(final @Nullable Vector knockback);
 +}
 diff --git a/src/main/java/org/bukkit/UnsafeValues.java b/src/main/java/org/bukkit/UnsafeValues.java
-index a3ba9249e636d1fb8dad98fab413436009fe04df..6597476f8ce506f94c390bff3691d36235123e35 100644
+index 0857a65ecbc36e0e4b8a7d0cda52be35f238f660..4e6b2689247dac047975983554ae4a59ba4ab086 100644
 --- a/src/main/java/org/bukkit/UnsafeValues.java
 +++ b/src/main/java/org/bukkit/UnsafeValues.java
-@@ -273,4 +273,6 @@ public interface UnsafeValues {
+@@ -282,4 +282,6 @@ public interface UnsafeValues {
      // Paper end - lifecycle event API
  
      @NotNull java.util.List<net.kyori.adventure.text.Component> computeTooltipLines(@NotNull ItemStack itemStack, @NotNull io.papermc.paper.inventory.tooltip.TooltipContext tooltipContext, @Nullable org.bukkit.entity.Player player); // Paper - expose itemstack tooltip lines

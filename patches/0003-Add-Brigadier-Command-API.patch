@@ -5,61 +5,30 @@ Subject: [PATCH] Add Brigadier Command API
 
 
 diff --git a/build.gradle.kts b/build.gradle.kts
-index 65e67b8726f1e19a6bcb1fe2f448e4ab68df11d1..2a104d01238c60a7f3f0319e4bf447ebb7d17eeb 100644
+index fd39ed209b20c927054b8482c400beeeeab460a3..0ea7f8eadba5d3357fa8ca2b5d3c1a416ee82917 100644
 --- a/build.gradle.kts
 +++ b/build.gradle.kts
-@@ -55,6 +55,7 @@ dependencies {
+@@ -56,6 +56,7 @@ dependencies {
      implementation("org.ow2.asm:asm:9.7")
      implementation("org.ow2.asm:asm-commons:9.7")
      // Paper end
-+    api("com.mojang:brigadier:1.2.9") // Daydream - Add Brigadier Command API
++    api("com.mojang:authlib:6.0.54") // Daydream - Add Brigadier Command API (Mojang Authlib; keep in sync with major MC versions)
  
      api("org.apache.maven:maven-resolver-provider:3.9.6") // Paper - make API dependency for Paper Plugins
      compileOnly("org.apache.maven.resolver:maven-resolver-connector-basic:1.9.18")
 diff --git a/src/main/java/io/papermc/paper/command/brigadier/CommandSourceStack.java b/src/main/java/io/papermc/paper/command/brigadier/CommandSourceStack.java
-new file mode 100644
-index 0000000000000000000000000000000000000000..e8b04204dbad8450096c9aedc789865f0545331e
---- /dev/null
+index 54288dbe7185b875a74184f002ee4de4405e91b1..3064f906d961a6b216f0e739620b37ce132c0b5d 100644
+--- a/src/main/java/io/papermc/paper/command/brigadier/CommandSourceStack.java
 +++ b/src/main/java/io/papermc/paper/command/brigadier/CommandSourceStack.java
-@@ -0,0 +1,38 @@
-+package io.papermc.paper.command.brigadier;
-+
-+import org.bukkit.Location;
-+import org.bukkit.command.CommandSender;
-+import org.bukkit.entity.Entity;
-+import org.jetbrains.annotations.NotNull;
-+import org.jetbrains.annotations.Nullable;
-+
-+/**
-+ * Represents a vanilla command source stack which is used
-+ * for command execution.
-+ *
-+ * @see <a href="https://github.com/PaperMC/Paper/pull/8235">from Origianl PR</a>
-+ */
-+public interface CommandSourceStack {
-+
-+    /**
-+     * Gets the location that this command is being executed at.
-+     * @return location
-+     */
-+    @NotNull
-+    Location getLocation();
-+
-+    /**
-+     * Gets the source of from where this command was executed from
-+     * @return source type
-+     */
-+    @NotNull
-+    CommandSender getSender();
-+
-+    /**
-+     * Gets the entity that triggered the execution of this command.
-+     * May not always be the command source.
-+     */
-+    @Nullable
-+    Entity getExecutor();
-+
-+}
+@@ -20,7 +20,7 @@ import org.jetbrains.annotations.Nullable;
+  * will either have no effect or throw an {@link UnsupportedOperationException}.</p>
+  */
+ @ApiStatus.NonExtendable
+-@ApiStatus.Experimental
++//@ApiStatus.Experimental // Daydream - Add Brigadier Command API
+ public interface CommandSourceStack {
+ 
+     /**
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/AbstractCommand.java b/src/main/java/moe/caramel/daydream/brigadier/AbstractCommand.java
 new file mode 100644
 index 0000000000000000000000000000000000000000..d719368e06234dbcbe79dd7801469a7956722018
@@ -728,23 +697,30 @@ index 0000000000000000000000000000000000000000..b522b014d6b5826f2dc50026724d1e25
 +}
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/BrigadierCommand.java b/src/main/java/moe/caramel/daydream/brigadier/BrigadierCommand.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..56338bbfca08443b8899f4a6fc93aa44222011c9
+index 0000000000000000000000000000000000000000..27c271aa9db619036275a491b8a65d08a82ee773
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/brigadier/BrigadierCommand.java
-@@ -0,0 +1,230 @@
+@@ -0,0 +1,289 @@
 +package moe.caramel.daydream.brigadier;
 +
++import static net.kyori.adventure.text.Component.text;
++import static net.kyori.adventure.text.format.NamedTextColor.RED;
 +import com.mojang.brigadier.CommandDispatcher;
++import com.mojang.brigadier.ParseResults;
 +import com.mojang.brigadier.arguments.ArgumentType;
 +import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 +import com.mojang.brigadier.builder.RequiredArgumentBuilder;
 +import com.mojang.brigadier.context.CommandContext;
++import com.mojang.brigadier.exceptions.CommandSyntaxException;
 +import com.mojang.brigadier.suggestion.SuggestionProvider;
 +import com.mojang.brigadier.suggestion.Suggestions;
 +import com.mojang.brigadier.suggestion.SuggestionsBuilder;
-+import com.mojang.brigadier.tree.CommandNode;
++import com.mojang.brigadier.tree.LiteralCommandNode;
 +import io.papermc.paper.command.brigadier.CommandSourceStack;
++import io.papermc.paper.command.brigadier.Commands;
 +import net.kyori.adventure.text.Component;
++import org.bukkit.command.Command;
++import org.bukkit.command.CommandException;
 +import org.bukkit.command.CommandSender;
 +import org.jetbrains.annotations.NotNull;
 +import java.util.ArrayList;
@@ -760,9 +736,9 @@ index 0000000000000000000000000000000000000000..56338bbfca08443b8899f4a6fc93aa44
 + * Brigadier 명령어
 + */
 +@SuppressWarnings("unused")
-+public abstract class BrigadierCommand extends HybridCommandBase<CommandSourceStack> {
++public abstract class BrigadierCommand extends Command {
 +
-+    protected final CommandNode<CommandSourceStack> command;
++    protected final LiteralCommandNode<CommandSourceStack> command;
 +
 +    /**
 +     * Brigadier 기반 명령어를 생성합니다.
@@ -787,16 +763,14 @@ index 0000000000000000000000000000000000000000..56338bbfca08443b8899f4a6fc93aa44
 +     */
 +    public abstract void buildCommand(final @NotNull LiteralArgumentBuilder<CommandSourceStack> builder);
 +
-+    @Override
-+    public final @NotNull CommandNode<CommandSourceStack> getCommand() {
++    /**
++     * 명령어 노드를 가져옵니다.
++     *
++     * @return 명령어 노드
++     */
++    @NotNull
++    public final LiteralCommandNode<CommandSourceStack> getCommand() {
 +        return command;
-+    }
-+
-+    @Override
-+    protected final @NotNull CommandDispatcher<CommandSourceStack> getDispatcher() {
-+        final CommandDispatcher<CommandSourceStack> dispatcher = new CommandDispatcher<>();
-+        dispatcher.getRoot().addChild(this.command);
-+        return dispatcher;
 +    }
 +
 +    // =========================== (Utilities)
@@ -809,7 +783,7 @@ index 0000000000000000000000000000000000000000..56338bbfca08443b8899f4a6fc93aa44
 +     */
 +    @NotNull
 +    public static LiteralArgumentBuilder<CommandSourceStack> literal(final @NotNull String literal) {
-+        return LiteralArgumentBuilder.literal(literal);
++        return Commands.literal(literal);
 +    }
 +
 +    /**
@@ -822,7 +796,7 @@ index 0000000000000000000000000000000000000000..56338bbfca08443b8899f4a6fc93aa44
 +     */
 +    @NotNull
 +    public static <T> RequiredArgumentBuilder<CommandSourceStack, T> argument(final @NotNull String name, final @NotNull ArgumentType<T> type) {
-+        return RequiredArgumentBuilder.argument(name, type);
++        return Commands.argument(name, type);
 +    }
 +
 +    /**
@@ -961,16 +935,71 @@ index 0000000000000000000000000000000000000000..56338bbfca08443b8899f4a6fc93aa44
 +
 +        return builder.buildFuture();
 +    }
++
++    // =========================== (Legacy)
++
++    /**
++     * 명령어 디스패처를 가져옵니다.
++     * <p>
++     * 이 명령어가 레거시 기반으로 작동되는 경우 가상 디스패처가 필요합니다.
++     * </p>
++     *
++     * @return 명령어 디스패처
++     */
++    @NotNull
++    protected final CommandDispatcher<CommandSourceStack> getDispatcher() {
++        final CommandDispatcher<CommandSourceStack> dispatcher = new CommandDispatcher<>();
++        dispatcher.getRoot().addChild(this.command);
++        return dispatcher;
++    }
++
++    @Override
++    public final boolean execute(final @NotNull CommandSender sender, final @NotNull String label, final @NotNull String[] args) {
++        if (!this.testPermission(sender)) {
++            return true;
++        }
++
++        try {
++            this.getDispatcher().execute(commandLine(label, args), sender.getCommandSource());
++            return true;
++        } catch (final CommandSyntaxException exception) {
++            sender.sendMessage(text("Usage: " + this.usageMessage, RED));
++            return false;
++        } catch (final Throwable exception) {
++            throw new CommandException("Unhandled exception executing '" + label + "' in " + this.getName(), exception);
++        }
++    }
++
++    @Override
++    public final @NotNull List<String> tabComplete(final @NotNull CommandSender sender, final @NotNull String label, final @NotNull String[] args) {
++        final List<String> results = new ArrayList<>();
++
++        final CommandDispatcher<CommandSourceStack> dispatcher = this.getDispatcher();
++        final ParseResults<CommandSourceStack> parsed = dispatcher.parse(commandLine(label, args), sender.getCommandSource());
++        dispatcher.getCompletionSuggestions(parsed).thenAccept((suggestions) -> {
++            suggestions.getList().forEach(suggestion -> {
++                results.add(suggestion.getText());
++            });
++        });
++
++        return results;
++    }
++
++    @NotNull
++    private String commandLine(final @NotNull String label, final @NotNull String[] args) {
++        return (label + ((args.length > 0) ? (" " + String.join(" ", args)) : ""));
++    }
 +}
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/BrigadierService.java b/src/main/java/moe/caramel/daydream/brigadier/BrigadierService.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..fc20000036368fce8ed4530b85e5dde4fdc50929
+index 0000000000000000000000000000000000000000..6639350de078351a7a1e3b644766ce3b19aa7778
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/brigadier/BrigadierService.java
-@@ -0,0 +1,56 @@
+@@ -0,0 +1,59 @@
 +package moe.caramel.daydream.brigadier;
 +
 +import com.mojang.brigadier.Message;
++import io.papermc.paper.command.brigadier.MessageComponentSerializer;
 +import net.kyori.adventure.text.Component;
 +import org.jetbrains.annotations.NotNull;
 +import java.util.ServiceLoader;
@@ -1021,107 +1050,9 @@ index 0000000000000000000000000000000000000000..fc20000036368fce8ed4530b85e5dde4
 +         * @return Brigadier Tooltip Message
 +         */
 +        @NotNull
-+        Message getMessage(@NotNull Component component);
-+    }
-+}
-diff --git a/src/main/java/moe/caramel/daydream/brigadier/HybridCommandBase.java b/src/main/java/moe/caramel/daydream/brigadier/HybridCommandBase.java
-new file mode 100644
-index 0000000000000000000000000000000000000000..1f5fe818da414b8aabbe70a4e53476bda0fcc33e
---- /dev/null
-+++ b/src/main/java/moe/caramel/daydream/brigadier/HybridCommandBase.java
-@@ -0,0 +1,94 @@
-+package moe.caramel.daydream.brigadier;
-+
-+import static net.kyori.adventure.text.Component.text;
-+import static net.kyori.adventure.text.format.NamedTextColor.RED;
-+import com.mojang.brigadier.CommandDispatcher;
-+import com.mojang.brigadier.ParseResults;
-+import com.mojang.brigadier.exceptions.CommandSyntaxException;
-+import com.mojang.brigadier.tree.CommandNode;
-+import io.papermc.paper.command.brigadier.CommandSourceStack;
-+import org.bukkit.command.Command;
-+import org.bukkit.command.CommandException;
-+import org.bukkit.command.CommandSender;
-+import org.jetbrains.annotations.NotNull;
-+import java.util.ArrayList;
-+import java.util.List;
-+
-+/**
-+ * Brigadier 기반의 하이브리드 명령어
-+ * <p>
-+ * 일반적으로 Brigadier 기반으로 작동되나,
-+ * 필요에 따라 레거시 기반으로 작동될 수도 있습니다.
-+ * </p>
-+ *
-+ * @param <S> 명령어 실행 주체
-+ */
-+abstract class HybridCommandBase<S extends CommandSourceStack> extends Command {
-+
-+    /**
-+     * Brigadier 기반의 하이브리드 명령어
-+     *
-+     * @param name 명령어의 이름
-+     */
-+    protected HybridCommandBase(final @NotNull String name) {
-+        super(name);
-+    }
-+
-+    /**
-+     * 명령어 디스패처를 가져옵니다.
-+     * <p>
-+     * 이 명령어가 레거시 기반으로 작동되는 경우 가상 디스패처가 필요합니다.
-+     * </p>
-+     *
-+     * @return 명령어 디스패처
-+     */
-+    @NotNull
-+    protected abstract CommandDispatcher<S> getDispatcher();
-+
-+    /**
-+     * 명령어 노드를 가져옵니다.
-+     *
-+     * @return 명령어 노드
-+     */
-+    @NotNull
-+    public abstract CommandNode<S> getCommand();
-+
-+    // =========================== (Legacy)
-+
-+    @Override
-+    public final boolean execute(final @NotNull CommandSender sender, final @NotNull String label, final @NotNull String[] args) {
-+        if (!this.testPermission(sender)) {
-+            return true;
++        default Message getMessage(@NotNull Component component) {
++            return MessageComponentSerializer.message().serialize(component);
 +        }
-+
-+        try {
-+            this.getDispatcher().execute(commandLine(label, args), sender.getCommandSource());
-+            return true;
-+        } catch (final CommandSyntaxException exception) {
-+            sender.sendMessage(text("Usage: " + this.usageMessage, RED));
-+            return false;
-+        } catch (final Throwable exception) {
-+            throw new CommandException("Unhandled exception executing '" + label + "' in " + this.getName(), exception);
-+        }
-+    }
-+
-+    @Override
-+    public final @NotNull List<String> tabComplete(final @NotNull CommandSender sender, final @NotNull String label, final @NotNull String[] args) {
-+        final List<String> results = new ArrayList<>();
-+
-+        final CommandDispatcher<S> dispatcher = this.getDispatcher();
-+        final ParseResults<S> parsed = dispatcher.parse(commandLine(label, args), sender.getCommandSource());
-+        dispatcher.getCompletionSuggestions(parsed).thenAccept((suggestions) -> {
-+            suggestions.getList().forEach(suggestion -> {
-+                results.add(suggestion.getText());
-+            });
-+        });
-+
-+        return results;
-+    }
-+
-+    @NotNull
-+    private String commandLine(final @NotNull String label, final @NotNull String[] args) {
-+        return (label + ((args.length > 0) ? (" " + String.join(" ", args)) : ""));
 +    }
 +}
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/Suggestions.java b/src/main/java/moe/caramel/daydream/brigadier/Suggestions.java
@@ -1718,7 +1649,7 @@ index 0000000000000000000000000000000000000000..ced8b19a02be4952784b7dbde45f01d6
 +    }
 +}
 diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
-index 687bd8f54c9bfb5f5ab1f7ad9d232daf2433cc76..db1e4ea53747fd60f485feb2d5cf5b7dbd7dda6b 100644
+index 5d1b55fdbcbe63f6b42b694d05211a3cc691a09d..4247e96a3121b8abeefe5e2b1e388c0c226e59db 100644
 --- a/src/main/java/org/bukkit/Bukkit.java
 +++ b/src/main/java/org/bukkit/Bukkit.java
 @@ -1081,6 +1081,63 @@ public final class Bukkit {
@@ -1786,7 +1717,7 @@ index 687bd8f54c9bfb5f5ab1f7ad9d232daf2433cc76..db1e4ea53747fd60f485feb2d5cf5b7d
       * Writes loaded players to disk.
       */
 diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
-index b71577e88d8c19ed0caeb11a4bb51f88691fc0fb..7f670e4c28bf72c79154e3bc2c95ff6dc24c2473 100644
+index 9797ec6bbdb5bb7428e70f02eac2969a8f90412a..f30f43364231d1c492d9fb31262b57c3504f4fb3 100644
 --- a/src/main/java/org/bukkit/Server.java
 +++ b/src/main/java/org/bukkit/Server.java
 @@ -917,6 +917,53 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
@@ -1844,10 +1775,10 @@ index b71577e88d8c19ed0caeb11a4bb51f88691fc0fb..7f670e4c28bf72c79154e3bc2c95ff6d
       * Writes loaded players to disk.
       */
 diff --git a/src/main/java/org/bukkit/command/Command.java b/src/main/java/org/bukkit/command/Command.java
-index b3a2c274f05156fd603bcc7a68ab41265f2eaf44..4733163c471501de2dafb9c6fbae5f88c33d0ea4 100644
+index 587ea1b818dd1117509dff892ba7dbd5d848a93a..3a852ee3d30d3f69b752094973ba2f0ae1be6888 100644
 --- a/src/main/java/org/bukkit/command/Command.java
 +++ b/src/main/java/org/bukkit/command/Command.java
-@@ -348,6 +348,22 @@ public abstract class Command {
+@@ -353,6 +353,22 @@ public abstract class Command {
          return usageMessage;
      }
  

@@ -4,7 +4,7 @@ import org.gradle.api.tasks.testing.logging.TestLogEvent
 
 plugins {
     java
-    id("io.papermc.paperweight.patcher") version "1.6.3"
+    id("io.papermc.paperweight.patcher") version "1.7.1"
 }
 
 val caramelMavenPublicUrl = "https://repo.caramel.moe/repository/maven-public";
@@ -20,6 +20,7 @@ repositories {
 
 dependencies {
     remapper("net.fabricmc:tiny-remapper:0.10.1:fat")
+    decompiler("org.vineflower:vineflower:1.10.1")
     paperclip("io.papermc:paperclip:3.0.3")
 }
 
@@ -89,7 +90,5 @@ paperweight {
                 outputDir.set(layout.projectDirectory.dir("paper-api-generator/generated"))
             }
         }
-
-        reobfPackagesToFix.add("moe.caramel")
     }
 }

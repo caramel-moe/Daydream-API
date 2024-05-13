@@ -4,11 +4,27 @@ Date: Thu, 5 Aug 2021 15:44:59 +0900
 Subject: [PATCH] Add Daydream Command
 
 
+diff --git a/src/main/java/org/bukkit/command/Command.java b/src/main/java/org/bukkit/command/Command.java
+index c7cdc2ad8a2c43e8c0fcaa1761d3b81726c5ebcb..587ea1b818dd1117509dff892ba7dbd5d848a93a 100644
+--- a/src/main/java/org/bukkit/command/Command.java
++++ b/src/main/java/org/bukkit/command/Command.java
+@@ -297,6 +297,11 @@ public abstract class Command {
+      * @return true if this command is currently registered false otherwise
+      */
+     public boolean isRegistered() {
++        // Daydream start - Add Daydream Command
++        return isRegistered0();
++    }
++    protected final boolean isRegistered0() {
++        // Daydream end - Add Daydream Command
+         return (null != this.commandMap);
+     }
+ 
 diff --git a/src/main/java/org/bukkit/command/SimpleCommandMap.java b/src/main/java/org/bukkit/command/SimpleCommandMap.java
-index ac9a28922f8a556944a4c3649d74c32c622f0cb0..960be9b898bbf740601b6dc2fc5d9c42db930bc6 100644
+index c3a9cf65db73ed534bf20996c7f05b5eb0aaebe1..54c1a1323d0c4f187e56ce102cd4ed7d1e099798 100644
 --- a/src/main/java/org/bukkit/command/SimpleCommandMap.java
 +++ b/src/main/java/org/bukkit/command/SimpleCommandMap.java
-@@ -30,7 +30,7 @@ public class SimpleCommandMap implements CommandMap {
+@@ -34,7 +34,7 @@ public class SimpleCommandMap implements CommandMap {
          setDefaultCommands();
      }
  
