@@ -457,10 +457,10 @@ loadScripts(document, 'script');</script>
 <div class="block">Create a new <a href="ItemStack.html" title="class in org.bukkit.inventory"><code>ItemStack</code></a> given the supplied input.
  <p>
  The input should match the same input as expected by Minecraft's <code>/give</code>
- command. For example, "minecraft:diamond_sword{Enchantments:[{id:"minecraft:sharpness", lvl:3}]}"
+ command. For example,
+ <pre>"minecraft:diamond_sword[minecraft:enchantments={levels:{"minecraft:sharpness": 3}}]"</pre>
  would yield an ItemStack of <a href="../Material.html#DIAMOND_SWORD"><code>Material.DIAMOND_SWORD</code></a> with an <a href="meta/ItemMeta.html" title="interface in org.bukkit.inventory.meta"><code>ItemMeta</code></a>
- containing a level 3 <a href="../enchantments/Enchantment.html#SHARPNESS"><code>Enchantment.SHARPNESS</code></a>
- enchantment.</div>
+ containing a level 3 <a href="../enchantments/Enchantment.html#SHARPNESS"><code>Enchantment.SHARPNESS</code></a> enchantment.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>input</code> - the item input string</dd>

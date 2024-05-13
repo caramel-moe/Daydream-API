@@ -125,7 +125,8 @@ extends <a href="Projectile.html" title="interface in org.bukkit.entity">Project
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../util/Vector.html" title="class in org.bukkit.util">Vector</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getDirection()" class="member-name-link">getDirection</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Retrieve the direction this fireball is heading toward</div>
+<div class="block">Retrieve the direction this fireball is heading toward
+ The returned vector is not normalized.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../util/Vector.html" title="class in org.bukkit.util">Vector</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getPower()" class="member-name-link">getPower</a>()</code></div>
@@ -135,7 +136,7 @@ extends <a href="Projectile.html" title="interface in org.bukkit.entity">Project
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#setDirection(org.bukkit.util.Vector)" class="member-name-link">setDirection</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../util/Vector.html" title="class in org.bukkit.util">Vector</a>&nbsp;direction)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Fireballs fly straight and do not take setVelocity(...) well.</div>
+<div class="block">Sets the direction the fireball should be flying towards.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#setPower(org.bukkit.util.Vector)" class="member-name-link">setPower</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../util/Vector.html" title="class in org.bukkit.util">Vector</a>&nbsp;power)</code></div>
@@ -202,10 +203,23 @@ extends <a href="Projectile.html" title="interface in org.bukkit.entity">Project
 <h3>setDirection</h3>
 <div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">setDirection</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../util/Vector.html" title="class in org.bukkit.util">Vector</a>&nbsp;direction)</span></div>
-<div class="block">Fireballs fly straight and do not take setVelocity(...) well.</div>
+<div class="block">Sets the direction the fireball should be flying towards.
+ The direction vector will be normalized and the default speed will be applied.
+ <br>
+ To also change the speed of the fireball, use <a href="#setVelocity(org.bukkit.util.Vector)"><code>setVelocity(Vector)</code></a>.
+ <b>Note:</b> that the client may not respect non-default speeds and will therefore
+ mispredict the location of the fireball, causing visual stutter.
+ <br>
+ <b>Also Note:</b> that this method and <a href="#setVelocity(org.bukkit.util.Vector)"><code>setVelocity(Vector)</code></a> will override each other.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>direction</code> - the direction this fireball is flying toward</dd>
+<dd><code>direction</code> - the direction this fireball should be flying towards</dd>
+<dt>See Also:</dt>
+<dd>
+<ul class="tag-list">
+<li><a href="#setVelocity(org.bukkit.util.Vector)"><code>setVelocity(Vector)</code></a></li>
+</ul>
+</dd>
 </dl>
 </section>
 </li>
@@ -214,7 +228,8 @@ extends <a href="Projectile.html" title="interface in org.bukkit.entity">Project
 <h3>getDirection</h3>
 <div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
 </span><span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../util/Vector.html" title="class in org.bukkit.util">Vector</a></span>&nbsp;<span class="element-name">getDirection</span>()</div>
-<div class="block">Retrieve the direction this fireball is heading toward</div>
+<div class="block">Retrieve the direction this fireball is heading toward
+ The returned vector is not normalized.</div>
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>the direction</dd>

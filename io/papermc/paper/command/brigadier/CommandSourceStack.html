@@ -88,17 +88,18 @@ loadScripts(document, 'script');</script>
 </div>
 <section class="class-description" id="class-description">
 <hr>
-<div class="type-signature"><span class="modifiers">public interface </span><span class="element-name type-name-label">CommandSourceStack</span></div>
-<div class="block">Represents a vanilla command source stack which is used
- for command execution.</div>
-<dl class="notes">
-<dt>See Also:</dt>
-<dd>
-<ul class="tag-list">
-<li><a href="https://github.com/PaperMC/Paper/pull/8235">from Origianl PR</a></li>
-</ul>
-</dd>
-</dl>
+<div class="type-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/ApiStatus.NonExtendable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NonExtendable</a>
+</span><span class="modifiers">public interface </span><span class="element-name type-name-label">CommandSourceStack</span></div>
+<div class="block">The command source type for Brigadier commands registered using Paper API.
+ <p>
+ While the general use case for CommandSourceStack is similar to that of <a href="../../../../../org/bukkit/command/CommandSender.html" title="interface in org.bukkit.command"><code>CommandSender</code></a>, it provides access to
+ important additional context for the command execution.
+ Specifically, commands such as /execute may alter the location or executor of the source stack before
+ passing it to another command.
+ <p>The <a href="../../../../../org/bukkit/command/CommandSender.html" title="interface in org.bukkit.command"><code>CommandSender</code></a> returned by <a href="#getSender()"><code>getSender()</code></a> may be a "no-op"
+ instance of <a href="../../../../../org/bukkit/command/CommandSender.html" title="interface in org.bukkit.command"><code>CommandSender</code></a> in cases where the server either doesn't
+ exist yet, or no specific sender is available. Methods on such a <a href="../../../../../org/bukkit/command/CommandSender.html" title="interface in org.bukkit.command"><code>CommandSender</code></a>
+ will either have no effect or throw an <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/UnsupportedOperationException.html" title="class or interface in java.lang" class="external-link"><code>UnsupportedOperationException</code></a>.</p></div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -116,7 +117,7 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../../../../../org/bukkit/entity/Entity.html" title="interface in org.bukkit.entity">Entity</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getExecutor()" class="member-name-link">getExecutor</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Gets the entity that triggered the execution of this command.</div>
+<div class="block">Gets the entity that executes this command.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/Location.html" title="class in org.bukkit">Location</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getLocation()" class="member-name-link">getLocation</a>()</code></div>
@@ -126,7 +127,7 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/command/CommandSender.html" title="interface in org.bukkit.command">CommandSender</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getSender()" class="member-name-link">getSender</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Gets the source of from where this command was executed from</div>
+<div class="block">Gets the command sender that executed this command.</div>
 </div>
 </div>
 </div>
@@ -150,7 +151,7 @@ loadScripts(document, 'script');</script>
 <div class="block">Gets the location that this command is being executed at.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>location</dd>
+<dd>a cloned location instance.</dd>
 </dl>
 </section>
 </li>
@@ -159,10 +160,12 @@ loadScripts(document, 'script');</script>
 <h3>getSender</h3>
 <div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
 </span><span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/command/CommandSender.html" title="interface in org.bukkit.command">CommandSender</a></span>&nbsp;<span class="element-name">getSender</span>()</div>
-<div class="block">Gets the source of from where this command was executed from</div>
+<div class="block">Gets the command sender that executed this command.
+ The sender of a command source stack is the one that initiated/triggered the execution of a command.
+ It differs to <a href="#getExecutor()"><code>getExecutor()</code></a> as the executor can be changed by a command, e.g. /execute.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>source type</dd>
+<dd>the command sender instance</dd>
 </dl>
 </section>
 </li>
@@ -171,8 +174,13 @@ loadScripts(document, 'script');</script>
 <h3>getExecutor</h3>
 <div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a>
 </span><span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../../../../../org/bukkit/entity/Entity.html" title="interface in org.bukkit.entity">Entity</a></span>&nbsp;<span class="element-name">getExecutor</span>()</div>
-<div class="block">Gets the entity that triggered the execution of this command.
- May not always be the command source.</div>
+<div class="block">Gets the entity that executes this command.
+ May not always be <a href="#getSender()"><code>getSender()</code></a> as the executor of a command can be changed to a different entity
+ than the one that triggered the command.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>entity that executes this command</dd>
+</dl>
 </section>
 </li>
 </ul>
