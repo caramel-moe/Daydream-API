@@ -1,0 +1,39 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: LemonCaramel <admin@caramel.moe>
+Date: Fri, 17 May 2024 23:20:56 +0900
+Subject: [PATCH] Rebrand to Daydream
+
+
+diff --git a/src/main/java/io/papermc/paper/ServerBuildInfo.java b/src/main/java/io/papermc/paper/ServerBuildInfo.java
+index 9df9d09aa477d4cd3c496ba0933c816df1ef0964..cb04a3e47693e2f88b2b855196b84951832b49cf 100644
+--- a/src/main/java/io/papermc/paper/ServerBuildInfo.java
++++ b/src/main/java/io/papermc/paper/ServerBuildInfo.java
+@@ -17,6 +17,12 @@ public interface ServerBuildInfo {
+      * The brand id for Paper.
+      */
+     Key BRAND_PAPER_ID = Key.key("papermc", "paper");
++    // Daydream start - Rebrand to Daydream
++    /**
++     * The brand id for Daydream.
++     */
++    Key BRAND_DAYDREAM_ID = Key.key("caramel", "daydream");
++    // Daydream end - Rebrand to Daydream
+ 
+     /**
+      * Gets the {@code ServerBuildInfo}.
+@@ -69,6 +75,15 @@ public interface ServerBuildInfo {
+      */
+     @NotNull String minecraftVersionName();
+ 
++    // Daydream start - Rebrand to Daydream (Expose protocol version)
++    /**
++     * Gets the Minecraft protocol version.
++     *
++     * @return the Minecraft protocol version
++     */
++    int protocolVersion();
++    // Daydream end - Rebrand to Daydream (Expose protocol version)
++
+     /**
+      * Gets the build number.
+      *
