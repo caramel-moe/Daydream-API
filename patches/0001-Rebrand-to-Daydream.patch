@@ -5,7 +5,7 @@ Subject: [PATCH] Rebrand to Daydream
 
 
 diff --git a/src/main/java/io/papermc/paper/ServerBuildInfo.java b/src/main/java/io/papermc/paper/ServerBuildInfo.java
-index 9df9d09aa477d4cd3c496ba0933c816df1ef0964..cb04a3e47693e2f88b2b855196b84951832b49cf 100644
+index 9df9d09aa477d4cd3c496ba0933c816df1ef0964..cb45f8a6d17d32084225248de4426e735343bbbe 100644
 --- a/src/main/java/io/papermc/paper/ServerBuildInfo.java
 +++ b/src/main/java/io/papermc/paper/ServerBuildInfo.java
 @@ -17,6 +17,12 @@ public interface ServerBuildInfo {
@@ -31,7 +31,7 @@ index 9df9d09aa477d4cd3c496ba0933c816df1ef0964..cb04a3e47693e2f88b2b855196b84951
 +     *
 +     * @return the Minecraft protocol version
 +     */
-+    int protocolVersion();
++    default int protocolVersion() { throw new UnsupportedOperationException(); }
 +    // Daydream end - Rebrand to Daydream (Expose protocol version)
 +
      /**
