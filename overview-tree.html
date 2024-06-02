@@ -134,6 +134,7 @@ loadScripts(document, 'script');</script>
 <li><a href="io/papermc/paper/world/structure/package-tree.html">io.papermc.paper.world.structure</a>, </li>
 <li><a href="moe/caramel/daydream/package-tree.html">moe.caramel.daydream</a>, </li>
 <li><a href="moe/caramel/daydream/advancement/package-tree.html">moe.caramel.daydream.advancement</a>, </li>
+<li><a href="moe/caramel/daydream/advancement/progress/package-tree.html">moe.caramel.daydream.advancement.progress</a>, </li>
 <li><a href="moe/caramel/daydream/brigadier/package-tree.html">moe.caramel.daydream.brigadier</a>, </li>
 <li><a href="moe/caramel/daydream/brigadier/argument/package-tree.html">moe.caramel.daydream.brigadier.argument</a>, </li>
 <li><a href="moe/caramel/daydream/brigadier/data/package-tree.html">moe.caramel.daydream.brigadier.data</a>, </li>
@@ -264,7 +265,7 @@ loadScripts(document, 'script');</script>
 <li class="circle">co.aikar.util.<a href="co/aikar/util/MRUMapCache.html" class="type-name-link" title="class in co.aikar.util">MRUMapCache</a>&lt;K,<wbr>V&gt;</li>
 </ul>
 </li>
-<li class="circle">moe.caramel.daydream.advancement.<a href="moe/caramel/daydream/advancement/AdvancementSaveFormat.html" class="type-name-link" title="class in moe.caramel.daydream.advancement">AdvancementSaveFormat</a>&lt;T&gt;</li>
+<li class="circle">moe.caramel.daydream.advancement.<a href="moe/caramel/daydream/advancement/AdvancementFormat.html" class="type-name-link" title="class in moe.caramel.daydream.advancement">AdvancementFormat</a>&lt;T&gt;</li>
 <li class="circle">moe.caramel.daydream.brigadier.<a href="moe/caramel/daydream/brigadier/Arguments.html" class="type-name-link" title="class in moe.caramel.daydream.brigadier">Arguments</a></li>
 <li class="circle">io.papermc.paper.command.brigadier.argument.<a href="io/papermc/paper/command/brigadier/argument/ArgumentTypes.html" class="type-name-link" title="class in io.papermc.paper.command.brigadier.argument">ArgumentTypes</a></li>
 <li class="circle">org.bukkit.inventory.meta.trim.<a href="org/bukkit/inventory/meta/trim/ArmorTrim.html" class="type-name-link" title="class in org.bukkit.inventory.meta.trim">ArmorTrim</a></li>
@@ -403,6 +404,7 @@ loadScripts(document, 'script');</script>
 <li class="circle">org.bukkit.util.<a href="org/bukkit/util/EulerAngle.html" class="type-name-link" title="class in org.bukkit.util">EulerAngle</a></li>
 <li class="circle">org.bukkit.event.<a href="org/bukkit/event/Event.html" class="type-name-link" title="class in org.bukkit.event">Event</a>
 <ul>
+<li class="circle">moe.caramel.daydream.event.player.<a href="moe/caramel/daydream/event/player/AsyncPlayerDataPreLoadEvent.html" class="type-name-link" title="class in moe.caramel.daydream.event.player">AsyncPlayerDataPreLoadEvent</a></li>
 <li class="circle">org.bukkit.event.player.<a href="org/bukkit/event/player/AsyncPlayerPreLoginEvent.html" class="type-name-link" title="class in org.bukkit.event.player">AsyncPlayerPreLoginEvent</a></li>
 <li class="circle">com.destroystokyo.paper.event.server.<a href="com/destroystokyo/paper/event/server/AsyncTabCompleteEvent.html" class="type-name-link" title="class in com.destroystokyo.paper.event.server">AsyncTabCompleteEvent</a> (implements org.bukkit.event.<a href="org/bukkit/event/Cancellable.html" title="interface in org.bukkit.event">Cancellable</a>)</li>
 <li class="circle">org.bukkit.event.block.<a href="org/bukkit/event/block/BlockEvent.html" class="type-name-link" title="class in org.bukkit.event.block">BlockEvent</a>
@@ -559,6 +561,15 @@ loadScripts(document, 'script');</script>
 <li class="circle">io.papermc.paper.event.entity.<a href="io/papermc/paper/event/entity/EntityInsideBlockEvent.html" class="type-name-link" title="class in io.papermc.paper.event.entity">EntityInsideBlockEvent</a> (implements org.bukkit.event.<a href="org/bukkit/event/Cancellable.html" title="interface in org.bukkit.event">Cancellable</a>)</li>
 <li class="circle">org.bukkit.event.entity.<a href="org/bukkit/event/entity/EntityInteractEvent.html" class="type-name-link" title="class in org.bukkit.event.entity">EntityInteractEvent</a> (implements org.bukkit.event.<a href="org/bukkit/event/Cancellable.html" title="interface in org.bukkit.event">Cancellable</a>)</li>
 <li class="circle">com.destroystokyo.paper.event.entity.<a href="com/destroystokyo/paper/event/entity/EntityJumpEvent.html" class="type-name-link" title="class in com.destroystokyo.paper.event.entity">EntityJumpEvent</a> (implements org.bukkit.event.<a href="org/bukkit/event/Cancellable.html" title="interface in org.bukkit.event">Cancellable</a>)</li>
+<li class="circle">io.papermc.paper.event.entity.<a href="io/papermc/paper/event/entity/EntityKnockbackEvent.html" class="type-name-link" title="class in io.papermc.paper.event.entity">EntityKnockbackEvent</a> (implements org.bukkit.event.<a href="org/bukkit/event/Cancellable.html" title="interface in org.bukkit.event">Cancellable</a>)
+<ul>
+<li class="circle">io.papermc.paper.event.entity.<a href="io/papermc/paper/event/entity/EntityPushedByEntityAttackEvent.html" class="type-name-link" title="class in io.papermc.paper.event.entity">EntityPushedByEntityAttackEvent</a> (implements org.bukkit.event.<a href="org/bukkit/event/Cancellable.html" title="interface in org.bukkit.event">Cancellable</a>)
+<ul>
+<li class="circle">com.destroystokyo.paper.event.entity.<a href="com/destroystokyo/paper/event/entity/EntityKnockbackByEntityEvent.html" class="type-name-link" title="class in com.destroystokyo.paper.event.entity">EntityKnockbackByEntityEvent</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="circle">org.bukkit.event.entity.<a href="org/bukkit/event/entity/EntityKnockbackEvent.html" class="type-name-link" title="class in org.bukkit.event.entity">EntityKnockbackEvent</a> (implements org.bukkit.event.<a href="org/bukkit/event/Cancellable.html" title="interface in org.bukkit.event">Cancellable</a>)
 <ul>
 <li class="circle">org.bukkit.event.entity.<a href="org/bukkit/event/entity/EntityKnockbackByEntityEvent.html" class="type-name-link" title="class in org.bukkit.event.entity">EntityKnockbackByEntityEvent</a></li>
@@ -575,11 +586,6 @@ loadScripts(document, 'script');</script>
 <li class="circle">org.bukkit.event.entity.<a href="org/bukkit/event/entity/EntityPoseChangeEvent.html" class="type-name-link" title="class in org.bukkit.event.entity">EntityPoseChangeEvent</a></li>
 <li class="circle">org.bukkit.event.entity.<a href="org/bukkit/event/entity/EntityPotionEffectEvent.html" class="type-name-link" title="class in org.bukkit.event.entity">EntityPotionEffectEvent</a> (implements org.bukkit.event.<a href="org/bukkit/event/Cancellable.html" title="interface in org.bukkit.event">Cancellable</a>)</li>
 <li class="circle">moe.caramel.daydream.event.entity.<a href="moe/caramel/daydream/event/entity/EntityPotionTickEvent.html" class="type-name-link" title="class in moe.caramel.daydream.event.entity">EntityPotionTickEvent</a> (implements org.bukkit.event.<a href="org/bukkit/event/Cancellable.html" title="interface in org.bukkit.event">Cancellable</a>)</li>
-<li class="circle">io.papermc.paper.event.entity.<a href="io/papermc/paper/event/entity/EntityPushedByEntityAttackEvent.html" class="type-name-link" title="class in io.papermc.paper.event.entity">EntityPushedByEntityAttackEvent</a> (implements org.bukkit.event.<a href="org/bukkit/event/Cancellable.html" title="interface in org.bukkit.event">Cancellable</a>)
-<ul>
-<li class="circle">com.destroystokyo.paper.event.entity.<a href="com/destroystokyo/paper/event/entity/EntityKnockbackByEntityEvent.html" class="type-name-link" title="class in com.destroystokyo.paper.event.entity">EntityKnockbackByEntityEvent</a></li>
-</ul>
-</li>
 <li class="circle">org.bukkit.event.entity.<a href="org/bukkit/event/entity/EntityRegainHealthEvent.html" class="type-name-link" title="class in org.bukkit.event.entity">EntityRegainHealthEvent</a> (implements org.bukkit.event.<a href="org/bukkit/event/Cancellable.html" title="interface in org.bukkit.event">Cancellable</a>)</li>
 <li class="circle">org.bukkit.event.entity.<a href="org/bukkit/event/entity/EntityRemoveEvent.html" class="type-name-link" title="class in org.bukkit.event.entity">EntityRemoveEvent</a></li>
 <li class="circle">com.destroystokyo.paper.event.entity.<a href="com/destroystokyo/paper/event/entity/EntityRemoveFromWorldEvent.html" class="type-name-link" title="class in com.destroystokyo.paper.event.entity">EntityRemoveFromWorldEvent</a></li>
@@ -758,18 +764,8 @@ loadScripts(document, 'script');</script>
 <li class="circle">com.destroystokyo.paper.loottable.<a href="com/destroystokyo/paper/loottable/LootableInventoryReplenishEvent.html" class="type-name-link" title="class in com.destroystokyo.paper.loottable">LootableInventoryReplenishEvent</a> (implements org.bukkit.event.<a href="org/bukkit/event/Cancellable.html" title="interface in org.bukkit.event">Cancellable</a>)</li>
 <li class="circle">com.destroystokyo.paper.event.player.<a href="com/destroystokyo/paper/event/player/PlayerAdvancementCriterionGrantEvent.html" class="type-name-link" title="class in com.destroystokyo.paper.event.player">PlayerAdvancementCriterionGrantEvent</a> (implements org.bukkit.event.<a href="org/bukkit/event/Cancellable.html" title="interface in org.bukkit.event">Cancellable</a>)</li>
 <li class="circle">org.bukkit.event.player.<a href="org/bukkit/event/player/PlayerAdvancementDoneEvent.html" class="type-name-link" title="class in org.bukkit.event.player">PlayerAdvancementDoneEvent</a></li>
-<li class="circle">moe.caramel.daydream.event.player.<a href="moe/caramel/daydream/event/player/PlayerAdvancementPreLoadEvent.html" class="type-name-link" title="class in moe.caramel.daydream.event.player">PlayerAdvancementPreLoadEvent</a>&lt;T&gt;
-<ul>
-<li class="circle">moe.caramel.daydream.event.player.<a href="moe/caramel/daydream/event/player/PlayerAdvancementPreLoadEvent.Json.html" class="type-name-link" title="class in moe.caramel.daydream.event.player">PlayerAdvancementPreLoadEvent.Json</a></li>
-<li class="circle">moe.caramel.daydream.event.player.<a href="moe/caramel/daydream/event/player/PlayerAdvancementPreLoadEvent.Nbt.html" class="type-name-link" title="class in moe.caramel.daydream.event.player">PlayerAdvancementPreLoadEvent.Nbt</a></li>
-</ul>
-</li>
-<li class="circle">moe.caramel.daydream.event.player.<a href="moe/caramel/daydream/event/player/PlayerAdvancementSaveEvent.html" class="type-name-link" title="class in moe.caramel.daydream.event.player">PlayerAdvancementSaveEvent</a>&lt;T&gt; (implements org.bukkit.event.<a href="org/bukkit/event/Cancellable.html" title="interface in org.bukkit.event">Cancellable</a>)
-<ul>
-<li class="circle">moe.caramel.daydream.event.player.<a href="moe/caramel/daydream/event/player/PlayerAdvancementSaveEvent.Json.html" class="type-name-link" title="class in moe.caramel.daydream.event.player">PlayerAdvancementSaveEvent.Json</a></li>
-<li class="circle">moe.caramel.daydream.event.player.<a href="moe/caramel/daydream/event/player/PlayerAdvancementSaveEvent.Nbt.html" class="type-name-link" title="class in moe.caramel.daydream.event.player">PlayerAdvancementSaveEvent.Nbt</a></li>
-</ul>
-</li>
+<li class="circle">moe.caramel.daydream.event.player.<a href="moe/caramel/daydream/event/player/PlayerAdvancementPreLoadEvent.html" class="type-name-link" title="class in moe.caramel.daydream.event.player">PlayerAdvancementPreLoadEvent</a> (implements org.bukkit.event.<a href="org/bukkit/event/Cancellable.html" title="interface in org.bukkit.event">Cancellable</a>, moe.caramel.daydream.advancement.<a href="moe/caramel/daydream/advancement/PlayerAdvancementData.html" title="interface in moe.caramel.daydream.advancement">PlayerAdvancementData</a>)</li>
+<li class="circle">moe.caramel.daydream.event.player.<a href="moe/caramel/daydream/event/player/PlayerAdvancementSaveEvent.html" class="type-name-link" title="class in moe.caramel.daydream.event.player">PlayerAdvancementSaveEvent</a> (implements org.bukkit.event.<a href="org/bukkit/event/Cancellable.html" title="interface in org.bukkit.event">Cancellable</a>)</li>
 <li class="circle">moe.caramel.daydream.event.player.<a href="moe/caramel/daydream/event/player/PlayerAdvancementScreenEvent.html" class="type-name-link" title="class in moe.caramel.daydream.event.player">PlayerAdvancementScreenEvent</a> (implements org.bukkit.event.<a href="org/bukkit/event/Cancellable.html" title="interface in org.bukkit.event">Cancellable</a>)</li>
 <li class="circle">org.bukkit.event.player.<a href="org/bukkit/event/player/PlayerAnimationEvent.html" class="type-name-link" title="class in org.bukkit.event.player">PlayerAnimationEvent</a> (implements org.bukkit.event.<a href="org/bukkit/event/Cancellable.html" title="interface in org.bukkit.event">Cancellable</a>)
 <ul>
@@ -1328,6 +1324,7 @@ loadScripts(document, 'script');</script>
 </li>
 <li class="circle">org.bukkit.plugin.<a href="org/bukkit/plugin/RegisteredServiceProvider.html" class="type-name-link" title="class in org.bukkit.plugin">RegisteredServiceProvider</a>&lt;T&gt; (implements java.lang.<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Comparable.html" title="class or interface in java.lang" class="external-link">Comparable</a>&lt;T&gt;)</li>
 <li class="circle">org.bukkit.<a href="org/bukkit/Registry.SimpleRegistry.html" class="type-name-link" title="class in org.bukkit">Registry.SimpleRegistry</a>&lt;T&gt; (implements org.bukkit.<a href="org/bukkit/Registry.html" title="interface in org.bukkit">Registry</a>&lt;T&gt;)</li>
+<li class="circle">io.papermc.paper.command.brigadier.argument.<a href="io/papermc/paper/command/brigadier/argument/RegistryArgumentExtractor.html" class="type-name-link" title="class in io.papermc.paper.command.brigadier.argument">RegistryArgumentExtractor</a></li>
 <li class="circle">com.destroystokyo.paper.entity.villager.<a href="com/destroystokyo/paper/entity/villager/Reputation.html" class="type-name-link" title="class in com.destroystokyo.paper.entity.villager">Reputation</a></li>
 <li class="circle">com.destroystokyo.paper.event.executor.asm.<a href="com/destroystokyo/paper/event/executor/asm/SafeClassDefiner.html" class="type-name-link" title="class in com.destroystokyo.paper.event.executor.asm">SafeClassDefiner</a> (implements com.destroystokyo.paper.event.executor.asm.<a href="com/destroystokyo/paper/event/executor/asm/ClassDefiner.html" title="interface in com.destroystokyo.paper.event.executor.asm">ClassDefiner</a>)</li>
 <li class="circle">org.bukkit.<a href="org/bukkit/Server.Spigot.html" class="type-name-link" title="class in org.bukkit">Server.Spigot</a></li>
@@ -2382,6 +2379,12 @@ loadScripts(document, 'script');</script>
 </li>
 <li class="circle">org.bukkit.conversations.<a href="org/bukkit/conversations/ConversationPrefix.html" class="type-name-link" title="interface in org.bukkit.conversations">ConversationPrefix</a></li>
 <li class="circle">org.bukkit.scoreboard.<a href="org/bukkit/scoreboard/Criteria.html" class="type-name-link" title="interface in org.bukkit.scoreboard">Criteria</a></li>
+<li class="circle">moe.caramel.daydream.advancement.progress.<a href="moe/caramel/daydream/advancement/progress/CriteriaProgress.html" class="type-name-link" title="interface in moe.caramel.daydream.advancement.progress">CriteriaProgress</a>
+<ul>
+<li class="circle">moe.caramel.daydream.advancement.progress.<a href="moe/caramel/daydream/advancement/progress/CountableProgress.html" class="type-name-link" title="interface in moe.caramel.daydream.advancement.progress">CountableProgress</a></li>
+</ul>
+</li>
+<li class="circle">moe.caramel.daydream.advancement.progress.<a href="moe/caramel/daydream/advancement/progress/CriterionProgress.html" class="type-name-link" title="interface in moe.caramel.daydream.advancement.progress">CriterionProgress</a></li>
 <li class="circle">org.bukkit.inventory.meta.tags.<a href="org/bukkit/inventory/meta/tags/CustomItemTagContainer.html" class="type-name-link" title="interface in org.bukkit.inventory.meta.tags">CustomItemTagContainer</a></li>
 <li class="circle">org.bukkit.damage.<a href="org/bukkit/damage/DamageEffect.html" class="type-name-link" title="interface in org.bukkit.damage">DamageEffect</a></li>
 <li class="circle">moe.caramel.daydream.world.<a href="moe/caramel/daydream/world/DamageMata.html" class="type-name-link" title="interface in moe.caramel.daydream.world">DamageMata</a></li>
@@ -3377,7 +3380,7 @@ loadScripts(document, 'script');</script>
 <li class="circle">org.bukkit.block.<a href="org/bukkit/block/Barrel.html" class="type-name-link" title="interface in org.bukkit.block">Barrel</a> (also extends org.bukkit.block.<a href="org/bukkit/block/Lidded.html" title="interface in org.bukkit.block">Lidded</a>, com.destroystokyo.paper.loottable.<a href="com/destroystokyo/paper/loottable/LootableBlockInventory.html" title="interface in com.destroystokyo.paper.loottable">LootableBlockInventory</a>)</li>
 <li class="circle">org.bukkit.block.<a href="org/bukkit/block/BrewingStand.html" class="type-name-link" title="interface in org.bukkit.block">BrewingStand</a></li>
 <li class="circle">org.bukkit.block.<a href="org/bukkit/block/Chest.html" class="type-name-link" title="interface in org.bukkit.block">Chest</a> (also extends org.bukkit.block.<a href="org/bukkit/block/Lidded.html" title="interface in org.bukkit.block">Lidded</a>, com.destroystokyo.paper.loottable.<a href="com/destroystokyo/paper/loottable/LootableBlockInventory.html" title="interface in com.destroystokyo.paper.loottable">LootableBlockInventory</a>)</li>
-<li class="circle">org.bukkit.block.<a href="org/bukkit/block/Crafter.html" class="type-name-link" title="interface in org.bukkit.block">Crafter</a> (also extends org.bukkit.loot.<a href="org/bukkit/loot/Lootable.html" title="interface in org.bukkit.loot">Lootable</a>)</li>
+<li class="circle">org.bukkit.block.<a href="org/bukkit/block/Crafter.html" class="type-name-link" title="interface in org.bukkit.block">Crafter</a> (also extends com.destroystokyo.paper.loottable.<a href="com/destroystokyo/paper/loottable/LootableBlockInventory.html" title="interface in com.destroystokyo.paper.loottable">LootableBlockInventory</a>)</li>
 <li class="circle">org.bukkit.block.<a href="org/bukkit/block/Dispenser.html" class="type-name-link" title="interface in org.bukkit.block">Dispenser</a> (also extends com.destroystokyo.paper.loottable.<a href="com/destroystokyo/paper/loottable/LootableBlockInventory.html" title="interface in com.destroystokyo.paper.loottable">LootableBlockInventory</a>, org.bukkit.<a href="org/bukkit/Nameable.html" title="interface in org.bukkit">Nameable</a>)</li>
 <li class="circle">org.bukkit.block.<a href="org/bukkit/block/Dropper.html" class="type-name-link" title="interface in org.bukkit.block">Dropper</a> (also extends com.destroystokyo.paper.loottable.<a href="com/destroystokyo/paper/loottable/LootableBlockInventory.html" title="interface in com.destroystokyo.paper.loottable">LootableBlockInventory</a>)</li>
 <li class="circle">org.bukkit.block.<a href="org/bukkit/block/Furnace.html" class="type-name-link" title="interface in org.bukkit.block">Furnace</a>
@@ -3459,7 +3462,7 @@ loadScripts(document, 'script');</script>
 <li class="circle">org.bukkit.<a href="org/bukkit/Keyed.html" class="type-name-link" title="interface in org.bukkit">Keyed</a>
 <ul>
 <li class="circle">org.bukkit.advancement.<a href="org/bukkit/advancement/Advancement.html" class="type-name-link" title="interface in org.bukkit.advancement">Advancement</a></li>
-<li class="circle">org.bukkit.block.<a href="org/bukkit/block/BlockType.html" class="type-name-link" title="interface in org.bukkit.block">BlockType</a> (also extends org.bukkit.<a href="org/bukkit/Translatable.html" title="interface in org.bukkit">Translatable</a>)
+<li class="circle">org.bukkit.block.<a href="org/bukkit/block/BlockType.html" class="type-name-link" title="interface in org.bukkit.block">BlockType</a> (also extends net.kyori.adventure.translation.<a href="https://jd.advntr.dev/api/4.17.0/net/kyori/adventure/translation/Translatable.html" title="class or interface in net.kyori.adventure.translation" class="external-link">Translatable</a>, org.bukkit.<a href="org/bukkit/Translatable.html" title="interface in org.bukkit">Translatable</a>)
 <ul>
 <li class="circle">org.bukkit.block.<a href="org/bukkit/block/BlockType.Typed.html" class="type-name-link" title="interface in org.bukkit.block">BlockType.Typed</a>&lt;B&gt;</li>
 </ul>
@@ -3468,7 +3471,7 @@ loadScripts(document, 'script');</script>
 <li class="circle">org.bukkit.damage.<a href="org/bukkit/damage/DamageType.html" class="type-name-link" title="interface in org.bukkit.damage">DamageType</a> (also extends org.bukkit.<a href="org/bukkit/Translatable.html" title="interface in org.bukkit">Translatable</a>)</li>
 <li class="circle">org.bukkit.packs.<a href="org/bukkit/packs/DataPack.html" class="type-name-link" title="interface in org.bukkit.packs">DataPack</a></li>
 <li class="circle">org.bukkit.<a href="org/bukkit/FeatureFlag.html" class="type-name-link" title="interface in org.bukkit">FeatureFlag</a></li>
-<li class="circle">org.bukkit.inventory.<a href="org/bukkit/inventory/ItemType.html" class="type-name-link" title="interface in org.bukkit.inventory">ItemType</a> (also extends org.bukkit.<a href="org/bukkit/Translatable.html" title="interface in org.bukkit">Translatable</a>)
+<li class="circle">org.bukkit.inventory.<a href="org/bukkit/inventory/ItemType.html" class="type-name-link" title="interface in org.bukkit.inventory">ItemType</a> (also extends net.kyori.adventure.translation.<a href="https://jd.advntr.dev/api/4.17.0/net/kyori/adventure/translation/Translatable.html" title="class or interface in net.kyori.adventure.translation" class="external-link">Translatable</a>, org.bukkit.<a href="org/bukkit/Translatable.html" title="interface in org.bukkit">Translatable</a>)
 <ul>
 <li class="circle">org.bukkit.inventory.<a href="org/bukkit/inventory/ItemType.Typed.html" class="type-name-link" title="interface in org.bukkit.inventory">ItemType.Typed</a>&lt;M&gt;</li>
 </ul>
@@ -3542,7 +3545,7 @@ loadScripts(document, 'script');</script>
 <li class="circle">org.bukkit.block.<a href="org/bukkit/block/Barrel.html" class="type-name-link" title="interface in org.bukkit.block">Barrel</a> (also extends org.bukkit.block.<a href="org/bukkit/block/Lidded.html" title="interface in org.bukkit.block">Lidded</a>, com.destroystokyo.paper.loottable.<a href="com/destroystokyo/paper/loottable/LootableBlockInventory.html" title="interface in com.destroystokyo.paper.loottable">LootableBlockInventory</a>)</li>
 <li class="circle">org.bukkit.block.<a href="org/bukkit/block/BrewingStand.html" class="type-name-link" title="interface in org.bukkit.block">BrewingStand</a></li>
 <li class="circle">org.bukkit.block.<a href="org/bukkit/block/Chest.html" class="type-name-link" title="interface in org.bukkit.block">Chest</a> (also extends org.bukkit.block.<a href="org/bukkit/block/Lidded.html" title="interface in org.bukkit.block">Lidded</a>, com.destroystokyo.paper.loottable.<a href="com/destroystokyo/paper/loottable/LootableBlockInventory.html" title="interface in com.destroystokyo.paper.loottable">LootableBlockInventory</a>)</li>
-<li class="circle">org.bukkit.block.<a href="org/bukkit/block/Crafter.html" class="type-name-link" title="interface in org.bukkit.block">Crafter</a> (also extends org.bukkit.loot.<a href="org/bukkit/loot/Lootable.html" title="interface in org.bukkit.loot">Lootable</a>)</li>
+<li class="circle">org.bukkit.block.<a href="org/bukkit/block/Crafter.html" class="type-name-link" title="interface in org.bukkit.block">Crafter</a> (also extends com.destroystokyo.paper.loottable.<a href="com/destroystokyo/paper/loottable/LootableBlockInventory.html" title="interface in com.destroystokyo.paper.loottable">LootableBlockInventory</a>)</li>
 <li class="circle">org.bukkit.block.<a href="org/bukkit/block/Dispenser.html" class="type-name-link" title="interface in org.bukkit.block">Dispenser</a> (also extends com.destroystokyo.paper.loottable.<a href="com/destroystokyo/paper/loottable/LootableBlockInventory.html" title="interface in com.destroystokyo.paper.loottable">LootableBlockInventory</a>, org.bukkit.<a href="org/bukkit/Nameable.html" title="interface in org.bukkit">Nameable</a>)</li>
 <li class="circle">org.bukkit.block.<a href="org/bukkit/block/Dropper.html" class="type-name-link" title="interface in org.bukkit.block">Dropper</a> (also extends com.destroystokyo.paper.loottable.<a href="com/destroystokyo/paper/loottable/LootableBlockInventory.html" title="interface in com.destroystokyo.paper.loottable">LootableBlockInventory</a>)</li>
 <li class="circle">org.bukkit.block.<a href="org/bukkit/block/Furnace.html" class="type-name-link" title="interface in org.bukkit.block">Furnace</a>
@@ -3566,7 +3569,6 @@ loadScripts(document, 'script');</script>
 <li class="circle">org.bukkit.block.<a href="org/bukkit/block/SuspiciousSand.html" class="type-name-link" title="interface in org.bukkit.block">SuspiciousSand</a></li>
 </ul>
 </li>
-<li class="circle">org.bukkit.block.<a href="org/bukkit/block/Crafter.html" class="type-name-link" title="interface in org.bukkit.block">Crafter</a> (also extends org.bukkit.block.<a href="org/bukkit/block/Container.html" title="interface in org.bukkit.block">Container</a>)</li>
 <li class="circle">org.bukkit.block.<a href="org/bukkit/block/DecoratedPot.html" class="type-name-link" title="interface in org.bukkit.block">DecoratedPot</a> (also extends org.bukkit.inventory.<a href="org/bukkit/inventory/BlockInventoryHolder.html" title="interface in org.bukkit.inventory">BlockInventoryHolder</a>, org.bukkit.block.<a href="org/bukkit/block/TileState.html" title="interface in org.bukkit.block">TileState</a>)</li>
 <li class="circle">com.destroystokyo.paper.loottable.<a href="com/destroystokyo/paper/loottable/LootableInventory.html" class="type-name-link" title="interface in com.destroystokyo.paper.loottable">LootableInventory</a>
 <ul>
@@ -3574,6 +3576,7 @@ loadScripts(document, 'script');</script>
 <ul>
 <li class="circle">org.bukkit.block.<a href="org/bukkit/block/Barrel.html" class="type-name-link" title="interface in org.bukkit.block">Barrel</a> (also extends org.bukkit.block.<a href="org/bukkit/block/Container.html" title="interface in org.bukkit.block">Container</a>, org.bukkit.block.<a href="org/bukkit/block/Lidded.html" title="interface in org.bukkit.block">Lidded</a>)</li>
 <li class="circle">org.bukkit.block.<a href="org/bukkit/block/Chest.html" class="type-name-link" title="interface in org.bukkit.block">Chest</a> (also extends org.bukkit.block.<a href="org/bukkit/block/Container.html" title="interface in org.bukkit.block">Container</a>, org.bukkit.block.<a href="org/bukkit/block/Lidded.html" title="interface in org.bukkit.block">Lidded</a>)</li>
+<li class="circle">org.bukkit.block.<a href="org/bukkit/block/Crafter.html" class="type-name-link" title="interface in org.bukkit.block">Crafter</a> (also extends org.bukkit.block.<a href="org/bukkit/block/Container.html" title="interface in org.bukkit.block">Container</a>)</li>
 <li class="circle">org.bukkit.block.<a href="org/bukkit/block/Dispenser.html" class="type-name-link" title="interface in org.bukkit.block">Dispenser</a> (also extends org.bukkit.block.<a href="org/bukkit/block/Container.html" title="interface in org.bukkit.block">Container</a>, org.bukkit.<a href="org/bukkit/Nameable.html" title="interface in org.bukkit">Nameable</a>)</li>
 <li class="circle">org.bukkit.block.<a href="org/bukkit/block/Dropper.html" class="type-name-link" title="interface in org.bukkit.block">Dropper</a> (also extends org.bukkit.block.<a href="org/bukkit/block/Container.html" title="interface in org.bukkit.block">Container</a>)</li>
 <li class="circle">org.bukkit.block.<a href="org/bukkit/block/Hopper.html" class="type-name-link" title="interface in org.bukkit.block">Hopper</a> (also extends org.bukkit.block.<a href="org/bukkit/block/Container.html" title="interface in org.bukkit.block">Container</a>)</li>
@@ -3887,7 +3890,7 @@ loadScripts(document, 'script');</script>
 <li class="circle">org.bukkit.block.<a href="org/bukkit/block/Barrel.html" class="type-name-link" title="interface in org.bukkit.block">Barrel</a> (also extends org.bukkit.block.<a href="org/bukkit/block/Lidded.html" title="interface in org.bukkit.block">Lidded</a>, com.destroystokyo.paper.loottable.<a href="com/destroystokyo/paper/loottable/LootableBlockInventory.html" title="interface in com.destroystokyo.paper.loottable">LootableBlockInventory</a>)</li>
 <li class="circle">org.bukkit.block.<a href="org/bukkit/block/BrewingStand.html" class="type-name-link" title="interface in org.bukkit.block">BrewingStand</a></li>
 <li class="circle">org.bukkit.block.<a href="org/bukkit/block/Chest.html" class="type-name-link" title="interface in org.bukkit.block">Chest</a> (also extends org.bukkit.block.<a href="org/bukkit/block/Lidded.html" title="interface in org.bukkit.block">Lidded</a>, com.destroystokyo.paper.loottable.<a href="com/destroystokyo/paper/loottable/LootableBlockInventory.html" title="interface in com.destroystokyo.paper.loottable">LootableBlockInventory</a>)</li>
-<li class="circle">org.bukkit.block.<a href="org/bukkit/block/Crafter.html" class="type-name-link" title="interface in org.bukkit.block">Crafter</a> (also extends org.bukkit.loot.<a href="org/bukkit/loot/Lootable.html" title="interface in org.bukkit.loot">Lootable</a>)</li>
+<li class="circle">org.bukkit.block.<a href="org/bukkit/block/Crafter.html" class="type-name-link" title="interface in org.bukkit.block">Crafter</a> (also extends com.destroystokyo.paper.loottable.<a href="com/destroystokyo/paper/loottable/LootableBlockInventory.html" title="interface in com.destroystokyo.paper.loottable">LootableBlockInventory</a>)</li>
 <li class="circle">org.bukkit.block.<a href="org/bukkit/block/Dispenser.html" class="type-name-link" title="interface in org.bukkit.block">Dispenser</a> (also extends com.destroystokyo.paper.loottable.<a href="com/destroystokyo/paper/loottable/LootableBlockInventory.html" title="interface in com.destroystokyo.paper.loottable">LootableBlockInventory</a>, org.bukkit.<a href="org/bukkit/Nameable.html" title="interface in org.bukkit">Nameable</a>)</li>
 <li class="circle">org.bukkit.block.<a href="org/bukkit/block/Dropper.html" class="type-name-link" title="interface in org.bukkit.block">Dropper</a> (also extends com.destroystokyo.paper.loottable.<a href="com/destroystokyo/paper/loottable/LootableBlockInventory.html" title="interface in com.destroystokyo.paper.loottable">LootableBlockInventory</a>)</li>
 <li class="circle">org.bukkit.block.<a href="org/bukkit/block/Furnace.html" class="type-name-link" title="interface in org.bukkit.block">Furnace</a>
@@ -5002,7 +5005,7 @@ loadScripts(document, 'script');</script>
 <li class="circle">org.bukkit.block.<a href="org/bukkit/block/Barrel.html" class="type-name-link" title="interface in org.bukkit.block">Barrel</a> (also extends org.bukkit.block.<a href="org/bukkit/block/Lidded.html" title="interface in org.bukkit.block">Lidded</a>, com.destroystokyo.paper.loottable.<a href="com/destroystokyo/paper/loottable/LootableBlockInventory.html" title="interface in com.destroystokyo.paper.loottable">LootableBlockInventory</a>)</li>
 <li class="circle">org.bukkit.block.<a href="org/bukkit/block/BrewingStand.html" class="type-name-link" title="interface in org.bukkit.block">BrewingStand</a></li>
 <li class="circle">org.bukkit.block.<a href="org/bukkit/block/Chest.html" class="type-name-link" title="interface in org.bukkit.block">Chest</a> (also extends org.bukkit.block.<a href="org/bukkit/block/Lidded.html" title="interface in org.bukkit.block">Lidded</a>, com.destroystokyo.paper.loottable.<a href="com/destroystokyo/paper/loottable/LootableBlockInventory.html" title="interface in com.destroystokyo.paper.loottable">LootableBlockInventory</a>)</li>
-<li class="circle">org.bukkit.block.<a href="org/bukkit/block/Crafter.html" class="type-name-link" title="interface in org.bukkit.block">Crafter</a> (also extends org.bukkit.loot.<a href="org/bukkit/loot/Lootable.html" title="interface in org.bukkit.loot">Lootable</a>)</li>
+<li class="circle">org.bukkit.block.<a href="org/bukkit/block/Crafter.html" class="type-name-link" title="interface in org.bukkit.block">Crafter</a> (also extends com.destroystokyo.paper.loottable.<a href="com/destroystokyo/paper/loottable/LootableBlockInventory.html" title="interface in com.destroystokyo.paper.loottable">LootableBlockInventory</a>)</li>
 <li class="circle">org.bukkit.block.<a href="org/bukkit/block/Dispenser.html" class="type-name-link" title="interface in org.bukkit.block">Dispenser</a> (also extends com.destroystokyo.paper.loottable.<a href="com/destroystokyo/paper/loottable/LootableBlockInventory.html" title="interface in com.destroystokyo.paper.loottable">LootableBlockInventory</a>, org.bukkit.<a href="org/bukkit/Nameable.html" title="interface in org.bukkit">Nameable</a>)</li>
 <li class="circle">org.bukkit.block.<a href="org/bukkit/block/Dropper.html" class="type-name-link" title="interface in org.bukkit.block">Dropper</a> (also extends com.destroystokyo.paper.loottable.<a href="com/destroystokyo/paper/loottable/LootableBlockInventory.html" title="interface in com.destroystokyo.paper.loottable">LootableBlockInventory</a>)</li>
 <li class="circle">org.bukkit.block.<a href="org/bukkit/block/Furnace.html" class="type-name-link" title="interface in org.bukkit.block">Furnace</a>
@@ -5674,7 +5677,7 @@ loadScripts(document, 'script');</script>
 <li class="circle">org.bukkit.block.<a href="org/bukkit/block/Barrel.html" class="type-name-link" title="interface in org.bukkit.block">Barrel</a> (also extends org.bukkit.block.<a href="org/bukkit/block/Lidded.html" title="interface in org.bukkit.block">Lidded</a>, com.destroystokyo.paper.loottable.<a href="com/destroystokyo/paper/loottable/LootableBlockInventory.html" title="interface in com.destroystokyo.paper.loottable">LootableBlockInventory</a>)</li>
 <li class="circle">org.bukkit.block.<a href="org/bukkit/block/BrewingStand.html" class="type-name-link" title="interface in org.bukkit.block">BrewingStand</a></li>
 <li class="circle">org.bukkit.block.<a href="org/bukkit/block/Chest.html" class="type-name-link" title="interface in org.bukkit.block">Chest</a> (also extends org.bukkit.block.<a href="org/bukkit/block/Lidded.html" title="interface in org.bukkit.block">Lidded</a>, com.destroystokyo.paper.loottable.<a href="com/destroystokyo/paper/loottable/LootableBlockInventory.html" title="interface in com.destroystokyo.paper.loottable">LootableBlockInventory</a>)</li>
-<li class="circle">org.bukkit.block.<a href="org/bukkit/block/Crafter.html" class="type-name-link" title="interface in org.bukkit.block">Crafter</a> (also extends org.bukkit.loot.<a href="org/bukkit/loot/Lootable.html" title="interface in org.bukkit.loot">Lootable</a>)</li>
+<li class="circle">org.bukkit.block.<a href="org/bukkit/block/Crafter.html" class="type-name-link" title="interface in org.bukkit.block">Crafter</a> (also extends com.destroystokyo.paper.loottable.<a href="com/destroystokyo/paper/loottable/LootableBlockInventory.html" title="interface in com.destroystokyo.paper.loottable">LootableBlockInventory</a>)</li>
 <li class="circle">org.bukkit.block.<a href="org/bukkit/block/Dispenser.html" class="type-name-link" title="interface in org.bukkit.block">Dispenser</a> (also extends com.destroystokyo.paper.loottable.<a href="com/destroystokyo/paper/loottable/LootableBlockInventory.html" title="interface in com.destroystokyo.paper.loottable">LootableBlockInventory</a>, org.bukkit.<a href="org/bukkit/Nameable.html" title="interface in org.bukkit">Nameable</a>)</li>
 <li class="circle">org.bukkit.block.<a href="org/bukkit/block/Dropper.html" class="type-name-link" title="interface in org.bukkit.block">Dropper</a> (also extends com.destroystokyo.paper.loottable.<a href="com/destroystokyo/paper/loottable/LootableBlockInventory.html" title="interface in com.destroystokyo.paper.loottable">LootableBlockInventory</a>)</li>
 <li class="circle">org.bukkit.block.<a href="org/bukkit/block/Furnace.html" class="type-name-link" title="interface in org.bukkit.block">Furnace</a>
@@ -5716,6 +5719,7 @@ loadScripts(document, 'script');</script>
 <li class="circle">org.bukkit.persistence.<a href="org/bukkit/persistence/ListPersistentDataType.html" class="type-name-link" title="interface in org.bukkit.persistence">ListPersistentDataType</a>&lt;P,<wbr>C&gt;</li>
 </ul>
 </li>
+<li class="circle">moe.caramel.daydream.advancement.<a href="moe/caramel/daydream/advancement/PlayerAdvancementData.html" class="type-name-link" title="interface in moe.caramel.daydream.advancement">PlayerAdvancementData</a></li>
 <li class="circle">org.bukkit.profile.<a href="org/bukkit/profile/PlayerTextures.html" class="type-name-link" title="interface in org.bukkit.profile">PlayerTextures</a></li>
 <li class="circle">org.bukkit.plugin.<a href="org/bukkit/plugin/PluginAwareness.html" class="type-name-link" title="interface in org.bukkit.plugin">PluginAwareness</a></li>
 <li class="circle">io.papermc.paper.plugin.bootstrap.<a href="io/papermc/paper/plugin/bootstrap/PluginBootstrap.html" class="type-name-link" title="interface in io.papermc.paper.plugin.bootstrap">PluginBootstrap</a></li>
@@ -6315,6 +6319,7 @@ loadScripts(document, 'script');</script>
 </ul>
 </li>
 <li class="circle">org.bukkit.material.<a href="org/bukkit/material/PressureSensor.html" class="type-name-link" title="interface in org.bukkit.material">PressureSensor</a></li>
+<li class="circle">moe.caramel.daydream.advancement.<a href="moe/caramel/daydream/advancement/ProgressMap.html" class="type-name-link" title="interface in moe.caramel.daydream.advancement">ProgressMap</a></li>
 <li class="circle">org.bukkit.projectiles.<a href="org/bukkit/projectiles/ProjectileSource.html" class="type-name-link" title="interface in org.bukkit.projectiles">ProjectileSource</a>
 <ul>
 <li class="circle">org.bukkit.projectiles.<a href="org/bukkit/projectiles/BlockProjectileSource.html" class="type-name-link" title="interface in org.bukkit.projectiles">BlockProjectileSource</a></li>
@@ -7821,18 +7826,28 @@ loadScripts(document, 'script');</script>
 <li class="circle">net.kyori.adventure.translation.<a href="https://jd.advntr.dev/api/4.17.0/net/kyori/adventure/translation/Translatable.html" class="type-name-link external-link" title="class or interface in net.kyori.adventure.translation">Translatable</a>
 <ul>
 <li class="circle">org.bukkit.block.<a href="org/bukkit/block/Block.html" class="type-name-link" title="interface in org.bukkit.block">Block</a> (also extends org.bukkit.metadata.<a href="org/bukkit/metadata/Metadatable.html" title="interface in org.bukkit.metadata">Metadatable</a>, org.bukkit.<a href="org/bukkit/Translatable.html" title="interface in org.bukkit">Translatable</a>)</li>
+<li class="circle">org.bukkit.block.<a href="org/bukkit/block/BlockType.html" class="type-name-link" title="interface in org.bukkit.block">BlockType</a> (also extends org.bukkit.<a href="org/bukkit/Keyed.html" title="interface in org.bukkit">Keyed</a>, org.bukkit.<a href="org/bukkit/Translatable.html" title="interface in org.bukkit">Translatable</a>)
+<ul>
+<li class="circle">org.bukkit.block.<a href="org/bukkit/block/BlockType.Typed.html" class="type-name-link" title="interface in org.bukkit.block">BlockType.Typed</a>&lt;B&gt;</li>
+</ul>
+</li>
+<li class="circle">org.bukkit.inventory.<a href="org/bukkit/inventory/ItemType.html" class="type-name-link" title="interface in org.bukkit.inventory">ItemType</a> (also extends org.bukkit.<a href="org/bukkit/Keyed.html" title="interface in org.bukkit">Keyed</a>, org.bukkit.<a href="org/bukkit/Translatable.html" title="interface in org.bukkit">Translatable</a>)
+<ul>
+<li class="circle">org.bukkit.inventory.<a href="org/bukkit/inventory/ItemType.Typed.html" class="type-name-link" title="interface in org.bukkit.inventory">ItemType.Typed</a>&lt;M&gt;</li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="circle">org.bukkit.<a href="org/bukkit/Translatable.html" class="type-name-link" title="interface in org.bukkit">Translatable</a>
 <ul>
 <li class="circle">org.bukkit.block.<a href="org/bukkit/block/Block.html" class="type-name-link" title="interface in org.bukkit.block">Block</a> (also extends org.bukkit.metadata.<a href="org/bukkit/metadata/Metadatable.html" title="interface in org.bukkit.metadata">Metadatable</a>, net.kyori.adventure.translation.<a href="https://jd.advntr.dev/api/4.17.0/net/kyori/adventure/translation/Translatable.html" title="class or interface in net.kyori.adventure.translation" class="external-link">Translatable</a>)</li>
-<li class="circle">org.bukkit.block.<a href="org/bukkit/block/BlockType.html" class="type-name-link" title="interface in org.bukkit.block">BlockType</a> (also extends org.bukkit.<a href="org/bukkit/Keyed.html" title="interface in org.bukkit">Keyed</a>)
+<li class="circle">org.bukkit.block.<a href="org/bukkit/block/BlockType.html" class="type-name-link" title="interface in org.bukkit.block">BlockType</a> (also extends org.bukkit.<a href="org/bukkit/Keyed.html" title="interface in org.bukkit">Keyed</a>, net.kyori.adventure.translation.<a href="https://jd.advntr.dev/api/4.17.0/net/kyori/adventure/translation/Translatable.html" title="class or interface in net.kyori.adventure.translation" class="external-link">Translatable</a>)
 <ul>
 <li class="circle">org.bukkit.block.<a href="org/bukkit/block/BlockType.Typed.html" class="type-name-link" title="interface in org.bukkit.block">BlockType.Typed</a>&lt;B&gt;</li>
 </ul>
 </li>
 <li class="circle">org.bukkit.damage.<a href="org/bukkit/damage/DamageType.html" class="type-name-link" title="interface in org.bukkit.damage">DamageType</a> (also extends org.bukkit.<a href="org/bukkit/Keyed.html" title="interface in org.bukkit">Keyed</a>)</li>
-<li class="circle">org.bukkit.inventory.<a href="org/bukkit/inventory/ItemType.html" class="type-name-link" title="interface in org.bukkit.inventory">ItemType</a> (also extends org.bukkit.<a href="org/bukkit/Keyed.html" title="interface in org.bukkit">Keyed</a>)
+<li class="circle">org.bukkit.inventory.<a href="org/bukkit/inventory/ItemType.html" class="type-name-link" title="interface in org.bukkit.inventory">ItemType</a> (also extends org.bukkit.<a href="org/bukkit/Keyed.html" title="interface in org.bukkit">Keyed</a>, net.kyori.adventure.translation.<a href="https://jd.advntr.dev/api/4.17.0/net/kyori/adventure/translation/Translatable.html" title="class or interface in net.kyori.adventure.translation" class="external-link">Translatable</a>)
 <ul>
 <li class="circle">org.bukkit.inventory.<a href="org/bukkit/inventory/ItemType.Typed.html" class="type-name-link" title="interface in org.bukkit.inventory">ItemType.Typed</a>&lt;M&gt;</li>
 </ul>
@@ -7950,6 +7965,7 @@ loadScripts(document, 'script');</script>
 <li class="circle">org.bukkit.event.entity.<a href="org/bukkit/event/entity/EntityDamageEvent.DamageModifier.html" class="type-name-link" title="enum class in org.bukkit.event.entity">EntityDamageEvent.DamageModifier</a></li>
 <li class="circle">org.bukkit.<a href="org/bukkit/EntityEffect.html" class="type-name-link" title="enum class in org.bukkit">EntityEffect</a></li>
 <li class="circle">org.bukkit.event.entity.<a href="org/bukkit/event/entity/EntityExhaustionEvent.ExhaustionReason.html" class="type-name-link" title="enum class in org.bukkit.event.entity">EntityExhaustionEvent.ExhaustionReason</a></li>
+<li class="circle">io.papermc.paper.event.entity.<a href="io/papermc/paper/event/entity/EntityKnockbackEvent.Cause.html" class="type-name-link" title="enum class in io.papermc.paper.event.entity">EntityKnockbackEvent.Cause</a></li>
 <li class="circle">org.bukkit.event.entity.<a href="org/bukkit/event/entity/EntityKnockbackEvent.KnockbackCause.html" class="type-name-link" title="enum class in org.bukkit.event.entity">EntityKnockbackEvent.KnockbackCause</a></li>
 <li class="circle">org.bukkit.event.entity.<a href="org/bukkit/event/entity/EntityPotionEffectEvent.Action.html" class="type-name-link" title="enum class in org.bukkit.event.entity">EntityPotionEffectEvent.Action</a></li>
 <li class="circle">org.bukkit.event.entity.<a href="org/bukkit/event/entity/EntityPotionEffectEvent.Cause.html" class="type-name-link" title="enum class in org.bukkit.event.entity">EntityPotionEffectEvent.Cause</a></li>
@@ -8021,6 +8037,7 @@ loadScripts(document, 'script');</script>
 <li class="circle">org.bukkit.block.banner.<a href="org/bukkit/block/banner/PatternType.html" class="type-name-link" title="enum class in org.bukkit.block.banner">PatternType</a> (implements org.bukkit.<a href="org/bukkit/Keyed.html" title="interface in org.bukkit">Keyed</a>)</li>
 <li class="circle">org.bukkit.permissions.<a href="org/bukkit/permissions/PermissionDefault.html" class="type-name-link" title="enum class in org.bukkit.permissions">PermissionDefault</a></li>
 <li class="circle">org.bukkit.block.<a href="org/bukkit/block/PistonMoveReaction.html" class="type-name-link" title="enum class in org.bukkit.block">PistonMoveReaction</a></li>
+<li class="circle">moe.caramel.daydream.event.player.<a href="moe/caramel/daydream/event/player/PlayerAdvancementPreLoadEvent.Reason.html" class="type-name-link" title="enum class in moe.caramel.daydream.event.player">PlayerAdvancementPreLoadEvent.Reason</a></li>
 <li class="circle">moe.caramel.daydream.event.player.<a href="moe/caramel/daydream/event/player/PlayerAdvancementScreenEvent.Action.html" class="type-name-link" title="enum class in moe.caramel.daydream.event.player">PlayerAdvancementScreenEvent.Action</a></li>
 <li class="circle">org.bukkit.event.player.<a href="org/bukkit/event/player/PlayerAnimationType.html" class="type-name-link" title="enum class in org.bukkit.event.player">PlayerAnimationType</a></li>
 <li class="circle">com.destroystokyo.paper.event.player.<a href="com/destroystokyo/paper/event/player/PlayerArmorChangeEvent.SlotType.html" class="type-name-link" title="enum class in com.destroystokyo.paper.event.player">PlayerArmorChangeEvent.SlotType</a></li>

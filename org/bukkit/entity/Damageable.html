@@ -116,7 +116,7 @@ extends <a href="Entity.html" title="interface in org.bukkit.entity">Entity</a><
 <section class="method-summary" id="method-summary">
 <h2>Method Summary</h2>
 <div id="method-summary-table">
-<div class="table-tabs" role="tablist" aria-orientation="horizontal"><button id="method-summary-table-tab0" role="tab" aria-selected="true" aria-controls="method-summary-table.tabpanel" tabindex="0" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table', 3)" class="active-table-tab">All Methods</button><button id="method-summary-table-tab2" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab2', 3)" class="table-tab">Instance Methods</button><button id="method-summary-table-tab3" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab3', 3)" class="table-tab">Abstract Methods</button><button id="method-summary-table-tab6" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab6', 3)" class="table-tab">Deprecated Methods</button></div>
+<div class="table-tabs" role="tablist" aria-orientation="horizontal"><button id="method-summary-table-tab0" role="tab" aria-selected="true" aria-controls="method-summary-table.tabpanel" tabindex="0" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table', 3)" class="active-table-tab">All Methods</button><button id="method-summary-table-tab2" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab2', 3)" class="table-tab">Instance Methods</button><button id="method-summary-table-tab3" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab3', 3)" class="table-tab">Abstract Methods</button><button id="method-summary-table-tab5" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab5', 3)" class="table-tab">Default Methods</button><button id="method-summary-table-tab6" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab6', 3)" class="table-tab">Deprecated Methods</button></div>
 <div id="method-summary-table.tabpanel" role="tabpanel" aria-labelledby="method-summary-table-tab0">
 <div class="summary-table three-column-summary">
 <div class="table-header col-first">Modifier and Type</div>
@@ -157,6 +157,17 @@ extends <a href="Entity.html" title="interface in org.bukkit.entity">Entity</a><
 <div class="block"><span class="deprecated-label">Deprecated.</span>
 <div class="deprecation-comment">use <a href="../attribute/Attribute.html#GENERIC_MAX_HEALTH"><code>Attribute.GENERIC_MAX_HEALTH</code></a>.</div>
 </div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code>default void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#heal(double)" class="member-name-link">heal</a><wbr>(double&nbsp;amount)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5">
+<div class="block">Heal this entity by the given amount.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#heal(double,org.bukkit.event.entity.EntityRegainHealthEvent.RegainReason)" class="member-name-link">heal</a><wbr>(double&nbsp;amount,
+ <a href="../event/entity/EntityRegainHealthEvent.RegainReason.html" title="enum class in org.bukkit.event.entity">EntityRegainHealthEvent.RegainReason</a>&nbsp;reason)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Heal this entity by the given amount.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6"><code><a href="#resetMaxHealth()" class="member-name-link">resetMaxHealth</a>()</code></div>
@@ -292,6 +303,31 @@ extends <a href="Entity.html" title="interface in org.bukkit.entity">Entity</a><
 <dt>Throws:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - Thrown if the health is &lt; 0 or &gt;
      <a href="#getMaxHealth()"><code>getMaxHealth()</code></a></dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="heal(double)">
+<h3>heal</h3>
+<div class="member-signature"><span class="modifiers">default</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">heal</span><wbr><span class="parameters">(double&nbsp;amount)</span></div>
+<div class="block">Heal this entity by the given amount. This will call <a href="../event/entity/EntityRegainHealthEvent.html" title="class in org.bukkit.event.entity"><code>EntityRegainHealthEvent</code></a>.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>amount</code> - heal amount</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="heal(double,org.bukkit.event.entity.EntityRegainHealthEvent.RegainReason)">
+<h3>heal</h3>
+<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">heal</span><wbr><span class="parameters">(double&nbsp;amount,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="../event/entity/EntityRegainHealthEvent.RegainReason.html" title="enum class in org.bukkit.event.entity">EntityRegainHealthEvent.RegainReason</a>&nbsp;reason)</span></div>
+<div class="block">Heal this entity by the given amount. This will call <a href="../event/entity/EntityRegainHealthEvent.html" title="class in org.bukkit.event.entity"><code>EntityRegainHealthEvent</code></a>.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>amount</code> - heal amount</dd>
+<dd><code>reason</code> - heal reason</dd>
 </dl>
 </section>
 </li>

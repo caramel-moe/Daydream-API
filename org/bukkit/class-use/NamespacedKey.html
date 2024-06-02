@@ -453,14 +453,19 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="../NamespacedKey.html" title="class in org.bukkit">NamespacedKey</a>&gt;</code></div>
-<div class="col-second even-row-color"><span class="type-name-label">AdvancementReward.</span><code><a href="../../../moe/caramel/daydream/advancement/AdvancementReward.html#lootKeys()" class="member-name-link">lootKeys</a>()</code></div>
+<div class="col-first even-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a><wbr>&lt;<a href="../NamespacedKey.html" title="class in org.bukkit">NamespacedKey</a>,<wbr><a href="../../../moe/caramel/daydream/advancement/progress/CriteriaProgress.html" title="interface in moe.caramel.daydream.advancement.progress">CriteriaProgress</a>&gt;</code></div>
+<div class="col-second even-row-color"><span class="type-name-label">ProgressMap.</span><code><a href="../../../moe/caramel/daydream/advancement/ProgressMap.html#getData()" class="member-name-link">getData</a>()</code></div>
 <div class="col-last even-row-color">
-<div class="block">전리품 테이블의 키 목록을 가져옵니다.</div>
+<div class="block">진행도 맵의 데이터를 가져옵니다.</div>
 </div>
 <div class="col-first odd-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="../NamespacedKey.html" title="class in org.bukkit">NamespacedKey</a>&gt;</code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">AdvancementReward.</span><code><a href="../../../moe/caramel/daydream/advancement/AdvancementReward.html#recipeKeys()" class="member-name-link">recipeKeys</a>()</code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">AdvancementReward.</span><code><a href="../../../moe/caramel/daydream/advancement/AdvancementReward.html#lootKeys()" class="member-name-link">lootKeys</a>()</code></div>
 <div class="col-last odd-row-color">
+<div class="block">전리품 테이블의 키 목록을 가져옵니다.</div>
+</div>
+<div class="col-first even-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="../NamespacedKey.html" title="class in org.bukkit">NamespacedKey</a>&gt;</code></div>
+<div class="col-second even-row-color"><span class="type-name-label">AdvancementReward.</span><code><a href="../../../moe/caramel/daydream/advancement/AdvancementReward.html#recipeKeys()" class="member-name-link">recipeKeys</a>()</code></div>
+<div class="col-last even-row-color">
 <div class="block">레시피의 키 목록을 가져옵니다.</div>
 </div>
 </div>
@@ -533,6 +538,19 @@ loadScripts(document, 'script');</script>
 <div class="col-last odd-row-color">
 <div class="block">이 발전 과제에 카운트를 사용합니다.</div>
 </div>
+<div class="col-first even-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../moe/caramel/daydream/advancement/progress/CountableProgress.html" title="interface in moe.caramel.daydream.advancement.progress">CountableProgress</a></code></div>
+<div class="col-second even-row-color"><span class="type-name-label">ProgressMap.</span><code><a href="../../../moe/caramel/daydream/advancement/ProgressMap.html#newCountProgress(org.bukkit.NamespacedKey,int,java.time.Instant)" class="member-name-link">newCountProgress</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../NamespacedKey.html" title="class in org.bukkit">NamespacedKey</a>&nbsp;key,
+ int&nbsp;currentCount,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/Instant.html" title="class or interface in java.time" class="external-link">Instant</a>&nbsp;obtainedTime)</code></div>
+<div class="col-last even-row-color">
+<div class="block">주어진 발전 과제에 대하여 새로운 카운트 형식의 진행도를 생성하고 추가합니다.</div>
+</div>
+<div class="col-first odd-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../moe/caramel/daydream/advancement/progress/CriteriaProgress.html" title="interface in moe.caramel.daydream.advancement.progress">CriteriaProgress</a></code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">ProgressMap.</span><code><a href="../../../moe/caramel/daydream/advancement/ProgressMap.html#newProgress(org.bukkit.NamespacedKey,java.util.Map)" class="member-name-link">newProgress</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../NamespacedKey.html" title="class in org.bukkit">NamespacedKey</a>&nbsp;key,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>,<wbr><a href="../../../moe/caramel/daydream/advancement/progress/CriterionProgress.html" title="interface in moe.caramel.daydream.advancement.progress">CriterionProgress</a>&gt;&nbsp;criteria)</code></div>
+<div class="col-last odd-row-color">
+<div class="block">주어진 발전 과제에 대하여 새로운 진행도를 생성하고 추가합니다.</div>
+</div>
 <div class="col-first even-row-color"><code>default <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../moe/caramel/daydream/advancement/AdvancementBuilder.html" title="interface in moe.caramel.daydream.advancement">AdvancementBuilder</a></code></div>
 <div class="col-second even-row-color"><span class="type-name-label">AdvancementBuilder.</span><code><a href="../../../moe/caramel/daydream/advancement/AdvancementBuilder.html#reward(int,java.util.List,java.util.List,org.bukkit.NamespacedKey)" class="member-name-link">reward</a><wbr>(int&nbsp;experience,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../NamespacedKey.html" title="class in org.bukkit">NamespacedKey</a>&gt;&nbsp;loot,
@@ -552,12 +570,17 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color"><code>default <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../moe/caramel/daydream/advancement/AdvancementBuilder.html" title="interface in moe.caramel.daydream.advancement">AdvancementBuilder</a></code></div>
-<div class="col-second even-row-color"><span class="type-name-label">AdvancementBuilder.</span><code><a href="../../../moe/caramel/daydream/advancement/AdvancementBuilder.html#reward(int,java.util.List,java.util.List,org.bukkit.NamespacedKey)" class="member-name-link">reward</a><wbr>(int&nbsp;experience,
+<div class="col-first even-row-color"><code>void</code></div>
+<div class="col-second even-row-color"><span class="type-name-label">ProgressMap.</span><code><a href="../../../moe/caramel/daydream/advancement/ProgressMap.html#iterator(java.util.function.BiConsumer)" class="member-name-link">iterator</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/BiConsumer.html" title="class or interface in java.util.function" class="external-link">BiConsumer</a>&lt;<a href="../NamespacedKey.html" title="class in org.bukkit">NamespacedKey</a>,<wbr><a href="../../../moe/caramel/daydream/advancement/progress/CriteriaProgress.html" title="interface in moe.caramel.daydream.advancement.progress">CriteriaProgress</a>&gt;&nbsp;action)</code></div>
+<div class="col-last even-row-color">
+<div class="block">진행도 맵에 대하여 반복을 실행합니다.</div>
+</div>
+<div class="col-first odd-row-color"><code>default <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../moe/caramel/daydream/advancement/AdvancementBuilder.html" title="interface in moe.caramel.daydream.advancement">AdvancementBuilder</a></code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">AdvancementBuilder.</span><code><a href="../../../moe/caramel/daydream/advancement/AdvancementBuilder.html#reward(int,java.util.List,java.util.List,org.bukkit.NamespacedKey)" class="member-name-link">reward</a><wbr>(int&nbsp;experience,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../NamespacedKey.html" title="class in org.bukkit">NamespacedKey</a>&gt;&nbsp;loot,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../NamespacedKey.html" title="class in org.bukkit">NamespacedKey</a>&gt;&nbsp;recipes,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../NamespacedKey.html" title="class in org.bukkit">NamespacedKey</a>&nbsp;function)</code></div>
-<div class="col-last even-row-color">
+<div class="col-last odd-row-color">
 <div class="block">이 발전 과제의 보상을 설정합니다.</div>
 </div>
 </div>
@@ -604,22 +627,9 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-second">Constructor</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color"><code>&nbsp;</code></div>
-<div class="col-second even-row-color"><code><a href="../../../moe/caramel/daydream/event/player/PlayerAdvancementSaveEvent.Json.html#%3Cinit%3E(org.bukkit.entity.Player,org.bukkit.NamespacedKey,com.google.gson.JsonElement,boolean)" class="member-name-link">Json</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../entity/Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;who,
+<div class="col-second even-row-color"><code><a href="../../../moe/caramel/daydream/event/player/PlayerAdvancementSaveEvent.html#%3Cinit%3E(org.bukkit.entity.Player,org.bukkit.NamespacedKey,moe.caramel.daydream.advancement.ProgressMap)" class="member-name-link">PlayerAdvancementSaveEvent</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../entity/Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;who,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../NamespacedKey.html" title="class in org.bukkit">NamespacedKey</a>&nbsp;section,
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://www.javadoc.io/doc/com.google.code.gson/gson/2.10.1/com.google.gson/com/google/gson/JsonElement.html" title="class or interface in com.google.gson" class="external-link">JsonElement</a>&nbsp;json,
- boolean&nbsp;compressed)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
-<div class="col-first odd-row-color"><code>&nbsp;</code></div>
-<div class="col-second odd-row-color"><code><a href="../../../moe/caramel/daydream/event/player/PlayerAdvancementSaveEvent.Nbt.html#%3Cinit%3E(org.bukkit.entity.Player,org.bukkit.NamespacedKey,byte%5B%5D,boolean)" class="member-name-link">Nbt</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../entity/Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;who,
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../NamespacedKey.html" title="class in org.bukkit">NamespacedKey</a>&nbsp;section,
- @org.jetbrains.annotations.NotNull byte[]&nbsp;nbt,
- boolean&nbsp;compressed)</code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
-<div class="col-first even-row-color"><code>&nbsp;</code></div>
-<div class="col-second even-row-color"><code><a href="../../../moe/caramel/daydream/event/player/PlayerAdvancementSaveEvent.html#%3Cinit%3E(org.bukkit.entity.Player,org.bukkit.NamespacedKey,T,boolean)" class="member-name-link">PlayerAdvancementSaveEvent</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../entity/Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;who,
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../NamespacedKey.html" title="class in org.bukkit">NamespacedKey</a>&nbsp;section,
- <a href="../../../moe/caramel/daydream/event/player/PlayerAdvancementSaveEvent.html" title="type parameter in PlayerAdvancementSaveEvent">T</a>&nbsp;data,
- boolean&nbsp;compressed)</code></div>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../moe/caramel/daydream/advancement/ProgressMap.html" title="interface in moe.caramel.daydream.advancement">ProgressMap</a>&nbsp;progress)</code></div>
 <div class="col-last even-row-color">&nbsp;</div>
 <div class="col-first odd-row-color"><code>&nbsp;</code></div>
 <div class="col-second odd-row-color"><code><a href="../../../moe/caramel/daydream/event/player/PlayerAdvancementScreenEvent.html#%3Cinit%3E(org.bukkit.entity.Player,moe.caramel.daydream.event.player.PlayerAdvancementScreenEvent.Action,org.bukkit.NamespacedKey)" class="member-name-link">PlayerAdvancementScreenEvent</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../entity/Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;player,
@@ -1241,7 +1251,7 @@ loadScripts(document, 'script');</script>
 <div class="block">이 플레이어에게 커스텀 페이로드를 전송합니다.</div>
 </div>
 <div class="col-first odd-row-color"><code>&lt;T&gt;&nbsp;T</code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">Player.</span><code><a href="../entity/Player.html#serializeAdvancementProgress(moe.caramel.daydream.advancement.AdvancementSaveFormat,org.bukkit.NamespacedKey)" class="member-name-link">serializeAdvancementProgress</a><wbr>(<a href="../../../moe/caramel/daydream/advancement/AdvancementSaveFormat.html" title="class in moe.caramel.daydream.advancement">AdvancementSaveFormat</a>&lt;T&gt;&nbsp;format,
+<div class="col-second odd-row-color"><span class="type-name-label">Player.</span><code><a href="../entity/Player.html#serializeAdvancementProgress(moe.caramel.daydream.advancement.AdvancementFormat,org.bukkit.NamespacedKey)" class="member-name-link">serializeAdvancementProgress</a><wbr>(<a href="../../../moe/caramel/daydream/advancement/AdvancementFormat.html" title="class in moe.caramel.daydream.advancement">AdvancementFormat</a>&lt;T&gt;&nbsp;format,
  <a href="../NamespacedKey.html" title="class in org.bukkit">NamespacedKey</a>&nbsp;saveSection)</code></div>
 <div class="col-last odd-row-color">
 <div class="block">플레이어의 직렬화된 발전 과제 데이터를 가져옵니다.</div>

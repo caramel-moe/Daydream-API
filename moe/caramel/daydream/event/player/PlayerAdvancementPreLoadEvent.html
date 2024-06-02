@@ -84,30 +84,28 @@ loadScripts(document, 'script');</script>
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
 <div class="sub-title"><span class="package-label-in-type">Package</span>&nbsp;<a href="package-summary.html">moe.caramel.daydream.event.player</a></div>
-<h1 title="Class PlayerAdvancementPreLoadEvent" class="title">Class PlayerAdvancementPreLoadEvent&lt;T&gt;</h1>
+<h1 title="Class PlayerAdvancementPreLoadEvent" class="title">Class PlayerAdvancementPreLoadEvent</h1>
 </div>
 <div class="inheritance" title="Inheritance Tree"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">java.lang.Object</a>
 <div class="inheritance"><a href="../../../../../org/bukkit/event/Event.html" title="class in org.bukkit.event">org.bukkit.event.Event</a>
 <div class="inheritance"><a href="../../../../../org/bukkit/event/player/PlayerEvent.html" title="class in org.bukkit.event.player">org.bukkit.event.player.PlayerEvent</a>
-<div class="inheritance">moe.caramel.daydream.event.player.PlayerAdvancementPreLoadEvent&lt;T&gt;</div>
+<div class="inheritance">moe.caramel.daydream.event.player.PlayerAdvancementPreLoadEvent</div>
 </div>
 </div>
 </div>
 <section class="class-description" id="class-description">
 <dl class="notes">
-<dt>Type Parameters:</dt>
-<dd><code>T</code> - 타입</dd>
-</dl>
-<dl class="notes">
-<dt>Direct Known Subclasses:</dt>
-<dd><code><a href="PlayerAdvancementPreLoadEvent.Json.html" title="class in moe.caramel.daydream.event.player">PlayerAdvancementPreLoadEvent.Json</a></code>, <code><a href="PlayerAdvancementPreLoadEvent.Nbt.html" title="class in moe.caramel.daydream.event.player">PlayerAdvancementPreLoadEvent.Nbt</a></code></dd>
+<dt>All Implemented Interfaces:</dt>
+<dd><code><a href="../../advancement/PlayerAdvancementData.html" title="interface in moe.caramel.daydream.advancement">PlayerAdvancementData</a></code>, <code><a href="../../../../../org/bukkit/event/Cancellable.html" title="interface in org.bukkit.event">Cancellable</a></code></dd>
 </dl>
 <hr>
-<div class="type-signature"><span class="modifiers">public sealed class </span><span class="element-name type-name-label">PlayerAdvancementPreLoadEvent&lt;T&gt;</span>
-<span class="extends-implements">extends <a href="../../../../../org/bukkit/event/player/PlayerEvent.html" title="class in org.bukkit.event.player">PlayerEvent</a></span>
-<span class="permits">permits <a href="PlayerAdvancementPreLoadEvent.Json.html" title="class in moe.caramel.daydream.event.player">PlayerAdvancementPreLoadEvent.Json</a>, <a href="PlayerAdvancementPreLoadEvent.Nbt.html" title="class in moe.caramel.daydream.event.player">PlayerAdvancementPreLoadEvent.Nbt</a></span></div>
+<div class="type-signature"><span class="modifiers">public final class </span><span class="element-name type-name-label">PlayerAdvancementPreLoadEvent</span>
+<span class="extends-implements">extends <a href="../../../../../org/bukkit/event/player/PlayerEvent.html" title="class in org.bukkit.event.player">PlayerEvent</a>
+implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="interface in org.bukkit.event">Cancellable</a>, <a href="../../advancement/PlayerAdvancementData.html" title="interface in moe.caramel.daydream.advancement">PlayerAdvancementData</a></span></div>
 <div class="block">플레이어의 발전 과제 데이터를 로드하기 직전에 호출됩니다.
- <p>일반적으로 <a href="../../../../../org/bukkit/event/player/PlayerJoinEvent.html" title="class in org.bukkit.event.player"><code>PlayerJoinEvent</code></a> 이전에 호출됩니다.</p></div>
+ <p>
+ 일반적으로 <a href="../../../../../org/bukkit/event/player/PlayerJoinEvent.html" title="class in org.bukkit.event.player"><code>PlayerJoinEvent</code></a> 이전에 호출됩니다.
+ </p></div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -120,15 +118,10 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Class</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color"><code>static final class&nbsp;</code></div>
-<div class="col-second even-row-color"><code><a href="PlayerAdvancementPreLoadEvent.Json.html" class="type-name-link" title="class in moe.caramel.daydream.event.player">PlayerAdvancementPreLoadEvent.Json</a></code></div>
+<div class="col-first even-row-color"><code>static enum&nbsp;</code></div>
+<div class="col-second even-row-color"><code><a href="PlayerAdvancementPreLoadEvent.Reason.html" class="type-name-link" title="enum class in moe.caramel.daydream.event.player">PlayerAdvancementPreLoadEvent.Reason</a></code></div>
 <div class="col-last even-row-color">
-<div class="block">서버가 Json 형식으로 데이터를 저장하는 경우</div>
-</div>
-<div class="col-first odd-row-color"><code>static final class&nbsp;</code></div>
-<div class="col-second odd-row-color"><code><a href="PlayerAdvancementPreLoadEvent.Nbt.html" class="type-name-link" title="class in moe.caramel.daydream.event.player">PlayerAdvancementPreLoadEvent.Nbt</a></code></div>
-<div class="col-last odd-row-color">
-<div class="block">서버가 Json 형식으로 데이터를 저장하는 경우</div>
+<div class="block">이벤트 호출 사유</div>
 </div>
 </div>
 <div class="inherited-list">
@@ -153,8 +146,9 @@ loadScripts(document, 'script');</script>
 <div class="summary-table two-column-summary">
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
-<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(org.bukkit.entity.Player,boolean)" class="member-name-link">PlayerAdvancementPreLoadEvent</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/entity/Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;who,
- boolean&nbsp;compressed)</code></div>
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(org.bukkit.entity.Player,moe.caramel.daydream.advancement.PlayerAdvancementData,moe.caramel.daydream.event.player.PlayerAdvancementPreLoadEvent.Reason)" class="member-name-link">PlayerAdvancementPreLoadEvent</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/entity/Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;who,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../advancement/PlayerAdvancementData.html" title="interface in moe.caramel.daydream.advancement">PlayerAdvancementData</a>&nbsp;provider,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="PlayerAdvancementPreLoadEvent.Reason.html" title="enum class in moe.caramel.daydream.event.player">PlayerAdvancementPreLoadEvent.Reason</a>&nbsp;reason)</code></div>
 <div class="col-last even-row-color">&nbsp;</div>
 </div>
 </section>
@@ -170,10 +164,20 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#addReplaceData(T)" class="member-name-link">addReplaceData</a><wbr>(<a href="PlayerAdvancementPreLoadEvent.html" title="type parameter in PlayerAdvancementPreLoadEvent">T</a>&nbsp;data)</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../advancement/progress/CriterionProgress.html" title="interface in moe.caramel.daydream.advancement.progress">CriterionProgress</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#createCriterionProgress(java.time.Instant)" class="member-name-link">createCriterionProgress</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/Instant.html" title="class or interface in java.time" class="external-link">Instant</a>&nbsp;obtainedTime)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">로드할 발전 과제 데이터를 설정합니다.</div>
+<div class="block">새로운 기준 진행도를 생성합니다.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../advancement/ProgressMap.html" title="interface in moe.caramel.daydream.advancement">ProgressMap</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#createProgressMap()" class="member-name-link">createProgressMap</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">새로운 진행도 맵을 생성합니다.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../advancement/PlayerAdvancementData.html" title="interface in moe.caramel.daydream.advancement">PlayerAdvancementData</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getData()" class="member-name-link">getData</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">플레이어 발전 과제 데이터를 가져옵니다.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/event/HandlerList.html" title="class in org.bukkit.event">HandlerList</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#getHandlerList()" class="member-name-link">getHandlerList</a>()</code></div>
@@ -181,15 +185,32 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/event/HandlerList.html" title="class in org.bukkit.event">HandlerList</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getHandlers()" class="member-name-link">getHandlers</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="PlayerAdvancementPreLoadEvent.html" title="type parameter in PlayerAdvancementPreLoadEvent">T</a>&gt;</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getReplaceData()" class="member-name-link">getReplaceData</a>()</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="PlayerAdvancementPreLoadEvent.Reason.html" title="enum class in moe.caramel.daydream.event.player">PlayerAdvancementPreLoadEvent.Reason</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getReason()" class="member-name-link">getReason</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">로드할 발전 과제 데이터를 가져옵니다.</div>
+<div class="block">이벤트 호출 사유를 가져옵니다.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isCompressed()" class="member-name-link">isCompressed</a>()</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isCancelled()" class="member-name-link">isCancelled</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">요구하는 데이터 형식이 압축된 데이터 형식인지 확인합니다.</div>
+<div class="block">발전 과제 데이터를 파일에서 읽어오는 바닐라 동작을 취소할지 여부를 가져옵니다.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>&lt;T&gt;&nbsp;void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#loadFromData(moe.caramel.daydream.advancement.AdvancementFormat,T)" class="member-name-link">loadFromData</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../advancement/AdvancementFormat.html" title="class in moe.caramel.daydream.advancement">AdvancementFormat</a>&lt;T&gt;&nbsp;format,
+ T&nbsp;data)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">데이터에서 발전 과제 진행도를 로드합니다.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>&lt;T&gt;&nbsp;T</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#saveToData(moe.caramel.daydream.advancement.AdvancementFormat,moe.caramel.daydream.advancement.ProgressMap)" class="member-name-link">saveToData</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../advancement/AdvancementFormat.html" title="class in moe.caramel.daydream.advancement">AdvancementFormat</a>&lt;T&gt;&nbsp;format,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../advancement/ProgressMap.html" title="interface in moe.caramel.daydream.advancement">ProgressMap</a>&nbsp;progress)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">발전 과제 진행도를 직렬화된 데이터로 변환합니다.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setCancelled(boolean)" class="member-name-link">setCancelled</a><wbr>(boolean&nbsp;cancel)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">발전 과제 데이터를 파일에서 읽어오는 바닐라 동작을 취소할지 여부를 결정합니다.</div>
 </div>
 </div>
 </div>
@@ -215,12 +236,15 @@ loadScripts(document, 'script');</script>
 <h2>Constructor Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="&lt;init&gt;(org.bukkit.entity.Player,boolean)">
+<section class="detail" id="&lt;init&gt;(org.bukkit.entity.Player,moe.caramel.daydream.advancement.PlayerAdvancementData,moe.caramel.daydream.event.player.PlayerAdvancementPreLoadEvent.Reason)">
 <h3>PlayerAdvancementPreLoadEvent</h3>
 <div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/ApiStatus.Internal.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Internal</a>
 </span><span class="modifiers">public</span>&nbsp;<span class="element-name">PlayerAdvancementPreLoadEvent</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../../org/bukkit/entity/Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;who,
- boolean&nbsp;compressed)</span></div>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../advancement/PlayerAdvancementData.html" title="interface in moe.caramel.daydream.advancement">PlayerAdvancementData</a>&nbsp;provider,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="PlayerAdvancementPreLoadEvent.Reason.html" title="enum class in moe.caramel.daydream.event.player">PlayerAdvancementPreLoadEvent.Reason</a>&nbsp;reason)</span></div>
 </section>
 </li>
 </ul>
@@ -250,37 +274,152 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="isCompressed()">
-<h3>isCompressed</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isCompressed</span>()</div>
-<div class="block">요구하는 데이터 형식이 압축된 데이터 형식인지 확인합니다.</div>
-<dl class="notes">
-<dt>Returns:</dt>
-<dd>만약 <code>true</code>인 경우 압축된 데이터를 요구합니다</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="getReplaceData()">
-<h3>getReplaceData</h3>
+<section class="detail" id="getData()">
+<h3>getData</h3>
 <div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
-</span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="PlayerAdvancementPreLoadEvent.html" title="type parameter in PlayerAdvancementPreLoadEvent">T</a>&gt;</span>&nbsp;<span class="element-name">getReplaceData</span>()</div>
-<div class="block">로드할 발전 과제 데이터를 가져옵니다.</div>
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../advancement/PlayerAdvancementData.html" title="interface in moe.caramel.daydream.advancement">PlayerAdvancementData</a></span>&nbsp;<span class="element-name">getData</span>()</div>
+<div class="block">플레이어 발전 과제 데이터를 가져옵니다.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>발전 과제 데이터</dd>
+<dd>플레이어 발전 과제 데이터</dd>
 </dl>
 </section>
 </li>
 <li>
-<section class="detail" id="addReplaceData(T)">
-<h3 id="addReplaceData(java.lang.Object)">addReplaceData</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">addReplaceData</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
- <a href="PlayerAdvancementPreLoadEvent.html" title="type parameter in PlayerAdvancementPreLoadEvent">T</a>&nbsp;data)</span></div>
-<div class="block">로드할 발전 과제 데이터를 설정합니다.</div>
+<section class="detail" id="getReason()">
+<h3>getReason</h3>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="PlayerAdvancementPreLoadEvent.Reason.html" title="enum class in moe.caramel.daydream.event.player">PlayerAdvancementPreLoadEvent.Reason</a></span>&nbsp;<span class="element-name">getReason</span>()</div>
+<div class="block">이벤트 호출 사유를 가져옵니다.</div>
 <dl class="notes">
+<dt>Returns:</dt>
+<dd>이벤트 호출 사유</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="isCancelled()">
+<h3>isCancelled</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isCancelled</span>()</div>
+<div class="block">발전 과제 데이터를 파일에서 읽어오는 바닐라 동작을 취소할지 여부를 가져옵니다.</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="../../../../../org/bukkit/event/Cancellable.html#isCancelled()">isCancelled</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../org/bukkit/event/Cancellable.html" title="interface in org.bukkit.event">Cancellable</a></code></dd>
+<dt>Returns:</dt>
+<dd>바닐라 동작 취소 여부</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="setCancelled(boolean)">
+<h3>setCancelled</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setCancelled</span><wbr><span class="parameters">(boolean&nbsp;cancel)</span></div>
+<div class="block">발전 과제 데이터를 파일에서 읽어오는 바닐라 동작을 취소할지 여부를 결정합니다.</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="../../../../../org/bukkit/event/Cancellable.html#setCancelled(boolean)">setCancelled</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../org/bukkit/event/Cancellable.html" title="interface in org.bukkit.event">Cancellable</a></code></dd>
 <dt>Parameters:</dt>
-<dd><code>data</code> - 발전 과제 데이터</dd>
+<dd><code>cancel</code> - 바닐라 동작 취소 여부</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="createProgressMap()">
+<h3>createProgressMap</h3>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../advancement/ProgressMap.html" title="interface in moe.caramel.daydream.advancement">ProgressMap</a></span>&nbsp;<span class="element-name">createProgressMap</span>()</div>
+<div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../../advancement/PlayerAdvancementData.html#createProgressMap()">PlayerAdvancementData</a></code></span></div>
+<div class="block">새로운 진행도 맵을 생성합니다.</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="../../advancement/PlayerAdvancementData.html#createProgressMap()">createProgressMap</a></code>&nbsp;in interface&nbsp;<code><a href="../../advancement/PlayerAdvancementData.html" title="interface in moe.caramel.daydream.advancement">PlayerAdvancementData</a></code></dd>
+<dt>Returns:</dt>
+<dd>진행도 맵</dd>
+<dt>See Also:</dt>
+<dd>
+<ul class="tag-list-long">
+<li><a href="../../advancement/PlayerAdvancementData.html#loadFromData(moe.caramel.daydream.advancement.AdvancementFormat,T)"><code>PlayerAdvancementData.loadFromData(AdvancementFormat, Object)</code></a></li>
+</ul>
+</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="createCriterionProgress(java.time.Instant)">
+<h3>createCriterionProgress</h3>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../advancement/progress/CriterionProgress.html" title="interface in moe.caramel.daydream.advancement.progress">CriterionProgress</a></span>&nbsp;<span class="element-name">createCriterionProgress</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/Instant.html" title="class or interface in java.time" class="external-link">Instant</a>&nbsp;obtainedTime)</span></div>
+<div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../../advancement/PlayerAdvancementData.html#createCriterionProgress(java.time.Instant)">PlayerAdvancementData</a></code></span></div>
+<div class="block">새로운 기준 진행도를 생성합니다.</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="../../advancement/PlayerAdvancementData.html#createCriterionProgress(java.time.Instant)">createCriterionProgress</a></code>&nbsp;in interface&nbsp;<code><a href="../../advancement/PlayerAdvancementData.html" title="interface in moe.caramel.daydream.advancement">PlayerAdvancementData</a></code></dd>
+<dt>Parameters:</dt>
+<dd><code>obtainedTime</code> - 기준 달성 시간 (<code>null</code>인 경우 달성하지 않음)</dd>
+<dt>Returns:</dt>
+<dd>기준 진행도</dd>
+<dt>See Also:</dt>
+<dd>
+<ul class="tag-list-long">
+<li><a href="../../advancement/ProgressMap.html#newProgress(org.bukkit.NamespacedKey,java.util.Map)"><code>ProgressMap.newProgress(NamespacedKey, Map)</code></a></li>
+</ul>
+</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="loadFromData(moe.caramel.daydream.advancement.AdvancementFormat,T)">
+<h3 id="loadFromData(moe.caramel.daydream.advancement.AdvancementFormat,java.lang.Object)">loadFromData</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="type-parameters">&lt;T&gt;</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">loadFromData</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../advancement/AdvancementFormat.html" title="class in moe.caramel.daydream.advancement">AdvancementFormat</a>&lt;T&gt;&nbsp;format,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ T&nbsp;data)</span>
+                      throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Exception.html" title="class or interface in java.lang" class="external-link">Exception</a></span></div>
+<div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../../advancement/PlayerAdvancementData.html#loadFromData(moe.caramel.daydream.advancement.AdvancementFormat,T)">PlayerAdvancementData</a></code></span></div>
+<div class="block">데이터에서 발전 과제 진행도를 로드합니다.</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="../../advancement/PlayerAdvancementData.html#loadFromData(moe.caramel.daydream.advancement.AdvancementFormat,T)">loadFromData</a></code>&nbsp;in interface&nbsp;<code><a href="../../advancement/PlayerAdvancementData.html" title="interface in moe.caramel.daydream.advancement">PlayerAdvancementData</a></code></dd>
+<dt>Type Parameters:</dt>
+<dd><code>T</code> - 데이터의 타입</dd>
+<dt>Parameters:</dt>
+<dd><code>format</code> - 발전 과제 데이터 저장 포맷</dd>
+<dd><code>data</code> - 진행도 데이터</dd>
+<dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Exception.html" title="class or interface in java.lang" class="external-link">Exception</a></code> - 일부 데이터는 읽는 도중 예외가 던져질 수 있습니다.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="saveToData(moe.caramel.daydream.advancement.AdvancementFormat,moe.caramel.daydream.advancement.ProgressMap)">
+<h3>saveToData</h3>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+</span><span class="modifiers">public</span>&nbsp;<span class="type-parameters">&lt;T&gt;</span>&nbsp;<span class="return-type">T</span>&nbsp;<span class="element-name">saveToData</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../advancement/AdvancementFormat.html" title="class in moe.caramel.daydream.advancement">AdvancementFormat</a>&lt;T&gt;&nbsp;format,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../advancement/ProgressMap.html" title="interface in moe.caramel.daydream.advancement">ProgressMap</a>&nbsp;progress)</span>
+                 throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Exception.html" title="class or interface in java.lang" class="external-link">Exception</a></span></div>
+<div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../../advancement/PlayerAdvancementData.html#saveToData(moe.caramel.daydream.advancement.AdvancementFormat,moe.caramel.daydream.advancement.ProgressMap)">PlayerAdvancementData</a></code></span></div>
+<div class="block">발전 과제 진행도를 직렬화된 데이터로 변환합니다.</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="../../advancement/PlayerAdvancementData.html#saveToData(moe.caramel.daydream.advancement.AdvancementFormat,moe.caramel.daydream.advancement.ProgressMap)">saveToData</a></code>&nbsp;in interface&nbsp;<code><a href="../../advancement/PlayerAdvancementData.html" title="interface in moe.caramel.daydream.advancement">PlayerAdvancementData</a></code></dd>
+<dt>Type Parameters:</dt>
+<dd><code>T</code> - 데이터의 타입</dd>
+<dt>Parameters:</dt>
+<dd><code>format</code> - 발전 과제 데이터 저장 포맷</dd>
+<dd><code>progress</code> - 진행도 데이터</dd>
+<dt>Returns:</dt>
+<dd>진행도 데이터</dd>
+<dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Exception.html" title="class or interface in java.lang" class="external-link">Exception</a></code> - 일부 데이터는 저장 도중 예외가 던져질 수 있습니다.</dd>
+<dt>See Also:</dt>
+<dd>
+<ul class="tag-list-long">
+<li><a href="PlayerAdvancementSaveEvent.html#getData()"><code>PlayerAdvancementSaveEvent.getData()</code></a></li>
+</ul>
+</dd>
 </dl>
 </section>
 </li>
