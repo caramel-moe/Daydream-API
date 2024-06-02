@@ -61,10 +61,10 @@ index 0000000000000000000000000000000000000000..6c878c968be02870c8552eb8db3d7b65
 +public interface PluginDatapackLoader {
 +}
 diff --git a/src/main/java/org/bukkit/plugin/PluginDescriptionFile.java b/src/main/java/org/bukkit/plugin/PluginDescriptionFile.java
-index c0691a849831f99268fdcb7b0f471f80a1a2a70e..2ae2974f20c95d8750e7e716aca7802672ab6389 100644
+index 8f45caade7357bc55c6a90cfe0c3a2feb2d877ff..de273de51632b29c33fbc7fb671030a2b9b7b9ac 100644
 --- a/src/main/java/org/bukkit/plugin/PluginDescriptionFile.java
 +++ b/src/main/java/org/bukkit/plugin/PluginDescriptionFile.java
-@@ -265,6 +265,28 @@ public final class PluginDescriptionFile implements io.papermc.paper.plugin.conf
+@@ -272,6 +272,28 @@ public final class PluginDescriptionFile implements io.papermc.paper.plugin.conf
       */
      @org.jetbrains.annotations.ApiStatus.Internal
      public PluginDescriptionFile(String rawName, String name, List<String> provides, String main, String classLoaderOf, List<String> depend, List<String> softDepend, List<String> loadBefore, String version, Map<String, Map<String, Object>> commands, String description, List<String> authors, List<String> contributors, String website, String prefix, PluginLoadOrder order, List<Permission> permissions, PermissionDefault defaultPerm, Set<PluginAwareness> awareness, String apiVersion, List<String> libraries) {
@@ -93,7 +93,7 @@ index c0691a849831f99268fdcb7b0f471f80a1a2a70e..2ae2974f20c95d8750e7e716aca78026
          this.rawName = rawName;
          this.name = name;
          this.provides = provides;
-@@ -1136,6 +1158,16 @@ public final class PluginDescriptionFile implements io.papermc.paper.plugin.conf
+@@ -1143,6 +1165,16 @@ public final class PluginDescriptionFile implements io.papermc.paper.plugin.conf
              classLoaderOf = map.get("class-loader-of").toString();
          }
  
@@ -110,7 +110,7 @@ index c0691a849831f99268fdcb7b0f471f80a1a2a70e..2ae2974f20c95d8750e7e716aca78026
          depend = makePluginNameList(map, "depend");
          softDepend = makePluginNameList(map, "softdepend");
          loadBefore = makePluginNameList(map, "loadbefore");
-@@ -1315,6 +1347,16 @@ public final class PluginDescriptionFile implements io.papermc.paper.plugin.conf
+@@ -1339,6 +1371,16 @@ public final class PluginDescriptionFile implements io.papermc.paper.plugin.conf
              map.put("class-loader-of", classLoaderOf);
          }
  

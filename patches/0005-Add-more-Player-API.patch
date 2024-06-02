@@ -65,6 +65,88 @@ index 7411f58f9f36beaadcc47c2264a4af313956ee03..201fe24d393beb8d0be4c4212aff5643
      @NotNull
      @Override
      public HandlerList getHandlers() {
+diff --git a/src/main/java/moe/caramel/daydream/event/player/AsyncPlayerDataPreLoadEvent.java b/src/main/java/moe/caramel/daydream/event/player/AsyncPlayerDataPreLoadEvent.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..96b35864b50695c27f22005aa5581e5c2bc38735
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/event/player/AsyncPlayerDataPreLoadEvent.java
+@@ -0,0 +1,76 @@
++package moe.caramel.daydream.event.player;
++
++import com.destroystokyo.paper.profile.PlayerProfile;
++import com.mojang.authlib.GameProfile;
++import org.bukkit.event.Event;
++import org.bukkit.event.HandlerList;
++import org.jetbrains.annotations.ApiStatus;
++import org.jetbrains.annotations.NotNull;
++import java.net.InetAddress;
++import java.util.UUID;
++
++/**
++ * 비동기 플레이어 데이터 사전 로드 이벤트
++ * <p>
++ * {@link org.bukkit.event.player.AsyncPlayerPreLoginEvent} 호출 이후에
++ * 플레이어의 {@link GameProfile}이 완성되면 호출됩니다.
++ * </p>
++ */
++public abstract class AsyncPlayerDataPreLoadEvent extends Event {
++
++    private static final HandlerList HANDLER_LIST = new HandlerList();
++    public @NotNull HandlerList getHandlers() { return HANDLER_LIST; }
++    public static @NotNull HandlerList getHandlerList() { return HANDLER_LIST; }
++
++    @ApiStatus.Internal
++    public AsyncPlayerDataPreLoadEvent() {
++        super(true);
++    }
++
++    /**
++     * 플레이어의 프로필을 가져옵니다.
++     *
++     * @return 플레이어의 프로필
++     */
++    @NotNull
++    public abstract GameProfile getGameProfile();
++
++    /**
++     * 플레이어의 프로필을 가져옵니다.
++     *
++     * @deprecated 메서드를 호출할 때마다 새로운 프로필 미러가 생성됩니다.
++     * {@link #getGameProfile()}를 사용하세요.
++     * @return 플레이어의 프로필
++     */
++    @NotNull
++    @Deprecated
++    public abstract PlayerProfile getProfile();
++
++    /**
++     * 플레이어의 이름을 가져옵니다.
++     *
++     * @return 플레이어의 이름
++     */
++    @NotNull
++    public final String getName() {
++        return getGameProfile().getName();
++    }
++
++    /**
++     * 플레이어의 UUID를 가져옵니다.
++     *
++     * @return 플레이어의 UUID
++     */
++    @NotNull
++    public final UUID getUniqueId() {
++        return getGameProfile().getId();
++    }
++
++    /**
++     * 플레이어의 IP 주소를 가져옵니다.
++     *
++     * @return 플레이어의 IP 주소
++     */
++    @NotNull
++    public abstract InetAddress getAddress();
++}
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
 index 6c327a07bf8a6aa11a2d7dad12b2830acc539484..a4e0f613058f96db94f2fd91d015a87dda356a70 100644
 --- a/src/main/java/org/bukkit/entity/Player.java

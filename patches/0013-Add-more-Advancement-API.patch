@@ -373,6 +373,79 @@ index 0000000000000000000000000000000000000000..98cb796221c7bef250861a2f89e9ccf9
 +    @NotNull
 +    AdvancementBuilder enableCount(final int count, final @NotNull JsonElement criterion);
 +}
+diff --git a/src/main/java/moe/caramel/daydream/advancement/AdvancementFormat.java b/src/main/java/moe/caramel/daydream/advancement/AdvancementFormat.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..d89f3ad6fcc5365a3234b26b6765352993e437f3
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/advancement/AdvancementFormat.java
+@@ -0,0 +1,67 @@
++package moe.caramel.daydream.advancement;
++
++import com.google.gson.JsonElement;
++import org.jetbrains.annotations.NotNull;
++import java.util.Objects;
++
++/**
++ * 발전 과제 데이터 저장 포맷
++ *
++ * @param <T> 타입
++ */
++public final class AdvancementFormat<T> {
++
++    /**
++     * Json (기본)
++     */
++    public static final AdvancementFormat<JsonElement> JSON = new AdvancementFormat<>("json", false);
++    /**
++     * 압축된 Json
++     */
++    public static final AdvancementFormat<JsonElement> COMPRESSED_JSON = new AdvancementFormat<>("compressed_json", true);
++    /**
++     * NBT
++     */
++    public static final AdvancementFormat<byte[]> NBT = new AdvancementFormat<>("nbt", false);
++    /**
++     * 압축된 NBT
++     */
++    public static final AdvancementFormat<byte[]> COMPRESSED_NBT = new AdvancementFormat<>("compressed_nbt", true);
++    /**
++     * 진행도 맵
++     */
++    public static final AdvancementFormat<ProgressMap> PROGRESS_MAP = new AdvancementFormat<>("progress_map", false);
++
++    private final String name;
++    private final boolean compressed;
++
++    private AdvancementFormat(final @NotNull String name, final boolean compressed) {
++        this.name = name;
++        this.compressed = compressed;
++    }
++
++    /**
++     * 요구하는 데이터 형식이 압축된 데이터 형식인지 확인합니다.
++     *
++     * @return 만약 {@code true}인 경우 압축된 데이터를 요구합니다
++     */
++    public boolean isCompressed() {
++        return compressed;
++    }
++
++    @Override
++    public boolean equals(final Object o) {
++        if (this == o) {
++            return true;
++        } else if (o instanceof AdvancementFormat<?> that) {
++            return (compressed == that.compressed) && Objects.equals(name, that.name);
++        } else {
++            return false;
++        }
++    }
++
++    @Override
++    public int hashCode() {
++        return Objects.hash(name, compressed);
++    }
++}
 diff --git a/src/main/java/moe/caramel/daydream/advancement/AdvancementReward.java b/src/main/java/moe/caramel/daydream/advancement/AdvancementReward.java
 new file mode 100644
 index 0000000000000000000000000000000000000000..74347bc8c9a45be1cb9af9fb41641e903f86b95f
@@ -440,168 +513,366 @@ index 0000000000000000000000000000000000000000..74347bc8c9a45be1cb9af9fb41641e90
 +    @Nullable
 +    NamespacedKey function();
 +}
-diff --git a/src/main/java/moe/caramel/daydream/advancement/AdvancementSaveFormat.java b/src/main/java/moe/caramel/daydream/advancement/AdvancementSaveFormat.java
+diff --git a/src/main/java/moe/caramel/daydream/advancement/PlayerAdvancementData.java b/src/main/java/moe/caramel/daydream/advancement/PlayerAdvancementData.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..f7924313d2e08cef47561f4470194193292a1be0
+index 0000000000000000000000000000000000000000..a1f319cbebde6a5476e9ac2b282ffc1ef9f4862d
 --- /dev/null
-+++ b/src/main/java/moe/caramel/daydream/advancement/AdvancementSaveFormat.java
-@@ -0,0 +1,60 @@
++++ b/src/main/java/moe/caramel/daydream/advancement/PlayerAdvancementData.java
+@@ -0,0 +1,56 @@
 +package moe.caramel.daydream.advancement;
 +
-+import com.google.gson.JsonElement;
++import moe.caramel.daydream.advancement.progress.CriterionProgress;
++import org.bukkit.NamespacedKey;
 +import org.jetbrains.annotations.NotNull;
-+import java.util.Objects;
++import org.jetbrains.annotations.Nullable;
++import java.time.Instant;
++import java.util.Map;
 +
 +/**
-+ * 발전 과제 저장 포맷
-+ *
-+ * @param <T> 타입
++ * 플레이어 발전 과제 데이터
 + */
-+public final class AdvancementSaveFormat<T> {
++public interface PlayerAdvancementData {
 +
 +    /**
-+     * Json (기본)
-+     */
-+    public static final AdvancementSaveFormat<JsonElement> JSON = new AdvancementSaveFormat<>("json", false);
-+    /**
-+     * 압축된 Json
-+     */
-+    public static final AdvancementSaveFormat<JsonElement> COMPRESSED_JSON = new AdvancementSaveFormat<>("compressed_json", true);
-+    /**
-+     * NBT
-+     */
-+    public static final AdvancementSaveFormat<byte[]> NBT = new AdvancementSaveFormat<>("nbt", false);
-+    /**
-+     * 압축된 NBT
-+     */
-+    public static final AdvancementSaveFormat<byte[]> COMPRESSED_NBT = new AdvancementSaveFormat<>("compressed_nbt", true);
-+
-+    private final String name;
-+    private final boolean compressed;
-+
-+    private AdvancementSaveFormat(final @NotNull String name, final boolean compressed) {
-+        this.name = name;
-+        this.compressed = compressed;
-+    }
-+
-+    /**
-+     * 요구하는 데이터 형식이 압축된 데이터 형식인지 확인합니다.
++     * 새로운 진행도 맵을 생성합니다.
 +     *
-+     * @return 만약 {@code true}인 경우 압축된 데이터를 요구합니다
++     * @see #loadFromData(AdvancementFormat, Object)
++     * @return 진행도 맵
 +     */
-+    public boolean isCompressed() {
-+        return compressed;
-+    }
++    @NotNull
++    ProgressMap createProgressMap();
 +
-+    @Override
-+    public boolean equals(final Object o) {
-+        if (this == o) return true;
-+        if (o == null || getClass() != o.getClass()) return false;
-+        final AdvancementSaveFormat<?> that = (AdvancementSaveFormat<?>) o;
-+        return (compressed == that.compressed) && Objects.equals(name, that.name);
-+    }
++    /**
++     * 새로운 기준 진행도를 생성합니다.
++     *
++     * @see ProgressMap#newProgress(NamespacedKey, Map)
++     * @param obtainedTime 기준 달성 시간 ({@code null}인 경우 달성하지 않음)
++     * @return 기준 진행도
++     */
++    @NotNull
++    CriterionProgress createCriterionProgress(final @Nullable Instant obtainedTime);
 +
-+    @Override
-+    public int hashCode() {
-+        return Objects.hash(name, compressed);
-+    }
++    /**
++     * 데이터에서 발전 과제 진행도를 로드합니다.
++     *
++     * @param format 발전 과제 데이터 저장 포맷
++     * @param data 진행도 데이터
++     * @param <T> 데이터의 타입
++     * @throws Exception 일부 데이터는 읽는 도중 예외가 던져질 수 있습니다.
++     */
++    <T> void loadFromData(final @NotNull AdvancementFormat<T> format, final @NotNull T data) throws Exception;
++
++    /**
++     * 발전 과제 진행도를 직렬화된 데이터로 변환합니다.
++     *
++     * @see moe.caramel.daydream.event.player.PlayerAdvancementSaveEvent#getData()
++     * @param format 발전 과제 데이터 저장 포맷
++     * @param progress 진행도 데이터
++     * @return 진행도 데이터
++     * @param <T> 데이터의 타입
++     * @throws Exception 일부 데이터는 저장 도중 예외가 던져질 수 있습니다.
++     */
++    @NotNull
++    <T> T saveToData(final @NotNull AdvancementFormat<T> format, final @NotNull ProgressMap progress) throws Exception;
 +}
+diff --git a/src/main/java/moe/caramel/daydream/advancement/ProgressMap.java b/src/main/java/moe/caramel/daydream/advancement/ProgressMap.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..ba50b933cfd0fc98cddb326317cdbc505083f233
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/advancement/ProgressMap.java
+@@ -0,0 +1,53 @@
++package moe.caramel.daydream.advancement;
++
++import moe.caramel.daydream.advancement.progress.CountableProgress;
++import moe.caramel.daydream.advancement.progress.CriterionProgress;
++import moe.caramel.daydream.advancement.progress.CriteriaProgress;
++import org.bukkit.NamespacedKey;
++import org.jetbrains.annotations.NotNull;
++import org.jetbrains.annotations.Nullable;
++import java.time.Instant;
++import java.util.Map;
++import java.util.function.BiConsumer;
++
++/**
++ * 플레이어 발전 과제 진행도 맵
++ */
++public interface ProgressMap {
++
++    /**
++     * 진행도 맵의 데이터를 가져옵니다.
++     *
++     * @return 수정할 수 없는 데이터 맵
++     */
++    @NotNull
++    Map<NamespacedKey, CriteriaProgress> getData();
++
++    /**
++     * 진행도 맵에 대하여 반복을 실행합니다.
++     *
++     * @param action 수행할 작업
++     */
++    void iterator(final @NotNull BiConsumer<NamespacedKey, CriteriaProgress> action);
++
++    /**
++     * 주어진 발전 과제에 대하여 새로운 진행도를 생성하고 추가합니다.
++     *
++     * @param key 대상 발전 과제의 키
++     * @param criteria 기준 달성 목록
++     * @return 생성된 진행도
++     */
++    @NotNull
++    CriteriaProgress newProgress(final @NotNull NamespacedKey key, final @NotNull Map<String, CriterionProgress> criteria);
++
++    /**
++     * 주어진 발전 과제에 대하여 새로운 카운트 형식의 진행도를 생성하고 추가합니다.
++     *
++     * @param key 대상 발전 과제의 키
++     * @param currentCount 현재 카운트
++     * @param obtainedTime 기준 달성 시간 ({@code null}인 경우 달성하지 않음)
++     * @return 생성된 카운트 형식의 진행도
++     */
++    @NotNull
++    CountableProgress newCountProgress(final @NotNull NamespacedKey key, final int currentCount, final @Nullable Instant obtainedTime);
++}
+diff --git a/src/main/java/moe/caramel/daydream/advancement/progress/CountableProgress.java b/src/main/java/moe/caramel/daydream/advancement/progress/CountableProgress.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..2a26693dc8161dec6e94f8c26e9baec2b8ee0e18
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/advancement/progress/CountableProgress.java
+@@ -0,0 +1,14 @@
++package moe.caramel.daydream.advancement.progress;
++
++/**
++ * 카운트 형식의 발전 과제 진행도
++ */
++public interface CountableProgress extends CriteriaProgress {
++
++    /**
++     * 현재 카운트를 가져옵니다.
++     *
++     * @return 현재 카운트
++     */
++    int getCurrentCount();
++}
+diff --git a/src/main/java/moe/caramel/daydream/advancement/progress/CriteriaProgress.java b/src/main/java/moe/caramel/daydream/advancement/progress/CriteriaProgress.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..da5f54828cd0ad73e74c78550415811016bc6b90
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/advancement/progress/CriteriaProgress.java
+@@ -0,0 +1,18 @@
++package moe.caramel.daydream.advancement.progress;
++
++/**
++ * 발전 과제 진행도 ({@link CriterionProgress}의 집합)
++ * <p>
++ * {@link org.bukkit.advancement.AdvancementProgress}와 동일하지만
++ * NMS를 직접 래핑하므로 제한된 작업만 가능합니다.
++ * </p>
++ */
++public interface CriteriaProgress {
++
++    /**
++     * 발전 과제를 달성했는지 여부를 가져옵니다.
++     *
++     * @return 발전 과제 달성 여부
++     */
++    boolean isProgressDone();
++}
+diff --git a/src/main/java/moe/caramel/daydream/advancement/progress/CriterionProgress.java b/src/main/java/moe/caramel/daydream/advancement/progress/CriterionProgress.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..56100df41aa947444cdb16b015ab5a91024b257d
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/advancement/progress/CriterionProgress.java
+@@ -0,0 +1,37 @@
++package moe.caramel.daydream.advancement.progress;
++
++import org.jetbrains.annotations.Nullable;
++import java.time.Instant;
++
++/**
++ * 기준 진행도
++ *
++ * @see CriteriaProgress
++ */
++public interface CriterionProgress {
++
++    /**
++     * 기준을 달성했는지 여부를 가져옵니다.
++     *
++     * @return 기준 달성 여부
++     */
++    boolean isProgressDone();
++
++    /**
++     * 기준을 달성한 것으로 변경합니다.
++     */
++    void setGrant();
++
++    /**
++     * 기준을 달성하지 않은 것으로 변경합니다.
++     */
++    void setRevoke();
++
++    /**
++     * 기준의 달성 시간을 가져옵니다.
++     *
++     * @return 기준 달성 시간
++     */
++    @Nullable
++    Instant getObtainedTime();
++}
+diff --git a/src/main/java/moe/caramel/daydream/event/player/AsyncPlayerDataPreLoadEvent.java b/src/main/java/moe/caramel/daydream/event/player/AsyncPlayerDataPreLoadEvent.java
+index 96b35864b50695c27f22005aa5581e5c2bc38735..c3a9f5dff5ddf53d5070b429eb9dfad45fd0c193 100644
+--- a/src/main/java/moe/caramel/daydream/event/player/AsyncPlayerDataPreLoadEvent.java
++++ b/src/main/java/moe/caramel/daydream/event/player/AsyncPlayerDataPreLoadEvent.java
+@@ -73,4 +73,18 @@ public abstract class AsyncPlayerDataPreLoadEvent extends Event {
+      */
+     @NotNull
+     public abstract InetAddress getAddress();
++
++    // Daydream start - Add more Advancement API
++    /**
++     * 플레이어 발전 과제 데이터를 생성하고 가져옵니다.
++     * <p>
++     * 플레이어의 로그인이 완료되기 전에 생성되기에 중복 로그인으로
++     * 인한 데이터 증발 등 데이터 관리에 주의해주세요.
++     * </p>
++     *
++     * @return 플레이어 발전 과제 데이터 (이미 생성된 경우 기존의 인스턴스를 가져옴)
++     */
++    @NotNull
++    public abstract moe.caramel.daydream.advancement.PlayerAdvancementData createAndGetAdvancements();
++    // Daydream end - Add more Advancement API
+ }
 diff --git a/src/main/java/moe/caramel/daydream/event/player/PlayerAdvancementPreLoadEvent.java b/src/main/java/moe/caramel/daydream/event/player/PlayerAdvancementPreLoadEvent.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..21bbda2d1fae053aa5734652c5670a74b6e1d06c
+index 0000000000000000000000000000000000000000..c4be6c058e86cde01fbd2d84d6cc3d8c548abd65
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/event/player/PlayerAdvancementPreLoadEvent.java
-@@ -0,0 +1,81 @@
+@@ -0,0 +1,114 @@
 +package moe.caramel.daydream.event.player;
 +
-+import com.google.gson.JsonElement;
++import moe.caramel.daydream.advancement.AdvancementFormat;
++import moe.caramel.daydream.advancement.PlayerAdvancementData;
++import moe.caramel.daydream.advancement.ProgressMap;
++import moe.caramel.daydream.advancement.progress.CriterionProgress;
 +import org.bukkit.entity.Player;
++import org.bukkit.event.Cancellable;
 +import org.bukkit.event.HandlerList;
 +import org.bukkit.event.player.PlayerEvent;
 +import org.jetbrains.annotations.ApiStatus;
 +import org.jetbrains.annotations.NotNull;
-+import java.util.ArrayList;
-+import java.util.List;
++import org.jetbrains.annotations.Nullable;
++import java.time.Instant;
 +
 +/**
 + * 플레이어의 발전 과제 데이터를 로드하기 직전에 호출됩니다.
-+ * <p>일반적으로 {@link org.bukkit.event.player.PlayerJoinEvent} 이전에 호출됩니다.</p>
-+ *
-+ * @param <T> 타입
++ * <p>
++ * 일반적으로 {@link org.bukkit.event.player.PlayerJoinEvent} 이전에 호출됩니다.
++ * </p>
 + */
-+public sealed class PlayerAdvancementPreLoadEvent<T> extends PlayerEvent {
++public final class PlayerAdvancementPreLoadEvent extends PlayerEvent implements Cancellable, PlayerAdvancementData {
 +
 +    private static final HandlerList HANDLER_LIST = new HandlerList();
 +    public @NotNull HandlerList getHandlers() { return HANDLER_LIST; }
 +    public static @NotNull HandlerList getHandlerList() { return HANDLER_LIST; }
 +
-+    private final boolean compressed;
-+    private List<T> data;
++    private final PlayerAdvancementData provider;
++    private final Reason reason;
++    private boolean cancelled;
 +
 +    @ApiStatus.Internal
-+    public PlayerAdvancementPreLoadEvent(final @NotNull Player who, final boolean compressed) {
++    public PlayerAdvancementPreLoadEvent(final @NotNull Player who, final @NotNull PlayerAdvancementData provider, final @NotNull Reason reason) {
 +        super(who);
-+        this.compressed = compressed;
-+        this.data = new ArrayList<>();
++        this.provider = provider;
++        this.reason = reason;
 +    }
 +
 +    /**
-+     * 요구하는 데이터 형식이 압축된 데이터 형식인지 확인합니다.
++     * 플레이어 발전 과제 데이터를 가져옵니다.
 +     *
-+     * @return 만약 {@code true}인 경우 압축된 데이터를 요구합니다
-+     */
-+    public boolean isCompressed() {
-+        return compressed;
-+    }
-+
-+    /**
-+     * 로드할 발전 과제 데이터를 가져옵니다.
-+     *
-+     * @return 발전 과제 데이터
++     * @return 플레이어 발전 과제 데이터
 +     */
 +    @NotNull
-+    public List<T> getReplaceData() {
-+        return data;
++    public PlayerAdvancementData getData() {
++        return provider;
 +    }
 +
 +    /**
-+     * 로드할 발전 과제 데이터를 설정합니다.
++     * 이벤트 호출 사유를 가져옵니다.
 +     *
-+     * @param data 발전 과제 데이터
++     * @return 이벤트 호출 사유
 +     */
-+    public void addReplaceData(final @NotNull T data) {
-+        this.data.add(data);
++    @NotNull
++    public Reason getReason() {
++        return reason;
 +    }
 +
 +    /**
-+     * 서버가 Json 형식으로 데이터를 저장하는 경우
++     * 발전 과제 데이터를 파일에서 읽어오는 바닐라 동작을 취소할지 여부를 가져옵니다.
++     *
++     * @return 바닐라 동작 취소 여부
 +     */
-+    public static final class Json extends PlayerAdvancementPreLoadEvent<JsonElement> {
-+
-+        public Json(final @NotNull Player who, final boolean compressed) {
-+            super(who, compressed);
-+        }
++    @Override
++    public boolean isCancelled() {
++        return cancelled;
 +    }
 +
 +    /**
-+     * 서버가 Json 형식으로 데이터를 저장하는 경우
++     * 발전 과제 데이터를 파일에서 읽어오는 바닐라 동작을 취소할지 여부를 결정합니다.
++     *
++     * @param cancel 바닐라 동작 취소 여부
 +     */
-+    public static final class Nbt extends PlayerAdvancementPreLoadEvent<byte[]> {
++    @Override
++    public void setCancelled(final boolean cancel) {
++        this.cancelled = cancel;
++    }
 +
-+        public Nbt(final @NotNull Player who, final boolean compressed) {
-+            super(who, compressed);
-+        }
++    /**
++     * 이벤트 호출 사유
++     */
++    public enum Reason {
++        /**
++         * 플레이어 접속
++         */
++        PLAYER_JOIN,
++        /**
++         * 서버 리소스 리로드
++         */
++        SERVER_RESOURCE_RELOAD
++    }
++
++    // =========================== (Provider wrapper)
++
++    @Override
++    public @NotNull ProgressMap createProgressMap() {
++        return provider.createProgressMap();
++    }
++
++    @Override
++    public @NotNull CriterionProgress createCriterionProgress(final @Nullable Instant obtainedTime) {
++        return provider.createCriterionProgress(obtainedTime);
++    }
++
++    @Override
++    public <T> void loadFromData(final @NotNull AdvancementFormat<T> format, final @NotNull T data) throws Exception {
++        this.provider.loadFromData(format, data);
++    }
++
++    @Override
++    public <T> @NotNull T saveToData(final @NotNull AdvancementFormat<T> format, final @NotNull ProgressMap progress) throws Exception {
++        return provider.saveToData(format, progress);
 +    }
 +}
 diff --git a/src/main/java/moe/caramel/daydream/event/player/PlayerAdvancementSaveEvent.java b/src/main/java/moe/caramel/daydream/event/player/PlayerAdvancementSaveEvent.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..81cf8963c7a1ec67fb0368c2f457a3a77561b589
+index 0000000000000000000000000000000000000000..f8eb1cb00a070733a9ee2d7b3dc2ea73ebd63880
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/event/player/PlayerAdvancementSaveEvent.java
-@@ -0,0 +1,95 @@
+@@ -0,0 +1,72 @@
 +package moe.caramel.daydream.event.player;
 +
-+import com.google.gson.JsonElement;
++import moe.caramel.daydream.advancement.ProgressMap;
 +import org.bukkit.NamespacedKey;
 +import org.bukkit.entity.Player;
 +import org.bukkit.event.Cancellable;
@@ -612,26 +883,22 @@ index 0000000000000000000000000000000000000000..81cf8963c7a1ec67fb0368c2f457a3a7
 +
 +/**
 + * 플레이어 발전 과제 데이터가 저장될 때 호출됩니다.
-+ *
-+ * @param <T> 타입
 + */
-+public sealed class PlayerAdvancementSaveEvent<T> extends PlayerEvent implements Cancellable {
++public final class PlayerAdvancementSaveEvent extends PlayerEvent implements Cancellable {
 +
 +    private static final HandlerList HANDLER_LIST = new HandlerList();
 +    public @NotNull HandlerList getHandlers() { return HANDLER_LIST; }
 +    public static @NotNull HandlerList getHandlerList() { return HANDLER_LIST; }
 +
 +    private final NamespacedKey section;
-+    private final T data;
-+    private final boolean compressed;
++    private final ProgressMap progress;
 +    private boolean cancelled;
 +
 +    @ApiStatus.Internal
-+    public PlayerAdvancementSaveEvent(final @NotNull Player who, final @NotNull NamespacedKey section, final @NotNull T data, final boolean compressed) {
++    public PlayerAdvancementSaveEvent(final @NotNull Player who, final @NotNull NamespacedKey section, final @NotNull ProgressMap progress) {
 +        super(who);
 +        this.section = section;
-+        this.data = data;
-+        this.compressed = compressed;
++        this.progress = progress;
 +    }
 +
 +    /**
@@ -646,52 +913,33 @@ index 0000000000000000000000000000000000000000..81cf8963c7a1ec67fb0368c2f457a3a7
 +    }
 +
 +    /**
-+     * 요구하는 데이터 형식이 압축된 데이터 형식인지 확인합니다.
-+     *
-+     * @return 만약 {@code true}인 경우 압축된 데이터를 요구합니다
-+     */
-+    public boolean isCompressed() {
-+        return compressed;
-+    }
-+
-+    @Override
-+    public boolean isCancelled() {
-+        return this.cancelled;
-+    }
-+
-+    @Override
-+    public void setCancelled(final boolean cancel) {
-+        this.cancelled = cancel;
-+    }
-+
-+    /**
 +     * 저장될 발전 과제 데이터를 가져옵니다.
 +     *
 +     * @return 발전 과제 데이터
 +     */
 +    @NotNull
-+    public T getData() {
-+        return data;
++    public ProgressMap getData() {
++        return progress;
 +    }
 +
 +    /**
-+     * 서버가 Json 형식으로 데이터를 저장하는 경우
++     * 발전 과제 데이터를 파일에 저장하는 바닐라 동작을 취소할지 여부를 가져옵니다.
++     *
++     * @return 바닐라 동작 취소 여부
 +     */
-+    public static final class Json extends PlayerAdvancementSaveEvent<JsonElement> {
-+
-+        public Json(final @NotNull Player who, final @NotNull NamespacedKey section, final @NotNull JsonElement json, final boolean compressed) {
-+            super(who, section, json, compressed);
-+        }
++    @Override
++    public boolean isCancelled() {
++        return this.cancelled;
 +    }
 +
 +    /**
-+     * 서버가 Json 형식으로 데이터를 저장하는 경우
++     * 발전 과제 데이터를 파일에 저장하는 바닐라 동작을 취소할지 여부를 결정합니다.
++     *
++     * @param cancel 바닐라 동작 취소 여부
 +     */
-+    public static final class Nbt extends PlayerAdvancementSaveEvent<byte[]> {
-+
-+        public Nbt(final @NotNull Player who, final @NotNull NamespacedKey section, final @NotNull byte[] nbt, final boolean compressed) {
-+            super(who, section, nbt, compressed);
-+        }
++    @Override
++    public void setCancelled(final boolean cancel) {
++        this.cancelled = cancel;
 +    }
 +}
 diff --git a/src/main/java/moe/caramel/daydream/event/player/PlayerAdvancementScreenEvent.java b/src/main/java/moe/caramel/daydream/event/player/PlayerAdvancementScreenEvent.java
@@ -933,7 +1181,7 @@ index 6c878c968be02870c8552eb8db3d7b652e605540..9bc89a99c134ff4ee4904a60cf73fbd7
 +    // Daydream end - Add more Advancement API
  }
 diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
-index 19fd9c0d8eac1501ade02f83d9c8e811dcb429d4..11e9dbbc63040ae49e00dbef1a6c4d13d1e70eed 100644
+index d0a2a6a74cc008a58ddbf414916dd9463b9e42c4..b5c2905dff917a69316e7c9f32be01343af6e36b 100644
 --- a/src/main/java/org/bukkit/Bukkit.java
 +++ b/src/main/java/org/bukkit/Bukkit.java
 @@ -2476,6 +2476,41 @@ public final class Bukkit {
@@ -979,7 +1227,7 @@ index 19fd9c0d8eac1501ade02f83d9c8e811dcb429d4..11e9dbbc63040ae49e00dbef1a6c4d13
       * Creates a new {@link BlockData} instance for the specified Material, with
       * all properties initialized to unspecified defaults.
 diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
-index f30f43364231d1c492d9fb31262b57c3504f4fb3..fa243515a62be2688e78280568623d94d0671655 100644
+index c36895bbde6c48841aedad81c5c0975a7175c426..72a5bc7884d05a1d5db4c7fdefef5fc2378709df 100644
 --- a/src/main/java/org/bukkit/Server.java
 +++ b/src/main/java/org/bukkit/Server.java
 @@ -2124,6 +2124,35 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
@@ -1101,7 +1349,7 @@ index f9bc179da071e7bd57cefc50d6763317fb643b74..3b1b55977d94de338f536896babedc7e
 +    // Daydream end - Add more Advancement API
  }
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index c4d4363aa2f2f63c55f61a8aecf8e33134328796..3d04b2747bcb4a151d71518fd16cf686caaf50fd 100644
+index c4d4363aa2f2f63c55f61a8aecf8e33134328796..41e9d428c3cd249d1eb9ed8e9ea49c18ecdf4823 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
 @@ -3249,6 +3249,38 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
@@ -1117,7 +1365,7 @@ index c4d4363aa2f2f63c55f61a8aecf8e33134328796..3d04b2747bcb4a151d71518fd16cf686
 +     * @param <T> 데이터 타입
 +     */
 +    @NotNull
-+    public <T> T serializeAdvancementProgress(@NotNull moe.caramel.daydream.advancement.AdvancementSaveFormat<T> format);
++    public <T> T serializeAdvancementProgress(@NotNull moe.caramel.daydream.advancement.AdvancementFormat<T> format);
 +
 +    /**
 +     * 플레이어의 직렬화된 발전 과제 데이터를 가져옵니다.
@@ -1128,7 +1376,7 @@ index c4d4363aa2f2f63c55f61a8aecf8e33134328796..3d04b2747bcb4a151d71518fd16cf686
 +     * @param <T> 데이터 타입
 +     */
 +    @NotNull
-+    public <T> T serializeAdvancementProgress(@NotNull moe.caramel.daydream.advancement.AdvancementSaveFormat<T> format, @NotNull org.bukkit.NamespacedKey saveSection);
++    public <T> T serializeAdvancementProgress(@NotNull moe.caramel.daydream.advancement.AdvancementFormat<T> format, @NotNull org.bukkit.NamespacedKey saveSection);
 +
 +    /**
 +     * 플레이어에게 발전 과제 알림을 전송합니다.
