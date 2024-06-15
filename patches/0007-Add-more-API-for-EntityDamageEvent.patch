@@ -6,10 +6,10 @@ Subject: [PATCH] Add more API for EntityDamageEvent
 
 diff --git a/src/main/java/moe/caramel/daydream/world/DamageMata.java b/src/main/java/moe/caramel/daydream/world/DamageMata.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..bb62ae43c0bb778c4a5d761d0e14515bb491bc6c
+index 0000000000000000000000000000000000000000..a028efebea58fe8c5d633e5d4e079f050ec2a677
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/world/DamageMata.java
-@@ -0,0 +1,199 @@
+@@ -0,0 +1,201 @@
 +package moe.caramel.daydream.world;
 +
 +import org.bukkit.entity.Entity;
@@ -122,7 +122,6 @@ index 0000000000000000000000000000000000000000..bb62ae43c0bb778c4a5d761d0e14515b
 +    // ====================== (Tags)
 +
 +    boolean hasTagDamagesHelmet();
-+    boolean hasTagBreezeImmuneTo();
 +    boolean hasTagBypassesArmor();
 +    boolean hasTagBypassesShield();
 +    boolean hasTagBypassesInvulnerability();
@@ -152,6 +151,9 @@ index 0000000000000000000000000000000000000000..bb62ae43c0bb778c4a5d761d0e14515b
 +    boolean hasTagCanBreakArmorStand();
 +    boolean hasTagBypassesWolfArmor();
 +    boolean hasTagIsPlayerAttack();
++    boolean hasTagIsBurnFromStepping();
++    boolean hasTagIsPanicCauses();
++    boolean hasTagIsPanicEnvironmentalCauses();
 +
 +    // ==============================================
 +
@@ -242,7 +244,7 @@ index 7635610e56c051ce3c8a876911ba5cd0a9248496..f4b2ba6610ce3119f612047b6452777a
       * Get the {@link DamageType}.
       *
 diff --git a/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java b/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java
-index 446b3ffd5caca5344be1c250475679834cd0d4a2..31d1cd2e0cbefad6a4bbb10d9d3a4b5d6e954c09 100644
+index ca634147935c3bda8abad5dc73327e51381793a8..459e24396a1aefa59e4abc02c6e9011f661a1ed8 100644
 --- a/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java
 +++ b/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java
 @@ -59,6 +59,18 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {

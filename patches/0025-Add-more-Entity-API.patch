@@ -5,7 +5,7 @@ Subject: [PATCH] Add more Entity API
 
 
 diff --git a/src/main/java/org/bukkit/entity/Entity.java b/src/main/java/org/bukkit/entity/Entity.java
-index a4a48484f2138e12fc54744daedca6330284fd47..80e71d4097f55a061a4aa55653c31e46a2ae31cb 100644
+index 3934a1664e6b67c650f9fea9ba46b36272516c17..06d1d8840a649715aee9fd3ad960e80e9cea0f4f 100644
 --- a/src/main/java/org/bukkit/entity/Entity.java
 +++ b/src/main/java/org/bukkit/entity/Entity.java
 @@ -111,6 +111,17 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
@@ -26,7 +26,7 @@ index a4a48484f2138e12fc54744daedca6330284fd47..80e71d4097f55a061a4aa55653c31e46
      /**
       * Gets the current world this entity resides in
       *
-@@ -365,6 +376,33 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
+@@ -369,6 +380,33 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
      void lockFreezeTicks(boolean locked);
      // Paper end - Freeze Tick Lock API
  
@@ -60,7 +60,7 @@ index a4a48484f2138e12fc54744daedca6330284fd47..80e71d4097f55a061a4aa55653c31e46
      /**
       * Mark the entity's removal.
       *
-@@ -528,6 +566,16 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
+@@ -532,6 +570,16 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
      @NotNull
      public UUID getUniqueId();
  
@@ -78,7 +78,7 @@ index a4a48484f2138e12fc54744daedca6330284fd47..80e71d4097f55a061a4aa55653c31e46
      /**
       * Gets the metadata of the entity.
 diff --git a/src/main/java/org/bukkit/entity/LivingEntity.java b/src/main/java/org/bukkit/entity/LivingEntity.java
-index b777e530122549455dcce6fac8d4a151c1c0af42..be8bbd25dbf77090559c9eccf282c19dae484ac9 100644
+index 5c29956c6db53440322330ff723c7087193641f1..1118de6ae6459b83e20a45590f15970fcdc33c97 100644
 --- a/src/main/java/org/bukkit/entity/LivingEntity.java
 +++ b/src/main/java/org/bukkit/entity/LivingEntity.java
 @@ -696,6 +696,32 @@ public interface LivingEntity extends Attributable, Damageable, ProjectileSource

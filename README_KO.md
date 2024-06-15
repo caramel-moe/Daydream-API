@@ -5,7 +5,7 @@
 <p>Daydream은 Paper의 Fork로 다양한 API 사용을 목표로 제작되었습니다.</p>
 
 [![caramel.moe](https://img.shields.io/badge/made%20by.-caramel.moe-red)](https://caramel.moe)
-[![Build Status](https://img.shields.io/github/actions/workflow/status/LemonCaramel/Daydream-API/daydream-api-build-1.20.yml)](https://github.com/LemonCaramel/Daydream-API/actions/workflows/daydream-api-build-1.20.yml)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/LemonCaramel/Daydream-API/daydream-api-build-1.21.yml)](https://github.com/LemonCaramel/Daydream-API/actions/workflows/daydream-api-build-1.21.yml)
 [![Discord](https://img.shields.io/discord/534586842079821824.svg?label=use%20server&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/f9qGtYF)
 
 [ENGLISH](README.md), KOREAN
@@ -37,7 +37,7 @@ Maven
 <dependency>
     <groupId>moe.caramel</groupId>
     <artifactId>daydream-api</artifactId>
-    <version>1.20.6-R0.1-SNAPSHOT</version>
+    <version>1.21-R0.1-SNAPSHOT</version>
     <scope>provided</scope>
 </dependency>
 ```
@@ -53,6 +53,6 @@ repositories {
 
 dependencies {
     // Daydream API
-    compileOnly("moe.caramel", "daydream-api", "1.20.6-R0.1-SNAPSHOT")
+    compileOnly("moe.caramel", "daydream-api", "1.21-R0.1-SNAPSHOT")
 }
 ```

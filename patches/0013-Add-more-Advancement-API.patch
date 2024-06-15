@@ -1151,10 +1151,10 @@ index 0000000000000000000000000000000000000000..bfb751ba57b7761dfa81df76d044c6c3
 +    Advancement register(final @NotNull NamespacedKey key, final @NotNull JsonElement json);
 +}
 diff --git a/src/main/java/moe/caramel/daydream/plugin/PluginDatapackLoader.java b/src/main/java/moe/caramel/daydream/plugin/PluginDatapackLoader.java
-index 6c878c968be02870c8552eb8db3d7b652e605540..9bc89a99c134ff4ee4904a60cf73fbd73dce4715 100644
+index 6c878c968be02870c8552eb8db3d7b652e605540..a9a6abadaf92be42157dc7a23dcb7e3a5717235a 100644
 --- a/src/main/java/moe/caramel/daydream/plugin/PluginDatapackLoader.java
 +++ b/src/main/java/moe/caramel/daydream/plugin/PluginDatapackLoader.java
-@@ -9,4 +9,25 @@ import org.jetbrains.annotations.NotNull;
+@@ -9,4 +9,14 @@ import org.jetbrains.annotations.NotNull;
  @ApiStatus.OverrideOnly
  @ApiStatus.Experimental
  public interface PluginDatapackLoader {
@@ -1166,25 +1166,14 @@ index 6c878c968be02870c8552eb8db3d7b652e605540..9bc89a99c134ff4ee4904a60cf73fbd7
 +     * @param dataFolder 플러그인 데이터 폴더
 +     * @param provider 발전 과제 제공자
 +     */
-+    default void registerAdvancement(final @NotNull java.io.File dataFolder, final @NotNull AdvancementProvider provider) {
-+        this.registerAdvancement(provider);
-+    }
-+
-+    /**
-+     * 발전 과제를 서버에 등록할 때 호출됩니다.
-+     *
-+     * @param provider 발전 과제 제공자
-+     * @deprecated {@link #registerAdvancement(java.io.File, AdvancementProvider)}를 사용해주세요.
-+     */
-+    @Deprecated(forRemoval = true)
-+    default void registerAdvancement(final @NotNull AdvancementProvider provider) { }
++    default void registerAdvancement(final @NotNull java.io.File dataFolder, final @NotNull AdvancementProvider provider) { }
 +    // Daydream end - Add more Advancement API
  }
 diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
-index d0a2a6a74cc008a58ddbf414916dd9463b9e42c4..b5c2905dff917a69316e7c9f32be01343af6e36b 100644
+index a0ec35effd12464b6f55aa84d578186c2c5215b6..b97c2162e583613747a49ae3ff01e3b959013680 100644
 --- a/src/main/java/org/bukkit/Bukkit.java
 +++ b/src/main/java/org/bukkit/Bukkit.java
-@@ -2476,6 +2476,41 @@ public final class Bukkit {
+@@ -2458,6 +2458,41 @@ public final class Bukkit {
          return server.advancementIterator();
      }
  
@@ -1227,10 +1216,10 @@ index d0a2a6a74cc008a58ddbf414916dd9463b9e42c4..b5c2905dff917a69316e7c9f32be0134
       * Creates a new {@link BlockData} instance for the specified Material, with
       * all properties initialized to unspecified defaults.
 diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
-index c36895bbde6c48841aedad81c5c0975a7175c426..72a5bc7884d05a1d5db4c7fdefef5fc2378709df 100644
+index 163c8610636805c97f6c3edffb1ee42f5e07cb3d..e6dbee97268ffec21f64530b714ff2dc107c33aa 100644
 --- a/src/main/java/org/bukkit/Server.java
 +++ b/src/main/java/org/bukkit/Server.java
-@@ -2124,6 +2124,35 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
+@@ -2108,6 +2108,35 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
      @NotNull
      Iterator<Advancement> advancementIterator();
  
@@ -1349,10 +1338,10 @@ index f9bc179da071e7bd57cefc50d6763317fb643b74..3b1b55977d94de338f536896babedc7e
 +    // Daydream end - Add more Advancement API
  }
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index c4d4363aa2f2f63c55f61a8aecf8e33134328796..41e9d428c3cd249d1eb9ed8e9ea49c18ecdf4823 100644
+index 2e1cc7c57ee5b330f11364fa322b20e56b9eb975..b4d303887c6ca2b75c4e816d51a48b26092d8562 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
-@@ -3249,6 +3249,38 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+@@ -3302,6 +3302,38 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      @NotNull
      public AdvancementProgress getAdvancementProgress(@NotNull Advancement advancement);
  

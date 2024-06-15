@@ -5,10 +5,10 @@ Subject: [PATCH] Add more Explosion API
 
 
 diff --git a/src/main/java/moe/caramel/daydream/world/DamageMata.java b/src/main/java/moe/caramel/daydream/world/DamageMata.java
-index bb62ae43c0bb778c4a5d761d0e14515bb491bc6c..28e2034774eacdd4b1fa4b7ebe16b3cec9dffa58 100644
+index a028efebea58fe8c5d633e5d4e079f050ec2a677..28db88fa1a88e1f4c8fe04b4eec29e6436d32fdd 100644
 --- a/src/main/java/moe/caramel/daydream/world/DamageMata.java
 +++ b/src/main/java/moe/caramel/daydream/world/DamageMata.java
-@@ -196,4 +196,14 @@ public interface DamageMata {
+@@ -198,4 +198,14 @@ public interface DamageMata {
       * @param knockback 대미지 처리 이후 받게 될 넉백
       */
      void setOverrideKnockback(final @Nullable Vector knockback);
@@ -152,10 +152,10 @@ index 0000000000000000000000000000000000000000..394159310ec31777c5c423f94405d9ec
 +    boolean wasCancelled();
 +}
 diff --git a/src/main/java/org/bukkit/World.java b/src/main/java/org/bukkit/World.java
-index 10a3e40a3e7ce8135f3193361b6040776d45cd4c..68ac60b343ec5f5e777071b1990aa72f86ba7620 100644
+index 835f824b72505cb811b380e348b4c5c394654d7d..0c45b4500e4e6d420c7cb4065f5c7513cd3b3889 100644
 --- a/src/main/java/org/bukkit/World.java
 +++ b/src/main/java/org/bukkit/World.java
-@@ -2174,6 +2174,186 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
+@@ -2120,6 +2120,186 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
       */
      public boolean createExplosion(double x, double y, double z, float power, boolean setFire, boolean breakBlocks, @Nullable Entity source);
  
@@ -398,7 +398,7 @@ index a7c297364805c58ae16895055d8eae0484384b7d..bf8d4edf1a41c480994d09b27cb612d0
  
      @io.papermc.paper.annotation.DoNotUse // Paper
 diff --git a/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java b/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java
-index 31d1cd2e0cbefad6a4bbb10d9d3a4b5d6e954c09..9afa99fcf1a41efb4fe07484757eed9d6ccd5c98 100644
+index 459e24396a1aefa59e4abc02c6e9011f661a1ed8..f75925da80d409a3e27d1c557da26ebee480f00a 100644
 --- a/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java
 +++ b/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java
 @@ -69,6 +69,16 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {

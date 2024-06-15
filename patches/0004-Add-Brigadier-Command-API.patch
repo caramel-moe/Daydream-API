@@ -29,331 +29,6 @@ index 54288dbe7185b875a74184f002ee4de4405e91b1..3064f906d961a6b216f0e739620b37ce
  public interface CommandSourceStack {
  
      /**
-diff --git a/src/main/java/moe/caramel/daydream/brigadier/AbstractCommand.java b/src/main/java/moe/caramel/daydream/brigadier/AbstractCommand.java
-new file mode 100644
-index 0000000000000000000000000000000000000000..d719368e06234dbcbe79dd7801469a7956722018
---- /dev/null
-+++ b/src/main/java/moe/caramel/daydream/brigadier/AbstractCommand.java
-@@ -0,0 +1,319 @@
-+package moe.caramel.daydream.brigadier;
-+
-+import com.mojang.brigadier.arguments.ArgumentType;
-+import com.mojang.brigadier.builder.LiteralArgumentBuilder;
-+import com.mojang.brigadier.builder.RequiredArgumentBuilder;
-+import com.mojang.brigadier.context.CommandContext;
-+import com.mojang.brigadier.suggestion.SuggestionProvider;
-+import com.mojang.brigadier.suggestion.Suggestions;
-+import com.mojang.brigadier.suggestion.SuggestionsBuilder;
-+import io.papermc.paper.command.brigadier.CommandSourceStack;
-+import net.kyori.adventure.text.Component;
-+import org.bukkit.command.CommandSender;
-+import org.jetbrains.annotations.NotNull;
-+import org.jetbrains.annotations.Nullable;
-+import java.util.Collection;
-+import java.util.Map;
-+import java.util.concurrent.CompletableFuture;
-+import java.util.function.Consumer;
-+import java.util.function.Supplier;
-+
-+/**
-+ * Brigadier 명령어 빌더
-+ */
-+@SuppressWarnings("unused")
-+@Deprecated(forRemoval = true, since = "1.21")
-+public abstract class AbstractCommand {
-+
-+    private String[] aliases;
-+    private Component permissionMessage;
-+    private String description, permission, usageMessage;
-+
-+    /**
-+     * 명령어를 생성합니다.
-+     *
-+     * @param builder 빌더를 사용하여 자유롭게 명령어를 생성합니다.
-+     */
-+    public abstract void createCommand(@NotNull LiteralArgumentBuilder<CommandSourceStack> builder);
-+
-+
-+    /*
-+        Aliases
-+     */
-+
-+    /**
-+     * Returns array of active aliases of this command.
-+     *
-+     * @return Array of aliases
-+     */
-+    @Nullable
-+    public String[] getAliases() {
-+        return aliases;
-+    }
-+
-+    /**
-+     * Sets the list of aliases to request on registration for this command.
-+     *
-+     * @param aliases aliases to register to this command
-+     * @return this command object, for chaining
-+     */
-+    @NotNull
-+    public AbstractCommand setAliases(@NotNull String... aliases) {
-+        this.aliases = aliases;
-+        return this;
-+    }
-+
-+
-+    /*
-+        Description
-+     */
-+
-+    /**
-+     * Gets a brief description of this command.
-+     *
-+     * @return Description of this command
-+     */
-+    @Nullable
-+    public String getDescription() {
-+        return description;
-+    }
-+
-+    /**
-+     * Sets a brief description of this command.
-+     *
-+     * @param description command description
-+     * @return this command object, for chaining
-+     */
-+    @NotNull
-+    public AbstractCommand setDescription(@NotNull String description) {
-+        this.description = description;
-+        return this;
-+    }
-+
-+
-+    /*
-+        Permission
-+     */
-+
-+    /**
-+     * Gets the permission required by users to be able to perform this command.
-+     *
-+     * @return Permission name, or null if none
-+     */
-+    @Nullable
-+    public String getPermission() {
-+        return permission;
-+    }
-+
-+    /**
-+     * Sets the permission required by users to be able to perform this command.
-+     *
-+     * @param permission Permission name or null
-+     * @return this command object, for chaining
-+     */
-+    @NotNull
-+    public AbstractCommand setPermission(@Nullable String permission) {
-+        this.permission = permission;
-+        return this;
-+    }
-+
-+
-+    /*
-+        PermissionMessage
-+     */
-+
-+    /**
-+     * Returns a message to be displayed on a failed permission check for this command
-+     *
-+     * @return Permission check failed message
-+     */
-+    @Nullable
-+    public Component getPermissionMessage() {
-+        return this.permissionMessage;
-+    }
-+
-+    /**
-+     * Sets the message sent when a permission check fails.
-+     *
-+     * @param permissionMessage the permission message
-+     * @return this command object, for chaining
-+     */
-+    @NotNull
-+    public AbstractCommand setPermissionMessage(@Nullable Component permissionMessage) {
-+        this.permissionMessage = permissionMessage;
-+        return this;
-+    }
-+
-+
-+    /*
-+       Usage
-+     */
-+
-+    /**
-+     * Gets an example usage of this command
-+     *
-+     * @return One or more example usages
-+     */
-+    @Nullable
-+    public String getUsage() {
-+        return usageMessage;
-+    }
-+
-+    /**
-+     * Sets the example usage of this command
-+     *
-+     * @param usage new example usage
-+     * @return this command object, for chaining
-+     */
-+    @NotNull
-+    public AbstractCommand setUsage(@NotNull String usage) {
-+        this.usageMessage = usage;
-+        return this;
-+    }
-+
-+
-+    /*
-+       Utilities
-+     */
-+
-+    /**
-+     * 리터럴 인자를 생성합니다.
-+     *
-+     * @param literal 리터럴 인자의 이름
-+     * @return 리터럴 인자
-+     */
-+    @NotNull
-+    protected LiteralArgumentBuilder<CommandSourceStack> literal(@NotNull String literal) {
-+        return BrigadierCommand.literal(literal);
-+    }
-+
-+    /**
-+     * 입력 인자를 생성합니다.
-+     *
-+     * @param name 입력 인자의 이름
-+     * @param type 입력 인자의 타입 인스턴스
-+     * @return 필수 입력
-+     * @param <T> 인자의 타입
-+     */
-+    @NotNull
-+    protected <T> RequiredArgumentBuilder<CommandSourceStack, T> argument(@NotNull String name, @NotNull ArgumentType<T> type) {
-+        return BrigadierCommand.argument(name, type);
-+    }
-+
-+    /**
-+     * 명령어 실행 주체를 가져옵니다.
-+     *
-+     * @param context 명령 컨텍스트
-+     * @return Bukkit 명령어 실행 주체
-+     */
-+    @NotNull
-+    protected CommandSender sender(@NotNull CommandContext<CommandSourceStack> context) {
-+        return BrigadierCommand.sender(context);
-+    }
-+
-+    /**
-+     * 명령어 실행 주체를 가져옵니다.
-+     *
-+     * @param source 명령어 실행 주체
-+     * @return Bukkit 명령어 실행 주체
-+     */
-+    @NotNull
-+    protected CommandSender sender(@NotNull CommandSourceStack source) {
-+        return BrigadierCommand.sender(source);
-+    }
-+
-+
-+    /*
-+       Suggest Utilities
-+     */
-+
-+    /**
-+     * (정적) 명령어 제안을 생성합니다.
-+     *
-+     * @param strings 제안 목록
-+     * @return 생성된 제안 프로바이더
-+     */
-+    @NotNull
-+    protected SuggestionProvider<CommandSourceStack> suggest(@NotNull String... strings) {
-+        return BrigadierCommand.suggest(strings);
-+    }
-+
-+    /**
-+     * (정적) 명령어 제안을 생성합니다.
-+     *
-+     * @param strings 제안 목록
-+     * @return 생성된 제안 프로바이더
-+     */
-+    @NotNull
-+    protected SuggestionProvider<CommandSourceStack> suggest(@NotNull Collection<String> strings) {
-+        return BrigadierCommand.suggest(strings);
-+    }
-+
-+    /**
-+     * (동적) 명령어 제안을 생성합니다.
-+     *
-+     * @param strings 제안 목록
-+     * @return 생성된 제안 프로바이더
-+     */
-+    @NotNull
-+    protected SuggestionProvider<CommandSourceStack> suggest(@NotNull Supplier<String[]> strings) {
-+        return BrigadierCommand.suggest(strings);
-+    }
-+
-+    /**
-+     * (동적) 명령어 제안을 생성합니다.
-+     *
-+     * @param strings 제안 목록
-+     * @return 생성된 제안 프로바이더
-+     */
-+    @NotNull
-+    protected SuggestionProvider<CommandSourceStack> suggest(@NotNull Consumer<Collection<String>> strings) {
-+        return BrigadierCommand.suggest(strings);
-+    }
-+
-+    /**
-+     * (정적) 툴팁이 포함된 명령어 제안을 생성합니다.
-+     *
-+     * @param suggestions 툴팁이 포함된 제안 목록
-+     * @return 생성된 제안 프로바이더
-+     */
-+    @NotNull
-+    protected SuggestionProvider<CommandSourceStack> hoverSuggest(@NotNull Map<String, Component> suggestions) {
-+        return BrigadierCommand.hoverSuggest(suggestions);
-+    }
-+
-+    /**
-+     * (동적) 툴팁이 포함된 명령어 제안을 생성합니다.
-+     *
-+     * @param suggestions 툴팁이 포함된 제안 목록
-+     * @return 생성된 제안 프로바이더
-+     */
-+    @NotNull
-+    protected SuggestionProvider<CommandSourceStack> hoverSuggest(@NotNull Consumer<Map<String, Component>> suggestions) {
-+        return BrigadierCommand.hoverSuggest(suggestions);
-+    }
-+
-+    /**
-+     * 입력 내용에 기반하여 제안 빌더와 일치하는 제안을 가져옵니다.
-+     *
-+     * @param builder 제안 빌더
-+     * @param suggestions 제안 목록
-+     * @return 제안
-+     */
-+    @NotNull
-+    public static CompletableFuture<Suggestions> suggest(@NotNull SuggestionsBuilder builder, @NotNull Iterable<String> suggestions) {
-+        return BrigadierCommand.suggest(builder, suggestions);
-+    }
-+
-+    /**
-+     * 입력 내용에 기반하여 제안 빌더와 일치하는 툴팁이 포함된 제안을 가져옵니다.
-+     *
-+     * @param builder 제안 빌더
-+     * @param suggestions 제안 목록
-+     * @return 제안
-+     */
-+    @NotNull
-+    public static CompletableFuture<Suggestions> suggest(@NotNull SuggestionsBuilder builder, @NotNull Map<String, Component> suggestions) {
-+        return BrigadierCommand.suggest(builder, suggestions);
-+    }
-+}
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/Arguments.java b/src/main/java/moe/caramel/daydream/brigadier/Arguments.java
 new file mode 100644
 index 0000000000000000000000000000000000000000..b522b014d6b5826f2dc50026724d1e257c9ef948
@@ -1649,10 +1324,10 @@ index 0000000000000000000000000000000000000000..ced8b19a02be4952784b7dbde45f01d6
 +    }
 +}
 diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
-index 71f1c361ebccbe83193c37ec3a90faa4085001c3..19fd9c0d8eac1501ade02f83d9c8e811dcb429d4 100644
+index b9b751ea0d11381e846d5f35f39f285c075c171a..a0ec35effd12464b6f55aa84d578186c2c5215b6 100644
 --- a/src/main/java/org/bukkit/Bukkit.java
 +++ b/src/main/java/org/bukkit/Bukkit.java
-@@ -1078,6 +1078,63 @@ public final class Bukkit {
+@@ -1079,6 +1079,51 @@ public final class Bukkit {
          return server.getPluginCommand(name);
      }
  
@@ -1665,18 +1340,6 @@ index 71f1c361ebccbe83193c37ec3a90faa4085001c3..19fd9c0d8eac1501ade02f83d9c8e811
 +     */
 +    public static void registerCommand(@NotNull org.bukkit.plugin.Plugin plugin, @NotNull moe.caramel.daydream.brigadier.BrigadierCommand command) {
 +        server.registerCommand(plugin, command);
-+    }
-+
-+    /**
-+     * Brigadier를 사용하여 명령어를 등록합니다.
-+     *
-+     * @param plugin 대상 플러그인
-+     * @param label 명령어 레이블
-+     * @param command 명령어 노드
-+     */
-+    @Deprecated(forRemoval = true, since = "1.21")
-+    public static void registerCommand(@NotNull org.bukkit.plugin.Plugin plugin, @NotNull String label, @NotNull moe.caramel.daydream.brigadier.AbstractCommand command) {
-+        server.registerCommand(plugin, label, command);
 +    }
 +
 +    /**
@@ -1717,10 +1380,10 @@ index 71f1c361ebccbe83193c37ec3a90faa4085001c3..19fd9c0d8eac1501ade02f83d9c8e811
       * Writes loaded players to disk.
       */
 diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
-index 9797ec6bbdb5bb7428e70f02eac2969a8f90412a..f30f43364231d1c492d9fb31262b57c3504f4fb3 100644
+index a24de4c81f576ea73c6cf614378fe7b0b796001a..163c8610636805c97f6c3edffb1ee42f5e07cb3d 100644
 --- a/src/main/java/org/bukkit/Server.java
 +++ b/src/main/java/org/bukkit/Server.java
-@@ -917,6 +917,53 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
+@@ -918,6 +918,43 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
      @Nullable
      public PluginCommand getPluginCommand(@NotNull String name);
  
@@ -1732,16 +1395,6 @@ index 9797ec6bbdb5bb7428e70f02eac2969a8f90412a..f30f43364231d1c492d9fb31262b57c3
 +     * @param command 명령어 노드
 +     */
 +    public void registerCommand(@NotNull org.bukkit.plugin.Plugin plugin, @NotNull moe.caramel.daydream.brigadier.BrigadierCommand command);
-+
-+    /**
-+     * Brigadier를 사용하여 명령어를 등록합니다.
-+     *
-+     * @param plugin 대상 플러그인
-+     * @param label 명령어 레이블
-+     * @param command 명령어 노드
-+     */
-+    @Deprecated(forRemoval = true, since = "1.21")
-+    public void registerCommand(@NotNull org.bukkit.plugin.Plugin plugin, @NotNull String label, @NotNull moe.caramel.daydream.brigadier.AbstractCommand command);
 +
 +    /**
 +     * Brigadier 명령어를 등록 해제합니다.
@@ -1841,10 +1494,10 @@ index 9d263ab3afb938c215c0b64d9171345fca6ceb2c..ab63f82029c09cbf5d9717a89d1d55c3
      @Override
      default net.kyori.adventure.text.@org.jetbrains.annotations.NotNull Component name() {
 diff --git a/src/main/java/org/bukkit/plugin/java/JavaPlugin.java b/src/main/java/org/bukkit/plugin/java/JavaPlugin.java
-index 34037d3da2c536bac088e0ff629ee8f1daccc65b..afb0bf721db2ab5cd1405193a4be4a0c11fa5fa8 100644
+index d5a3c3dce76c4ed0f1184ab5ba21db9c5f1c01ec..c149bfc8ce843090146ad6c8f3e36692b71afe4f 100644
 --- a/src/main/java/org/bukkit/plugin/java/JavaPlugin.java
 +++ b/src/main/java/org/bukkit/plugin/java/JavaPlugin.java
-@@ -355,6 +355,49 @@ public abstract class JavaPlugin extends PluginBase {
+@@ -356,6 +356,38 @@ public abstract class JavaPlugin extends PluginBase {
          }
      }
  
@@ -1856,17 +1509,6 @@ index 34037d3da2c536bac088e0ff629ee8f1daccc65b..afb0bf721db2ab5cd1405193a4be4a0c
 +     */
 +    public void registerCommand(@NotNull moe.caramel.daydream.brigadier.BrigadierCommand command) {
 +        this.getServer().registerCommand(this, command);
-+    }
-+
-+    /**
-+     * Brigadier를 사용하여 명령어를 등록합니다.
-+     *
-+     * @param label 명령어 레이블
-+     * @param command 명령어 노드
-+     */
-+    @Deprecated(forRemoval = true, since = "1.21")
-+    public void registerCommand(@NotNull String label, @NotNull moe.caramel.daydream.brigadier.AbstractCommand command) {
-+        this.getServer().registerCommand(this, label, command);
 +    }
 +
 +    /**
