@@ -412,7 +412,7 @@ implements <a href="Keyed.html" title="interface in org.bukkit">Keyed</a></span>
 <section class="method-summary" id="method-summary">
 <h2>Method Summary</h2>
 <div id="method-summary-table">
-<div class="table-tabs" role="tablist" aria-orientation="horizontal"><button id="method-summary-table-tab0" role="tab" aria-selected="true" aria-controls="method-summary-table.tabpanel" tabindex="0" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table', 3)" class="active-table-tab">All Methods</button><button id="method-summary-table-tab1" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab1', 3)" class="table-tab">Static Methods</button><button id="method-summary-table-tab4" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab4', 3)" class="table-tab">Concrete Methods</button><button id="method-summary-table-tab6" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab6', 3)" class="table-tab">Deprecated Methods</button></div>
+<div class="table-tabs" role="tablist" aria-orientation="horizontal"><button id="method-summary-table-tab0" role="tab" aria-selected="true" aria-controls="method-summary-table.tabpanel" tabindex="0" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table', 3)" class="active-table-tab">All Methods</button><button id="method-summary-table-tab1" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab1', 3)" class="table-tab">Static Methods</button><button id="method-summary-table-tab2" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab2', 3)" class="table-tab">Instance Methods</button><button id="method-summary-table-tab3" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab3', 3)" class="table-tab">Abstract Methods</button><button id="method-summary-table-tab4" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab4', 3)" class="table-tab">Concrete Methods</button><button id="method-summary-table-tab6" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab6', 3)" class="table-tab">Deprecated Methods</button></div>
 <div id="method-summary-table.tabpanel" role="tabpanel" aria-labelledby="method-summary-table-tab0">
 <div class="summary-table three-column-summary">
 <div class="table-header col-first">Modifier and Type</div>
@@ -424,6 +424,17 @@ implements <a href="Keyed.html" title="interface in org.bukkit">Keyed</a></span>
 <div class="block"><span class="deprecated-label">Deprecated.</span>
 <div class="deprecation-comment">Use <a href="Registry.html#get(org.bukkit.NamespacedKey)"><code>Registry.get(NamespacedKey)</code></a> instead.</div>
 </div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>abstract int</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getRange()" class="member-name-link">getRange</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Gets the range of the event which is used to
+ notify listeners of the event.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>abstract int</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getVibrationLevel()" class="member-name-link">getVibrationLevel</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Gets the vibration level of the game event for vibration listeners.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6"><code>static <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Collection.html" title="class or interface in java.util" class="external-link">Collection</a><wbr>&lt;<a href="GameEvent.html" title="class in org.bukkit">GameEvent</a>&gt;</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6"><code><a href="#values()" class="member-name-link">values</a>()</code></div>
@@ -1026,6 +1037,31 @@ implements <a href="Keyed.html" title="interface in org.bukkit">Keyed</a></span>
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>the memoryKeys</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getRange()">
+<h3>getRange</h3>
+<div class="member-signature"><span class="modifiers">public abstract</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getRange</span>()</div>
+<div class="block">Gets the range of the event which is used to
+ notify listeners of the event.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the range</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getVibrationLevel()">
+<h3>getVibrationLevel</h3>
+<div class="member-signature"><span class="modifiers">public abstract</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getVibrationLevel</span>()</div>
+<div class="block">Gets the vibration level of the game event for vibration listeners.
+ Not all events have vibration levels, and a level of 0 means
+ it won't cause any vibrations.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the vibration level</dd>
 </dl>
 </section>
 </li>

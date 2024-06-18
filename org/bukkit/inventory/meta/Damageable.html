@@ -89,7 +89,7 @@ loadScripts(document, 'script');</script>
 <section class="class-description" id="class-description">
 <dl class="notes">
 <dt>All Superinterfaces:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Cloneable.html" title="class or interface in java.lang" class="external-link">Cloneable</a></code>, <code><a href="../../configuration/serialization/ConfigurationSerializable.html" title="interface in org.bukkit.configuration.serialization">ConfigurationSerializable</a></code>, <code><a href="ItemMeta.html" title="interface in org.bukkit.inventory.meta">ItemMeta</a></code>, <code><a href="../../persistence/PersistentDataHolder.html" title="interface in org.bukkit.persistence">PersistentDataHolder</a></code></dd>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Cloneable.html" title="class or interface in java.lang" class="external-link">Cloneable</a></code>, <code><a href="../../configuration/serialization/ConfigurationSerializable.html" title="interface in org.bukkit.configuration.serialization">ConfigurationSerializable</a></code>, <code><a href="ItemMeta.html" title="interface in org.bukkit.inventory.meta">ItemMeta</a></code>, <code><a href="../../persistence/PersistentDataHolder.html" title="interface in org.bukkit.persistence">PersistentDataHolder</a></code>, <code><a href="../../../../io/papermc/paper/persistence/PersistentDataViewHolder.html" title="interface in io.papermc.paper.persistence">PersistentDataViewHolder</a></code></dd>
 </dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public interface </span><span class="element-name type-name-label">Damageable</span><span class="extends-implements">
@@ -125,12 +125,23 @@ extends <a href="ItemMeta.html" title="interface in org.bukkit.inventory.meta">I
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#hasDamage()" class="member-name-link">hasDamage</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Checks to see if this item has damage</div>
+<div class="block">Checks to see if this item has damage greater than 0.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#hasMaxDamage()" class="member-name-link">hasMaxDamage</a>()</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#hasDamageValue()" class="member-name-link">hasDamageValue</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Checks if any damage value, including 0,
+ is set on this meta.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#hasMaxDamage()" class="member-name-link">hasMaxDamage</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Checks to see if this item has a maximum amount of damage.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#resetDamage()" class="member-name-link">resetDamage</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Clears the damage component from the meta.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#setDamage(int)" class="member-name-link">setDamage</a><wbr>(int&nbsp;damage)</code></div>
@@ -169,10 +180,10 @@ extends <a href="ItemMeta.html" title="interface in org.bukkit.inventory.meta">I
 <section class="detail" id="hasDamage()">
 <h3>hasDamage</h3>
 <div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">hasDamage</span>()</div>
-<div class="block">Checks to see if this item has damage</div>
+<div class="block">Checks to see if this item has damage greater than 0.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>true if this has damage</dd>
+<dd>true if this has damage &gt; 0</dd>
 </dl>
 </section>
 </li>
@@ -180,7 +191,10 @@ extends <a href="ItemMeta.html" title="interface in org.bukkit.inventory.meta">I
 <section class="detail" id="getDamage()">
 <h3>getDamage</h3>
 <div class="member-signature"><span class="return-type">int</span>&nbsp;<span class="element-name">getDamage</span>()</div>
-<div class="block">Gets the damage</div>
+<div class="block">Gets the damage
+ <p>
+ Call <a href="#hasDamageValue()"><code>hasDamageValue()</code></a> to be sure
+ a damage value is set.</div>
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>the damage</dd>
@@ -195,7 +209,34 @@ extends <a href="ItemMeta.html" title="interface in org.bukkit.inventory.meta">I
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>damage</code> - item damage</dd>
+<dt>See Also:</dt>
+<dd>
+<ul class="tag-list-long">
+<li><a href="#resetDamage()"><code>to reset and clear the damage data component</code></a></li>
+</ul>
+</dd>
 </dl>
+</section>
+</li>
+<li>
+<section class="detail" id="hasDamageValue()">
+<h3>hasDamageValue</h3>
+<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">hasDamageValue</span>()</div>
+<div class="block">Checks if any damage value, including 0,
+ is set on this meta.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>true if any value is set</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="resetDamage()">
+<h3>resetDamage</h3>
+<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">resetDamage</span>()</div>
+<div class="block">Clears the damage component from the meta. Differs
+ from <code>setDamage(0)</code> in that it removes the component
+ instead of adding the component with a value of 0.</div>
 </section>
 </li>
 <li>

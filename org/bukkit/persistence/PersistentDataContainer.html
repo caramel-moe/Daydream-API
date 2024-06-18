@@ -87,8 +87,13 @@ loadScripts(document, 'script');</script>
 <h1 title="Interface PersistentDataContainer" class="title">Interface PersistentDataContainer</h1>
 </div>
 <section class="class-description" id="class-description">
+<dl class="notes">
+<dt>All Superinterfaces:</dt>
+<dd><code><a href="../../../io/papermc/paper/persistence/PersistentDataContainerView.html" title="interface in io.papermc.paper.persistence">PersistentDataContainerView</a></code></dd>
+</dl>
 <hr>
-<div class="type-signature"><span class="modifiers">public interface </span><span class="element-name type-name-label">PersistentDataContainer</span></div>
+<div class="type-signature"><span class="modifiers">public interface </span><span class="element-name type-name-label">PersistentDataContainer</span><span class="extends-implements">
+extends <a href="../../../io/papermc/paper/persistence/PersistentDataContainerView.html" title="interface in io.papermc.paper.persistence">PersistentDataContainerView</a></span></div>
 <div class="block">This interface represents a map like object, capable of storing custom tags
  in it.</div>
 </section>
@@ -110,126 +115,28 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Clears PersistentDataContainer instances.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#copyTo(org.bukkit.persistence.PersistentDataContainer,boolean)" class="member-name-link">copyTo</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="PersistentDataContainer.html" title="interface in org.bukkit.persistence">PersistentDataContainer</a>&nbsp;other,
- boolean&nbsp;replace)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Copies all values from this <a href="PersistentDataContainer.html" title="interface in org.bukkit.persistence"><code>PersistentDataContainer</code></a> to the provided
- container.</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>&lt;P,<wbr>
-C&gt;&nbsp;C</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#get(java.lang.String,org.bukkit.persistence.PersistentDataType)" class="member-name-link">get</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key,
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="PersistentDataType.html" title="interface in org.bukkit.persistence">PersistentDataType</a>&lt;P,<wbr>C&gt;&nbsp;type)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Returns the metadata value that is stored on the
- <a href="PersistentDataHolder.html" title="interface in org.bukkit.persistence"><code>PersistentDataHolder</code></a> instance.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>&lt;P,<wbr>
-C&gt;&nbsp;C</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#get(org.bukkit.NamespacedKey,org.bukkit.persistence.PersistentDataType)" class="member-name-link">get</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../NamespacedKey.html" title="class in org.bukkit">NamespacedKey</a>&nbsp;key,
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="PersistentDataType.html" title="interface in org.bukkit.persistence">PersistentDataType</a>&lt;P,<wbr>C&gt;&nbsp;type)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Returns the metadata value that is stored on the
- <a href="PersistentDataHolder.html" title="interface in org.bukkit.persistence"><code>PersistentDataHolder</code></a> instance.</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="PersistentDataAdapterContext.html" title="interface in org.bukkit.persistence">PersistentDataAdapterContext</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getAdapterContext()" class="member-name-link">getAdapterContext</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Returns the adapter context this tag container uses.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Set.html" title="class or interface in java.util" class="external-link">Set</a><wbr>&lt;<a href="../NamespacedKey.html" title="class in org.bukkit">NamespacedKey</a>&gt;</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getKeys()" class="member-name-link">getKeys</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Get the set of keys present on this <a href="PersistentDataContainer.html" title="interface in org.bukkit.persistence"><code>PersistentDataContainer</code></a>
- instance.</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>&lt;P,<wbr>
-C&gt;&nbsp;C</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getOrDefault(java.lang.String,org.bukkit.persistence.PersistentDataType,C)" class="member-name-link">getOrDefault</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key,
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="PersistentDataType.html" title="interface in org.bukkit.persistence">PersistentDataType</a>&lt;P,<wbr>C&gt;&nbsp;type,
- C&nbsp;defaultValue)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Returns the metadata value that is stored on the
- <a href="PersistentDataHolder.html" title="interface in org.bukkit.persistence"><code>PersistentDataHolder</code></a> instance.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>&lt;P,<wbr>
-C&gt;&nbsp;C</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getOrDefault(org.bukkit.NamespacedKey,org.bukkit.persistence.PersistentDataType,C)" class="member-name-link">getOrDefault</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../NamespacedKey.html" title="class in org.bukkit">NamespacedKey</a>&nbsp;key,
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="PersistentDataType.html" title="interface in org.bukkit.persistence">PersistentDataType</a>&lt;P,<wbr>C&gt;&nbsp;type,
- C&nbsp;defaultValue)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Returns the metadata value that is stored on the
- <a href="PersistentDataHolder.html" title="interface in org.bukkit.persistence"><code>PersistentDataHolder</code></a> instance.</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#has(java.lang.String)" class="member-name-link">has</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Returns if the persistent metadata provider has metadata registered matching
- the provided parameters.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>&lt;P,<wbr>
-C&gt;&nbsp;boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#has(java.lang.String,org.bukkit.persistence.PersistentDataType)" class="member-name-link">has</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key,
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="PersistentDataType.html" title="interface in org.bukkit.persistence">PersistentDataType</a>&lt;P,<wbr>C&gt;&nbsp;type)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Returns if the persistent metadata provider has metadata registered
- matching the provided parameters.</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#has(org.bukkit.NamespacedKey)" class="member-name-link">has</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../NamespacedKey.html" title="class in org.bukkit">NamespacedKey</a>&nbsp;key)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Returns if the persistent metadata provider has metadata registered matching
- the provided parameters.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>&lt;P,<wbr>
-C&gt;&nbsp;boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#has(org.bukkit.NamespacedKey,org.bukkit.persistence.PersistentDataType)" class="member-name-link">has</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../NamespacedKey.html" title="class in org.bukkit">NamespacedKey</a>&nbsp;key,
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="PersistentDataType.html" title="interface in org.bukkit.persistence">PersistentDataType</a>&lt;P,<wbr>C&gt;&nbsp;type)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Returns if the persistent metadata provider has metadata registered
- matching the provided parameters.</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#isEmpty()" class="member-name-link">isEmpty</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Returns if the container instance is empty, therefore has no entries
- inside it.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Set.html" title="class or interface in java.util" class="external-link">Set</a><wbr>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#keys()" class="member-name-link">keys</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Get the set of keys present on this <a href="PersistentDataContainer.html" title="interface in org.bukkit.persistence"><code>PersistentDataContainer</code></a>
- instance.</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code>default void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#readFromBytes(byte%5B%5D)" class="member-name-link">readFromBytes</a><wbr>(byte <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> []&nbsp;bytes)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5">
-<div class="block">Read values from a serialised byte array into this
- <a href="PersistentDataContainer.html" title="interface in org.bukkit.persistence"><code>PersistentDataContainer</code></a> instance.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#readFromBytes(byte%5B%5D,boolean)" class="member-name-link">readFromBytes</a><wbr>(byte <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> []&nbsp;bytes,
- boolean&nbsp;clear)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code>default void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#readFromBytes(byte%5B%5D)" class="member-name-link">readFromBytes</a><wbr>(byte <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> []&nbsp;bytes)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5">
 <div class="block">Read values from a serialised byte array into this
  <a href="PersistentDataContainer.html" title="interface in org.bukkit.persistence"><code>PersistentDataContainer</code></a> instance.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#remove(java.lang.String)" class="member-name-link">remove</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#readFromBytes(byte%5B%5D,boolean)" class="member-name-link">readFromBytes</a><wbr>(byte <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> []&nbsp;bytes,
+ boolean&nbsp;clear)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Removes a custom key from the <a href="PersistentDataHolder.html" title="interface in org.bukkit.persistence"><code>PersistentDataHolder</code></a> instance.</div>
+<div class="block">Read values from a serialised byte array into this
+ <a href="PersistentDataContainer.html" title="interface in org.bukkit.persistence"><code>PersistentDataContainer</code></a> instance.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#remove(org.bukkit.NamespacedKey)" class="member-name-link">remove</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../NamespacedKey.html" title="class in org.bukkit">NamespacedKey</a>&nbsp;key)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#remove(java.lang.String)" class="member-name-link">remove</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Removes a custom key from the <a href="PersistentDataHolder.html" title="interface in org.bukkit.persistence"><code>PersistentDataHolder</code></a> instance.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>byte <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> []</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#serializeToBytes()" class="member-name-link">serializeToBytes</a>()</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#remove(org.bukkit.NamespacedKey)" class="member-name-link">remove</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../NamespacedKey.html" title="class in org.bukkit">NamespacedKey</a>&nbsp;key)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Serialize this <a href="PersistentDataContainer.html" title="interface in org.bukkit.persistence"><code>PersistentDataContainer</code></a> instance to a
- byte array.</div>
+<div class="block">Removes a custom key from the <a href="PersistentDataHolder.html" title="interface in org.bukkit.persistence"><code>PersistentDataHolder</code></a> instance.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>&lt;P,<wbr>
 C&gt;&nbsp;void</code></div>
@@ -250,6 +157,9 @@ C&gt;&nbsp;void</code></div>
 </div>
 </div>
 </div>
+<div class="inherited-list">
+<h3 id="methods-inherited-from-class-io.papermc.paper.persistence.PersistentDataContainerView">Methods inherited from interface&nbsp;io.papermc.paper.persistence.<a href="../../../io/papermc/paper/persistence/PersistentDataContainerView.html" title="interface in io.papermc.paper.persistence">PersistentDataContainerView</a></h3>
+<code><a href="../../../io/papermc/paper/persistence/PersistentDataContainerView.html#copyTo(org.bukkit.persistence.PersistentDataContainer,boolean)">copyTo</a>, <a href="../../../io/papermc/paper/persistence/PersistentDataContainerView.html#get(java.lang.String,org.bukkit.persistence.PersistentDataType)">get</a>, <a href="../../../io/papermc/paper/persistence/PersistentDataContainerView.html#get(org.bukkit.NamespacedKey,org.bukkit.persistence.PersistentDataType)">get</a>, <a href="../../../io/papermc/paper/persistence/PersistentDataContainerView.html#getAdapterContext()">getAdapterContext</a>, <a href="../../../io/papermc/paper/persistence/PersistentDataContainerView.html#getKeys()">getKeys</a>, <a href="../../../io/papermc/paper/persistence/PersistentDataContainerView.html#getOrDefault(java.lang.String,org.bukkit.persistence.PersistentDataType,C)">getOrDefault</a>, <a href="../../../io/papermc/paper/persistence/PersistentDataContainerView.html#getOrDefault(org.bukkit.NamespacedKey,org.bukkit.persistence.PersistentDataType,C)">getOrDefault</a>, <a href="../../../io/papermc/paper/persistence/PersistentDataContainerView.html#has(java.lang.String)">has</a>, <a href="../../../io/papermc/paper/persistence/PersistentDataContainerView.html#has(java.lang.String,org.bukkit.persistence.PersistentDataType)">has</a>, <a href="../../../io/papermc/paper/persistence/PersistentDataContainerView.html#has(org.bukkit.NamespacedKey)">has</a>, <a href="../../../io/papermc/paper/persistence/PersistentDataContainerView.html#has(org.bukkit.NamespacedKey,org.bukkit.persistence.PersistentDataType)">has</a>, <a href="../../../io/papermc/paper/persistence/PersistentDataContainerView.html#isEmpty()">isEmpty</a>, <a href="../../../io/papermc/paper/persistence/PersistentDataContainerView.html#keys()">keys</a>, <a href="../../../io/papermc/paper/persistence/PersistentDataContainerView.html#serializeToBytes()">serializeToBytes</a></code></div>
 </section>
 </li>
 </ul>
@@ -296,155 +206,6 @@ C&gt;</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="elemen
 </section>
 </li>
 <li>
-<section class="detail" id="has(org.bukkit.NamespacedKey,org.bukkit.persistence.PersistentDataType)">
-<h3>has</h3>
-<div class="member-signature"><span class="type-parameters">&lt;P,<wbr>
-C&gt;</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">has</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../NamespacedKey.html" title="class in org.bukkit">NamespacedKey</a>&nbsp;key,
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="PersistentDataType.html" title="interface in org.bukkit.persistence">PersistentDataType</a>&lt;P,<wbr>C&gt;&nbsp;type)</span></div>
-<div class="block">Returns if the persistent metadata provider has metadata registered
- matching the provided parameters.
- <p>
- This method will only return true if the found value has the same primitive
- data type as the provided key.
- <p>
- Storing a value using a custom <a href="PersistentDataType.html" title="interface in org.bukkit.persistence"><code>PersistentDataType</code></a> implementation
- will not store the complex data type. Therefore storing a UUID (by
- storing a byte[]) will match has("key" ,
- <a href="PersistentDataType.html#BYTE_ARRAY"><code>PersistentDataType.BYTE_ARRAY</code></a>). Likewise a stored byte[] will
- always match your UUID <a href="PersistentDataType.html" title="interface in org.bukkit.persistence"><code>PersistentDataType</code></a> even if it is not 16
- bytes long.
- <p>
- This method is only usable for custom object keys. Overwriting existing
- tags, like the display name, will not work as the values are stored
- using your namespace.</div>
-<dl class="notes">
-<dt>Type Parameters:</dt>
-<dd><code>P</code> - the generic type of the stored primitive</dd>
-<dd><code>C</code> - the generic type of the eventually created complex object</dd>
-<dt>Parameters:</dt>
-<dd><code>key</code> - the key the value is stored under</dd>
-<dd><code>type</code> - the type the primative stored value has to match</dd>
-<dt>Returns:</dt>
-<dd>if a value with the provided key and type exists</dd>
-<dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if the key to look up is null</dd>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if the type to cast the found object to is
- null</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="has(org.bukkit.NamespacedKey)">
-<h3>has</h3>
-<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">has</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../NamespacedKey.html" title="class in org.bukkit">NamespacedKey</a>&nbsp;key)</span></div>
-<div class="block">Returns if the persistent metadata provider has metadata registered matching
- the provided parameters.
- <p>
- This method will return true as long as a value with the given key exists,
- regardless of its type.
- <p>
- This method is only usable for custom object keys. Overwriting existing tags,
- like the display name, will not work as the values are stored using your
- namespace.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>key</code> - the key the value is stored under</dd>
-<dt>Returns:</dt>
-<dd>if a value with the provided key exists</dd>
-<dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if the key to look up is null</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="get(org.bukkit.NamespacedKey,org.bukkit.persistence.PersistentDataType)">
-<h3>get</h3>
-<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a>
-</span><span class="type-parameters">&lt;P,<wbr>
-C&gt;</span>&nbsp;<span class="return-type">C</span>&nbsp;<span class="element-name">get</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../NamespacedKey.html" title="class in org.bukkit">NamespacedKey</a>&nbsp;key,
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="PersistentDataType.html" title="interface in org.bukkit.persistence">PersistentDataType</a>&lt;P,<wbr>C&gt;&nbsp;type)</span></div>
-<div class="block">Returns the metadata value that is stored on the
- <a href="PersistentDataHolder.html" title="interface in org.bukkit.persistence"><code>PersistentDataHolder</code></a> instance.</div>
-<dl class="notes">
-<dt>Type Parameters:</dt>
-<dd><code>P</code> - the generic type of the stored primitive</dd>
-<dd><code>C</code> - the generic type of the eventually created complex object</dd>
-<dt>Parameters:</dt>
-<dd><code>key</code> - the key to look up in the custom tag map</dd>
-<dd><code>type</code> - the type the value must have and will be casted to</dd>
-<dt>Returns:</dt>
-<dd>the value or <code>null</code> if no value was mapped under the given
- value</dd>
-<dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if the key to look up is null</dd>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if the type to cast the found object to is
- null</dd>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if a value exists under the given key,
- but cannot be accessed using the given type</dd>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if no suitable adapter was found for
- the <a href="PersistentDataType.html#getPrimitiveType()"><code>PersistentDataType.getPrimitiveType()</code></a></dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="getOrDefault(org.bukkit.NamespacedKey,org.bukkit.persistence.PersistentDataType,C)">
-<h3 id="getOrDefault(org.bukkit.NamespacedKey,org.bukkit.persistence.PersistentDataType,java.lang.Object)">getOrDefault</h3>
-<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
-</span><span class="type-parameters">&lt;P,<wbr>
-C&gt;</span>&nbsp;<span class="return-type">C</span>&nbsp;<span class="element-name">getOrDefault</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../NamespacedKey.html" title="class in org.bukkit">NamespacedKey</a>&nbsp;key,
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="PersistentDataType.html" title="interface in org.bukkit.persistence">PersistentDataType</a>&lt;P,<wbr>C&gt;&nbsp;type,
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
- C&nbsp;defaultValue)</span></div>
-<div class="block">Returns the metadata value that is stored on the
- <a href="PersistentDataHolder.html" title="interface in org.bukkit.persistence"><code>PersistentDataHolder</code></a> instance. If the value does not exist in the
- container, the default value provided is returned.</div>
-<dl class="notes">
-<dt>Type Parameters:</dt>
-<dd><code>P</code> - the generic type of the stored primitive</dd>
-<dd><code>C</code> - the generic type of the eventually created complex object</dd>
-<dt>Parameters:</dt>
-<dd><code>key</code> - the key to look up in the custom tag map</dd>
-<dd><code>type</code> - the type the value must have and will be casted to</dd>
-<dd><code>defaultValue</code> - the default value to return if no value was found for
- the provided key</dd>
-<dt>Returns:</dt>
-<dd>the value or the default value if no value was mapped under the
- given key</dd>
-<dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if the key to look up is null</dd>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if the type to cast the found object to is
- null</dd>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if a value exists under the given key,
- but cannot be accessed using the given type</dd>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if no suitable adapter was found for
- the <a href="PersistentDataType.html#getPrimitiveType()"><code>PersistentDataType.getPrimitiveType()</code></a></dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="getKeys()">
-<h3>getKeys</h3>
-<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
-</span><span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Set.html" title="class or interface in java.util" class="external-link">Set</a>&lt;<a href="../NamespacedKey.html" title="class in org.bukkit">NamespacedKey</a>&gt;</span>&nbsp;<span class="element-name">getKeys</span>()</div>
-<div class="block">Get the set of keys present on this <a href="PersistentDataContainer.html" title="interface in org.bukkit.persistence"><code>PersistentDataContainer</code></a>
- instance.
-
- Any changes made to the returned set will not be reflected on the
- instance.</div>
-<dl class="notes">
-<dt>Returns:</dt>
-<dd>the key set</dd>
-</dl>
-</section>
-</li>
-<li>
 <section class="detail" id="remove(org.bukkit.NamespacedKey)">
 <h3>remove</h3>
 <div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">remove</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
@@ -455,65 +216,6 @@ C&gt;</span>&nbsp;<span class="return-type">C</span>&nbsp;<span class="element-n
 <dd><code>key</code> - the key to remove</dd>
 <dt>Throws:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if the provided key is null</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="isEmpty()">
-<h3>isEmpty</h3>
-<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">isEmpty</span>()</div>
-<div class="block">Returns if the container instance is empty, therefore has no entries
- inside it.</div>
-<dl class="notes">
-<dt>Returns:</dt>
-<dd>the boolean</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="copyTo(org.bukkit.persistence.PersistentDataContainer,boolean)">
-<h3>copyTo</h3>
-<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">copyTo</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="PersistentDataContainer.html" title="interface in org.bukkit.persistence">PersistentDataContainer</a>&nbsp;other,
- boolean&nbsp;replace)</span></div>
-<div class="block">Copies all values from this <a href="PersistentDataContainer.html" title="interface in org.bukkit.persistence"><code>PersistentDataContainer</code></a> to the provided
- container.
- <p>
- This method only copies custom object keys. Existing tags, like the display
- name, will not be copied as the values are stored using your namespace.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>other</code> - the container to copy to</dd>
-<dd><code>replace</code> - whether to replace any matching values in the target container</dd>
-<dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if the other container is null</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="getAdapterContext()">
-<h3>getAdapterContext</h3>
-<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
-</span><span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="PersistentDataAdapterContext.html" title="interface in org.bukkit.persistence">PersistentDataAdapterContext</a></span>&nbsp;<span class="element-name">getAdapterContext</span>()</div>
-<div class="block">Returns the adapter context this tag container uses.</div>
-<dl class="notes">
-<dt>Returns:</dt>
-<dd>the tag context</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="serializeToBytes()">
-<h3>serializeToBytes</h3>
-<div class="member-signature"><span class="return-type">byte <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> []</span>&nbsp;<span class="element-name">serializeToBytes</span>()
-                           throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a></span></div>
-<div class="block">Serialize this <a href="PersistentDataContainer.html" title="interface in org.bukkit.persistence"><code>PersistentDataContainer</code></a> instance to a
- byte array.</div>
-<dl class="notes">
-<dt>Returns:</dt>
-<dd>a binary representation of this container</dd>
-<dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a></code> - if we fail to write this container to a byte array</dd>
 </dl>
 </section>
 </li>
@@ -583,155 +285,6 @@ C&gt;</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="elemen
  be done using <a href="#remove(java.lang.String)"><code>remove(String)</code></a></dd>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if no suitable adapter was found for
  the <a href="PersistentDataType.html#getPrimitiveType()"><code>PersistentDataType.getPrimitiveType()</code></a></dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="has(java.lang.String,org.bukkit.persistence.PersistentDataType)">
-<h3>has</h3>
-<div class="member-signature"><span class="type-parameters">&lt;P,<wbr>
-C&gt;</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">has</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key,
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="PersistentDataType.html" title="interface in org.bukkit.persistence">PersistentDataType</a>&lt;P,<wbr>C&gt;&nbsp;type)</span></div>
-<div class="block">Returns if the persistent metadata provider has metadata registered
- matching the provided parameters.
- <p>
- This method will only return true if the found value has the same primitive
- data type as the provided key.
- <p>
- Storing a value using a custom <a href="PersistentDataType.html" title="interface in org.bukkit.persistence"><code>PersistentDataType</code></a> implementation
- will not store the complex data type. Therefore storing a UUID (by
- storing a byte[]) will match has("key" ,
- <a href="PersistentDataType.html#BYTE_ARRAY"><code>PersistentDataType.BYTE_ARRAY</code></a>). Likewise a stored byte[] will
- always match your UUID <a href="PersistentDataType.html" title="interface in org.bukkit.persistence"><code>PersistentDataType</code></a> even if it is not 16
- bytes long.
- <p>
- This method is only usable for custom object keys. Overwriting existing
- tags, like the display name, will not work as the values are stored
- using your namespace.</div>
-<dl class="notes">
-<dt>Type Parameters:</dt>
-<dd><code>P</code> - the generic type of the stored primitive</dd>
-<dd><code>C</code> - the generic type of the eventually created complex object</dd>
-<dt>Parameters:</dt>
-<dd><code>key</code> - the key the value is stored under</dd>
-<dd><code>type</code> - the type the primative stored value has to match</dd>
-<dt>Returns:</dt>
-<dd>if a value with the provided key and type exists</dd>
-<dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if the key to look up is null</dd>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if the type to cast the found object to is
- null</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="has(java.lang.String)">
-<h3>has</h3>
-<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">has</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key)</span></div>
-<div class="block">Returns if the persistent metadata provider has metadata registered matching
- the provided parameters.
- <p>
- This method will return true as long as a value with the given key exists,
- regardless of its type.
- <p>
- This method is only usable for custom object keys. Overwriting existing tags,
- like the display name, will not work as the values are stored using your
- namespace.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>key</code> - the key the value is stored under</dd>
-<dt>Returns:</dt>
-<dd>if a value with the provided key exists</dd>
-<dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if the key to look up is null</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="get(java.lang.String,org.bukkit.persistence.PersistentDataType)">
-<h3>get</h3>
-<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a>
-</span><span class="type-parameters">&lt;P,<wbr>
-C&gt;</span>&nbsp;<span class="return-type">C</span>&nbsp;<span class="element-name">get</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key,
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="PersistentDataType.html" title="interface in org.bukkit.persistence">PersistentDataType</a>&lt;P,<wbr>C&gt;&nbsp;type)</span></div>
-<div class="block">Returns the metadata value that is stored on the
- <a href="PersistentDataHolder.html" title="interface in org.bukkit.persistence"><code>PersistentDataHolder</code></a> instance.</div>
-<dl class="notes">
-<dt>Type Parameters:</dt>
-<dd><code>P</code> - the generic type of the stored primitive</dd>
-<dd><code>C</code> - the generic type of the eventually created complex object</dd>
-<dt>Parameters:</dt>
-<dd><code>key</code> - the key to look up in the custom tag map</dd>
-<dd><code>type</code> - the type the value must have and will be casted to</dd>
-<dt>Returns:</dt>
-<dd>the value or <code>null</code> if no value was mapped under the given
- value</dd>
-<dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if the key to look up is null</dd>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if the type to cast the found object to is
- null</dd>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if a value exists under the given key,
- but cannot be accessed using the given type</dd>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if no suitable adapter was found for
- the <a href="PersistentDataType.html#getPrimitiveType()"><code>PersistentDataType.getPrimitiveType()</code></a></dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="getOrDefault(java.lang.String,org.bukkit.persistence.PersistentDataType,C)">
-<h3 id="getOrDefault(java.lang.String,org.bukkit.persistence.PersistentDataType,java.lang.Object)">getOrDefault</h3>
-<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
-</span><span class="type-parameters">&lt;P,<wbr>
-C&gt;</span>&nbsp;<span class="return-type">C</span>&nbsp;<span class="element-name">getOrDefault</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key,
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="PersistentDataType.html" title="interface in org.bukkit.persistence">PersistentDataType</a>&lt;P,<wbr>C&gt;&nbsp;type,
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
- C&nbsp;defaultValue)</span></div>
-<div class="block">Returns the metadata value that is stored on the
- <a href="PersistentDataHolder.html" title="interface in org.bukkit.persistence"><code>PersistentDataHolder</code></a> instance. If the value does not exist in the
- container, the default value provided is returned.</div>
-<dl class="notes">
-<dt>Type Parameters:</dt>
-<dd><code>P</code> - the generic type of the stored primitive</dd>
-<dd><code>C</code> - the generic type of the eventually created complex object</dd>
-<dt>Parameters:</dt>
-<dd><code>key</code> - the key to look up in the custom tag map</dd>
-<dd><code>type</code> - the type the value must have and will be casted to</dd>
-<dd><code>defaultValue</code> - the default value to return if no value was found for
- the provided key</dd>
-<dt>Returns:</dt>
-<dd>the value or the default value if no value was mapped under the
- given key</dd>
-<dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if the key to look up is null</dd>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if the type to cast the found object to is
- null</dd>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if a value exists under the given key,
- but cannot be accessed using the given type</dd>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if no suitable adapter was found for
- the <a href="PersistentDataType.html#getPrimitiveType()"><code>PersistentDataType.getPrimitiveType()</code></a></dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="keys()">
-<h3>keys</h3>
-<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
-</span><span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Set.html" title="class or interface in java.util" class="external-link">Set</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;</span>&nbsp;<span class="element-name">keys</span>()</div>
-<div class="block">Get the set of keys present on this <a href="PersistentDataContainer.html" title="interface in org.bukkit.persistence"><code>PersistentDataContainer</code></a>
- instance.
-
- Any changes made to the returned set will not be reflected on the
- instance.</div>
-<dl class="notes">
-<dt>Returns:</dt>
-<dd>the key set</dd>
 </dl>
 </section>
 </li>

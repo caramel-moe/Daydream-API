@@ -92,12 +92,12 @@ loadScripts(document, 'script');</script>
 <section class="class-description" id="class-description">
 <dl class="notes">
 <dt>All Implemented Interfaces:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Cloneable.html" title="class or interface in java.lang" class="external-link">Cloneable</a></code>, <code><a href="https://jd.advntr.dev/api/4.17.0/net/kyori/adventure/text/event/HoverEventSource.html" title="class or interface in net.kyori.adventure.text.event" class="external-link">HoverEventSource</a>&lt;<a href="https://jd.advntr.dev/api/4.17.0/net/kyori/adventure/text/event/HoverEvent.ShowItem.html" title="class or interface in net.kyori.adventure.text.event" class="external-link">HoverEvent.ShowItem</a>&gt;</code>, <code><a href="https://jd.advntr.dev/api/4.17.0/net/kyori/adventure/translation/Translatable.html" title="class or interface in net.kyori.adventure.translation" class="external-link">Translatable</a></code>, <code><a href="../configuration/serialization/ConfigurationSerializable.html" title="interface in org.bukkit.configuration.serialization">ConfigurationSerializable</a></code>, <code><a href="../Translatable.html" title="interface in org.bukkit">Translatable</a></code></dd>
+<dd><code><a href="../../../io/papermc/paper/persistence/PersistentDataViewHolder.html" title="interface in io.papermc.paper.persistence">PersistentDataViewHolder</a></code>, <code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Cloneable.html" title="class or interface in java.lang" class="external-link">Cloneable</a></code>, <code><a href="https://jd.advntr.dev/api/4.17.0/net/kyori/adventure/text/event/HoverEventSource.html" title="class or interface in net.kyori.adventure.text.event" class="external-link">HoverEventSource</a>&lt;<a href="https://jd.advntr.dev/api/4.17.0/net/kyori/adventure/text/event/HoverEvent.ShowItem.html" title="class or interface in net.kyori.adventure.text.event" class="external-link">HoverEvent.ShowItem</a>&gt;</code>, <code><a href="https://jd.advntr.dev/api/4.17.0/net/kyori/adventure/translation/Translatable.html" title="class or interface in net.kyori.adventure.translation" class="external-link">Translatable</a></code>, <code><a href="../configuration/serialization/ConfigurationSerializable.html" title="interface in org.bukkit.configuration.serialization">ConfigurationSerializable</a></code>, <code><a href="../Translatable.html" title="interface in org.bukkit">Translatable</a></code></dd>
 </dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">ItemStack</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>
-implements <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Cloneable.html" title="class or interface in java.lang" class="external-link">Cloneable</a>, <a href="../configuration/serialization/ConfigurationSerializable.html" title="interface in org.bukkit.configuration.serialization">ConfigurationSerializable</a>, <a href="../Translatable.html" title="interface in org.bukkit">Translatable</a>, <a href="https://jd.advntr.dev/api/4.17.0/net/kyori/adventure/text/event/HoverEventSource.html" title="class or interface in net.kyori.adventure.text.event" class="external-link">HoverEventSource</a>&lt;<a href="https://jd.advntr.dev/api/4.17.0/net/kyori/adventure/text/event/HoverEvent.ShowItem.html" title="class or interface in net.kyori.adventure.text.event" class="external-link">HoverEvent.ShowItem</a>&gt;, <a href="https://jd.advntr.dev/api/4.17.0/net/kyori/adventure/translation/Translatable.html" title="class or interface in net.kyori.adventure.translation" class="external-link">Translatable</a></span></div>
+implements <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Cloneable.html" title="class or interface in java.lang" class="external-link">Cloneable</a>, <a href="../configuration/serialization/ConfigurationSerializable.html" title="interface in org.bukkit.configuration.serialization">ConfigurationSerializable</a>, <a href="../Translatable.html" title="interface in org.bukkit">Translatable</a>, <a href="https://jd.advntr.dev/api/4.17.0/net/kyori/adventure/text/event/HoverEventSource.html" title="class or interface in net.kyori.adventure.text.event" class="external-link">HoverEventSource</a>&lt;<a href="https://jd.advntr.dev/api/4.17.0/net/kyori/adventure/text/event/HoverEvent.ShowItem.html" title="class or interface in net.kyori.adventure.text.event" class="external-link">HoverEvent.ShowItem</a>&gt;, <a href="https://jd.advntr.dev/api/4.17.0/net/kyori/adventure/translation/Translatable.html" title="class or interface in net.kyori.adventure.translation" class="external-link">Translatable</a>, <a href="../../../io/papermc/paper/persistence/PersistentDataViewHolder.html" title="interface in io.papermc.paper.persistence">PersistentDataViewHolder</a></span></div>
 <div class="block">Represents a stack of items.
  <p>
  <b>IMPORTANT: An <i>Item</i>Stack is only designed to contain <i>items</i>. Do not
@@ -398,147 +398,163 @@ implements <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Get the maximum stack size for this item.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4 method-summary-table-tab6"><code><a href="../../../io/papermc/paper/inventory/ItemRarity.html" title="enum class in io.papermc.paper.inventory">ItemRarity</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4 method-summary-table-tab6"><code><a href="#getRarity()" class="member-name-link">getRarity</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4 method-summary-table-tab6">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../io/papermc/paper/persistence/PersistentDataContainerView.html" title="interface in io.papermc.paper.persistence">PersistentDataContainerView</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getPersistentDataContainer()" class="member-name-link">getPersistentDataContainer</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns a custom tag container view capable of viewing tags on the object.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4 method-summary-table-tab6"><code><a href="../../../io/papermc/paper/inventory/ItemRarity.html" title="enum class in io.papermc.paper.inventory">ItemRarity</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4 method-summary-table-tab6"><code><a href="#getRarity()" class="member-name-link">getRarity</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4 method-summary-table-tab6">
 <div class="block"><span class="deprecated-label">Deprecated, for removal: This API element is subject to removal in a future version.</span>
 <div class="deprecation-comment">Use <a href="meta/ItemMeta.html#hasRarity()"><code>ItemMeta.hasRarity()</code></a> and <a href="meta/ItemMeta.html#getRarity()"><code>ItemMeta.getRarity()</code></a></div>
 </div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4 method-summary-table-tab6"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4 method-summary-table-tab6"><code><a href="#getTranslationKey()" class="member-name-link">getTranslationKey</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4 method-summary-table-tab6">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4 method-summary-table-tab6"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4 method-summary-table-tab6"><code><a href="#getTranslationKey()" class="member-name-link">getTranslationKey</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4 method-summary-table-tab6">
 <div class="block"><span class="deprecated-label">Deprecated, for removal: This API element is subject to removal in a future version.</span></div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Material.html" title="enum class in org.bukkit">Material</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getType()" class="member-name-link">getType</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Material.html" title="enum class in org.bukkit">Material</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getType()" class="member-name-link">getType</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Gets the type of this item</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#hashCode()" class="member-name-link">hashCode</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#hasItemFlag(org.bukkit.inventory.ItemFlag)" class="member-name-link">hasItemFlag</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="ItemFlag.html" title="enum class in org.bukkit.inventory">ItemFlag</a>&nbsp;flag)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#hashCode()" class="member-name-link">hashCode</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#hasItemFlag(org.bukkit.inventory.ItemFlag)" class="member-name-link">hasItemFlag</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="ItemFlag.html" title="enum class in org.bukkit.inventory">ItemFlag</a>&nbsp;flag)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Check if the specified flag is present on this item.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#hasItemMeta()" class="member-name-link">hasItemMeta</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#hasItemMeta()" class="member-name-link">hasItemMeta</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Checks to see if any meta data has been defined.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isEmpty()" class="member-name-link">isEmpty</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isEmpty()" class="member-name-link">isEmpty</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Returns whether this item stack is empty and contains no item.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isRepairableBy(org.bukkit.inventory.ItemStack)" class="member-name-link">isRepairableBy</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;repairMaterial)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isRepairableBy(org.bukkit.inventory.ItemStack)" class="member-name-link">isRepairableBy</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;repairMaterial)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Checks if an itemstack can repair this itemstack.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isSimilar(org.bukkit.inventory.ItemStack)" class="member-name-link">isSimilar</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;stack)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isSimilar(org.bukkit.inventory.ItemStack)" class="member-name-link">isSimilar</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;stack)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">This method is the same as equals, but does not consider stack size
  (amount).</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="https://jd.advntr.dev/api/4.17.0/net/kyori/adventure/text/Component.html" title="class or interface in net.kyori.adventure.text" class="external-link">Component</a>&gt;</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#lore()" class="member-name-link">lore</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="https://jd.advntr.dev/api/4.17.0/net/kyori/adventure/text/Component.html" title="class or interface in net.kyori.adventure.text" class="external-link">Component</a>&gt;</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#lore()" class="member-name-link">lore</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">If the item has lore, returns it, else it will return null</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#lore(java.util.List)" class="member-name-link">lore</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;? extends <a href="https://jd.advntr.dev/api/4.17.0/net/kyori/adventure/text/Component.html" title="class or interface in net.kyori.adventure.text" class="external-link">Component</a>&gt;&nbsp;lore)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#lore(java.util.List)" class="member-name-link">lore</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;? extends <a href="https://jd.advntr.dev/api/4.17.0/net/kyori/adventure/text/Component.html" title="class or interface in net.kyori.adventure.text" class="external-link">Component</a>&gt;&nbsp;lore)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Sets the lore for this item.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#removeEnchantment(org.bukkit.enchantments.Enchantment)" class="member-name-link">removeEnchantment</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../enchantments/Enchantment.html" title="class in org.bukkit.enchantments">Enchantment</a>&nbsp;ench)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#of(org.bukkit.Material)" class="member-name-link">of</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Material.html" title="enum class in org.bukkit">Material</a>&nbsp;type)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Creates an itemstack with the specified item type and a count of 1.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#of(org.bukkit.Material,int)" class="member-name-link">of</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Material.html" title="enum class in org.bukkit">Material</a>&nbsp;type,
+ int&nbsp;amount)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Creates an itemstack with the specified item type and count.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#removeEnchantment(org.bukkit.enchantments.Enchantment)" class="member-name-link">removeEnchantment</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../enchantments/Enchantment.html" title="class in org.bukkit.enchantments">Enchantment</a>&nbsp;ench)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Removes the specified <a href="../enchantments/Enchantment.html" title="class in org.bukkit.enchantments"><code>Enchantment</code></a> if it exists on this
  ItemStack</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#removeEnchantments()" class="member-name-link">removeEnchantments</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#removeEnchantments()" class="member-name-link">removeEnchantments</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Removes all enchantments on this ItemStack.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#removeItemFlags(org.bukkit.inventory.ItemFlag...)" class="member-name-link">removeItemFlags</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="ItemFlag.html" title="enum class in org.bukkit.inventory">ItemFlag</a>...&nbsp;itemFlags)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#removeItemFlags(org.bukkit.inventory.ItemFlag...)" class="member-name-link">removeItemFlags</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="ItemFlag.html" title="enum class in org.bukkit.inventory">ItemFlag</a>...&nbsp;itemFlags)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Remove specific set of itemFlags.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a><wbr>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&gt;</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#serialize()" class="member-name-link">serialize</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a><wbr>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&gt;</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#serialize()" class="member-name-link">serialize</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Creates a Map representation of this class.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>@org.jetbrains.annotations.NotNull byte[]</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#serializeAsBytes()" class="member-name-link">serializeAsBytes</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>@org.jetbrains.annotations.NotNull byte[]</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#serializeAsBytes()" class="member-name-link">serializeAsBytes</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Serializes this itemstack to raw bytes in NBT.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setAmount(int)" class="member-name-link">setAmount</a><wbr>(int&nbsp;amount)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setAmount(int)" class="member-name-link">setAmount</a><wbr>(int&nbsp;amount)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Sets the amount of items in this stack</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4 method-summary-table-tab6"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4 method-summary-table-tab6"><code><a href="#setData(org.bukkit.material.MaterialData)" class="member-name-link">setData</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../material/MaterialData.html" title="class in org.bukkit.material">MaterialData</a>&nbsp;data)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4 method-summary-table-tab6">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4 method-summary-table-tab6"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4 method-summary-table-tab6"><code><a href="#setData(org.bukkit.material.MaterialData)" class="member-name-link">setData</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../material/MaterialData.html" title="class in org.bukkit.material">MaterialData</a>&nbsp;data)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4 method-summary-table-tab6">
 <div class="block"><span class="deprecated-label">Deprecated.</span>
 <div class="deprecation-comment">cast to <a href="meta/BlockDataMeta.html" title="interface in org.bukkit.inventory.meta"><code>BlockDataMeta</code></a> and use <a href="meta/BlockDataMeta.html#setBlockData(org.bukkit.block.data.BlockData)"><code>BlockDataMeta.setBlockData(org.bukkit.block.data.BlockData)</code></a></div>
 </div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4 method-summary-table-tab6"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4 method-summary-table-tab6"><code><a href="#setDurability(short)" class="member-name-link">setDurability</a><wbr>(short&nbsp;durability)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4 method-summary-table-tab6">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4 method-summary-table-tab6"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4 method-summary-table-tab6"><code><a href="#setDurability(short)" class="member-name-link">setDurability</a><wbr>(short&nbsp;durability)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4 method-summary-table-tab6">
 <div class="block"><span class="deprecated-label">Deprecated.</span>
 <div class="deprecation-comment">durability is now part of ItemMeta.</div>
 </div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setItemMeta(org.bukkit.inventory.meta.ItemMeta)" class="member-name-link">setItemMeta</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="meta/ItemMeta.html" title="interface in org.bukkit.inventory.meta">ItemMeta</a>&nbsp;itemMeta)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setItemMeta(org.bukkit.inventory.meta.ItemMeta)" class="member-name-link">setItemMeta</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="meta/ItemMeta.html" title="interface in org.bukkit.inventory.meta">ItemMeta</a>&nbsp;itemMeta)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Set the ItemMeta of this ItemStack.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4 method-summary-table-tab6"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4 method-summary-table-tab6"><code><a href="#setLore(java.util.List)" class="member-name-link">setLore</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;&nbsp;lore)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4 method-summary-table-tab6">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4 method-summary-table-tab6"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4 method-summary-table-tab6"><code><a href="#setLore(java.util.List)" class="member-name-link">setLore</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;&nbsp;lore)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4 method-summary-table-tab6">
 <div class="block"><span class="deprecated-label">Deprecated.</span>
 <div class="deprecation-comment">in favour of <a href="#lore(java.util.List)"><code>lore(java.util.List)</code></a></div>
 </div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4 method-summary-table-tab6"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4 method-summary-table-tab6"><code><a href="#setType(org.bukkit.Material)" class="member-name-link">setType</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Material.html" title="enum class in org.bukkit">Material</a>&nbsp;type)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4 method-summary-table-tab6">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4 method-summary-table-tab6"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4 method-summary-table-tab6"><code><a href="#setType(org.bukkit.Material)" class="member-name-link">setType</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Material.html" title="enum class in org.bukkit">Material</a>&nbsp;type)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4 method-summary-table-tab6">
 <div class="block"><span class="deprecated-label">Deprecated.</span>
 <div class="deprecation-comment"><b>Setting the material type of ItemStacks is no longer supported.</b></div>
 </div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#subtract()" class="member-name-link">subtract</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#subtract()" class="member-name-link">subtract</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Subtracts 1 to this itemstack.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#subtract(int)" class="member-name-link">subtract</a><wbr>(int&nbsp;qty)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#subtract(int)" class="member-name-link">subtract</a><wbr>(int&nbsp;qty)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Subtracts quantity to this itemstack.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#toString()" class="member-name-link">toString</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#translationKey()" class="member-name-link">translationKey</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#toString()" class="member-name-link">toString</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#translationKey()" class="member-name-link">translationKey</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Gets the translation key.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#withType(org.bukkit.Material)" class="member-name-link">withType</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Material.html" title="enum class in org.bukkit">Material</a>&nbsp;type)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#withType(org.bukkit.Material)" class="member-name-link">withType</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Material.html" title="enum class in org.bukkit">Material</a>&nbsp;type)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Creates a new ItemStack with the specified Material type, where the item count and item meta is preserved.</div>
 </div>
 </div>
@@ -550,6 +566,9 @@ implements <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-net.kyori.adventure.text.event.HoverEventSource">Methods inherited from interface&nbsp;net.kyori.adventure.text.event.<a href="https://jd.advntr.dev/api/4.17.0/net/kyori/adventure/text/event/HoverEventSource.html" title="class or interface in net.kyori.adventure.text.event" class="external-link">HoverEventSource</a></h3>
 <code><a href="https://jd.advntr.dev/api/4.17.0/net/kyori/adventure/text/event/HoverEventSource.html#asHoverEvent()" title="class or interface in net.kyori.adventure.text.event" class="external-link">asHoverEvent</a></code></div>
+<div class="inherited-list">
+<h3 id="methods-inherited-from-class-io.papermc.paper.persistence.PersistentDataViewHolder">Methods inherited from interface&nbsp;io.papermc.paper.persistence.<a href="../../../io/papermc/paper/persistence/PersistentDataViewHolder.html" title="interface in io.papermc.paper.persistence">PersistentDataViewHolder</a></h3>
+<code><a href="../../../io/papermc/paper/persistence/PersistentDataViewHolder.html#getPdc()">getPdc</a></code></div>
 </section>
 </li>
 </ul>
@@ -570,7 +589,8 @@ implements <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base
 <li>
 <section class="detail" id="&lt;init&gt;(org.bukkit.Material)">
 <h3>ItemStack</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">ItemStack</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/ApiStatus.Obsolete.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Obsolete</a>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/ApiStatus.Obsolete.html#since()" title="class or interface in org.jetbrains.annotations" class="external-link">since</a>="1.21")
+</span><span class="modifiers">public</span>&nbsp;<span class="element-name">ItemStack</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Material.html" title="enum class in org.bukkit">Material</a>&nbsp;type)</span></div>
 <div class="block">Defaults stack size to 1, with no extra data.
  <p>
@@ -580,13 +600,22 @@ implements <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>type</code> - item material</dd>
+<dt>See Also:</dt>
+<dd>
+<ul class="tag-list">
+<li><a href="#of(org.bukkit.Material)"><code>of(Material)</code></a></li>
+</ul>
+</dd>
+<dt>API Note:</dt>
+<dd>use <a href="#of(org.bukkit.Material)"><code>of(Material)</code></a></dd>
 </dl>
 </section>
 </li>
 <li>
 <section class="detail" id="&lt;init&gt;(org.bukkit.Material,int)">
 <h3>ItemStack</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">ItemStack</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/ApiStatus.Obsolete.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Obsolete</a>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/ApiStatus.Obsolete.html#since()" title="class or interface in org.jetbrains.annotations" class="external-link">since</a>="1.21")
+</span><span class="modifiers">public</span>&nbsp;<span class="element-name">ItemStack</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Material.html" title="enum class in org.bukkit">Material</a>&nbsp;type,
  int&nbsp;amount)</span></div>
 <div class="block">An item stack with no extra data.
@@ -598,6 +627,14 @@ implements <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base
 <dt>Parameters:</dt>
 <dd><code>type</code> - item material</dd>
 <dd><code>amount</code> - stack size</dd>
+<dt>See Also:</dt>
+<dd>
+<ul class="tag-list-long">
+<li><a href="#of(org.bukkit.Material,int)"><code>of(Material, int)</code></a></li>
+</ul>
+</dd>
+<dt>API Note:</dt>
+<dd>Use <a href="#of(org.bukkit.Material,int)"><code>of(Material, int)</code></a></dd>
 </dl>
 </section>
 </li>
@@ -646,7 +683,8 @@ implements <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base
 <li>
 <section class="detail" id="&lt;init&gt;(org.bukkit.inventory.ItemStack)">
 <h3>ItemStack</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">ItemStack</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/ApiStatus.Obsolete.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Obsolete</a>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/ApiStatus.Obsolete.html#since()" title="class or interface in org.jetbrains.annotations" class="external-link">since</a>="1.21")
+</span><span class="modifiers">public</span>&nbsp;<span class="element-name">ItemStack</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;stack)</span>
           throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></span></div>
 <div class="block">Creates a new item stack derived from the specified stack</div>
@@ -656,6 +694,14 @@ implements <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base
 <dt>Throws:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if the specified stack is null or
      returns an item meta not created by the item factory</dd>
+<dt>See Also:</dt>
+<dd>
+<ul class="tag-list">
+<li><a href="#clone()"><code>clone()</code></a></li>
+</ul>
+</dd>
+<dt>API Note:</dt>
+<dd>Use <a href="#clone()"><code>clone()</code></a></dd>
 </dl>
 </section>
 </li>
@@ -667,6 +713,65 @@ implements <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base
 <section class="method-details" id="method-detail">
 <h2>Method Details</h2>
 <ul class="member-list">
+<li>
+<section class="detail" id="of(org.bukkit.Material)">
+<h3>of</h3>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Contract.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Contract</a>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Contract.html#value()" title="class or interface in org.jetbrains.annotations" class="external-link">value</a>="_ -&gt; new",
+          <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Contract.html#pure()" title="class or interface in org.jetbrains.annotations" class="external-link">pure</a>=true)
+<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+</span><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a></span>&nbsp;<span class="element-name">of</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Material.html" title="enum class in org.bukkit">Material</a>&nbsp;type)</span></div>
+<div class="block">Creates an itemstack with the specified item type and a count of 1.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>type</code> - the item type to use</dd>
+<dt>Returns:</dt>
+<dd>a new itemstack</dd>
+<dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if the Material provided is not an item (<a href="../Material.html#isItem()"><code>Material.isItem()</code></a>)</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="of(org.bukkit.Material,int)">
+<h3>of</h3>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Contract.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Contract</a>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Contract.html#value()" title="class or interface in org.jetbrains.annotations" class="external-link">value</a>="_, _ -&gt; new",
+          <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Contract.html#pure()" title="class or interface in org.jetbrains.annotations" class="external-link">pure</a>=true)
+<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+</span><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a></span>&nbsp;<span class="element-name">of</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Material.html" title="enum class in org.bukkit">Material</a>&nbsp;type,
+ int&nbsp;amount)</span></div>
+<div class="block">Creates an itemstack with the specified item type and count.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>type</code> - the item type to use</dd>
+<dd><code>amount</code> - the count of items in the stack</dd>
+<dt>Returns:</dt>
+<dd>a new itemstack</dd>
+<dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if the Material provided is not an item (<a href="../Material.html#isItem()"><code>Material.isItem()</code></a>)</dd>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if the amount is less than 1</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getPersistentDataContainer()">
+<h3>getPersistentDataContainer</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../io/papermc/paper/persistence/PersistentDataContainerView.html" title="interface in io.papermc.paper.persistence">PersistentDataContainerView</a></span>&nbsp;<span class="element-name">getPersistentDataContainer</span>()</div>
+<div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../../../io/papermc/paper/persistence/PersistentDataViewHolder.html#getPersistentDataContainer()">PersistentDataViewHolder</a></code></span></div>
+<div class="block">Returns a custom tag container view capable of viewing tags on the object.
+ <p>
+ Note that the tags stored on this container are all stored under their
+ own custom namespace therefore modifying default tags using this
+ <a href="../../../io/papermc/paper/persistence/PersistentDataViewHolder.html" title="interface in io.papermc.paper.persistence"><code>PersistentDataViewHolder</code></a> is impossible.</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="../../../io/papermc/paper/persistence/PersistentDataViewHolder.html#getPersistentDataContainer()">getPersistentDataContainer</a></code>&nbsp;in interface&nbsp;<code><a href="../../../io/papermc/paper/persistence/PersistentDataViewHolder.html" title="interface in io.papermc.paper.persistence">PersistentDataViewHolder</a></code></dd>
+<dt>Returns:</dt>
+<dd>the persistent data container view</dd>
+</dl>
+</section>
+</li>
 <li>
 <section class="detail" id="create(org.bukkit.Material)">
 <h3>create</h3>

@@ -186,7 +186,9 @@ extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/ja
 <div class="col-first even-row-color"><code>static final <a href="Registry.html" title="interface in org.bukkit">Registry</a><wbr>&lt;<a href="enchantments/Enchantment.html" title="class in org.bukkit.enchantments">Enchantment</a>&gt;</code></div>
 <div class="col-second even-row-color"><code><a href="#ENCHANTMENT" class="member-name-link">ENCHANTMENT</a></code></div>
 <div class="col-last even-row-color">
-<div class="block">Server enchantments.</div>
+<div class="block"><span class="deprecated-label">Deprecated.</span>
+<div class="deprecation-comment">use <a href="../../io/papermc/paper/registry/RegistryAccess.html#getRegistry(io.papermc.paper.registry.RegistryKey)"><code>RegistryAccess.getRegistry(io.papermc.paper.registry.RegistryKey)</code></a> with <a href="../../io/papermc/paper/registry/RegistryKey.html#ENCHANTMENT"><code>RegistryKey.ENCHANTMENT</code></a></div>
+</div>
 </div>
 <div class="col-first odd-row-color"><code>static final <a href="Registry.html" title="interface in org.bukkit">Registry</a><wbr>&lt;<a href="entity/EntityType.html" title="enum class in org.bukkit.entity">EntityType</a>&gt;</code></div>
 <div class="col-second odd-row-color"><code><a href="#ENTITY_TYPE" class="member-name-link">ENTITY_TYPE</a></code></div>
@@ -221,7 +223,9 @@ extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/ja
 <div class="col-first odd-row-color"><code>static final <a href="Registry.html" title="interface in org.bukkit">Registry</a><wbr>&lt;<a href="JukeboxSong.html" title="interface in org.bukkit">JukeboxSong</a>&gt;</code></div>
 <div class="col-second odd-row-color"><code><a href="#JUKEBOX_SONG" class="member-name-link">JUKEBOX_SONG</a></code></div>
 <div class="col-last odd-row-color">
-<div class="block">Jukebox songs.</div>
+<div class="block"><span class="deprecated-label">Deprecated.</span>
+<div class="deprecation-comment">use <a href="../../io/papermc/paper/registry/RegistryAccess.html#getRegistry(io.papermc.paper.registry.RegistryKey)"><code>RegistryAccess.getRegistry(io.papermc.paper.registry.RegistryKey)</code></a> with <a href="../../io/papermc/paper/registry/RegistryKey.html#JUKEBOX_SONG"><code>RegistryKey.JUKEBOX_SONG</code></a></div>
+</div>
 </div>
 <div class="col-first even-row-color"><code>static final <a href="Registry.html" title="interface in org.bukkit">Registry</a><wbr>&lt;<a href="loot/LootTables.html" title="enum class in org.bukkit.loot">LootTables</a>&gt;</code></div>
 <div class="col-second even-row-color"><code><a href="#LOOT_TABLES" class="member-name-link">LOOT_TABLES</a></code></div>
@@ -325,6 +329,16 @@ extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/ja
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code>default <a href="Registry.html" title="type parameter in Registry">T</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#get(io.papermc.paper.registry.TypedKey)" class="member-name-link">get</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../io/papermc/paper/registry/TypedKey.html" title="interface in io.papermc.paper.registry">TypedKey</a>&lt;<a href="Registry.html" title="type parameter in Registry">T</a>&gt;&nbsp;typedKey)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5">
+<div class="block">Get the object by its typed key.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code>default <a href="Registry.html" title="type parameter in Registry">T</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#get(net.kyori.adventure.key.Key)" class="member-name-link">get</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> net.kyori.adventure.key.Key&nbsp;key)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5">
+<div class="block">Get the object by its key.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="Registry.html" title="type parameter in Registry">T</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#get(org.bukkit.NamespacedKey)" class="member-name-link">get</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="NamespacedKey.html" title="class in org.bukkit">NamespacedKey</a>&nbsp;key)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
@@ -339,6 +353,26 @@ extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/ja
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#getKeyOrThrow(T)" class="member-name-link">getKeyOrThrow</a><wbr>(<a href="Registry.html" title="type parameter in Registry">T</a>&nbsp;value)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5">
 <div class="block">Gets the key for this object or throws if it doesn't exist.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code>default <a href="Registry.html" title="type parameter in Registry">T</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#getOrThrow(io.papermc.paper.registry.TypedKey)" class="member-name-link">getOrThrow</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../io/papermc/paper/registry/TypedKey.html" title="interface in io.papermc.paper.registry">TypedKey</a>&lt;<a href="Registry.html" title="type parameter in Registry">T</a>&gt;&nbsp;key)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5">
+<div class="block">Gets the object by its key or throws if it doesn't exist.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code>default <a href="Registry.html" title="type parameter in Registry">T</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#getOrThrow(net.kyori.adventure.key.Key)" class="member-name-link">getOrThrow</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> net.kyori.adventure.key.Key&nbsp;key)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5">
+<div class="block">Gets the object by its key or throws if it doesn't exist.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code>default <a href="../../io/papermc/paper/registry/tag/Tag.html" title="interface in io.papermc.paper.registry.tag">Tag</a><wbr>&lt;<a href="Registry.html" title="type parameter in Registry">T</a>&gt;</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#getTag(io.papermc.paper.registry.tag.TagKey)" class="member-name-link">getTag</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../io/papermc/paper/registry/tag/TagKey.html" title="interface in io.papermc.paper.registry.tag">TagKey</a>&lt;<a href="Registry.html" title="type parameter in Registry">T</a>&gt;&nbsp;key)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5">
+<div class="block">Gets the named registry set (tag) for the given key.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code>default boolean</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#hasTag(io.papermc.paper.registry.tag.TagKey)" class="member-name-link">hasTag</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../io/papermc/paper/registry/tag/TagKey.html" title="interface in io.papermc.paper.registry.tag">TagKey</a>&lt;<a href="Registry.html" title="type parameter in Registry">T</a>&gt;&nbsp;key)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5">
+<div class="block">Checks if this registry has a tag with the given key.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5 method-summary-table-tab6"><code>default <a href="Registry.html" title="type parameter in Registry">T</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5 method-summary-table-tab6"><code><a href="#match(java.lang.String)" class="member-name-link">match</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;input)</code></div>
@@ -497,7 +531,11 @@ extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/ja
 <li>
 <section class="detail" id="ENCHANTMENT">
 <h3>ENCHANTMENT</h3>
-<div class="member-signature"><span class="modifiers">static final</span>&nbsp;<span class="return-type"><a href="Registry.html" title="interface in org.bukkit">Registry</a>&lt;<a href="enchantments/Enchantment.html" title="class in org.bukkit.enchantments">Enchantment</a>&gt;</span>&nbsp;<span class="element-name">ENCHANTMENT</span></div>
+<div class="member-signature"><span class="annotations"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Deprecated.html" title="class or interface in java.lang" class="external-link">@Deprecated</a>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Deprecated.html#since()" title="class or interface in java.lang" class="external-link">since</a>="1.21")
+</span><span class="modifiers">static final</span>&nbsp;<span class="return-type"><a href="Registry.html" title="interface in org.bukkit">Registry</a>&lt;<a href="enchantments/Enchantment.html" title="class in org.bukkit.enchantments">Enchantment</a>&gt;</span>&nbsp;<span class="element-name">ENCHANTMENT</span></div>
+<div class="deprecation-block"><span class="deprecated-label">Deprecated.</span>
+<div class="deprecation-comment">use <a href="../../io/papermc/paper/registry/RegistryAccess.html#getRegistry(io.papermc.paper.registry.RegistryKey)"><code>RegistryAccess.getRegistry(io.papermc.paper.registry.RegistryKey)</code></a> with <a href="../../io/papermc/paper/registry/RegistryKey.html#ENCHANTMENT"><code>RegistryKey.ENCHANTMENT</code></a></div>
+</div>
 <div class="block">Server enchantments.</div>
 <dl class="notes">
 <dt>See Also:</dt>
@@ -757,7 +795,11 @@ extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/ja
 <section class="detail" id="JUKEBOX_SONG">
 <h3>JUKEBOX_SONG</h3>
 <div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/ApiStatus.Experimental.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Experimental</a>
+<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Deprecated.html" title="class or interface in java.lang" class="external-link">@Deprecated</a>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Deprecated.html#since()" title="class or interface in java.lang" class="external-link">since</a>="1.21")
 </span><span class="modifiers">static final</span>&nbsp;<span class="return-type"><a href="Registry.html" title="interface in org.bukkit">Registry</a>&lt;<a href="JukeboxSong.html" title="interface in org.bukkit">JukeboxSong</a>&gt;</span>&nbsp;<span class="element-name">JUKEBOX_SONG</span></div>
+<div class="deprecation-block"><span class="deprecated-label">Deprecated.</span>
+<div class="deprecation-comment">use <a href="../../io/papermc/paper/registry/RegistryAccess.html#getRegistry(io.papermc.paper.registry.RegistryKey)"><code>RegistryAccess.getRegistry(io.papermc.paper.registry.RegistryKey)</code></a> with <a href="../../io/papermc/paper/registry/RegistryKey.html#JUKEBOX_SONG"><code>RegistryKey.JUKEBOX_SONG</code></a></div>
+</div>
 <div class="block">Jukebox songs.</div>
 <dl class="notes">
 <dt>See Also:</dt>
@@ -933,6 +975,66 @@ extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/ja
 </section>
 </li>
 <li>
+<section class="detail" id="get(net.kyori.adventure.key.Key)">
+<h3>get</h3>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a>
+</span><span class="modifiers">default</span>&nbsp;<span class="return-type"><a href="Registry.html" title="type parameter in Registry">T</a></span>&nbsp;<span class="element-name">get</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> net.kyori.adventure.key.Key&nbsp;key)</span></div>
+<div class="block">Get the object by its key.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>key</code> - non-null key</dd>
+<dt>Returns:</dt>
+<dd>item or null if it does not exist</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="get(io.papermc.paper.registry.TypedKey)">
+<h3>get</h3>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a>
+</span><span class="modifiers">default</span>&nbsp;<span class="return-type"><a href="Registry.html" title="type parameter in Registry">T</a></span>&nbsp;<span class="element-name">get</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../io/papermc/paper/registry/TypedKey.html" title="interface in io.papermc.paper.registry">TypedKey</a>&lt;<a href="Registry.html" title="type parameter in Registry">T</a>&gt;&nbsp;typedKey)</span></div>
+<div class="block">Get the object by its typed key.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>typedKey</code> - non-null typed key</dd>
+<dt>Returns:</dt>
+<dd>item or null if it does not exist</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getOrThrow(net.kyori.adventure.key.Key)">
+<h3>getOrThrow</h3>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+</span><span class="modifiers">default</span>&nbsp;<span class="return-type"><a href="Registry.html" title="type parameter in Registry">T</a></span>&nbsp;<span class="element-name">getOrThrow</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> net.kyori.adventure.key.Key&nbsp;key)</span></div>
+<div class="block">Gets the object by its key or throws if it doesn't exist.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>key</code> - the key to get the object of in this registry</dd>
+<dt>Returns:</dt>
+<dd>the object for the key</dd>
+<dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/NoSuchElementException.html" title="class or interface in java.util" class="external-link">NoSuchElementException</a></code> - if the key doesn't point to an object in the registry</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getOrThrow(io.papermc.paper.registry.TypedKey)">
+<h3>getOrThrow</h3>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+</span><span class="modifiers">default</span>&nbsp;<span class="return-type"><a href="Registry.html" title="type parameter in Registry">T</a></span>&nbsp;<span class="element-name">getOrThrow</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../io/papermc/paper/registry/TypedKey.html" title="interface in io.papermc.paper.registry">TypedKey</a>&lt;<a href="Registry.html" title="type parameter in Registry">T</a>&gt;&nbsp;key)</span></div>
+<div class="block">Gets the object by its key or throws if it doesn't exist.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>key</code> - the key to get the object of in this registry</dd>
+<dt>Returns:</dt>
+<dd>the object for the key</dd>
+<dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/NoSuchElementException.html" title="class or interface in java.util" class="external-link">NoSuchElementException</a></code> - if the key doesn't point to an object in the registry</dd>
+</dl>
+</section>
+</li>
+<li>
 <section class="detail" id="getKeyOrThrow(T)">
 <h3 id="getKeyOrThrow(org.bukkit.Keyed)">getKeyOrThrow</h3>
 <div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
@@ -979,6 +1081,50 @@ extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/ja
 <dd>
 <ul class="tag-list">
 <li><a href="#getKeyOrThrow(T)"><code>getKeyOrThrow(Keyed)</code></a></li>
+</ul>
+</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="hasTag(io.papermc.paper.registry.tag.TagKey)">
+<h3>hasTag</h3>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/ApiStatus.Experimental.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Experimental</a>
+</span><span class="modifiers">default</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">hasTag</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../io/papermc/paper/registry/tag/TagKey.html" title="interface in io.papermc.paper.registry.tag">TagKey</a>&lt;<a href="Registry.html" title="type parameter in Registry">T</a>&gt;&nbsp;key)</span></div>
+<div class="block">Checks if this registry has a tag with the given key.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>key</code> - the key to check for</dd>
+<dt>Returns:</dt>
+<dd>true if this registry has a tag with the given key, false otherwise</dd>
+<dt>See Also:</dt>
+<dd>
+<ul class="tag-list-long">
+<li><a href="#getTag(io.papermc.paper.registry.tag.TagKey)"><code>getTag(io.papermc.paper.registry.tag.TagKey)</code></a></li>
+</ul>
+</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getTag(io.papermc.paper.registry.tag.TagKey)">
+<h3>getTag</h3>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/ApiStatus.Experimental.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Experimental</a>
+<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+</span><span class="modifiers">default</span>&nbsp;<span class="return-type"><a href="../../io/papermc/paper/registry/tag/Tag.html" title="interface in io.papermc.paper.registry.tag">Tag</a>&lt;<a href="Registry.html" title="type parameter in Registry">T</a>&gt;</span>&nbsp;<span class="element-name">getTag</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../io/papermc/paper/registry/tag/TagKey.html" title="interface in io.papermc.paper.registry.tag">TagKey</a>&lt;<a href="Registry.html" title="type parameter in Registry">T</a>&gt;&nbsp;key)</span></div>
+<div class="block">Gets the named registry set (tag) for the given key.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>key</code> - the key to get the tag for</dd>
+<dt>Returns:</dt>
+<dd>the tag for the key</dd>
+<dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/NoSuchElementException.html" title="class or interface in java.util" class="external-link">NoSuchElementException</a></code> - if no tag with the given key is found</dd>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/UnsupportedOperationException.html" title="class or interface in java.lang" class="external-link">UnsupportedOperationException</a></code> - if this registry doesn't have or support tags</dd>
+<dt>See Also:</dt>
+<dd>
+<ul class="tag-list-long">
+<li><a href="#hasTag(io.papermc.paper.registry.tag.TagKey)"><code>hasTag(io.papermc.paper.registry.tag.TagKey)</code></a></li>
 </ul>
 </dd>
 </dl>
