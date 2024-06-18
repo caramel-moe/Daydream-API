@@ -212,13 +212,13 @@ index 0000000000000000000000000000000000000000..a028efebea58fe8c5d633e5d4e079f05
 +    void setOverrideKnockback(final @Nullable Vector knockback);
 +}
 diff --git a/src/main/java/org/bukkit/UnsafeValues.java b/src/main/java/org/bukkit/UnsafeValues.java
-index 0e9ccfee7a03d341e7c4d271f53b4ed168b404ef..57d55297b6cbb3e31eea65c3fe1f37828f7b62a2 100644
+index 11bccf6c27b8b2a2ed558a1375a3b3adc7952076..693dc6a9236ff7a3fd53c3c7f3d8abfe03fe73d6 100644
 --- a/src/main/java/org/bukkit/UnsafeValues.java
 +++ b/src/main/java/org/bukkit/UnsafeValues.java
-@@ -275,4 +275,6 @@ public interface UnsafeValues {
-     // Paper end - lifecycle event API
+@@ -279,4 +279,6 @@ public interface UnsafeValues {
+     <A extends Keyed, M> io.papermc.paper.registry.tag.@Nullable Tag<A> getTag(io.papermc.paper.registry.tag.@NotNull TagKey<A> tagKey); // Paper - hack to get tags for non-server backed registries
  
-     @NotNull java.util.List<net.kyori.adventure.text.Component> computeTooltipLines(@NotNull ItemStack itemStack, @NotNull io.papermc.paper.inventory.tooltip.TooltipContext tooltipContext, @Nullable org.bukkit.entity.Player player); // Paper - expose itemstack tooltip lines
+     ItemStack createEmptyStack(); // Paper - proxy ItemStack
 +
 +    @NotNull moe.caramel.daydream.world.DamageMata getDamageMeta(@NotNull Object damageSource); // Daydream - Add more API for EntityDamageEvent
  }

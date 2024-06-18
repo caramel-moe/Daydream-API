@@ -4,39 +4,16 @@ Date: Thu, 20 Jul 2023 04:32:28 +0900
 Subject: [PATCH] Add more PDC API
 
 
-diff --git a/src/main/java/org/bukkit/persistence/PersistentDataContainer.java b/src/main/java/org/bukkit/persistence/PersistentDataContainer.java
-index decf3b1949d4653a9fb01684b93ff91048137076..07d0b8117740eec35e318addd5bca5a9882ed63f 100644
---- a/src/main/java/org/bukkit/persistence/PersistentDataContainer.java
-+++ b/src/main/java/org/bukkit/persistence/PersistentDataContainer.java
-@@ -219,4 +219,155 @@ public interface PersistentDataContainer {
-         this.readFromBytes(bytes, true);
-     }
-     // Paper end - byte array serialization
+diff --git a/src/main/java/io/papermc/paper/persistence/PersistentDataContainerView.java b/src/main/java/io/papermc/paper/persistence/PersistentDataContainerView.java
+index 4a4949fde3f03e2ea9d2dde245f7dea119e202bf..606f1b5ef72d4de9164e8ee19612117dfda42d3a 100644
+--- a/src/main/java/io/papermc/paper/persistence/PersistentDataContainerView.java
++++ b/src/main/java/io/papermc/paper/persistence/PersistentDataContainerView.java
+@@ -164,4 +164,118 @@ public interface PersistentDataContainerView {
+      * @throws java.io.IOException if we fail to write this container to a byte array
+      */
+     byte @NonNull [] serializeToBytes() throws java.io.IOException;
 +
 +    // Daydream start - Add more PDC API
-+    /**
-+     * Stores a metadata value on the {@link PersistentDataHolder} instance.
-+     * <p>
-+     * This API cannot be used to manipulate minecraft data, as the values will
-+     * be stored using your namespace. This method will override any existing
-+     * value the {@link PersistentDataHolder} may have stored under the provided
-+     * key.
-+     *
-+     * @param key the key this value will be stored under
-+     * @param type the type this tag uses
-+     * @param value the value to store in the tag
-+     * @param <P> the generic java type of the tag value
-+     * @param <C> the generic type of the object to store
-+     *
-+     * @throws IllegalArgumentException if the key is null
-+     * @throws IllegalArgumentException if the type is null
-+     * @throws IllegalArgumentException if the value is null. Removing a tag should
-+     * be done using {@link #remove(String)}
-+     * @throws IllegalArgumentException if no suitable adapter was found for
-+     * the {@link PersistentDataType#getPrimitiveType()}
-+     */
-+    <P, C> void set(@NotNull String key, @NotNull PersistentDataType<P, C> type, @NotNull C value);
-+
 +    /**
 +     * Returns if the persistent metadata provider has metadata registered
 +     * matching the provided parameters.
@@ -66,7 +43,7 @@ index decf3b1949d4653a9fb01684b93ff91048137076..07d0b8117740eec35e318addd5bca5a9
 +     * @throws IllegalArgumentException if the type to cast the found object to is
 +     * null
 +     */
-+    <P, C> boolean has(@NotNull String key, @NotNull PersistentDataType<P, C> type);
++    <P, C> boolean has(@NonNull String key, @NonNull PersistentDataType<P, C> type);
 +
 +    /**
 +     * Returns if the persistent metadata provider has metadata registered matching
@@ -85,7 +62,7 @@ index decf3b1949d4653a9fb01684b93ff91048137076..07d0b8117740eec35e318addd5bca5a9
 +     *
 +     * @throws IllegalArgumentException if the key to look up is null
 +     */
-+    boolean has(@NotNull String key);
++    boolean has(@NonNull String key);
 +
 +    /**
 +     * Returns the metadata value that is stored on the
@@ -108,8 +85,8 @@ index decf3b1949d4653a9fb01684b93ff91048137076..07d0b8117740eec35e318addd5bca5a9
 +     * the {@link
 +     * PersistentDataType#getPrimitiveType()}
 +     */
-+    @Nullable
-+    <P, C> C get(@NotNull String key, @NotNull PersistentDataType<P, C> type);
++    @org.jetbrains.annotations.Nullable
++    <P, C> C get(@NonNull String key, @NonNull PersistentDataType<P, C> type);
 +
 +    /**
 +     * Returns the metadata value that is stored on the
@@ -134,8 +111,8 @@ index decf3b1949d4653a9fb01684b93ff91048137076..07d0b8117740eec35e318addd5bca5a9
 +     * @throws IllegalArgumentException if no suitable adapter was found for
 +     * the {@link PersistentDataType#getPrimitiveType()}
 +     */
-+    @NotNull
-+    <P, C> C getOrDefault(@NotNull String key, @NotNull PersistentDataType<P, C> type, @NotNull C defaultValue);
++    @NonNull
++    <P, C> C getOrDefault(@NonNull String key, @NonNull PersistentDataType<P, C> type, @NonNull C defaultValue);
 +
 +    /**
 +     * Get the set of keys present on this {@link PersistentDataContainer}
@@ -146,8 +123,67 @@ index decf3b1949d4653a9fb01684b93ff91048137076..07d0b8117740eec35e318addd5bca5a9
 +     *
 +     * @return the key set
 +     */
-+    @NotNull
++    @NonNull
 +    Set<String> keys();
++    // Daydream end - Add more PDC API
+ }
+diff --git a/src/main/java/io/papermc/paper/persistence/PersistentDataViewHolder.java b/src/main/java/io/papermc/paper/persistence/PersistentDataViewHolder.java
+index 9789916f949374bfb50da535b076180700f7ae73..e297ecf95e623db9e8c4c28c1b02c5ee0c38f693 100644
+--- a/src/main/java/io/papermc/paper/persistence/PersistentDataViewHolder.java
++++ b/src/main/java/io/papermc/paper/persistence/PersistentDataViewHolder.java
+@@ -20,4 +20,20 @@ public interface PersistentDataViewHolder {
+      * @return the persistent data container view
+      */
+     @NonNull PersistentDataContainerView getPersistentDataContainer();
++
++    // Daydream start - Add more PDC API
++    /**
++     * Returns a custom tag container view capable of viewing tags on the object.
++     * <p>
++     * Note that the tags stored on this container are all stored under their
++     * own custom namespace therefore modifying default tags using this
++     * {@link PersistentDataViewHolder} is impossible.
++     *
++     * @return the persistent data container view
++     */
++    @NonNull
++    default PersistentDataContainerView getPdc() {
++        return getPersistentDataContainer();
++    }
++    // Daydream end - Add more PDC API
+ }
+diff --git a/src/main/java/org/bukkit/persistence/PersistentDataContainer.java b/src/main/java/org/bukkit/persistence/PersistentDataContainer.java
+index 0f40eb52f6e2a5b6932cf9f223c1bbe9ab9eab1b..a601da2e7facb2172cdd186487b8a7b22cf0fc25 100644
+--- a/src/main/java/org/bukkit/persistence/PersistentDataContainer.java
++++ b/src/main/java/org/bukkit/persistence/PersistentDataContainer.java
+@@ -71,4 +71,43 @@ public interface PersistentDataContainer extends io.papermc.paper.persistence.Pe
+         this.readFromBytes(bytes, true);
+     }
+     // Paper end - byte array serialization
++
++    // Daydream start - Add more PDC API
++    /**
++     * Stores a metadata value on the {@link PersistentDataHolder} instance.
++     * <p>
++     * This API cannot be used to manipulate minecraft data, as the values will
++     * be stored using your namespace. This method will override any existing
++     * value the {@link PersistentDataHolder} may have stored under the provided
++     * key.
++     *
++     * @param key the key this value will be stored under
++     * @param type the type this tag uses
++     * @param value the value to store in the tag
++     * @param <P> the generic java type of the tag value
++     * @param <C> the generic type of the object to store
++     *
++     * @throws IllegalArgumentException if the key is null
++     * @throws IllegalArgumentException if the type is null
++     * @throws IllegalArgumentException if the value is null. Removing a tag should
++     * be done using {@link #remove(String)}
++     * @throws IllegalArgumentException if no suitable adapter was found for
++     * the {@link PersistentDataType#getPrimitiveType()}
++     */
++    <P, C> void set(@NotNull String key, @NotNull PersistentDataType<P, C> type, @NotNull C value);
 +
 +    /**
 +     * Removes a custom key from the {@link PersistentDataHolder} instance.
@@ -165,10 +201,10 @@ index decf3b1949d4653a9fb01684b93ff91048137076..07d0b8117740eec35e318addd5bca5a9
 +    // Daydream end - Add more PDC API
  }
 diff --git a/src/main/java/org/bukkit/persistence/PersistentDataHolder.java b/src/main/java/org/bukkit/persistence/PersistentDataHolder.java
-index 80b277cc57f092f04fbf7810ac78d250b207b775..9baa25a9b7bf66b47ac05385f3be12c353eab00b 100644
+index 71f33c1265bc753ef40108ffce0d4bd8656d2903..8670975efd18c63a4bfee4c284471cfc596b66ce 100644
 --- a/src/main/java/org/bukkit/persistence/PersistentDataHolder.java
 +++ b/src/main/java/org/bukkit/persistence/PersistentDataHolder.java
-@@ -20,4 +20,19 @@ public interface PersistentDataHolder {
+@@ -22,4 +22,19 @@ public interface PersistentDataHolder extends io.papermc.paper.persistence.Persi
      @NotNull
      PersistentDataContainer getPersistentDataContainer();
  
@@ -182,8 +218,8 @@ index 80b277cc57f092f04fbf7810ac78d250b207b775..9baa25a9b7bf66b47ac05385f3be12c3
 +     *
 +     * @return the persistent metadata container
 +     */
-+    @NotNull
-+    default PersistentDataContainer getPdc() {
++    @Override
++    default @NotNull PersistentDataContainer getPdc() {
 +        return getPersistentDataContainer();
 +    }
 +    // Daydream end - Add more PDC API

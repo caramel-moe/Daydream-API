@@ -6,13 +6,13 @@ Subject: [PATCH] Add sendTitleUpdate for inventories
 https://github.com/PaperMC/Paper/pull/7979
 
 diff --git a/src/main/java/org/bukkit/inventory/InventoryView.java b/src/main/java/org/bukkit/inventory/InventoryView.java
-index ac6c5c7a58c2c88b6cb0f6632fb53e8d67f8a059..636f0a6151d939cebf4696fd8c958eee700f5ca3 100644
+index 1e50dba6bb8753e6c1adff59ee0ff93adf3bfd4f..d50c4b6e82196ed5c8179e76397d8debb60ac890 100644
 --- a/src/main/java/org/bukkit/inventory/InventoryView.java
 +++ b/src/main/java/org/bukkit/inventory/InventoryView.java
-@@ -489,4 +489,16 @@ public abstract class InventoryView {
+@@ -313,4 +313,16 @@ public interface InventoryView {
       * @param title The new title.
       */
-     public abstract void setTitle(@NotNull String title);
+     public void setTitle(@NotNull String title);
 +
 +    // Paper start - (Daydream) Add sendTitleUpdate for inventories
 +    /**
@@ -23,6 +23,6 @@ index ac6c5c7a58c2c88b6cb0f6632fb53e8d67f8a059..636f0a6151d939cebf4696fd8c958eee
 +     *
 +     * @param title the new title
 +     */
-+    public abstract void sendTitleUpdate(@NotNull net.kyori.adventure.text.Component title);
++    public void sendTitleUpdate(@NotNull net.kyori.adventure.text.Component title);
 +    // Paper end - (Daydream) Add sendTitleUpdate for inventories
  }
