@@ -114,10 +114,10 @@ loadScripts(document, 'script');</script>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">폭발을 시작합니다.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#finalizeExplosion()" class="member-name-link">finalizeExplosion</a>()</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../org/bukkit/damage/DamageSource.html" title="interface in org.bukkit.damage">DamageSource</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getDamageSource()" class="member-name-link">getDamageSource</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">폭발을 마무리합니다.</div>
+<div class="block"><a href="../../../../org/bukkit/damage/DamageSource.html" title="interface in org.bukkit.damage"><code>DamageSource</code></a>를 가져옵니다.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a><wbr>&lt;<a href="../../../../org/bukkit/entity/HumanEntity.html" title="interface in org.bukkit.entity">HumanEntity</a>,<wbr><a href="../../../../org/bukkit/util/Vector.html" title="class in org.bukkit.util">Vector</a>&gt;</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getHitPlayers()" class="member-name-link">getHitPlayers</a>()</code></div>
@@ -182,7 +182,7 @@ loadScripts(document, 'script');</script>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#wasCancelled()" class="member-name-link">wasCancelled</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">폭발이 취소되었는지 여부를 가져옵니다.</div>
+<div class="block">폭발이 이벤트에 의해 취소되었는지 여부를 가져옵니다.</div>
 </div>
 </div>
 </div>
@@ -207,6 +207,57 @@ loadScripts(document, 'script');</script>
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>폭발이 발생한 월드</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getDamageSource()">
+<h3>getDamageSource</h3>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+</span><span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../org/bukkit/damage/DamageSource.html" title="interface in org.bukkit.damage">DamageSource</a></span>&nbsp;<span class="element-name">getDamageSource</span>()</div>
+<div class="block"><a href="../../../../org/bukkit/damage/DamageSource.html" title="interface in org.bukkit.damage"><code>DamageSource</code></a>를 가져옵니다.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd><a href="../../../../org/bukkit/damage/DamageSource.html" title="interface in org.bukkit.damage"><code>DamageSource</code></a></dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getMetadata()">
+<h3>getMetadata</h3>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+</span><span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&gt;</span>&nbsp;<span class="element-name">getMetadata</span>()</div>
+<div class="block">폭발의 메타데이터를 가져옵니다.
+ (<a href="DamageMata.html#getMetadata()"><code>DamageMata.getMetadata()</code></a>와 동일)</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>메타데이터</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="markNoKnockback(boolean)">
+<h3>markNoKnockback</h3>
+<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">markNoKnockback</span><wbr><span class="parameters">(boolean&nbsp;mark)</span></div>
+<div class="block">이 폭발의 넉백 제거 활성화 여부를 설정합니다.
+ (<a href="DamageMata.html#setKnockbackDisabled(boolean)"><code>DamageMata.setKnockbackDisabled(boolean)</code></a>와 동일)</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>mark</code> - 넉백 제거가 활성화 여부</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="markedNoKnockback()">
+<h3>markedNoKnockback</h3>
+<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">markedNoKnockback</span>()</div>
+<div class="block">이 폭발에 넉백 제거가 활성화 되어있는지 가져옵니다.
+ (<a href="DamageMata.html#isKnockbackDisabled()"><code>DamageMata.isKnockbackDisabled()</code></a>와 동일)</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>넉백 제거 여부, <a href="../../../../org/bukkit/damage/DamageType.html" title="interface in org.bukkit.damage"><code>DamageType</code></a>에
+ <a href="../../../../org/bukkit/Tag.html#DAMAGE_TYPE_CARAMEL$EXPLOSION_NO_KNOCKBACK"><code>Tag.DAMAGE_TYPE_CARAMEL$EXPLOSION_NO_KNOCKBACK</code></a>가
+ 있는 경우에도 <code>true</code>를 반환합니다.</dd>
 </dl>
 </section>
 </li>
@@ -272,29 +323,7 @@ loadScripts(document, 'script');</script>
 <div class="block">이 폭발에 블록이 영향받는지를 가져옵니다.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>블록이 영향받는지</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="markNoKnockback(boolean)">
-<h3>markNoKnockback</h3>
-<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">markNoKnockback</span><wbr><span class="parameters">(boolean&nbsp;mark)</span></div>
-<div class="block">이 폭발의 넉백 제거 활성화 여부를 설정합니다.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>mark</code> - 넉백 제거가 활성화 여부</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="markedNoKnockback()">
-<h3>markedNoKnockback</h3>
-<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">markedNoKnockback</span>()</div>
-<div class="block">이 폭발에 넉백 제거가 활성화 되어있는지 가져옵니다.</div>
-<dl class="notes">
-<dt>Returns:</dt>
-<dd>넉백 제거가 활성화 여부</dd>
+<dd>블록이 영향받는지 여부</dd>
 </dl>
 </section>
 </li>
@@ -330,18 +359,6 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="getMetadata()">
-<h3>getMetadata</h3>
-<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
-</span><span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&gt;</span>&nbsp;<span class="element-name">getMetadata</span>()</div>
-<div class="block">폭발의 메타데이터를 가져옵니다.</div>
-<dl class="notes">
-<dt>Returns:</dt>
-<dd>메타데이터</dd>
-</dl>
-</section>
-</li>
-<li>
 <section class="detail" id="explode()">
 <h3>explode</h3>
 <div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">explode</span>()</div>
@@ -349,17 +366,10 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="finalizeExplosion()">
-<h3>finalizeExplosion</h3>
-<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">finalizeExplosion</span>()</div>
-<div class="block">폭발을 마무리합니다.</div>
-</section>
-</li>
-<li>
 <section class="detail" id="wasCancelled()">
 <h3>wasCancelled</h3>
 <div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">wasCancelled</span>()</div>
-<div class="block">폭발이 취소되었는지 여부를 가져옵니다.</div>
+<div class="block">폭발이 이벤트에 의해 취소되었는지 여부를 가져옵니다.</div>
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>폭발 취소의 여부</dd>
