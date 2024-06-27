@@ -1,0 +1,214 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: LemonCaramel <admin@caramel.moe>
+Date: Sun, 8 Aug 2021 03:05:54 +0900
+Subject: [PATCH] Add more Damage API
+
+
+diff --git a/src/main/java/moe/caramel/daydream/world/DamageMata.java b/src/main/java/moe/caramel/daydream/world/DamageMata.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..ce5d5aeb96b65f705b436647c963b7f087431e1d
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/world/DamageMata.java
+@@ -0,0 +1,71 @@
++package moe.caramel.daydream.world;
++
++import org.bukkit.damage.DamageSource;
++import org.jetbrains.annotations.NotNull;
++import java.util.Map;
++
++/**
++ * 대미지 메타데이터
++ */
++public interface DamageMata {
++
++    /**
++     * NMS DamageSource를 가져옵니다.
++     *
++     * @return NMS DamageSource
++     */
++    @NotNull
++    Object getRawDamageSource();
++
++    /**
++     * DamageSource를 가져옵니다.
++     *
++     * @return DamageSource
++     */
++    @NotNull
++    DamageSource getDamageSource();
++
++    /**
++     * 사용자 지정 메타데이터를 가져옵니다.
++     *
++     * @return 사용자 지정 메타데이터
++     */
++    @NotNull
++    Map<String, Object> getMetadata();
++
++    // ==============================================
++
++    int NO_DATA = -1;
++
++    /**
++     * 대상 엔티티에게 설정될 무적 시간을 가져옵니다.
++     * LivingEntity가 아닌 경우 {@link #NO_DATA}를 반환합니다.
++     *
++     * @return 무적 시간
++     */
++    int getNoDamageTick();
++
++    /**
++     * 대상 엔티티의 무적 시간을 설정합니다.
++     * LivingEntity가 아닌 경우 값이 적용되지 않습니다.
++     *
++     * @param ticks 무적 시간
++     */
++    void setNoDamageTick(final int ticks);
++
++    /**
++     * 대미지 처리 이후 엔티티가 받게 될 넉백의 비활성화 여부를 가져옵니다.
++     *
++     * @return 넉백 비활성화 여부, {@link org.bukkit.damage.DamageType}에
++     * {@link org.bukkit.Tag#DAMAGE_TYPE_NO_KNOCKBACK}가 있는 경우에도
++     * {@code true}를 반환합니다.
++     */
++    boolean isKnockbackDisabled();
++
++    /**
++     * 대미지 처리 이후 엔티티가 받게 될 넉백의 비활성화 여부를 설정합니다.
++     *
++     * @param disabled 넉백 비활성화 여부
++     */
++    void setKnockbackDisabled(final boolean disabled);
++}
+diff --git a/src/main/java/org/bukkit/Tag.java b/src/main/java/org/bukkit/Tag.java
+index 8bfec649f7c6dda956bc388a21b489f3565ff384..8e1cef5ee8ec5e16398f0636d852482b8b714806 100644
+--- a/src/main/java/org/bukkit/Tag.java
++++ b/src/main/java/org/bukkit/Tag.java
+@@ -1334,6 +1334,43 @@ public interface Tag<T extends Keyed> extends Keyed {
+     Tag<GameEvent> GAME_EVENT_ALLAY_CAN_LISTEN = Bukkit.getTag(REGISTRY_GAME_EVENTS, NamespacedKey.minecraft("allay_can_listen"), GameEvent.class);
+     // Paper end
+ 
++    // Daydream start - Add more Damage API
++    String REGISTRY_DAMAGE_TYPE = "damage_type";
++    Tag<org.bukkit.damage.DamageType> DAMAGE_TYPE_DAMAGES_HELMET = Bukkit.getTag(REGISTRY_DAMAGE_TYPE, NamespacedKey.minecraft("damages_helmet"), org.bukkit.damage.DamageType.class);
++    Tag<org.bukkit.damage.DamageType> DAMAGE_TYPE_BYPASSES_ARMOR = Bukkit.getTag(REGISTRY_DAMAGE_TYPE, NamespacedKey.minecraft("bypasses_armor"), org.bukkit.damage.DamageType.class);
++    Tag<org.bukkit.damage.DamageType> DAMAGE_TYPE_BYPASSES_SHIELD = Bukkit.getTag(REGISTRY_DAMAGE_TYPE, NamespacedKey.minecraft("bypasses_shield"), org.bukkit.damage.DamageType.class);
++    Tag<org.bukkit.damage.DamageType> DAMAGE_TYPE_BYPASSES_INVULNERABILITY = Bukkit.getTag(REGISTRY_DAMAGE_TYPE, NamespacedKey.minecraft("bypasses_invulnerability"), org.bukkit.damage.DamageType.class);
++    Tag<org.bukkit.damage.DamageType> DAMAGE_TYPE_BYPASSES_COOLDOWN = Bukkit.getTag(REGISTRY_DAMAGE_TYPE, NamespacedKey.minecraft("bypasses_cooldown"), org.bukkit.damage.DamageType.class);
++    Tag<org.bukkit.damage.DamageType> DAMAGE_TYPE_BYPASSES_EFFECTS = Bukkit.getTag(REGISTRY_DAMAGE_TYPE, NamespacedKey.minecraft("bypasses_effects"), org.bukkit.damage.DamageType.class);
++    Tag<org.bukkit.damage.DamageType> DAMAGE_TYPE_BYPASSES_RESISTANCE = Bukkit.getTag(REGISTRY_DAMAGE_TYPE, NamespacedKey.minecraft("bypasses_resistance"), org.bukkit.damage.DamageType.class);
++    Tag<org.bukkit.damage.DamageType> DAMAGE_TYPE_BYPASSES_ENCHANTMENTS = Bukkit.getTag(REGISTRY_DAMAGE_TYPE, NamespacedKey.minecraft("bypasses_enchantments"), org.bukkit.damage.DamageType.class);
++    Tag<org.bukkit.damage.DamageType> DAMAGE_TYPE_IS_FIRE = Bukkit.getTag(REGISTRY_DAMAGE_TYPE, NamespacedKey.minecraft("is_fire"), org.bukkit.damage.DamageType.class);
++    Tag<org.bukkit.damage.DamageType> DAMAGE_TYPE_IS_PROJECTILE = Bukkit.getTag(REGISTRY_DAMAGE_TYPE, NamespacedKey.minecraft("is_projectile"), org.bukkit.damage.DamageType.class);
++    Tag<org.bukkit.damage.DamageType> DAMAGE_TYPE_WITCH_RESISTANT_TO = Bukkit.getTag(REGISTRY_DAMAGE_TYPE, NamespacedKey.minecraft("witch_resistant_to"), org.bukkit.damage.DamageType.class);
++    Tag<org.bukkit.damage.DamageType> DAMAGE_TYPE_IS_EXPLOSION = Bukkit.getTag(REGISTRY_DAMAGE_TYPE, NamespacedKey.minecraft("is_explosion"), org.bukkit.damage.DamageType.class);
++    Tag<org.bukkit.damage.DamageType> DAMAGE_TYPE_IS_FALL = Bukkit.getTag(REGISTRY_DAMAGE_TYPE, NamespacedKey.minecraft("is_fall"), org.bukkit.damage.DamageType.class);
++    Tag<org.bukkit.damage.DamageType> DAMAGE_TYPE_IS_DROWNING = Bukkit.getTag(REGISTRY_DAMAGE_TYPE, NamespacedKey.minecraft("is_drowning"), org.bukkit.damage.DamageType.class);
++    Tag<org.bukkit.damage.DamageType> DAMAGE_TYPE_IS_FREEZING = Bukkit.getTag(REGISTRY_DAMAGE_TYPE, NamespacedKey.minecraft("is_freezing"), org.bukkit.damage.DamageType.class);
++    Tag<org.bukkit.damage.DamageType> DAMAGE_TYPE_IS_LIGHTNING = Bukkit.getTag(REGISTRY_DAMAGE_TYPE, NamespacedKey.minecraft("is_lightning"), org.bukkit.damage.DamageType.class);
++    Tag<org.bukkit.damage.DamageType> DAMAGE_TYPE_NO_ANGER = Bukkit.getTag(REGISTRY_DAMAGE_TYPE, NamespacedKey.minecraft("no_anger"), org.bukkit.damage.DamageType.class);
++    Tag<org.bukkit.damage.DamageType> DAMAGE_TYPE_NO_IMPACT = Bukkit.getTag(REGISTRY_DAMAGE_TYPE, NamespacedKey.minecraft("no_impact"), org.bukkit.damage.DamageType.class);
++    Tag<org.bukkit.damage.DamageType> DAMAGE_TYPE_ALWAYS_MOST_SIGNIFICANT_FALL = Bukkit.getTag(REGISTRY_DAMAGE_TYPE, NamespacedKey.minecraft("always_most_significant_fall"), org.bukkit.damage.DamageType.class);
++    Tag<org.bukkit.damage.DamageType> DAMAGE_TYPE_WITHER_IMMUNE_TO = Bukkit.getTag(REGISTRY_DAMAGE_TYPE, NamespacedKey.minecraft("wither_immune_to"), org.bukkit.damage.DamageType.class);
++    Tag<org.bukkit.damage.DamageType> DAMAGE_TYPE_IGNITES_ARMOR_STANDS = Bukkit.getTag(REGISTRY_DAMAGE_TYPE, NamespacedKey.minecraft("ignites_armor_stands"), org.bukkit.damage.DamageType.class);
++    Tag<org.bukkit.damage.DamageType> DAMAGE_TYPE_BURNS_ARMOR_STANDS = Bukkit.getTag(REGISTRY_DAMAGE_TYPE, NamespacedKey.minecraft("burns_armor_stands"), org.bukkit.damage.DamageType.class);
++    Tag<org.bukkit.damage.DamageType> DAMAGE_TYPE_AVOIDS_GUARDIAN_THORNS = Bukkit.getTag(REGISTRY_DAMAGE_TYPE, NamespacedKey.minecraft("avoids_guardian_thorns"), org.bukkit.damage.DamageType.class);
++    Tag<org.bukkit.damage.DamageType> DAMAGE_TYPE_ALWAYS_TRIGGERS_SILVERFISH = Bukkit.getTag(REGISTRY_DAMAGE_TYPE, NamespacedKey.minecraft("always_triggers_silverfish"), org.bukkit.damage.DamageType.class);
++    Tag<org.bukkit.damage.DamageType> DAMAGE_TYPE_ALWAYS_HURTS_ENDER_DRAGONS = Bukkit.getTag(REGISTRY_DAMAGE_TYPE, NamespacedKey.minecraft("always_hurts_ender_dragons"), org.bukkit.damage.DamageType.class);
++    Tag<org.bukkit.damage.DamageType> DAMAGE_TYPE_NO_KNOCKBACK = Bukkit.getTag(REGISTRY_DAMAGE_TYPE, NamespacedKey.minecraft("no_knockback"), org.bukkit.damage.DamageType.class);
++    Tag<org.bukkit.damage.DamageType> DAMAGE_TYPE_ALWAYS_KILLS_ARMOR_STANDS = Bukkit.getTag(REGISTRY_DAMAGE_TYPE, NamespacedKey.minecraft("always_kills_armor_stands"), org.bukkit.damage.DamageType.class);
++    Tag<org.bukkit.damage.DamageType> DAMAGE_TYPE_CAN_BREAK_ARMOR_STAND = Bukkit.getTag(REGISTRY_DAMAGE_TYPE, NamespacedKey.minecraft("can_break_armor_stand"), org.bukkit.damage.DamageType.class);
++    Tag<org.bukkit.damage.DamageType> DAMAGE_TYPE_BYPASSES_WOLF_ARMOR = Bukkit.getTag(REGISTRY_DAMAGE_TYPE, NamespacedKey.minecraft("bypasses_wolf_armor"), org.bukkit.damage.DamageType.class);
++    Tag<org.bukkit.damage.DamageType> DAMAGE_TYPE_IS_PLAYER_ATTACK = Bukkit.getTag(REGISTRY_DAMAGE_TYPE, NamespacedKey.minecraft("is_player_attack"), org.bukkit.damage.DamageType.class);
++    Tag<org.bukkit.damage.DamageType> DAMAGE_TYPE_BURN_FROM_STEPPING = Bukkit.getTag(REGISTRY_DAMAGE_TYPE, NamespacedKey.minecraft("burn_from_stepping"), org.bukkit.damage.DamageType.class);
++    Tag<org.bukkit.damage.DamageType> DAMAGE_TYPE_PANIC_CAUSES = Bukkit.getTag(REGISTRY_DAMAGE_TYPE, NamespacedKey.minecraft("panic_causes"), org.bukkit.damage.DamageType.class);
++    Tag<org.bukkit.damage.DamageType> DAMAGE_TYPE_PANIC_ENVIRONMENTAL_CAUSES = Bukkit.getTag(REGISTRY_DAMAGE_TYPE, NamespacedKey.minecraft("panic_environmental_causes"), org.bukkit.damage.DamageType.class);
++    // Daydream end - Add more Damage API
++
+     /**
+      * Returns whether or not this tag has an entry for the specified item.
+      *
+diff --git a/src/main/java/org/bukkit/UnsafeValues.java b/src/main/java/org/bukkit/UnsafeValues.java
+index 11bccf6c27b8b2a2ed558a1375a3b3adc7952076..a853f68a35505e132a677d26e7d5cc5824f73e14 100644
+--- a/src/main/java/org/bukkit/UnsafeValues.java
++++ b/src/main/java/org/bukkit/UnsafeValues.java
+@@ -279,4 +279,6 @@ public interface UnsafeValues {
+     <A extends Keyed, M> io.papermc.paper.registry.tag.@Nullable Tag<A> getTag(io.papermc.paper.registry.tag.@NotNull TagKey<A> tagKey); // Paper - hack to get tags for non-server backed registries
+ 
+     ItemStack createEmptyStack(); // Paper - proxy ItemStack
++
++    @NotNull moe.caramel.daydream.world.DamageMata getDamageMeta(@NotNull Object damageSource); // Daydream - Add more Damage API
+ }
+diff --git a/src/main/java/org/bukkit/damage/DamageSource.java b/src/main/java/org/bukkit/damage/DamageSource.java
+index 7635610e56c051ce3c8a876911ba5cd0a9248496..e08a7f64bfbd9116f8a4a814732939a7c0c7155a 100644
+--- a/src/main/java/org/bukkit/damage/DamageSource.java
++++ b/src/main/java/org/bukkit/damage/DamageSource.java
+@@ -13,6 +13,44 @@ import org.jetbrains.annotations.Nullable;
+ @ApiStatus.Experimental
+ public interface DamageSource {
+ 
++    // Daydream start - Add more Damage API
++    /**
++     * 대미지 메타데이터를 가져옵니다.
++     *
++     * @return 대미지 메타데이터
++     */
++    @NotNull
++    public moe.caramel.daydream.world.DamageMata getDamageMeta();
++
++    /**
++     * 크리티컬 대미지 여부를 가져옵니다.
++     *
++     * @return 크리티컬 대미지 여부
++     */
++    boolean isCritical();
++
++    /**
++     * 검에 의한 쓸기 공격 여부를 가져옵니다.
++     *
++     * @return 쓸기 공격 여부
++     */
++    boolean isSweep();
++
++    /**
++     * 눈골렘이 녹아 발생한 대미지인지 확인합니다.
++     *
++     * @return 눈골렘이 녹아 발생한 대미지 여부
++     */
++    boolean isMelting();
++
++    /**
++     * 독 포션에 의한 대미지인지 확인합니다.
++     *
++     * @return 독 포션에 의한 대미지 여부
++     */
++    boolean isPoison();
++    // Daydream end - Add more Damage API
++
+     /**
+      * Get the {@link DamageType}.
+      *
+diff --git a/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java b/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java
+index ca634147935c3bda8abad5dc73327e51381793a8..11b76561194abf5dfada3bf385b30c06f4ae0c5c 100644
+--- a/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java
++++ b/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java
+@@ -59,6 +59,18 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
+         this.damageSource = damageSource;
+     }
+ 
++    // Daydream start - Add more Damage API
++    /**
++     * 대미지 메타데이터를 가져옵니다.
++     *
++     * @return 대미지 메타데이터
++     */
++    @NotNull
++    public moe.caramel.daydream.world.DamageMata getDamageMeta() {
++        return damageSource.getDamageMeta();
++    }
++    // Daydream end - Add more Damage API
++
+     @Override
+     public boolean isCancelled() {
+         return cancelled;
