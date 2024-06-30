@@ -1243,7 +1243,7 @@ index 6c878c968be02870c8552eb8db3d7b652e605540..a9a6abadaf92be42157dc7a23dcb7e3a
 +    // Daydream end - Add more Advancement API
  }
 diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
-index a0ec35effd12464b6f55aa84d578186c2c5215b6..d01c775b19f4e66a5330b124400cc26665509dd5 100644
+index a0ec35effd12464b6f55aa84d578186c2c5215b6..2f014c90ac104428353693cb01dc403d3fcab035 100644
 --- a/src/main/java/org/bukkit/Bukkit.java
 +++ b/src/main/java/org/bukkit/Bukkit.java
 @@ -2458,6 +2458,54 @@ public final class Bukkit {
@@ -1277,10 +1277,10 @@ index a0ec35effd12464b6f55aa84d578186c2c5215b6..d01c775b19f4e66a5330b124400cc266
 +     *
 +     * @param player 대상 플레이어
 +     * @param item 대상 아이템 (조건 검사에 사용)
-+     * @param target 대상 타겟 플레이어 (조건 검사에 사용)
++     * @param target 타겟 엔티티 (조건 검사에 사용)
 +     * @param triggerId 트리거 ID
 +     */
-+    public static void triggerCustomCriteria(@NotNull Player player, @NotNull NamespacedKey triggerId, @Nullable ItemStack item, @Nullable Player target) {
++    public static void triggerCustomCriteria(@NotNull Player player, @NotNull NamespacedKey triggerId, @Nullable ItemStack item, @Nullable Entity target) {
 +        server.triggerCustomCriteria(player, triggerId, item, target);
 +    }
 +
@@ -1289,11 +1289,11 @@ index a0ec35effd12464b6f55aa84d578186c2c5215b6..d01c775b19f4e66a5330b124400cc266
 +     *
 +     * @param player 대상 플레이어
 +     * @param item 대상 아이템 (조건 검사에 사용)
-+     * @param target 대상 타겟 플레이어 (조건 검사에 사용)
++     * @param target 타겟 엔티티 (조건 검사에 사용)
 +     * @param triggerId 트리거 ID
 +     * @param data 트리거 데이터
 +     */
-+    public static void triggerCustomCriteria(@NotNull Player player, @NotNull NamespacedKey triggerId, @Nullable ItemStack item, @Nullable Player target, @Nullable Map<String, Object> data) {
++    public static void triggerCustomCriteria(@NotNull Player player, @NotNull NamespacedKey triggerId, @Nullable ItemStack item, @Nullable Entity target, @Nullable Map<String, Object> data) {
 +        server.triggerCustomCriteria(player, triggerId, item, target, data);
 +    }
 +    // Daydream end - Add more Advancement API
@@ -1302,7 +1302,7 @@ index a0ec35effd12464b6f55aa84d578186c2c5215b6..d01c775b19f4e66a5330b124400cc266
       * Creates a new {@link BlockData} instance for the specified Material, with
       * all properties initialized to unspecified defaults.
 diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
-index 163c8610636805c97f6c3edffb1ee42f5e07cb3d..8d26c859fdc177e9974c59cd258e357f11757438 100644
+index 163c8610636805c97f6c3edffb1ee42f5e07cb3d..d3a4cd50391b61b45d8c8c48fa12251d14fe3b11 100644
 --- a/src/main/java/org/bukkit/Server.java
 +++ b/src/main/java/org/bukkit/Server.java
 @@ -2108,6 +2108,46 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
@@ -1332,28 +1332,28 @@ index 163c8610636805c97f6c3edffb1ee42f5e07cb3d..8d26c859fdc177e9974c59cd258e357f
 +     *
 +     * @param player 대상 플레이어
 +     * @param item 대상 아이템 (조건 검사에 사용)
-+     * @param target 대상 타겟 플레이어 (조건 검사에 사용)
++     * @param target 타겟 엔티티 (조건 검사에 사용)
 +     * @param triggerId 트리거 ID
 +     */
-+    void triggerCustomCriteria(@NotNull Player player, @NotNull NamespacedKey triggerId, @Nullable ItemStack item, @Nullable Player target);
++    void triggerCustomCriteria(@NotNull Player player, @NotNull NamespacedKey triggerId, @Nullable ItemStack item, @Nullable Entity target);
 +
 +    /**
 +     * 사용자 지정 트리거를 실행합니다.
 +     *
 +     * @param player 대상 플레이어
 +     * @param item 대상 아이템 (조건 검사에 사용)
-+     * @param target 대상 타겟 플레이어 (조건 검사에 사용)
++     * @param target 타겟 엔티티 (조건 검사에 사용)
 +     * @param triggerId 트리거 ID
 +     * @param data 트리거 데이터
 +     */
-+    void triggerCustomCriteria(@NotNull Player player, @NotNull NamespacedKey triggerId, @Nullable ItemStack item, @Nullable Player target, @Nullable Map<String, Object> data);
++    void triggerCustomCriteria(@NotNull Player player, @NotNull NamespacedKey triggerId, @Nullable ItemStack item, @Nullable Entity target, @Nullable Map<String, Object> data);
 +    // Daydream end - Add more Advancement API
 +
      /**
       * Creates a new {@link BlockData} instance for the specified Material, with
       * all properties initialized to unspecified defaults.
 diff --git a/src/main/java/org/bukkit/advancement/Advancement.java b/src/main/java/org/bukkit/advancement/Advancement.java
-index 243e5f2debad7f12210169e15ef0b29763e988bb..fc9a298562d00dcc819187cf32d34de20052b87d 100644
+index 243e5f2debad7f12210169e15ef0b29763e988bb..eb113a0f0edb3827466d100193fe88e23429a242 100644
 --- a/src/main/java/org/bukkit/advancement/Advancement.java
 +++ b/src/main/java/org/bukkit/advancement/Advancement.java
 @@ -68,4 +68,44 @@ public interface Advancement extends Keyed {
@@ -1395,7 +1395,7 @@ index 243e5f2debad7f12210169e15ef0b29763e988bb..fc9a298562d00dcc819187cf32d34de2
 +    /**
 +     * 발전 과제의 추가 JSON 데이터를 가져옵니다.
 +     *
-+     * @return JSON 데이터 (불변 객체가 아닙니다)
++     * @return JSON 데이터
 +     */
 +    @Nullable
 +    com.google.gson.JsonObject getExtra();
