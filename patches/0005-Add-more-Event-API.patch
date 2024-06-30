@@ -1,18 +1,18 @@
 From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: LemonCaramel <admin@caramel.moe>
 Date: Sun, 9 Apr 2023 14:33:20 +0900
-Subject: [PATCH] Add Event Metadata API
+Subject: [PATCH] Add more Event API
 
 
 diff --git a/src/main/java/org/bukkit/event/Event.java b/src/main/java/org/bukkit/event/Event.java
-index 8ec56cd6b8e0f5c5dd8c7c88b4671e18dcf109d0..7791aa0ca77acbfc9486c7ca04078f8613465d5f 100644
+index 8ec56cd6b8e0f5c5dd8c7c88b4671e18dcf109d0..3df96b64ad5ce31a69229f6fd14ca750f041e422 100644
 --- a/src/main/java/org/bukkit/event/Event.java
 +++ b/src/main/java/org/bukkit/event/Event.java
-@@ -51,6 +51,20 @@ public abstract class Event {
+@@ -51,6 +51,29 @@ public abstract class Event {
      }
      // Paper end
  
-+    // Daydream start - Add Event Metadata API
++    // Daydream start - Add more Event API
 +    private final java.util.Map<String, Object> metadata = new java.util.HashMap<>();
 +
 +    /**
@@ -24,7 +24,16 @@ index 8ec56cd6b8e0f5c5dd8c7c88b4671e18dcf109d0..7791aa0ca77acbfc9486c7ca04078f86
 +    public java.util.Map<String, Object> getEventMetadata() {
 +        return metadata;
 +    }
-+    // Daydream end - Add Event Metadata API
++
++    /**
++     * 이 이벤트가 인터럽트를 지원하는지 여부를 가져옵니다.
++     *
++     * @return 인터럽트 지원 여부
++     */
++    public boolean isSupportInterrupt() {
++        return false;
++    }
++    // Daydream end - Add more Event API
 +
      /**
       * Convenience method for providing a user-friendly identifier. By

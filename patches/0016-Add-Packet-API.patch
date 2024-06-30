@@ -825,6 +825,42 @@ index 0000000000000000000000000000000000000000..1bb0d67feeb2f9bf113f63581ecaa8a8
 +    @NotNull
 +    SetDisplayObjectivePacket create(@NotNull DisplaySlot slot, @Nullable String scoreName);
 +}
+diff --git a/src/main/java/moe/caramel/daydream/packet/SetEntityMotionPacket.java b/src/main/java/moe/caramel/daydream/packet/SetEntityMotionPacket.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..23c2748d79112a9c2240f9a9d8bbc2d46132980a
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/packet/SetEntityMotionPacket.java
+@@ -0,0 +1,30 @@
++package moe.caramel.daydream.packet;
++
++import org.bukkit.entity.Entity;
++import org.bukkit.util.Vector;
++import org.jetbrains.annotations.NotNull;
++
++public interface SetEntityMotionPacket extends Packet {
++
++    /**
++     * 패킷을 생성합니다.
++     *
++     * @param entity 대상 엔티티
++     * @param velocity 엔티티의 속도
++     * @return this
++     */
++    @NotNull
++    default SetEntityMotionPacket create(@NotNull Entity entity, @NotNull Vector velocity) {
++        return this.create(entity.getEntityId(), velocity);
++    }
++
++    /**
++     * 패킷을 생성합니다.
++     *
++     * @param entityId 대상 엔티티 ID
++     * @param velocity 엔티티의 속도
++     * @return this
++     */
++    @NotNull
++    SetEntityMotionPacket create(int entityId, @NotNull Vector velocity);
++}
 diff --git a/src/main/java/moe/caramel/daydream/packet/SetPlayerTeamPacket.java b/src/main/java/moe/caramel/daydream/packet/SetPlayerTeamPacket.java
 new file mode 100644
 index 0000000000000000000000000000000000000000..1e1253044cc9602e0dd0dd8f715b9f0862902a88
@@ -1094,10 +1130,10 @@ index 0000000000000000000000000000000000000000..a4b9dcd4179fa4d4089d1929b639a6d6
 +    }
 +}
 diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
-index b97c2162e583613747a49ae3ff01e3b959013680..77a519060efbf87c2115891f3af15a19aca64529 100644
+index d01c775b19f4e66a5330b124400cc26665509dd5..8b7e06b25813767822263a1bcc420c77e83ad298 100644
 --- a/src/main/java/org/bukkit/Bukkit.java
 +++ b/src/main/java/org/bukkit/Bukkit.java
-@@ -2983,6 +2983,20 @@ public final class Bukkit {
+@@ -2996,6 +2996,20 @@ public final class Bukkit {
      }
      // Paper end - Folia region threading API
  
@@ -1134,10 +1170,10 @@ index 918a045165cdcde264bc24082b7afebb407271de..0756634ad506aa81e8f3a789f5c28c84
      /**
       * Represents black
 diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
-index e6dbee97268ffec21f64530b714ff2dc107c33aa..35016f8675aef0ea7c66c92e9b0eb21f0982e972 100644
+index 8d26c859fdc177e9974c59cd258e357f11757438..0e0f2f5d34c63a94242a9381db3528f09dcda9cb 100644
 --- a/src/main/java/org/bukkit/Server.java
 +++ b/src/main/java/org/bukkit/Server.java
-@@ -2614,4 +2614,16 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
+@@ -2625,4 +2625,16 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
       */
      boolean isOwnedByCurrentRegion(@NotNull Entity entity);
      // Paper end - Folia region threading API
@@ -1201,7 +1237,7 @@ index 725ef320f929d5e3d141c1ed3246d73a7d741f31..3934a1664e6b67c650f9fea9ba46b362
       * Gets the amount of ticks this entity has lived for.
       * <p>
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index 804db53f0841af365b80c047b59e5825bf089210..fbbaf2df1835acce36705ebb8c778b0470e7abfa 100644
+index 48aa4f54bb38a20cf3ad05e69364fe87e8f783f1..6de8c5ec9a0977ab256a8f0d38fae7bedcee89f6 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
 @@ -460,6 +460,16 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
@@ -1221,7 +1257,7 @@ index 804db53f0841af365b80c047b59e5825bf089210..fbbaf2df1835acce36705ebb8c778b04
      /**
       * Returns true if the entity is supported by a block.
       *
-@@ -1054,6 +1064,24 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+@@ -1054,6 +1064,31 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      public void sendCustomPayload(@NotNull org.bukkit.NamespacedKey channel, @NotNull io.netty.buffer.ByteBuf buf);
      // Daydream end - Add Network API
  
@@ -1241,6 +1277,13 @@ index 804db53f0841af365b80c047b59e5825bf089210..fbbaf2df1835acce36705ebb8c778b04
 +     * @param packet 패킷 인스턴스
 +     */
 +    public void sendPacket(@NotNull moe.caramel.daydream.packet.Packet packet);
++
++    /**
++     * 플레이어 및 플레이어를 트래킹하고 있는 플레이어에게 패킷을 전송합니다.
++     *
++     * @param packet 패킷 인스턴스
++     */
++    public void sendAndBroadcastPacket(@NotNull moe.caramel.daydream.packet.Packet packet);
 +    // Daydream end - Add Packet API
 +
      // Paper start

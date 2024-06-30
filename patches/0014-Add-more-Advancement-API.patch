@@ -59,13 +59,14 @@ index 19202e17f362fdffca472178b102d1336349590c..0581b8b425d2e7553fe64bed695253c9
       * the color used with the {@link #title() advancement name}.
 diff --git a/src/main/java/moe/caramel/daydream/advancement/AdvancementBuilder.java b/src/main/java/moe/caramel/daydream/advancement/AdvancementBuilder.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..98cb796221c7bef250861a2f89e9ccf992c4f141
+index 0000000000000000000000000000000000000000..57647c86793b3d9cc7826ec3d8e751413ffbd2e1
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/advancement/AdvancementBuilder.java
-@@ -0,0 +1,310 @@
+@@ -0,0 +1,354 @@
 +package moe.caramel.daydream.advancement;
 +
 +import com.google.gson.JsonElement;
++import com.google.gson.JsonObject;
 +import io.papermc.paper.advancement.AdvancementDisplay;
 +import moe.caramel.daydream.plugin.AdvancementProvider;
 +import net.kyori.adventure.text.Component;
@@ -268,6 +269,11 @@ index 0000000000000000000000000000000000000000..98cb796221c7bef250861a2f89e9ccf9
 +    // ===========================
 +
 +    /**
++     * 카운트 타입 발전과제의 조건 (Magic value)
++     */
++    String COUNT_CRITERION = "#count";
++
++    /**
 +     * 달성 기준을 추가합니다. 트리거는 JSON 형식입니다.
 +     *
 +     * @param name 달성 기준의 이름
@@ -309,7 +315,34 @@ index 0000000000000000000000000000000000000000..98cb796221c7bef250861a2f89e9ccf9
 +     * @return this
 +     */
 +    @NotNull
-+    AdvancementBuilder addCustomTriggerCriterion(final @NotNull String name, final @NotNull NamespacedKey key);
++    default AdvancementBuilder addCustomTriggerCriterion(final @NotNull String name, final @NotNull NamespacedKey key) {
++        return addCustomTriggerCriterion(name, key, null);
++    }
++
++    /**
++     * 사용자 지정 트리거를 사용한 달성 기준을 추가합니다.
++     *
++     * @param name 달성 기준의 이름
++     * @param key 사용자 지정 트리거 ID
++     * @param dataPredicate 데이터 매치 조건<pre>{@code [
++     *   {
++     *       "name": "player_name",
++     *       "type": "STRING_EQUAL",
++     *       "value": "Notch"
++     *   },
++     *   {
++     *       "name": "player_age",
++     *       "type": "INT_RANGE",
++     *       "value": {
++     *           "min": 10,
++     *           "max": 40
++     *       }
++     *   }
++     * ]}</pre>
++     * @return this
++     */
++    @NotNull
++    AdvancementBuilder addCustomTriggerCriterion(final @NotNull String name, final @NotNull NamespacedKey key, final @Nullable JsonElement dataPredicate);
 +
 +    /**
 +     * 플레이어가 발전 과제를 완료하는 데 필요한 조건을 설정합니다.
@@ -372,6 +405,17 @@ index 0000000000000000000000000000000000000000..98cb796221c7bef250861a2f89e9ccf9
 +     */
 +    @NotNull
 +    AdvancementBuilder enableCount(final int count, final @NotNull JsonElement criterion);
++
++    // ===========================
++
++    /**
++     * 발전 과제에 추가 JSON 데이터를 저장합니다.
++     *
++     * @param json JSON 데이터
++     * @return this
++     */
++    @NotNull
++    AdvancementBuilder extra(final @Nullable JsonObject json);
 +}
 diff --git a/src/main/java/moe/caramel/daydream/advancement/AdvancementFormat.java b/src/main/java/moe/caramel/daydream/advancement/AdvancementFormat.java
 new file mode 100644
@@ -722,13 +766,13 @@ index 0000000000000000000000000000000000000000..56100df41aa947444cdb16b015ab5a91
 +    Instant getObtainedTime();
 +}
 diff --git a/src/main/java/moe/caramel/daydream/event/player/AsyncPlayerDataPreLoadEvent.java b/src/main/java/moe/caramel/daydream/event/player/AsyncPlayerDataPreLoadEvent.java
-index 96b35864b50695c27f22005aa5581e5c2bc38735..c3a9f5dff5ddf53d5070b429eb9dfad45fd0c193 100644
+index 694fbd96528244bc24f9116bd2cc78eb6214c1a0..020c3c7d9f0e22cbcb2e8b8ea0fa908471945a13 100644
 --- a/src/main/java/moe/caramel/daydream/event/player/AsyncPlayerDataPreLoadEvent.java
 +++ b/src/main/java/moe/caramel/daydream/event/player/AsyncPlayerDataPreLoadEvent.java
-@@ -73,4 +73,18 @@ public abstract class AsyncPlayerDataPreLoadEvent extends Event {
-      */
-     @NotNull
-     public abstract InetAddress getAddress();
+@@ -103,4 +103,18 @@ public abstract class AsyncPlayerDataPreLoadEvent extends Event {
+     public final void setDisconnectMessage(final @Nullable Component disconnectMessage) {
+         this.disconnectMessage = disconnectMessage;
+     }
 +
 +    // Daydream start - Add more Advancement API
 +    /**
@@ -746,10 +790,10 @@ index 96b35864b50695c27f22005aa5581e5c2bc38735..c3a9f5dff5ddf53d5070b429eb9dfad4
  }
 diff --git a/src/main/java/moe/caramel/daydream/event/player/PlayerAdvancementPreLoadEvent.java b/src/main/java/moe/caramel/daydream/event/player/PlayerAdvancementPreLoadEvent.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..c4be6c058e86cde01fbd2d84d6cc3d8c548abd65
+index 0000000000000000000000000000000000000000..bbf2964149fe8354048942eeeb1b68161aaa776c
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/event/player/PlayerAdvancementPreLoadEvent.java
-@@ -0,0 +1,114 @@
+@@ -0,0 +1,118 @@
 +package moe.caramel.daydream.event.player;
 +
 +import moe.caramel.daydream.advancement.AdvancementFormat;
@@ -839,7 +883,11 @@ index 0000000000000000000000000000000000000000..c4be6c058e86cde01fbd2d84d6cc3d8c
 +        /**
 +         * 서버 리소스 리로드
 +         */
-+        SERVER_RESOURCE_RELOAD
++        SERVER_RESOURCE_RELOAD,
++        /**
++         * 알 수 없는 이유
++         */
++        UNKNOWN
 +    }
 +
 +    // =========================== (Provider wrapper)
@@ -866,12 +914,14 @@ index 0000000000000000000000000000000000000000..c4be6c058e86cde01fbd2d84d6cc3d8c
 +}
 diff --git a/src/main/java/moe/caramel/daydream/event/player/PlayerAdvancementSaveEvent.java b/src/main/java/moe/caramel/daydream/event/player/PlayerAdvancementSaveEvent.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..f8eb1cb00a070733a9ee2d7b3dc2ea73ebd63880
+index 0000000000000000000000000000000000000000..d9954ef362bb940bc0af24dd3a509ecfb72af3b6
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/event/player/PlayerAdvancementSaveEvent.java
-@@ -0,0 +1,72 @@
+@@ -0,0 +1,97 @@
 +package moe.caramel.daydream.event.player;
 +
++import moe.caramel.daydream.advancement.AdvancementFormat;
++import moe.caramel.daydream.advancement.PlayerAdvancementData;
 +import moe.caramel.daydream.advancement.ProgressMap;
 +import org.bukkit.NamespacedKey;
 +import org.bukkit.entity.Player;
@@ -899,6 +949,29 @@ index 0000000000000000000000000000000000000000..f8eb1cb00a070733a9ee2d7b3dc2ea73
 +        super(who);
 +        this.section = section;
 +        this.progress = progress;
++    }
++
++    /**
++     * 플레이어의 발전 과제 데이터 인스턴스를 가져옵니다.
++     *
++     * @return 발전 과제 데이터 인스턴스
++     */
++    @NotNull
++    public PlayerAdvancementData getAdvancementData() {
++        return player.getAdvancementData();
++    }
++
++    /**
++     * 발전 과제 진행도를 직렬화된 데이터로 변환합니다.
++     *
++     * @param format 발전 과제 데이터 저장 포맷
++     * @return 진행도 데이터
++     * @param <T> 데이터의 타입
++     * @throws Exception 일부 데이터는 저장 도중 예외가 던져질 수 있습니다.
++     */
++    @NotNull
++    public <T> T saveToData(final @NotNull AdvancementFormat<T> format) throws Exception {
++        return getAdvancementData().saveToData(format, this.getData());
 +    }
 +
 +    /**
@@ -1170,10 +1243,10 @@ index 6c878c968be02870c8552eb8db3d7b652e605540..a9a6abadaf92be42157dc7a23dcb7e3a
 +    // Daydream end - Add more Advancement API
  }
 diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
-index a0ec35effd12464b6f55aa84d578186c2c5215b6..b97c2162e583613747a49ae3ff01e3b959013680 100644
+index a0ec35effd12464b6f55aa84d578186c2c5215b6..d01c775b19f4e66a5330b124400cc26665509dd5 100644
 --- a/src/main/java/org/bukkit/Bukkit.java
 +++ b/src/main/java/org/bukkit/Bukkit.java
-@@ -2458,6 +2458,41 @@ public final class Bukkit {
+@@ -2458,6 +2458,54 @@ public final class Bukkit {
          return server.advancementIterator();
      }
  
@@ -1210,16 +1283,29 @@ index a0ec35effd12464b6f55aa84d578186c2c5215b6..b97c2162e583613747a49ae3ff01e3b9
 +    public static void triggerCustomCriteria(@NotNull Player player, @NotNull NamespacedKey triggerId, @Nullable ItemStack item, @Nullable Player target) {
 +        server.triggerCustomCriteria(player, triggerId, item, target);
 +    }
++
++    /**
++     * 사용자 지정 트리거를 실행합니다.
++     *
++     * @param player 대상 플레이어
++     * @param item 대상 아이템 (조건 검사에 사용)
++     * @param target 대상 타겟 플레이어 (조건 검사에 사용)
++     * @param triggerId 트리거 ID
++     * @param data 트리거 데이터
++     */
++    public static void triggerCustomCriteria(@NotNull Player player, @NotNull NamespacedKey triggerId, @Nullable ItemStack item, @Nullable Player target, @Nullable Map<String, Object> data) {
++        server.triggerCustomCriteria(player, triggerId, item, target, data);
++    }
 +    // Daydream end - Add more Advancement API
 +
      /**
       * Creates a new {@link BlockData} instance for the specified Material, with
       * all properties initialized to unspecified defaults.
 diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
-index 163c8610636805c97f6c3edffb1ee42f5e07cb3d..e6dbee97268ffec21f64530b714ff2dc107c33aa 100644
+index 163c8610636805c97f6c3edffb1ee42f5e07cb3d..8d26c859fdc177e9974c59cd258e357f11757438 100644
 --- a/src/main/java/org/bukkit/Server.java
 +++ b/src/main/java/org/bukkit/Server.java
-@@ -2108,6 +2108,35 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
+@@ -2108,6 +2108,46 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
      @NotNull
      Iterator<Advancement> advancementIterator();
  
@@ -1250,16 +1336,27 @@ index 163c8610636805c97f6c3edffb1ee42f5e07cb3d..e6dbee97268ffec21f64530b714ff2dc
 +     * @param triggerId 트리거 ID
 +     */
 +    void triggerCustomCriteria(@NotNull Player player, @NotNull NamespacedKey triggerId, @Nullable ItemStack item, @Nullable Player target);
++
++    /**
++     * 사용자 지정 트리거를 실행합니다.
++     *
++     * @param player 대상 플레이어
++     * @param item 대상 아이템 (조건 검사에 사용)
++     * @param target 대상 타겟 플레이어 (조건 검사에 사용)
++     * @param triggerId 트리거 ID
++     * @param data 트리거 데이터
++     */
++    void triggerCustomCriteria(@NotNull Player player, @NotNull NamespacedKey triggerId, @Nullable ItemStack item, @Nullable Player target, @Nullable Map<String, Object> data);
 +    // Daydream end - Add more Advancement API
 +
      /**
       * Creates a new {@link BlockData} instance for the specified Material, with
       * all properties initialized to unspecified defaults.
 diff --git a/src/main/java/org/bukkit/advancement/Advancement.java b/src/main/java/org/bukkit/advancement/Advancement.java
-index 243e5f2debad7f12210169e15ef0b29763e988bb..0c690067883fdbe627d8a739c2fda7e74446636d 100644
+index 243e5f2debad7f12210169e15ef0b29763e988bb..fc9a298562d00dcc819187cf32d34de20052b87d 100644
 --- a/src/main/java/org/bukkit/advancement/Advancement.java
 +++ b/src/main/java/org/bukkit/advancement/Advancement.java
-@@ -68,4 +68,36 @@ public interface Advancement extends Keyed {
+@@ -68,4 +68,44 @@ public interface Advancement extends Keyed {
      @NotNull
      Advancement getRoot();
      // Paper end
@@ -1294,6 +1391,14 @@ index 243e5f2debad7f12210169e15ef0b29763e988bb..0c690067883fdbe627d8a739c2fda7e7
 +     * @return 발전 과제의 최대 카운트
 +     */
 +    int maxCount();
++
++    /**
++     * 발전 과제의 추가 JSON 데이터를 가져옵니다.
++     *
++     * @return JSON 데이터 (불변 객체가 아닙니다)
++     */
++    @Nullable
++    com.google.gson.JsonObject getExtra();
 +    // Daydream end - Add more Advancement API
  }
 diff --git a/src/main/java/org/bukkit/advancement/AdvancementProgress.java b/src/main/java/org/bukkit/advancement/AdvancementProgress.java
@@ -1338,14 +1443,22 @@ index f9bc179da071e7bd57cefc50d6763317fb643b74..3b1b55977d94de338f536896babedc7e
 +    // Daydream end - Add more Advancement API
  }
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index 2e1cc7c57ee5b330f11364fa322b20e56b9eb975..b4d303887c6ca2b75c4e816d51a48b26092d8562 100644
+index 2e1cc7c57ee5b330f11364fa322b20e56b9eb975..f38244b9996f5a39dc41d37f38b242151436fa64 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
-@@ -3302,6 +3302,38 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+@@ -3302,6 +3302,46 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      @NotNull
      public AdvancementProgress getAdvancementProgress(@NotNull Advancement advancement);
  
 +    // Daydream start - Add more Advancement API
++    /**
++     * 플레이어의 발전 과제 데이터 인스턴스를 가져옵니다.
++     *
++     * @return 발전 과제 데이터 인스턴스
++     */
++    @NotNull
++    public moe.caramel.daydream.advancement.PlayerAdvancementData getAdvancementData();
++
 +    /**
 +     * 플레이어의 직렬화된 발전 과제 데이터를 가져옵니다.
 +     *
