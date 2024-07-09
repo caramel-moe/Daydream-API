@@ -914,10 +914,10 @@ index 0000000000000000000000000000000000000000..bbf2964149fe8354048942eeeb1b6816
 +}
 diff --git a/src/main/java/moe/caramel/daydream/event/player/PlayerAdvancementSaveEvent.java b/src/main/java/moe/caramel/daydream/event/player/PlayerAdvancementSaveEvent.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..d9954ef362bb940bc0af24dd3a509ecfb72af3b6
+index 0000000000000000000000000000000000000000..919337e6ef902dc34bf923ae1566c3de834f0867
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/event/player/PlayerAdvancementSaveEvent.java
-@@ -0,0 +1,97 @@
+@@ -0,0 +1,127 @@
 +package moe.caramel.daydream.event.player;
 +
 +import moe.caramel.daydream.advancement.AdvancementFormat;
@@ -942,13 +942,15 @@ index 0000000000000000000000000000000000000000..d9954ef362bb940bc0af24dd3a509ecf
 +
 +    private final NamespacedKey section;
 +    private final ProgressMap progress;
++    private final Reason reason;
 +    private boolean cancelled;
 +
 +    @ApiStatus.Internal
-+    public PlayerAdvancementSaveEvent(final @NotNull Player who, final @NotNull NamespacedKey section, final @NotNull ProgressMap progress) {
++    public PlayerAdvancementSaveEvent(final @NotNull Player who, final @NotNull NamespacedKey section, final @NotNull ProgressMap progress, final @NotNull Reason reason) {
 +        super(who);
 +        this.section = section;
 +        this.progress = progress;
++        this.reason = reason;
 +    }
 +
 +    /**
@@ -996,6 +998,16 @@ index 0000000000000000000000000000000000000000..d9954ef362bb940bc0af24dd3a509ecf
 +    }
 +
 +    /**
++     * 이벤트 호출 사유를 가져옵니다.
++     *
++     * @return 이벤트 호출 사유
++     */
++    @NotNull
++    public Reason getReason() {
++        return reason;
++    }
++
++    /**
 +     * 발전 과제 데이터를 파일에 저장하는 바닐라 동작을 취소할지 여부를 가져옵니다.
 +     *
 +     * @return 바닐라 동작 취소 여부
@@ -1013,6 +1025,24 @@ index 0000000000000000000000000000000000000000..d9954ef362bb940bc0af24dd3a509ecf
 +    @Override
 +    public void setCancelled(final boolean cancel) {
 +        this.cancelled = cancel;
++    }
++
++    /**
++     * 이벤트 호출 사유
++     */
++    public enum Reason {
++        /**
++         * 일반 저장
++         */
++        GENERAL,
++        /**
++         * 서버 리소스 리로드
++         */
++        SERVER_RESOURCE_RELOAD,
++        /**
++         * 알 수 없는 이유
++         */
++        UNKNOWN
 +    }
 +}
 diff --git a/src/main/java/moe/caramel/daydream/event/player/PlayerAdvancementScreenEvent.java b/src/main/java/moe/caramel/daydream/event/player/PlayerAdvancementScreenEvent.java

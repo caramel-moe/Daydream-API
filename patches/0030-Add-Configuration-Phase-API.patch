@@ -4,41 +4,6 @@ Date: Tue, 9 Jan 2024 10:58:07 +0900
 Subject: [PATCH] Add Configuration Phase API
 
 
-diff --git a/src/main/java/com/destroystokyo/paper/event/player/PlayerConnectionCloseEvent.java b/src/main/java/com/destroystokyo/paper/event/player/PlayerConnectionCloseEvent.java
-index d0fb13adc140f1ca74d0c3448f92baa60684f3e2..9929b31fd0514198c26fafe6598663cf0d170c02 100644
---- a/src/main/java/com/destroystokyo/paper/event/player/PlayerConnectionCloseEvent.java
-+++ b/src/main/java/com/destroystokyo/paper/event/player/PlayerConnectionCloseEvent.java
-@@ -45,10 +45,30 @@ public class PlayerConnectionCloseEvent extends Event {
- 
-     @ApiStatus.Internal
-     public PlayerConnectionCloseEvent(@NotNull final UUID playerUniqueId, @NotNull final String playerName, @NotNull final InetAddress ipAddress, final boolean async) {
-+        // Daydream start - Add Connection Phase API
-+        this(playerUniqueId, playerName, ipAddress, async, false);
-+    }
-+
-+    private final boolean loginPhase;
-+
-+    /**
-+     * 현재 플레이어가 Login 페이즈에 있는지 여부를 가져옵니다.
-+     * (플레이어 인증 및 협상 중일 때는 이벤트가 호출되지 않음)
-+     *
-+     * @return 플레이어가 Login 페이즈에 있었다면 {@code true}를 반환
-+     */
-+    public boolean isLoginPhase() {
-+        return loginPhase;
-+    }
-+
-+    @ApiStatus.Internal
-+    public PlayerConnectionCloseEvent(@NotNull final UUID playerUniqueId, @NotNull final String playerName, @NotNull final InetAddress ipAddress, final boolean async, final boolean loginPhase) {
-+        // Daydream end - Add Connection Phase API
-         super(async);
-         this.playerUniqueId = playerUniqueId;
-         this.playerName = playerName;
-         this.ipAddress = ipAddress;
-+        this.loginPhase = loginPhase; // Daydream - Add Connection Phase API
-     }
- 
-     /**
 diff --git a/src/main/java/moe/caramel/daydream/event/configure/ConfigurationPhaseEvent.java b/src/main/java/moe/caramel/daydream/event/configure/ConfigurationPhaseEvent.java
 new file mode 100644
 index 0000000000000000000000000000000000000000..8bf5087ef97b22a3d981adb2312e7296ab85d094
