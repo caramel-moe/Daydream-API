@@ -219,6 +219,7 @@ loadScripts(document, 'script');</script>
 <li><a href="org/bukkit/projectiles/package-tree.html">org.bukkit.projectiles</a>, </li>
 <li><a href="org/bukkit/scheduler/package-tree.html">org.bukkit.scheduler</a>, </li>
 <li><a href="org/bukkit/scoreboard/package-tree.html">org.bukkit.scoreboard</a>, </li>
+<li><a href="org/bukkit/spawner/package-tree.html">org.bukkit.spawner</a>, </li>
 <li><a href="org/bukkit/structure/package-tree.html">org.bukkit.structure</a>, </li>
 <li><a href="org/bukkit/util/package-tree.html">org.bukkit.util</a>, </li>
 <li><a href="org/bukkit/util/io/package-tree.html">org.bukkit.util.io</a>, </li>
@@ -601,6 +602,7 @@ loadScripts(document, 'script');</script>
 <li class="circle">org.bukkit.event.entity.<a href="org/bukkit/event/entity/ItemSpawnEvent.html" class="type-name-link" title="class in org.bukkit.event.entity">ItemSpawnEvent</a></li>
 <li class="circle">org.bukkit.event.entity.<a href="org/bukkit/event/entity/ProjectileLaunchEvent.html" class="type-name-link" title="class in org.bukkit.event.entity">ProjectileLaunchEvent</a> (implements org.bukkit.event.<a href="org/bukkit/event/Cancellable.html" title="interface in org.bukkit.event">Cancellable</a>)</li>
 <li class="circle">org.bukkit.event.entity.<a href="org/bukkit/event/entity/SpawnerSpawnEvent.html" class="type-name-link" title="class in org.bukkit.event.entity">SpawnerSpawnEvent</a></li>
+<li class="circle">org.bukkit.event.entity.<a href="org/bukkit/event/entity/TrialSpawnerSpawnEvent.html" class="type-name-link" title="class in org.bukkit.event.entity">TrialSpawnerSpawnEvent</a></li>
 </ul>
 </li>
 <li class="circle">org.bukkit.event.entity.<a href="org/bukkit/event/entity/EntitySpellCastEvent.html" class="type-name-link" title="class in org.bukkit.event.entity">EntitySpellCastEvent</a> (implements org.bukkit.event.<a href="org/bukkit/event/Cancellable.html" title="interface in org.bukkit.event">Cancellable</a>)</li>
@@ -1248,7 +1250,7 @@ loadScripts(document, 'script');</script>
 <li class="circle">com.destroystokyo.paper.event.executor.<a href="com/destroystokyo/paper/event/executor/MethodHandleEventExecutor.html" class="type-name-link" title="class in com.destroystokyo.paper.event.executor">MethodHandleEventExecutor</a> (implements org.bukkit.plugin.<a href="org/bukkit/plugin/EventExecutor.html" title="interface in org.bukkit.plugin">EventExecutor</a>)</li>
 <li class="circle">io.papermc.paper.registry.keys.<a href="io/papermc/paper/registry/keys/MobEffectKeys.html" class="type-name-link" title="class in io.papermc.paper.registry.keys">MobEffectKeys</a></li>
 <li class="circle">org.bukkit.<a href="org/bukkit/MusicInstrument.html" class="type-name-link" title="class in org.bukkit">MusicInstrument</a> (implements org.bukkit.<a href="org/bukkit/Keyed.html" title="interface in org.bukkit">Keyed</a>, net.kyori.adventure.translation.<a href="https://jd.advntr.dev/api/4.17.0/net/kyori/adventure/translation/Translatable.html" title="class or interface in net.kyori.adventure.translation" class="external-link">Translatable</a>)</li>
-<li class="circle">org.bukkit.<a href="org/bukkit/NamespacedKey.html" class="type-name-link" title="class in org.bukkit">NamespacedKey</a> (implements net.kyori.adventure.key.Key)</li>
+<li class="circle">org.bukkit.<a href="org/bukkit/NamespacedKey.html" class="type-name-link" title="class in org.bukkit">NamespacedKey</a> (implements net.kyori.adventure.key.<a href="https://jd.advntr.dev/key/4.17.0/net/kyori/adventure/key/Key.html" title="class or interface in net.kyori.adventure.key" class="external-link">Key</a>)</li>
 <li class="circle">org.bukkit.util.noise.<a href="org/bukkit/util/noise/NoiseGenerator.html" class="type-name-link" title="class in org.bukkit.util.noise">NoiseGenerator</a>
 <ul>
 <li class="circle">org.bukkit.util.noise.<a href="org/bukkit/util/noise/PerlinNoiseGenerator.html" class="type-name-link" title="class in org.bukkit.util.noise">PerlinNoiseGenerator</a>
@@ -1876,6 +1878,17 @@ loadScripts(document, 'script');</script>
 </ul>
 </li>
 <li class="circle">io.papermc.paper.ban.<a href="io/papermc/paper/ban/BanListType.html" class="type-name-link" title="interface in io.papermc.paper.ban">BanListType</a>&lt;T&gt;</li>
+<li class="circle">org.bukkit.spawner.<a href="org/bukkit/spawner/BaseSpawner.html" class="type-name-link" title="interface in org.bukkit.spawner">BaseSpawner</a>
+<ul>
+<li class="circle">org.bukkit.spawner.<a href="org/bukkit/spawner/Spawner.html" class="type-name-link" title="interface in org.bukkit.spawner">Spawner</a>
+<ul>
+<li class="circle">org.bukkit.block.<a href="org/bukkit/block/CreatureSpawner.html" class="type-name-link" title="interface in org.bukkit.block">CreatureSpawner</a> (also extends org.bukkit.block.<a href="org/bukkit/block/TileState.html" title="interface in org.bukkit.block">TileState</a>)</li>
+<li class="circle">org.bukkit.entity.minecart.<a href="org/bukkit/entity/minecart/SpawnerMinecart.html" class="type-name-link" title="interface in org.bukkit.entity.minecart">SpawnerMinecart</a> (also extends org.bukkit.entity.<a href="org/bukkit/entity/Minecart.html" title="interface in org.bukkit.entity">Minecart</a>)</li>
+</ul>
+</li>
+<li class="circle">org.bukkit.spawner.<a href="org/bukkit/spawner/TrialSpawnerConfiguration.html" class="type-name-link" title="interface in org.bukkit.spawner">TrialSpawnerConfiguration</a></li>
+</ul>
+</li>
 <li class="circle">io.papermc.paper.command.brigadier.<a href="io/papermc/paper/command/brigadier/BasicCommand.html" class="type-name-link" title="interface in io.papermc.paper.command.brigadier">BasicCommand</a></li>
 <li class="circle">org.bukkit.generator.<a href="org/bukkit/generator/BiomeParameterPoint.html" class="type-name-link" title="interface in org.bukkit.generator">BiomeParameterPoint</a></li>
 <li class="circle">org.bukkit.util.<a href="org/bukkit/util/BiomeSearchResult.html" class="type-name-link" title="interface in org.bukkit.util">BiomeSearchResult</a></li>
@@ -3333,7 +3346,7 @@ loadScripts(document, 'script');</script>
 <li class="circle">org.bukkit.entity.minecart.<a href="org/bukkit/entity/minecart/HopperMinecart.html" class="type-name-link" title="interface in org.bukkit.entity.minecart">HopperMinecart</a> (also extends org.bukkit.inventory.<a href="org/bukkit/inventory/InventoryHolder.html" title="interface in org.bukkit.inventory">InventoryHolder</a>, com.destroystokyo.paper.loottable.<a href="com/destroystokyo/paper/loottable/LootableEntityInventory.html" title="interface in com.destroystokyo.paper.loottable">LootableEntityInventory</a>)</li>
 <li class="circle">org.bukkit.entity.minecart.<a href="org/bukkit/entity/minecart/PoweredMinecart.html" class="type-name-link" title="interface in org.bukkit.entity.minecart">PoweredMinecart</a></li>
 <li class="circle">org.bukkit.entity.minecart.<a href="org/bukkit/entity/minecart/RideableMinecart.html" class="type-name-link" title="interface in org.bukkit.entity.minecart">RideableMinecart</a></li>
-<li class="circle">org.bukkit.entity.minecart.<a href="org/bukkit/entity/minecart/SpawnerMinecart.html" class="type-name-link" title="interface in org.bukkit.entity.minecart">SpawnerMinecart</a></li>
+<li class="circle">org.bukkit.entity.minecart.<a href="org/bukkit/entity/minecart/SpawnerMinecart.html" class="type-name-link" title="interface in org.bukkit.entity.minecart">SpawnerMinecart</a> (also extends org.bukkit.spawner.<a href="org/bukkit/spawner/Spawner.html" title="interface in org.bukkit.spawner">Spawner</a>)</li>
 <li class="circle">org.bukkit.entity.minecart.<a href="org/bukkit/entity/minecart/StorageMinecart.html" class="type-name-link" title="interface in org.bukkit.entity.minecart">StorageMinecart</a> (also extends org.bukkit.inventory.<a href="org/bukkit/inventory/InventoryHolder.html" title="interface in org.bukkit.inventory">InventoryHolder</a>, com.destroystokyo.paper.loottable.<a href="com/destroystokyo/paper/loottable/LootableEntityInventory.html" title="interface in com.destroystokyo.paper.loottable">LootableEntityInventory</a>)</li>
 </ul>
 </li>
@@ -3478,7 +3491,7 @@ loadScripts(document, 'script');</script>
 <li class="circle">io.papermc.paper.registry.set.<a href="io/papermc/paper/registry/set/RegistryValueSet.html" class="type-name-link" title="interface in io.papermc.paper.registry.set">RegistryValueSet</a>&lt;T&gt; (also extends io.papermc.paper.registry.set.<a href="io/papermc/paper/registry/set/RegistrySet.html" title="interface in io.papermc.paper.registry.set">RegistrySet</a>&lt;T&gt;)</li>
 </ul>
 </li>
-<li class="circle">net.kyori.adventure.key.Keyed
+<li class="circle">net.kyori.adventure.key.<a href="https://jd.advntr.dev/key/4.17.0/net/kyori/adventure/key/Keyed.html" class="type-name-link external-link" title="class or interface in net.kyori.adventure.key">Keyed</a>
 <ul>
 <li class="circle">org.bukkit.<a href="org/bukkit/Keyed.html" class="type-name-link" title="interface in org.bukkit">Keyed</a>
 <ul>
@@ -3902,7 +3915,7 @@ loadScripts(document, 'script');</script>
 <li class="circle">org.bukkit.block.<a href="org/bukkit/block/CommandBlock.html" class="type-name-link" title="interface in org.bukkit.block">CommandBlock</a> (also extends io.papermc.paper.command.<a href="io/papermc/paper/command/CommandBlockHolder.html" title="interface in io.papermc.paper.command">CommandBlockHolder</a>)</li>
 <li class="circle">org.bukkit.block.<a href="org/bukkit/block/Comparator.html" class="type-name-link" title="interface in org.bukkit.block">Comparator</a></li>
 <li class="circle">org.bukkit.block.<a href="org/bukkit/block/Conduit.html" class="type-name-link" title="interface in org.bukkit.block">Conduit</a></li>
-<li class="circle">org.bukkit.block.<a href="org/bukkit/block/CreatureSpawner.html" class="type-name-link" title="interface in org.bukkit.block">CreatureSpawner</a></li>
+<li class="circle">org.bukkit.block.<a href="org/bukkit/block/CreatureSpawner.html" class="type-name-link" title="interface in org.bukkit.block">CreatureSpawner</a> (also extends org.bukkit.spawner.<a href="org/bukkit/spawner/Spawner.html" title="interface in org.bukkit.spawner">Spawner</a>)</li>
 <li class="circle">org.bukkit.block.<a href="org/bukkit/block/DaylightDetector.html" class="type-name-link" title="interface in org.bukkit.block">DaylightDetector</a></li>
 <li class="circle">org.bukkit.block.<a href="org/bukkit/block/DecoratedPot.html" class="type-name-link" title="interface in org.bukkit.block">DecoratedPot</a> (also extends org.bukkit.inventory.<a href="org/bukkit/inventory/BlockInventoryHolder.html" title="interface in org.bukkit.inventory">BlockInventoryHolder</a>, org.bukkit.loot.<a href="org/bukkit/loot/Lootable.html" title="interface in org.bukkit.loot">Lootable</a>)</li>
 <li class="circle">org.bukkit.block.<a href="org/bukkit/block/EnchantingTable.html" class="type-name-link" title="interface in org.bukkit.block">EnchantingTable</a> (also extends org.bukkit.<a href="org/bukkit/Nameable.html" title="interface in org.bukkit">Nameable</a>)</li>
@@ -4481,7 +4494,7 @@ loadScripts(document, 'script');</script>
 <li class="circle">org.bukkit.entity.minecart.<a href="org/bukkit/entity/minecart/HopperMinecart.html" class="type-name-link" title="interface in org.bukkit.entity.minecart">HopperMinecart</a> (also extends org.bukkit.inventory.<a href="org/bukkit/inventory/InventoryHolder.html" title="interface in org.bukkit.inventory">InventoryHolder</a>, com.destroystokyo.paper.loottable.<a href="com/destroystokyo/paper/loottable/LootableEntityInventory.html" title="interface in com.destroystokyo.paper.loottable">LootableEntityInventory</a>)</li>
 <li class="circle">org.bukkit.entity.minecart.<a href="org/bukkit/entity/minecart/PoweredMinecart.html" class="type-name-link" title="interface in org.bukkit.entity.minecart">PoweredMinecart</a></li>
 <li class="circle">org.bukkit.entity.minecart.<a href="org/bukkit/entity/minecart/RideableMinecart.html" class="type-name-link" title="interface in org.bukkit.entity.minecart">RideableMinecart</a></li>
-<li class="circle">org.bukkit.entity.minecart.<a href="org/bukkit/entity/minecart/SpawnerMinecart.html" class="type-name-link" title="interface in org.bukkit.entity.minecart">SpawnerMinecart</a></li>
+<li class="circle">org.bukkit.entity.minecart.<a href="org/bukkit/entity/minecart/SpawnerMinecart.html" class="type-name-link" title="interface in org.bukkit.entity.minecart">SpawnerMinecart</a> (also extends org.bukkit.spawner.<a href="org/bukkit/spawner/Spawner.html" title="interface in org.bukkit.spawner">Spawner</a>)</li>
 <li class="circle">org.bukkit.entity.minecart.<a href="org/bukkit/entity/minecart/StorageMinecart.html" class="type-name-link" title="interface in org.bukkit.entity.minecart">StorageMinecart</a> (also extends org.bukkit.inventory.<a href="org/bukkit/inventory/InventoryHolder.html" title="interface in org.bukkit.inventory">InventoryHolder</a>, com.destroystokyo.paper.loottable.<a href="com/destroystokyo/paper/loottable/LootableEntityInventory.html" title="interface in com.destroystokyo.paper.loottable">LootableEntityInventory</a>)</li>
 </ul>
 </li>
@@ -5023,7 +5036,7 @@ loadScripts(document, 'script');</script>
 <li class="circle">org.bukkit.entity.minecart.<a href="org/bukkit/entity/minecart/HopperMinecart.html" class="type-name-link" title="interface in org.bukkit.entity.minecart">HopperMinecart</a> (also extends org.bukkit.inventory.<a href="org/bukkit/inventory/InventoryHolder.html" title="interface in org.bukkit.inventory">InventoryHolder</a>, com.destroystokyo.paper.loottable.<a href="com/destroystokyo/paper/loottable/LootableEntityInventory.html" title="interface in com.destroystokyo.paper.loottable">LootableEntityInventory</a>)</li>
 <li class="circle">org.bukkit.entity.minecart.<a href="org/bukkit/entity/minecart/PoweredMinecart.html" class="type-name-link" title="interface in org.bukkit.entity.minecart">PoweredMinecart</a></li>
 <li class="circle">org.bukkit.entity.minecart.<a href="org/bukkit/entity/minecart/RideableMinecart.html" class="type-name-link" title="interface in org.bukkit.entity.minecart">RideableMinecart</a></li>
-<li class="circle">org.bukkit.entity.minecart.<a href="org/bukkit/entity/minecart/SpawnerMinecart.html" class="type-name-link" title="interface in org.bukkit.entity.minecart">SpawnerMinecart</a></li>
+<li class="circle">org.bukkit.entity.minecart.<a href="org/bukkit/entity/minecart/SpawnerMinecart.html" class="type-name-link" title="interface in org.bukkit.entity.minecart">SpawnerMinecart</a> (also extends org.bukkit.spawner.<a href="org/bukkit/spawner/Spawner.html" title="interface in org.bukkit.spawner">Spawner</a>)</li>
 <li class="circle">org.bukkit.entity.minecart.<a href="org/bukkit/entity/minecart/StorageMinecart.html" class="type-name-link" title="interface in org.bukkit.entity.minecart">StorageMinecart</a> (also extends org.bukkit.inventory.<a href="org/bukkit/inventory/InventoryHolder.html" title="interface in org.bukkit.inventory">InventoryHolder</a>, com.destroystokyo.paper.loottable.<a href="com/destroystokyo/paper/loottable/LootableEntityInventory.html" title="interface in com.destroystokyo.paper.loottable">LootableEntityInventory</a>)</li>
 </ul>
 </li>
@@ -5635,7 +5648,7 @@ loadScripts(document, 'script');</script>
 <li class="circle">org.bukkit.entity.minecart.<a href="org/bukkit/entity/minecart/HopperMinecart.html" class="type-name-link" title="interface in org.bukkit.entity.minecart">HopperMinecart</a> (also extends org.bukkit.inventory.<a href="org/bukkit/inventory/InventoryHolder.html" title="interface in org.bukkit.inventory">InventoryHolder</a>, com.destroystokyo.paper.loottable.<a href="com/destroystokyo/paper/loottable/LootableEntityInventory.html" title="interface in com.destroystokyo.paper.loottable">LootableEntityInventory</a>)</li>
 <li class="circle">org.bukkit.entity.minecart.<a href="org/bukkit/entity/minecart/PoweredMinecart.html" class="type-name-link" title="interface in org.bukkit.entity.minecart">PoweredMinecart</a></li>
 <li class="circle">org.bukkit.entity.minecart.<a href="org/bukkit/entity/minecart/RideableMinecart.html" class="type-name-link" title="interface in org.bukkit.entity.minecart">RideableMinecart</a></li>
-<li class="circle">org.bukkit.entity.minecart.<a href="org/bukkit/entity/minecart/SpawnerMinecart.html" class="type-name-link" title="interface in org.bukkit.entity.minecart">SpawnerMinecart</a></li>
+<li class="circle">org.bukkit.entity.minecart.<a href="org/bukkit/entity/minecart/SpawnerMinecart.html" class="type-name-link" title="interface in org.bukkit.entity.minecart">SpawnerMinecart</a> (also extends org.bukkit.spawner.<a href="org/bukkit/spawner/Spawner.html" title="interface in org.bukkit.spawner">Spawner</a>)</li>
 <li class="circle">org.bukkit.entity.minecart.<a href="org/bukkit/entity/minecart/StorageMinecart.html" class="type-name-link" title="interface in org.bukkit.entity.minecart">StorageMinecart</a> (also extends org.bukkit.inventory.<a href="org/bukkit/inventory/InventoryHolder.html" title="interface in org.bukkit.inventory">InventoryHolder</a>, com.destroystokyo.paper.loottable.<a href="com/destroystokyo/paper/loottable/LootableEntityInventory.html" title="interface in com.destroystokyo.paper.loottable">LootableEntityInventory</a>)</li>
 </ul>
 </li>
@@ -5704,7 +5717,7 @@ loadScripts(document, 'script');</script>
 <li class="circle">org.bukkit.block.<a href="org/bukkit/block/CommandBlock.html" class="type-name-link" title="interface in org.bukkit.block">CommandBlock</a> (also extends io.papermc.paper.command.<a href="io/papermc/paper/command/CommandBlockHolder.html" title="interface in io.papermc.paper.command">CommandBlockHolder</a>)</li>
 <li class="circle">org.bukkit.block.<a href="org/bukkit/block/Comparator.html" class="type-name-link" title="interface in org.bukkit.block">Comparator</a></li>
 <li class="circle">org.bukkit.block.<a href="org/bukkit/block/Conduit.html" class="type-name-link" title="interface in org.bukkit.block">Conduit</a></li>
-<li class="circle">org.bukkit.block.<a href="org/bukkit/block/CreatureSpawner.html" class="type-name-link" title="interface in org.bukkit.block">CreatureSpawner</a></li>
+<li class="circle">org.bukkit.block.<a href="org/bukkit/block/CreatureSpawner.html" class="type-name-link" title="interface in org.bukkit.block">CreatureSpawner</a> (also extends org.bukkit.spawner.<a href="org/bukkit/spawner/Spawner.html" title="interface in org.bukkit.spawner">Spawner</a>)</li>
 <li class="circle">org.bukkit.block.<a href="org/bukkit/block/DaylightDetector.html" class="type-name-link" title="interface in org.bukkit.block">DaylightDetector</a></li>
 <li class="circle">org.bukkit.block.<a href="org/bukkit/block/DecoratedPot.html" class="type-name-link" title="interface in org.bukkit.block">DecoratedPot</a> (also extends org.bukkit.inventory.<a href="org/bukkit/inventory/BlockInventoryHolder.html" title="interface in org.bukkit.inventory">BlockInventoryHolder</a>, org.bukkit.loot.<a href="org/bukkit/loot/Lootable.html" title="interface in org.bukkit.loot">Lootable</a>)</li>
 <li class="circle">org.bukkit.block.<a href="org/bukkit/block/EnchantingTable.html" class="type-name-link" title="interface in org.bukkit.block">EnchantingTable</a> (also extends org.bukkit.<a href="org/bukkit/Nameable.html" title="interface in org.bukkit">Nameable</a>)</li>
@@ -6318,7 +6331,7 @@ loadScripts(document, 'script');</script>
 <li class="circle">org.bukkit.entity.minecart.<a href="org/bukkit/entity/minecart/HopperMinecart.html" class="type-name-link" title="interface in org.bukkit.entity.minecart">HopperMinecart</a> (also extends org.bukkit.inventory.<a href="org/bukkit/inventory/InventoryHolder.html" title="interface in org.bukkit.inventory">InventoryHolder</a>, com.destroystokyo.paper.loottable.<a href="com/destroystokyo/paper/loottable/LootableEntityInventory.html" title="interface in com.destroystokyo.paper.loottable">LootableEntityInventory</a>)</li>
 <li class="circle">org.bukkit.entity.minecart.<a href="org/bukkit/entity/minecart/PoweredMinecart.html" class="type-name-link" title="interface in org.bukkit.entity.minecart">PoweredMinecart</a></li>
 <li class="circle">org.bukkit.entity.minecart.<a href="org/bukkit/entity/minecart/RideableMinecart.html" class="type-name-link" title="interface in org.bukkit.entity.minecart">RideableMinecart</a></li>
-<li class="circle">org.bukkit.entity.minecart.<a href="org/bukkit/entity/minecart/SpawnerMinecart.html" class="type-name-link" title="interface in org.bukkit.entity.minecart">SpawnerMinecart</a></li>
+<li class="circle">org.bukkit.entity.minecart.<a href="org/bukkit/entity/minecart/SpawnerMinecart.html" class="type-name-link" title="interface in org.bukkit.entity.minecart">SpawnerMinecart</a> (also extends org.bukkit.spawner.<a href="org/bukkit/spawner/Spawner.html" title="interface in org.bukkit.spawner">Spawner</a>)</li>
 <li class="circle">org.bukkit.entity.minecart.<a href="org/bukkit/entity/minecart/StorageMinecart.html" class="type-name-link" title="interface in org.bukkit.entity.minecart">StorageMinecart</a> (also extends org.bukkit.inventory.<a href="org/bukkit/inventory/InventoryHolder.html" title="interface in org.bukkit.inventory">InventoryHolder</a>, com.destroystokyo.paper.loottable.<a href="com/destroystokyo/paper/loottable/LootableEntityInventory.html" title="interface in com.destroystokyo.paper.loottable">LootableEntityInventory</a>)</li>
 </ul>
 </li>
@@ -7294,7 +7307,7 @@ loadScripts(document, 'script');</script>
 <li class="circle">org.bukkit.entity.minecart.<a href="org/bukkit/entity/minecart/HopperMinecart.html" class="type-name-link" title="interface in org.bukkit.entity.minecart">HopperMinecart</a> (also extends org.bukkit.inventory.<a href="org/bukkit/inventory/InventoryHolder.html" title="interface in org.bukkit.inventory">InventoryHolder</a>, com.destroystokyo.paper.loottable.<a href="com/destroystokyo/paper/loottable/LootableEntityInventory.html" title="interface in com.destroystokyo.paper.loottable">LootableEntityInventory</a>)</li>
 <li class="circle">org.bukkit.entity.minecart.<a href="org/bukkit/entity/minecart/PoweredMinecart.html" class="type-name-link" title="interface in org.bukkit.entity.minecart">PoweredMinecart</a></li>
 <li class="circle">org.bukkit.entity.minecart.<a href="org/bukkit/entity/minecart/RideableMinecart.html" class="type-name-link" title="interface in org.bukkit.entity.minecart">RideableMinecart</a></li>
-<li class="circle">org.bukkit.entity.minecart.<a href="org/bukkit/entity/minecart/SpawnerMinecart.html" class="type-name-link" title="interface in org.bukkit.entity.minecart">SpawnerMinecart</a></li>
+<li class="circle">org.bukkit.entity.minecart.<a href="org/bukkit/entity/minecart/SpawnerMinecart.html" class="type-name-link" title="interface in org.bukkit.entity.minecart">SpawnerMinecart</a> (also extends org.bukkit.spawner.<a href="org/bukkit/spawner/Spawner.html" title="interface in org.bukkit.spawner">Spawner</a>)</li>
 <li class="circle">org.bukkit.entity.minecart.<a href="org/bukkit/entity/minecart/StorageMinecart.html" class="type-name-link" title="interface in org.bukkit.entity.minecart">StorageMinecart</a> (also extends org.bukkit.inventory.<a href="org/bukkit/inventory/InventoryHolder.html" title="interface in org.bukkit.inventory">InventoryHolder</a>, com.destroystokyo.paper.loottable.<a href="com/destroystokyo/paper/loottable/LootableEntityInventory.html" title="interface in com.destroystokyo.paper.loottable">LootableEntityInventory</a>)</li>
 </ul>
 </li>
@@ -7857,7 +7870,7 @@ loadScripts(document, 'script');</script>
 <li class="circle">org.bukkit.entity.minecart.<a href="org/bukkit/entity/minecart/HopperMinecart.html" class="type-name-link" title="interface in org.bukkit.entity.minecart">HopperMinecart</a> (also extends org.bukkit.inventory.<a href="org/bukkit/inventory/InventoryHolder.html" title="interface in org.bukkit.inventory">InventoryHolder</a>, com.destroystokyo.paper.loottable.<a href="com/destroystokyo/paper/loottable/LootableEntityInventory.html" title="interface in com.destroystokyo.paper.loottable">LootableEntityInventory</a>)</li>
 <li class="circle">org.bukkit.entity.minecart.<a href="org/bukkit/entity/minecart/PoweredMinecart.html" class="type-name-link" title="interface in org.bukkit.entity.minecart">PoweredMinecart</a></li>
 <li class="circle">org.bukkit.entity.minecart.<a href="org/bukkit/entity/minecart/RideableMinecart.html" class="type-name-link" title="interface in org.bukkit.entity.minecart">RideableMinecart</a></li>
-<li class="circle">org.bukkit.entity.minecart.<a href="org/bukkit/entity/minecart/SpawnerMinecart.html" class="type-name-link" title="interface in org.bukkit.entity.minecart">SpawnerMinecart</a></li>
+<li class="circle">org.bukkit.entity.minecart.<a href="org/bukkit/entity/minecart/SpawnerMinecart.html" class="type-name-link" title="interface in org.bukkit.entity.minecart">SpawnerMinecart</a> (also extends org.bukkit.spawner.<a href="org/bukkit/spawner/Spawner.html" title="interface in org.bukkit.spawner">Spawner</a>)</li>
 <li class="circle">org.bukkit.entity.minecart.<a href="org/bukkit/entity/minecart/StorageMinecart.html" class="type-name-link" title="interface in org.bukkit.entity.minecart">StorageMinecart</a> (also extends org.bukkit.inventory.<a href="org/bukkit/inventory/InventoryHolder.html" title="interface in org.bukkit.inventory">InventoryHolder</a>, com.destroystokyo.paper.loottable.<a href="com/destroystokyo/paper/loottable/LootableEntityInventory.html" title="interface in com.destroystokyo.paper.loottable">LootableEntityInventory</a>)</li>
 </ul>
 </li>

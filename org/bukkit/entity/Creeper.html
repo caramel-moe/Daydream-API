@@ -134,15 +134,25 @@ extends <a href="Monster.html" title="interface in org.bukkit.entity">Monster</a
 <div class="block">Get the maximum fuse ticks for this Creeper, where the ticks is the
  amount of time in which a creeper has been in the primed state.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>int</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getMaxFuseTicks()" class="member-name-link">getMaxFuseTicks</a>()</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="Entity.html" title="interface in org.bukkit.entity">Entity</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getIgniter()" class="member-name-link">getIgniter</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Gets the entity which ignited the creeper, if available.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>int</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getMaxFuseTicks()" class="member-name-link">getMaxFuseTicks</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Get the maximum fuse ticks for this Creeper, where the maximum ticks
  is the amount of time in which a creeper is allowed to be in the
  primed state before exploding.</div>
 </div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#ignite()" class="member-name-link">ignite</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Ignites this Creeper, beginning its fuse.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#ignite()" class="member-name-link">ignite</a>()</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#ignite(org.bukkit.entity.Entity)" class="member-name-link">ignite</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Entity.html" title="interface in org.bukkit.entity">Entity</a>&nbsp;entity)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Ignites this Creeper, beginning its fuse.</div>
 </div>
@@ -348,10 +358,29 @@ extends <a href="Monster.html" title="interface in org.bukkit.entity">Monster</a
 <h3>explode</h3>
 <div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">explode</span>()</div>
 <div class="block">Makes this Creeper explode instantly.
-
+ <br>
  The resulting explosion can be cancelled by an
  <a href="../event/entity/ExplosionPrimeEvent.html" title="class in org.bukkit.event.entity"><code>ExplosionPrimeEvent</code></a> and obeys the mob
  griefing gamerule.</div>
+</section>
+</li>
+<li>
+<section class="detail" id="ignite(org.bukkit.entity.Entity)">
+<h3>ignite</h3>
+<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">ignite</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Entity.html" title="interface in org.bukkit.entity">Entity</a>&nbsp;entity)</span></div>
+<div class="block">Ignites this Creeper, beginning its fuse.
+ <br>
+ The amount of time the Creeper takes to explode will depend on what
+ <a href="#setMaxFuseTicks(int)"><code>setMaxFuseTicks(int)</code></a> is set as.
+ <br>
+ The resulting explosion can be cancelled by an
+ <a href="../event/entity/ExplosionPrimeEvent.html" title="class in org.bukkit.event.entity"><code>ExplosionPrimeEvent</code></a> and obeys the mob
+ griefing gamerule.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>entity</code> - the entity which ignited the creeper</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -359,13 +388,25 @@ extends <a href="Monster.html" title="interface in org.bukkit.entity">Monster</a
 <h3>ignite</h3>
 <div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">ignite</span>()</div>
 <div class="block">Ignites this Creeper, beginning its fuse.
-
+ <br>
  The amount of time the Creeper takes to explode will depend on what
  <a href="#setMaxFuseTicks(int)"><code>setMaxFuseTicks(int)</code></a> is set as.
-
+ <br>
  The resulting explosion can be cancelled by an
  <a href="../event/entity/ExplosionPrimeEvent.html" title="class in org.bukkit.event.entity"><code>ExplosionPrimeEvent</code></a> and obeys the mob
  griefing gamerule.</div>
+</section>
+</li>
+<li>
+<section class="detail" id="getIgniter()">
+<h3>getIgniter</h3>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a>
+</span><span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="Entity.html" title="interface in org.bukkit.entity">Entity</a></span>&nbsp;<span class="element-name">getIgniter</span>()</div>
+<div class="block">Gets the entity which ignited the creeper, if available.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the entity which ignited the creeper (if available) or null</dd>
+</dl>
 </section>
 </li>
 <li>

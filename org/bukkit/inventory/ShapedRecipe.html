@@ -94,7 +94,7 @@ loadScripts(document, 'script');</script>
 <section class="class-description" id="class-description">
 <dl class="notes">
 <dt>All Implemented Interfaces:</dt>
-<dd><code>net.kyori.adventure.key.Keyed</code>, <code><a href="Recipe.html" title="interface in org.bukkit.inventory">Recipe</a></code>, <code><a href="../Keyed.html" title="interface in org.bukkit">Keyed</a></code></dd>
+<dd><code><a href="https://jd.advntr.dev/key/4.17.0/net/kyori/adventure/key/Keyed.html" title="class or interface in net.kyori.adventure.key" class="external-link">Keyed</a></code>, <code><a href="Recipe.html" title="interface in org.bukkit.inventory">Recipe</a></code>, <code><a href="../Keyed.html" title="interface in org.bukkit">Keyed</a></code></dd>
 </dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">ShapedRecipe</span>
@@ -281,11 +281,11 @@ loadScripts(document, 'script');</script>
 </span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="ShapedRecipe.html" title="class in org.bukkit.inventory">ShapedRecipe</a></span>&nbsp;<span class="element-name">shape</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>...&nbsp;shape)</span></div>
 <div class="block">Set the shape of this recipe to the specified rows. Each character
- represents a different ingredient; exactly what each character
- represents is set separately. The first row supplied corresponds with
- the upper most part of the recipe on the workbench e.g. if all three
- rows are supplies the first string represents the top row on the
- workbench.</div>
+ represents a different ingredient; excluding space characters, which
+ must be empty, exactly what each character represents is set separately.
+ The first row supplied corresponds with the upper most part of the recipe
+ on the workbench e.g. if all three rows are supplies the first string
+ represents the top row on the workbench.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>shape</code> - The rows of the recipe (up to 3 rows).</dd>
@@ -316,6 +316,7 @@ loadScripts(document, 'script');</script>
 <dt>Returns:</dt>
 <dd>The changed recipe, so you can chain calls.</dd>
 <dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if the <code>key</code> is a space character</dd>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if the <code>key</code> does not appear in the shape.</dd>
 </dl>
 </section>
@@ -338,6 +339,7 @@ loadScripts(document, 'script');</script>
 <dt>Returns:</dt>
 <dd>The changed recipe, so you can chain calls.</dd>
 <dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if the <code>key</code> is a space character</dd>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if the <code>key</code> does not appear in the shape.</dd>
 </dl>
 </section>
@@ -366,6 +368,7 @@ loadScripts(document, 'script');</script>
 <dt>Returns:</dt>
 <dd>The changed recipe, so you can chain calls.</dd>
 <dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if the <code>key</code> is a space character</dd>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if the <code>key</code> does not appear in the shape.</dd>
 </dl>
 </section>
@@ -388,6 +391,7 @@ loadScripts(document, 'script');</script>
 <dt>Returns:</dt>
 <dd>The changed recipe, so you can chain calls.</dd>
 <dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if the <code>key</code> is a space character</dd>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if the <code>key</code> does not appear in the shape.</dd>
 </dl>
 </section>

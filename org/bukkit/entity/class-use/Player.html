@@ -1093,7 +1093,7 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color"><code>static <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../Player.html" title="interface in org.bukkit.entity">Player</a></code></div>
 <div class="col-second even-row-color"><span class="type-name-label">Bukkit.</span><code><a href="../../Bukkit.html#getPlayer(java.lang.String)" class="member-name-link">getPlayer</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
 <div class="col-last even-row-color">
-<div class="block">Gets a player object by the given username.</div>
+<div class="block">Gets a player whose name matches the given name closest.</div>
 </div>
 <div class="col-first odd-row-color"><code>static <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../Player.html" title="interface in org.bukkit.entity">Player</a></code></div>
 <div class="col-second odd-row-color"><span class="type-name-label">Bukkit.</span><code><a href="../../Bukkit.html#getPlayer(java.util.UUID)" class="member-name-link">getPlayer</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;id)</code></div>
@@ -1108,7 +1108,7 @@ loadScripts(document, 'script');</script>
 <div class="col-first odd-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../Player.html" title="interface in org.bukkit.entity">Player</a></code></div>
 <div class="col-second odd-row-color"><span class="type-name-label">Server.</span><code><a href="../../Server.html#getPlayer(java.lang.String)" class="member-name-link">getPlayer</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
 <div class="col-last odd-row-color">
-<div class="block">Gets a player object by the given username.</div>
+<div class="block">Gets a player whose name matches the given name closest.</div>
 </div>
 <div class="col-first even-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../Player.html" title="interface in org.bukkit.entity">Player</a></code></div>
 <div class="col-second even-row-color"><span class="type-name-label">Server.</span><code><a href="../../Server.html#getPlayer(java.util.UUID)" class="member-name-link">getPlayer</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;id)</code></div>
@@ -1537,6 +1537,17 @@ loadScripts(document, 'script');</script>
 <div class="block">Gets the player that is currently allowed to edit this sign.</div>
 </div>
 </div>
+<div class="caption"><span>Methods in <a href="../../block/package-summary.html">org.bukkit.block</a> that return types with arguments of type <a href="../Player.html" title="interface in org.bukkit.entity">Player</a></span></div>
+<div class="summary-table three-column-summary">
+<div class="table-header col-first">Modifier and Type</div>
+<div class="table-header col-second">Method</div>
+<div class="table-header col-last">Description</div>
+<div class="col-first even-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Collection.html" title="class or interface in java.util" class="external-link">Collection</a><wbr>&lt;<a href="../Player.html" title="interface in org.bukkit.entity">Player</a>&gt;</code></div>
+<div class="col-second even-row-color"><span class="type-name-label">TrialSpawner.</span><code><a href="../../block/TrialSpawner.html#getTrackedPlayers()" class="member-name-link">getTrackedPlayers</a>()</code></div>
+<div class="col-last even-row-color">
+<div class="block">Gets the players this spawner is currently tracking.</div>
+</div>
+</div>
 <div class="caption"><span>Methods in <a href="../../block/package-summary.html">org.bukkit.block</a> with parameters of type <a href="../Player.html" title="interface in org.bukkit.entity">Player</a></span></div>
 <div class="summary-table three-column-summary">
 <div class="table-header col-first">Modifier and Type</div>
@@ -1554,9 +1565,24 @@ loadScripts(document, 'script');</script>
 <div class="col-last odd-row-color">
 <div class="block">Gets the side of this sign the given player is currently standing on.</div>
 </div>
-<div class="col-first even-row-color"><code>void</code></div>
-<div class="col-second even-row-color"><span class="type-name-label">SculkShrieker.</span><code><a href="../../block/SculkShrieker.html#tryShriek(org.bukkit.entity.Player)" class="member-name-link">tryShriek</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;player)</code></div>
+<div class="col-first even-row-color"><code>boolean</code></div>
+<div class="col-second even-row-color"><span class="type-name-label">TrialSpawner.</span><code><a href="../../block/TrialSpawner.html#isTrackingPlayer(org.bukkit.entity.Player)" class="member-name-link">isTrackingPlayer</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;player)</code></div>
 <div class="col-last even-row-color">
+<div class="block">Checks if this spawner is currently tracking the provided player.</div>
+</div>
+<div class="col-first odd-row-color"><code>void</code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">TrialSpawner.</span><code><a href="../../block/TrialSpawner.html#startTrackingPlayer(org.bukkit.entity.Player)" class="member-name-link">startTrackingPlayer</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;player)</code></div>
+<div class="col-last odd-row-color">
+<div class="block">Force this spawner to start tracking the provided player.</div>
+</div>
+<div class="col-first even-row-color"><code>void</code></div>
+<div class="col-second even-row-color"><span class="type-name-label">TrialSpawner.</span><code><a href="../../block/TrialSpawner.html#stopTrackingPlayer(org.bukkit.entity.Player)" class="member-name-link">stopTrackingPlayer</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;player)</code></div>
+<div class="col-last even-row-color">
+<div class="block">Force this spawner to stop tracking the provided player.</div>
+</div>
+<div class="col-first odd-row-color"><code>void</code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">SculkShrieker.</span><code><a href="../../block/SculkShrieker.html#tryShriek(org.bukkit.entity.Player)" class="member-name-link">tryShriek</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;player)</code></div>
+<div class="col-last odd-row-color">
 <div class="block">Simulates a player causing a vibration.</div>
 </div>
 </div>
