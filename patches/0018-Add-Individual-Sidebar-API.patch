@@ -317,10 +317,10 @@ index 0000000000000000000000000000000000000000..545cafad82bc93cebe17e59c1f125ce5
 +    Set<UUID> trackedPlayers();
 +}
 diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
-index 2ac4dfaaf782f4aba2ad1fc2adedfb1a58386a4a..9c1d9cbecb924890c9924ce57ef1a3e936afbd88 100644
+index 5fa8b95bb1887a96b2570e534ccd78fde38f03eb..9701152092bb20efc42df5413c7a36a87283eb00 100644
 --- a/src/main/java/org/bukkit/Bukkit.java
 +++ b/src/main/java/org/bukkit/Bukkit.java
-@@ -3023,6 +3023,18 @@ public final class Bukkit {
+@@ -3026,6 +3026,18 @@ public final class Bukkit {
      }
      // Daydream end - Add Packet API
  
@@ -340,10 +340,10 @@ index 2ac4dfaaf782f4aba2ad1fc2adedfb1a58386a4a..9c1d9cbecb924890c9924ce57ef1a3e9
      public static Server.Spigot spigot() {
          return server.spigot();
 diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
-index 1235137a3d48bcd33467a591c344c025c86dcb1f..cec9c235fb933af1105faa019d16fbf3bba28a80 100644
+index 975f7b03ea64a7fc8bd1c066fe0642c54e29fd5f..32d9fc1de9b487b6405eb6699481f0c79cc51cf6 100644
 --- a/src/main/java/org/bukkit/Server.java
 +++ b/src/main/java/org/bukkit/Server.java
-@@ -2648,4 +2648,14 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
+@@ -2651,4 +2651,14 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
      @NotNull
      <T extends moe.caramel.daydream.packet.Packet> T createPacket(@NotNull Class<T> packet);
      // Daydream end - Add Packet API

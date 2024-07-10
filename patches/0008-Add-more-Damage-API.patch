@@ -130,10 +130,10 @@ index 8bfec649f7c6dda956bc388a21b489f3565ff384..8e1cef5ee8ec5e16398f0636d852482b
       * Returns whether or not this tag has an entry for the specified item.
       *
 diff --git a/src/main/java/org/bukkit/UnsafeValues.java b/src/main/java/org/bukkit/UnsafeValues.java
-index 11bccf6c27b8b2a2ed558a1375a3b3adc7952076..a853f68a35505e132a677d26e7d5cc5824f73e14 100644
+index c133564b8e8364f1eb7f0e82eed3b0add7f47351..9b30e73dd6bfe3f6ce28e56fe349ced95d0e645b 100644
 --- a/src/main/java/org/bukkit/UnsafeValues.java
 +++ b/src/main/java/org/bukkit/UnsafeValues.java
-@@ -279,4 +279,6 @@ public interface UnsafeValues {
+@@ -283,4 +283,6 @@ public interface UnsafeValues {
      <A extends Keyed, M> io.papermc.paper.registry.tag.@Nullable Tag<A> getTag(io.papermc.paper.registry.tag.@NotNull TagKey<A> tagKey); // Paper - hack to get tags for non-server backed registries
  
      ItemStack createEmptyStack(); // Paper - proxy ItemStack
@@ -190,7 +190,7 @@ index 7635610e56c051ce3c8a876911ba5cd0a9248496..e08a7f64bfbd9116f8a4a814732939a7
       * Get the {@link DamageType}.
       *
 diff --git a/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java b/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java
-index ca634147935c3bda8abad5dc73327e51381793a8..11b76561194abf5dfada3bf385b30c06f4ae0c5c 100644
+index ef5b2a0f18c1c126db0b0c4a4d2a57483680665a..e03a257fbd73035220e116e98bee492a00666b05 100644
 --- a/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java
 +++ b/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java
 @@ -59,6 +59,18 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
