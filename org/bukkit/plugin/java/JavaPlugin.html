@@ -158,7 +158,7 @@ loadScripts(document, 'script');</script>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/io/File.html" title="class or interface in java.io" class="external-link">File</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getDataFolder()" class="member-name-link">getDataFolder</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns the folder that the plugin data's files are located in.</div>
+<div class="block">Returns the folder that the plugin data files are located in.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../../generator/BiomeProvider.html" title="class in org.bukkit.generator">BiomeProvider</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getDefaultBiomeProvider(java.lang.String,java.lang.String)" class="member-name-link">getDefaultBiomeProvider</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;worldName,
@@ -358,7 +358,7 @@ loadScripts(document, 'script');</script>
 <code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#clone()" title="class or interface in java.lang" class="external-link">clone</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#finalize()" title="class or interface in java.lang" class="external-link">finalize</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#getClass()" title="class or interface in java.lang" class="external-link">getClass</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#notify()" title="class or interface in java.lang" class="external-link">notify</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#notifyAll()" title="class or interface in java.lang" class="external-link">notifyAll</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#wait()" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#wait(long)" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#wait(long,int)" title="class or interface in java.lang" class="external-link">wait</a></code></div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-org.bukkit.plugin.Plugin">Methods inherited from interface&nbsp;org.bukkit.plugin.<a href="../Plugin.html" title="interface in org.bukkit.plugin">Plugin</a></h3>
-<code><a href="../Plugin.html#getComponentLogger()">getComponentLogger</a>, <a href="../Plugin.html#getLog4JLogger()">getLog4JLogger</a>, <a href="../Plugin.html#getSLF4JLogger()">getSLF4JLogger</a></code></div>
+<code><a href="../Plugin.html#getComponentLogger()">getComponentLogger</a>, <a href="../Plugin.html#getDataPath()">getDataPath</a>, <a href="../Plugin.html#getLog4JLogger()">getLog4JLogger</a>, <a href="../Plugin.html#getSLF4JLogger()">getSLF4JLogger</a></code></div>
 </section>
 </li>
 </ul>
@@ -404,7 +404,7 @@ loadScripts(document, 'script');</script>
 <h3>getDataFolder</h3>
 <div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
 </span><span class="modifiers">public final</span>&nbsp;<span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/io/File.html" title="class or interface in java.io" class="external-link">File</a></span>&nbsp;<span class="element-name">getDataFolder</span>()</div>
-<div class="block">Returns the folder that the plugin data's files are located in. The
+<div class="block">Returns the folder that the plugin data files are located in. The
  folder may not yet exist.</div>
 <dl class="notes">
 <dt>Returns:</dt>
@@ -474,10 +474,10 @@ loadScripts(document, 'script');</script>
 <div class="deprecation-block"><span class="deprecated-label">Deprecated.</span>
 <div class="deprecation-comment">No longer applicable to all types of plugins</div>
 </div>
-<div class="block">Returns the plugin.yaml file containing the details for this plugin</div>
+<div class="block">Returns the plugin.yml file containing the details for this plugin</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>Contents of the plugin.yaml file</dd>
+<dd>Contents of the plugin.yml file</dd>
 <dt>See Also:</dt>
 <dd>
 <ul class="tag-list">
