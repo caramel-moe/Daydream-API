@@ -559,10 +559,10 @@ index 0000000000000000000000000000000000000000..74347bc8c9a45be1cb9af9fb41641e90
 +}
 diff --git a/src/main/java/moe/caramel/daydream/advancement/PlayerAdvancementData.java b/src/main/java/moe/caramel/daydream/advancement/PlayerAdvancementData.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..a1f319cbebde6a5476e9ac2b282ffc1ef9f4862d
+index 0000000000000000000000000000000000000000..6ed5806b5b50bb2af607ce0314de3c598e39fb27
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/advancement/PlayerAdvancementData.java
-@@ -0,0 +1,56 @@
+@@ -0,0 +1,65 @@
 +package moe.caramel.daydream.advancement;
 +
 +import moe.caramel.daydream.advancement.progress.CriterionProgress;
@@ -585,6 +585,15 @@ index 0000000000000000000000000000000000000000..a1f319cbebde6a5476e9ac2b282ffc1e
 +     */
 +    @NotNull
 +    ProgressMap createProgressMap();
++
++    /**
++     * 현재의 진행도 맵을 가져옵니다.
++     *
++     * @param section 발전 과제 저장 위치
++     * @return 현재의 진행도 맵
++     */
++    @NotNull
++    ProgressMap asProgressMap(final @NotNull NamespacedKey section);
 +
 +    /**
 +     * 새로운 기준 진행도를 생성합니다.
@@ -790,16 +799,17 @@ index 694fbd96528244bc24f9116bd2cc78eb6214c1a0..020c3c7d9f0e22cbcb2e8b8ea0fa9084
  }
 diff --git a/src/main/java/moe/caramel/daydream/event/player/PlayerAdvancementPreLoadEvent.java b/src/main/java/moe/caramel/daydream/event/player/PlayerAdvancementPreLoadEvent.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..bbf2964149fe8354048942eeeb1b68161aaa776c
+index 0000000000000000000000000000000000000000..6208242798e26ce2c33a7ca31a88fa9523e6ef15
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/event/player/PlayerAdvancementPreLoadEvent.java
-@@ -0,0 +1,118 @@
+@@ -0,0 +1,124 @@
 +package moe.caramel.daydream.event.player;
 +
 +import moe.caramel.daydream.advancement.AdvancementFormat;
 +import moe.caramel.daydream.advancement.PlayerAdvancementData;
 +import moe.caramel.daydream.advancement.ProgressMap;
 +import moe.caramel.daydream.advancement.progress.CriterionProgress;
++import org.bukkit.NamespacedKey;
 +import org.bukkit.entity.Player;
 +import org.bukkit.event.Cancellable;
 +import org.bukkit.event.HandlerList;
@@ -895,6 +905,11 @@ index 0000000000000000000000000000000000000000..bbf2964149fe8354048942eeeb1b6816
 +    @Override
 +    public @NotNull ProgressMap createProgressMap() {
 +        return provider.createProgressMap();
++    }
++
++    @Override
++    public @NotNull ProgressMap asProgressMap(final @NotNull NamespacedKey section) {
++        return provider.asProgressMap(section);
 +    }
 +
 +    @Override

@@ -5,13 +5,13 @@ Subject: [PATCH] Add more Projectile API
 
 
 diff --git a/src/main/java/org/bukkit/entity/AbstractArrow.java b/src/main/java/org/bukkit/entity/AbstractArrow.java
-index 9bf4b86e730f3d066f6ebfd4e516caf78145479e..3031e10c579cec4dfcd2ff7604a4ec900d57ed7b 100644
+index c6466b22f37beae2ca78d90feaceacd9fb124267..b512f5edb86cfba01c489b606bdb1180b816d13f 100644
 --- a/src/main/java/org/bukkit/entity/AbstractArrow.java
 +++ b/src/main/java/org/bukkit/entity/AbstractArrow.java
-@@ -272,4 +272,20 @@ public interface AbstractArrow extends Projectile {
+@@ -282,4 +282,20 @@ public interface AbstractArrow extends Projectile {
       */
-     void setHitSound(@NotNull org.bukkit.Sound sound);
-     // Paper end - more projectile API
+     void setShooter(@Nullable org.bukkit.projectiles.ProjectileSource source, boolean resetPickupStatus);
+     // Paper end - Fix PickupStatus getting reset
 +
 +    // Daydream start - Add more Projectile API
 +    /**

@@ -1428,10 +1428,10 @@ index 6bb7346ffec96d7dfe131879a92ee2b79b78ab38..8ba44ea5eda59ea89b7623a40d62d723
       * Writes loaded players to disk.
       */
 diff --git a/src/main/java/org/bukkit/command/Command.java b/src/main/java/org/bukkit/command/Command.java
-index 587ea1b818dd1117509dff892ba7dbd5d848a93a..3a852ee3d30d3f69b752094973ba2f0ae1be6888 100644
+index 54d22c80d56422acf515a4e8c72f0bde708c1e0d..a23600c3e1c0ca3e34dd304a792dda5da7610ad4 100644
 --- a/src/main/java/org/bukkit/command/Command.java
 +++ b/src/main/java/org/bukkit/command/Command.java
-@@ -353,6 +353,22 @@ public abstract class Command {
+@@ -361,6 +361,22 @@ public abstract class Command {
          return usageMessage;
      }
  
@@ -1476,10 +1476,10 @@ index 04e7cd0e4e2d0eb38fb2862ce6688a4470f30d6b..fac1d908d22024f87e74445ab9227c74
       * Gets the name of this command sender
       *
 diff --git a/src/main/java/org/bukkit/command/MessageCommandSender.java b/src/main/java/org/bukkit/command/MessageCommandSender.java
-index 9d263ab3afb938c215c0b64d9171345fca6ceb2c..ab63f82029c09cbf5d9717a89d1d55c3e063ded8 100644
+index 946d2f0ef37c6cf895caf8d3c6963c7889e0567b..f700c5ec99939a2db216255a6460c6b2b8085e6d 100644
 --- a/src/main/java/org/bukkit/command/MessageCommandSender.java
 +++ b/src/main/java/org/bukkit/command/MessageCommandSender.java
-@@ -43,6 +43,13 @@ public interface MessageCommandSender extends CommandSender {
+@@ -46,6 +46,13 @@ public interface MessageCommandSender extends CommandSender {
          return Bukkit.getServer();
      }
  
@@ -1494,7 +1494,7 @@ index 9d263ab3afb938c215c0b64d9171345fca6ceb2c..ab63f82029c09cbf5d9717a89d1d55c3
      @Override
      default net.kyori.adventure.text.@org.jetbrains.annotations.NotNull Component name() {
 diff --git a/src/main/java/org/bukkit/plugin/java/JavaPlugin.java b/src/main/java/org/bukkit/plugin/java/JavaPlugin.java
-index d5a3c3dce76c4ed0f1184ab5ba21db9c5f1c01ec..c149bfc8ce843090146ad6c8f3e36692b71afe4f 100644
+index e0203f199700c397961a0667a79792497da7f796..d3f9da00e60cef13f8116ec5e5a5f92f070a690c 100644
 --- a/src/main/java/org/bukkit/plugin/java/JavaPlugin.java
 +++ b/src/main/java/org/bukkit/plugin/java/JavaPlugin.java
 @@ -356,6 +356,38 @@ public abstract class JavaPlugin extends PluginBase {

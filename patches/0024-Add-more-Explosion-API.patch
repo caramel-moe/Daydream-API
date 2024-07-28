@@ -428,15 +428,15 @@ index 835f824b72505cb811b380e348b4c5c394654d7d..76039eb4391d328db3a09fdabb720591
       * Creates explosion at given coordinates with given power
       *
 diff --git a/src/main/java/org/bukkit/event/block/BlockExplodeEvent.java b/src/main/java/org/bukkit/event/block/BlockExplodeEvent.java
-index a7c297364805c58ae16895055d8eae0484384b7d..bf8d4edf1a41c480994d09b27cb612d0c11a87db 100644
+index 254d549f956053af4264ca3a52d34a97ede4273d..dc922f606af580f361487afab4a88429627120d2 100644
 --- a/src/main/java/org/bukkit/event/block/BlockExplodeEvent.java
 +++ b/src/main/java/org/bukkit/event/block/BlockExplodeEvent.java
-@@ -25,11 +25,29 @@ public class BlockExplodeEvent extends BlockEvent implements Cancellable {
-     private float yield;
+@@ -27,12 +27,30 @@ public class BlockExplodeEvent extends BlockEvent implements Cancellable {
+     private final ExplosionResult result;
  
-     public BlockExplodeEvent(@NotNull final Block what, @NotNull final BlockState blockState, @NotNull final List<Block> blocks, final float yield) {
+     public BlockExplodeEvent(@NotNull final Block what, @NotNull final BlockState blockState, @NotNull final List<Block> blocks, final float yield, @NotNull final ExplosionResult result) {
 +        // Daydream start - Add more Explosion API
-+        this(what, blockState, blocks, yield, null);
++        this(what, blockState, blocks, yield, result, null);
 +    }
 +    private final moe.caramel.daydream.world.Explosion explosion;
 +
@@ -450,19 +450,20 @@ index a7c297364805c58ae16895055d8eae0484384b7d..bf8d4edf1a41c480994d09b27cb612d0
 +        return explosion;
 +    }
 +
-+    public BlockExplodeEvent(@NotNull final Block what, @NotNull final BlockState blockState, @NotNull final List<Block> blocks, final float yield, @NotNull moe.caramel.daydream.world.Explosion explosion) {
++    public BlockExplodeEvent(@NotNull final Block what, @NotNull final BlockState blockState, @NotNull final List<Block> blocks, final float yield, @NotNull final ExplosionResult result, @NotNull moe.caramel.daydream.world.Explosion explosion) {
 +        // Daydream end - Add more Explosion API
          super(what);
          this.blockState = blockState;
          this.blocks = blocks;
          this.yield = yield;
          this.cancel = false;
+         this.result = result;
 +        this.explosion = explosion; // Daydream - Add more Explosion API
      }
  
-     @io.papermc.paper.annotation.DoNotUse // Paper
+     @Override
 diff --git a/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java b/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java
-index 11b76561194abf5dfada3bf385b30c06f4ae0c5c..3a5e64b3a15c8a71840bcef8144cd44e0f6e3199 100644
+index e03a257fbd73035220e116e98bee492a00666b05..e97e007ab072cd68db5082b9a2d78bfcc0e1bce8 100644
 --- a/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java
 +++ b/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java
 @@ -69,6 +69,16 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
@@ -483,15 +484,15 @@ index 11b76561194abf5dfada3bf385b30c06f4ae0c5c..3a5e64b3a15c8a71840bcef8144cd44e
  
      @Override
 diff --git a/src/main/java/org/bukkit/event/entity/EntityExplodeEvent.java b/src/main/java/org/bukkit/event/entity/EntityExplodeEvent.java
-index 8506fa03293c575c35b55b052224807470fdbd98..e8982f00a6cd2e5fb6a11b47d283eb2ff80f085c 100644
+index e468e55d426b8f81f87c0a08451d02b3866c226f..3757dcc7360e4eae0401d720063fdcc0b72dbcc0 100644
 --- a/src/main/java/org/bukkit/event/entity/EntityExplodeEvent.java
 +++ b/src/main/java/org/bukkit/event/entity/EntityExplodeEvent.java
-@@ -21,11 +21,29 @@ public class EntityExplodeEvent extends EntityEvent implements Cancellable {
-     private float yield;
+@@ -23,12 +23,30 @@ public class EntityExplodeEvent extends EntityEvent implements Cancellable {
+     private final ExplosionResult result;
  
-     public EntityExplodeEvent(@NotNull final Entity what, @NotNull final Location location, @NotNull final List<Block> blocks, final float yield) {
+     public EntityExplodeEvent(@NotNull final Entity what, @NotNull final Location location, @NotNull final List<Block> blocks, final float yield, @NotNull final ExplosionResult result) {
 +        // Daydream start - Add more Explosion API
-+        this(what, location, blocks, yield, null);
++        this(what, location, blocks, yield, result, null);
 +    }
 +    private final moe.caramel.daydream.world.Explosion explosion;
 +
@@ -505,13 +506,14 @@ index 8506fa03293c575c35b55b052224807470fdbd98..e8982f00a6cd2e5fb6a11b47d283eb2f
 +        return explosion;
 +    }
 +
-+    public EntityExplodeEvent(@NotNull final Entity what, @NotNull final Location location, @NotNull final List<Block> blocks, final float yield, @NotNull moe.caramel.daydream.world.Explosion explosion) {
++    public EntityExplodeEvent(@NotNull final Entity what, @NotNull final Location location, @NotNull final List<Block> blocks, final float yield, @NotNull final ExplosionResult result, @NotNull moe.caramel.daydream.world.Explosion explosion) {
 +        // Daydream end - Add more Explosion API
          super(what);
          this.location = location;
          this.blocks = blocks;
          this.yield = yield;
          this.cancel = false;
+         this.result = result;
 +        this.explosion = explosion; // Daydream - Add more Explosion API
      }
  
