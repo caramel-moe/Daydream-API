@@ -1523,8 +1523,9 @@ extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/ja
 <div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">setAttributeModifiers</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="https://guava.dev/releases/32.1.2-jre/api/docs/com/google/common/collect/Multimap.html" title="class or interface in com.google.common.collect" class="external-link">Multimap</a>&lt;<a href="../../attribute/Attribute.html" title="enum class in org.bukkit.attribute">Attribute</a>,<wbr><a href="../../attribute/AttributeModifier.html" title="class in org.bukkit.attribute">AttributeModifier</a>&gt;&nbsp;attributeModifiers)</span></div>
 <div class="block">Set all <a href="../../attribute/Attribute.html" title="enum class in org.bukkit.attribute"><code>Attribute</code></a>s and their <a href="../../attribute/AttributeModifier.html" title="class in org.bukkit.attribute"><code>AttributeModifier</code></a>s.
- To clear all currently set Attributes and AttributeModifiers use
- null or an empty Multimap.
+ To clear all custom attribute modifiers, use <code>null</code>. To set
+ no modifiers (which will override the default modifiers), use an
+ empty map.
  If not null nor empty, this will filter all entries that are not-null
  and add them to the ItemStack.</div>
 <dl class="notes">

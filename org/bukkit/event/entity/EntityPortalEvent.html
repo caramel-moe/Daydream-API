@@ -145,12 +145,21 @@ loadScripts(document, 'script');</script>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../../Location.html" title="class in org.bukkit">Location</a>&nbsp;to,
  int&nbsp;searchRadius)</code></div>
 <div class="col-last odd-row-color">&nbsp;</div>
-<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(org.bukkit.entity.Entity,org.bukkit.Location,org.bukkit.Location,int,org.bukkit.PortalType)" class="member-name-link">EntityPortalEvent</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../entity/Entity.html" title="interface in org.bukkit.entity">Entity</a>&nbsp;entity,
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(org.bukkit.entity.Entity,org.bukkit.Location,org.bukkit.Location,int,boolean,int)" class="member-name-link">EntityPortalEvent</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../entity/Entity.html" title="interface in org.bukkit.entity">Entity</a>&nbsp;entity,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../Location.html" title="class in org.bukkit">Location</a>&nbsp;from,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../../Location.html" title="class in org.bukkit">Location</a>&nbsp;to,
  int&nbsp;searchRadius,
- <a href="../../PortalType.html" title="enum class in org.bukkit">PortalType</a>&nbsp;portalType)</code></div>
+ boolean&nbsp;canCreatePortal,
+ int&nbsp;creationRadius)</code></div>
 <div class="col-last even-row-color">&nbsp;</div>
+<div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(org.bukkit.entity.Entity,org.bukkit.Location,org.bukkit.Location,int,boolean,int,org.bukkit.PortalType)" class="member-name-link">EntityPortalEvent</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../entity/Entity.html" title="interface in org.bukkit.entity">Entity</a>&nbsp;entity,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../Location.html" title="class in org.bukkit">Location</a>&nbsp;from,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../../Location.html" title="class in org.bukkit">Location</a>&nbsp;to,
+ int&nbsp;searchRadius,
+ boolean&nbsp;canCreatePortal,
+ int&nbsp;creationRadius,
+ <a href="../../PortalType.html" title="enum class in org.bukkit">PortalType</a>&nbsp;portalType)</code></div>
+<div class="col-last odd-row-color">&nbsp;</div>
 </div>
 </section>
 </li>
@@ -165,6 +174,18 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getCanCreatePortal()" class="member-name-link">getCanCreatePortal</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns whether the server will attempt to create a destination portal or
+ not.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getCreationRadius()" class="member-name-link">getCreationRadius</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Gets the maximum radius the world is searched for a free space from the
+ given location.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../HandlerList.html" title="class in org.bukkit.event">HandlerList</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#getHandlerList()" class="member-name-link">getHandlerList</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
@@ -186,6 +207,18 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">For <a href="../../PortalType.html#NETHER"><code>PortalType.NETHER</code></a>, this is initially just the starting point
  for the search for a portal to teleport to.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setCanCreatePortal(boolean)" class="member-name-link">setCanCreatePortal</a><wbr>(boolean&nbsp;canCreatePortal)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Sets whether the server should attempt to create a destination portal or
+ not.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setCreationRadius(int)" class="member-name-link">setCreationRadius</a><wbr>(int&nbsp;creationRadius)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Sets the maximum radius the world is searched for a free space from the
+ given location.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setSearchRadius(int)" class="member-name-link">setSearchRadius</a><wbr>(int&nbsp;searchRadius)</code></div>
@@ -247,7 +280,7 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="&lt;init&gt;(org.bukkit.entity.Entity,org.bukkit.Location,org.bukkit.Location,int,org.bukkit.PortalType)">
+<section class="detail" id="&lt;init&gt;(org.bukkit.entity.Entity,org.bukkit.Location,org.bukkit.Location,int,boolean,int)">
 <h3>EntityPortalEvent</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">EntityPortalEvent</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../entity/Entity.html" title="interface in org.bukkit.entity">Entity</a>&nbsp;entity,
@@ -256,6 +289,23 @@ loadScripts(document, 'script');</script>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../../Location.html" title="class in org.bukkit">Location</a>&nbsp;to,
  int&nbsp;searchRadius,
+ boolean&nbsp;canCreatePortal,
+ int&nbsp;creationRadius)</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="&lt;init&gt;(org.bukkit.entity.Entity,org.bukkit.Location,org.bukkit.Location,int,boolean,int,org.bukkit.PortalType)">
+<h3>EntityPortalEvent</h3>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/ApiStatus.Internal.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Internal</a>
+</span><span class="modifiers">public</span>&nbsp;<span class="element-name">EntityPortalEvent</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../entity/Entity.html" title="interface in org.bukkit.entity">Entity</a>&nbsp;entity,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../Location.html" title="class in org.bukkit">Location</a>&nbsp;from,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../../Location.html" title="class in org.bukkit">Location</a>&nbsp;to,
+ int&nbsp;searchRadius,
+ boolean&nbsp;canCreatePortal,
+ int&nbsp;creationRadius,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
  <a href="../../PortalType.html" title="enum class in org.bukkit">PortalType</a>&nbsp;portalType)</span></div>
 </section>
@@ -334,6 +384,68 @@ loadScripts(document, 'script');</script>
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>the currently set search radius</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getCanCreatePortal()">
+<h3>getCanCreatePortal</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">getCanCreatePortal</span>()</div>
+<div class="block">Returns whether the server will attempt to create a destination portal or
+ not.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>whether there should create be a destination portal created</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="setCanCreatePortal(boolean)">
+<h3>setCanCreatePortal</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setCanCreatePortal</span><wbr><span class="parameters">(boolean&nbsp;canCreatePortal)</span></div>
+<div class="block">Sets whether the server should attempt to create a destination portal or
+ not.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>canCreatePortal</code> - Sets whether there should be a destination portal
+ created</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="setCreationRadius(int)">
+<h3>setCreationRadius</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setCreationRadius</span><wbr><span class="parameters">(int&nbsp;creationRadius)</span></div>
+<div class="block">Sets the maximum radius the world is searched for a free space from the
+ given location.
+
+ If enough free space is found then the portal will be created there, if
+ not it will force create with air-space at the target location.
+
+ Does not apply to end portal target platforms which will always appear at
+ the target location.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>creationRadius</code> - the radius in which to create a portal from the
+ location</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getCreationRadius()">
+<h3>getCreationRadius</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getCreationRadius</span>()</div>
+<div class="block">Gets the maximum radius the world is searched for a free space from the
+ given location.
+
+ If enough free space is found then the portal will be created there, if
+ not it will force create with air-space at the target location.
+
+ Does not apply to end portal target platforms which will always appear at
+ the target location.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the currently set creation radius</dd>
 </dl>
 </section>
 </li>
