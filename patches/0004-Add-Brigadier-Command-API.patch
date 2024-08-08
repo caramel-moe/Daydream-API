@@ -372,10 +372,10 @@ index 0000000000000000000000000000000000000000..b522b014d6b5826f2dc50026724d1e25
 +}
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/BrigadierCommand.java b/src/main/java/moe/caramel/daydream/brigadier/BrigadierCommand.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..27c271aa9db619036275a491b8a65d08a82ee773
+index 0000000000000000000000000000000000000000..50ae974cfd8ffb73fd1eb34c3b69fde658c4660c
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/brigadier/BrigadierCommand.java
-@@ -0,0 +1,289 @@
+@@ -0,0 +1,312 @@
 +package moe.caramel.daydream.brigadier;
 +
 +import static net.kyori.adventure.text.Component.text;
@@ -404,6 +404,7 @@ index 0000000000000000000000000000000000000000..27c271aa9db619036275a491b8a65d08
 +import java.util.List;
 +import java.util.Map;
 +import java.util.concurrent.CompletableFuture;
++import java.util.function.BiConsumer;
 +import java.util.function.Consumer;
 +import java.util.function.Supplier;
 +
@@ -539,9 +540,20 @@ index 0000000000000000000000000000000000000000..27c271aa9db619036275a491b8a65d08
 +     */
 +    @NotNull
 +    public static SuggestionProvider<CommandSourceStack> suggest(final @NotNull Consumer<Collection<String>> strings) {
++        return suggest((source, list) -> strings.accept(list));
++    }
++
++    /**
++     * (동적) 명령어 제안을 생성합니다.
++     *
++     * @param strings 제안 목록
++     * @return 생성된 제안 프로바이더
++     */
++    @NotNull
++    public static SuggestionProvider<CommandSourceStack> suggest(final @NotNull BiConsumer<CommandSourceStack, Collection<String>> strings) {
 +        return (c, b) -> {
 +            final List<String> list = new ArrayList<>();
-+            strings.accept(list);
++            strings.accept(c.getSource(), list);
 +            return suggest(b, list);
 +        };
 +    }
@@ -565,9 +577,20 @@ index 0000000000000000000000000000000000000000..27c271aa9db619036275a491b8a65d08
 +     */
 +    @NotNull
 +    public static SuggestionProvider<CommandSourceStack> hoverSuggest(final @NotNull Consumer<Map<String, Component>> suggestions) {
++        return hoverSuggest((source, map) -> suggestions.accept(map));
++    }
++
++    /**
++     * (동적) 툴팁이 포함된 명령어 제안을 생성합니다.
++     *
++     * @param suggestions 툴팁이 포함된 제안 목록
++     * @return 생성된 제안 프로바이더
++     */
++    @NotNull
++    public static SuggestionProvider<CommandSourceStack> hoverSuggest(final @NotNull BiConsumer<CommandSourceStack, Map<String, Component>> suggestions) {
 +        return (c, b) -> {
 +            final Map<String, Component> map = new HashMap<>();
-+            suggestions.accept(map);
++            suggestions.accept(c.getSource(), map);
 +            return suggest(b, map);
 +        };
 +    }
