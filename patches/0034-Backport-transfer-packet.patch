@@ -1,0 +1,30 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: LemonCaramel <admin@caramel.moe>
+Date: Sun, 11 Aug 2024 23:26:55 +0900
+Subject: [PATCH] Backport transfer packet
+
+
+diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
+index 04191a8cf999b49c811ae4ba4e07a52faa7fd1ea..863767f05f359f7bee1cd893b858a6975d8188ad 100644
+--- a/src/main/java/org/bukkit/entity/Player.java
++++ b/src/main/java/org/bukkit/entity/Player.java
+@@ -258,6 +258,19 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+     @Nullable
+     public InetSocketAddress getAddress();
+ 
++    // Daydream start - Backport transfer packet
++    /**
++     * Requests this player to connect to a different server specified by host
++     * and port.
++     *
++     * @param host the host of the server to transfer to
++     * @param port the port of the server to transfer to
++     * @throws IllegalStateException if a transfer cannot take place at this
++     * time
++     */
++    void transfer(@NotNull String host, int port);
++    // Daydream end - Backport transfer packet
++
+     /**
+      * Sends this sender a message raw
+      *
