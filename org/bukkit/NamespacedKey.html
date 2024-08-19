@@ -92,12 +92,12 @@ loadScripts(document, 'script');</script>
 <section class="class-description" id="class-description">
 <dl class="notes">
 <dt>All Implemented Interfaces:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Comparable.html" title="class or interface in java.lang" class="external-link">Comparable</a>&lt;<a href="https://jd.advntr.dev/key/4.17.0/net/kyori/adventure/key/Key.html" title="class or interface in net.kyori.adventure.key" class="external-link">Key</a>&gt;</code>, <code><a href="https://jd.advntr.dev/key/4.17.0/net/kyori/adventure/key/Key.html" title="class or interface in net.kyori.adventure.key" class="external-link">Key</a></code>, <code><a href="https://jd.advntr.dev/key/4.17.0/net/kyori/adventure/key/Keyed.html" title="class or interface in net.kyori.adventure.key" class="external-link">Keyed</a></code>, <code><a href="https://jd.advntr.dev/key/4.17.0/net/kyori/adventure/key/Namespaced.html" title="class or interface in net.kyori.adventure.key" class="external-link">Namespaced</a></code>, <code>net.kyori.examination.Examinable</code></dd>
+<dd><code><a href="../../com/destroystokyo/paper/Namespaced.html" title="interface in com.destroystokyo.paper">Namespaced</a></code>, <code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Comparable.html" title="class or interface in java.lang" class="external-link">Comparable</a>&lt;<a href="https://jd.advntr.dev/key/4.17.0/net/kyori/adventure/key/Key.html" title="class or interface in net.kyori.adventure.key" class="external-link">Key</a>&gt;</code>, <code><a href="https://jd.advntr.dev/key/4.17.0/net/kyori/adventure/key/Key.html" title="class or interface in net.kyori.adventure.key" class="external-link">Key</a></code>, <code><a href="https://jd.advntr.dev/key/4.17.0/net/kyori/adventure/key/Keyed.html" title="class or interface in net.kyori.adventure.key" class="external-link">Keyed</a></code>, <code><a href="https://jd.advntr.dev/key/4.17.0/net/kyori/adventure/key/Namespaced.html" title="class or interface in net.kyori.adventure.key" class="external-link">Namespaced</a></code>, <code>net.kyori.examination.Examinable</code></dd>
 </dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public final class </span><span class="element-name type-name-label">NamespacedKey</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>
-implements <a href="https://jd.advntr.dev/key/4.17.0/net/kyori/adventure/key/Key.html" title="class or interface in net.kyori.adventure.key" class="external-link">Key</a></span></div>
+implements <a href="https://jd.advntr.dev/key/4.17.0/net/kyori/adventure/key/Key.html" title="class or interface in net.kyori.adventure.key" class="external-link">Key</a>, <a href="../../com/destroystokyo/paper/Namespaced.html" title="interface in com.destroystokyo.paper">Namespaced</a></span></div>
 <div class="block">Represents a String based key which consists of two components - a namespace
  and a key.
 
@@ -187,10 +187,14 @@ implements <a href="https://jd.advntr.dev/key/4.17.0/net/kyori/adventure/key/Key
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getKey()" class="member-name-link">getKey</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Gets the key corresponding to this resource</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getNamespace()" class="member-name-link">getNamespace</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Gets the namespace this resource is a part of</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#hashCode()" class="member-name-link">hashCode</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
@@ -335,6 +339,17 @@ implements <a href="https://jd.advntr.dev/key/4.17.0/net/kyori/adventure/key/Key
 <h3>getNamespace</h3>
 <div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
 </span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">getNamespace</span>()</div>
+<div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../../com/destroystokyo/paper/Namespaced.html#getNamespace()">Namespaced</a></code></span></div>
+<div class="block">Gets the namespace this resource is a part of
+ <p>
+ This is contractually obligated to only contain lowercase alphanumeric characters,
+ periods, underscores, and hyphens.</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="../../com/destroystokyo/paper/Namespaced.html#getNamespace()">getNamespace</a></code>&nbsp;in interface&nbsp;<code><a href="../../com/destroystokyo/paper/Namespaced.html" title="interface in com.destroystokyo.paper">Namespaced</a></code></dd>
+<dt>Returns:</dt>
+<dd>resource namespace</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -342,6 +357,17 @@ implements <a href="https://jd.advntr.dev/key/4.17.0/net/kyori/adventure/key/Key
 <h3>getKey</h3>
 <div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
 </span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">getKey</span>()</div>
+<div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../../com/destroystokyo/paper/Namespaced.html#getKey()">Namespaced</a></code></span></div>
+<div class="block">Gets the key corresponding to this resource
+ <p>
+ This is contractually obligated to only contain lowercase alphanumeric characters,
+ periods, underscores, hyphens, and forward slashes.</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="../../com/destroystokyo/paper/Namespaced.html#getKey()">getKey</a></code>&nbsp;in interface&nbsp;<code><a href="../../com/destroystokyo/paper/Namespaced.html" title="interface in com.destroystokyo.paper">Namespaced</a></code></dd>
+<dt>Returns:</dt>
+<dd>resource key</dd>
+</dl>
 </section>
 </li>
 <li>
