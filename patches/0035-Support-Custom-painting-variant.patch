@@ -5,7 +5,7 @@ Subject: [PATCH] Support Custom painting variant
 
 
 diff --git a/src/main/java/org/bukkit/Art.java b/src/main/java/org/bukkit/Art.java
-index 042d1d932a33022e4fc873652f70dc6ed342d46a..845b3d58fafca4fe492bedd5912ecc8c09067fc8 100644
+index dbbd997d4693f1d9f551bae2ed1d7906c9f39c12..ef55346bac845bbe332778fbe4d4f515648bd260 100644
 --- a/src/main/java/org/bukkit/Art.java
 +++ b/src/main/java/org/bukkit/Art.java
 @@ -10,87 +10,73 @@ import org.jetbrains.annotations.Nullable;
@@ -151,7 +151,7 @@ index 042d1d932a33022e4fc873652f70dc6ed342d46a..845b3d58fafca4fe492bedd5912ecc8c
  
      /**
       * Get the ID of this painting.
-@@ -99,15 +85,11 @@ public enum Art implements Keyed {
+@@ -99,9 +85,7 @@ public enum Art implements Keyed {
       * @apiNote Internal Use Only
       */
      @org.jetbrains.annotations.ApiStatus.Internal // Paper
@@ -160,6 +160,10 @@ index 042d1d932a33022e4fc873652f70dc6ed342d46a..845b3d58fafca4fe492bedd5912ecc8c
 -    }
 +    public int getId(); // Daydream - Support Custom painting variant
  
+     // Paper start - deprecate getKey
+     /**
+@@ -112,9 +96,7 @@ public enum Art implements Keyed {
+     // Paper end - deprecate getKey
      @NotNull
      @Override
 -    public NamespacedKey getKey() {
@@ -169,7 +173,7 @@ index 042d1d932a33022e4fc873652f70dc6ed342d46a..845b3d58fafca4fe492bedd5912ecc8c
  
      /**
       * Get a painting by its numeric ID
-@@ -119,7 +101,14 @@ public enum Art implements Keyed {
+@@ -126,7 +108,14 @@ public enum Art implements Keyed {
      @org.jetbrains.annotations.ApiStatus.Internal // Paper
      @Nullable
      public static Art getById(int id) {
@@ -185,7 +189,7 @@ index 042d1d932a33022e4fc873652f70dc6ed342d46a..845b3d58fafca4fe492bedd5912ecc8c
      }
  
      /**
-@@ -134,13 +123,43 @@ public enum Art implements Keyed {
+@@ -141,13 +130,43 @@ public enum Art implements Keyed {
      public static Art getByName(@NotNull String name) {
          Preconditions.checkArgument(name != null, "Name cannot be null");
  

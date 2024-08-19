@@ -4,25 +4,8 @@ Date: Thu, 5 Aug 2021 15:44:59 +0900
 Subject: [PATCH] Add Daydream Config
 
 
-diff --git a/src/main/java/co/aikar/timings/Timings.java b/src/main/java/co/aikar/timings/Timings.java
-index 9812d668ad945aba486fbf6d5bf83c4292cb5d03..dd922a3dd74d1d8429bd7de9ba2e24da397a96b4 100644
---- a/src/main/java/co/aikar/timings/Timings.java
-+++ b/src/main/java/co/aikar/timings/Timings.java
-@@ -152,6 +152,12 @@ public final class Timings {
- 
-     private static void warnAboutDeprecationOnEnable() {
-         if (timingsEnabled && !warnedAboutDeprecationOnEnable) {
-+            // Daydream start - Add Daydream Config
-+            if (moe.caramel.daydream.InternalDaydreamConfig.logger$disableSparkRecommendLog()) {
-+                Timings.warnedAboutDeprecationOnEnable = true;
-+                return;
-+            }
-+            // Daydream end - Add Daydream Config
-             Bukkit.getLogger().warning(PlainTextComponentSerializer.plainText().serialize(deprecationMessage()));
-             warnedAboutDeprecationOnEnable = true;
-         }
 diff --git a/src/main/java/co/aikar/timings/TimingsManager.java b/src/main/java/co/aikar/timings/TimingsManager.java
-index 5e1558ca3ffeeaf2645fa003965474a442d650bf..fd20b58ce3cae844c6c093a4d39a83321df805fe 100644
+index e72ad05abada04426e32a73d02b21cb69079d268..f15fa2abcc04d7d1b6f49a77a023dbd04dbe0260 100644
 --- a/src/main/java/co/aikar/timings/TimingsManager.java
 +++ b/src/main/java/co/aikar/timings/TimingsManager.java
 @@ -155,7 +155,8 @@ public final class TimingsManager {
@@ -37,10 +20,10 @@ index 5e1558ca3ffeeaf2645fa003965474a442d650bf..fd20b58ce3cae844c6c093a4d39a8332
          }
 diff --git a/src/main/java/moe/caramel/daydream/InternalDaydreamConfig.java b/src/main/java/moe/caramel/daydream/InternalDaydreamConfig.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..ee7141524a2b01dcba434c8b619f8b376da99bf0
+index 0000000000000000000000000000000000000000..47e6cd6a6a5a0d72f7a8002bd3854b088bc5c404
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/InternalDaydreamConfig.java
-@@ -0,0 +1,42 @@
+@@ -0,0 +1,33 @@
 +package moe.caramel.daydream;
 +
 +import org.bukkit.Bukkit;
@@ -73,21 +56,12 @@ index 0000000000000000000000000000000000000000..ee7141524a2b01dcba434c8b619f8b37
 +    static boolean logger$ignoreLibraryLoaderLog() {
 +        return config().getBoolean("logger.ignore-library-loader-log", false);
 +    }
-+
-+    /**
-+     * Spark 사용 권장 로그를 비활성화할지 여부를 결정합니다.
-+     *
-+     * @return {@code true}인 경우, Spark 사용 권장 로그를 비활성화합니다.
-+     */
-+    static boolean logger$disableSparkRecommendLog() {
-+        return config().getBoolean("logger.disable-spark-recommend-log", false);
-+    }
 +}
 diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
-index c043d239c449bf4bb13a24467f2f6c67b4d28d2d..6bb7346ffec96d7dfe131879a92ee2b79b78ab38 100644
+index 5aa64ea39ebd92e5067c53cea49a8685c0b9eee4..945804db547211012c3d06466f158eef181ed5eb 100644
 --- a/src/main/java/org/bukkit/Server.java
 +++ b/src/main/java/org/bukkit/Server.java
-@@ -2254,6 +2254,14 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
+@@ -2265,6 +2265,14 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
          }
          // Paper end
  
