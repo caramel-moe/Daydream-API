@@ -109,18 +109,29 @@ extends <a href="ItemMeta.html" title="interface in org.bukkit.inventory.meta">I
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="CompassMeta.html" title="interface in org.bukkit.inventory.meta">CompassMeta</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#clone()" class="member-name-link">clone</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../../Location.html" title="class in org.bukkit">Location</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getLodestone()" class="member-name-link">getLodestone</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#clearLodestone()" class="member-name-link">clearLodestone</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Reset this compass to a normal compass, removing any tracked
+ location.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="CompassMeta.html" title="interface in org.bukkit.inventory.meta">CompassMeta</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#clone()" class="member-name-link">clone</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../../Location.html" title="class in org.bukkit">Location</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getLodestone()" class="member-name-link">getLodestone</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Gets the location that this compass will point to.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#hasLodestone()" class="member-name-link">hasLodestone</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#hasLodestone()" class="member-name-link">hasLodestone</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Checks if this compass has been paired to a lodestone.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#isLodestoneCompass()" class="member-name-link">isLodestoneCompass</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Checks if this compass is considered a lodestone compass.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#isLodestoneTracked()" class="member-name-link">isLodestoneTracked</a>()</code></div>
@@ -193,7 +204,13 @@ extends <a href="ItemMeta.html" title="interface in org.bukkit.inventory.meta">I
 <div class="block">Sets the location this lodestone compass will point to.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>lodestone</code> - new location or null to clear</dd>
+<dd><code>lodestone</code> - new location or null to clear the targeted location</dd>
+<dt>See Also:</dt>
+<dd>
+<ul class="tag-list-long">
+<li><a href="#clearLodestone()"><code>to reset the compass to a normal compass</code></a></li>
+</ul>
+</dd>
 </dl>
 </section>
 </li>
@@ -222,7 +239,37 @@ extends <a href="ItemMeta.html" title="interface in org.bukkit.inventory.meta">I
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>tracked</code> - new tracked status</dd>
+<dt>See Also:</dt>
+<dd>
+<ul class="tag-list-long">
+<li><a href="#clearLodestone()"><code>to reset the compass to a normal compass</code></a></li>
+</ul>
+</dd>
 </dl>
+</section>
+</li>
+<li>
+<section class="detail" id="isLodestoneCompass()">
+<h3>isLodestoneCompass</h3>
+<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">isLodestoneCompass</span>()</div>
+<div class="block">Checks if this compass is considered a lodestone compass.</div>
+<dl class="notes">
+<dt>See Also:</dt>
+<dd>
+<ul class="tag-list-long">
+<li><a href="#hasLodestone()"><code>to check if a position is being tracked</code></a></li>
+<li><a href="#isLodestoneTracked()"><code>to check if it verifies the position is a lodestone</code></a></li>
+</ul>
+</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="clearLodestone()">
+<h3>clearLodestone</h3>
+<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">clearLodestone</span>()</div>
+<div class="block">Reset this compass to a normal compass, removing any tracked
+ location.</div>
 </section>
 </li>
 <li>
