@@ -6,12 +6,12 @@ Subject: [PATCH] Add sendTitleUpdate for inventories
 https://github.com/PaperMC/Paper/pull/7979
 
 diff --git a/src/main/java/org/bukkit/inventory/InventoryView.java b/src/main/java/org/bukkit/inventory/InventoryView.java
-index 2b2c5faabce1628bd2e82a840dc97fe79bb57856..f3760c9b6ac1edac351281859fd95dc6b12668b9 100644
+index 5c258b6077277575daa5d96349837bdf06f42500..be9769b9fa899c7c366fa63262ed6cee4794e2d6 100644
 --- a/src/main/java/org/bukkit/inventory/InventoryView.java
 +++ b/src/main/java/org/bukkit/inventory/InventoryView.java
-@@ -311,4 +311,16 @@ public interface InventoryView {
-      * @param title The new title.
+@@ -316,4 +316,16 @@ public interface InventoryView {
       */
+     @Deprecated(since = "1.21.1") // Paper
      public void setTitle(@NotNull String title);
 +
 +    // Paper start - (Daydream) Add sendTitleUpdate for inventories
