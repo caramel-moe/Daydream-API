@@ -57,8 +57,10 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color"><a href="#io.papermc.paper.plugin.bootstrap">io.papermc.paper.plugin.bootstrap</a></div>
 <div class="col-last even-row-color">&nbsp;</div>
-<div class="col-first odd-row-color"><a href="#io.papermc.paper.registry.event">io.papermc.paper.registry.event</a></div>
+<div class="col-first odd-row-color"><a href="#io.papermc.paper.plugin.lifecycle.event.types">io.papermc.paper.plugin.lifecycle.event.types</a></div>
 <div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-first even-row-color"><a href="#io.papermc.paper.registry.event">io.papermc.paper.registry.event</a></div>
+<div class="col-last even-row-color">&nbsp;</div>
 </div>
 <section class="class-uses">
 <ul class="block-list">
@@ -86,6 +88,27 @@ loadScripts(document, 'script');</script>
 <div class="col-second even-row-color"><span class="type-name-label">PluginBootstrap.</span><code><a href="../PluginBootstrap.html#bootstrap(io.papermc.paper.plugin.bootstrap.BootstrapContext)" class="member-name-link">bootstrap</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../BootstrapContext.html" title="interface in io.papermc.paper.plugin.bootstrap">BootstrapContext</a>&nbsp;context)</code></div>
 <div class="col-last even-row-color">
 <div class="block">Called by the server, allowing you to bootstrap the plugin with a context that provides things like a logger and your shared plugin configuration file.</div>
+</div>
+</div>
+</section>
+</li>
+<li>
+<section class="detail" id="io.papermc.paper.plugin.lifecycle.event.types">
+<h2>Uses of <a href="../BootstrapContext.html" title="interface in io.papermc.paper.plugin.bootstrap">BootstrapContext</a> in <a href="../../lifecycle/event/types/package-summary.html">io.papermc.paper.plugin.lifecycle.event.types</a></h2>
+<div class="caption"><span>Methods in <a href="../../lifecycle/event/types/package-summary.html">io.papermc.paper.plugin.lifecycle.event.types</a> that return types with arguments of type <a href="../BootstrapContext.html" title="interface in io.papermc.paper.plugin.bootstrap">BootstrapContext</a></span></div>
+<div class="summary-table three-column-summary">
+<div class="table-header col-first">Modifier and Type</div>
+<div class="table-header col-second">Method</div>
+<div class="table-header col-last">Description</div>
+<div class="col-first even-row-color"><code>&lt;T&gt;&nbsp;@NonNull <a href="../../lifecycle/event/types/LifecycleEventType.Prioritizable.html" title="interface in io.papermc.paper.plugin.lifecycle.event.types">LifecycleEventType.Prioritizable</a><wbr>&lt;<a href="../BootstrapContext.html" title="interface in io.papermc.paper.plugin.bootstrap">BootstrapContext</a>,<wbr><a href="../../lifecycle/event/registrar/ReloadableRegistrarEvent.html" title="interface in io.papermc.paper.plugin.lifecycle.event.registrar">ReloadableRegistrarEvent</a>&lt;<a href="../../../tag/PostFlattenTagRegistrar.html" title="interface in io.papermc.paper.tag">PostFlattenTagRegistrar</a>&lt;T&gt;&gt;&gt;</code></div>
+<div class="col-second even-row-color"><span class="type-name-label">TagEventTypeProvider.</span><code><a href="../../lifecycle/event/types/TagEventTypeProvider.html#postFlatten(io.papermc.paper.registry.RegistryKey)" class="member-name-link">postFlatten</a><wbr>(@NonNull <a href="../../../registry/RegistryKey.html" title="interface in io.papermc.paper.registry">RegistryKey</a>&lt;T&gt;&nbsp;registryKey)</code></div>
+<div class="col-last even-row-color">
+<div class="block">Get a prioritizable, reloadable registrar event for tags after they are flattened.</div>
+</div>
+<div class="col-first odd-row-color"><code>&lt;T&gt;&nbsp;@NonNull <a href="../../lifecycle/event/types/LifecycleEventType.Prioritizable.html" title="interface in io.papermc.paper.plugin.lifecycle.event.types">LifecycleEventType.Prioritizable</a><wbr>&lt;<a href="../BootstrapContext.html" title="interface in io.papermc.paper.plugin.bootstrap">BootstrapContext</a>,<wbr><a href="../../lifecycle/event/registrar/ReloadableRegistrarEvent.html" title="interface in io.papermc.paper.plugin.lifecycle.event.registrar">ReloadableRegistrarEvent</a>&lt;<a href="../../../tag/PreFlattenTagRegistrar.html" title="interface in io.papermc.paper.tag">PreFlattenTagRegistrar</a>&lt;T&gt;&gt;&gt;</code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">TagEventTypeProvider.</span><code><a href="../../lifecycle/event/types/TagEventTypeProvider.html#preFlatten(io.papermc.paper.registry.RegistryKey)" class="member-name-link">preFlatten</a><wbr>(@NonNull <a href="../../../registry/RegistryKey.html" title="interface in io.papermc.paper.registry">RegistryKey</a>&lt;T&gt;&nbsp;registryKey)</code></div>
+<div class="col-last odd-row-color">
+<div class="block">Get a prioritizable, reloadable registrar event for tags before they are flattened.</div>
 </div>
 </div>
 </section>

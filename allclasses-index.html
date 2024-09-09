@@ -2415,9 +2415,18 @@ loadScripts(document, 'script');</script>
 <div class="block">The 'moisture' level of farmland indicates how close it is to a water source
  (if any).</div>
 </div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab1"><a href="org/bukkit/FeatureFlag.html" title="interface in org.bukkit">FeatureFlag</a></div>
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab1"><a href="io/papermc/paper/world/flag/FeatureDependant.html" title="interface in io.papermc.paper.world.flag">FeatureDependant</a></div>
 <div class="col-last odd-row-color all-classes-table all-classes-table-tab1">
+<div class="block">Implemented by types in built-in registries that are controlled by <a href="org/bukkit/FeatureFlag.html" title="interface in org.bukkit"><code>FeatureFlags</code></a>.</div>
+</div>
+<div class="col-first even-row-color all-classes-table all-classes-table-tab1"><a href="org/bukkit/FeatureFlag.html" title="interface in org.bukkit">FeatureFlag</a></div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab1">
 <div class="block">This represents a Feature Flag for a World.</div>
+</div>
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab1"><a href="io/papermc/paper/world/flag/FeatureFlagSetHolder.html" title="interface in io.papermc.paper.world.flag">FeatureFlagSetHolder</a></div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab1">
+<div class="block">Implemented by types that hold <a href="org/bukkit/FeatureFlag.html" title="interface in org.bukkit"><code>FeatureFlags</code></a> like
+ <a href="org/bukkit/generator/WorldInfo.html" title="interface in org.bukkit.generator"><code>WorldInfo</code></a> and <a href="org/bukkit/RegionAccessor.html" title="interface in org.bukkit"><code>RegionAccessor</code></a>.</div>
 </div>
 <div class="col-first even-row-color all-classes-table all-classes-table-tab1"><a href="org/bukkit/block/data/type/Fence.html" title="interface in org.bukkit.block.data.type">Fence</a></div>
 <div class="col-last even-row-color all-classes-table all-classes-table-tab1">&nbsp;</div>
@@ -3861,7 +3870,7 @@ loadScripts(document, 'script');</script>
  player needing to be online.</div>
 </div>
 <div class="col-first odd-row-color all-classes-table all-classes-table-tab1"><a href="org/bukkit/util/OldEnum.html" title="interface in org.bukkit.util">OldEnum&lt;T&gt;</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab1">Deprecated.
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab1">Deprecated, for removal: This API element is subject to removal in a future version.
 <div class="deprecation-comment">only for backwards compatibility.</div>
 </div>
 <div class="col-first even-row-color all-classes-table all-classes-table-tab1"><a href="org/bukkit/inventory/meta/OminousBottleMeta.html" title="interface in org.bukkit.inventory.meta">OminousBottleMeta</a></div>
@@ -4920,74 +4929,82 @@ loadScripts(document, 'script');</script>
 </div>
 <div class="col-first even-row-color all-classes-table all-classes-table-tab1"><a href="moe/caramel/daydream/brigadier/data/Position.html" title="interface in moe.caramel.daydream.brigadier.data">Position&lt;C&gt;</a></div>
 <div class="col-last even-row-color all-classes-table all-classes-table-tab1">&nbsp;</div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab1"><a href="org/bukkit/potion/PotionBrewer.html" title="interface in org.bukkit.potion">PotionBrewer</a></div>
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab1"><a href="io/papermc/paper/tag/PostFlattenTagRegistrar.html" title="interface in io.papermc.paper.tag">PostFlattenTagRegistrar&lt;T&gt;</a></div>
 <div class="col-last odd-row-color all-classes-table all-classes-table-tab1">
+<div class="block">Registrar for tags after they have been flattened.</div>
+</div>
+<div class="col-first even-row-color all-classes-table all-classes-table-tab1"><a href="org/bukkit/potion/PotionBrewer.html" title="interface in org.bukkit.potion">PotionBrewer</a></div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab1">
 <div class="block">Used to manage custom <a href="io/papermc/paper/potion/PotionMix.html" title="class in io.papermc.paper.potion"><code>PotionMix</code></a>s.</div>
 </div>
-<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="org/bukkit/potion/PotionData.html" title="class in org.bukkit.potion">PotionData</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab2">Deprecated, for removal: This API element is subject to removal in a future version.
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="org/bukkit/potion/PotionData.html" title="class in org.bukkit.potion">PotionData</a></div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">Deprecated, for removal: This API element is subject to removal in a future version.
 <div class="deprecation-comment">Upgraded / extended potions are now their own <a href="org/bukkit/potion/PotionType.html" title="enum class in org.bukkit.potion"><code>PotionType</code></a> use them instead.</div>
 </div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="org/bukkit/potion/PotionEffect.html" title="class in org.bukkit.potion">PotionEffect</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
+<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="org/bukkit/potion/PotionEffect.html" title="class in org.bukkit.potion">PotionEffect</a></div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
 <div class="block">Represents a potion effect, that can be added to a <a href="org/bukkit/entity/LivingEntity.html" title="interface in org.bukkit.entity"><code>LivingEntity</code></a>.</div>
 </div>
-<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="org/bukkit/potion/PotionEffectType.html" title="class in org.bukkit.potion">PotionEffectType</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="org/bukkit/potion/PotionEffectType.html" title="class in org.bukkit.potion">PotionEffectType</a></div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
 <div class="block">Represents a type of potion and its effect on an entity.</div>
 </div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab3"><a href="org/bukkit/potion/PotionEffectType.Category.html" title="enum class in org.bukkit.potion">PotionEffectType.Category</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab3">
+<div class="col-first even-row-color all-classes-table all-classes-table-tab3"><a href="org/bukkit/potion/PotionEffectType.Category.html" title="enum class in org.bukkit.potion">PotionEffectType.Category</a></div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab3">
 <div class="block">Category of <a href="org/bukkit/potion/PotionEffectType.html" title="class in org.bukkit.potion"><code>PotionEffectType</code></a>s</div>
 </div>
-<div class="col-first even-row-color all-classes-table all-classes-table-tab3"><a href="org/bukkit/potion/PotionEffectTypeCategory.html" title="enum class in org.bukkit.potion">PotionEffectTypeCategory</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab3">
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab3"><a href="org/bukkit/potion/PotionEffectTypeCategory.html" title="enum class in org.bukkit.potion">PotionEffectTypeCategory</a></div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab3">
 <div class="block">Represents a category of <a href="org/bukkit/potion/PotionEffectType.html" title="class in org.bukkit.potion"><code>PotionEffectType</code></a> and its effect on an entity.</div>
 </div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="org/bukkit/potion/PotionEffectTypeWrapper.html" title="class in org.bukkit.potion">PotionEffectTypeWrapper</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">Deprecated.
+<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="org/bukkit/potion/PotionEffectTypeWrapper.html" title="class in org.bukkit.potion">PotionEffectTypeWrapper</a></div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab2">Deprecated.
 <div class="deprecation-comment">only for backwards compatibility, PotionEffectTypeWrapper is no longer used.</div>
 </div>
-<div class="col-first even-row-color all-classes-table all-classes-table-tab1"><a href="org/bukkit/inventory/meta/PotionMeta.html" title="interface in org.bukkit.inventory.meta">PotionMeta</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab1">
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab1"><a href="org/bukkit/inventory/meta/PotionMeta.html" title="interface in org.bukkit.inventory.meta">PotionMeta</a></div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab1">
 <div class="block">Represents a potion or item that can have custom effects.</div>
 </div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="io/papermc/paper/potion/PotionMix.html" title="class in io.papermc.paper.potion">PotionMix</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
+<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="io/papermc/paper/potion/PotionMix.html" title="class in io.papermc.paper.potion">PotionMix</a></div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
 <div class="block">Represents a potion mix made in a Brewing Stand.</div>
 </div>
-<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="org/bukkit/event/entity/PotionSplashEvent.html" title="class in org.bukkit.event.entity">PotionSplashEvent</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="org/bukkit/event/entity/PotionSplashEvent.html" title="class in org.bukkit.event.entity">PotionSplashEvent</a></div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
 <div class="block">Called when a splash potion hits an area</div>
 </div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab3"><a href="org/bukkit/potion/PotionType.html" title="enum class in org.bukkit.potion">PotionType</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab3">
+<div class="col-first even-row-color all-classes-table all-classes-table-tab3"><a href="org/bukkit/potion/PotionType.html" title="enum class in org.bukkit.potion">PotionType</a></div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab3">
 <div class="block">This enum reflects and matches each potion state that can be obtained from
  the Creative mode inventory</div>
 </div>
-<div class="col-first even-row-color all-classes-table all-classes-table-tab1"><a href="org/bukkit/potion/PotionType.InternalPotionData.html" title="interface in org.bukkit.potion">PotionType.InternalPotionData</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab1">Deprecated.
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab1"><a href="org/bukkit/potion/PotionType.InternalPotionData.html" title="interface in org.bukkit.potion">PotionType.InternalPotionData</a></div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab1">Deprecated.
 <div class="deprecation-comment">Do not use, interface will get removed, and the plugin won't run</div>
 </div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab1"><a href="org/bukkit/block/data/Powerable.html" title="interface in org.bukkit.block.data">Powerable</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab1">
+<div class="col-first even-row-color all-classes-table all-classes-table-tab1"><a href="org/bukkit/block/data/Powerable.html" title="interface in org.bukkit.block.data">Powerable</a></div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab1">
 <div class="block">'powered' indicates whether this block is in the powered state or not, i.e.</div>
 </div>
-<div class="col-first even-row-color all-classes-table all-classes-table-tab1"><a href="org/bukkit/entity/minecart/PoweredMinecart.html" title="interface in org.bukkit.entity.minecart">PoweredMinecart</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab1">
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab1"><a href="org/bukkit/entity/minecart/PoweredMinecart.html" title="interface in org.bukkit.entity.minecart">PoweredMinecart</a></div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab1">
 <div class="block">Represents a powered minecart.</div>
 </div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="org/bukkit/material/PoweredRail.html" title="class in org.bukkit.material">PoweredRail</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">Deprecated, for removal: This API element is subject to removal in a future version.
+<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="org/bukkit/material/PoweredRail.html" title="class in org.bukkit.material">PoweredRail</a></div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab2">Deprecated, for removal: This API element is subject to removal in a future version.
 <div class="deprecation-comment">all usage of MaterialData is deprecated and subject to removal.</div>
 </div>
-<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/destroystokyo/paper/event/entity/PreCreatureSpawnEvent.html" title="class in com.destroystokyo.paper.event.entity">PreCreatureSpawnEvent</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="com/destroystokyo/paper/event/entity/PreCreatureSpawnEvent.html" title="class in com.destroystokyo.paper.event.entity">PreCreatureSpawnEvent</a></div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
 <div class="block">WARNING: This event only fires for a limited number of cases, and not for every case that <a href="org/bukkit/event/entity/CreatureSpawnEvent.html" title="class in org.bukkit.event.entity"><code>CreatureSpawnEvent</code></a> does.</div>
 </div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="com/destroystokyo/paper/event/profile/PreFillProfileEvent.html" title="class in com.destroystokyo.paper.event.profile">PreFillProfileEvent</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
+<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/destroystokyo/paper/event/profile/PreFillProfileEvent.html" title="class in com.destroystokyo.paper.event.profile">PreFillProfileEvent</a></div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
 <div class="block">Fired when the server is requesting to fill in properties of an incomplete profile, such as textures.</div>
+</div>
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab1"><a href="io/papermc/paper/tag/PreFlattenTagRegistrar.html" title="interface in io.papermc.paper.tag">PreFlattenTagRegistrar&lt;T&gt;</a></div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab1">
+<div class="block">Registrar for tags before they are flattened.</div>
 </div>
 <div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/destroystokyo/paper/event/profile/PreLookupProfileEvent.html" title="class in com.destroystokyo.paper.event.profile">PreLookupProfileEvent</a></div>
 <div class="col-last even-row-color all-classes-table all-classes-table-tab2">
@@ -6171,6 +6188,14 @@ loadScripts(document, 'script');</script>
 <div class="col-last odd-row-color all-classes-table all-classes-table-tab1">
 <div class="block">Represents a tag that may be defined by the server or a resource pack to
  group like things together.</div>
+</div>
+<div class="col-first even-row-color all-classes-table all-classes-table-tab1"><a href="io/papermc/paper/tag/TagEntry.html" title="interface in io.papermc.paper.tag">TagEntry&lt;T&gt;</a></div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab1">
+<div class="block">An entry is a pre-flattened tag.</div>
+</div>
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab1"><a href="io/papermc/paper/plugin/lifecycle/event/types/TagEventTypeProvider.html" title="interface in io.papermc.paper.plugin.lifecycle.event.types">TagEventTypeProvider</a></div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab1">
+<div class="block">Provides event types for tag registration.</div>
 </div>
 <div class="col-first even-row-color all-classes-table all-classes-table-tab1"><a href="io/papermc/paper/registry/tag/TagKey.html" title="interface in io.papermc.paper.registry.tag">TagKey&lt;T&gt;</a></div>
 <div class="col-last even-row-color all-classes-table all-classes-table-tab1">&nbsp;</div>

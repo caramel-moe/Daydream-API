@@ -137,6 +137,7 @@ loadScripts(document, 'script');</script>
 <li><a href="io/papermc/paper/threadedregions/scheduler/package-tree.html">io.papermc.paper.threadedregions.scheduler</a>, </li>
 <li><a href="io/papermc/paper/util/package-tree.html">io.papermc.paper.util</a>, </li>
 <li><a href="io/papermc/paper/world/package-tree.html">io.papermc.paper.world</a>, </li>
+<li><a href="io/papermc/paper/world/flag/package-tree.html">io.papermc.paper.world.flag</a>, </li>
 <li><a href="moe/caramel/daydream/package-tree.html">moe.caramel.daydream</a>, </li>
 <li><a href="moe/caramel/daydream/advancement/package-tree.html">moe.caramel.daydream.advancement</a>, </li>
 <li><a href="moe/caramel/daydream/advancement/progress/package-tree.html">moe.caramel.daydream.advancement.progress</a>, </li>
@@ -1311,7 +1312,7 @@ loadScripts(document, 'script');</script>
 <li class="circle">org.bukkit.conversations.<a href="org/bukkit/conversations/PluginNameConversationPrefix.html" class="type-name-link" title="class in org.bukkit.conversations">PluginNameConversationPrefix</a> (implements org.bukkit.conversations.<a href="org/bukkit/conversations/ConversationPrefix.html" title="interface in org.bukkit.conversations">ConversationPrefix</a>)</li>
 <li class="circle">org.bukkit.potion.<a href="org/bukkit/potion/PotionData.html" class="type-name-link" title="class in org.bukkit.potion">PotionData</a></li>
 <li class="circle">org.bukkit.potion.<a href="org/bukkit/potion/PotionEffect.html" class="type-name-link" title="class in org.bukkit.potion">PotionEffect</a> (implements org.bukkit.configuration.serialization.<a href="org/bukkit/configuration/serialization/ConfigurationSerializable.html" title="interface in org.bukkit.configuration.serialization">ConfigurationSerializable</a>)</li>
-<li class="circle">org.bukkit.potion.<a href="org/bukkit/potion/PotionEffectType.html" class="type-name-link" title="class in org.bukkit.potion">PotionEffectType</a> (implements org.bukkit.<a href="org/bukkit/Keyed.html" title="interface in org.bukkit">Keyed</a>, net.kyori.adventure.translation.<a href="https://jd.advntr.dev/api/4.17.0/net/kyori/adventure/translation/Translatable.html" title="class or interface in net.kyori.adventure.translation" class="external-link">Translatable</a>, org.bukkit.<a href="org/bukkit/Translatable.html" title="interface in org.bukkit">Translatable</a>)
+<li class="circle">org.bukkit.potion.<a href="org/bukkit/potion/PotionEffectType.html" class="type-name-link" title="class in org.bukkit.potion">PotionEffectType</a> (implements io.papermc.paper.world.flag.<a href="io/papermc/paper/world/flag/FeatureDependant.html" title="interface in io.papermc.paper.world.flag">FeatureDependant</a>, org.bukkit.<a href="org/bukkit/Keyed.html" title="interface in org.bukkit">Keyed</a>, net.kyori.adventure.translation.<a href="https://jd.advntr.dev/api/4.17.0/net/kyori/adventure/translation/Translatable.html" title="class or interface in net.kyori.adventure.translation" class="external-link">Translatable</a>, org.bukkit.<a href="org/bukkit/Translatable.html" title="interface in org.bukkit">Translatable</a>)
 <ul>
 <li class="circle">org.bukkit.potion.<a href="org/bukkit/potion/PotionEffectTypeWrapper.html" class="type-name-link" title="class in org.bukkit.potion">PotionEffectTypeWrapper</a></li>
 </ul>
@@ -2494,6 +2495,35 @@ loadScripts(document, 'script');</script>
 </ul>
 </li>
 <li class="circle">moe.caramel.daydream.world.<a href="moe/caramel/daydream/world/Explosion.html" class="type-name-link" title="interface in moe.caramel.daydream.world">Explosion</a></li>
+<li class="circle">io.papermc.paper.world.flag.<a href="io/papermc/paper/world/flag/FeatureDependant.html" class="type-name-link" title="interface in io.papermc.paper.world.flag">FeatureDependant</a>
+<ul>
+<li class="circle">org.bukkit.block.<a href="org/bukkit/block/BlockType.html" class="type-name-link" title="interface in org.bukkit.block">BlockType</a> (also extends org.bukkit.<a href="org/bukkit/Keyed.html" title="interface in org.bukkit">Keyed</a>, net.kyori.adventure.translation.<a href="https://jd.advntr.dev/api/4.17.0/net/kyori/adventure/translation/Translatable.html" title="class or interface in net.kyori.adventure.translation" class="external-link">Translatable</a>, org.bukkit.<a href="org/bukkit/Translatable.html" title="interface in org.bukkit">Translatable</a>)
+<ul>
+<li class="circle">org.bukkit.block.<a href="org/bukkit/block/BlockType.Typed.html" class="type-name-link" title="interface in org.bukkit.block">BlockType.Typed</a>&lt;B&gt;</li>
+</ul>
+</li>
+<li class="circle">org.bukkit.inventory.<a href="org/bukkit/inventory/ItemType.html" class="type-name-link" title="interface in org.bukkit.inventory">ItemType</a> (also extends org.bukkit.<a href="org/bukkit/Keyed.html" title="interface in org.bukkit">Keyed</a>, net.kyori.adventure.translation.<a href="https://jd.advntr.dev/api/4.17.0/net/kyori/adventure/translation/Translatable.html" title="class or interface in net.kyori.adventure.translation" class="external-link">Translatable</a>, org.bukkit.<a href="org/bukkit/Translatable.html" title="interface in org.bukkit">Translatable</a>)
+<ul>
+<li class="circle">org.bukkit.inventory.<a href="org/bukkit/inventory/ItemType.Typed.html" class="type-name-link" title="interface in org.bukkit.inventory">ItemType.Typed</a>&lt;M&gt;</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="circle">io.papermc.paper.world.flag.<a href="io/papermc/paper/world/flag/FeatureFlagSetHolder.html" class="type-name-link" title="interface in io.papermc.paper.world.flag">FeatureFlagSetHolder</a>
+<ul>
+<li class="circle">org.bukkit.<a href="org/bukkit/RegionAccessor.html" class="type-name-link" title="interface in org.bukkit">RegionAccessor</a> (also extends org.bukkit.<a href="org/bukkit/Keyed.html" title="interface in org.bukkit">Keyed</a>)
+<ul>
+<li class="circle">org.bukkit.generator.<a href="org/bukkit/generator/LimitedRegion.html" class="type-name-link" title="interface in org.bukkit.generator">LimitedRegion</a></li>
+<li class="circle">org.bukkit.<a href="org/bukkit/World.html" class="type-name-link" title="interface in org.bukkit">World</a> (also extends net.kyori.adventure.audience.<a href="https://jd.advntr.dev/api/4.17.0/net/kyori/adventure/audience/ForwardingAudience.html" title="class or interface in net.kyori.adventure.audience" class="external-link">ForwardingAudience</a>, org.bukkit.<a href="org/bukkit/Keyed.html" title="interface in org.bukkit">Keyed</a>, org.bukkit.metadata.<a href="org/bukkit/metadata/Metadatable.html" title="interface in org.bukkit.metadata">Metadatable</a>, org.bukkit.persistence.<a href="org/bukkit/persistence/PersistentDataHolder.html" title="interface in org.bukkit.persistence">PersistentDataHolder</a>, org.bukkit.plugin.messaging.<a href="org/bukkit/plugin/messaging/PluginMessageRecipient.html" title="interface in org.bukkit.plugin.messaging">PluginMessageRecipient</a>, org.bukkit.generator.<a href="org/bukkit/generator/WorldInfo.html" title="interface in org.bukkit.generator">WorldInfo</a>)</li>
+</ul>
+</li>
+<li class="circle">org.bukkit.generator.<a href="org/bukkit/generator/WorldInfo.html" class="type-name-link" title="interface in org.bukkit.generator">WorldInfo</a>
+<ul>
+<li class="circle">org.bukkit.<a href="org/bukkit/World.html" class="type-name-link" title="interface in org.bukkit">World</a> (also extends net.kyori.adventure.audience.<a href="https://jd.advntr.dev/api/4.17.0/net/kyori/adventure/audience/ForwardingAudience.html" title="class or interface in net.kyori.adventure.audience" class="external-link">ForwardingAudience</a>, org.bukkit.<a href="org/bukkit/Keyed.html" title="interface in org.bukkit">Keyed</a>, org.bukkit.metadata.<a href="org/bukkit/metadata/Metadatable.html" title="interface in org.bukkit.metadata">Metadatable</a>, org.bukkit.persistence.<a href="org/bukkit/persistence/PersistentDataHolder.html" title="interface in org.bukkit.persistence">PersistentDataHolder</a>, org.bukkit.plugin.messaging.<a href="org/bukkit/plugin/messaging/PluginMessageRecipient.html" title="interface in org.bukkit.plugin.messaging">PluginMessageRecipient</a>, org.bukkit.<a href="org/bukkit/RegionAccessor.html" title="interface in org.bukkit">RegionAccessor</a>)</li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="circle">io.papermc.paper.entity.<a href="io/papermc/paper/entity/Frictional.html" class="type-name-link" title="interface in io.papermc.paper.entity">Frictional</a>
 <ul>
 <li class="circle">org.bukkit.entity.<a href="org/bukkit/entity/Item.html" class="type-name-link" title="interface in org.bukkit.entity">Item</a> (also extends org.bukkit.entity.<a href="org/bukkit/entity/Entity.html" title="interface in org.bukkit.entity">Entity</a>)</li>
@@ -3788,7 +3818,7 @@ loadScripts(document, 'script');</script>
 <ul>
 <li class="circle">org.bukkit.advancement.<a href="org/bukkit/advancement/Advancement.html" class="type-name-link" title="interface in org.bukkit.advancement">Advancement</a></li>
 <li class="circle">org.bukkit.<a href="org/bukkit/Art.html" class="type-name-link" title="interface in org.bukkit">Art</a> (also extends org.bukkit.util.<a href="org/bukkit/util/OldEnum.html" title="interface in org.bukkit.util">OldEnum</a>&lt;T&gt;)</li>
-<li class="circle">org.bukkit.block.<a href="org/bukkit/block/BlockType.html" class="type-name-link" title="interface in org.bukkit.block">BlockType</a> (also extends net.kyori.adventure.translation.<a href="https://jd.advntr.dev/api/4.17.0/net/kyori/adventure/translation/Translatable.html" title="class or interface in net.kyori.adventure.translation" class="external-link">Translatable</a>, org.bukkit.<a href="org/bukkit/Translatable.html" title="interface in org.bukkit">Translatable</a>)
+<li class="circle">org.bukkit.block.<a href="org/bukkit/block/BlockType.html" class="type-name-link" title="interface in org.bukkit.block">BlockType</a> (also extends io.papermc.paper.world.flag.<a href="io/papermc/paper/world/flag/FeatureDependant.html" title="interface in io.papermc.paper.world.flag">FeatureDependant</a>, net.kyori.adventure.translation.<a href="https://jd.advntr.dev/api/4.17.0/net/kyori/adventure/translation/Translatable.html" title="class or interface in net.kyori.adventure.translation" class="external-link">Translatable</a>, org.bukkit.<a href="org/bukkit/Translatable.html" title="interface in org.bukkit">Translatable</a>)
 <ul>
 <li class="circle">org.bukkit.block.<a href="org/bukkit/block/BlockType.Typed.html" class="type-name-link" title="interface in org.bukkit.block">BlockType.Typed</a>&lt;B&gt;</li>
 </ul>
@@ -3799,7 +3829,7 @@ loadScripts(document, 'script');</script>
 <li class="circle">org.bukkit.packs.<a href="org/bukkit/packs/DataPack.html" class="type-name-link" title="interface in org.bukkit.packs">DataPack</a></li>
 <li class="circle">org.bukkit.<a href="org/bukkit/FeatureFlag.html" class="type-name-link" title="interface in org.bukkit">FeatureFlag</a></li>
 <li class="circle">org.bukkit.entity.<a href="org/bukkit/entity/Frog.Variant.html" class="type-name-link" title="interface in org.bukkit.entity">Frog.Variant</a> (also extends org.bukkit.util.<a href="org/bukkit/util/OldEnum.html" title="interface in org.bukkit.util">OldEnum</a>&lt;T&gt;)</li>
-<li class="circle">org.bukkit.inventory.<a href="org/bukkit/inventory/ItemType.html" class="type-name-link" title="interface in org.bukkit.inventory">ItemType</a> (also extends net.kyori.adventure.translation.<a href="https://jd.advntr.dev/api/4.17.0/net/kyori/adventure/translation/Translatable.html" title="class or interface in net.kyori.adventure.translation" class="external-link">Translatable</a>, org.bukkit.<a href="org/bukkit/Translatable.html" title="interface in org.bukkit">Translatable</a>)
+<li class="circle">org.bukkit.inventory.<a href="org/bukkit/inventory/ItemType.html" class="type-name-link" title="interface in org.bukkit.inventory">ItemType</a> (also extends io.papermc.paper.world.flag.<a href="io/papermc/paper/world/flag/FeatureDependant.html" title="interface in io.papermc.paper.world.flag">FeatureDependant</a>, net.kyori.adventure.translation.<a href="https://jd.advntr.dev/api/4.17.0/net/kyori/adventure/translation/Translatable.html" title="class or interface in net.kyori.adventure.translation" class="external-link">Translatable</a>, org.bukkit.<a href="org/bukkit/Translatable.html" title="interface in org.bukkit">Translatable</a>)
 <ul>
 <li class="circle">org.bukkit.inventory.<a href="org/bukkit/inventory/ItemType.Typed.html" class="type-name-link" title="interface in org.bukkit.inventory">ItemType.Typed</a>&lt;M&gt;</li>
 </ul>
@@ -3810,7 +3840,7 @@ loadScripts(document, 'script');</script>
 <li class="circle">org.bukkit.map.<a href="org/bukkit/map/MapCursor.Type.html" class="type-name-link" title="interface in org.bukkit.map">MapCursor.Type</a> (also extends org.bukkit.util.<a href="org/bukkit/util/OldEnum.html" title="interface in org.bukkit.util">OldEnum</a>&lt;T&gt;)</li>
 <li class="circle">org.bukkit.block.banner.<a href="org/bukkit/block/banner/PatternType.html" class="type-name-link" title="interface in org.bukkit.block.banner">PatternType</a> (also extends org.bukkit.util.<a href="org/bukkit/util/OldEnum.html" title="interface in org.bukkit.util">OldEnum</a>&lt;T&gt;)</li>
 <li class="circle">io.papermc.paper.registry.<a href="io/papermc/paper/registry/Reference.html" class="type-name-link" title="interface in io.papermc.paper.registry">Reference</a>&lt;T&gt;</li>
-<li class="circle">org.bukkit.<a href="org/bukkit/RegionAccessor.html" class="type-name-link" title="interface in org.bukkit">RegionAccessor</a>
+<li class="circle">org.bukkit.<a href="org/bukkit/RegionAccessor.html" class="type-name-link" title="interface in org.bukkit">RegionAccessor</a> (also extends io.papermc.paper.world.flag.<a href="io/papermc/paper/world/flag/FeatureFlagSetHolder.html" title="interface in io.papermc.paper.world.flag">FeatureFlagSetHolder</a>)
 <ul>
 <li class="circle">org.bukkit.generator.<a href="org/bukkit/generator/LimitedRegion.html" class="type-name-link" title="interface in org.bukkit.generator">LimitedRegion</a></li>
 <li class="circle">org.bukkit.<a href="org/bukkit/World.html" class="type-name-link" title="interface in org.bukkit">World</a> (also extends net.kyori.adventure.audience.<a href="https://jd.advntr.dev/api/4.17.0/net/kyori/adventure/audience/ForwardingAudience.html" title="class or interface in net.kyori.adventure.audience" class="external-link">ForwardingAudience</a>, org.bukkit.<a href="org/bukkit/Keyed.html" title="interface in org.bukkit">Keyed</a>, org.bukkit.metadata.<a href="org/bukkit/metadata/Metadatable.html" title="interface in org.bukkit.metadata">Metadatable</a>, org.bukkit.persistence.<a href="org/bukkit/persistence/PersistentDataHolder.html" title="interface in org.bukkit.persistence">PersistentDataHolder</a>, org.bukkit.plugin.messaging.<a href="org/bukkit/plugin/messaging/PluginMessageRecipient.html" title="interface in org.bukkit.plugin.messaging">PluginMessageRecipient</a>, org.bukkit.generator.<a href="org/bukkit/generator/WorldInfo.html" title="interface in org.bukkit.generator">WorldInfo</a>)</li>
@@ -3826,6 +3856,7 @@ loadScripts(document, 'script');</script>
 </ul>
 </li>
 <li class="circle">io.papermc.paper.registry.<a href="io/papermc/paper/registry/RegistryKey.html" class="type-name-link" title="interface in io.papermc.paper.registry">RegistryKey</a>&lt;T&gt;</li>
+<li class="circle">io.papermc.paper.tag.<a href="io/papermc/paper/tag/TagEntry.html" class="type-name-link" title="interface in io.papermc.paper.tag">TagEntry</a>&lt;T&gt;</li>
 <li class="circle">io.papermc.paper.registry.tag.<a href="io/papermc/paper/registry/tag/TagKey.html" class="type-name-link" title="interface in io.papermc.paper.registry.tag">TagKey</a>&lt;T&gt;</li>
 <li class="circle">io.papermc.paper.registry.<a href="io/papermc/paper/registry/TypedKey.html" class="type-name-link" title="interface in io.papermc.paper.registry">TypedKey</a>&lt;T&gt;</li>
 </ul>
@@ -8040,6 +8071,8 @@ loadScripts(document, 'script');</script>
 <li class="circle">io.papermc.paper.plugin.lifecycle.event.registrar.<a href="io/papermc/paper/plugin/lifecycle/event/registrar/Registrar.html" class="type-name-link" title="interface in io.papermc.paper.plugin.lifecycle.event.registrar">Registrar</a>
 <ul>
 <li class="circle">io.papermc.paper.command.brigadier.<a href="io/papermc/paper/command/brigadier/Commands.html" class="type-name-link" title="interface in io.papermc.paper.command.brigadier">Commands</a></li>
+<li class="circle">io.papermc.paper.tag.<a href="io/papermc/paper/tag/PostFlattenTagRegistrar.html" class="type-name-link" title="interface in io.papermc.paper.tag">PostFlattenTagRegistrar</a>&lt;T&gt;</li>
+<li class="circle">io.papermc.paper.tag.<a href="io/papermc/paper/tag/PreFlattenTagRegistrar.html" class="type-name-link" title="interface in io.papermc.paper.tag">PreFlattenTagRegistrar</a>&lt;T&gt;</li>
 </ul>
 </li>
 <li class="circle">io.papermc.paper.registry.<a href="io/papermc/paper/registry/RegistryAccess.html" class="type-name-link" title="interface in io.papermc.paper.registry">RegistryAccess</a></li>
@@ -9704,18 +9737,19 @@ loadScripts(document, 'script');</script>
 </li>
 </ul>
 </li>
+<li class="circle">io.papermc.paper.plugin.lifecycle.event.types.<a href="io/papermc/paper/plugin/lifecycle/event/types/TagEventTypeProvider.html" class="type-name-link" title="interface in io.papermc.paper.plugin.lifecycle.event.types">TagEventTypeProvider</a></li>
 <li class="circle">moe.caramel.daydream.team.<a href="moe/caramel/daydream/team/TeamListener.html" class="type-name-link" title="interface in moe.caramel.daydream.team">TeamListener</a></li>
 <li class="circle">io.papermc.paper.entity.<a href="io/papermc/paper/entity/TeleportFlag.html" class="type-name-link" title="interface in io.papermc.paper.entity">TeleportFlag</a></li>
 <li class="circle">io.papermc.paper.inventory.tooltip.<a href="io/papermc/paper/inventory/tooltip/TooltipContext.html" class="type-name-link" title="interface in io.papermc.paper.inventory.tooltip">TooltipContext</a></li>
 <li class="circle">net.kyori.adventure.translation.<a href="https://jd.advntr.dev/api/4.17.0/net/kyori/adventure/translation/Translatable.html" class="type-name-link external-link" title="class or interface in net.kyori.adventure.translation">Translatable</a>
 <ul>
 <li class="circle">org.bukkit.block.<a href="org/bukkit/block/Block.html" class="type-name-link" title="interface in org.bukkit.block">Block</a> (also extends org.bukkit.metadata.<a href="org/bukkit/metadata/Metadatable.html" title="interface in org.bukkit.metadata">Metadatable</a>, org.bukkit.<a href="org/bukkit/Translatable.html" title="interface in org.bukkit">Translatable</a>)</li>
-<li class="circle">org.bukkit.block.<a href="org/bukkit/block/BlockType.html" class="type-name-link" title="interface in org.bukkit.block">BlockType</a> (also extends org.bukkit.<a href="org/bukkit/Keyed.html" title="interface in org.bukkit">Keyed</a>, org.bukkit.<a href="org/bukkit/Translatable.html" title="interface in org.bukkit">Translatable</a>)
+<li class="circle">org.bukkit.block.<a href="org/bukkit/block/BlockType.html" class="type-name-link" title="interface in org.bukkit.block">BlockType</a> (also extends io.papermc.paper.world.flag.<a href="io/papermc/paper/world/flag/FeatureDependant.html" title="interface in io.papermc.paper.world.flag">FeatureDependant</a>, org.bukkit.<a href="org/bukkit/Keyed.html" title="interface in org.bukkit">Keyed</a>, org.bukkit.<a href="org/bukkit/Translatable.html" title="interface in org.bukkit">Translatable</a>)
 <ul>
 <li class="circle">org.bukkit.block.<a href="org/bukkit/block/BlockType.Typed.html" class="type-name-link" title="interface in org.bukkit.block">BlockType.Typed</a>&lt;B&gt;</li>
 </ul>
 </li>
-<li class="circle">org.bukkit.inventory.<a href="org/bukkit/inventory/ItemType.html" class="type-name-link" title="interface in org.bukkit.inventory">ItemType</a> (also extends org.bukkit.<a href="org/bukkit/Keyed.html" title="interface in org.bukkit">Keyed</a>, org.bukkit.<a href="org/bukkit/Translatable.html" title="interface in org.bukkit">Translatable</a>)
+<li class="circle">org.bukkit.inventory.<a href="org/bukkit/inventory/ItemType.html" class="type-name-link" title="interface in org.bukkit.inventory">ItemType</a> (also extends io.papermc.paper.world.flag.<a href="io/papermc/paper/world/flag/FeatureDependant.html" title="interface in io.papermc.paper.world.flag">FeatureDependant</a>, org.bukkit.<a href="org/bukkit/Keyed.html" title="interface in org.bukkit">Keyed</a>, org.bukkit.<a href="org/bukkit/Translatable.html" title="interface in org.bukkit">Translatable</a>)
 <ul>
 <li class="circle">org.bukkit.inventory.<a href="org/bukkit/inventory/ItemType.Typed.html" class="type-name-link" title="interface in org.bukkit.inventory">ItemType.Typed</a>&lt;M&gt;</li>
 </ul>
@@ -9726,13 +9760,13 @@ loadScripts(document, 'script');</script>
 <li class="circle">org.bukkit.<a href="org/bukkit/Translatable.html" class="type-name-link" title="interface in org.bukkit">Translatable</a>
 <ul>
 <li class="circle">org.bukkit.block.<a href="org/bukkit/block/Block.html" class="type-name-link" title="interface in org.bukkit.block">Block</a> (also extends org.bukkit.metadata.<a href="org/bukkit/metadata/Metadatable.html" title="interface in org.bukkit.metadata">Metadatable</a>, net.kyori.adventure.translation.<a href="https://jd.advntr.dev/api/4.17.0/net/kyori/adventure/translation/Translatable.html" title="class or interface in net.kyori.adventure.translation" class="external-link">Translatable</a>)</li>
-<li class="circle">org.bukkit.block.<a href="org/bukkit/block/BlockType.html" class="type-name-link" title="interface in org.bukkit.block">BlockType</a> (also extends org.bukkit.<a href="org/bukkit/Keyed.html" title="interface in org.bukkit">Keyed</a>, net.kyori.adventure.translation.<a href="https://jd.advntr.dev/api/4.17.0/net/kyori/adventure/translation/Translatable.html" title="class or interface in net.kyori.adventure.translation" class="external-link">Translatable</a>)
+<li class="circle">org.bukkit.block.<a href="org/bukkit/block/BlockType.html" class="type-name-link" title="interface in org.bukkit.block">BlockType</a> (also extends io.papermc.paper.world.flag.<a href="io/papermc/paper/world/flag/FeatureDependant.html" title="interface in io.papermc.paper.world.flag">FeatureDependant</a>, org.bukkit.<a href="org/bukkit/Keyed.html" title="interface in org.bukkit">Keyed</a>, net.kyori.adventure.translation.<a href="https://jd.advntr.dev/api/4.17.0/net/kyori/adventure/translation/Translatable.html" title="class or interface in net.kyori.adventure.translation" class="external-link">Translatable</a>)
 <ul>
 <li class="circle">org.bukkit.block.<a href="org/bukkit/block/BlockType.Typed.html" class="type-name-link" title="interface in org.bukkit.block">BlockType.Typed</a>&lt;B&gt;</li>
 </ul>
 </li>
 <li class="circle">org.bukkit.damage.<a href="org/bukkit/damage/DamageType.html" class="type-name-link" title="interface in org.bukkit.damage">DamageType</a> (also extends org.bukkit.<a href="org/bukkit/Keyed.html" title="interface in org.bukkit">Keyed</a>)</li>
-<li class="circle">org.bukkit.inventory.<a href="org/bukkit/inventory/ItemType.html" class="type-name-link" title="interface in org.bukkit.inventory">ItemType</a> (also extends org.bukkit.<a href="org/bukkit/Keyed.html" title="interface in org.bukkit">Keyed</a>, net.kyori.adventure.translation.<a href="https://jd.advntr.dev/api/4.17.0/net/kyori/adventure/translation/Translatable.html" title="class or interface in net.kyori.adventure.translation" class="external-link">Translatable</a>)
+<li class="circle">org.bukkit.inventory.<a href="org/bukkit/inventory/ItemType.html" class="type-name-link" title="interface in org.bukkit.inventory">ItemType</a> (also extends io.papermc.paper.world.flag.<a href="io/papermc/paper/world/flag/FeatureDependant.html" title="interface in io.papermc.paper.world.flag">FeatureDependant</a>, org.bukkit.<a href="org/bukkit/Keyed.html" title="interface in org.bukkit">Keyed</a>, net.kyori.adventure.translation.<a href="https://jd.advntr.dev/api/4.17.0/net/kyori/adventure/translation/Translatable.html" title="class or interface in net.kyori.adventure.translation" class="external-link">Translatable</a>)
 <ul>
 <li class="circle">org.bukkit.inventory.<a href="org/bukkit/inventory/ItemType.Typed.html" class="type-name-link" title="interface in org.bukkit.inventory">ItemType.Typed</a>&lt;M&gt;</li>
 </ul>
@@ -9749,11 +9783,6 @@ loadScripts(document, 'script');</script>
 <li class="circle">org.bukkit.<a href="org/bukkit/Vibration.Destination.html" class="type-name-link" title="interface in org.bukkit">Vibration.Destination</a></li>
 <li class="circle">org.bukkit.util.<a href="org/bukkit/util/VoxelShape.html" class="type-name-link" title="interface in org.bukkit.util">VoxelShape</a></li>
 <li class="circle">org.bukkit.<a href="org/bukkit/WorldBorder.html" class="type-name-link" title="interface in org.bukkit">WorldBorder</a></li>
-<li class="circle">org.bukkit.generator.<a href="org/bukkit/generator/WorldInfo.html" class="type-name-link" title="interface in org.bukkit.generator">WorldInfo</a>
-<ul>
-<li class="circle">org.bukkit.<a href="org/bukkit/World.html" class="type-name-link" title="interface in org.bukkit">World</a> (also extends net.kyori.adventure.audience.<a href="https://jd.advntr.dev/api/4.17.0/net/kyori/adventure/audience/ForwardingAudience.html" title="class or interface in net.kyori.adventure.audience" class="external-link">ForwardingAudience</a>, org.bukkit.<a href="org/bukkit/Keyed.html" title="interface in org.bukkit">Keyed</a>, org.bukkit.metadata.<a href="org/bukkit/metadata/Metadatable.html" title="interface in org.bukkit.metadata">Metadatable</a>, org.bukkit.persistence.<a href="org/bukkit/persistence/PersistentDataHolder.html" title="interface in org.bukkit.persistence">PersistentDataHolder</a>, org.bukkit.plugin.messaging.<a href="org/bukkit/plugin/messaging/PluginMessageRecipient.html" title="interface in org.bukkit.plugin.messaging">PluginMessageRecipient</a>, org.bukkit.<a href="org/bukkit/RegionAccessor.html" title="interface in org.bukkit">RegionAccessor</a>)</li>
-</ul>
-</li>
 <li class="circle">io.papermc.paper.registry.event.<a href="io/papermc/paper/registry/event/WritableRegistry.html" class="type-name-link" title="interface in io.papermc.paper.registry.event">WritableRegistry</a>&lt;T,<wbr>B&gt;</li>
 </ul>
 </section>
@@ -9858,7 +9887,7 @@ loadScripts(document, 'script');</script>
 <li class="circle">org.bukkit.event.entity.<a href="org/bukkit/event/entity/EntityRemoveEvent.Cause.html" class="type-name-link" title="enum class in org.bukkit.event.entity">EntityRemoveEvent.Cause</a></li>
 <li class="circle">org.bukkit.event.entity.<a href="org/bukkit/event/entity/EntityTargetEvent.TargetReason.html" class="type-name-link" title="enum class in org.bukkit.event.entity">EntityTargetEvent.TargetReason</a></li>
 <li class="circle">org.bukkit.event.entity.<a href="org/bukkit/event/entity/EntityTransformEvent.TransformReason.html" class="type-name-link" title="enum class in org.bukkit.event.entity">EntityTransformEvent.TransformReason</a></li>
-<li class="circle">org.bukkit.entity.<a href="org/bukkit/entity/EntityType.html" class="type-name-link" title="enum class in org.bukkit.entity">EntityType</a> (implements org.bukkit.<a href="org/bukkit/Keyed.html" title="interface in org.bukkit">Keyed</a>, net.kyori.adventure.translation.<a href="https://jd.advntr.dev/api/4.17.0/net/kyori/adventure/translation/Translatable.html" title="class or interface in net.kyori.adventure.translation" class="external-link">Translatable</a>, org.bukkit.<a href="org/bukkit/Translatable.html" title="interface in org.bukkit">Translatable</a>)</li>
+<li class="circle">org.bukkit.entity.<a href="org/bukkit/entity/EntityType.html" class="type-name-link" title="enum class in org.bukkit.entity">EntityType</a> (implements io.papermc.paper.world.flag.<a href="io/papermc/paper/world/flag/FeatureDependant.html" title="interface in io.papermc.paper.world.flag">FeatureDependant</a>, org.bukkit.<a href="org/bukkit/Keyed.html" title="interface in org.bukkit">Keyed</a>, net.kyori.adventure.translation.<a href="https://jd.advntr.dev/api/4.17.0/net/kyori/adventure/translation/Translatable.html" title="class or interface in net.kyori.adventure.translation" class="external-link">Translatable</a>, org.bukkit.<a href="org/bukkit/Translatable.html" title="interface in org.bukkit">Translatable</a>)</li>
 <li class="circle">org.bukkit.event.entity.<a href="org/bukkit/event/entity/EntityUnleashEvent.UnleashReason.html" class="type-name-link" title="enum class in org.bukkit.event.entity">EntityUnleashEvent.UnleashReason</a></li>
 <li class="circle">org.bukkit.inventory.<a href="org/bukkit/inventory/EquipmentSlot.html" class="type-name-link" title="enum class in org.bukkit.inventory">EquipmentSlot</a></li>
 <li class="circle">org.bukkit.event.<a href="org/bukkit/event/Event.Result.html" class="type-name-link" title="enum class in org.bukkit.event">Event.Result</a></li>
@@ -9957,7 +9986,7 @@ loadScripts(document, 'script');</script>
 <li class="circle">org.bukkit.entity.<a href="org/bukkit/entity/Pose.html" class="type-name-link" title="enum class in org.bukkit.entity">Pose</a></li>
 <li class="circle">org.bukkit.potion.<a href="org/bukkit/potion/PotionEffectType.Category.html" class="type-name-link" title="enum class in org.bukkit.potion">PotionEffectType.Category</a></li>
 <li class="circle">org.bukkit.potion.<a href="org/bukkit/potion/PotionEffectTypeCategory.html" class="type-name-link" title="enum class in org.bukkit.potion">PotionEffectTypeCategory</a></li>
-<li class="circle">org.bukkit.potion.<a href="org/bukkit/potion/PotionType.html" class="type-name-link" title="enum class in org.bukkit.potion">PotionType</a> (implements org.bukkit.<a href="org/bukkit/Keyed.html" title="interface in org.bukkit">Keyed</a>)</li>
+<li class="circle">org.bukkit.potion.<a href="org/bukkit/potion/PotionType.html" class="type-name-link" title="enum class in org.bukkit.potion">PotionType</a> (implements io.papermc.paper.world.flag.<a href="io/papermc/paper/world/flag/FeatureDependant.html" title="interface in io.papermc.paper.world.flag">FeatureDependant</a>, org.bukkit.<a href="org/bukkit/Keyed.html" title="interface in org.bukkit">Keyed</a>)</li>
 <li class="circle">org.bukkit.entity.<a href="org/bukkit/entity/Rabbit.Type.html" class="type-name-link" title="enum class in org.bukkit.entity">Rabbit.Type</a></li>
 <li class="circle">org.bukkit.<a href="org/bukkit/Raid.RaidStatus.html" class="type-name-link" title="enum class in org.bukkit">Raid.RaidStatus</a></li>
 <li class="circle">org.bukkit.event.raid.<a href="org/bukkit/event/raid/RaidStopEvent.Reason.html" class="type-name-link" title="enum class in org.bukkit.event.raid">RaidStopEvent.Reason</a></li>
