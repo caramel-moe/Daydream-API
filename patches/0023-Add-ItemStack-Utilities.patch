@@ -138,3 +138,83 @@ index b3abe3bde05d4a360e31e490bff8a859dc2bd4a6..2704332ac8610866c5a5b59e7b0f3d12
      /**
       * Defaults stack size to 1, with no extra data.
       * <p>
+diff --git a/src/main/java/org/bukkit/inventory/meta/ItemMeta.java b/src/main/java/org/bukkit/inventory/meta/ItemMeta.java
+index f5541454ba5e508a72c83989c6feaef5406e2535..3318474236787035097d9b09e62320b498f2dcd3 100644
+--- a/src/main/java/org/bukkit/inventory/meta/ItemMeta.java
++++ b/src/main/java/org/bukkit/inventory/meta/ItemMeta.java
+@@ -225,6 +225,75 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
+     void lore(final @Nullable List<? extends net.kyori.adventure.text.Component> lore);
+     // Paper end
+ 
++    // Daydream start - Add ItemStack Utilities
++    /**
++     * Sets the lore.
++     *
++     * @param style style for all lore
++     * @param lore the lore to set
++     */
++    void lore(final @Nullable net.kyori.adventure.text.format.Style style, final @Nullable List<? extends net.kyori.adventure.text.Component> lore);
++
++    /**
++     * Sets the lore excluding italic formatting.
++     *
++     * @param lore the lore to set
++     */
++    void loreNoItalic(final @Nullable List<? extends net.kyori.adventure.text.Component> lore);
++
++    /**
++     * Sets the lore excluding italic formatting.
++     *
++     * @param color color for all lore
++     * @param lore the lore to set
++     */
++    void loreNoItalic(final @Nullable net.kyori.adventure.text.format.TextColor color, final @Nullable List<? extends net.kyori.adventure.text.Component> lore);
++
++    /**
++     * Sets the lore excluding client style formatting.
++     *
++     * @param lore the lore to set
++     */
++    void loreDefault(final @Nullable List<? extends net.kyori.adventure.text.Component> lore);
++
++    /**
++     * Sets the lore.
++     *
++     * @param lore the lore to set
++     */
++    void withLore(final @Nullable net.kyori.adventure.text.ComponentLike... lore);
++
++    /**
++     * Sets the lore.
++     *
++     * @param style style for all lore
++     * @param lore the lore to set
++     */
++    void withLore(final @Nullable net.kyori.adventure.text.format.Style style, final @Nullable net.kyori.adventure.text.ComponentLike... lore);
++
++    /**
++     * Sets the lore excluding italic formatting.
++     *
++     * @param lore the lore to set
++     */
++    void withLoreNoItalic(final @Nullable net.kyori.adventure.text.ComponentLike... lore);
++
++    /**
++     * Sets the lore excluding italic formatting.
++     *
++     * @param color color for all lore
++     * @param lore the lore to set
++     */
++    void withLoreNoItalic(final @Nullable net.kyori.adventure.text.format.TextColor color, final @Nullable net.kyori.adventure.text.ComponentLike... lore);
++
++    /**
++     * Sets the lore excluding client style formatting.
++     *
++     * @param lore the lore to set
++     */
++    void withLoreDefault(final @Nullable net.kyori.adventure.text.ComponentLike... lore);
++    // Daydream end - Add ItemStack Utilities
++
+     /**
+      * Gets the lore that is set.
+      * <p>
