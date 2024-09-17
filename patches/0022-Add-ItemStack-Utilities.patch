@@ -132,10 +132,58 @@ index 7414b4fa690d393a8e9557cc1fd1ce12fa426940..e8413bf04ff118b918d9c9f3421cdd01
       * Defaults stack size to 1, with no extra data.
       * <p>
 diff --git a/src/main/java/org/bukkit/inventory/meta/ItemMeta.java b/src/main/java/org/bukkit/inventory/meta/ItemMeta.java
-index 478b6d2acbc5788f72db81f387daa08df7837a5d..0352f7f47fb96fe47f2fbe57ff92cc9d771c5489 100644
+index 478b6d2acbc5788f72db81f387daa08df7837a5d..9826eb48ec6f421ce4ae89a369b6415bac06e8d3 100644
 --- a/src/main/java/org/bukkit/inventory/meta/ItemMeta.java
 +++ b/src/main/java/org/bukkit/inventory/meta/ItemMeta.java
-@@ -153,6 +153,170 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
+@@ -97,6 +97,47 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
+     @Deprecated
+     void setDisplayNameComponent(@Nullable net.md_5.bungee.api.chat.BaseComponent[] component);
+     // Paper end
++
++    // Daydream start - Add ItemStack Utilities (from 1.20.5)
++    /**
++     * Checks for existence of an item name.
++     * <br>
++     * Item name differs from display name in that it is cannot be edited by an
++     * anvil, is not styled with italics, and does not show labels.
++     *
++     * @return true if this has an item name
++     */
++    default boolean hasItemName() {
++        return hasDisplayName();
++    }
++
++    /**
++     * Gets the item name component that is set.
++     * <br>
++     * Item name differs from display name in that it is cannot be edited by an
++     * anvil, is not styled with italics, and does not show labels.
++     * <p>
++     * Plugins should check that {@link #hasItemName()} returns <code>true</code> before
++     * calling this method.
++     *
++     * @return the item name that is set
++     * @see #hasItemName()
++     */
++    default @NotNull Component itemName() {
++        return java.util.Objects.requireNonNullElseGet(this.displayName(), Component::empty);
++    }
++
++    /**
++     * Sets the item name.
++     * <br>
++     * Item name differs from display name in that it is cannot be edited by an
++     * anvil, is not styled with italics, and does not show labels.
++     *
++     * @param name the name to set, null to remove it
++     */
++    void itemName(@Nullable final Component name);
++    // Daydream end - Add ItemStack Utilities (from 1.20.5)
++
+     /**
+      * Checks for existence of a localized name.
+      *
+@@ -153,6 +194,170 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
      void lore(final @Nullable List<? extends net.kyori.adventure.text.Component> lore);
      // Paper end
  
@@ -306,7 +354,7 @@ index 478b6d2acbc5788f72db81f387daa08df7837a5d..0352f7f47fb96fe47f2fbe57ff92cc9d
      /**
       * Gets the lore that is set.
       * <p>
-@@ -222,6 +386,18 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
+@@ -222,6 +427,18 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
       */
      int getCustomModelData();
  
@@ -325,7 +373,7 @@ index 478b6d2acbc5788f72db81f387daa08df7837a5d..0352f7f47fb96fe47f2fbe57ff92cc9d
      /**
       * Sets the custom model data.
       * <p>
-@@ -344,6 +520,23 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
+@@ -344,6 +561,23 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
       */
      void setUnbreakable(boolean unbreakable);
  
