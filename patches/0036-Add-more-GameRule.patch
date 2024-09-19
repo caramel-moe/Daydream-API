@@ -1,0 +1,23 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: LemonCaramel <admin@caramel.moe>
+Date: Thu, 19 Sep 2024 22:58:13 +0900
+Subject: [PATCH] Add more GameRule
+
+
+diff --git a/src/main/java/org/bukkit/GameRule.java b/src/main/java/org/bukkit/GameRule.java
+index 4482e8f2c617c2f51b2b53762e775d118002363a..a61ac580fcd16f7617fda25e4824447e4f4fe5ae 100644
+--- a/src/main/java/org/bukkit/GameRule.java
++++ b/src/main/java/org/bukkit/GameRule.java
+@@ -215,6 +215,12 @@ public final class GameRule<T> implements net.kyori.adventure.translation.Transl
+      * Whether ender pearls will vanish on player death.
+      */
+     public static final GameRule<Boolean> ENDER_PEARLS_VANISH_ON_DEATH = new GameRule<>("enderPearlsVanishOnDeath", Boolean.class);
++    // Daydream start - Add more GameRule
++    /**
++     * 불과 관련된 블록에 의해 플레이어가 피해를 입을지 여부
++     */
++    public static final GameRule<Boolean> BLOCK_FIRE_DAMAGE = new GameRule<>("blockFireDamage", Boolean.class);
++    // Daydream end - Add more GameRule
+ 
+     // Numerical rules
+     /**
