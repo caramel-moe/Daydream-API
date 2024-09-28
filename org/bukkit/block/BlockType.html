@@ -4781,10 +4781,13 @@ extends <a href="../Keyed.html" title="interface in org.bukkit">Keyed</a>, <a hr
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Check if the block type can catch fire</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#isInteractable()" class="member-name-link">isInteractable</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Checks if this block type can be interacted with.</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6"><code>boolean</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6"><code><a href="#isInteractable()" class="member-name-link">isInteractable</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6">
+<div class="block"><span class="deprecated-label">Deprecated.</span>
+<div class="deprecation-comment">This method is not comprehensive and does not accurately reflect what block types are
+ interactable.</div>
+</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#isOccluding()" class="member-name-link">isOccluding</a>()</code></div>
@@ -12052,7 +12055,13 @@ extends <a href="../Keyed.html" title="interface in org.bukkit">Keyed</a>, <a hr
 <li>
 <section class="detail" id="isInteractable()">
 <h3>isInteractable</h3>
-<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">isInteractable</span>()</div>
+<div class="member-signature"><span class="annotations"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Deprecated.html" title="class or interface in java.lang" class="external-link">@Deprecated</a>
+</span><span class="return-type">boolean</span>&nbsp;<span class="element-name">isInteractable</span>()</div>
+<div class="deprecation-block"><span class="deprecated-label">Deprecated.</span>
+<div class="deprecation-comment">This method is not comprehensive and does not accurately reflect what block types are
+ interactable. Many "interactions" are defined on the item not block, and many are conditional on some other world state
+ checks being true.</div>
+</div>
 <div class="block">Checks if this block type can be interacted with.
  <p>
  Interactable block types include those with functionality when they are

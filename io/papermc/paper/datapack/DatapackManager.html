@@ -103,12 +103,26 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>@NonNull <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Collection.html" title="class or interface in java.util" class="external-link">Collection</a><wbr>&lt;<a href="Datapack.html" title="interface in io.papermc.paper.datapack">Datapack</a>&gt;</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>@NonNull <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Unmodifiable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Unmodifiable</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Collection.html" title="class or interface in java.util" class="external-link">Collection</a><wbr>&lt;<a href="Datapack.html" title="interface in io.papermc.paper.datapack">Datapack</a>&gt;</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getEnabledPacks()" class="member-name-link">getEnabledPacks</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>@NonNull <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Collection.html" title="class or interface in java.util" class="external-link">Collection</a><wbr>&lt;<a href="Datapack.html" title="interface in io.papermc.paper.datapack">Datapack</a>&gt;</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getPacks()" class="member-name-link">getPacks</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Gets the enabled datapacks.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>@Nullable <a href="Datapack.html" title="interface in io.papermc.paper.datapack">Datapack</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getPack(java.lang.String)" class="member-name-link">getPack</a><wbr>(@NonNull <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Gets a datapack by name.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>@NonNull <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Unmodifiable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Unmodifiable</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Collection.html" title="class or interface in java.util" class="external-link">Collection</a><wbr>&lt;<a href="Datapack.html" title="interface in io.papermc.paper.datapack">Datapack</a>&gt;</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getPacks()" class="member-name-link">getPacks</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Gets the available datapacks.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#refreshPacks()" class="member-name-link">refreshPacks</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Triggers a refresh of the available and selected datapacks.</div>
+</div>
 </div>
 </div>
 </div>
@@ -124,9 +138,35 @@ loadScripts(document, 'script');</script>
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
+<section class="detail" id="refreshPacks()">
+<h3>refreshPacks</h3>
+<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">refreshPacks</span>()</div>
+<div class="block">Triggers a refresh of the available and selected datapacks. This
+ can find new datapacks, remove old ones, and update the metadata for
+ existing datapacks. Some of these changes will only take effect
+ after the next <a href="../../../../org/bukkit/Server.html#reloadData()"><code>Server.reloadData()</code></a> or <code>/minecraft:reload</code>.</div>
+</section>
+</li>
+<li>
+<section class="detail" id="getPack(java.lang.String)">
+<h3>getPack</h3>
+<div class="member-signature"><span class="return-type">@Nullable <a href="Datapack.html" title="interface in io.papermc.paper.datapack">Datapack</a></span>&nbsp;<span class="element-name">getPack</span><wbr><span class="parameters">(@NonNull <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</span></div>
+<div class="block">Gets a datapack by name. May require calling <a href="#refreshPacks()"><code>refreshPacks()</code></a> before
+ to get the latest pack information.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>name</code> - the name/id of the datapack</dd>
+<dt>Returns:</dt>
+<dd>the datapack, or null if not found</dd>
+</dl>
+</section>
+</li>
+<li>
 <section class="detail" id="getPacks()">
 <h3>getPacks</h3>
-<div class="member-signature"><span class="return-type">@NonNull <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Collection.html" title="class or interface in java.util" class="external-link">Collection</a>&lt;<a href="Datapack.html" title="interface in io.papermc.paper.datapack">Datapack</a>&gt;</span>&nbsp;<span class="element-name">getPacks</span>()</div>
+<div class="member-signature"><span class="return-type">@NonNull <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Unmodifiable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Unmodifiable</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Collection.html" title="class or interface in java.util" class="external-link">Collection</a>&lt;<a href="Datapack.html" title="interface in io.papermc.paper.datapack">Datapack</a>&gt;</span>&nbsp;<span class="element-name">getPacks</span>()</div>
+<div class="block">Gets the available datapacks. May require calling <a href="#refreshPacks()"><code>refreshPacks()</code></a> before
+ to get the latest pack information.</div>
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>all the packs known to the server</dd>
@@ -136,7 +176,9 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="getEnabledPacks()">
 <h3>getEnabledPacks</h3>
-<div class="member-signature"><span class="return-type">@NonNull <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Collection.html" title="class or interface in java.util" class="external-link">Collection</a>&lt;<a href="Datapack.html" title="interface in io.papermc.paper.datapack">Datapack</a>&gt;</span>&nbsp;<span class="element-name">getEnabledPacks</span>()</div>
+<div class="member-signature"><span class="return-type">@NonNull <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Unmodifiable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Unmodifiable</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Collection.html" title="class or interface in java.util" class="external-link">Collection</a>&lt;<a href="Datapack.html" title="interface in io.papermc.paper.datapack">Datapack</a>&gt;</span>&nbsp;<span class="element-name">getEnabledPacks</span>()</div>
+<div class="block">Gets the enabled datapacks. May require calling <a href="#refreshPacks()"><code>refreshPacks()</code></a> before
+ to get the latest pack information.</div>
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>all the packs which are currently enabled</dd>

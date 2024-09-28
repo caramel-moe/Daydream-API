@@ -89,7 +89,7 @@ loadScripts(document, 'script');</script>
 <section class="class-description" id="class-description">
 <dl class="notes">
 <dt>All Superinterfaces:</dt>
-<dd><code><a href="../inventory/BlockInventoryHolder.html" title="interface in org.bukkit.inventory">BlockInventoryHolder</a></code>, <code><a href="BlockState.html" title="interface in org.bukkit.block">BlockState</a></code>, <code><a href="Container.html" title="interface in org.bukkit.block">Container</a></code>, <code><a href="../inventory/InventoryHolder.html" title="interface in org.bukkit.inventory">InventoryHolder</a></code>, <code><a href="Lockable.html" title="interface in org.bukkit.block">Lockable</a></code>, <code><a href="../../../io/papermc/paper/block/LockableTileState.html" title="interface in io.papermc.paper.block">LockableTileState</a></code>, <code><a href="../metadata/Metadatable.html" title="interface in org.bukkit.metadata">Metadatable</a></code>, <code><a href="../Nameable.html" title="interface in org.bukkit">Nameable</a></code>, <code><a href="../persistence/PersistentDataHolder.html" title="interface in org.bukkit.persistence">PersistentDataHolder</a></code>, <code><a href="../../../io/papermc/paper/persistence/PersistentDataViewHolder.html" title="interface in io.papermc.paper.persistence">PersistentDataViewHolder</a></code>, <code><a href="TileState.html" title="interface in org.bukkit.block">TileState</a></code></dd>
+<dd><code><a href="../inventory/BlockInventoryHolder.html" title="interface in org.bukkit.inventory">BlockInventoryHolder</a></code>, <code><a href="BlockState.html" title="interface in org.bukkit.block">BlockState</a></code>, <code><a href="Container.html" title="interface in org.bukkit.block">Container</a></code>, <code><a href="../inventory/InventoryHolder.html" title="interface in org.bukkit.inventory">InventoryHolder</a></code>, <code><a href="Lockable.html" title="interface in org.bukkit.block">Lockable</a></code>, <code><a href="../../../io/papermc/paper/block/LockableTileState.html" title="interface in io.papermc.paper.block">LockableTileState</a></code>, <code><a href="../metadata/Metadatable.html" title="interface in org.bukkit.metadata">Metadatable</a></code>, <code><a href="../Nameable.html" title="interface in org.bukkit">Nameable</a></code>, <code><a href="../persistence/PersistentDataHolder.html" title="interface in org.bukkit.persistence">PersistentDataHolder</a></code>, <code><a href="../../../io/papermc/paper/persistence/PersistentDataViewHolder.html" title="interface in io.papermc.paper.persistence">PersistentDataViewHolder</a></code>, <code><a href="TileState.html" title="interface in org.bukkit.block">TileState</a></code>, <code><a href="../../../io/papermc/paper/block/TileStateInventoryHolder.html" title="interface in io.papermc.paper.block">TileStateInventoryHolder</a></code></dd>
 </dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public interface </span><span class="element-name type-name-label">BrewingStand</span><span class="extends-implements">
@@ -223,7 +223,7 @@ extends <a href="Container.html" title="interface in org.bukkit.block">Container
 <h3>getInventory</h3>
 <div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
 </span><span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../inventory/BrewerInventory.html" title="interface in org.bukkit.inventory">BrewerInventory</a></span>&nbsp;<span class="element-name">getInventory</span>()</div>
-<div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="Container.html#getInventory()">Container</a></code></span></div>
+<div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../../../io/papermc/paper/block/TileStateInventoryHolder.html#getInventory()">TileStateInventoryHolder</a></code></span></div>
 <div class="block">Gets the inventory of the block represented by this block state.
  <p>
  If the block was changed to a different type in the meantime, the
@@ -233,9 +233,9 @@ extends <a href="Container.html" title="interface in org.bukkit.block">Container
  snapshot instead.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="Container.html#getInventory()">getInventory</a></code>&nbsp;in interface&nbsp;<code><a href="Container.html" title="interface in org.bukkit.block">Container</a></code></dd>
-<dt>Specified by:</dt>
 <dd><code><a href="../inventory/InventoryHolder.html#getInventory()">getInventory</a></code>&nbsp;in interface&nbsp;<code><a href="../inventory/InventoryHolder.html" title="interface in org.bukkit.inventory">InventoryHolder</a></code></dd>
+<dt>Specified by:</dt>
+<dd><code><a href="../../../io/papermc/paper/block/TileStateInventoryHolder.html#getInventory()">getInventory</a></code>&nbsp;in interface&nbsp;<code><a href="../../../io/papermc/paper/block/TileStateInventoryHolder.html" title="interface in io.papermc.paper.block">TileStateInventoryHolder</a></code></dd>
 <dt>Returns:</dt>
 <dd>the inventory</dd>
 </dl>
@@ -246,7 +246,7 @@ extends <a href="Container.html" title="interface in org.bukkit.block">Container
 <h3>getSnapshotInventory</h3>
 <div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
 </span><span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../inventory/BrewerInventory.html" title="interface in org.bukkit.inventory">BrewerInventory</a></span>&nbsp;<span class="element-name">getSnapshotInventory</span>()</div>
-<div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="Container.html#getSnapshotInventory()">Container</a></code></span></div>
+<div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../../../io/papermc/paper/block/TileStateInventoryHolder.html#getSnapshotInventory()">TileStateInventoryHolder</a></code></span></div>
 <div class="block">Gets the captured inventory snapshot of this container.
  <p>
  The returned inventory is not linked to any block. Any modifications to
@@ -255,7 +255,7 @@ extends <a href="Container.html" title="interface in org.bukkit.block">Container
  called.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="Container.html#getSnapshotInventory()">getSnapshotInventory</a></code>&nbsp;in interface&nbsp;<code><a href="Container.html" title="interface in org.bukkit.block">Container</a></code></dd>
+<dd><code><a href="../../../io/papermc/paper/block/TileStateInventoryHolder.html#getSnapshotInventory()">getSnapshotInventory</a></code>&nbsp;in interface&nbsp;<code><a href="../../../io/papermc/paper/block/TileStateInventoryHolder.html" title="interface in io.papermc.paper.block">TileStateInventoryHolder</a></code></dd>
 <dt>Returns:</dt>
 <dd>the captured inventory snapshot</dd>
 </dl>
