@@ -50,7 +50,7 @@ index 0000000000000000000000000000000000000000..7f1cf074c3362602b2594a1c9036edf5
 +    UnsafeValues getUnsafe();
 +}
 diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
-index 1adad022e6d7b2f74b549bd12722d5ac15a8b935..f4138fc4ef71ad95bd7dd9dcbb596445a5b316d7 100644
+index 32ea537db3ae9ba46a737cf681998eefb86581dd..3fbeafa52033c1857aaff9f69d603eef37814d3e 100644
 --- a/src/main/java/org/bukkit/Bukkit.java
 +++ b/src/main/java/org/bukkit/Bukkit.java
 @@ -2195,7 +2195,7 @@ public final class Bukkit {
@@ -72,10 +72,10 @@ index 1adad022e6d7b2f74b549bd12722d5ac15a8b935..f4138fc4ef71ad95bd7dd9dcbb596445
  
  
 diff --git a/src/main/java/org/bukkit/inventory/ItemStack.java b/src/main/java/org/bukkit/inventory/ItemStack.java
-index 2704332ac8610866c5a5b59e7b0f3d1243ceb1eb..43262b49bbe1418752e201a9d734fde735a60a7d 100644
+index 045b57bb00a1e3d5c05dc265e6fe71f627ab8af6..514dfc59e6c27eb828f300f734f2f226bfee1cda 100644
 --- a/src/main/java/org/bukkit/inventory/ItemStack.java
 +++ b/src/main/java/org/bukkit/inventory/ItemStack.java
-@@ -768,13 +768,13 @@ public class ItemStack implements Cloneable, ConfigurationSerializable, Translat
+@@ -768,7 +768,7 @@ public class ItemStack implements Cloneable, ConfigurationSerializable, Translat
       */
      @NotNull
      public ItemStack enchantWithLevels(final @org.jetbrains.annotations.Range(from = 1, to = 30) int levels, final boolean allowTreasure, final @NotNull java.util.Random random) {
@@ -83,6 +83,8 @@ index 2704332ac8610866c5a5b59e7b0f3d1243ceb1eb..43262b49bbe1418752e201a9d734fde7
 +        return Bukkit.getItemFactory().enchantWithLevels(this, levels, allowTreasure, random); // Daydream - Fix errors that occur when early load
      }
  
+     /**
+@@ -791,7 +791,7 @@ public class ItemStack implements Cloneable, ConfigurationSerializable, Translat
      @NotNull
      @Override
      public net.kyori.adventure.text.event.HoverEvent<net.kyori.adventure.text.event.HoverEvent.ShowItem> asHoverEvent(final @NotNull java.util.function.UnaryOperator<net.kyori.adventure.text.event.HoverEvent.ShowItem> op) {
@@ -91,7 +93,7 @@ index 2704332ac8610866c5a5b59e7b0f3d1243ceb1eb..43262b49bbe1418752e201a9d734fde7
      }
  
      /**
-@@ -783,7 +783,7 @@ public class ItemStack implements Cloneable, ConfigurationSerializable, Translat
+@@ -800,7 +800,7 @@ public class ItemStack implements Cloneable, ConfigurationSerializable, Translat
       * @return display name of the {@link ItemStack}
       */
      public net.kyori.adventure.text.@NotNull Component displayName() {
@@ -100,7 +102,7 @@ index 2704332ac8610866c5a5b59e7b0f3d1243ceb1eb..43262b49bbe1418752e201a9d734fde7
      }
  
      /**
-@@ -796,7 +796,7 @@ public class ItemStack implements Cloneable, ConfigurationSerializable, Translat
+@@ -813,7 +813,7 @@ public class ItemStack implements Cloneable, ConfigurationSerializable, Translat
       */
      @NotNull
      public ItemStack ensureServerConversions() {
@@ -109,7 +111,7 @@ index 2704332ac8610866c5a5b59e7b0f3d1243ceb1eb..43262b49bbe1418752e201a9d734fde7
      }
  
      /**
-@@ -835,7 +835,7 @@ public class ItemStack implements Cloneable, ConfigurationSerializable, Translat
+@@ -939,7 +939,7 @@ public class ItemStack implements Cloneable, ConfigurationSerializable, Translat
      @Nullable
      @Deprecated
      public String getI18NDisplayName() {
