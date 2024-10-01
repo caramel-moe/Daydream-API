@@ -5,11 +5,11 @@ Subject: [PATCH] Add Plugin Datapack System
 
 
 diff --git a/src/main/java/io/papermc/paper/plugin/configuration/PluginMeta.java b/src/main/java/io/papermc/paper/plugin/configuration/PluginMeta.java
-index bcf91d048d84144f6acf9bfd2095df9ada2e585f..74598572ffee4d2c780f3dc7262cb7a27e71583b 100644
+index 3c768d5ccf490e962d9638e92d4ea7c85670bad8..c7f9a96df7726bc0e5cc39a9eee9777ff02b4512 100644
 --- a/src/main/java/io/papermc/paper/plugin/configuration/PluginMeta.java
 +++ b/src/main/java/io/papermc/paper/plugin/configuration/PluginMeta.java
-@@ -56,6 +56,27 @@ public interface PluginMeta {
-     @NotNull
+@@ -53,6 +53,26 @@ public interface PluginMeta {
+      */
      String getMainClass();
  
 +    // Daydream start - Add Plugin Datapack System
@@ -18,8 +18,7 @@ index bcf91d048d84144f6acf9bfd2095df9ada2e585f..74598572ffee4d2c780f3dc7262cb7a2
 +     *
 +     * @return 클래스 이름
 +     */
-+    @Nullable
-+    default String getDatapackLoader() {
++    default @Nullable String getDatapackLoader() {
 +        return null;
 +    }
 +
@@ -36,28 +35,22 @@ index bcf91d048d84144f6acf9bfd2095df9ada2e585f..74598572ffee4d2c780f3dc7262cb7a2
      /**
       * Returns the phase of the server startup logic that the plugin should be loaded.
       *
-@@ -199,5 +220,4 @@ public interface PluginMeta {
-      */
-     @Nullable
-     String getAPIVersion();
--
- }
 diff --git a/src/main/java/moe/caramel/daydream/plugin/PluginDatapackLoader.java b/src/main/java/moe/caramel/daydream/plugin/PluginDatapackLoader.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..6c878c968be02870c8552eb8db3d7b652e605540
+index 0000000000000000000000000000000000000000..778946665dfef224f766101e831b254efa3604af
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/plugin/PluginDatapackLoader.java
 @@ -0,0 +1,12 @@
 +package moe.caramel.daydream.plugin;
 +
 +import org.jetbrains.annotations.ApiStatus;
-+import org.jetbrains.annotations.NotNull;
++import org.jspecify.annotations.NullMarked;
 +
 +/**
 + * 서버 데이터팩을 로드할 때 인스턴스가 생성됩니다.
 + */
++@NullMarked
 +@ApiStatus.OverrideOnly
-+@ApiStatus.Experimental
 +public interface PluginDatapackLoader {
 +}
 diff --git a/src/main/java/org/bukkit/plugin/PluginDescriptionFile.java b/src/main/java/org/bukkit/plugin/PluginDescriptionFile.java

@@ -6,10 +6,10 @@ Subject: [PATCH] Add PlayerBottleIntoItemEvent
 
 diff --git a/src/main/java/moe/caramel/daydream/event/player/PlayerBottleIntoItemEvent.java b/src/main/java/moe/caramel/daydream/event/player/PlayerBottleIntoItemEvent.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..250f5f943131d02800af05cadcde1892e5f156ea
+index 0000000000000000000000000000000000000000..11bcaccb62f7a46c247f6a4dbe33ecebbc24a920
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/event/player/PlayerBottleIntoItemEvent.java
-@@ -0,0 +1,95 @@
+@@ -0,0 +1,104 @@
 +package moe.caramel.daydream.event.player;
 +
 +import org.bukkit.block.Block;
@@ -19,27 +19,26 @@ index 0000000000000000000000000000000000000000..250f5f943131d02800af05cadcde1892
 +import org.bukkit.event.HandlerList;
 +import org.bukkit.event.player.PlayerEvent;
 +import org.jetbrains.annotations.ApiStatus;
-+import org.jetbrains.annotations.NotNull;
-+import org.jetbrains.annotations.Nullable;
++import org.jspecify.annotations.NullMarked;
++import org.jspecify.annotations.Nullable;
 +
 +/**
 + * 플레이어가 병에 무언가를 담았을 때 호출됩니다.
 + */
++@NullMarked
 +public final class PlayerBottleIntoItemEvent extends PlayerEvent implements Cancellable {
 +
-+    private static final HandlerList HANDLER_LIST = new HandlerList();
-+    public @NotNull HandlerList getHandlers() { return HANDLER_LIST; }
-+    public static @NotNull HandlerList getHandlerList() { return HANDLER_LIST; }
-+
 +    private final ItemType type;
-+    private final Block clickedBlock;
-+    private final Entity clickedEntity;
++    private final @Nullable Block clickedBlock;
++    private final @Nullable Entity clickedEntity;
 +    private boolean cancelled;
 +
 +    @ApiStatus.Internal
 +    public PlayerBottleIntoItemEvent(
-+        final @NotNull Player player, final @NotNull ItemType type,
-+        final @Nullable Block clickedBlock, final @Nullable Entity clickedEntity
++        final Player player,
++        final ItemType type,
++        final @Nullable Block clickedBlock,
++        final @Nullable Entity clickedEntity
 +    ) {
 +        super(player);
 +        this.type = type;
@@ -62,7 +61,6 @@ index 0000000000000000000000000000000000000000..250f5f943131d02800af05cadcde1892
 +     *
 +     * @return 병에 담길 아이템의 타입
 +     */
-+    @NotNull
 +    public ItemType getType() {
 +        return type;
 +    }
@@ -74,8 +72,7 @@ index 0000000000000000000000000000000000000000..250f5f943131d02800af05cadcde1892
 +     *
 +     * @return 플레이어가 상호 작용한 블록
 +     */
-+    @Nullable
-+    public Block getClickedBlock() {
++    public @Nullable Block getClickedBlock() {
 +        return clickedBlock;
 +    }
 +
@@ -86,8 +83,7 @@ index 0000000000000000000000000000000000000000..250f5f943131d02800af05cadcde1892
 +     *
 +     * @return 플레이어가 상호 작용한 엔티티
 +     */
-+    @Nullable
-+    public Entity getClickedEntity() {
++    public @Nullable Entity getClickedEntity() {
 +        return clickedEntity;
 +    }
 +
@@ -104,4 +100,17 @@ index 0000000000000000000000000000000000000000..250f5f943131d02800af05cadcde1892
 +         */
 +        WATER
 +    }
++
++    //<editor-fold desc="Bukkit Event Handler (Internal)" defaultstate="collapsed">
++    private static final HandlerList HANDLER_LIST = new HandlerList();
++
++    @Override
++    public HandlerList getHandlers() {
++        return HANDLER_LIST;
++    }
++
++    public static HandlerList getHandlerList() {
++        return HANDLER_LIST;
++    }
++    //</editor-fold>
 +}

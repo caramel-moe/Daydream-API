@@ -5,7 +5,7 @@ Subject: [PATCH] Rebrand to Daydream
 
 
 diff --git a/build.gradle.kts b/build.gradle.kts
-index 540fe7e2c110e79c3742f229b3ed8c54b101d260..3b407a3ddfbbe5bb83ce2d0eef1cdfb2e0f600be 100644
+index ab84a1405acc1f0d5f267892243b82b8dab03e21..35bb09546c7b9afc95aded558ff269a52387db57 100644
 --- a/build.gradle.kts
 +++ b/build.gradle.kts
 @@ -27,7 +27,7 @@ configurations.api {
@@ -18,10 +18,10 @@ index 540fe7e2c110e79c3742f229b3ed8c54b101d260..3b407a3ddfbbe5bb83ce2d0eef1cdfb2
      api("com.google.guava:guava:32.1.2-jre")
      api("com.google.code.gson:gson:2.10.1")
 diff --git a/src/main/java/io/papermc/paper/ServerBuildInfo.java b/src/main/java/io/papermc/paper/ServerBuildInfo.java
-index 9df9d09aa477d4cd3c496ba0933c816df1ef0964..cb45f8a6d17d32084225248de4426e735343bbbe 100644
+index 652ff54e7c50412503725d628bfe72ed03059790..cdf1a0aab7d8dbe18161b6731a3f1f68e03eccee 100644
 --- a/src/main/java/io/papermc/paper/ServerBuildInfo.java
 +++ b/src/main/java/io/papermc/paper/ServerBuildInfo.java
-@@ -17,6 +17,12 @@ public interface ServerBuildInfo {
+@@ -18,6 +18,12 @@ public interface ServerBuildInfo {
       * The brand id for Paper.
       */
      Key BRAND_PAPER_ID = Key.key("papermc", "paper");
@@ -34,9 +34,9 @@ index 9df9d09aa477d4cd3c496ba0933c816df1ef0964..cb45f8a6d17d32084225248de4426e73
  
      /**
       * Gets the {@code ServerBuildInfo}.
-@@ -69,6 +75,15 @@ public interface ServerBuildInfo {
+@@ -70,6 +76,15 @@ public interface ServerBuildInfo {
       */
-     @NotNull String minecraftVersionName();
+     String minecraftVersionName();
  
 +    // Daydream start - Rebrand to Daydream (Expose protocol version)
 +    /**

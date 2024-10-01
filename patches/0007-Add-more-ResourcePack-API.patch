@@ -6,24 +6,25 @@ Subject: [PATCH] Add more ResourcePack API
 
 diff --git a/src/main/java/moe/caramel/daydream/player/ResourcePack.java b/src/main/java/moe/caramel/daydream/player/ResourcePack.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..46702d7db63fca173b78a507b4900e031b89a4a0
+index 0000000000000000000000000000000000000000..486c853b66448b2f342f25a7f9c8fa1d80e9afd7
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/player/ResourcePack.java
-@@ -0,0 +1,114 @@
+@@ -0,0 +1,109 @@
 +package moe.caramel.daydream.player;
 +
 +import net.kyori.adventure.resource.ResourcePackInfo;
 +import net.kyori.adventure.resource.ResourcePackStatus;
 +import org.bukkit.event.player.PlayerResourcePackStatusEvent.Status;
 +import org.jetbrains.annotations.Contract;
-+import org.jetbrains.annotations.NotNull;
-+import org.jetbrains.annotations.Nullable;
++import org.jspecify.annotations.NullMarked;
++import org.jspecify.annotations.Nullable;
 +import java.net.URI;
 +import java.util.UUID;
 +
 +/**
 + * 리소스팩 데이터
 + */
++@NullMarked
 +public interface ResourcePack {
 +
 +    /**
@@ -31,7 +32,6 @@ index 0000000000000000000000000000000000000000..46702d7db63fca173b78a507b4900e03
 +     *
 +     * @return 리소스팩 정보
 +     */
-+    @NotNull
 +    ResourcePackInfo info();
 +
 +    /**
@@ -39,7 +39,6 @@ index 0000000000000000000000000000000000000000..46702d7db63fca173b78a507b4900e03
 +     *
 +     * @return 리소스팩의 UUID
 +     */
-+    @NotNull
 +    default UUID id() {
 +        return info().id();
 +    }
@@ -49,7 +48,6 @@ index 0000000000000000000000000000000000000000..46702d7db63fca173b78a507b4900e03
 +     *
 +     * @return 리소스팩의 URI
 +     */
-+    @NotNull
 +    default URI uri() {
 +        return info().uri();
 +    }
@@ -59,7 +57,6 @@ index 0000000000000000000000000000000000000000..46702d7db63fca173b78a507b4900e03
 +     *
 +     * @return 리소스팩의 해시
 +     */
-+    @NotNull
 +    default String hash() {
 +        return info().hash();
 +    }
@@ -69,21 +66,18 @@ index 0000000000000000000000000000000000000000..46702d7db63fca173b78a507b4900e03
 +     *
 +     * @return 리소스팩 적용 상태
 +     */
-+    @Nullable
-+    ResourcePackStatus status();
++    @Nullable ResourcePackStatus status();
 +
 +    /**
 +     * 리소스팩 적용 상태를 Bukkit 형식으로 가져옵니다.
 +     *
 +     * @return 리소스팩 적용 상태
 +     */
-+    @Nullable
-+    default Status bukkitStatus() {
++    default @Nullable Status bukkitStatus() {
 +        return adventureToBukkit(status());
 +    }
 +
-+    // ===========================
-+
++    //<editor-fold desc="Status Converter" defaultstate="collapsed">
 +    /**
 +     * Adventure 리소스팩 상태를 Bukkit 형식으로 변환합니다.
 +     *
@@ -123,9 +117,10 @@ index 0000000000000000000000000000000000000000..46702d7db63fca173b78a507b4900e03
 +            case DISCARDED -> ResourcePackStatus.DISCARDED;
 +        };
 +    }
++    //</editor-fold>
 +}
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index 83517098f9523c6c9d6a20991297d1e71f3aa9a8..5e0723eced8f9c7c30ca944db2b4b84d9b17c949 100644
+index f22ef96c3e3732dd13cc37fbe68b4b1603739e0a..eb9a5278ddedce9e3f4a5c379161e8a292260909 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
 @@ -2769,6 +2769,23 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM

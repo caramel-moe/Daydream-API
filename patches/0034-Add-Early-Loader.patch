@@ -6,30 +6,29 @@ Subject: [PATCH] Add Early Loader
 
 diff --git a/src/main/java/moe/caramel/daydream/EarlyLoader.java b/src/main/java/moe/caramel/daydream/EarlyLoader.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..7f1cf074c3362602b2594a1c9036edf51f4f72ad
+index 0000000000000000000000000000000000000000..5282d9353d8629f025ae89518fa07960e26db17f
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/EarlyLoader.java
-@@ -0,0 +1,39 @@
+@@ -0,0 +1,36 @@
 +package moe.caramel.daydream;
 +
 +import org.bukkit.UnsafeValues;
 +import org.bukkit.inventory.ItemFactory;
 +import org.bukkit.inventory.meta.ItemMeta;
 +import org.jetbrains.annotations.ApiStatus;
-+import org.jetbrains.annotations.NotNull;
++import org.jspecify.annotations.NullMarked;
 +import java.util.ServiceLoader;
 +
 +/**
 + * Early Loader.
 + */
++@NullMarked
 +public interface EarlyLoader {
 +
 +    /**
 +     * Early Loader Instance
 +     */
-+    @NotNull
-+    EarlyLoader LOADER = ServiceLoader
-+        .load(EarlyLoader.class, EarlyLoader.class.getClassLoader())
++    EarlyLoader LOADER = ServiceLoader.load(EarlyLoader.class)
 +        .findFirst().orElseThrow();
 +
 +    /**
@@ -38,14 +37,12 @@ index 0000000000000000000000000000000000000000..7f1cf074c3362602b2594a1c9036edf5
 +     * @return the item factory
 +     * @see ItemFactory
 +     */
-+    @NotNull
 +    ItemFactory getItemFactory();
 +
 +    /**
 +     * @return the unsafe values instance
 +     * @see UnsafeValues
 +     */
-+    @NotNull
 +    @ApiStatus.Experimental
 +    UnsafeValues getUnsafe();
 +}

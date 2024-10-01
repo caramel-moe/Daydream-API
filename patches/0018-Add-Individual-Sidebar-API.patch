@@ -6,25 +6,25 @@ Subject: [PATCH] Add Individual Sidebar API
 
 diff --git a/src/main/java/moe/caramel/daydream/sidebar/EntryBuilder.java b/src/main/java/moe/caramel/daydream/sidebar/EntryBuilder.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..581e3a7f19cea2bc6d2b1832638be56be1a9b51a
+index 0000000000000000000000000000000000000000..dedd724319d2e3c1258efc8717e136c597e5b564
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/sidebar/EntryBuilder.java
-@@ -0,0 +1,166 @@
+@@ -0,0 +1,118 @@
 +package moe.caramel.daydream.sidebar;
 +
 +import io.papermc.paper.scoreboard.numbers.NumberFormat;
 +import net.kyori.adventure.text.Component;
 +import net.kyori.adventure.text.minimessage.MiniMessage;
 +import org.jetbrains.annotations.ApiStatus;
-+import org.jetbrains.annotations.NotNull;
-+import org.jetbrains.annotations.Nullable;
++import org.jspecify.annotations.NullMarked;
++import org.jspecify.annotations.Nullable;
 +import java.util.ArrayList;
 +import java.util.List;
-+import java.util.Objects;
 +
 +/**
 + * SideBar API 사용을 위한 {@link Entry} 빌더
 + */
++@NullMarked
 +public final class EntryBuilder {
 +
 +    public static final int MAX_ENTRY_SIZE = 15;
@@ -38,7 +38,6 @@ index 0000000000000000000000000000000000000000..581e3a7f19cea2bc6d2b1832638be56b
 +     *
 +     * @return {@link EntryBuilder}
 +     */
-+    @NotNull
 +    public static EntryBuilder builder() {
 +        return new EntryBuilder();
 +    }
@@ -57,7 +56,6 @@ index 0000000000000000000000000000000000000000..581e3a7f19cea2bc6d2b1832638be56b
 +     *
 +     * @return this
 +     */
-+    @NotNull
 +    public EntryBuilder blank() {
 +        return blank(null);
 +    }
@@ -68,7 +66,6 @@ index 0000000000000000000000000000000000000000..581e3a7f19cea2bc6d2b1832638be56b
 +     * @param format 점수 표기 방식
 +     * @return this
 +     */
-+    @NotNull
 +    public EntryBuilder blank(final @Nullable NumberFormat format) {
 +        return next(Component.empty(), format);
 +    }
@@ -79,8 +76,7 @@ index 0000000000000000000000000000000000000000..581e3a7f19cea2bc6d2b1832638be56b
 +     * @param value 리스트에 추가할 텍스트
 +     * @return this
 +     */
-+    @NotNull
-+    public EntryBuilder next(final @NotNull String value) {
++    public EntryBuilder next(final String value) {
 +        return next(value, null);
 +    }
 +
@@ -91,8 +87,7 @@ index 0000000000000000000000000000000000000000..581e3a7f19cea2bc6d2b1832638be56b
 +     * @param format 점수 표기 방식
 +     * @return this
 +     */
-+    @NotNull
-+    public EntryBuilder next(final @NotNull String value, final @Nullable NumberFormat format) {
++    public EntryBuilder next(final String value, final @Nullable NumberFormat format) {
 +        return next(MiniMessage.miniMessage().deserialize(value), format);
 +    }
 +
@@ -102,8 +97,7 @@ index 0000000000000000000000000000000000000000..581e3a7f19cea2bc6d2b1832638be56b
 +     * @param value 리스트에 추가할 텍스트
 +     * @return this
 +     */
-+    @NotNull
-+    public EntryBuilder next(final @NotNull Component value) {
++    public EntryBuilder next(final Component value) {
 +        return next(value, null);
 +    }
 +
@@ -114,8 +108,7 @@ index 0000000000000000000000000000000000000000..581e3a7f19cea2bc6d2b1832638be56b
 +     * @param format 점수 표기 방식
 +     * @return this
 +     */
-+    @NotNull
-+    public EntryBuilder next(final @NotNull Component value, final @Nullable NumberFormat format) {
++    public EntryBuilder next(final Component value, final @Nullable NumberFormat format) {
 +        if (entries.size() < MAX_ENTRY_SIZE) {
 +            this.entries.add(new Entry(value, format));
 +        }
@@ -125,74 +118,34 @@ index 0000000000000000000000000000000000000000..581e3a7f19cea2bc6d2b1832638be56b
 +    // ==============================================
 +
 +    /**
-+     * SideBar에 표시될 항목의 데이터
++     * SideBar 표시될 항목의 데이터
 +     */
-+    public static final class Entry {
-+
-+        private final Component value;
-+        private final NumberFormat format;
-+
-+        Entry(final @NotNull Component value, final @Nullable NumberFormat callback) {
-+            this.value = value;
-+            this.format = callback;
-+        }
-+
-+        @NotNull
-+        public Component value() {
-+            return value;
-+        }
-+
-+        @Nullable
-+        public NumberFormat numberFormat() {
-+            return format;
-+        }
-+
-+        @Override
-+        public String toString() {
-+            return "Entry{" +
-+                   "value=" + value +
-+                   ", format=" + format +
-+                   '}';
-+        }
-+
-+        @Override
-+        public boolean equals(Object o) {
-+            if (this == o) return true;
-+            if (o == null || getClass() != o.getClass()) return false;
-+            final Entry entry = (Entry) o;
-+            return value.equals(entry.value) && Objects.equals(format, entry.format);
-+        }
-+
-+        @Override
-+        public int hashCode() {
-+            return Objects.hash(value, format);
-+        }
++    public record Entry(Component value, @Nullable NumberFormat numberFormat) {
 +    }
 +
-+    // ==============================================
-+
-+    @NotNull @ApiStatus.Internal
++    @ApiStatus.Internal
 +    public List<Entry> entries() {
 +        return entries;
 +    }
 +}
 diff --git a/src/main/java/moe/caramel/daydream/sidebar/SidebarDecorator.java b/src/main/java/moe/caramel/daydream/sidebar/SidebarDecorator.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..42dde15ad6550ed64a0442b449d9f5d2c91469b9
+index 0000000000000000000000000000000000000000..db9df8d1d97e82934103e1ab5efca465e814e8df
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/sidebar/SidebarDecorator.java
-@@ -0,0 +1,43 @@
+@@ -0,0 +1,41 @@
 +package moe.caramel.daydream.sidebar;
 +
 +import io.papermc.paper.scoreboard.numbers.NumberFormat;
 +import net.kyori.adventure.text.Component;
 +import org.bukkit.entity.Player;
-+import org.jetbrains.annotations.NotNull;
-+import org.jetbrains.annotations.Nullable;
++import org.jspecify.annotations.NullMarked;
++import org.jspecify.annotations.Nullable;
 +
 +/**
 + * 사이드바 데코레이터
 + */
++@NullMarked
 +public interface SidebarDecorator {
 +
 +    /**
@@ -201,8 +154,7 @@ index 0000000000000000000000000000000000000000..42dde15ad6550ed64a0442b449d9f5d2
 +     * @param player 대상 플레이어
 +     * @return 사이드바 글로벌 포맷
 +     */
-+    @Nullable
-+    default NumberFormat globalFormat(final @NotNull Player player) {
++    default @Nullable NumberFormat globalFormat(final Player player) {
 +        return null;
 +    }
 +
@@ -212,8 +164,7 @@ index 0000000000000000000000000000000000000000..42dde15ad6550ed64a0442b449d9f5d2
 +     * @param player 대상 플레이어
 +     * @return 사이드바에 표시할 제목
 +     */
-+    @NotNull
-+    Component title(final @NotNull Player player);
++    Component title(final Player player);
 +
 +    /**
 +     * 플레이어별 사이드바에 표시할 항목 리스트를 가져옵니다.
@@ -222,12 +173,11 @@ index 0000000000000000000000000000000000000000..42dde15ad6550ed64a0442b449d9f5d2
 +     * @param player 대상 플레이어
 +     * @return 사이드바에 표시할 항목 리스트
 +     */
-+    @Nullable
-+    EntryBuilder entries(final @NotNull Player player);
++    @Nullable EntryBuilder entries(final Player player);
 +}
 diff --git a/src/main/java/moe/caramel/daydream/sidebar/SidebarProcessor.java b/src/main/java/moe/caramel/daydream/sidebar/SidebarProcessor.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..545cafad82bc93cebe17e59c1f125ce579354b1a
+index 0000000000000000000000000000000000000000..24918ce807ff99a4a0e287180dbcfdbb50820cab
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/sidebar/SidebarProcessor.java
 @@ -0,0 +1,85 @@
@@ -235,10 +185,11 @@ index 0000000000000000000000000000000000000000..545cafad82bc93cebe17e59c1f125ce5
 +
 +import org.bukkit.entity.Player;
 +import org.bukkit.plugin.Plugin;
-+import org.jetbrains.annotations.NotNull;
++import org.jspecify.annotations.NullMarked;
 +import java.util.Set;
 +import java.util.UUID;
 +
++@NullMarked
 +public interface SidebarProcessor {
 +
 +    /**
@@ -250,7 +201,7 @@ index 0000000000000000000000000000000000000000..545cafad82bc93cebe17e59c1f125ce5
 +     * @param updateInterval 사이드바 업데이트 시간(Tick), 0 이하일 수 없습니다.
 +     * @return 이미 사용하고 있는 경우 {@code false}를 반환
 +     */
-+    boolean activate(final @NotNull Plugin owner, final @NotNull SidebarDecorator decorator, final @NotNull Player holder, final long updateInterval);
++    boolean activate(final Plugin owner, final SidebarDecorator decorator, final Player holder, final long updateInterval);
 +
 +    /**
 +     * 특정 플레이어에게 개인 사이드바 기능을 비활성화합니다.
@@ -258,7 +209,7 @@ index 0000000000000000000000000000000000000000..545cafad82bc93cebe17e59c1f125ce5
 +     * @param holder 대상 플레이어
 +     * @return 활성화되어있지 않은 경우 {@code false}를 반환
 +     */
-+    default boolean deactivate(final @NotNull Player holder) {
++    default boolean deactivate(final Player holder) {
 +        return deactivate(holder.getUniqueId());
 +    }
 +
@@ -268,7 +219,7 @@ index 0000000000000000000000000000000000000000..545cafad82bc93cebe17e59c1f125ce5
 +     * @param uuid 대상 플레이어의 UUID
 +     * @return 활성화되어있지 않은 경우 {@code false}를 반환
 +     */
-+    boolean deactivate(final @NotNull UUID uuid);
++    boolean deactivate(final UUID uuid);
 +
 +    /**
 +     * 특정 플레이어의 개인 사이드바 기능 사용 여부를 가져옵니다.
@@ -276,7 +227,7 @@ index 0000000000000000000000000000000000000000..545cafad82bc93cebe17e59c1f125ce5
 +     * @param holder 대상 플레이어
 +     * @return 개인 사이드바 기능 사용 여부
 +     */
-+    default boolean activated(final @NotNull Player holder) {
++    default boolean activated(final Player holder) {
 +        return activated(holder.getUniqueId());
 +    }
 +
@@ -286,7 +237,7 @@ index 0000000000000000000000000000000000000000..545cafad82bc93cebe17e59c1f125ce5
 +     * @param uuid 대상 플레이어의 UUID
 +     * @return 개인 사이드바 기능 사용 여부
 +     */
-+    boolean activated(final @NotNull UUID uuid);
++    boolean activated(final UUID uuid);
 +
 +    /**
 +     * 특정 플레이어의 개인 사이드바 업데이트 시간을 가져옵니다.
@@ -295,7 +246,7 @@ index 0000000000000000000000000000000000000000..545cafad82bc93cebe17e59c1f125ce5
 +     * @return 개인 사이드바 업데이트 주기 (틱).
 +     * {@code -1}인 경우 비활성화 상태
 +     */
-+    default long updateInterval(final @NotNull Player holder) {
++    default long updateInterval(final Player holder) {
 +        return updateInterval(holder.getUniqueId());
 +    }
 +
@@ -306,18 +257,17 @@ index 0000000000000000000000000000000000000000..545cafad82bc93cebe17e59c1f125ce5
 +     * @return 개인 사이드바 업데이트 주기 (틱).
 +     * {@code -1}인 경우 비활성화 상태
 +     */
-+    long updateInterval(final @NotNull UUID uuid);
++    long updateInterval(final UUID uuid);
 +
 +    /**
 +     * 개인 사이드바가 활성화된 플레이어의 UUID 목록을 가져옵니다.
 +     *
 +     * @return UUID 목록
 +     */
-+    @NotNull
 +    Set<UUID> trackedPlayers();
 +}
 diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
-index 813b5937b4e581307508ceda9f753cdd9e702c7a..1adad022e6d7b2f74b549bd12722d5ac15a8b935 100644
+index 4b424a31bb131af3960f72a0b4cc93d252ac4ee9..32ea537db3ae9ba46a737cf681998eefb86581dd 100644
 --- a/src/main/java/org/bukkit/Bukkit.java
 +++ b/src/main/java/org/bukkit/Bukkit.java
 @@ -3037,6 +3037,18 @@ public final class Bukkit {
@@ -340,7 +290,7 @@ index 813b5937b4e581307508ceda9f753cdd9e702c7a..1adad022e6d7b2f74b549bd12722d5ac
      public static Server.Spigot spigot() {
          return server.spigot();
 diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
-index 6cee3cb6082e613fce1c467d2c3ad1bad3492bf8..53c6f19368cd501fc35bb467f21d52fa5b1a977b 100644
+index 517db56606fb8250f5961867e287fff8c43ab3f6..838ffe943ab1a46f66aa8af5c0cdb20d07a5d3eb 100644
 --- a/src/main/java/org/bukkit/Server.java
 +++ b/src/main/java/org/bukkit/Server.java
 @@ -2662,4 +2662,14 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi

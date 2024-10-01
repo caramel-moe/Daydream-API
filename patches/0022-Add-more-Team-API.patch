@@ -6,18 +6,19 @@ Subject: [PATCH] Add more Team API
 
 diff --git a/src/main/java/moe/caramel/daydream/team/TeamListener.java b/src/main/java/moe/caramel/daydream/team/TeamListener.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..8d2ef759e1f132053162442baee824825be1ae83
+index 0000000000000000000000000000000000000000..6f695d6f2c82d7628ab2d0b64cf5acaacd82b1c8
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/team/TeamListener.java
-@@ -0,0 +1,52 @@
+@@ -0,0 +1,53 @@
 +package moe.caramel.daydream.team;
 +
 +import org.bukkit.OfflinePlayer;
-+import org.jetbrains.annotations.NotNull;
++import org.jspecify.annotations.NullMarked;
 +
 +/**
 + * {@link org.bukkit.scoreboard.Team}의 변경 사항을 리스닝합니다.
 + */
++@NullMarked
 +public interface TeamListener {
 +
 +    /**
@@ -31,7 +32,7 @@ index 0000000000000000000000000000000000000000..8d2ef759e1f132053162442baee82482
 +     *
 +     * @param entry 엔트리
 +     */
-+    default void addEntry(final @NotNull String entry) {
++    default void addEntry(final String entry) {
 +    }
 +
 +    /**
@@ -41,7 +42,7 @@ index 0000000000000000000000000000000000000000..8d2ef759e1f132053162442baee82482
 +     *
 +     * @param player 플레이어
 +     */
-+    default void addPlayer(final @NotNull OfflinePlayer player) {
++    default void addPlayer(final OfflinePlayer player) {
 +    }
 +
 +    /**
@@ -49,7 +50,7 @@ index 0000000000000000000000000000000000000000..8d2ef759e1f132053162442baee82482
 +     *
 +     * @param entry 엔트리
 +     */
-+    default void removeEntry(final @NotNull String entry) {
++    default void removeEntry(final String entry) {
 +    }
 +
 +    /**
@@ -59,7 +60,7 @@ index 0000000000000000000000000000000000000000..8d2ef759e1f132053162442baee82482
 +     *
 +     * @param player 플레이어
 +     */
-+    default void removePlayer(final @NotNull OfflinePlayer player) {
++    default void removePlayer(final OfflinePlayer player) {
 +    }
 +}
 diff --git a/src/main/java/org/bukkit/scoreboard/Score.java b/src/main/java/org/bukkit/scoreboard/Score.java

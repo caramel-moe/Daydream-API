@@ -5,7 +5,7 @@ Subject: [PATCH] Add Network API
 
 
 diff --git a/build.gradle.kts b/build.gradle.kts
-index 0ea7f8eadba5d3357fa8ca2b5d3c1a416ee82917..e760723b5890c92cdb84ef6a9c93d1736530d6e8 100644
+index a81477b68a8fc9fd46b7b94e795e6108282056f0..457748eedddc7f31325be89f44e0192888b27971 100644
 --- a/build.gradle.kts
 +++ b/build.gradle.kts
 @@ -57,6 +57,16 @@ dependencies {
@@ -26,12 +26,12 @@ index 0ea7f8eadba5d3357fa8ca2b5d3c1a416ee82917..e760723b5890c92cdb84ef6a9c93d173
      api("org.apache.maven:maven-resolver-provider:3.9.6") // Paper - make API dependency for Paper Plugins
      compileOnly("org.apache.maven.resolver:maven-resolver-connector-basic:1.9.18")
 diff --git a/src/main/java/com/destroystokyo/paper/network/NetworkClient.java b/src/main/java/com/destroystokyo/paper/network/NetworkClient.java
-index 7b2af1bd72dfbcf4e962a982940fc49b851aa04f..dad505d4e12bcdbb379485c59e476c98120d3ecd 100644
+index c84ce3fc874eea3d8f0b1cf5273996d9b4af6225..f3e044b5529d7aa470c46535c2304ef2e4cc6a07 100644
 --- a/src/main/java/com/destroystokyo/paper/network/NetworkClient.java
 +++ b/src/main/java/com/destroystokyo/paper/network/NetworkClient.java
-@@ -38,4 +38,15 @@ public interface NetworkClient {
-     @Nullable
-     InetSocketAddress getVirtualHost();
+@@ -36,4 +36,14 @@ public interface NetworkClient {
+      */
+     @Nullable InetSocketAddress getVirtualHost();
  
 +    // Daydream start - Add Network API
 +    /**
@@ -39,14 +39,13 @@ index 7b2af1bd72dfbcf4e962a982940fc49b851aa04f..dad505d4e12bcdbb379485c59e476c98
 +     *
 +     * @return netty 채널
 +     */
-+    @Nullable
-+    default io.netty.channel.Channel getChannel() {
++    default io.netty.channel.@Nullable Channel getChannel() {
 +        return null;
 +    }
 +    // Daydream end - Add Network API
  }
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index b4d303887c6ca2b75c4e816d51a48b26092d8562..804db53f0841af365b80c047b59e5825bf089210 100644
+index bc69882922b588950c08da609705c98ba4005095..ef4f5180a99ba7680a0f07d2d6569dd943e77aed 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
 @@ -1036,6 +1036,24 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM

@@ -6,10 +6,10 @@ Subject: [PATCH] Add PlayerInteractManager
 
 diff --git a/src/main/java/moe/caramel/daydream/event/player/PlayerInputUpdateEvent.java b/src/main/java/moe/caramel/daydream/event/player/PlayerInputUpdateEvent.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..d56a5e7c3e445280442a59ac5a19a767c5bace47
+index 0000000000000000000000000000000000000000..64ef745afa02969c23b40f0bec4148cd3ce90302
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/event/player/PlayerInputUpdateEvent.java
-@@ -0,0 +1,66 @@
+@@ -0,0 +1,75 @@
 +package moe.caramel.daydream.event.player;
 +
 +import moe.caramel.daydream.player.InteractManager.Key;
@@ -17,22 +17,19 @@ index 0000000000000000000000000000000000000000..d56a5e7c3e445280442a59ac5a19a767
 +import org.bukkit.event.HandlerList;
 +import org.bukkit.event.player.PlayerEvent;
 +import org.jetbrains.annotations.ApiStatus;
-+import org.jetbrains.annotations.NotNull;
++import org.jspecify.annotations.NullMarked;
 +
 +/**
 + * 플레이어의 IPS(Interacts Per Second)가 변경되었을 때 호출됩니다.
 + */
++@NullMarked
 +public final class PlayerInputUpdateEvent extends PlayerEvent {
-+
-+    private static final HandlerList HANDLER_LIST = new HandlerList();
-+    public @NotNull HandlerList getHandlers() { return HANDLER_LIST; }
-+    public static @NotNull HandlerList getHandlerList() { return HANDLER_LIST; }
 +
 +    private final int current, max;
 +    private final Key key;
 +
 +    @ApiStatus.Internal
-+    public PlayerInputUpdateEvent(final @NotNull Player player, final @NotNull Key key, final int current, final int max) {
++    public PlayerInputUpdateEvent(final Player player, final Key key, final int current, final int max) {
 +        super(player);
 +        this.current = current;
 +        this.max = max;
@@ -71,24 +68,37 @@ index 0000000000000000000000000000000000000000..d56a5e7c3e445280442a59ac5a19a767
 +     *
 +     * @return 상호작용에 사용한 키
 +     */
-+    @NotNull
 +    public Key getKey() {
 +        return this.key;
 +    }
++
++    //<editor-fold desc="Bukkit Event Handler (Internal)" defaultstate="collapsed">
++    private static final HandlerList HANDLER_LIST = new HandlerList();
++
++    @Override
++    public HandlerList getHandlers() {
++        return HANDLER_LIST;
++    }
++
++    public static HandlerList getHandlerList() {
++        return HANDLER_LIST;
++    }
++    //</editor-fold>
 +}
 diff --git a/src/main/java/moe/caramel/daydream/player/InteractManager.java b/src/main/java/moe/caramel/daydream/player/InteractManager.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..b8acc4f1d9b313842772a56d239ba03e153ad8eb
+index 0000000000000000000000000000000000000000..eba02dc2c6f830a116042a5ab3c61fe8f2623e6e
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/player/InteractManager.java
-@@ -0,0 +1,105 @@
+@@ -0,0 +1,106 @@
 +package moe.caramel.daydream.player;
 +
-+import org.jetbrains.annotations.NotNull;
++import org.jspecify.annotations.NullMarked;
 +
 +/**
 + * 플레이어의 상호작용을 제어합니다.
 + */
++@NullMarked
 +public interface InteractManager {
 +
 +    /*
@@ -111,7 +121,7 @@ index 0000000000000000000000000000000000000000..b8acc4f1d9b313842772a56d239ba03e
 +     * @param ignore {@code true}인 경우 플레이어가 {@link Key#LEFT_CLICK}
 +     * 상호작용 시에도 앞에 있는 엔티티를 통과하여 상호작용을 수행합니다.
 +     */
-+    void interactCanIgnoreEntityInAdventure(boolean ignore);
++    void interactCanIgnoreEntityInAdventure(final boolean ignore);
 +
 +
 +    /*
@@ -124,7 +134,7 @@ index 0000000000000000000000000000000000000000..b8acc4f1d9b313842772a56d239ba03e
 +     * @param key 제한할 {@link Key}
 +     * @param max 최대 횟수 (0 이하일 경우 비활성화)
 +     */
-+    void maxInteractsPerSecond(@NotNull Key key, int max);
++    void maxInteractsPerSecond(final Key key, final int max);
 +
 +    /**
 +     * 초(second) 당 상호작용 횟수 제한을 가져옵니다.
@@ -132,7 +142,7 @@ index 0000000000000000000000000000000000000000..b8acc4f1d9b313842772a56d239ba03e
 +     * @param key 가져올 {@link Key}
 +     * @return 제한된 횟수 (0 이하일 경우 비활성화)
 +     */
-+    int maxInteractsPerSecond(@NotNull Key key);
++    int maxInteractsPerSecond(final Key key);
 +
 +    /**
 +     * 기본 초(second) 당 상호작용 횟수 제한을 가져옵니다.
@@ -140,7 +150,7 @@ index 0000000000000000000000000000000000000000..b8acc4f1d9b313842772a56d239ba03e
 +     * @param key 가져올 {@link Key}
 +     * @return 기본 제한 횟수 (0 이하일 경우 비활성화)
 +     */
-+    int defaultMaxInteractsPerSecond(@NotNull Key key);
++    int defaultMaxInteractsPerSecond(final Key key);
 +
 +
 +    /*
@@ -152,7 +162,7 @@ index 0000000000000000000000000000000000000000..b8acc4f1d9b313842772a56d239ba03e
 +     *
 +     * @param delay 딜레이 (0 이하일 경우 비활성화)
 +     */
-+    void swapKeyDelay(int delay);
++    void swapKeyDelay(final int delay);
 +
 +    /**
 +     * Swap Key(기본 F)의 딜레이를 가져옵니다.
@@ -188,7 +198,7 @@ index 0000000000000000000000000000000000000000..b8acc4f1d9b313842772a56d239ba03e
 +    }
 +}
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index 5e0723eced8f9c7c30ca944db2b4b84d9b17c949..2e1cc7c57ee5b330f11364fa322b20e56b9eb975 100644
+index eb9a5278ddedce9e3f4a5c379161e8a292260909..9ccaca4e562600c9723a1e76717d194b36080582 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
 @@ -59,6 +59,16 @@ import org.jetbrains.annotations.Nullable;

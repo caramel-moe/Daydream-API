@@ -20,7 +20,7 @@ index e72ad05abada04426e32a73d02b21cb69079d268..f15fa2abcc04d7d1b6f49a77a023dbd0
          }
 diff --git a/src/main/java/moe/caramel/daydream/InternalDaydreamConfig.java b/src/main/java/moe/caramel/daydream/InternalDaydreamConfig.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..47e6cd6a6a5a0d72f7a8002bd3854b088bc5c404
+index 0000000000000000000000000000000000000000..3f102d84bd279d9adcad1e8bf1602b703aa25f58
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/InternalDaydreamConfig.java
 @@ -0,0 +1,33 @@
@@ -29,11 +29,12 @@ index 0000000000000000000000000000000000000000..47e6cd6a6a5a0d72f7a8002bd3854b08
 +import org.bukkit.Bukkit;
 +import org.bukkit.configuration.file.YamlConfiguration;
 +import org.jetbrains.annotations.ApiStatus;
-+import org.jetbrains.annotations.NotNull;
++import org.jspecify.annotations.NullMarked;
 +
 +/**
 + * Internal Daydream Config
 + */
++@NullMarked
 +@ApiStatus.Internal
 +public interface InternalDaydreamConfig {
 +
@@ -43,7 +44,6 @@ index 0000000000000000000000000000000000000000..47e6cd6a6a5a0d72f7a8002bd3854b08
 +     *
 +     * @return Daydream 설정
 +     */
-+    @NotNull
 +    static YamlConfiguration config() {
 +        return Bukkit.spigot().getDaydreamConfig();
 +    }
@@ -58,7 +58,7 @@ index 0000000000000000000000000000000000000000..47e6cd6a6a5a0d72f7a8002bd3854b08
 +    }
 +}
 diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
-index 5aa64ea39ebd92e5067c53cea49a8685c0b9eee4..945804db547211012c3d06466f158eef181ed5eb 100644
+index 6246251caf2c6f025c824b8e7a944b8d48751fa1..02a4c39dbbf9c7c069ee86fef84ad9ef90860128 100644
 --- a/src/main/java/org/bukkit/Server.java
 +++ b/src/main/java/org/bukkit/Server.java
 @@ -2265,6 +2265,14 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi

@@ -6,10 +6,10 @@ Subject: [PATCH] Add Client Detector
 
 diff --git a/src/main/java/moe/caramel/daydream/event/configure/ConfigurationClientTypeDetectedEvent.java b/src/main/java/moe/caramel/daydream/event/configure/ConfigurationClientTypeDetectedEvent.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..a555ade030fafd5a2407aa9de4712e3790df048c
+index 0000000000000000000000000000000000000000..f1ebef97a226f55be63fb3cd8c4062e3331db2d7
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/event/configure/ConfigurationClientTypeDetectedEvent.java
-@@ -0,0 +1,65 @@
+@@ -0,0 +1,72 @@
 +package moe.caramel.daydream.event.configure;
 +
 +import moe.caramel.daydream.player.ClientType;
@@ -17,22 +17,19 @@ index 0000000000000000000000000000000000000000..a555ade030fafd5a2407aa9de4712e37
 +import org.bukkit.entity.Player;
 +import org.bukkit.event.HandlerList;
 +import org.jetbrains.annotations.ApiStatus;
-+import org.jetbrains.annotations.NotNull;
-+import org.jetbrains.annotations.Nullable;
++import org.jspecify.annotations.NullMarked;
++import org.jspecify.annotations.Nullable;
 +
 +/**
 + * Configuration 페이즈에서 플레이어의 클라이언트 종류를 감지 완료하였을 때 호출됩니다.
 + */
++@NullMarked
 +public final class ConfigurationClientTypeDetectedEvent extends ConfigurationPhaseEvent {
 +
-+    private static final HandlerList HANDLER_LIST = new HandlerList();
-+    public @NotNull HandlerList getHandlers() { return HANDLER_LIST; }
-+    public static @NotNull HandlerList getHandlerList() { return HANDLER_LIST; }
-+
-+    private Component disconnectReason;
++    private @Nullable Component disconnectReason;
 +
 +    @ApiStatus.Internal
-+    public ConfigurationClientTypeDetectedEvent(final @NotNull Player who) {
++    public ConfigurationClientTypeDetectedEvent(final Player who) {
 +        super(who, true);
 +    }
 +
@@ -41,7 +38,6 @@ index 0000000000000000000000000000000000000000..a555ade030fafd5a2407aa9de4712e37
 +     *
 +     * @return 클라이언트의 타입
 +     */
-+    @NotNull
 +    public ClientType clientType() {
 +        return player.getClientType();
 +    }
@@ -51,8 +47,7 @@ index 0000000000000000000000000000000000000000..a555ade030fafd5a2407aa9de4712e37
 +     *
 +     * @return 브랜드 이름 (수정된 클라이언트가 서버로 정보를 전송하지 않을 수도 있음)
 +     */
-+    @Nullable
-+    public String clientBrandName() {
++    public @Nullable String clientBrandName() {
 +        return player.getClientBrandName();
 +    }
 +
@@ -61,8 +56,7 @@ index 0000000000000000000000000000000000000000..a555ade030fafd5a2407aa9de4712e37
 +     *
 +     * @return 플레이어 추방 사유
 +     */
-+    @Nullable
-+    public Component disconnectReason() {
++    public @Nullable Component disconnectReason() {
 +        return disconnectReason;
 +    }
 +
@@ -74,6 +68,19 @@ index 0000000000000000000000000000000000000000..a555ade030fafd5a2407aa9de4712e37
 +    public void disconnectReason(final @Nullable Component disconnectReason) {
 +        this.disconnectReason = disconnectReason;
 +    }
++
++    //<editor-fold desc="Bukkit Event Handler (Internal)" defaultstate="collapsed">
++    private static final HandlerList HANDLER_LIST = new HandlerList();
++
++    @Override
++    public HandlerList getHandlers() {
++        return HANDLER_LIST;
++    }
++
++    public static HandlerList getHandlerList() {
++        return HANDLER_LIST;
++    }
++    //</editor-fold>
 +}
 diff --git a/src/main/java/moe/caramel/daydream/player/ClientType.java b/src/main/java/moe/caramel/daydream/player/ClientType.java
 new file mode 100644
@@ -116,7 +123,7 @@ index 0000000000000000000000000000000000000000..963d3aa970ef24bafd2aaa17bde4b8c2
 +    NEOFORGE,
 +}
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index 6de8c5ec9a0977ab256a8f0d38fae7bedcee89f6..553cd80c94bc4a155e19ce16c2cad4b084025d4a 100644
+index f70be7551a031066d66aa448c7b88f72ec865f60..a6b13d0d3d56a0abb94d0486a846ed51d6953a83 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
 @@ -3827,6 +3827,19 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM

@@ -5,22 +5,21 @@ Subject: [PATCH] Add more Player API
 
 
 diff --git a/src/main/java/io/papermc/paper/event/player/AbstractChatEvent.java b/src/main/java/io/papermc/paper/event/player/AbstractChatEvent.java
-index a0fd845bc9b2540c398fe1dbbf821803a7017a28..91c0a765ac78e076aebbf2b4f5aa27b86e408aab 100644
+index 9a95d203151d2c91b0eec494e3674f0facfaa305..efe0088fb2b2e47e373e42e5e18a625f4b72fb30 100644
 --- a/src/main/java/io/papermc/paper/event/player/AbstractChatEvent.java
 +++ b/src/main/java/io/papermc/paper/event/player/AbstractChatEvent.java
-@@ -27,6 +27,38 @@ public abstract class AbstractChatEvent extends PlayerEvent implements Cancellab
+@@ -27,6 +27,36 @@ public abstract class AbstractChatEvent extends PlayerEvent implements Cancellab
      private Component message;
  
      private boolean cancelled;
 +    // Daydream start - Add more Player API (Improve Chat System)
-+    private net.kyori.adventure.chat.ChatType chatType = null;
++    private net.kyori.adventure.chat.@org.jspecify.annotations.Nullable ChatType chatType = null;
 +
 +    /**
 +     * Get the player message wrapper.
 +     *
 +     * @return player message wrapper
 +     */
-+    @NotNull
 +    public moe.caramel.daydream.player.PlayerMessage playerMessage() {
 +        return (moe.caramel.daydream.player.PlayerMessage) signedMessage;
 +    }
@@ -30,8 +29,7 @@ index a0fd845bc9b2540c398fe1dbbf821803a7017a28..91c0a765ac78e076aebbf2b4f5aa27b8
 +     *
 +     * @return 채팅 포맷
 +     */
-+    @org.jetbrains.annotations.Nullable
-+    public net.kyori.adventure.chat.ChatType chatType() {
++    public net.kyori.adventure.chat.@org.jspecify.annotations.Nullable ChatType chatType() {
 +        return chatType;
 +    }
 +
@@ -40,37 +38,37 @@ index a0fd845bc9b2540c398fe1dbbf821803a7017a28..91c0a765ac78e076aebbf2b4f5aa27b8
 +     *
 +     * @param chatType 채팅 포맷
 +     */
-+    public void chatType(final @NotNull net.kyori.adventure.chat.ChatType chatType) {
++    public void chatType(final net.kyori.adventure.chat.@org.jspecify.annotations.Nullable ChatType chatType) {
 +        this.chatType = chatType;
 +    }
 +    // Daydream end - Add more Player API (Improve Chat System)
  
-     AbstractChatEvent(final boolean async, final @NotNull Player player, final @NotNull Set<Audience> viewers, final @NotNull ChatRenderer renderer, final @NotNull Component message, final @NotNull Component originalMessage, final @NotNull SignedMessage signedMessage) {
+     AbstractChatEvent(final boolean async, final Player player, final Set<Audience> viewers, final ChatRenderer renderer, final Component message, final Component originalMessage, final SignedMessage signedMessage) {
          super(player, async);
 diff --git a/src/main/java/io/papermc/paper/event/player/ChatEvent.java b/src/main/java/io/papermc/paper/event/player/ChatEvent.java
-index 7411f58f9f36beaadcc47c2264a4af313956ee03..201fe24d393beb8d0be4c4212aff56439076edc9 100644
+index 42a82ce2316a4aad2883d24c7e2ff95d95f5881a..5c3fc1707df4c921ddb01d3474e4f7dbf2a49c56 100644
 --- a/src/main/java/io/papermc/paper/event/player/ChatEvent.java
 +++ b/src/main/java/io/papermc/paper/event/player/ChatEvent.java
-@@ -28,6 +28,13 @@ public final class ChatEvent extends AbstractChatEvent {
+@@ -29,6 +29,13 @@ public final class ChatEvent extends AbstractChatEvent {
          super(false, player, viewers, renderer, message, originalMessage, signedMessage);
      }
  
 +    // Daydream start - Add more Player API (Improve Chat System)
 +    @Override
-+    public @NotNull moe.caramel.daydream.player.PlayerMessage playerMessage() {
++    public moe.caramel.daydream.player.PlayerMessage playerMessage() {
 +        throw new UnsupportedOperationException("Async Only");
 +    }
 +    // Daydream end - Add more Player API (Improve Chat System)
 +
-     @NotNull
      @Override
      public HandlerList getHandlers() {
+         return HANDLER_LIST;
 diff --git a/src/main/java/moe/caramel/daydream/event/player/AsyncPlayerDataPreLoadEvent.java b/src/main/java/moe/caramel/daydream/event/player/AsyncPlayerDataPreLoadEvent.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..694fbd96528244bc24f9116bd2cc78eb6214c1a0
+index 0000000000000000000000000000000000000000..18cd85f6c3a8eb7be560b5ca0b46dbfef6e9e6c2
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/event/player/AsyncPlayerDataPreLoadEvent.java
-@@ -0,0 +1,106 @@
+@@ -0,0 +1,110 @@
 +package moe.caramel.daydream.event.player;
 +
 +import com.destroystokyo.paper.profile.PlayerProfile;
@@ -79,8 +77,8 @@ index 0000000000000000000000000000000000000000..694fbd96528244bc24f9116bd2cc78eb
 +import org.bukkit.event.Event;
 +import org.bukkit.event.HandlerList;
 +import org.jetbrains.annotations.ApiStatus;
-+import org.jetbrains.annotations.NotNull;
-+import org.jetbrains.annotations.Nullable;
++import org.jspecify.annotations.NullMarked;
++import org.jspecify.annotations.Nullable;
 +import java.net.InetAddress;
 +import java.util.UUID;
 +
@@ -91,13 +89,10 @@ index 0000000000000000000000000000000000000000..694fbd96528244bc24f9116bd2cc78eb
 + * 플레이어의 {@link GameProfile}이 완성되면 호출됩니다.
 + * </p>
 + */
++@NullMarked
 +public abstract class AsyncPlayerDataPreLoadEvent extends Event {
 +
-+    private static final HandlerList HANDLER_LIST = new HandlerList();
-+    public @NotNull HandlerList getHandlers() { return HANDLER_LIST; }
-+    public static @NotNull HandlerList getHandlerList() { return HANDLER_LIST; }
-+
-+    private @Nullable net.kyori.adventure.text.Component disconnectMessage;
++    private @Nullable Component disconnectMessage;
 +
 +    @ApiStatus.Internal
 +    public AsyncPlayerDataPreLoadEvent() {
@@ -114,7 +109,6 @@ index 0000000000000000000000000000000000000000..694fbd96528244bc24f9116bd2cc78eb
 +     *
 +     * @return 플레이어의 프로필
 +     */
-+    @NotNull
 +    public abstract GameProfile getGameProfile();
 +
 +    /**
@@ -124,7 +118,6 @@ index 0000000000000000000000000000000000000000..694fbd96528244bc24f9116bd2cc78eb
 +     * {@link #getGameProfile()}를 사용하세요.
 +     * @return 플레이어의 프로필
 +     */
-+    @NotNull
 +    @Deprecated
 +    public abstract PlayerProfile getProfile();
 +
@@ -133,7 +126,6 @@ index 0000000000000000000000000000000000000000..694fbd96528244bc24f9116bd2cc78eb
 +     *
 +     * @return 플레이어의 이름
 +     */
-+    @NotNull
 +    public final String getName() {
 +        return getGameProfile().getName();
 +    }
@@ -143,7 +135,6 @@ index 0000000000000000000000000000000000000000..694fbd96528244bc24f9116bd2cc78eb
 +     *
 +     * @return 플레이어의 UUID
 +     */
-+    @NotNull
 +    public final UUID getUniqueId() {
 +        return getGameProfile().getId();
 +    }
@@ -153,7 +144,6 @@ index 0000000000000000000000000000000000000000..694fbd96528244bc24f9116bd2cc78eb
 +     *
 +     * @return 플레이어의 IP 주소
 +     */
-+    @NotNull
 +    public abstract InetAddress getAddress();
 +
 +    /**
@@ -162,8 +152,7 @@ index 0000000000000000000000000000000000000000..694fbd96528244bc24f9116bd2cc78eb
 +     *
 +     * @return 연결 해제 메시지
 +     */
-+    @Nullable
-+    public final Component getDisconnectMessage() {
++    public final @Nullable Component getDisconnectMessage() {
 +        return disconnectMessage;
 +    }
 +
@@ -176,9 +165,22 @@ index 0000000000000000000000000000000000000000..694fbd96528244bc24f9116bd2cc78eb
 +    public final void setDisconnectMessage(final @Nullable Component disconnectMessage) {
 +        this.disconnectMessage = disconnectMessage;
 +    }
++
++    //<editor-fold desc="Bukkit Event Handler (Internal)" defaultstate="collapsed">
++    private static final HandlerList HANDLER_LIST = new HandlerList();
++
++    @Override
++    public HandlerList getHandlers() {
++        return HANDLER_LIST;
++    }
++
++    public static HandlerList getHandlerList() {
++        return HANDLER_LIST;
++    }
++    //</editor-fold>
 +}
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index 7c56182acaf827f4b1a986a61cea8e9960604c98..83517098f9523c6c9d6a20991297d1e71f3aa9a8 100644
+index 8086acceacbceb2c5a7228fff005e41a86d37008..f22ef96c3e3732dd13cc37fbe68b4b1603739e0a 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
 @@ -1998,6 +1998,22 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM

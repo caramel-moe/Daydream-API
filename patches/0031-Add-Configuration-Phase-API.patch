@@ -6,33 +6,34 @@ Subject: [PATCH] Add Configuration Phase API
 
 diff --git a/src/main/java/moe/caramel/daydream/event/configure/ConfigurationPhaseEvent.java b/src/main/java/moe/caramel/daydream/event/configure/ConfigurationPhaseEvent.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..8bf5087ef97b22a3d981adb2312e7296ab85d094
+index 0000000000000000000000000000000000000000..45026d1315ddfcc064ceb58b495db0d999e14db4
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/event/configure/ConfigurationPhaseEvent.java
-@@ -0,0 +1,17 @@
+@@ -0,0 +1,18 @@
 +package moe.caramel.daydream.event.configure;
 +
 +import org.bukkit.entity.Player;
 +import org.bukkit.event.player.PlayerEvent;
 +import org.jetbrains.annotations.ApiStatus;
-+import org.jetbrains.annotations.NotNull;
++import org.jspecify.annotations.NullMarked;
 +
 +/**
 + * Configuration 페이즈에서 호출되는 이벤트
 + */
++@NullMarked
 +public abstract class ConfigurationPhaseEvent extends PlayerEvent {
 +
 +    @ApiStatus.Internal
-+    public ConfigurationPhaseEvent(final @NotNull Player who, final boolean async) {
++    public ConfigurationPhaseEvent(final Player who, final boolean async) {
 +        super(who, async);
 +    }
 +}
 diff --git a/src/main/java/moe/caramel/daydream/event/configure/ConfigurationResourcePackRequestEvent.java b/src/main/java/moe/caramel/daydream/event/configure/ConfigurationResourcePackRequestEvent.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..894016d21418cdf0044fef7def099260adade292
+index 0000000000000000000000000000000000000000..935dec08ac4c9251ee90887b953dbfbe5e3ea017
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/event/configure/ConfigurationResourcePackRequestEvent.java
-@@ -0,0 +1,177 @@
+@@ -0,0 +1,179 @@
 +package moe.caramel.daydream.event.configure;
 +
 +import net.kyori.adventure.resource.ResourcePackCallback;
@@ -44,8 +45,8 @@ index 0000000000000000000000000000000000000000..894016d21418cdf0044fef7def099260
 +import org.bukkit.entity.Player;
 +import org.bukkit.event.HandlerList;
 +import org.jetbrains.annotations.ApiStatus;
-+import org.jetbrains.annotations.NotNull;
-+import org.jetbrains.annotations.Nullable;
++import org.jspecify.annotations.NullMarked;
++import org.jspecify.annotations.Nullable;
 +import java.util.ArrayList;
 +import java.util.List;
 +
@@ -53,20 +54,17 @@ index 0000000000000000000000000000000000000000..894016d21418cdf0044fef7def099260
 + * Configuration 페이즈에서 리소스팩을 설정할 수 있습니다.
 + * <p>이 이벤트를 사용하여 리소스팩을 적용하는 경우, server.properties의 리소스팩 로직이 무시됩니다.</p>
 + */
++@NullMarked
 +public final class ConfigurationResourcePackRequestEvent extends ConfigurationPhaseEvent {
-+
-+    private static final HandlerList HANDLER_LIST = new HandlerList();
-+    public @NotNull HandlerList getHandlers() { return HANDLER_LIST; }
-+    public static @NotNull HandlerList getHandlerList() { return HANDLER_LIST; }
 +
 +    private final List<ResourcePackInfoLike> packs;
 +    private final List<ResourcePackCallback> callbacks;
-+    private Component prompt, disconnectMessage;
++    private @Nullable Component prompt, disconnectMessage;
 +    private boolean replacePacks;
 +    private boolean strictCheck;
 +
 +    @ApiStatus.Internal
-+    public ConfigurationResourcePackRequestEvent(final @NotNull Player what) {
++    public ConfigurationResourcePackRequestEvent(final Player what) {
 +        super(what, !Bukkit.isPrimaryThread());
 +        this.packs = new ArrayList<>();
 +        this.callbacks = new ArrayList<>();
@@ -77,8 +75,7 @@ index 0000000000000000000000000000000000000000..894016d21418cdf0044fef7def099260
 +     *
 +     * @return this
 +     */
-+    @NotNull
-+    public ConfigurationResourcePackRequestEvent pack(final @NotNull ResourcePackInfoLike packInfo) {
++    public ConfigurationResourcePackRequestEvent pack(final ResourcePackInfoLike packInfo) {
 +        this.packs.add(packInfo);
 +        return this;
 +    }
@@ -88,8 +85,7 @@ index 0000000000000000000000000000000000000000..894016d21418cdf0044fef7def099260
 +     *
 +     * @return this
 +     */
-+    @NotNull
-+    public ConfigurationResourcePackRequestEvent callback(final @NotNull ResourcePackCallback callback) {
++    public ConfigurationResourcePackRequestEvent callback(final ResourcePackCallback callback) {
 +        if (callback != ResourcePackCallback.noOp()) {
 +            this.callbacks.add(callback);
 +        }
@@ -101,8 +97,7 @@ index 0000000000000000000000000000000000000000..894016d21418cdf0044fef7def099260
 +     *
 +     * @return this
 +     */
-+    @NotNull
-+    public ConfigurationResourcePackRequestEvent prompt(final @NotNull Component prompt) {
++    public ConfigurationResourcePackRequestEvent prompt(final Component prompt) {
 +        this.prompt = prompt;
 +        return this;
 +    }
@@ -114,7 +109,6 @@ index 0000000000000000000000000000000000000000..894016d21418cdf0044fef7def099260
 +     * @param disconnectMessage 서버 추방 메시지 ({@code null}인 경우 바닐라 메시지를 사용합니다.)
 +     * @return this
 +     */
-+    @NotNull
 +    public ConfigurationResourcePackRequestEvent disconnectMessage(final @Nullable Component disconnectMessage) {
 +        this.disconnectMessage = disconnectMessage;
 +        return this;
@@ -125,8 +119,7 @@ index 0000000000000000000000000000000000000000..894016d21418cdf0044fef7def099260
 +     *
 +     * @return 서버 추방 메시지
 +     */
-+    @Nullable
-+    public Component disconnectMessage() {
++    public @Nullable Component disconnectMessage() {
 +        return disconnectMessage;
 +    }
 +
@@ -139,7 +132,6 @@ index 0000000000000000000000000000000000000000..894016d21418cdf0044fef7def099260
 +     *
 +     * @return this
 +     */
-+    @NotNull
 +    public ConfigurationResourcePackRequestEvent enableReplacePacks() {
 +        this.replacePacks = true;
 +        return this;
@@ -165,7 +157,6 @@ index 0000000000000000000000000000000000000000..894016d21418cdf0044fef7def099260
 +     *
 +     * @return this
 +     */
-+    @NotNull
 +    public ConfigurationResourcePackRequestEvent enableStrictCheck() {
 +        this.strictCheck = true;
 +        return this;
@@ -194,7 +185,6 @@ index 0000000000000000000000000000000000000000..894016d21418cdf0044fef7def099260
 +     *
 +     * @return 빌드된 리소스팩 요청
 +     */
-+    @NotNull
 +    public ResourcePackRequest build() {
 +        return ResourcePackRequest
 +            .resourcePackRequest()
@@ -209,4 +199,17 @@ index 0000000000000000000000000000000000000000..894016d21418cdf0044fef7def099260
 +            .required(true)
 +            .build();
 +    }
++
++    //<editor-fold desc="Bukkit Event Handler (Internal)" defaultstate="collapsed">
++    private static final HandlerList HANDLER_LIST = new HandlerList();
++
++    @Override
++    public HandlerList getHandlers() {
++        return HANDLER_LIST;
++    }
++
++    public static HandlerList getHandlerList() {
++        return HANDLER_LIST;
++    }
++    //</editor-fold>
 +}

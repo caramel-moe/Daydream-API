@@ -6,19 +6,20 @@ Subject: [PATCH] Add more Damage API
 
 diff --git a/src/main/java/moe/caramel/daydream/world/DamageMata.java b/src/main/java/moe/caramel/daydream/world/DamageMata.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..ce5d5aeb96b65f705b436647c963b7f087431e1d
+index 0000000000000000000000000000000000000000..32b93d78b8a3f044b7ca4ddf6a71e06e3025d9f2
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/world/DamageMata.java
-@@ -0,0 +1,71 @@
+@@ -0,0 +1,69 @@
 +package moe.caramel.daydream.world;
 +
 +import org.bukkit.damage.DamageSource;
-+import org.jetbrains.annotations.NotNull;
++import org.jspecify.annotations.NullMarked;
 +import java.util.Map;
 +
 +/**
 + * 대미지 메타데이터
 + */
++@NullMarked
 +public interface DamageMata {
 +
 +    /**
@@ -26,7 +27,6 @@ index 0000000000000000000000000000000000000000..ce5d5aeb96b65f705b436647c963b7f0
 +     *
 +     * @return NMS DamageSource
 +     */
-+    @NotNull
 +    Object getRawDamageSource();
 +
 +    /**
@@ -34,7 +34,6 @@ index 0000000000000000000000000000000000000000..ce5d5aeb96b65f705b436647c963b7f0
 +     *
 +     * @return DamageSource
 +     */
-+    @NotNull
 +    DamageSource getDamageSource();
 +
 +    /**
@@ -42,7 +41,6 @@ index 0000000000000000000000000000000000000000..ce5d5aeb96b65f705b436647c963b7f0
 +     *
 +     * @return 사용자 지정 메타데이터
 +     */
-+    @NotNull
 +    Map<String, Object> getMetadata();
 +
 +    // ==============================================

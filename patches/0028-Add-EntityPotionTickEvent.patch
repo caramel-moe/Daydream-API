@@ -6,10 +6,10 @@ Subject: [PATCH] Add EntityPotionTickEvent
 
 diff --git a/src/main/java/moe/caramel/daydream/event/entity/EntityPotionTickEvent.java b/src/main/java/moe/caramel/daydream/event/entity/EntityPotionTickEvent.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..a1e91e0a852c9768dfaedfa9fc944ca8a74ca9c6
+index 0000000000000000000000000000000000000000..c52b0bc92a851a5645850ceb7fdee58ca7f90cf9
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/event/entity/EntityPotionTickEvent.java
-@@ -0,0 +1,64 @@
+@@ -0,0 +1,73 @@
 +package moe.caramel.daydream.event.entity;
 +
 +import org.bukkit.entity.LivingEntity;
@@ -18,30 +18,27 @@ index 0000000000000000000000000000000000000000..a1e91e0a852c9768dfaedfa9fc944ca8
 +import org.bukkit.event.entity.EntityEvent;
 +import org.bukkit.potion.PotionEffectType;
 +import org.jetbrains.annotations.ApiStatus;
-+import org.jetbrains.annotations.NotNull;
++import org.jspecify.annotations.NullMarked;
 +
 +/**
 + * 포션 이펙트가 Tick 할 때 호출됩니다.
 + */
++@NullMarked
 +public final class EntityPotionTickEvent extends EntityEvent implements Cancellable {
-+
-+    private static final HandlerList HANDLER_LIST = new HandlerList();
-+    public @NotNull HandlerList getHandlers() { return HANDLER_LIST; }
-+    public static @NotNull HandlerList getHandlerList() { return HANDLER_LIST; }
 +
 +    private final PotionEffectType type;
 +    private final int amplifier;
 +    private boolean cancelled;
 +
 +    @ApiStatus.Internal
-+    public EntityPotionTickEvent(final @NotNull LivingEntity what, final @NotNull PotionEffectType type, final int amplifier) {
++    public EntityPotionTickEvent(final LivingEntity what, final PotionEffectType type, final int amplifier) {
 +        super(what);
 +        this.type = type;
 +        this.amplifier = amplifier;
 +    }
 +
 +    @Override
-+    public @NotNull LivingEntity getEntity() {
++    public LivingEntity getEntity() {
 +        return (LivingEntity) entity;
 +    }
 +
@@ -50,7 +47,6 @@ index 0000000000000000000000000000000000000000..a1e91e0a852c9768dfaedfa9fc944ca8
 +     *
 +     * @return 포션 이펙트의 타입
 +     */
-+    @NotNull
 +    public PotionEffectType getType() {
 +        return type;
 +    }
@@ -73,4 +69,17 @@ index 0000000000000000000000000000000000000000..a1e91e0a852c9768dfaedfa9fc944ca8
 +    public void setCancelled(final boolean cancel) {
 +        this.cancelled = cancel;
 +    }
++
++    //<editor-fold desc="Bukkit Event Handler (Internal)" defaultstate="collapsed">
++    private static final HandlerList HANDLER_LIST = new HandlerList();
++
++    @Override
++    public HandlerList getHandlers() {
++        return HANDLER_LIST;
++    }
++
++    public static HandlerList getHandlerList() {
++        return HANDLER_LIST;
++    }
++    //</editor-fold>
 +}

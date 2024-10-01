@@ -5,10 +5,10 @@ Subject: [PATCH] Add more Explosion API
 
 
 diff --git a/src/main/java/moe/caramel/daydream/world/DamageMata.java b/src/main/java/moe/caramel/daydream/world/DamageMata.java
-index ce5d5aeb96b65f705b436647c963b7f087431e1d..5ae4e9f6ce1b2eaeed74894d42d54ff507881f2c 100644
+index 32b93d78b8a3f044b7ca4ddf6a71e06e3025d9f2..9290534dfc2803557f9a1c437aaba7e94adeab7a 100644
 --- a/src/main/java/moe/caramel/daydream/world/DamageMata.java
 +++ b/src/main/java/moe/caramel/daydream/world/DamageMata.java
-@@ -68,4 +68,14 @@ public interface DamageMata {
+@@ -66,4 +66,13 @@ public interface DamageMata {
       * @param disabled 넉백 비활성화 여부
       */
      void setKnockbackDisabled(final boolean disabled);
@@ -20,27 +20,27 @@ index ce5d5aeb96b65f705b436647c963b7f087431e1d..5ae4e9f6ce1b2eaeed74894d42d54ff5
 +     *
 +     * @return 폭발 래퍼
 +     */
-+    @org.jetbrains.annotations.Nullable
-+    Explosion getExplosion();
++    @org.jspecify.annotations.Nullable Explosion getExplosion();
  }
 diff --git a/src/main/java/moe/caramel/daydream/world/Explosion.java b/src/main/java/moe/caramel/daydream/world/Explosion.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..a37e3050ef3250c9e78ee13cef20527de9438b32
+index 0000000000000000000000000000000000000000..1029e488a6b66c613749011a0207559cc4c567ff
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/world/Explosion.java
-@@ -0,0 +1,131 @@
+@@ -0,0 +1,128 @@
 +package moe.caramel.daydream.world;
 +
 +import org.bukkit.World;
 +import org.bukkit.damage.DamageSource;
 +import org.bukkit.entity.HumanEntity;
 +import org.bukkit.util.Vector;
-+import org.jetbrains.annotations.NotNull;
++import org.jspecify.annotations.NullMarked;
 +import java.util.Map;
 +
 +/**
 + * 폭발 래퍼
 + */
++@NullMarked
 +public interface Explosion {
 +
 +    /**
@@ -48,7 +48,6 @@ index 0000000000000000000000000000000000000000..a37e3050ef3250c9e78ee13cef20527d
 +     *
 +     * @return 폭발이 발생한 월드
 +     */
-+    @NotNull
 +    World getWorld();
 +
 +    /**
@@ -56,7 +55,6 @@ index 0000000000000000000000000000000000000000..a37e3050ef3250c9e78ee13cef20527d
 +     *
 +     * @return {@link DamageSource}
 +     */
-+    @NotNull
 +    DamageSource getDamageSource();
 +
 +    /**
@@ -65,7 +63,6 @@ index 0000000000000000000000000000000000000000..a37e3050ef3250c9e78ee13cef20527d
 +     *
 +     * @return 메타데이터
 +     */
-+    @NotNull
 +    Map<String, Object> getMetadata();
 +
 +    /**
@@ -74,7 +71,7 @@ index 0000000000000000000000000000000000000000..a37e3050ef3250c9e78ee13cef20527d
 +     *
 +     * @param mark 넉백 제거가 활성화 여부
 +     */
-+    void markNoKnockback(boolean mark);
++    void markNoKnockback(final boolean mark);
 +
 +    /**
 +     * 이 폭발에 넉백 제거가 활성화 되어있는지 가져옵니다.
@@ -133,7 +130,6 @@ index 0000000000000000000000000000000000000000..a37e3050ef3250c9e78ee13cef20527d
 +     *
 +     * @return 플레이어 목록 및 벡터
 +     */
-+    @NotNull
 +    Map<HumanEntity, Vector> getHitPlayers();
 +
 +    /**
@@ -141,7 +137,7 @@ index 0000000000000000000000000000000000000000..a37e3050ef3250c9e78ee13cef20527d
 +     *
 +     * @param map 플레이어 목록 및 벡터
 +     */
-+    void setHitPlayers(@NotNull Map<HumanEntity, Vector> map);
++    void setHitPlayers(final Map<HumanEntity, Vector> map);
 +
 +    /**
 +     * 이 폭발에 영향을 받는 플레이어 목록을 비웁니다.
@@ -177,10 +173,10 @@ index 8e1cef5ee8ec5e16398f0636d852482b8b714806..758d9fe98fae01cff3c71b80fc3babb5
      /**
       * Returns whether or not this tag has an entry for the specified item.
 diff --git a/src/main/java/org/bukkit/World.java b/src/main/java/org/bukkit/World.java
-index 835f824b72505cb811b380e348b4c5c394654d7d..76039eb4391d328db3a09fdabb720591202c4cff 100644
+index 2bd97096e2b57a61455a6e8dc00cf11a833b6348..928fa5c3a3fcd5042d5dcf321cc845d56f4ea03a 100644
 --- a/src/main/java/org/bukkit/World.java
 +++ b/src/main/java/org/bukkit/World.java
-@@ -2120,6 +2120,246 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
+@@ -2168,6 +2168,246 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
       */
      public boolean createExplosion(double x, double y, double z, float power, boolean setFire, boolean breakBlocks, @Nullable Entity source);
  

@@ -6,30 +6,27 @@ Subject: [PATCH] Add ServerShutdownEvent
 
 diff --git a/src/main/java/moe/caramel/daydream/event/server/ServerShutdownEvent.java b/src/main/java/moe/caramel/daydream/event/server/ServerShutdownEvent.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..87c9cf6d420114821539f782075ce6763ac1b824
+index 0000000000000000000000000000000000000000..e74fff6c75a30be382d01c2fab98b0fc0bda5b06
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/event/server/ServerShutdownEvent.java
-@@ -0,0 +1,54 @@
+@@ -0,0 +1,63 @@
 +package moe.caramel.daydream.event.server;
 +
 +import net.kyori.adventure.text.Component;
 +import org.bukkit.event.HandlerList;
 +import org.bukkit.event.server.ServerEvent;
 +import org.jetbrains.annotations.ApiStatus;
-+import org.jetbrains.annotations.NotNull;
-+import org.jetbrains.annotations.Nullable;
++import org.jspecify.annotations.NullMarked;
++import org.jspecify.annotations.Nullable;
 +
 +/**
 + * 서버가 종료될 때 호출됩니다.
 + */
++@NullMarked
 +public final class ServerShutdownEvent extends ServerEvent {
 +
-+    private static final HandlerList HANDLER_LIST = new HandlerList();
-+    public @NotNull HandlerList getHandlers() { return HANDLER_LIST; }
-+    public static @NotNull HandlerList getHandlerList() { return HANDLER_LIST; }
-+
 +    private final boolean restarting;
-+    private Component overrideReason;
++    private @Nullable Component overrideReason;
 +
 +    @ApiStatus.Internal
 +    public ServerShutdownEvent(final boolean restarting) {
@@ -50,8 +47,7 @@ index 0000000000000000000000000000000000000000..87c9cf6d420114821539f782075ce676
 +     *
 +     * @return 서버 종료 이유
 +     */
-+    @Nullable
-+    public Component getOverrideReason() {
++    public @Nullable Component getOverrideReason() {
 +        return overrideReason;
 +    }
 +
@@ -63,4 +59,17 @@ index 0000000000000000000000000000000000000000..87c9cf6d420114821539f782075ce676
 +    public void setOverrideReason(final @Nullable Component overrideReason) {
 +        this.overrideReason = overrideReason;
 +    }
++
++    //<editor-fold desc="Bukkit Event Handler (Internal)" defaultstate="collapsed">
++    private static final HandlerList HANDLER_LIST = new HandlerList();
++
++    @Override
++    public HandlerList getHandlers() {
++        return HANDLER_LIST;
++    }
++
++    public static HandlerList getHandlerList() {
++        return HANDLER_LIST;
++    }
++    //</editor-fold>
 +}

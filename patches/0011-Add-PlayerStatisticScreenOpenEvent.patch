@@ -6,10 +6,10 @@ Subject: [PATCH] Add PlayerStatisticScreenOpenEvent
 
 diff --git a/src/main/java/moe/caramel/daydream/event/player/PlayerStatisticScreenOpenEvent.java b/src/main/java/moe/caramel/daydream/event/player/PlayerStatisticScreenOpenEvent.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..dc90aaacc67c609ae429cc3b891eb91bd82a0021
+index 0000000000000000000000000000000000000000..bdcf843942aae8d8c17a4d7f88d26677a6e18d86
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/event/player/PlayerStatisticScreenOpenEvent.java
-@@ -0,0 +1,49 @@
+@@ -0,0 +1,59 @@
 +package moe.caramel.daydream.event.player;
 +
 +import org.bukkit.entity.Player;
@@ -17,21 +17,18 @@ index 0000000000000000000000000000000000000000..dc90aaacc67c609ae429cc3b891eb91b
 +import org.bukkit.event.HandlerList;
 +import org.bukkit.event.player.PlayerEvent;
 +import org.jetbrains.annotations.ApiStatus;
-+import org.jetbrains.annotations.NotNull;
++import org.jspecify.annotations.NullMarked;
 +
 +/**
 + * 플레이어가 통계 화면을 열기 위해 서버에게 통계 데이터를 요청한 경우 호출됩니다.
 + */
++@NullMarked
 +public final class PlayerStatisticScreenOpenEvent extends PlayerEvent implements Cancellable {
-+
-+    private static final HandlerList HANDLER_LIST = new HandlerList();
-+    public @NotNull HandlerList getHandlers() { return HANDLER_LIST; }
-+    public static @NotNull HandlerList getHandlerList() { return HANDLER_LIST; }
 +
 +    private boolean cancelled;
 +
 +    @ApiStatus.Internal
-+    public PlayerStatisticScreenOpenEvent(final @NotNull Player player) {
++    public PlayerStatisticScreenOpenEvent(final Player player) {
 +        super(player);
 +    }
 +
@@ -58,4 +55,17 @@ index 0000000000000000000000000000000000000000..dc90aaacc67c609ae429cc3b891eb91b
 +    public void setCancelled(final boolean cancel) {
 +        this.cancelled = cancel;
 +    }
++
++    //<editor-fold desc="Bukkit Event Handler (Internal)" defaultstate="collapsed">
++    private static final HandlerList HANDLER_LIST = new HandlerList();
++
++    @Override
++    public HandlerList getHandlers() {
++        return HANDLER_LIST;
++    }
++
++    public static HandlerList getHandlerList() {
++        return HANDLER_LIST;
++    }
++    //</editor-fold>
 +}

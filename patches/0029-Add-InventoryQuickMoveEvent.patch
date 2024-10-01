@@ -6,10 +6,10 @@ Subject: [PATCH] Add InventoryQuickMoveEvent
 
 diff --git a/src/main/java/moe/caramel/daydream/event/inventory/InventoryQuickMoveEvent.java b/src/main/java/moe/caramel/daydream/event/inventory/InventoryQuickMoveEvent.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..188f6ffba4c7ac4fb9c82ced1c4c0cec6eb2c8bb
+index 0000000000000000000000000000000000000000..bc6ce6e6cb524f5b9cc5b081b12b57f70834fc3a
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/event/inventory/InventoryQuickMoveEvent.java
-@@ -0,0 +1,86 @@
+@@ -0,0 +1,93 @@
 +package moe.caramel.daydream.event.inventory;
 +
 +import org.bukkit.event.HandlerList;
@@ -17,7 +17,7 @@ index 0000000000000000000000000000000000000000..188f6ffba4c7ac4fb9c82ced1c4c0cec
 +import org.bukkit.inventory.InventoryView;
 +import org.bukkit.inventory.ItemStack;
 +import org.jetbrains.annotations.ApiStatus;
-+import org.jetbrains.annotations.NotNull;
++import org.jspecify.annotations.NullMarked;
 +
 +/**
 + * 플레이어가 인벤토리를 클릭하여 {@link org.bukkit.event.inventory.InventoryAction#MOVE_TO_OTHER_INVENTORY}의
@@ -25,12 +25,8 @@ index 0000000000000000000000000000000000000000..188f6ffba4c7ac4fb9c82ced1c4c0cec
 + * 기존 로직을 그대로 수행하며, {@link org.bukkit.event.Event.Result#DEFAULT}인 경우 해당 슬롯의 처리를 건너뜁니다.
 + * {@link org.bukkit.event.Event.Result#DENY}의 경우 해당 슬롯을 포함하여 다음 슬롯의 처리까지 모두 취소합니다.
 + */
-+@ApiStatus.Experimental
++@NullMarked
 +public final class InventoryQuickMoveEvent extends InventoryInteractEvent {
-+
-+    private static final HandlerList HANDLER_LIST = new HandlerList();
-+    public @NotNull HandlerList getHandlers() { return HANDLER_LIST; }
-+    public static @NotNull HandlerList getHandlerList() { return HANDLER_LIST; }
 +
 +    private final ItemStack from;
 +    private final ItemStack to;
@@ -38,7 +34,7 @@ index 0000000000000000000000000000000000000000..188f6ffba4c7ac4fb9c82ced1c4c0cec
 +    private int slot;
 +
 +    @ApiStatus.Internal
-+    public InventoryQuickMoveEvent(final @NotNull InventoryView view, final @NotNull ItemStack from, final @NotNull ItemStack to, final int slot, final boolean checkEmpty) {
++    public InventoryQuickMoveEvent(final InventoryView view, final ItemStack from, final ItemStack to, final int slot, final boolean checkEmpty) {
 +        super(view);
 +        this.setResult(Result.ALLOW);
 +        this.from = from;
@@ -52,7 +48,6 @@ index 0000000000000000000000000000000000000000..188f6ffba4c7ac4fb9c82ced1c4c0cec
 +     *
 +     * @return 이동 대상 아이템
 +     */
-+    @NotNull
 +    public ItemStack getFrom() {
 +        return from;
 +    }
@@ -62,7 +57,6 @@ index 0000000000000000000000000000000000000000..188f6ffba4c7ac4fb9c82ced1c4c0cec
 +     *
 +     * @return 병합 검사 중인 아이템
 +     */
-+    @NotNull
 +    public ItemStack getTo() {
 +        return to;
 +    }
@@ -95,4 +89,17 @@ index 0000000000000000000000000000000000000000..188f6ffba4c7ac4fb9c82ced1c4c0cec
 +    public boolean isCheckEmpty() {
 +        return checkEmpty;
 +    }
++
++    //<editor-fold desc="Bukkit Event Handler (Internal)" defaultstate="collapsed">
++    private static final HandlerList HANDLER_LIST = new HandlerList();
++
++    @Override
++    public HandlerList getHandlers() {
++        return HANDLER_LIST;
++    }
++
++    public static HandlerList getHandlerList() {
++        return HANDLER_LIST;
++    }
++    //</editor-fold>
 +}

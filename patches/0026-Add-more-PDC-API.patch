@@ -5,13 +5,13 @@ Subject: [PATCH] Add more PDC API
 
 
 diff --git a/src/main/java/io/papermc/paper/persistence/PersistentDataContainerView.java b/src/main/java/io/papermc/paper/persistence/PersistentDataContainerView.java
-index 4a4949fde3f03e2ea9d2dde245f7dea119e202bf..606f1b5ef72d4de9164e8ee19612117dfda42d3a 100644
+index 061ffc1f050a950e041ceef217b5f335e3cd0af1..dff9b51507b0b8fc7351f2ce6714ecc20ea24e54 100644
 --- a/src/main/java/io/papermc/paper/persistence/PersistentDataContainerView.java
 +++ b/src/main/java/io/papermc/paper/persistence/PersistentDataContainerView.java
-@@ -164,4 +164,118 @@ public interface PersistentDataContainerView {
+@@ -157,4 +157,115 @@ public interface PersistentDataContainerView {
       * @throws java.io.IOException if we fail to write this container to a byte array
       */
-     byte @NonNull [] serializeToBytes() throws java.io.IOException;
+     byte[] serializeToBytes() throws java.io.IOException;
 +
 +    // Daydream start - Add more PDC API
 +    /**
@@ -43,7 +43,7 @@ index 4a4949fde3f03e2ea9d2dde245f7dea119e202bf..606f1b5ef72d4de9164e8ee19612117d
 +     * @throws IllegalArgumentException if the type to cast the found object to is
 +     * null
 +     */
-+    <P, C> boolean has(@NonNull String key, @NonNull PersistentDataType<P, C> type);
++    <P, C> boolean has(String key, PersistentDataType<P, C> type);
 +
 +    /**
 +     * Returns if the persistent metadata provider has metadata registered matching
@@ -62,7 +62,7 @@ index 4a4949fde3f03e2ea9d2dde245f7dea119e202bf..606f1b5ef72d4de9164e8ee19612117d
 +     *
 +     * @throws IllegalArgumentException if the key to look up is null
 +     */
-+    boolean has(@NonNull String key);
++    boolean has(String key);
 +
 +    /**
 +     * Returns the metadata value that is stored on the
@@ -85,8 +85,7 @@ index 4a4949fde3f03e2ea9d2dde245f7dea119e202bf..606f1b5ef72d4de9164e8ee19612117d
 +     * the {@link
 +     * PersistentDataType#getPrimitiveType()}
 +     */
-+    @org.jetbrains.annotations.Nullable
-+    <P, C> C get(@NonNull String key, @NonNull PersistentDataType<P, C> type);
++    <P, C> @Nullable C get(String key, PersistentDataType<P, C> type);
 +
 +    /**
 +     * Returns the metadata value that is stored on the
@@ -111,8 +110,7 @@ index 4a4949fde3f03e2ea9d2dde245f7dea119e202bf..606f1b5ef72d4de9164e8ee19612117d
 +     * @throws IllegalArgumentException if no suitable adapter was found for
 +     * the {@link PersistentDataType#getPrimitiveType()}
 +     */
-+    @NonNull
-+    <P, C> C getOrDefault(@NonNull String key, @NonNull PersistentDataType<P, C> type, @NonNull C defaultValue);
++    <P, C> C getOrDefault(String key, PersistentDataType<P, C> type, C defaultValue);
 +
 +    /**
 +     * Get the set of keys present on this {@link PersistentDataContainer}
@@ -123,18 +121,17 @@ index 4a4949fde3f03e2ea9d2dde245f7dea119e202bf..606f1b5ef72d4de9164e8ee19612117d
 +     *
 +     * @return the key set
 +     */
-+    @NonNull
 +    Set<String> keys();
 +    // Daydream end - Add more PDC API
  }
 diff --git a/src/main/java/io/papermc/paper/persistence/PersistentDataViewHolder.java b/src/main/java/io/papermc/paper/persistence/PersistentDataViewHolder.java
-index 9789916f949374bfb50da535b076180700f7ae73..e297ecf95e623db9e8c4c28c1b02c5ee0c38f693 100644
+index 05bc2ac326fb58ea429cee825520e70f7f211f0d..67d7381003959982f501b894e01a8f83835ef037 100644
 --- a/src/main/java/io/papermc/paper/persistence/PersistentDataViewHolder.java
 +++ b/src/main/java/io/papermc/paper/persistence/PersistentDataViewHolder.java
-@@ -20,4 +20,20 @@ public interface PersistentDataViewHolder {
+@@ -21,4 +21,19 @@ public interface PersistentDataViewHolder {
       * @return the persistent data container view
       */
-     @NonNull PersistentDataContainerView getPersistentDataContainer();
+     PersistentDataContainerView getPersistentDataContainer();
 +
 +    // Daydream start - Add more PDC API
 +    /**
@@ -146,7 +143,6 @@ index 9789916f949374bfb50da535b076180700f7ae73..e297ecf95e623db9e8c4c28c1b02c5ee
 +     *
 +     * @return the persistent data container view
 +     */
-+    @NonNull
 +    default PersistentDataContainerView getPdc() {
 +        return getPersistentDataContainer();
 +    }
