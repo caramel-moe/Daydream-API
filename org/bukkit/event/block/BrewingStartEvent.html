@@ -145,21 +145,49 @@ loadScripts(document, 'script');</script>
 <section class="method-summary" id="method-summary">
 <h2>Method Summary</h2>
 <div id="method-summary-table">
-<div class="table-tabs" role="tablist" aria-orientation="horizontal"><button id="method-summary-table-tab0" role="tab" aria-selected="true" aria-controls="method-summary-table.tabpanel" tabindex="0" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table', 3)" class="active-table-tab">All Methods</button><button id="method-summary-table-tab2" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab2', 3)" class="table-tab">Instance Methods</button><button id="method-summary-table-tab4" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab4', 3)" class="table-tab">Concrete Methods</button></div>
+<div class="table-tabs" role="tablist" aria-orientation="horizontal"><button id="method-summary-table-tab0" role="tab" aria-selected="true" aria-controls="method-summary-table.tabpanel" tabindex="0" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table', 3)" class="active-table-tab">All Methods</button><button id="method-summary-table-tab2" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab2', 3)" class="table-tab">Instance Methods</button><button id="method-summary-table-tab4" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab4', 3)" class="table-tab">Concrete Methods</button><button id="method-summary-table-tab6" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab6', 3)" class="table-tab">Deprecated Methods</button></div>
 <div id="method-summary-table.tabpanel" role="tabpanel" aria-labelledby="method-summary-table-tab0">
 <div class="summary-table three-column-summary">
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getTotalBrewTime()" class="member-name-link">getTotalBrewTime</a>()</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>@org.jetbrains.annotations.Range(from=0L, to=2147483647L) int</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getBrewingTime()" class="member-name-link">getBrewingTime</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Gets the total brew time associated with this event.</div>
+<div class="block">Gets the amount of brewing ticks left.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>@org.jetbrains.annotations.Range(from=1L, to=2147483647L) int</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getRecipeBrewTime()" class="member-name-link">getRecipeBrewTime</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Gets the recipe time for the brewing process which is
+ used to compute the progress of the brewing process with
+ <a href="#getBrewingTime()"><code>getBrewingTime()</code></a>.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4 method-summary-table-tab6"><code>int</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4 method-summary-table-tab6"><code><a href="#getTotalBrewTime()" class="member-name-link">getTotalBrewTime</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4 method-summary-table-tab6">
+<div class="block"><span class="deprecated-label">Deprecated, for removal: This API element is subject to removal in a future version.</span>
+<div class="deprecation-comment">use <a href="#getBrewingTime()"><code>getBrewingTime()</code></a> instead</div>
+</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setTotalBrewTime(int)" class="member-name-link">setTotalBrewTime</a><wbr>(int&nbsp;brewTime)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setBrewingTime(int)" class="member-name-link">setBrewingTime</a><wbr>(@org.jetbrains.annotations.Range(from=0L, to=2147483647L) int&nbsp;brewTime)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Sets the total brew time for this event.</div>
+<div class="block">Sets the brewing ticks left.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setRecipeBrewTime(int)" class="member-name-link">setRecipeBrewTime</a><wbr>(@org.jetbrains.annotations.Range(from=1L, to=2147483647L) int&nbsp;recipeBrewTime)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Sets the recipe time for the brewing process which is
+ used to compute the progress of the brewing process with
+ <a href="#getBrewingTime()"><code>getBrewingTime()</code></a>.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4 method-summary-table-tab6"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4 method-summary-table-tab6"><code><a href="#setTotalBrewTime(int)" class="member-name-link">setTotalBrewTime</a><wbr>(int&nbsp;brewTime)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4 method-summary-table-tab6">
+<div class="block"><span class="deprecated-label">Deprecated, for removal: This API element is subject to removal in a future version.</span>
+<div class="deprecation-comment">use <a href="#setBrewingTime(int)"><code>setBrewingTime(int)</code></a> instead</div>
+</div>
 </div>
 </div>
 </div>
@@ -190,7 +218,8 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="&lt;init&gt;(org.bukkit.block.Block,org.bukkit.inventory.ItemStack,int)">
 <h3>BrewingStartEvent</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">BrewingStartEvent</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/ApiStatus.Internal.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Internal</a>
+</span><span class="modifiers">public</span>&nbsp;<span class="element-name">BrewingStartEvent</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../block/Block.html" title="interface in org.bukkit.block">Block</a>&nbsp;furnace,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../inventory/ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;source,
@@ -208,7 +237,12 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="getTotalBrewTime()">
 <h3>getTotalBrewTime</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getTotalBrewTime</span>()</div>
+<div class="member-signature"><span class="annotations"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Deprecated.html" title="class or interface in java.lang" class="external-link">@Deprecated</a>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Deprecated.html#since()" title="class or interface in java.lang" class="external-link">since</a>="1.21",
+            <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Deprecated.html#forRemoval()" title="class or interface in java.lang" class="external-link">forRemoval</a>=true)
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getTotalBrewTime</span>()</div>
+<div class="deprecation-block"><span class="deprecated-label">Deprecated, for removal: This API element is subject to removal in a future version.</span>
+<div class="deprecation-comment">use <a href="#getBrewingTime()"><code>getBrewingTime()</code></a> instead</div>
+</div>
 <div class="block">Gets the total brew time associated with this event.</div>
 <dl class="notes">
 <dt>Returns:</dt>
@@ -219,11 +253,70 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="setTotalBrewTime(int)">
 <h3>setTotalBrewTime</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setTotalBrewTime</span><wbr><span class="parameters">(int&nbsp;brewTime)</span></div>
+<div class="member-signature"><span class="annotations"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Deprecated.html" title="class or interface in java.lang" class="external-link">@Deprecated</a>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Deprecated.html#since()" title="class or interface in java.lang" class="external-link">since</a>="1.21",
+            <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Deprecated.html#forRemoval()" title="class or interface in java.lang" class="external-link">forRemoval</a>=true)
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setTotalBrewTime</span><wbr><span class="parameters">(int&nbsp;brewTime)</span></div>
+<div class="deprecation-block"><span class="deprecated-label">Deprecated, for removal: This API element is subject to removal in a future version.</span>
+<div class="deprecation-comment">use <a href="#setBrewingTime(int)"><code>setBrewingTime(int)</code></a> instead</div>
+</div>
 <div class="block">Sets the total brew time for this event.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>brewTime</code> - the new total brew time</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getRecipeBrewTime()">
+<h3>getRecipeBrewTime</h3>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/ApiStatus.Experimental.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Experimental</a>
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type">@org.jetbrains.annotations.Range(from=1L, to=2147483647L) int</span>&nbsp;<span class="element-name">getRecipeBrewTime</span>()</div>
+<div class="block">Gets the recipe time for the brewing process which is
+ used to compute the progress of the brewing process with
+ <a href="#getBrewingTime()"><code>getBrewingTime()</code></a>.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>recipe brew time (in ticks)</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="setRecipeBrewTime(int)">
+<h3>setRecipeBrewTime</h3>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/ApiStatus.Experimental.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Experimental</a>
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setRecipeBrewTime</span><wbr><span class="parameters">(@org.jetbrains.annotations.Range(from=1L, to=2147483647L) int&nbsp;recipeBrewTime)</span></div>
+<div class="block">Sets the recipe time for the brewing process which is
+ used to compute the progress of the brewing process with
+ <a href="#getBrewingTime()"><code>getBrewingTime()</code></a>.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>recipeBrewTime</code> - recipe brew time (in ticks)</dd>
+<dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if the recipe brew time is non-positive</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getBrewingTime()">
+<h3>getBrewingTime</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">@org.jetbrains.annotations.Range(from=0L, to=2147483647L) int</span>&nbsp;<span class="element-name">getBrewingTime</span>()</div>
+<div class="block">Gets the amount of brewing ticks left.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>The amount of ticks left for the brewing task</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="setBrewingTime(int)">
+<h3>setBrewingTime</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setBrewingTime</span><wbr><span class="parameters">(@org.jetbrains.annotations.Range(from=0L, to=2147483647L) int&nbsp;brewTime)</span></div>
+<div class="block">Sets the brewing ticks left.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>brewTime</code> - the ticks left, which is no less than 0</dd>
+<dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if the ticks are less than 0</dd>
 </dl>
 </section>
 </li>

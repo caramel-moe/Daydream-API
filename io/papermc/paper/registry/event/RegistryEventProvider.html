@@ -94,6 +94,7 @@ loadScripts(document, 'script');</script>
 </dl>
 <hr>
 <div class="type-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/ApiStatus.Experimental.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Experimental</a>
+<a href="https://jspecify.dev/docs/api/org/jspecify/annotations/NullMarked.html" title="class or interface in org.jspecify.annotations" class="external-link">@NullMarked</a>
 <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/ApiStatus.NonExtendable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NonExtendable</a>
 </span><span class="modifiers">public interface </span><span class="element-name type-name-label">RegistryEventProvider&lt;T,<wbr>B extends <a href="../RegistryBuilder.html" title="interface in io.papermc.paper.registry">RegistryBuilder</a>&lt;T&gt;&gt;</span></div>
 <div class="block">Provider for registry events for a specific registry.
@@ -117,19 +118,19 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>@NonNull <a href="type/RegistryEntryAddEventType.html" title="interface in io.papermc.paper.registry.event.type">RegistryEntryAddEventType</a><wbr>&lt;<a href="RegistryEventProvider.html" title="type parameter in RegistryEventProvider">T</a>,<wbr><a href="RegistryEventProvider.html" title="type parameter in RegistryEventProvider">B</a>&gt;</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="type/RegistryEntryAddEventType.html" title="interface in io.papermc.paper.registry.event.type">RegistryEntryAddEventType</a><wbr>&lt;<a href="RegistryEventProvider.html" title="type parameter in RegistryEventProvider">T</a>,<wbr><a href="RegistryEventProvider.html" title="type parameter in RegistryEventProvider">B</a>&gt;</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#entryAdd()" class="member-name-link">entryAdd</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Gets the event type for <a href="RegistryEntryAddEvent.html" title="interface in io.papermc.paper.registry.event"><code>RegistryEntryAddEvent</code></a> which is fired just before
  an object is added to a registry.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>@NonNull <a href="../../plugin/lifecycle/event/types/LifecycleEventType.Prioritizable.html" title="interface in io.papermc.paper.plugin.lifecycle.event.types">LifecycleEventType.Prioritizable</a><wbr>&lt;<a href="../../plugin/bootstrap/BootstrapContext.html" title="interface in io.papermc.paper.plugin.bootstrap">BootstrapContext</a>,<wbr><a href="RegistryFreezeEvent.html" title="interface in io.papermc.paper.registry.event">RegistryFreezeEvent</a>&lt;<a href="RegistryEventProvider.html" title="type parameter in RegistryEventProvider">T</a>,<wbr><a href="RegistryEventProvider.html" title="type parameter in RegistryEventProvider">B</a>&gt;&gt;</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="../../plugin/lifecycle/event/types/LifecycleEventType.Prioritizable.html" title="interface in io.papermc.paper.plugin.lifecycle.event.types">LifecycleEventType.Prioritizable</a><wbr>&lt;<a href="../../plugin/bootstrap/BootstrapContext.html" title="interface in io.papermc.paper.plugin.bootstrap">BootstrapContext</a>,<wbr><a href="RegistryFreezeEvent.html" title="interface in io.papermc.paper.registry.event">RegistryFreezeEvent</a>&lt;<a href="RegistryEventProvider.html" title="type parameter in RegistryEventProvider">T</a>,<wbr><a href="RegistryEventProvider.html" title="type parameter in RegistryEventProvider">B</a>&gt;&gt;</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#freeze()" class="member-name-link">freeze</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Gets the event type for <a href="RegistryFreezeEvent.html" title="interface in io.papermc.paper.registry.event"><code>RegistryFreezeEvent</code></a> which is fired just before
  a registry is frozen.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>@NonNull <a href="../RegistryKey.html" title="interface in io.papermc.paper.registry">RegistryKey</a><wbr>&lt;<a href="RegistryEventProvider.html" title="type parameter in RegistryEventProvider">T</a>&gt;</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="../RegistryKey.html" title="interface in io.papermc.paper.registry">RegistryKey</a><wbr>&lt;<a href="RegistryEventProvider.html" title="type parameter in RegistryEventProvider">T</a>&gt;</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#registryKey()" class="member-name-link">registryKey</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Gets the registry key associated with this event type provider.</div>
@@ -151,7 +152,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="entryAdd()">
 <h3>entryAdd</h3>
-<div class="member-signature"><span class="return-type">@NonNull <a href="type/RegistryEntryAddEventType.html" title="interface in io.papermc.paper.registry.event.type">RegistryEntryAddEventType</a>&lt;<a href="RegistryEventProvider.html" title="type parameter in RegistryEventProvider">T</a>,<wbr><a href="RegistryEventProvider.html" title="type parameter in RegistryEventProvider">B</a>&gt;</span>&nbsp;<span class="element-name">entryAdd</span>()</div>
+<div class="member-signature"><span class="return-type"><a href="type/RegistryEntryAddEventType.html" title="interface in io.papermc.paper.registry.event.type">RegistryEntryAddEventType</a>&lt;<a href="RegistryEventProvider.html" title="type parameter in RegistryEventProvider">T</a>,<wbr><a href="RegistryEventProvider.html" title="type parameter in RegistryEventProvider">B</a>&gt;</span>&nbsp;<span class="element-name">entryAdd</span>()</div>
 <div class="block">Gets the event type for <a href="RegistryEntryAddEvent.html" title="interface in io.papermc.paper.registry.event"><code>RegistryEntryAddEvent</code></a> which is fired just before
  an object is added to a registry.
  <p>
@@ -166,7 +167,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="freeze()">
 <h3>freeze</h3>
-<div class="member-signature"><span class="return-type">@NonNull <a href="../../plugin/lifecycle/event/types/LifecycleEventType.Prioritizable.html" title="interface in io.papermc.paper.plugin.lifecycle.event.types">LifecycleEventType.Prioritizable</a>&lt;<a href="../../plugin/bootstrap/BootstrapContext.html" title="interface in io.papermc.paper.plugin.bootstrap">BootstrapContext</a>,<wbr><a href="RegistryFreezeEvent.html" title="interface in io.papermc.paper.registry.event">RegistryFreezeEvent</a>&lt;<a href="RegistryEventProvider.html" title="type parameter in RegistryEventProvider">T</a>,<wbr><a href="RegistryEventProvider.html" title="type parameter in RegistryEventProvider">B</a>&gt;&gt;</span>&nbsp;<span class="element-name">freeze</span>()</div>
+<div class="member-signature"><span class="return-type"><a href="../../plugin/lifecycle/event/types/LifecycleEventType.Prioritizable.html" title="interface in io.papermc.paper.plugin.lifecycle.event.types">LifecycleEventType.Prioritizable</a>&lt;<a href="../../plugin/bootstrap/BootstrapContext.html" title="interface in io.papermc.paper.plugin.bootstrap">BootstrapContext</a>,<wbr><a href="RegistryFreezeEvent.html" title="interface in io.papermc.paper.registry.event">RegistryFreezeEvent</a>&lt;<a href="RegistryEventProvider.html" title="type parameter in RegistryEventProvider">T</a>,<wbr><a href="RegistryEventProvider.html" title="type parameter in RegistryEventProvider">B</a>&gt;&gt;</span>&nbsp;<span class="element-name">freeze</span>()</div>
 <div class="block">Gets the event type for <a href="RegistryFreezeEvent.html" title="interface in io.papermc.paper.registry.event"><code>RegistryFreezeEvent</code></a> which is fired just before
  a registry is frozen. It allows for the registration of new objects.
  <p>
@@ -181,7 +182,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="registryKey()">
 <h3>registryKey</h3>
-<div class="member-signature"><span class="return-type">@NonNull <a href="../RegistryKey.html" title="interface in io.papermc.paper.registry">RegistryKey</a>&lt;<a href="RegistryEventProvider.html" title="type parameter in RegistryEventProvider">T</a>&gt;</span>&nbsp;<span class="element-name">registryKey</span>()</div>
+<div class="member-signature"><span class="return-type"><a href="../RegistryKey.html" title="interface in io.papermc.paper.registry">RegistryKey</a>&lt;<a href="RegistryEventProvider.html" title="type parameter in RegistryEventProvider">T</a>&gt;</span>&nbsp;<span class="element-name">registryKey</span>()</div>
 <div class="block">Gets the registry key associated with this event type provider.</div>
 <dl class="notes">
 <dt>Returns:</dt>

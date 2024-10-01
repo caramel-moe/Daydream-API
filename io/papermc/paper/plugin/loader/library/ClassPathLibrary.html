@@ -92,7 +92,8 @@ loadScripts(document, 'script');</script>
 <dd><code><a href="impl/JarLibrary.html" title="class in io.papermc.paper.plugin.loader.library.impl">JarLibrary</a></code>, <code><a href="impl/MavenLibraryResolver.html" title="class in io.papermc.paper.plugin.loader.library.impl">MavenLibraryResolver</a></code></dd>
 </dl>
 <hr>
-<div class="type-signature"><span class="modifiers">public interface </span><span class="element-name type-name-label">ClassPathLibrary</span></div>
+<div class="type-signature"><span class="annotations"><a href="https://jspecify.dev/docs/api/org/jspecify/annotations/NullMarked.html" title="class or interface in org.jspecify.annotations" class="external-link">@NullMarked</a>
+</span><span class="modifiers">public interface </span><span class="element-name type-name-label">ClassPathLibrary</span></div>
 <div class="block">The classpath library interface represents libraries that are capable of registering themselves via
  <a href="#register(io.papermc.paper.plugin.loader.library.LibraryStore)"><code>register(LibraryStore)</code></a> on any given <a href="LibraryStore.html" title="interface in io.papermc.paper.plugin.loader.library"><code>LibraryStore</code></a>.</div>
 </section>
@@ -110,7 +111,7 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#register(io.papermc.paper.plugin.loader.library.LibraryStore)" class="member-name-link">register</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="LibraryStore.html" title="interface in io.papermc.paper.plugin.loader.library">LibraryStore</a>&nbsp;store)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#register(io.papermc.paper.plugin.loader.library.LibraryStore)" class="member-name-link">register</a><wbr>(<a href="LibraryStore.html" title="interface in io.papermc.paper.plugin.loader.library">LibraryStore</a>&nbsp;store)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Called to register the library this class path library represents into the passed library store.</div>
 </div>
@@ -131,8 +132,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="register(io.papermc.paper.plugin.loader.library.LibraryStore)">
 <h3>register</h3>
-<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">register</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="LibraryStore.html" title="interface in io.papermc.paper.plugin.loader.library">LibraryStore</a>&nbsp;store)</span>
+<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">register</span><wbr><span class="parameters">(<a href="LibraryStore.html" title="interface in io.papermc.paper.plugin.loader.library">LibraryStore</a>&nbsp;store)</span>
        throws <span class="exceptions"><a href="LibraryLoadingException.html" title="class in io.papermc.paper.plugin.loader.library">LibraryLoadingException</a></span></div>
 <div class="block">Called to register the library this class path library represents into the passed library store.
  This method may either be implemented by the plugins themselves if they need complex logic, or existing

@@ -96,14 +96,15 @@ loadScripts(document, 'script');</script>
 <dd><code><a href="../../../../org/bukkit/block/Barrel.html" title="interface in org.bukkit.block">Barrel</a></code>, <code><a href="../../../../org/bukkit/block/Chest.html" title="interface in org.bukkit.block">Chest</a></code>, <code><a href="../../../../org/bukkit/entity/ChestBoat.html" title="interface in org.bukkit.entity">ChestBoat</a></code>, <code><a href="../../../../org/bukkit/block/Crafter.html" title="interface in org.bukkit.block">Crafter</a></code>, <code><a href="../../../../org/bukkit/block/Dispenser.html" title="interface in org.bukkit.block">Dispenser</a></code>, <code><a href="../../../../org/bukkit/block/Dropper.html" title="interface in org.bukkit.block">Dropper</a></code>, <code><a href="../../../../org/bukkit/block/Hopper.html" title="interface in org.bukkit.block">Hopper</a></code>, <code><a href="../../../../org/bukkit/entity/minecart/HopperMinecart.html" title="interface in org.bukkit.entity.minecart">HopperMinecart</a></code>, <code><a href="LootableBlockInventory.html" title="interface in com.destroystokyo.paper.loottable">LootableBlockInventory</a></code>, <code><a href="LootableEntityInventory.html" title="interface in com.destroystokyo.paper.loottable">LootableEntityInventory</a></code>, <code><a href="../../../../org/bukkit/block/ShulkerBox.html" title="interface in org.bukkit.block">ShulkerBox</a></code>, <code><a href="../../../../org/bukkit/entity/minecart/StorageMinecart.html" title="interface in org.bukkit.entity.minecart">StorageMinecart</a></code></dd>
 </dl>
 <hr>
-<div class="type-signature"><span class="modifiers">public interface </span><span class="element-name type-name-label">LootableInventory</span><span class="extends-implements">
+<div class="type-signature"><span class="annotations"><a href="https://jspecify.dev/docs/api/org/jspecify/annotations/NullMarked.html" title="class or interface in org.jspecify.annotations" class="external-link">@NullMarked</a>
+</span><span class="modifiers">public interface </span><span class="element-name type-name-label">LootableInventory</span><span class="extends-implements">
 extends <a href="../../../../org/bukkit/loot/Lootable.html" title="interface in org.bukkit.loot">Lootable</a></span></div>
 <div class="block">Represents an Inventory that contains a Loot Table associated to it that will
  automatically fill on first open.
-
+ <p>
  A new feature and API is provided to support automatically refreshing the contents
  of the inventory based on that Loot Table after a configurable amount of time has passed.
-
+ <p>
  The behavior of how the Inventory is filled based on the loot table may vary based
  on Minecraft versions and the Loot Table feature.</div>
 </section>
@@ -121,7 +122,7 @@ extends <a href="../../../../org/bukkit/loot/Lootable.html" title="interface in 
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#canPlayerLoot(java.util.UUID)" class="member-name-link">canPlayerLoot</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;player)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#canPlayerLoot(java.util.UUID)" class="member-name-link">canPlayerLoot</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;player)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Checks if this player can loot this block.</div>
 </div>
@@ -130,13 +131,13 @@ extends <a href="../../../../org/bukkit/loot/Lootable.html" title="interface in 
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Gets the timestamp in milliseconds that the Lootable object was last refilled</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getLastLooted(java.util.UUID)" class="member-name-link">getLastLooted</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;player)</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://jspecify.dev/docs/api/org/jspecify/annotations/Nullable.html" title="class or interface in org.jspecify.annotations" class="external-link">@Nullable</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getLastLooted(java.util.UUID)" class="member-name-link">getLastLooted</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;player)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Gets the timestamp, in milliseconds, of when the player last looted this object</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code>default <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#getLastLooted(org.bukkit.entity.Player)" class="member-name-link">getLastLooted</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../org/bukkit/entity/Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;player)</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code>default <a href="https://jspecify.dev/docs/api/org/jspecify/annotations/Nullable.html" title="class or interface in org.jspecify.annotations" class="external-link">@Nullable</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#getLastLooted(org.bukkit.entity.Player)" class="member-name-link">getLastLooted</a><wbr>(<a href="../../../../org/bukkit/entity/Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;player)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5">
 <div class="block">Gets the timestamp, in milliseconds, of when the player last looted this object</div>
 </div>
@@ -148,39 +149,39 @@ extends <a href="../../../../org/bukkit/loot/Lootable.html" title="interface in 
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#hasBeenFilled()" class="member-name-link">hasBeenFilled</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Whether or not this object has ever been filled</div>
+<div class="block">Whether this object has ever been filled</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#hasPendingRefill()" class="member-name-link">hasPendingRefill</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Returns Whether or not this object has been filled and now has a pending refill</div>
+<div class="block">Returns Whether this object has been filled and now has a pending refill</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#hasPlayerLooted(java.util.UUID)" class="member-name-link">hasPlayerLooted</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;player)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#hasPlayerLooted(java.util.UUID)" class="member-name-link">hasPlayerLooted</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;player)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Has this player ever looted this block</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code>default boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#hasPlayerLooted(org.bukkit.entity.Player)" class="member-name-link">hasPlayerLooted</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../org/bukkit/entity/Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;player)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#hasPlayerLooted(org.bukkit.entity.Player)" class="member-name-link">hasPlayerLooted</a><wbr>(<a href="../../../../org/bukkit/entity/Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;player)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5">
 <div class="block">Has this player ever looted this block</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#isRefillEnabled()" class="member-name-link">isRefillEnabled</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Server owners have to enable whether or not an object in a world should refill</div>
+<div class="block">Server owners have to enable whether an object in a world should refill</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#setHasPlayerLooted(java.util.UUID,boolean)" class="member-name-link">setHasPlayerLooted</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;player,
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#setHasPlayerLooted(java.util.UUID,boolean)" class="member-name-link">setHasPlayerLooted</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;player,
  boolean&nbsp;looted)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Change the state of whether or not a player has looted this block</div>
+<div class="block">Change the state of whether a player has looted this block</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code>default boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#setHasPlayerLooted(org.bukkit.entity.Player,boolean)" class="member-name-link">setHasPlayerLooted</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../org/bukkit/entity/Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;player,
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#setHasPlayerLooted(org.bukkit.entity.Player,boolean)" class="member-name-link">setHasPlayerLooted</a><wbr>(<a href="../../../../org/bukkit/entity/Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;player,
  boolean&nbsp;looted)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5">
-<div class="block">Change the state of whether or not a player has looted this block</div>
+<div class="block">Change the state of whether a player has looted this block</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>long</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#setNextRefill(long)" class="member-name-link">setNextRefill</a><wbr>(long&nbsp;refillAt)</code></div>
@@ -208,7 +209,7 @@ extends <a href="../../../../org/bukkit/loot/Lootable.html" title="interface in 
 <section class="detail" id="isRefillEnabled()">
 <h3>isRefillEnabled</h3>
 <div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">isRefillEnabled</span>()</div>
-<div class="block">Server owners have to enable whether or not an object in a world should refill</div>
+<div class="block">Server owners have to enable whether an object in a world should refill</div>
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>If the world this inventory is currently in has Replenishable Lootables enabled</dd>
@@ -219,7 +220,7 @@ extends <a href="../../../../org/bukkit/loot/Lootable.html" title="interface in 
 <section class="detail" id="hasBeenFilled()">
 <h3>hasBeenFilled</h3>
 <div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">hasBeenFilled</span>()</div>
-<div class="block">Whether or not this object has ever been filled</div>
+<div class="block">Whether this object has ever been filled</div>
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>Has ever been filled</dd>
@@ -229,22 +230,20 @@ extends <a href="../../../../org/bukkit/loot/Lootable.html" title="interface in 
 <li>
 <section class="detail" id="hasPlayerLooted(org.bukkit.entity.Player)">
 <h3>hasPlayerLooted</h3>
-<div class="member-signature"><span class="modifiers">default</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">hasPlayerLooted</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../org/bukkit/entity/Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;player)</span></div>
+<div class="member-signature"><span class="modifiers">default</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">hasPlayerLooted</span><wbr><span class="parameters">(<a href="../../../../org/bukkit/entity/Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;player)</span></div>
 <div class="block">Has this player ever looted this block</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>player</code> - The player to check</dd>
 <dt>Returns:</dt>
-<dd>Whether or not this player has looted this block</dd>
+<dd>Whether this player has looted this block</dd>
 </dl>
 </section>
 </li>
 <li>
 <section class="detail" id="canPlayerLoot(java.util.UUID)">
 <h3>canPlayerLoot</h3>
-<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">canPlayerLoot</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;player)</span></div>
+<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">canPlayerLoot</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;player)</span></div>
 <div class="block">Checks if this player can loot this block. Takes into account the "restrict player reloot" settings</div>
 <dl class="notes">
 <dt>Parameters:</dt>
@@ -257,23 +256,20 @@ extends <a href="../../../../org/bukkit/loot/Lootable.html" title="interface in 
 <li>
 <section class="detail" id="hasPlayerLooted(java.util.UUID)">
 <h3>hasPlayerLooted</h3>
-<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">hasPlayerLooted</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;player)</span></div>
+<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">hasPlayerLooted</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;player)</span></div>
 <div class="block">Has this player ever looted this block</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>player</code> - The player to check</dd>
 <dt>Returns:</dt>
-<dd>Whether or not this player has looted this block</dd>
+<dd>Whether this player has looted this block</dd>
 </dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getLastLooted(org.bukkit.entity.Player)">
 <h3>getLastLooted</h3>
-<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a>
-</span><span class="modifiers">default</span>&nbsp;<span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a></span>&nbsp;<span class="element-name">getLastLooted</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../org/bukkit/entity/Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;player)</span></div>
+<div class="member-signature"><span class="modifiers">default</span>&nbsp;<span class="return-type"><a href="https://jspecify.dev/docs/api/org/jspecify/annotations/Nullable.html" title="class or interface in org.jspecify.annotations" class="external-link">@Nullable</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a></span>&nbsp;<span class="element-name">getLastLooted</span><wbr><span class="parameters">(<a href="../../../../org/bukkit/entity/Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;player)</span></div>
 <div class="block">Gets the timestamp, in milliseconds, of when the player last looted this object</div>
 <dl class="notes">
 <dt>Parameters:</dt>
@@ -286,9 +282,7 @@ extends <a href="../../../../org/bukkit/loot/Lootable.html" title="interface in 
 <li>
 <section class="detail" id="getLastLooted(java.util.UUID)">
 <h3>getLastLooted</h3>
-<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a>
-</span><span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a></span>&nbsp;<span class="element-name">getLastLooted</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;player)</span></div>
+<div class="member-signature"><span class="return-type"><a href="https://jspecify.dev/docs/api/org/jspecify/annotations/Nullable.html" title="class or interface in org.jspecify.annotations" class="external-link">@Nullable</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a></span>&nbsp;<span class="element-name">getLastLooted</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;player)</span></div>
 <div class="block">Gets the timestamp, in milliseconds, of when the player last looted this object</div>
 <dl class="notes">
 <dt>Parameters:</dt>
@@ -301,10 +295,9 @@ extends <a href="../../../../org/bukkit/loot/Lootable.html" title="interface in 
 <li>
 <section class="detail" id="setHasPlayerLooted(org.bukkit.entity.Player,boolean)">
 <h3>setHasPlayerLooted</h3>
-<div class="member-signature"><span class="modifiers">default</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">setHasPlayerLooted</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../../org/bukkit/entity/Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;player,
+<div class="member-signature"><span class="modifiers">default</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">setHasPlayerLooted</span><wbr><span class="parameters">(<a href="../../../../org/bukkit/entity/Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;player,
  boolean&nbsp;looted)</span></div>
-<div class="block">Change the state of whether or not a player has looted this block</div>
+<div class="block">Change the state of whether a player has looted this block</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>player</code> - The player to change state for</dd>
@@ -317,10 +310,9 @@ extends <a href="../../../../org/bukkit/loot/Lootable.html" title="interface in 
 <li>
 <section class="detail" id="setHasPlayerLooted(java.util.UUID,boolean)">
 <h3>setHasPlayerLooted</h3>
-<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">setHasPlayerLooted</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;player,
+<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">setHasPlayerLooted</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;player,
  boolean&nbsp;looted)</span></div>
-<div class="block">Change the state of whether or not a player has looted this block</div>
+<div class="block">Change the state of whether a player has looted this block</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>player</code> - The player to change state for</dd>
@@ -334,7 +326,7 @@ extends <a href="../../../../org/bukkit/loot/Lootable.html" title="interface in 
 <section class="detail" id="hasPendingRefill()">
 <h3>hasPendingRefill</h3>
 <div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">hasPendingRefill</span>()</div>
-<div class="block">Returns Whether or not this object has been filled and now has a pending refill</div>
+<div class="block">Returns Whether this object has been filled and now has a pending refill</div>
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>Has pending refill</dd>

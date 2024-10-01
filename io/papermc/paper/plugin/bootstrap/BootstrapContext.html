@@ -93,6 +93,7 @@ loadScripts(document, 'script');</script>
 </dl>
 <hr>
 <div class="type-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/ApiStatus.Experimental.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Experimental</a>
+<a href="https://jspecify.dev/docs/api/org/jspecify/annotations/NullMarked.html" title="class or interface in org.jspecify.annotations" class="external-link">@NullMarked</a>
 <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/ApiStatus.NonExtendable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NonExtendable</a>
 </span><span class="modifiers">public interface </span><span class="element-name type-name-label">BootstrapContext</span><span class="extends-implements">
 extends <a href="PluginProviderContext.html" title="interface in io.papermc.paper.plugin.bootstrap">PluginProviderContext</a>, <a href="../lifecycle/event/LifecycleEventOwner.html" title="interface in io.papermc.paper.plugin.lifecycle.event">LifecycleEventOwner</a></span></div>
@@ -114,7 +115,7 @@ extends <a href="PluginProviderContext.html" title="interface in io.papermc.pape
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../lifecycle/event/LifecycleEventManager.html" title="interface in io.papermc.paper.plugin.lifecycle.event">LifecycleEventManager</a><wbr>&lt;<a href="BootstrapContext.html" title="interface in io.papermc.paper.plugin.bootstrap">BootstrapContext</a>&gt;</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="../lifecycle/event/LifecycleEventManager.html" title="interface in io.papermc.paper.plugin.lifecycle.event">LifecycleEventManager</a><wbr>&lt;<a href="BootstrapContext.html" title="interface in io.papermc.paper.plugin.bootstrap">BootstrapContext</a>&gt;</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getLifecycleManager()" class="member-name-link">getLifecycleManager</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Get the lifecycle event manager for registering handlers
@@ -143,8 +144,7 @@ extends <a href="PluginProviderContext.html" title="interface in io.papermc.pape
 <li>
 <section class="detail" id="getLifecycleManager()">
 <h3>getLifecycleManager</h3>
-<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
-</span><span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../lifecycle/event/LifecycleEventManager.html" title="interface in io.papermc.paper.plugin.lifecycle.event">LifecycleEventManager</a>&lt;<a href="BootstrapContext.html" title="interface in io.papermc.paper.plugin.bootstrap">BootstrapContext</a>&gt;</span>&nbsp;<span class="element-name">getLifecycleManager</span>()</div>
+<div class="member-signature"><span class="return-type"><a href="../lifecycle/event/LifecycleEventManager.html" title="interface in io.papermc.paper.plugin.lifecycle.event">LifecycleEventManager</a>&lt;<a href="BootstrapContext.html" title="interface in io.papermc.paper.plugin.bootstrap">BootstrapContext</a>&gt;</span>&nbsp;<span class="element-name">getLifecycleManager</span>()</div>
 <div class="block">Get the lifecycle event manager for registering handlers
  for lifecycle events allowed on the <a href="BootstrapContext.html" title="interface in io.papermc.paper.plugin.bootstrap"><code>BootstrapContext</code></a>.</div>
 <dl class="notes">

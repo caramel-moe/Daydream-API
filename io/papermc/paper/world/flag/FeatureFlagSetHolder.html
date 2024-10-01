@@ -92,7 +92,8 @@ loadScripts(document, 'script');</script>
 <dd><code><a href="../../../../../org/bukkit/generator/LimitedRegion.html" title="interface in org.bukkit.generator">LimitedRegion</a></code>, <code><a href="../../../../../org/bukkit/RegionAccessor.html" title="interface in org.bukkit">RegionAccessor</a></code>, <code><a href="../../../../../org/bukkit/World.html" title="interface in org.bukkit">World</a></code>, <code><a href="../../../../../org/bukkit/generator/WorldInfo.html" title="interface in org.bukkit.generator">WorldInfo</a></code></dd>
 </dl>
 <hr>
-<div class="type-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/ApiStatus.NonExtendable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NonExtendable</a>
+<div class="type-signature"><span class="annotations"><a href="https://jspecify.dev/docs/api/org/jspecify/annotations/NullMarked.html" title="class or interface in org.jspecify.annotations" class="external-link">@NullMarked</a>
+<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/ApiStatus.NonExtendable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NonExtendable</a>
 </span><span class="modifiers">public interface </span><span class="element-name type-name-label">FeatureFlagSetHolder</span></div>
 <div class="block">Implemented by types that hold <a href="../../../../../org/bukkit/FeatureFlag.html" title="interface in org.bukkit"><code>FeatureFlags</code></a> like
  <a href="../../../../../org/bukkit/generator/WorldInfo.html" title="interface in org.bukkit.generator"><code>WorldInfo</code></a> and <a href="../../../../../org/bukkit/RegionAccessor.html" title="interface in org.bukkit"><code>RegionAccessor</code></a>.</div>
@@ -110,13 +111,13 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Unmodifiable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Unmodifiable</a> @NonNull <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Set.html" title="class or interface in java.util" class="external-link">Set</a><wbr>&lt;<a href="../../../../../org/bukkit/FeatureFlag.html" title="interface in org.bukkit">FeatureFlag</a>&gt;</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Unmodifiable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Unmodifiable</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Set.html" title="class or interface in java.util" class="external-link">Set</a><wbr>&lt;<a href="../../../../../org/bukkit/FeatureFlag.html" title="interface in org.bukkit">FeatureFlag</a>&gt;</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getFeatureFlags()" class="member-name-link">getFeatureFlags</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Get all <a href="../../../../../org/bukkit/FeatureFlag.html" title="interface in org.bukkit"><code>FeatureFlags</code></a> enabled in this world.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code>default boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#isEnabled(io.papermc.paper.world.flag.FeatureDependant)" class="member-name-link">isEnabled</a><wbr>(@NonNull <a href="FeatureDependant.html" title="interface in io.papermc.paper.world.flag">FeatureDependant</a>&nbsp;featureDependant)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#isEnabled(io.papermc.paper.world.flag.FeatureDependant)" class="member-name-link">isEnabled</a><wbr>(<a href="FeatureDependant.html" title="interface in io.papermc.paper.world.flag">FeatureDependant</a>&nbsp;featureDependant)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5">
 <div class="block">Checks if this is enabled based on the loaded feature flags.</div>
 </div>
@@ -137,7 +138,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="isEnabled(io.papermc.paper.world.flag.FeatureDependant)">
 <h3>isEnabled</h3>
-<div class="member-signature"><span class="modifiers">default</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isEnabled</span><wbr><span class="parameters">(@NonNull <a href="FeatureDependant.html" title="interface in io.papermc.paper.world.flag">FeatureDependant</a>&nbsp;featureDependant)</span></div>
+<div class="member-signature"><span class="modifiers">default</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isEnabled</span><wbr><span class="parameters">(<a href="FeatureDependant.html" title="interface in io.papermc.paper.world.flag">FeatureDependant</a>&nbsp;featureDependant)</span></div>
 <div class="block">Checks if this is enabled based on the loaded feature flags.</div>
 <dl class="notes">
 <dt>Returns:</dt>
@@ -148,7 +149,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="getFeatureFlags()">
 <h3>getFeatureFlags</h3>
-<div class="member-signature"><span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Unmodifiable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Unmodifiable</a> @NonNull <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Set.html" title="class or interface in java.util" class="external-link">Set</a>&lt;<a href="../../../../../org/bukkit/FeatureFlag.html" title="interface in org.bukkit">FeatureFlag</a>&gt;</span>&nbsp;<span class="element-name">getFeatureFlags</span>()</div>
+<div class="member-signature"><span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Unmodifiable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Unmodifiable</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Set.html" title="class or interface in java.util" class="external-link">Set</a>&lt;<a href="../../../../../org/bukkit/FeatureFlag.html" title="interface in org.bukkit">FeatureFlag</a>&gt;</span>&nbsp;<span class="element-name">getFeatureFlags</span>()</div>
 <div class="block">Get all <a href="../../../../../org/bukkit/FeatureFlag.html" title="interface in org.bukkit"><code>FeatureFlags</code></a> enabled in this world.</div>
 <dl class="notes">
 <dt>Returns:</dt>

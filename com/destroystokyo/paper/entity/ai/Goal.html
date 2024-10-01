@@ -92,7 +92,8 @@ loadScripts(document, 'script');</script>
 <dd><code><a href="VanillaGoal.html" title="interface in com.destroystokyo.paper.entity.ai">VanillaGoal</a>&lt;T&gt;</code></dd>
 </dl>
 <hr>
-<div class="type-signature"><span class="modifiers">public interface </span><span class="element-name type-name-label">Goal&lt;T extends <a href="../../../../../org/bukkit/entity/Mob.html" title="interface in org.bukkit.entity">Mob</a>&gt;</span></div>
+<div class="type-signature"><span class="annotations"><a href="https://jspecify.dev/docs/api/org/jspecify/annotations/NullMarked.html" title="class or interface in org.jspecify.annotations" class="external-link">@NullMarked</a>
+</span><span class="modifiers">public interface </span><span class="element-name type-name-label">Goal&lt;T extends <a href="../../../../../org/bukkit/entity/Mob.html" title="interface in org.bukkit.entity">Mob</a>&gt;</span></div>
 <div class="block">Represents an AI goal of an entity</div>
 </section>
 <section class="summary">
@@ -108,17 +109,15 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="GoalKey.html" title="class in com.destroystokyo.paper.entity.ai">GoalKey</a><wbr>&lt;<a href="Goal.html" title="type parameter in Goal">T</a>&gt;</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="GoalKey.html" title="class in com.destroystokyo.paper.entity.ai">GoalKey</a><wbr>&lt;<a href="Goal.html" title="type parameter in Goal">T</a>&gt;</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getKey()" class="member-name-link">getKey</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">A unique key that identifies this type of goal.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/EnumSet.html" title="class or interface in java.util" class="external-link">EnumSet</a><wbr>&lt;<a href="GoalType.html" title="enum class in com.destroystokyo.paper.entity.ai">GoalType</a>&gt;</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/EnumSet.html" title="class or interface in java.util" class="external-link">EnumSet</a><wbr>&lt;<a href="GoalType.html" title="enum class in com.destroystokyo.paper.entity.ai">GoalType</a>&gt;</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getTypes()" class="member-name-link">getTypes</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Returns a list of all applicable flags for this goal.<br>
-
- This method is only called on construction.</div>
+<div class="block">Returns a list of all applicable flags for this goal.<br></div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#shouldActivate()" class="member-name-link">shouldActivate</a>()</code></div>
@@ -205,8 +204,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="getKey()">
 <h3>getKey</h3>
-<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
-</span><span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="GoalKey.html" title="class in com.destroystokyo.paper.entity.ai">GoalKey</a>&lt;<a href="Goal.html" title="type parameter in Goal">T</a>&gt;</span>&nbsp;<span class="element-name">getKey</span>()</div>
+<div class="member-signature"><span class="return-type"><a href="GoalKey.html" title="class in com.destroystokyo.paper.entity.ai">GoalKey</a>&lt;<a href="Goal.html" title="type parameter in Goal">T</a>&gt;</span>&nbsp;<span class="element-name">getKey</span>()</div>
 <div class="block">A unique key that identifies this type of goal. Plugins should use their own namespace, not the minecraft
  namespace. Additionally, this key also specifies to what mobs this goal can be applied to</div>
 <dl class="notes">
@@ -218,10 +216,9 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="getTypes()">
 <h3>getTypes</h3>
-<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
-</span><span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/EnumSet.html" title="class or interface in java.util" class="external-link">EnumSet</a>&lt;<a href="GoalType.html" title="enum class in com.destroystokyo.paper.entity.ai">GoalType</a>&gt;</span>&nbsp;<span class="element-name">getTypes</span>()</div>
+<div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/EnumSet.html" title="class or interface in java.util" class="external-link">EnumSet</a>&lt;<a href="GoalType.html" title="enum class in com.destroystokyo.paper.entity.ai">GoalType</a>&gt;</span>&nbsp;<span class="element-name">getTypes</span>()</div>
 <div class="block">Returns a list of all applicable flags for this goal.<br>
-
+ <p>
  This method is only called on construction.</div>
 <dl class="notes">
 <dt>Returns:</dt>

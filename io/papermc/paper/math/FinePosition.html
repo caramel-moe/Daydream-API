@@ -97,6 +97,7 @@ loadScripts(document, 'script');</script>
 </dl>
 <hr>
 <div class="type-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/ApiStatus.Experimental.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Experimental</a>
+<a href="https://jspecify.dev/docs/api/org/jspecify/annotations/NullMarked.html" title="class or interface in org.jspecify.annotations" class="external-link">@NullMarked</a>
 </span><span class="modifiers">public interface </span><span class="element-name type-name-label">FinePosition</span><span class="extends-implements">
 extends <a href="Position.html" title="interface in io.papermc.paper.math">Position</a></span></div>
 <div class="block">A position represented with doubles.
@@ -158,21 +159,21 @@ extends <a href="Position.html" title="interface in io.papermc.paper.math">Posit
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5">
 <div class="block">Checks if this position represents a <a href="FinePosition.html" title="interface in io.papermc.paper.math"><code>FinePosition</code></a></div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code>default <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="FinePosition.html" title="interface in io.papermc.paper.math">FinePosition</a></code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code>default <a href="FinePosition.html" title="interface in io.papermc.paper.math">FinePosition</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#offset(double,double,double)" class="member-name-link">offset</a><wbr>(double&nbsp;x,
  double&nbsp;y,
  double&nbsp;z)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5">
 <div class="block">Returns a position offset by the specified amounts.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code>default <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="FinePosition.html" title="interface in io.papermc.paper.math">FinePosition</a></code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code>default <a href="FinePosition.html" title="interface in io.papermc.paper.math">FinePosition</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#offset(int,int,int)" class="member-name-link">offset</a><wbr>(int&nbsp;x,
  int&nbsp;y,
  int&nbsp;z)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5">
 <div class="block">Returns a position offset by the specified amounts.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code>default <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="BlockPosition.html" title="interface in io.papermc.paper.math">BlockPosition</a></code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code>default <a href="BlockPosition.html" title="interface in io.papermc.paper.math">BlockPosition</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#toBlock()" class="member-name-link">toBlock</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5">
 <div class="block">Returns the block position of this position
@@ -268,8 +269,7 @@ extends <a href="Position.html" title="interface in io.papermc.paper.math">Posit
 <li>
 <section class="detail" id="toBlock()">
 <h3>toBlock</h3>
-<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
-</span><span class="modifiers">default</span>&nbsp;<span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="BlockPosition.html" title="interface in io.papermc.paper.math">BlockPosition</a></span>&nbsp;<span class="element-name">toBlock</span>()</div>
+<div class="member-signature"><span class="modifiers">default</span>&nbsp;<span class="return-type"><a href="BlockPosition.html" title="interface in io.papermc.paper.math">BlockPosition</a></span>&nbsp;<span class="element-name">toBlock</span>()</div>
 <div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="Position.html#toBlock()">Position</a></code></span></div>
 <div class="block">Returns the block position of this position
  or itself if it already is a block position</div>
@@ -284,8 +284,7 @@ extends <a href="Position.html" title="interface in io.papermc.paper.math">Posit
 <li>
 <section class="detail" id="offset(int,int,int)">
 <h3>offset</h3>
-<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
-</span><span class="modifiers">default</span>&nbsp;<span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="FinePosition.html" title="interface in io.papermc.paper.math">FinePosition</a></span>&nbsp;<span class="element-name">offset</span><wbr><span class="parameters">(int&nbsp;x,
+<div class="member-signature"><span class="modifiers">default</span>&nbsp;<span class="return-type"><a href="FinePosition.html" title="interface in io.papermc.paper.math">FinePosition</a></span>&nbsp;<span class="element-name">offset</span><wbr><span class="parameters">(int&nbsp;x,
  int&nbsp;y,
  int&nbsp;z)</span></div>
 <div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="Position.html#offset(int,int,int)">Position</a></code></span></div>
@@ -305,8 +304,7 @@ extends <a href="Position.html" title="interface in io.papermc.paper.math">Posit
 <li>
 <section class="detail" id="offset(double,double,double)">
 <h3>offset</h3>
-<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
-</span><span class="modifiers">default</span>&nbsp;<span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="FinePosition.html" title="interface in io.papermc.paper.math">FinePosition</a></span>&nbsp;<span class="element-name">offset</span><wbr><span class="parameters">(double&nbsp;x,
+<div class="member-signature"><span class="modifiers">default</span>&nbsp;<span class="return-type"><a href="FinePosition.html" title="interface in io.papermc.paper.math">FinePosition</a></span>&nbsp;<span class="element-name">offset</span><wbr><span class="parameters">(double&nbsp;x,
  double&nbsp;y,
  double&nbsp;z)</span></div>
 <div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="Position.html#offset(double,double,double)">Position</a></code></span></div>

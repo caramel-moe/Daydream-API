@@ -95,7 +95,8 @@ loadScripts(document, 'script');</script>
 <dd><code><a href="../ClassPathLibrary.html" title="interface in io.papermc.paper.plugin.loader.library">ClassPathLibrary</a></code></dd>
 </dl>
 <hr>
-<div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">MavenLibraryResolver</span>
+<div class="type-signature"><span class="annotations"><a href="https://jspecify.dev/docs/api/org/jspecify/annotations/NullMarked.html" title="class or interface in org.jspecify.annotations" class="external-link">@NullMarked</a>
+</span><span class="modifiers">public class </span><span class="element-name type-name-label">MavenLibraryResolver</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>
 implements <a href="../ClassPathLibrary.html" title="interface in io.papermc.paper.plugin.loader.library">ClassPathLibrary</a></span></div>
 <div class="block">The maven library resolver acts as a resolver for yet to be resolved jar libraries that may be pulled from a
@@ -111,7 +112,7 @@ implements <a href="../ClassPathLibrary.html" title="interface in io.papermc.pap
      "central", "default", "https://repo1.maven.org/maven2/"
  ).build());
  </code></pre>
-
+ <p>
  Plugins may create and register a <a href="MavenLibraryResolver.html" title="class in io.papermc.paper.plugin.loader.library.impl"><code>MavenLibraryResolver</code></a> after configuring it.</div>
 </section>
 <section class="summary">
@@ -143,17 +144,17 @@ implements <a href="../ClassPathLibrary.html" title="interface in io.papermc.pap
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#addDependency(org.eclipse.aether.graph.Dependency)" class="member-name-link">addDependency</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://javadoc.io/doc/org.apache.maven.resolver/maven-resolver-api/1.7.3/org/eclipse/aether/graph/Dependency.html" title="class or interface in org.eclipse.aether.graph" class="external-link">Dependency</a>&nbsp;dependency)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#addDependency(org.eclipse.aether.graph.Dependency)" class="member-name-link">addDependency</a><wbr>(<a href="https://javadoc.io/doc/org.apache.maven.resolver/maven-resolver-api/1.7.3/org/eclipse/aether/graph/Dependency.html" title="class or interface in org.eclipse.aether.graph" class="external-link">Dependency</a>&nbsp;dependency)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Adds the provided dependency to the library resolver.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#addRepository(org.eclipse.aether.repository.RemoteRepository)" class="member-name-link">addRepository</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://javadoc.io/doc/org.apache.maven.resolver/maven-resolver-api/1.7.3/org/eclipse/aether/repository/RemoteRepository.html" title="class or interface in org.eclipse.aether.repository" class="external-link">RemoteRepository</a>&nbsp;remoteRepository)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#addRepository(org.eclipse.aether.repository.RemoteRepository)" class="member-name-link">addRepository</a><wbr>(<a href="https://javadoc.io/doc/org.apache.maven.resolver/maven-resolver-api/1.7.3/org/eclipse/aether/repository/RemoteRepository.html" title="class or interface in org.eclipse.aether.repository" class="external-link">RemoteRepository</a>&nbsp;remoteRepository)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Adds the provided repository to the library resolver.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#register(io.papermc.paper.plugin.loader.library.LibraryStore)" class="member-name-link">register</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../LibraryStore.html" title="interface in io.papermc.paper.plugin.loader.library">LibraryStore</a>&nbsp;store)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#register(io.papermc.paper.plugin.loader.library.LibraryStore)" class="member-name-link">register</a><wbr>(<a href="../LibraryStore.html" title="interface in io.papermc.paper.plugin.loader.library">LibraryStore</a>&nbsp;store)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Resolves the provided dependencies and adds them to the library store.</div>
 </div>
@@ -197,8 +198,7 @@ implements <a href="../ClassPathLibrary.html" title="interface in io.papermc.pap
 <li>
 <section class="detail" id="addDependency(org.eclipse.aether.graph.Dependency)">
 <h3>addDependency</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">addDependency</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://javadoc.io/doc/org.apache.maven.resolver/maven-resolver-api/1.7.3/org/eclipse/aether/graph/Dependency.html" title="class or interface in org.eclipse.aether.graph" class="external-link">Dependency</a>&nbsp;dependency)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">addDependency</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.apache.maven.resolver/maven-resolver-api/1.7.3/org/eclipse/aether/graph/Dependency.html" title="class or interface in org.eclipse.aether.graph" class="external-link">Dependency</a>&nbsp;dependency)</span></div>
 <div class="block">Adds the provided dependency to the library resolver.
  The artifact from the first valid repository matching the passed dependency will be chosen.</div>
 <dl class="notes">
@@ -216,23 +216,21 @@ implements <a href="../ClassPathLibrary.html" title="interface in io.papermc.pap
 <li>
 <section class="detail" id="addRepository(org.eclipse.aether.repository.RemoteRepository)">
 <h3>addRepository</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">addRepository</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://javadoc.io/doc/org.apache.maven.resolver/maven-resolver-api/1.7.3/org/eclipse/aether/repository/RemoteRepository.html" title="class or interface in org.eclipse.aether.repository" class="external-link">RemoteRepository</a>&nbsp;remoteRepository)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">addRepository</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.apache.maven.resolver/maven-resolver-api/1.7.3/org/eclipse/aether/repository/RemoteRepository.html" title="class or interface in org.eclipse.aether.repository" class="external-link">RemoteRepository</a>&nbsp;remoteRepository)</span></div>
 <div class="block">Adds the provided repository to the library resolver.
  The order in which these are added does matter, as dependency resolving will start at the first added
  repository.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>remoteRepository</code> - the configuration that defines the maven repository this library resolver should fetch
-                         dependencies from</dd>
+ dependencies from</dd>
 </dl>
 </section>
 </li>
 <li>
 <section class="detail" id="register(io.papermc.paper.plugin.loader.library.LibraryStore)">
 <h3>register</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">register</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../LibraryStore.html" title="interface in io.papermc.paper.plugin.loader.library">LibraryStore</a>&nbsp;store)</span>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">register</span><wbr><span class="parameters">(<a href="../LibraryStore.html" title="interface in io.papermc.paper.plugin.loader.library">LibraryStore</a>&nbsp;store)</span>
               throws <span class="exceptions"><a href="../LibraryLoadingException.html" title="class in io.papermc.paper.plugin.loader.library">LibraryLoadingException</a></span></div>
 <div class="block">Resolves the provided dependencies and adds them to the library store.</div>
 <dl class="notes">

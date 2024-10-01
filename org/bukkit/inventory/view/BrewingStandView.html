@@ -138,15 +138,29 @@ extends <a href="../InventoryView.html" title="interface in org.bukkit.inventory
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Gets the fuel level of this brewing stand.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#setBrewingTicks(int)" class="member-name-link">setBrewingTicks</a><wbr>(int&nbsp;ticks)</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>@org.jetbrains.annotations.Range(from=1L, to=2147483647L) int</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getRecipeBrewTime()" class="member-name-link">getRecipeBrewTime</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Sets the brewing ticks left.</div>
+<div class="block">Gets the recipe time for the brewing process which is
+ used to compute the progress of the brewing process with
+ <a href="#getBrewingTicks()"><code>getBrewingTicks()</code></a>.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#setFuelLevel(int)" class="member-name-link">setFuelLevel</a><wbr>(int&nbsp;level)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#setBrewingTicks(int)" class="member-name-link">setBrewingTicks</a><wbr>(int&nbsp;ticks)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Sets the brewing ticks left.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#setFuelLevel(int)" class="member-name-link">setFuelLevel</a><wbr>(int&nbsp;level)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Sets the fuel level left.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#setRecipeBrewTime(int)" class="member-name-link">setRecipeBrewTime</a><wbr>(@org.jetbrains.annotations.Range(from=1L, to=2147483647L) int&nbsp;recipeBrewTime)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Sets the recipe time for the brewing process which is
+ used to compute the progress of the brewing process with
+ <a href="#getBrewingTicks()"><code>getBrewingTicks()</code></a>.</div>
 </div>
 </div>
 </div>
@@ -214,6 +228,36 @@ extends <a href="../InventoryView.html" title="interface in org.bukkit.inventory
 <dd><code>ticks</code> - the ticks left, which is no less than 0</dd>
 <dt>Throws:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if the ticks are less than 0</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="setRecipeBrewTime(int)">
+<h3>setRecipeBrewTime</h3>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/ApiStatus.Experimental.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Experimental</a>
+</span><span class="return-type">void</span>&nbsp;<span class="element-name">setRecipeBrewTime</span><wbr><span class="parameters">(@org.jetbrains.annotations.Range(from=1L, to=2147483647L) int&nbsp;recipeBrewTime)</span></div>
+<div class="block">Sets the recipe time for the brewing process which is
+ used to compute the progress of the brewing process with
+ <a href="#getBrewingTicks()"><code>getBrewingTicks()</code></a>.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>recipeBrewTime</code> - recipe brew time (in ticks)</dd>
+<dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if the recipe brew time is non-positive</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getRecipeBrewTime()">
+<h3>getRecipeBrewTime</h3>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/ApiStatus.Experimental.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Experimental</a>
+</span><span class="return-type">@org.jetbrains.annotations.Range(from=1L, to=2147483647L) int</span>&nbsp;<span class="element-name">getRecipeBrewTime</span>()</div>
+<div class="block">Gets the recipe time for the brewing process which is
+ used to compute the progress of the brewing process with
+ <a href="#getBrewingTicks()"><code>getBrewingTicks()</code></a>.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>recipe brew time (in ticks)</dd>
 </dl>
 </section>
 </li>

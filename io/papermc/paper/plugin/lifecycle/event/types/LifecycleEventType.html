@@ -99,6 +99,7 @@ loadScripts(document, 'script');</script>
 </dl>
 <hr>
 <div class="type-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/ApiStatus.Experimental.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Experimental</a>
+<a href="https://jspecify.dev/docs/api/org/jspecify/annotations/NullMarked.html" title="class or interface in org.jspecify.annotations" class="external-link">@NullMarked</a>
 <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/ApiStatus.NonExtendable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NonExtendable</a>
 </span><span class="modifiers">public interface </span><span class="element-name type-name-label">LifecycleEventType&lt;O extends <a href="../LifecycleEventOwner.html" title="interface in io.papermc.paper.plugin.lifecycle.event">LifecycleEventOwner</a>,<wbr>E extends <a href="../LifecycleEvent.html" title="interface in io.papermc.paper.plugin.lifecycle.event">LifecycleEvent</a>,<wbr>C extends <a href="../handler/configuration/LifecycleEventHandlerConfiguration.html" title="interface in io.papermc.paper.plugin.lifecycle.event.handler.configuration">LifecycleEventHandlerConfiguration</a>&lt;O&gt;&gt;</span></div>
 <div class="block">Base type for all types of lifecycle events. Differs from
@@ -144,13 +145,13 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#name()" class="member-name-link">name</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Gets the name of the lifecycle event.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="LifecycleEventType.html" title="type parameter in LifecycleEventType">C</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#newHandler(io.papermc.paper.plugin.lifecycle.event.handler.LifecycleEventHandler)" class="member-name-link">newHandler</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../handler/LifecycleEventHandler.html" title="interface in io.papermc.paper.plugin.lifecycle.event.handler">LifecycleEventHandler</a>&lt;? super <a href="LifecycleEventType.html" title="type parameter in LifecycleEventType">E</a>&gt;&nbsp;handler)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#newHandler(io.papermc.paper.plugin.lifecycle.event.handler.LifecycleEventHandler)" class="member-name-link">newHandler</a><wbr>(<a href="../handler/LifecycleEventHandler.html" title="interface in io.papermc.paper.plugin.lifecycle.event.handler">LifecycleEventHandler</a>&lt;? super <a href="LifecycleEventType.html" title="type parameter in LifecycleEventType">E</a>&gt;&nbsp;handler)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Create a configuration for this event with the specified
  handler.</div>
@@ -173,8 +174,7 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="name()">
 <h3>name</h3>
 <div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Contract.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Contract</a>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Contract.html#pure()" title="class or interface in org.jetbrains.annotations" class="external-link">pure</a>=true)
-<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
-</span><span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">name</span>()</div>
+</span><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">name</span>()</div>
 <div class="block">Gets the name of the lifecycle event.</div>
 <dl class="notes">
 <dt>Returns:</dt>
@@ -186,9 +186,7 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="newHandler(io.papermc.paper.plugin.lifecycle.event.handler.LifecycleEventHandler)">
 <h3>newHandler</h3>
 <div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Contract.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Contract</a>("_ -&gt; new")
-<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
-</span><span class="return-type"><a href="LifecycleEventType.html" title="type parameter in LifecycleEventType">C</a></span>&nbsp;<span class="element-name">newHandler</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../handler/LifecycleEventHandler.html" title="interface in io.papermc.paper.plugin.lifecycle.event.handler">LifecycleEventHandler</a>&lt;? super <a href="LifecycleEventType.html" title="type parameter in LifecycleEventType">E</a>&gt;&nbsp;handler)</span></div>
+</span><span class="return-type"><a href="LifecycleEventType.html" title="type parameter in LifecycleEventType">C</a></span>&nbsp;<span class="element-name">newHandler</span><wbr><span class="parameters">(<a href="../handler/LifecycleEventHandler.html" title="interface in io.papermc.paper.plugin.lifecycle.event.handler">LifecycleEventHandler</a>&lt;? super <a href="LifecycleEventType.html" title="type parameter in LifecycleEventType">E</a>&gt;&nbsp;handler)</span></div>
 <div class="block">Create a configuration for this event with the specified
  handler.</div>
 <dl class="notes">
