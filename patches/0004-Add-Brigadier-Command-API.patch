@@ -1204,12 +1204,13 @@ index 0000000000000000000000000000000000000000..00088cc1f0bbc2bf0dc8fb029203921f
 +}
 diff --git a/src/main/java/moe/caramel/daydream/util/NumberRange.java b/src/main/java/moe/caramel/daydream/util/NumberRange.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..1b92b745e018adc0213ba7fa094484beadab7e16
+index 0000000000000000000000000000000000000000..b21df77a52d31e7e0c38b33a6d77808abf2d7341
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/util/NumberRange.java
-@@ -0,0 +1,32 @@
+@@ -0,0 +1,35 @@
 +package moe.caramel.daydream.util;
 +
++import org.jspecify.annotations.NullMarked;
 +import org.jspecify.annotations.Nullable;
 +
 +/**
@@ -1217,8 +1218,8 @@ index 0000000000000000000000000000000000000000..1b92b745e018adc0213ba7fa094484be
 + *
 + * @param <T> 숫자 타입 (Integer, Double ...)
 + */
-+@Nullable
-+public record NumberRange<T extends Number>(T min, T max) {
++@NullMarked
++public record NumberRange<T extends Number>(@Nullable T min, @Nullable T max) {
 +
 +    /**
 +     * 최솟값을 가져옵니다.
@@ -1226,7 +1227,8 @@ index 0000000000000000000000000000000000000000..1b92b745e018adc0213ba7fa094484be
 +     * @param def 기본값
 +     * @return 최솟값
 +     */
-+    public T getMin(final T def) {
++    @Nullable
++    public T getMin(final @Nullable T def) {
 +        return (min == null) ? def : min;
 +    }
 +
@@ -1236,7 +1238,8 @@ index 0000000000000000000000000000000000000000..1b92b745e018adc0213ba7fa094484be
 +     * @param def 기본값
 +     * @return 최댓값
 +     */
-+    public T getMax(final T def) {
++    @Nullable
++    public T getMax(final @Nullable T def) {
 +        return (max == null) ? def : max;
 +    }
 +}
