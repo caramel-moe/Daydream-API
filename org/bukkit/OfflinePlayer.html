@@ -89,7 +89,7 @@ loadScripts(document, 'script');</script>
 <section class="class-description" id="class-description">
 <dl class="notes">
 <dt>All Superinterfaces:</dt>
-<dd><code><a href="entity/AnimalTamer.html" title="interface in org.bukkit.entity">AnimalTamer</a></code>, <code><a href="configuration/serialization/ConfigurationSerializable.html" title="interface in org.bukkit.configuration.serialization">ConfigurationSerializable</a></code>, <code><a href="permissions/ServerOperator.html" title="interface in org.bukkit.permissions">ServerOperator</a></code></dd>
+<dd><code><a href="entity/AnimalTamer.html" title="interface in org.bukkit.entity">AnimalTamer</a></code>, <code><a href="configuration/serialization/ConfigurationSerializable.html" title="interface in org.bukkit.configuration.serialization">ConfigurationSerializable</a></code>, <code><a href="../../io/papermc/paper/persistence/PersistentDataViewHolder.html" title="interface in io.papermc.paper.persistence">PersistentDataViewHolder</a></code>, <code><a href="permissions/ServerOperator.html" title="interface in org.bukkit.permissions">ServerOperator</a></code></dd>
 </dl>
 <dl class="notes">
 <dt>All Known Subinterfaces:</dt>
@@ -97,7 +97,7 @@ loadScripts(document, 'script');</script>
 </dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public interface </span><span class="element-name type-name-label">OfflinePlayer</span><span class="extends-implements">
-extends <a href="permissions/ServerOperator.html" title="interface in org.bukkit.permissions">ServerOperator</a>, <a href="entity/AnimalTamer.html" title="interface in org.bukkit.entity">AnimalTamer</a>, <a href="configuration/serialization/ConfigurationSerializable.html" title="interface in org.bukkit.configuration.serialization">ConfigurationSerializable</a></span></div>
+extends <a href="permissions/ServerOperator.html" title="interface in org.bukkit.permissions">ServerOperator</a>, <a href="entity/AnimalTamer.html" title="interface in org.bukkit.entity">AnimalTamer</a>, <a href="configuration/serialization/ConfigurationSerializable.html" title="interface in org.bukkit.configuration.serialization">ConfigurationSerializable</a>, <a href="../../io/papermc/paper/persistence/PersistentDataViewHolder.html" title="interface in io.papermc.paper.persistence">PersistentDataViewHolder</a></span></div>
 <div class="block">Represents a reference to a player identity and the data belonging to a
  player that is stored on the disk and can, thus, be retrieved without the
  player needing to be online.</div>
@@ -260,132 +260,137 @@ extends <a href="permissions/ServerOperator.html" title="interface in org.bukkit
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Returns the name of this player</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="entity/Player.html" title="interface in org.bukkit.entity">Player</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getPlayer()" class="member-name-link">getPlayer</a>()</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../io/papermc/paper/persistence/PersistentDataContainerView.html" title="interface in io.papermc.paper.persistence">PersistentDataContainerView</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getPersistentDataContainer()" class="member-name-link">getPersistentDataContainer</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Yields a view of the persistent data container for this offline player.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="entity/Player.html" title="interface in org.bukkit.entity">Player</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getPlayer()" class="member-name-link">getPlayer</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Gets a <a href="entity/Player.html" title="interface in org.bukkit.entity"><code>Player</code></a> object that this represents, if there is one</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="../../com/destroystokyo/paper/profile/PlayerProfile.html" title="interface in com.destroystokyo.paper.profile">PlayerProfile</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getPlayerProfile()" class="member-name-link">getPlayerProfile</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="../../com/destroystokyo/paper/profile/PlayerProfile.html" title="interface in com.destroystokyo.paper.profile">PlayerProfile</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getPlayerProfile()" class="member-name-link">getPlayerProfile</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Gets a copy of the player's profile.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="Location.html" title="class in org.bukkit">Location</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getRespawnLocation()" class="member-name-link">getRespawnLocation</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="Location.html" title="class in org.bukkit">Location</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getRespawnLocation()" class="member-name-link">getRespawnLocation</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Gets the Location where the player will spawn at, null if they
  don't have a valid respawn point.</div>
 </div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>int</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getStatistic(org.bukkit.Statistic)" class="member-name-link">getStatistic</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Statistic.html" title="enum class in org.bukkit">Statistic</a>&nbsp;statistic)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Gets the value of the given statistic for this player.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>int</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getStatistic(org.bukkit.Statistic)" class="member-name-link">getStatistic</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Statistic.html" title="enum class in org.bukkit">Statistic</a>&nbsp;statistic)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getStatistic(org.bukkit.Statistic,org.bukkit.Material)" class="member-name-link">getStatistic</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Statistic.html" title="enum class in org.bukkit">Statistic</a>&nbsp;statistic,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Material.html" title="enum class in org.bukkit">Material</a>&nbsp;material)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Gets the value of the given statistic for this player.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>int</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getStatistic(org.bukkit.Statistic,org.bukkit.Material)" class="member-name-link">getStatistic</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Statistic.html" title="enum class in org.bukkit">Statistic</a>&nbsp;statistic,
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Material.html" title="enum class in org.bukkit">Material</a>&nbsp;material)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Gets the value of the given statistic for this player.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>int</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getStatistic(org.bukkit.Statistic,org.bukkit.entity.EntityType)" class="member-name-link">getStatistic</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Statistic.html" title="enum class in org.bukkit">Statistic</a>&nbsp;statistic,
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getStatistic(org.bukkit.Statistic,org.bukkit.entity.EntityType)" class="member-name-link">getStatistic</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Statistic.html" title="enum class in org.bukkit">Statistic</a>&nbsp;statistic,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="entity/EntityType.html" title="enum class in org.bukkit.entity">EntityType</a>&nbsp;entityType)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Gets the value of the given statistic for this player.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getUniqueId()" class="member-name-link">getUniqueId</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getUniqueId()" class="member-name-link">getUniqueId</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Returns the UUID of this player</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#hasPlayedBefore()" class="member-name-link">hasPlayedBefore</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#hasPlayedBefore()" class="member-name-link">hasPlayedBefore</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Checks if this player has played on this server before.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#incrementStatistic(org.bukkit.Statistic)" class="member-name-link">incrementStatistic</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Statistic.html" title="enum class in org.bukkit">Statistic</a>&nbsp;statistic)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Increments the given statistic for this player.</div>
-</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#incrementStatistic(org.bukkit.Statistic,int)" class="member-name-link">incrementStatistic</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Statistic.html" title="enum class in org.bukkit">Statistic</a>&nbsp;statistic,
- int&nbsp;amount)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#incrementStatistic(org.bukkit.Statistic)" class="member-name-link">incrementStatistic</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Statistic.html" title="enum class in org.bukkit">Statistic</a>&nbsp;statistic)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Increments the given statistic for this player.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#incrementStatistic(org.bukkit.Statistic,org.bukkit.Material)" class="member-name-link">incrementStatistic</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Statistic.html" title="enum class in org.bukkit">Statistic</a>&nbsp;statistic,
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Material.html" title="enum class in org.bukkit">Material</a>&nbsp;material)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#incrementStatistic(org.bukkit.Statistic,int)" class="member-name-link">incrementStatistic</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Statistic.html" title="enum class in org.bukkit">Statistic</a>&nbsp;statistic,
+ int&nbsp;amount)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Increments the given statistic for this player for the given material.</div>
+<div class="block">Increments the given statistic for this player.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#incrementStatistic(org.bukkit.Statistic,org.bukkit.Material,int)" class="member-name-link">incrementStatistic</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Statistic.html" title="enum class in org.bukkit">Statistic</a>&nbsp;statistic,
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#incrementStatistic(org.bukkit.Statistic,org.bukkit.Material)" class="member-name-link">incrementStatistic</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Statistic.html" title="enum class in org.bukkit">Statistic</a>&nbsp;statistic,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Material.html" title="enum class in org.bukkit">Material</a>&nbsp;material)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Increments the given statistic for this player for the given material.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#incrementStatistic(org.bukkit.Statistic,org.bukkit.Material,int)" class="member-name-link">incrementStatistic</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Statistic.html" title="enum class in org.bukkit">Statistic</a>&nbsp;statistic,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Material.html" title="enum class in org.bukkit">Material</a>&nbsp;material,
  int&nbsp;amount)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Increments the given statistic for this player for the given material.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#incrementStatistic(org.bukkit.Statistic,org.bukkit.entity.EntityType)" class="member-name-link">incrementStatistic</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Statistic.html" title="enum class in org.bukkit">Statistic</a>&nbsp;statistic,
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#incrementStatistic(org.bukkit.Statistic,org.bukkit.entity.EntityType)" class="member-name-link">incrementStatistic</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Statistic.html" title="enum class in org.bukkit">Statistic</a>&nbsp;statistic,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="entity/EntityType.html" title="enum class in org.bukkit.entity">EntityType</a>&nbsp;entityType)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Increments the given statistic for this player for the given entity.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#incrementStatistic(org.bukkit.Statistic,org.bukkit.entity.EntityType,int)" class="member-name-link">incrementStatistic</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Statistic.html" title="enum class in org.bukkit">Statistic</a>&nbsp;statistic,
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#incrementStatistic(org.bukkit.Statistic,org.bukkit.entity.EntityType,int)" class="member-name-link">incrementStatistic</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Statistic.html" title="enum class in org.bukkit">Statistic</a>&nbsp;statistic,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="entity/EntityType.html" title="enum class in org.bukkit.entity">EntityType</a>&nbsp;entityType,
  int&nbsp;amount)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Increments the given statistic for this player for the given entity.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#isBanned()" class="member-name-link">isBanned</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#isBanned()" class="member-name-link">isBanned</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Checks if this player has had their profile banned.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#isConnected()" class="member-name-link">isConnected</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#isConnected()" class="member-name-link">isConnected</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Checks whether the connection to this player is still valid.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#isOnline()" class="member-name-link">isOnline</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#isOnline()" class="member-name-link">isOnline</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Checks if this player is currently online
 
  It should be noted that this will return true if any instance of this player is
  online! This instance may have disconnected.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#isWhitelisted()" class="member-name-link">isWhitelisted</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#isWhitelisted()" class="member-name-link">isWhitelisted</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Checks if this player is whitelisted or not</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#setStatistic(org.bukkit.Statistic,int)" class="member-name-link">setStatistic</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Statistic.html" title="enum class in org.bukkit">Statistic</a>&nbsp;statistic,
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#setStatistic(org.bukkit.Statistic,int)" class="member-name-link">setStatistic</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Statistic.html" title="enum class in org.bukkit">Statistic</a>&nbsp;statistic,
  int&nbsp;newValue)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Sets the given statistic for this player.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#setStatistic(org.bukkit.Statistic,org.bukkit.Material,int)" class="member-name-link">setStatistic</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Statistic.html" title="enum class in org.bukkit">Statistic</a>&nbsp;statistic,
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#setStatistic(org.bukkit.Statistic,org.bukkit.Material,int)" class="member-name-link">setStatistic</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Statistic.html" title="enum class in org.bukkit">Statistic</a>&nbsp;statistic,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Material.html" title="enum class in org.bukkit">Material</a>&nbsp;material,
  int&nbsp;newValue)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Sets the given statistic for this player for the given material.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#setStatistic(org.bukkit.Statistic,org.bukkit.entity.EntityType,int)" class="member-name-link">setStatistic</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Statistic.html" title="enum class in org.bukkit">Statistic</a>&nbsp;statistic,
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#setStatistic(org.bukkit.Statistic,org.bukkit.entity.EntityType,int)" class="member-name-link">setStatistic</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="Statistic.html" title="enum class in org.bukkit">Statistic</a>&nbsp;statistic,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="entity/EntityType.html" title="enum class in org.bukkit.entity">EntityType</a>&nbsp;entityType,
  int&nbsp;newValue)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Sets the given statistic for this player for the given entity.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#setWhitelisted(boolean)" class="member-name-link">setWhitelisted</a><wbr>(boolean&nbsp;value)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#setWhitelisted(boolean)" class="member-name-link">setWhitelisted</a><wbr>(boolean&nbsp;value)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Sets if this player is whitelisted or not</div>
 </div>
 </div>
@@ -394,6 +399,9 @@ extends <a href="permissions/ServerOperator.html" title="interface in org.bukkit
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-org.bukkit.configuration.serialization.ConfigurationSerializable">Methods inherited from interface&nbsp;org.bukkit.configuration.serialization.<a href="configuration/serialization/ConfigurationSerializable.html" title="interface in org.bukkit.configuration.serialization">ConfigurationSerializable</a></h3>
 <code><a href="configuration/serialization/ConfigurationSerializable.html#serialize()">serialize</a></code></div>
+<div class="inherited-list">
+<h3 id="methods-inherited-from-class-io.papermc.paper.persistence.PersistentDataViewHolder">Methods inherited from interface&nbsp;io.papermc.paper.persistence.<a href="../../io/papermc/paper/persistence/PersistentDataViewHolder.html" title="interface in io.papermc.paper.persistence">PersistentDataViewHolder</a></h3>
+<code><a href="../../io/papermc/paper/persistence/PersistentDataViewHolder.html#getPdc()">getPdc</a></code></div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-org.bukkit.permissions.ServerOperator">Methods inherited from interface&nbsp;org.bukkit.permissions.<a href="permissions/ServerOperator.html" title="interface in org.bukkit.permissions">ServerOperator</a></h3>
 <code><a href="permissions/ServerOperator.html#isOp()">isOp</a>, <a href="permissions/ServerOperator.html#setOp(boolean)">setOp</a></code></div>
@@ -1249,6 +1257,31 @@ extends <a href="permissions/ServerOperator.html" title="interface in org.bukkit
 <dt>Returns:</dt>
 <dd>the player's location, <code>null</code> if player hasn't ever played
  before.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getPersistentDataContainer()">
+<h3>getPersistentDataContainer</h3>
+<div class="member-signature"><span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../io/papermc/paper/persistence/PersistentDataContainerView.html" title="interface in io.papermc.paper.persistence">PersistentDataContainerView</a></span>&nbsp;<span class="element-name">getPersistentDataContainer</span>()</div>
+<div class="block">Yields a view of the persistent data container for this offline player.
+ In case this <a href="OfflinePlayer.html" title="interface in org.bukkit"><code>OfflinePlayer</code></a> instance was created for an offline player, the returned view will wrap the persistent
+ data on disk.
+ <p>
+ As such, this method as well as queries to the <a href="../../io/papermc/paper/persistence/PersistentDataContainerView.html" title="interface in io.papermc.paper.persistence"><code>PersistentDataContainerView</code></a>
+ may produce blocking IO requests to read the requested data from disk.
+ Caution in its usage is hence advised.</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="../../io/papermc/paper/persistence/PersistentDataViewHolder.html#getPersistentDataContainer()">getPersistentDataContainer</a></code>&nbsp;in interface&nbsp;<code><a href="../../io/papermc/paper/persistence/PersistentDataViewHolder.html" title="interface in io.papermc.paper.persistence">PersistentDataViewHolder</a></code></dd>
+<dt>Returns:</dt>
+<dd>the persistent data container view</dd>
+<dt>See Also:</dt>
+<dd>
+<ul class="tag-list-long">
+<li><a href="../../io/papermc/paper/persistence/PersistentDataViewHolder.html#getPersistentDataContainer()"><code>PersistentDataViewHolder.getPersistentDataContainer()</code></a></li>
+</ul>
+</dd>
 </dl>
 </section>
 </li>

@@ -128,6 +128,17 @@ extends <a href="../InventoryView.html" title="interface in org.bukkit.inventory
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#bypassEnchantmentLevelRestriction(boolean)" class="member-name-link">bypassEnchantmentLevelRestriction</a><wbr>(boolean&nbsp;bypassEnchantmentLevelRestriction)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Sets if enchantments applied via this anvil view may bypass vanilla's level restrictions.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#bypassesEnchantmentLevelRestriction()" class="member-name-link">bypassesEnchantmentLevelRestriction</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Returns whether this view will bypass the vanilla enchantment level restriction
+ when applying enchantments to an item or not.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>int</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getMaximumRepairCost()" class="member-name-link">getMaximumRepairCost</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
@@ -256,6 +267,41 @@ extends <a href="../InventoryView.html" title="interface in org.bukkit.inventory
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>levels</code> - the levels to set</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="bypassesEnchantmentLevelRestriction()">
+<h3>bypassesEnchantmentLevelRestriction</h3>
+<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">bypassesEnchantmentLevelRestriction</span>()</div>
+<div class="block">Returns whether this view will bypass the vanilla enchantment level restriction
+ when applying enchantments to an item or not.
+ <p>
+ By default, vanilla will limit enchantments applied to items to the respective
+ <a href="../../enchantments/Enchantment.html#getMaxLevel()"><code>Enchantment.getMaxLevel()</code></a>, even if the applied enchantment itself is above said
+ limit.
+ Disabling this limit via <a href="#bypassEnchantmentLevelRestriction(boolean)"><code>bypassEnchantmentLevelRestriction(boolean)</code></a> allows for, e.g., enchanted
+ books to be applied fully, even if their enchantments are beyond the limit.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd><code>true</code> if this view bypasses the vanilla restrictions.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="bypassEnchantmentLevelRestriction(boolean)">
+<h3>bypassEnchantmentLevelRestriction</h3>
+<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">bypassEnchantmentLevelRestriction</span><wbr><span class="parameters">(boolean&nbsp;bypassEnchantmentLevelRestriction)</span></div>
+<div class="block">Sets if enchantments applied via this anvil view may bypass vanilla's level restrictions.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>bypassEnchantmentLevelRestriction</code> - if this view bypasses the vanilla level restrictions.</dd>
+<dt>See Also:</dt>
+<dd>
+<ul class="tag-list-long">
+<li><a href="#bypassesEnchantmentLevelRestriction()"><code>bypassesEnchantmentLevelRestriction()</code></a></li>
+</ul>
+</dd>
 </dl>
 </section>
 </li>
