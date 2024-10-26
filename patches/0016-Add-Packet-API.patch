@@ -6,10 +6,10 @@ Subject: [PATCH] Add Packet API
 
 diff --git a/src/main/java/moe/caramel/daydream/event/packet/PacketType.java b/src/main/java/moe/caramel/daydream/event/packet/PacketType.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..61211adc0df36f4de80f03cba515ffe1e1dff79d
+index 0000000000000000000000000000000000000000..2243c218fc51d51862dd5e4722c8945bc118b776
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/event/packet/PacketType.java
-@@ -0,0 +1,22 @@
+@@ -0,0 +1,21 @@
 +package moe.caramel.daydream.event.packet;
 +
 +/**
@@ -21,7 +21,6 @@ index 0000000000000000000000000000000000000000..61211adc0df36f4de80f03cba515ffe1
 +     * [Client -> Server] Packets
 +     */
 +    enum Client {
-+        PLAYER_INPUT,
 +        PONG
 +    }
 +
@@ -82,133 +81,6 @@ index 0000000000000000000000000000000000000000..a1f6ce66d317fc190021aa0b7fcb8c1b
 +        return HANDLER_LIST;
 +    }
 +    //</editor-fold>
-+}
-diff --git a/src/main/java/moe/caramel/daydream/event/packet/ReceivePlayerInputPacketEvent.java b/src/main/java/moe/caramel/daydream/event/packet/ReceivePlayerInputPacketEvent.java
-new file mode 100644
-index 0000000000000000000000000000000000000000..f8ed8effbaff6548ff04ebc313d5cc1c4bb072db
---- /dev/null
-+++ b/src/main/java/moe/caramel/daydream/event/packet/ReceivePlayerInputPacketEvent.java
-@@ -0,0 +1,121 @@
-+package moe.caramel.daydream.event.packet;
-+
-+import org.bukkit.entity.Player;
-+import org.bukkit.event.Cancellable;
-+import org.jetbrains.annotations.ApiStatus;
-+import org.jspecify.annotations.NullMarked;
-+
-+/**
-+ * 서버가 클라이언트로부터 {@link PacketType.Client#PLAYER_INPUT} 패킷을 전달받았을 때 호출됩니다.
-+ */
-+@NullMarked
-+public final class ReceivePlayerInputPacketEvent extends ReceivePacketEvent implements Cancellable {
-+
-+    private float sideways, forward;
-+    private boolean jumping, shiftKeyDown;
-+    private boolean cancelled;
-+
-+    @ApiStatus.Internal
-+    public ReceivePlayerInputPacketEvent(final Player who, final float sideways, final float forward, final boolean jumping, final boolean shiftKeyDown) {
-+        super(who, PacketType.Client.PLAYER_INPUT, false);
-+        this.sideways = sideways;
-+        this.forward = forward;
-+        this.jumping = jumping;
-+        this.shiftKeyDown = shiftKeyDown;
-+    }
-+
-+    /**
-+     * Gets sideways value.
-+     *
-+     * @return sideways value
-+     */
-+    public float getSideways() {
-+        return sideways;
-+    }
-+
-+    /**
-+     * Sets sideways value.
-+     *
-+     * @param sideways new sideways value
-+     */
-+    public void setSideways(final float sideways) {
-+        this.sideways = sideways;
-+    }
-+
-+    /**
-+     * Gets forward value.
-+     *
-+     * @return forward value
-+     */
-+    public float getForward() {
-+        return forward;
-+    }
-+
-+    /**
-+     * Sets forward value.
-+     *
-+     * @param forward new forward value
-+     */
-+    public void setForward(final float forward) {
-+        this.forward = forward;
-+    }
-+
-+    /**
-+     * Gets jumping value.
-+     *
-+     * @return jumping value
-+     */
-+    public boolean isJumping() {
-+        return jumping;
-+    }
-+
-+    /**
-+     * Sets jumping value.
-+     *
-+     * @param jumping new jumping value
-+     */
-+    public void setJumping(final boolean jumping) {
-+        this.jumping = jumping;
-+    }
-+
-+    /**
-+     * Gets shiftKeyDown value.
-+     *
-+     * @return shiftKeyDown value
-+     */
-+    public boolean isShiftKeyDown() {
-+        return shiftKeyDown;
-+    }
-+
-+    /**
-+     * Sets shiftKeyDown value.
-+     *
-+     * @param shiftKeyDown new shiftKeyDown value
-+     */
-+    public void setShiftKeyDown(final boolean shiftKeyDown) {
-+        this.shiftKeyDown = shiftKeyDown;
-+    }
-+
-+    @Override
-+    public boolean isCancelled() {
-+        return this.cancelled;
-+    }
-+
-+    @Override
-+    public void setCancelled(final boolean cancel) {
-+        this.cancelled = cancel;
-+    }
-+
-+    @Override
-+    public String toString() {
-+        return "ReceivePlayerInputPacketEvent{" +
-+               "packetType=" + this.getPacketType() +
-+               ", player=" + this.getPlayer() +
-+               ", sideways=" + sideways +
-+               ", forward=" + forward +
-+               ", jumping=" + jumping +
-+               ", shiftKeyDown=" + shiftKeyDown +
-+               ", cancelled=" + this.isCancelled() +
-+               '}';
-+    }
 +}
 diff --git a/src/main/java/moe/caramel/daydream/event/packet/ReceivePongPacketEvent.java b/src/main/java/moe/caramel/daydream/event/packet/ReceivePongPacketEvent.java
 new file mode 100644
@@ -438,10 +310,10 @@ index 0000000000000000000000000000000000000000..939da87d9d7b686acb41ec2a9cc5d67f
 +}
 diff --git a/src/main/java/moe/caramel/daydream/packet/ContainerSetSlotPacket.java b/src/main/java/moe/caramel/daydream/packet/ContainerSetSlotPacket.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..b943afd33c06afc8cbd1c18e2e19d79f7952864f
+index 0000000000000000000000000000000000000000..bd1c05411028efb3d8d5308f58c3908e1fb80cb7
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/packet/ContainerSetSlotPacket.java
-@@ -0,0 +1,22 @@
+@@ -0,0 +1,19 @@
 +package moe.caramel.daydream.packet;
 +
 +import org.bukkit.inventory.ItemStack;
@@ -449,9 +321,6 @@ index 0000000000000000000000000000000000000000..b943afd33c06afc8cbd1c18e2e19d79f
 +
 +@NullMarked
 +public interface ContainerSetSlotPacket extends Packet {
-+
-+    int CARRIED_ITEM = -1;
-+    int PLAYER_INVENTORY = -2;
 +
 +    /**
 +     * 패킷을 생성합니다.
@@ -605,10 +474,10 @@ index 0000000000000000000000000000000000000000..78515358d7d62bf42e693f02323f16eb
 +}
 diff --git a/src/main/java/moe/caramel/daydream/packet/PlayerInfoUpdatePacket.java b/src/main/java/moe/caramel/daydream/packet/PlayerInfoUpdatePacket.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..7addb2adc11bc710db8212597914ca3d9692cf5e
+index 0000000000000000000000000000000000000000..35e7f3a812d58ff50f2e27bea6052270dc9caf85
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/packet/PlayerInfoUpdatePacket.java
-@@ -0,0 +1,174 @@
+@@ -0,0 +1,193 @@
 +package moe.caramel.daydream.packet;
 +
 +import com.mojang.authlib.GameProfile;
@@ -665,12 +534,13 @@ index 0000000000000000000000000000000000000000..7addb2adc11bc710db8212597914ca3d
 +     * @param latency 플레이어의 지연 시간 (필수: {@link Action#UPDATE_LATENCY})
 +     * @param gameMode 플레이어의 게임 모드 (필수: {@link Action#UPDATE_GAME_MODE})
 +     * @param playerListName 플레이어의 표시 이름 (필수: {@link Action#UPDATE_DISPLAY_NAME})
++     * @param listOrder 플레이어 탭 리스트 순서 (필수: {@link Action#UPDATE_LIST_ORDER})
 +     * @param chatSession 플레이어의 채팅 세션 (선택: {@link Action#INITIALIZE_CHAT})
 +     */
 +    record PlayerData(
 +        UUID profileId, @Nullable GameProfile profile,
 +        boolean listed, int latency, @Nullable GameMode gameMode,
-+        @Nullable Component playerListName, @Nullable ChatSession chatSession
++        @Nullable Component playerListName, int listOrder, @Nullable ChatSession chatSession
 +    ) { }
 +
 +
@@ -683,15 +553,17 @@ index 0000000000000000000000000000000000000000..7addb2adc11bc710db8212597914ca3d
 +     * @param latency 플레이어의 지연 시간
 +     * @param gameMode 플레이어의 게임 모드
 +     * @param playerListName 플레이어의 표시 이름 (nullable)
++     * @param listOrder 플레이어의 탭 리스트 정렬 순서
 +     * @param chatSession 플레이어의 채팅 세션 (nullable)
 +     * @return 플레이어 데이터
 +     */
 +    static PlayerData addPlayer(
 +        final UUID profileId, final GameProfile profile,
 +        final boolean listed, final int latency, final GameMode gameMode,
-+        final @Nullable Component playerListName, final @Nullable ChatSession chatSession
++        final @Nullable Component playerListName, final int listOrder,
++        final @Nullable ChatSession chatSession
 +    ) {
-+        return new PlayerData(profileId, profile, listed, latency, gameMode, playerListName, chatSession);
++        return new PlayerData(profileId, profile, listed, latency, gameMode, playerListName, listOrder, chatSession);
 +    }
 +
 +    /**
@@ -704,7 +576,8 @@ index 0000000000000000000000000000000000000000..7addb2adc11bc710db8212597914ca3d
 +        return PlayerInfoUpdatePacket.addPlayer(
 +            player.getUniqueId(), player.getProfile(),
 +            true, player.getPing(), player.getGameMode(),
-+            player.playerListName(), player.getChatSession()
++            player.playerListName(), player.getPlayerListOrder(),
++            player.getChatSession()
 +        );
 +    }
 +
@@ -716,7 +589,7 @@ index 0000000000000000000000000000000000000000..7addb2adc11bc710db8212597914ca3d
 +     * @return 플레이어 데이터
 +     */
 +    static PlayerData updateGameMode(final UUID uuid, final GameMode gameMode) {
-+        return new PlayerData(uuid, null, false, 0, gameMode, null, null);
++        return new PlayerData(uuid, null, false, 0, gameMode, null, 0, null);
 +    }
 +
 +    /**
@@ -727,7 +600,7 @@ index 0000000000000000000000000000000000000000..7addb2adc11bc710db8212597914ca3d
 +     * @return 플레이어 데이터
 +     */
 +    static PlayerData updateListed(final UUID uuid, final boolean listed) {
-+        return new PlayerData(uuid, null, listed, 0, null, null, null);
++        return new PlayerData(uuid, null, listed, 0, null, null, 0, null);
 +    }
 +
 +    /**
@@ -738,7 +611,7 @@ index 0000000000000000000000000000000000000000..7addb2adc11bc710db8212597914ca3d
 +     * @return 플레이어 데이터
 +     */
 +    static PlayerData updateLatency(final UUID uuid, final int latency) {
-+        return new PlayerData(uuid, null, false, latency, null, null, null);
++        return new PlayerData(uuid, null, false, latency, null, null, 0, null);
 +    }
 +
 +    /**
@@ -749,7 +622,18 @@ index 0000000000000000000000000000000000000000..7addb2adc11bc710db8212597914ca3d
 +     * @return 플레이어 데이터
 +     */
 +    static PlayerData updatePlayerListName(final UUID uuid, final @Nullable Component playerListName) {
-+        return new PlayerData(uuid, null, false, 0, null, playerListName, null);
++        return new PlayerData(uuid, null, false, 0, null, playerListName, 0, null);
++    }
++
++    /**
++     * for Update ListOrder Action
++     *
++     * @param uuid 플레이어의 UUID
++     * @param order 플레이어의 탭 리스트 정렬 위치
++     * @return 플레이어 데이터
++     */
++    static PlayerData updateListOrder(final UUID uuid, final int order) {
++        return new PlayerData(uuid, null, false, 0, null, null, order, null);
 +    }
 +
 +
@@ -780,7 +664,11 @@ index 0000000000000000000000000000000000000000..7addb2adc11bc710db8212597914ca3d
 +        /**
 +         * 플레이어의 표시 이름을 업데이트합니다.
 +         */
-+        UPDATE_DISPLAY_NAME;
++        UPDATE_DISPLAY_NAME,
++        /**
++         * 플레이어의 탭 리스트 정렬 순서를 업데이트합니다.
++         */
++        UPDATE_LIST_ORDER;
 +    }
 +}
 diff --git a/src/main/java/moe/caramel/daydream/packet/SetChunkCacheRadiusPacket.java b/src/main/java/moe/caramel/daydream/packet/SetChunkCacheRadiusPacket.java
@@ -874,6 +762,29 @@ index 0000000000000000000000000000000000000000..72b3baf16e5c8199bffabfbce4d3c733
 +     * @return this
 +     */
 +    SetEntityMotionPacket create(final int entityId, final Vector velocity);
++}
+diff --git a/src/main/java/moe/caramel/daydream/packet/SetPlayerInventoryPacket.java b/src/main/java/moe/caramel/daydream/packet/SetPlayerInventoryPacket.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..9e428668451ac6ed72bcc00e80de3ca867b8ffe3
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/packet/SetPlayerInventoryPacket.java
+@@ -0,0 +1,17 @@
++package moe.caramel.daydream.packet;
++
++import org.bukkit.inventory.ItemStack;
++import org.jspecify.annotations.NullMarked;
++
++@NullMarked
++public interface SetPlayerInventoryPacket extends Packet {
++
++    /**
++     * 패킷을 생성합니다.
++     *
++     * @param slot 업데이트해야 하는 슬롯
++     * @param stack 아이템
++     * @return this
++     */
++    SetPlayerInventoryPacket create(final int slot, final ItemStack stack);
 +}
 diff --git a/src/main/java/moe/caramel/daydream/packet/SetPlayerTeamPacket.java b/src/main/java/moe/caramel/daydream/packet/SetPlayerTeamPacket.java
 new file mode 100644
@@ -1141,10 +1052,10 @@ index 0000000000000000000000000000000000000000..d654fe8bfd2c79024f3bd937193708ab
 +    }
 +}
 diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
-index e8381a89f0b1ac56717e674b7ed4cf978638fb07..4b424a31bb131af3960f72a0b4cc93d252ac4ee9 100644
+index 8615bda7b956faf1ea2795fdcd0a0aeb7133f467..12e385cee2060687c77a80896695c81ebb9ba22a 100644
 --- a/src/main/java/org/bukkit/Bukkit.java
 +++ b/src/main/java/org/bukkit/Bukkit.java
-@@ -3023,6 +3023,20 @@ public final class Bukkit {
+@@ -2971,6 +2971,20 @@ public final class Bukkit {
      }
      // Paper end - Folia region threading API
  
@@ -1181,10 +1092,10 @@ index 918a045165cdcde264bc24082b7afebb407271de..0756634ad506aa81e8f3a789f5c28c84
      /**
       * Represents black
 diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
-index a4ee70bea52ca9ce9dffcbcd594babe067f57688..517db56606fb8250f5961867e287fff8c43ab3f6 100644
+index 06841b966f5627ab68c26f1f033a569d29fb72bd..d0f772b141cf33dd416e7ac78e8e796ff3afeefd 100644
 --- a/src/main/java/org/bukkit/Server.java
 +++ b/src/main/java/org/bukkit/Server.java
-@@ -2650,4 +2650,16 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
+@@ -2599,4 +2599,16 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
       */
      boolean isOwnedByCurrentRegion(@NotNull Entity entity);
      // Paper end - Folia region threading API
@@ -1248,10 +1159,10 @@ index d0ae8a94db20281d3664d74718c65234eb2e5f83..9727155852d73852330ad216a70ea9f9
       * Gets the amount of ticks this entity has lived for.
       * <p>
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index ef4f5180a99ba7680a0f07d2d6569dd943e77aed..f70be7551a031066d66aa448c7b88f72ec865f60 100644
+index a7867822be6da5ce88fc44e6ac13c7f9ab6e9d3b..cc0c1718e2c63e4aad6da259d29719a4c9675e26 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
-@@ -460,6 +460,16 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+@@ -476,6 +476,16 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
       */
      public boolean performCommand(@NotNull String command);
  
@@ -1268,7 +1179,7 @@ index ef4f5180a99ba7680a0f07d2d6569dd943e77aed..f70be7551a031066d66aa448c7b88f72
      /**
       * Returns true if the entity is supported by a block.
       *
-@@ -1054,6 +1064,31 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+@@ -1094,6 +1104,31 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      public void sendCustomPayload(@NotNull org.bukkit.NamespacedKey channel, @NotNull io.netty.buffer.ByteBuf buf);
      // Daydream end - Add Network API
  

@@ -5,7 +5,7 @@ Subject: [PATCH] Add EnhancedModelEngine Support
 
 
 diff --git a/src/main/java/org/bukkit/UnsafeValues.java b/src/main/java/org/bukkit/UnsafeValues.java
-index 0e72dfa978a6a48e85b3d7a376e6e46c4f501c87..950a8e62e55ffe1419067cdb8b11a6a8a7d8ae6d 100644
+index 0e72dfa978a6a48e85b3d7a376e6e46c4f501c87..c82cf42cd1894eb884f795b7bdedc761d33b98d9 100644
 --- a/src/main/java/org/bukkit/UnsafeValues.java
 +++ b/src/main/java/org/bukkit/UnsafeValues.java
 @@ -339,4 +339,34 @@ public interface UnsafeValues {
@@ -30,7 +30,7 @@ index 0e72dfa978a6a48e85b3d7a376e6e46c4f501c87..950a8e62e55ffe1419067cdb8b11a6a8
 +    int eme$invokeTrackedEntityGetEffectiveRange(@NotNull Object trackedEntity);
 +    int eme$getTrackedEntityRange(@NotNull Object trackedEntity);
 +    void eme$setTrackedEntityRange(@NotNull Object trackedEntity, int range);
-+    @NotNull Object eme$invokeInstrumentItemGetInstrument(@NotNull Object instrumentItem, @NotNull Object itemStack);
++    @NotNull Object eme$invokeInstrumentItemGetInstrument(@NotNull Object instrumentItem, @NotNull Object itemStack, @NotNull Object entity);
 +
 +    /* Packet */
 +    interface InteractPacketReadCallback { void handle(@NotNull Object gamePacketListener, @NotNull Object packet); @Nullable Object getNmsTarget(@NotNull Object serverLevel); }

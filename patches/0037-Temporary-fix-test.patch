@@ -1,0 +1,121 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: caramel <admin@caramel.moe>
+Date: Sun, 27 Oct 2024 03:11:45 +0900
+Subject: [PATCH] Temporary fix test
+
+
+diff --git a/src/main/java/com/destroystokyo/paper/MaterialTags.java b/src/main/java/com/destroystokyo/paper/MaterialTags.java
+index be212b4fbeabab32a4dab6ae554768c368efaa88..41eaa8159f8c028faa118300e95f6a0fb9cfe989 100644
+--- a/src/main/java/com/destroystokyo/paper/MaterialTags.java
++++ b/src/main/java/com/destroystokyo/paper/MaterialTags.java
+@@ -103,7 +103,7 @@ public class MaterialTags {
+      */
+     public static final MaterialSetTag DOORS = new MaterialSetTag(keyFor("doors"))
+         .endsWith("_DOOR")
+-        .ensureSize("DOORS", 20).lock();
++        .ensureSize("DOORS", 21).lock();
+ 
+     /**
+      * Covers all dyes.
+@@ -117,14 +117,14 @@ public class MaterialTags {
+      */
+     public static final MaterialSetTag FENCE_GATES = new MaterialSetTag(keyFor("fence_gates"))
+         .endsWith("_GATE")
+-        .ensureSize("FENCE_GATES", 11).lock();
++        .ensureSize("FENCE_GATES", 12).lock();
+ 
+     /**
+      * Covers all variants of fences.
+      */
+     public static final MaterialSetTag FENCES = new MaterialSetTag(keyFor("fences"))
+         .endsWith("_FENCE")
+-        .ensureSize("FENCES", 12).lock();
++        .ensureSize("FENCES", 13).lock();
+ 
+     /**
+      * Covers all variants of fish buckets.
+@@ -238,7 +238,7 @@ public class MaterialTags {
+      */
+     public static final MaterialSetTag PRESSURE_PLATES = new MaterialSetTag(keyFor("pressure_plates"))
+         .endsWith("_PRESSURE_PLATE")
+-        .ensureSize("PRESSURE_PLATES", 15).lock();
++        .ensureSize("PRESSURE_PLATES", 16).lock();
+ 
+     /**
+      * Covers the variants of prismarine blocks.
+@@ -317,7 +317,7 @@ public class MaterialTags {
+      */
+     public static final MaterialSetTag SPAWN_EGGS = new MaterialSetTag(keyFor("spawn_eggs"))
+         .endsWith("_SPAWN_EGG")
+-        .ensureSize("SPAWN_EGGS", 80).lock();
++        .ensureSize("SPAWN_EGGS", 81).lock();
+ 
+     /**
+      * Covers all colors of stained glass.
+@@ -338,7 +338,7 @@ public class MaterialTags {
+      */
+     public static final MaterialSetTag TRAPDOORS = new MaterialSetTag(keyFor("trapdoors"))
+         .endsWith("_TRAPDOOR")
+-        .ensureSize("TRAPDOORS", 20).lock();
++        .ensureSize("TRAPDOORS", 21).lock();
+ 
+     /**
+      * Covers all wood variants of doors.
+@@ -347,7 +347,7 @@ public class MaterialTags {
+         .endsWith("_DOOR")
+         .not(Material.IRON_DOOR)
+         .notContains("COPPER")
+-        .ensureSize("WOODEN_DOORS", 11).lock();
++        .ensureSize("WOODEN_DOORS", 12).lock();
+ 
+     /**
+      * Covers all wood variants of fences.
+@@ -355,7 +355,7 @@ public class MaterialTags {
+     public static final MaterialSetTag WOODEN_FENCES = new MaterialSetTag(keyFor("wooden_fences"))
+         .endsWith("_FENCE")
+         .not(Material.NETHER_BRICK_FENCE)
+-        .ensureSize("WOODEN_FENCES", 11).lock();
++        .ensureSize("WOODEN_FENCES", 12).lock();
+ 
+     /**
+      * Covers all wood variants of trapdoors.
+@@ -364,14 +364,14 @@ public class MaterialTags {
+         .endsWith("_TRAPDOOR")
+         .not(Material.IRON_TRAPDOOR)
+         .notContains("COPPER")
+-        .ensureSize("WOODEN_TRAPDOORS", 11).lock();
++        .ensureSize("WOODEN_TRAPDOORS", 12).lock();
+ 
+     /**
+      * Covers the wood variants of gates.
+      */
+     public static final MaterialSetTag WOODEN_GATES = new MaterialSetTag(keyFor("wooden_gates"))
+         .endsWith("_GATE")
+-        .ensureSize("WOODEN_GATES", 11).lock();
++        .ensureSize("WOODEN_GATES", 12).lock();
+ 
+     /**
+      * Covers the variants of purpur.
+@@ -385,7 +385,7 @@ public class MaterialTags {
+      */
+     public static final MaterialSetTag SIGNS = new MaterialSetTag(keyFor("signs"))
+         .endsWith("_SIGN")
+-        .ensureSize("SIGNS", 44).lock();
++        .ensureSize("SIGNS", 48).lock();
+ 
+     /**
+      * Covers the variants of a regular torch.
+diff --git a/src/main/java/org/bukkit/EntityEffect.java b/src/main/java/org/bukkit/EntityEffect.java
+index 83d623cc824ddeeae7350c9f9a757fcf8e97c9ea..f4f7fabee82c0bd25b38cd61049c6cc70dd63870 100644
+--- a/src/main/java/org/bukkit/EntityEffect.java
++++ b/src/main/java/org/bukkit/EntityEffect.java
+@@ -364,7 +364,8 @@ public enum EntityEffect {
+     /**
+      * {@link org.bukkit.inventory.EquipmentSlot#BODY} armor piece breaks
+      */
+-    BODY_BREAK(65, LivingEntity.class);
++    BODY_BREAK(65, LivingEntity.class),
++    SHAKE(66, org.bukkit.entity.CreakingTransient.class);
+     // Paper end - add missing EntityEffect
+ 
+     private final byte data;

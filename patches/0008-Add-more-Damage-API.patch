@@ -80,10 +80,10 @@ index 0000000000000000000000000000000000000000..32b93d78b8a3f044b7ca4ddf6a71e06e
 +    void setKnockbackDisabled(final boolean disabled);
 +}
 diff --git a/src/main/java/org/bukkit/Tag.java b/src/main/java/org/bukkit/Tag.java
-index 8bfec649f7c6dda956bc388a21b489f3565ff384..8e1cef5ee8ec5e16398f0636d852482b8b714806 100644
+index 42f0501ae6a2d9297bdd9bb9ab2fbb02abb881f5..90afcca12f2e8d5811d6fa76ce0a6e3e8200936d 100644
 --- a/src/main/java/org/bukkit/Tag.java
 +++ b/src/main/java/org/bukkit/Tag.java
-@@ -1334,6 +1334,43 @@ public interface Tag<T extends Keyed> extends Keyed {
+@@ -1430,6 +1430,44 @@ public interface Tag<T extends Keyed> extends Keyed {
      Tag<GameEvent> GAME_EVENT_ALLAY_CAN_LISTEN = Bukkit.getTag(REGISTRY_GAME_EVENTS, NamespacedKey.minecraft("allay_can_listen"), GameEvent.class);
      // Paper end
  
@@ -122,6 +122,7 @@ index 8bfec649f7c6dda956bc388a21b489f3565ff384..8e1cef5ee8ec5e16398f0636d852482b
 +    Tag<org.bukkit.damage.DamageType> DAMAGE_TYPE_BURN_FROM_STEPPING = Bukkit.getTag(REGISTRY_DAMAGE_TYPE, NamespacedKey.minecraft("burn_from_stepping"), org.bukkit.damage.DamageType.class);
 +    Tag<org.bukkit.damage.DamageType> DAMAGE_TYPE_PANIC_CAUSES = Bukkit.getTag(REGISTRY_DAMAGE_TYPE, NamespacedKey.minecraft("panic_causes"), org.bukkit.damage.DamageType.class);
 +    Tag<org.bukkit.damage.DamageType> DAMAGE_TYPE_PANIC_ENVIRONMENTAL_CAUSES = Bukkit.getTag(REGISTRY_DAMAGE_TYPE, NamespacedKey.minecraft("panic_environmental_causes"), org.bukkit.damage.DamageType.class);
++    Tag<org.bukkit.damage.DamageType> DAMAGE_TYPE_IS_MACE_SMASH = Bukkit.getTag(REGISTRY_DAMAGE_TYPE, NamespacedKey.minecraft("mace_smash"), org.bukkit.damage.DamageType.class);
 +    // Daydream end - Add more Damage API
 +
      /**

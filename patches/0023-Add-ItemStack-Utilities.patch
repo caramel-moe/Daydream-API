@@ -35,7 +35,7 @@ index 07391a5ab43319d8fe4402ba61b668c5461aa4ca..0e72dfa978a6a48e85b3d7a376e6e46c
 +    // Daydream end - Add ItemStack Utilities
  }
 diff --git a/src/main/java/org/bukkit/inventory/ItemStack.java b/src/main/java/org/bukkit/inventory/ItemStack.java
-index b3abe3bde05d4a360e31e490bff8a859dc2bd4a6..2704332ac8610866c5a5b59e7b0f3d1243ceb1eb 100644
+index b59222b8c262545d100a9fd28b3bf1d2a4cf4eb0..045b57bb00a1e3d5c05dc265e6fe71f627ab8af6 100644
 --- a/src/main/java/org/bukkit/inventory/ItemStack.java
 +++ b/src/main/java/org/bukkit/inventory/ItemStack.java
 @@ -71,6 +71,99 @@ public class ItemStack implements Cloneable, ConfigurationSerializable, Translat
@@ -139,10 +139,10 @@ index b3abe3bde05d4a360e31e490bff8a859dc2bd4a6..2704332ac8610866c5a5b59e7b0f3d12
       * Defaults stack size to 1, with no extra data.
       * <p>
 diff --git a/src/main/java/org/bukkit/inventory/meta/ItemMeta.java b/src/main/java/org/bukkit/inventory/meta/ItemMeta.java
-index f5541454ba5e508a72c83989c6feaef5406e2535..a5b76724f6aabe8ab69105f6ccaac4678e3a0bba 100644
+index 2a86e599175549a3021a63a837f8cc9d8da5697d..00393ca286e07150b05730ce21368d577c1943cb 100644
 --- a/src/main/java/org/bukkit/inventory/meta/ItemMeta.java
 +++ b/src/main/java/org/bukkit/inventory/meta/ItemMeta.java
-@@ -225,6 +225,170 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
+@@ -232,6 +232,170 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
      void lore(final @Nullable List<? extends net.kyori.adventure.text.Component> lore);
      // Paper end
  
@@ -313,7 +313,7 @@ index f5541454ba5e508a72c83989c6feaef5406e2535..a5b76724f6aabe8ab69105f6ccaac467
      /**
       * Gets the lore that is set.
       * <p>
-@@ -294,6 +458,18 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
+@@ -301,6 +465,18 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
       */
      int getCustomModelData();
  
