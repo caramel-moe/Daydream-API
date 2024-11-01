@@ -41,7 +41,7 @@ loadScripts(document, 'script');</script>
 <ul>
 <li><a href="#nested-class-summary">Nested</a></li>
 <li><a href="#enum-constant-summary">Enum Constants</a></li>
-<li>Field</li>
+<li><a href="#field-summary">Field</a></li>
 <li><a href="#method-summary">Method</a></li>
 </ul>
 </li>
@@ -49,7 +49,7 @@ loadScripts(document, 'script');</script>
 <p>Detail:</p>
 <ul>
 <li><a href="#enum-constant-detail">Enum Constants</a></li>
-<li>Field</li>
+<li><a href="#field-detail">Field</a></li>
 <li><a href="#method-detail">Method</a></li>
 </ul>
 </li>
@@ -61,13 +61,13 @@ loadScripts(document, 'script');</script>
 <li>Summary:&nbsp;</li>
 <li><a href="#nested-class-summary">Nested</a>&nbsp;|&nbsp;</li>
 <li><a href="#enum-constant-summary">Enum Constants</a>&nbsp;|&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field-summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#method-summary">Method</a></li>
 </ul>
 <ul class="sub-nav-list">
 <li>Detail:&nbsp;</li>
 <li><a href="#enum-constant-detail">Enum Constants</a>&nbsp;|&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field-detail">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#method-detail">Method</a></li>
 </ul>
 </div>
@@ -106,11 +106,7 @@ loadScripts(document, 'script');</script>
 implements <a href="TeleportFlag.html" title="interface in io.papermc.paper.entity">TeleportFlag</a></span></div>
 <div class="block">Note: These flags only work on <a href="../../../../org/bukkit/entity/Player.html" title="interface in org.bukkit.entity"><code>Player</code></a> entities.
  <p>
- Represents coordinates in a teleportation that should be handled relatively.
- <p>
- Coordinates of the location that the client should handle as relative teleportation
- Relative teleportation flags are only used client side, and cause the player to not lose velocity in that
- specific coordinate. The location of the teleportation will not change.</div>
+ Relative flags enable a player to not loose their velocity in the flag-specific axis/context when teleporting.</div>
 <dl class="notes">
 <dt>See Also:</dt>
 <dd>
@@ -118,6 +114,9 @@ implements <a href="TeleportFlag.html" title="interface in io.papermc.paper.enti
 <li><a href="../../../../org/bukkit/entity/Entity.html#teleport(org.bukkit.Location,org.bukkit.event.player.PlayerTeleportEvent.TeleportCause,io.papermc.paper.entity.TeleportFlag...)"><code>Entity.teleport(Location, PlayerTeleportEvent.TeleportCause, TeleportFlag...)</code></a></li>
 </ul>
 </dd>
+<dt>API Note:</dt>
+<dd>The relative flags exposed in the API do *not* mirror all flags known to vanilla, as relative flags concerning
+ the position are non-applicable given teleports always expect an absolute location.</dd>
 </dl>
 </section>
 <section class="summary">
@@ -142,25 +141,73 @@ implements <a href="TeleportFlag.html" title="interface in io.papermc.paper.enti
 <div class="summary-table two-column-summary">
 <div class="table-header col-first">Enum Constant</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color"><code><a href="#PITCH" class="member-name-link">PITCH</a></code></div>
+<div class="col-first even-row-color"><code><a href="#VELOCITY_ROTATION" class="member-name-link">VELOCITY_ROTATION</a></code></div>
 <div class="col-last even-row-color">
-<div class="block">Represents the player's pitch</div>
+<div class="block">Configures the player to not loose velocity in their current rotation during the teleport.</div>
 </div>
-<div class="col-first odd-row-color"><code><a href="#X" class="member-name-link">X</a></code></div>
+<div class="col-first odd-row-color"><code><a href="#VELOCITY_X" class="member-name-link">VELOCITY_X</a></code></div>
 <div class="col-last odd-row-color">
-<div class="block">Represents the player's X coordinate</div>
+<div class="block">Configures the player to not loose velocity in their x axis during the teleport.</div>
 </div>
-<div class="col-first even-row-color"><code><a href="#Y" class="member-name-link">Y</a></code></div>
+<div class="col-first even-row-color"><code><a href="#VELOCITY_Y" class="member-name-link">VELOCITY_Y</a></code></div>
 <div class="col-last even-row-color">
-<div class="block">Represents the player's Y coordinate</div>
+<div class="block">Configures the player to not loose velocity in their y axis during the teleport.</div>
 </div>
-<div class="col-first odd-row-color"><code><a href="#YAW" class="member-name-link">YAW</a></code></div>
+<div class="col-first odd-row-color"><code><a href="#VELOCITY_Z" class="member-name-link">VELOCITY_Z</a></code></div>
 <div class="col-last odd-row-color">
-<div class="block">Represents the player's yaw</div>
+<div class="block">Configures the player to not loose velocity in their z axis during the teleport.</div>
 </div>
-<div class="col-first even-row-color"><code><a href="#Z" class="member-name-link">Z</a></code></div>
+</div>
+</section>
+</li>
+<!-- =========== FIELD SUMMARY =========== -->
+<li>
+<section class="field-summary" id="field-summary">
+<h2>Field Summary</h2>
+<div class="caption"><span>Fields</span></div>
+<div class="summary-table three-column-summary">
+<div class="table-header col-first">Modifier and Type</div>
+<div class="table-header col-second">Field</div>
+<div class="table-header col-last">Description</div>
+<div class="col-first even-row-color"><code>static final <a href="TeleportFlag.Relative.html" title="enum class in io.papermc.paper.entity">TeleportFlag.Relative</a></code></div>
+<div class="col-second even-row-color"><code><a href="#PITCH" class="member-name-link">PITCH</a></code></div>
 <div class="col-last even-row-color">
-<div class="block">Represents the player's Z coordinate</div>
+<div class="block"><span class="deprecated-label">Deprecated, for removal: This API element is subject to removal in a future version.</span>
+<div class="deprecation-comment">relative velocity flags now allow for the whole rotation to be relative, instead of the yaw and
+ pitch having individual options.</div>
+</div>
+</div>
+<div class="col-first odd-row-color"><code>static final <a href="TeleportFlag.Relative.html" title="enum class in io.papermc.paper.entity">TeleportFlag.Relative</a></code></div>
+<div class="col-second odd-row-color"><code><a href="#X" class="member-name-link">X</a></code></div>
+<div class="col-last odd-row-color">
+<div class="block"><span class="deprecated-label">Deprecated, for removal: This API element is subject to removal in a future version.</span>
+<div class="deprecation-comment">Since 1.21.3, vanilla split up the relative teleport flags into velocity and position related
+ ones.</div>
+</div>
+</div>
+<div class="col-first even-row-color"><code>static final <a href="TeleportFlag.Relative.html" title="enum class in io.papermc.paper.entity">TeleportFlag.Relative</a></code></div>
+<div class="col-second even-row-color"><code><a href="#Y" class="member-name-link">Y</a></code></div>
+<div class="col-last even-row-color">
+<div class="block"><span class="deprecated-label">Deprecated, for removal: This API element is subject to removal in a future version.</span>
+<div class="deprecation-comment">Since 1.21.3, vanilla split up the relative teleport flags into velocity and position related
+ ones.</div>
+</div>
+</div>
+<div class="col-first odd-row-color"><code>static final <a href="TeleportFlag.Relative.html" title="enum class in io.papermc.paper.entity">TeleportFlag.Relative</a></code></div>
+<div class="col-second odd-row-color"><code><a href="#YAW" class="member-name-link">YAW</a></code></div>
+<div class="col-last odd-row-color">
+<div class="block"><span class="deprecated-label">Deprecated, for removal: This API element is subject to removal in a future version.</span>
+<div class="deprecation-comment">relative velocity flags now allow for the whole rotation to be relative, instead of the yaw and
+ pitch having individual options.</div>
+</div>
+</div>
+<div class="col-first even-row-color"><code>static final <a href="TeleportFlag.Relative.html" title="enum class in io.papermc.paper.entity">TeleportFlag.Relative</a></code></div>
+<div class="col-second even-row-color"><code><a href="#Z" class="member-name-link">Z</a></code></div>
+<div class="col-last even-row-color">
+<div class="block"><span class="deprecated-label">Deprecated, for removal: This API element is subject to removal in a future version.</span>
+<div class="deprecation-comment">Since 1.21.3, vanilla split up the relative teleport flags into velocity and position related
+ ones.</div>
+</div>
 </div>
 </div>
 </section>
@@ -208,37 +255,106 @@ the order they are declared.</div>
 <h2>Enum Constant Details</h2>
 <ul class="member-list">
 <li>
+<section class="detail" id="VELOCITY_X">
+<h3>VELOCITY_X</h3>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="TeleportFlag.Relative.html" title="enum class in io.papermc.paper.entity">TeleportFlag.Relative</a></span>&nbsp;<span class="element-name">VELOCITY_X</span></div>
+<div class="block">Configures the player to not loose velocity in their x axis during the teleport.</div>
+</section>
+</li>
+<li>
+<section class="detail" id="VELOCITY_Y">
+<h3>VELOCITY_Y</h3>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="TeleportFlag.Relative.html" title="enum class in io.papermc.paper.entity">TeleportFlag.Relative</a></span>&nbsp;<span class="element-name">VELOCITY_Y</span></div>
+<div class="block">Configures the player to not loose velocity in their y axis during the teleport.</div>
+</section>
+</li>
+<li>
+<section class="detail" id="VELOCITY_Z">
+<h3>VELOCITY_Z</h3>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="TeleportFlag.Relative.html" title="enum class in io.papermc.paper.entity">TeleportFlag.Relative</a></span>&nbsp;<span class="element-name">VELOCITY_Z</span></div>
+<div class="block">Configures the player to not loose velocity in their z axis during the teleport.</div>
+</section>
+</li>
+<li>
+<section class="detail" id="VELOCITY_ROTATION">
+<h3>VELOCITY_ROTATION</h3>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="TeleportFlag.Relative.html" title="enum class in io.papermc.paper.entity">TeleportFlag.Relative</a></span>&nbsp;<span class="element-name">VELOCITY_ROTATION</span></div>
+<div class="block">Configures the player to not loose velocity in their current rotation during the teleport.</div>
+</section>
+</li>
+</ul>
+</section>
+</li>
+<!-- ============ FIELD DETAIL =========== -->
+<li>
+<section class="field-details" id="field-detail">
+<h2>Field Details</h2>
+<ul class="member-list">
+<li>
 <section class="detail" id="X">
 <h3>X</h3>
-<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="TeleportFlag.Relative.html" title="enum class in io.papermc.paper.entity">TeleportFlag.Relative</a></span>&nbsp;<span class="element-name">X</span></div>
-<div class="block">Represents the player's X coordinate</div>
+<div class="member-signature"><span class="annotations"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Deprecated.html" title="class or interface in java.lang" class="external-link">@Deprecated</a>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Deprecated.html#since()" title="class or interface in java.lang" class="external-link">since</a>="1.21.3",
+            <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Deprecated.html#forRemoval()" title="class or interface in java.lang" class="external-link">forRemoval</a>=true)
+</span><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="TeleportFlag.Relative.html" title="enum class in io.papermc.paper.entity">TeleportFlag.Relative</a></span>&nbsp;<span class="element-name">X</span></div>
+<div class="deprecation-block"><span class="deprecated-label">Deprecated, for removal: This API element is subject to removal in a future version.</span>
+<div class="deprecation-comment">Since 1.21.3, vanilla split up the relative teleport flags into velocity and position related
+ ones. As the API does not deal with position relative flags, this name is no longer applicable.
+ Use <a href="#VELOCITY_X"><code>VELOCITY_X</code></a> instead.</div>
+</div>
+<div class="block">Configures the player to not loose velocity in their x axis during the teleport.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="Y">
 <h3>Y</h3>
-<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="TeleportFlag.Relative.html" title="enum class in io.papermc.paper.entity">TeleportFlag.Relative</a></span>&nbsp;<span class="element-name">Y</span></div>
-<div class="block">Represents the player's Y coordinate</div>
+<div class="member-signature"><span class="annotations"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Deprecated.html" title="class or interface in java.lang" class="external-link">@Deprecated</a>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Deprecated.html#since()" title="class or interface in java.lang" class="external-link">since</a>="1.21.3",
+            <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Deprecated.html#forRemoval()" title="class or interface in java.lang" class="external-link">forRemoval</a>=true)
+</span><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="TeleportFlag.Relative.html" title="enum class in io.papermc.paper.entity">TeleportFlag.Relative</a></span>&nbsp;<span class="element-name">Y</span></div>
+<div class="deprecation-block"><span class="deprecated-label">Deprecated, for removal: This API element is subject to removal in a future version.</span>
+<div class="deprecation-comment">Since 1.21.3, vanilla split up the relative teleport flags into velocity and position related
+ ones. As the API does not deal with position relative flags, this name is no longer applicable.
+ Use <a href="#VELOCITY_Y"><code>VELOCITY_Y</code></a> instead.</div>
+</div>
+<div class="block">Configures the player to not loose velocity in their y axis during the teleport.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="Z">
 <h3>Z</h3>
-<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="TeleportFlag.Relative.html" title="enum class in io.papermc.paper.entity">TeleportFlag.Relative</a></span>&nbsp;<span class="element-name">Z</span></div>
-<div class="block">Represents the player's Z coordinate</div>
+<div class="member-signature"><span class="annotations"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Deprecated.html" title="class or interface in java.lang" class="external-link">@Deprecated</a>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Deprecated.html#since()" title="class or interface in java.lang" class="external-link">since</a>="1.21.3",
+            <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Deprecated.html#forRemoval()" title="class or interface in java.lang" class="external-link">forRemoval</a>=true)
+</span><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="TeleportFlag.Relative.html" title="enum class in io.papermc.paper.entity">TeleportFlag.Relative</a></span>&nbsp;<span class="element-name">Z</span></div>
+<div class="deprecation-block"><span class="deprecated-label">Deprecated, for removal: This API element is subject to removal in a future version.</span>
+<div class="deprecation-comment">Since 1.21.3, vanilla split up the relative teleport flags into velocity and position related
+ ones. As the API does not deal with position relative flags, this name is no longer applicable.
+ Use <a href="#VELOCITY_Z"><code>VELOCITY_Z</code></a> instead.</div>
+</div>
+<div class="block">Configures the player to not loose velocity in their z axis during the teleport.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="YAW">
 <h3>YAW</h3>
-<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="TeleportFlag.Relative.html" title="enum class in io.papermc.paper.entity">TeleportFlag.Relative</a></span>&nbsp;<span class="element-name">YAW</span></div>
+<div class="member-signature"><span class="annotations"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Deprecated.html" title="class or interface in java.lang" class="external-link">@Deprecated</a>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Deprecated.html#since()" title="class or interface in java.lang" class="external-link">since</a>="1.21.3",
+            <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Deprecated.html#forRemoval()" title="class or interface in java.lang" class="external-link">forRemoval</a>=true)
+</span><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="TeleportFlag.Relative.html" title="enum class in io.papermc.paper.entity">TeleportFlag.Relative</a></span>&nbsp;<span class="element-name">YAW</span></div>
+<div class="deprecation-block"><span class="deprecated-label">Deprecated, for removal: This API element is subject to removal in a future version.</span>
+<div class="deprecation-comment">relative velocity flags now allow for the whole rotation to be relative, instead of the yaw and
+ pitch having individual options. Use <a href="#VELOCITY_ROTATION"><code>VELOCITY_ROTATION</code></a> instead.</div>
+</div>
 <div class="block">Represents the player's yaw</div>
 </section>
 </li>
 <li>
 <section class="detail" id="PITCH">
 <h3>PITCH</h3>
-<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="TeleportFlag.Relative.html" title="enum class in io.papermc.paper.entity">TeleportFlag.Relative</a></span>&nbsp;<span class="element-name">PITCH</span></div>
+<div class="member-signature"><span class="annotations"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Deprecated.html" title="class or interface in java.lang" class="external-link">@Deprecated</a>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Deprecated.html#since()" title="class or interface in java.lang" class="external-link">since</a>="1.21.3",
+            <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Deprecated.html#forRemoval()" title="class or interface in java.lang" class="external-link">forRemoval</a>=true)
+</span><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="TeleportFlag.Relative.html" title="enum class in io.papermc.paper.entity">TeleportFlag.Relative</a></span>&nbsp;<span class="element-name">PITCH</span></div>
+<div class="deprecation-block"><span class="deprecated-label">Deprecated, for removal: This API element is subject to removal in a future version.</span>
+<div class="deprecation-comment">relative velocity flags now allow for the whole rotation to be relative, instead of the yaw and
+ pitch having individual options. Use <a href="#VELOCITY_ROTATION"><code>VELOCITY_ROTATION</code></a> instead.</div>
+</div>
 <div class="block">Represents the player's pitch</div>
 </section>
 </li>
