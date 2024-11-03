@@ -1,0 +1,38 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: LemonCaramel <admin@caramel.moe>
+Date: Sun, 3 Nov 2024 20:57:57 +0900
+Subject: [PATCH] Add extra data to server ping
+
+
+diff --git a/src/main/java/com/destroystokyo/paper/event/server/PaperServerListPingEvent.java b/src/main/java/com/destroystokyo/paper/event/server/PaperServerListPingEvent.java
+index acff2ff570f8419ffa4dfefe890795c63d75325d..cb4a10ed094813ddf47df16c8b14b2a124260fc8 100644
+--- a/src/main/java/com/destroystokyo/paper/event/server/PaperServerListPingEvent.java
++++ b/src/main/java/com/destroystokyo/paper/event/server/PaperServerListPingEvent.java
+@@ -499,4 +499,27 @@ public class PaperServerListPingEvent extends ServerListPingEvent implements Can
+             throw new UnsupportedOperationException();
+         }
+     }
++
++    // Daydream start - Add extra data to server ping
++    @Nullable private com.google.gson.JsonObject extra;
++
++    /**
++     * 추가 데이터를 가져옵니다.
++     *
++     * @return 추가 데이터
++     */
++    @Nullable
++    public com.google.gson.JsonObject getExtra() {
++        return extra;
++    }
++
++    /**
++     * 추가 데이터를 설정합니다.
++     *
++     * @param extra 추가 데이터
++     */
++    public void setExtra(final @Nullable com.google.gson.JsonObject extra) {
++        this.extra = extra;
++    }
++    // Daydream end - Add extra data to server ping
+ }
