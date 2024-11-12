@@ -154,10 +154,10 @@ extends <a href="Vehicle.html" title="interface in org.bukkit.entity">Vehicle</a
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Gets the flying velocity modifier.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6"><code>double</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6"><code><a href="#getMaxSpeed()" class="member-name-link">getMaxSpeed</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6">
-<div class="block"><span class="deprecated-label">Deprecated.</span></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>double</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getMaxSpeed()" class="member-name-link">getMaxSpeed</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Gets the maximum speed of a minecart.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Material.html" title="enum class in org.bukkit">Material</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getMinecartMaterial()" class="member-name-link">getMinecartMaterial</a>()</code></div>
@@ -202,10 +202,10 @@ extends <a href="Vehicle.html" title="interface in org.bukkit.entity">Vehicle</a
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Sets the flying velocity modifier.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6"><code><a href="#setMaxSpeed(double)" class="member-name-link">setMaxSpeed</a><wbr>(double&nbsp;speed)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6">
-<div class="block"><span class="deprecated-label">Deprecated.</span></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#setMaxSpeed(double)" class="member-name-link">setMaxSpeed</a><wbr>(double&nbsp;speed)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Sets the maximum speed of a minecart.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#setSlowWhenEmpty(boolean)" class="member-name-link">setSlowWhenEmpty</a><wbr>(boolean&nbsp;slow)</code></div>
@@ -288,40 +288,24 @@ extends <a href="Vehicle.html" title="interface in org.bukkit.entity">Vehicle</a
 <li>
 <section class="detail" id="getMaxSpeed()">
 <h3>getMaxSpeed</h3>
-<div class="member-signature"><span class="annotations"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Deprecated.html" title="class or interface in java.lang" class="external-link">@Deprecated</a>
-</span><span class="return-type">double</span>&nbsp;<span class="element-name">getMaxSpeed</span>()</div>
-<div class="deprecation-block"><span class="deprecated-label">Deprecated.</span></div>
+<div class="member-signature"><span class="return-type">double</span>&nbsp;<span class="element-name">getMaxSpeed</span>()</div>
 <div class="block">Gets the maximum speed of a minecart. The speed is unrelated to the
  velocity.</div>
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>The max speed</dd>
-<dt>See Also:</dt>
-<dd>
-<ul class="tag-list">
-<li><a href="../GameRule.html#MINECART_MAX_SPEED"><code>GameRule.MINECART_MAX_SPEED</code></a></li>
-</ul>
-</dd>
 </dl>
 </section>
 </li>
 <li>
 <section class="detail" id="setMaxSpeed(double)">
 <h3>setMaxSpeed</h3>
-<div class="member-signature"><span class="annotations"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Deprecated.html" title="class or interface in java.lang" class="external-link">@Deprecated</a>
-</span><span class="return-type">void</span>&nbsp;<span class="element-name">setMaxSpeed</span><wbr><span class="parameters">(double&nbsp;speed)</span></div>
-<div class="deprecation-block"><span class="deprecated-label">Deprecated.</span></div>
+<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">setMaxSpeed</span><wbr><span class="parameters">(double&nbsp;speed)</span></div>
 <div class="block">Sets the maximum speed of a minecart. Must be nonnegative. Default is
- 0.4D.</div>
+ 0.4D or <a href="../GameRule.html#MINECART_MAX_SPEED"><code>GameRule.MINECART_MAX_SPEED</code></a>.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>speed</code> - The max speed</dd>
-<dt>See Also:</dt>
-<dd>
-<ul class="tag-list">
-<li><a href="../GameRule.html#MINECART_MAX_SPEED"><code>GameRule.MINECART_MAX_SPEED</code></a></li>
-</ul>
-</dd>
 </dl>
 </section>
 </li>

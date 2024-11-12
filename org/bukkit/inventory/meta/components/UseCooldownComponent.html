@@ -95,8 +95,7 @@ loadScripts(document, 'script');</script>
 <div class="type-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/ApiStatus.Experimental.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Experimental</a>
 </span><span class="modifiers">public interface </span><span class="element-name type-name-label">UseCooldownComponent</span><span class="extends-implements">
 extends <a href="../../../configuration/serialization/ConfigurationSerializable.html" title="interface in org.bukkit.configuration.serialization">ConfigurationSerializable</a></span></div>
-<div class="block">Represents a component which determines the cooldown applied to use of this
- item.</div>
+<div class="block">Represents a component which determines the cooldown applied when using this item before it is available for use again.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -119,17 +118,17 @@ extends <a href="../../../configuration/serialization/ConfigurationSerializable.
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>float</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getCooldownSeconds()" class="member-name-link">getCooldownSeconds</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Gets the time in seconds it will take for this item to be eaten.</div>
+<div class="block">Gets the time in seconds it will take for this item to be available for use again.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#setCooldownGroup(org.bukkit.NamespacedKey)" class="member-name-link">setCooldownGroup</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../../../NamespacedKey.html" title="class in org.bukkit">NamespacedKey</a>&nbsp;song)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#setCooldownGroup(org.bukkit.NamespacedKey)" class="member-name-link">setCooldownGroup</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../../../NamespacedKey.html" title="class in org.bukkit">NamespacedKey</a>&nbsp;group)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Sets the custom cooldown group to be used for similar items.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#setCooldownSeconds(float)" class="member-name-link">setCooldownSeconds</a><wbr>(float&nbsp;eatSeconds)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#setCooldownSeconds(float)" class="member-name-link">setCooldownSeconds</a><wbr>(float&nbsp;cooldownSeconds)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Sets the time in seconds it will take for this item to be eaten.</div>
+<div class="block">Sets the time in seconds it will take for this item to be available for use again.</div>
 </div>
 </div>
 </div>
@@ -152,21 +151,21 @@ extends <a href="../../../configuration/serialization/ConfigurationSerializable.
 <section class="detail" id="getCooldownSeconds()">
 <h3>getCooldownSeconds</h3>
 <div class="member-signature"><span class="return-type">float</span>&nbsp;<span class="element-name">getCooldownSeconds</span>()</div>
-<div class="block">Gets the time in seconds it will take for this item to be eaten.</div>
+<div class="block">Gets the time in seconds it will take for this item to be available for use again.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>eat time</dd>
+<dd>cooldown time</dd>
 </dl>
 </section>
 </li>
 <li>
 <section class="detail" id="setCooldownSeconds(float)">
 <h3>setCooldownSeconds</h3>
-<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">setCooldownSeconds</span><wbr><span class="parameters">(float&nbsp;eatSeconds)</span></div>
-<div class="block">Sets the time in seconds it will take for this item to be eaten.</div>
+<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">setCooldownSeconds</span><wbr><span class="parameters">(float&nbsp;cooldownSeconds)</span></div>
+<div class="block">Sets the time in seconds it will take for this item to be available for use again.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>eatSeconds</code> - new eat time, must be positive</dd>
+<dd><code>cooldownSeconds</code> - new cooldown time, must be positive</dd>
 </dl>
 </section>
 </li>
@@ -186,11 +185,11 @@ extends <a href="../../../configuration/serialization/ConfigurationSerializable.
 <section class="detail" id="setCooldownGroup(org.bukkit.NamespacedKey)">
 <h3>setCooldownGroup</h3>
 <div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">setCooldownGroup</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a>
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../../../NamespacedKey.html" title="class in org.bukkit">NamespacedKey</a>&nbsp;song)</span></div>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../../../NamespacedKey.html" title="class in org.bukkit">NamespacedKey</a>&nbsp;group)</span></div>
 <div class="block">Sets the custom cooldown group to be used for similar items.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>song</code> - the cooldown group</dd>
+<dd><code>group</code> - the cooldown group</dd>
 </dl>
 </section>
 </li>
