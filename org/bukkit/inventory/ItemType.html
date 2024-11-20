@@ -4823,6 +4823,16 @@ extends <a href="../Keyed.html" title="interface in org.bukkit">Keyed</a>, <a hr
 <div class="block">Return an immutable copy of all default <a href="../attribute/Attribute.html" title="interface in org.bukkit.attribute"><code>Attribute</code></a>s and their
  <a href="../attribute/AttributeModifier.html" title="class in org.bukkit.attribute"><code>AttributeModifier</code></a>s for a given <a href="EquipmentSlot.html" title="enum class in org.bukkit.inventory"><code>EquipmentSlot</code></a>.</div>
 </div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>&lt;T&gt;&nbsp;T</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getDefaultData(io.papermc.paper.datacomponent.DataComponentType.Valued)" class="member-name-link">getDefaultData</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../io/papermc/paper/datacomponent/DataComponentType.Valued.html" title="interface in io.papermc.paper.datacomponent">DataComponentType.Valued</a>&lt;T&gt;&nbsp;type)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Gets the default value of the data component type for this item type.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Unmodifiable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Unmodifiable</a> <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Set.html" title="class or interface in java.util" class="external-link">Set</a><wbr>&lt;<a href="../../../io/papermc/paper/datacomponent/DataComponentType.html" title="interface in io.papermc.paper.datacomponent">DataComponentType</a>&gt;</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getDefaultDataTypes()" class="member-name-link">getDefaultDataTypes</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Gets the default data component types for this item type.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Class.html" title="class or interface in java.lang" class="external-link">Class</a><wbr>&lt;? extends <a href="meta/ItemMeta.html" title="interface in org.bukkit.inventory.meta">ItemMeta</a>&gt;</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getItemMetaClass()" class="member-name-link">getItemMetaClass</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
@@ -4856,39 +4866,44 @@ extends <a href="../Keyed.html" title="interface in org.bukkit">Keyed</a>, <a hr
 <div class="block">Returns true if this ItemType has a corresponding <a href="../block/BlockType.html" title="interface in org.bukkit.block"><code>BlockType</code></a>.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#isCompostable()" class="member-name-link">isCompostable</a>()</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#hasDefaultData(io.papermc.paper.datacomponent.DataComponentType)" class="member-name-link">hasDefaultData</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../io/papermc/paper/datacomponent/DataComponentType.html" title="interface in io.papermc.paper.datacomponent">DataComponentType</a>&nbsp;type)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Checks if the data component type has a default value for this item type.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#isCompostable()" class="member-name-link">isCompostable</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Checks whether this item type is compostable (can be inserted into a
  composter).</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#isEdible()" class="member-name-link">isEdible</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#isEdible()" class="member-name-link">isEdible</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Checks if this item type is edible.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6"><code>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6"><code><a href="#isEnabledByFeature(org.bukkit.World)" class="member-name-link">isEnabledByFeature</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../World.html" title="interface in org.bukkit">World</a>&nbsp;world)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6"><code>boolean</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6"><code><a href="#isEnabledByFeature(org.bukkit.World)" class="member-name-link">isEnabledByFeature</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../World.html" title="interface in org.bukkit">World</a>&nbsp;world)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6">
 <div class="block"><span class="deprecated-label">Deprecated, for removal: This API element is subject to removal in a future version.</span>
 <div class="deprecation-comment">use <a href="../../../io/papermc/paper/world/flag/FeatureFlagSetHolder.html#isEnabled(io.papermc.paper.world.flag.FeatureDependant)"><code>FeatureFlagSetHolder.isEnabled(io.papermc.paper.world.flag.FeatureDependant)</code></a></div>
 </div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#isFuel()" class="member-name-link">isFuel</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#isFuel()" class="member-name-link">isFuel</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Checks if this item type can be used as fuel in a Furnace</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#isRecord()" class="member-name-link">isRecord</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="ItemType.Typed.html" title="interface in org.bukkit.inventory">ItemType.Typed</a><wbr>&lt;<a href="meta/ItemMeta.html" title="interface in org.bukkit.inventory.meta">ItemMeta</a>&gt;</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#typed()" class="member-name-link">typed</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#isRecord()" class="member-name-link">isRecord</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="ItemType.Typed.html" title="interface in org.bukkit.inventory">ItemType.Typed</a><wbr>&lt;<a href="meta/ItemMeta.html" title="interface in org.bukkit.inventory.meta">ItemMeta</a>&gt;</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#typed()" class="member-name-link">typed</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Yields this item type as a typed version of itself with a plain <a href="meta/ItemMeta.html" title="interface in org.bukkit.inventory.meta"><code>ItemMeta</code></a> representing it.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>&lt;M extends <a href="meta/ItemMeta.html" title="interface in org.bukkit.inventory.meta">ItemMeta</a>&gt;<br><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="ItemType.Typed.html" title="interface in org.bukkit.inventory">ItemType.Typed</a><wbr>&lt;M&gt;</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#typed(java.lang.Class)" class="member-name-link">typed</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Class.html" title="class or interface in java.lang" class="external-link">Class</a>&lt;M&gt;&nbsp;itemMetaType)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>&lt;M extends <a href="meta/ItemMeta.html" title="interface in org.bukkit.inventory.meta">ItemMeta</a>&gt;<br><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="ItemType.Typed.html" title="interface in org.bukkit.inventory">ItemType.Typed</a><wbr>&lt;M&gt;</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#typed(java.lang.Class)" class="member-name-link">typed</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Class.html" title="class or interface in java.lang" class="external-link">Class</a>&lt;M&gt;&nbsp;itemMetaType)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Yields this item type as a typed version of itself with a plain <a href="meta/ItemMeta.html" title="interface in org.bukkit.inventory.meta"><code>ItemMeta</code></a> representing it.</div>
 </div>
 </div>
@@ -13801,6 +13816,55 @@ extends <a href="../Keyed.html" title="interface in org.bukkit">Keyed</a>, <a hr
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>the item rarity (or null if none is set)</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getDefaultData(io.papermc.paper.datacomponent.DataComponentType.Valued)">
+<h3>getDefaultData</h3>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/ApiStatus.Experimental.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Experimental</a>
+<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a>
+</span><span class="type-parameters">&lt;T&gt;</span>&nbsp;<span class="return-type">T</span>&nbsp;<span class="element-name">getDefaultData</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../io/papermc/paper/datacomponent/DataComponentType.Valued.html" title="interface in io.papermc.paper.datacomponent">DataComponentType.Valued</a>&lt;T&gt;&nbsp;type)</span></div>
+<div class="block">Gets the default value of the data component type for this item type.</div>
+<dl class="notes">
+<dt>Type Parameters:</dt>
+<dd><code>T</code> - the value type</dd>
+<dt>Parameters:</dt>
+<dd><code>type</code> - the data component type</dd>
+<dt>Returns:</dt>
+<dd>the default value or <code>null</code> if there is none</dd>
+<dt>See Also:</dt>
+<dd>
+<ul class="tag-list-long">
+<li><a href="#hasDefaultData(io.papermc.paper.datacomponent.DataComponentType)"><code>for DataComponentType.NonValued</code></a></li>
+</ul>
+</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="hasDefaultData(io.papermc.paper.datacomponent.DataComponentType)">
+<h3>hasDefaultData</h3>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/ApiStatus.Experimental.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Experimental</a>
+</span><span class="return-type">boolean</span>&nbsp;<span class="element-name">hasDefaultData</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../../io/papermc/paper/datacomponent/DataComponentType.html" title="interface in io.papermc.paper.datacomponent">DataComponentType</a>&nbsp;type)</span></div>
+<div class="block">Checks if the data component type has a default value for this item type.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>type</code> - the data component type</dd>
+<dt>Returns:</dt>
+<dd><code>true</code> if there is a default value</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getDefaultDataTypes()">
+<h3>getDefaultDataTypes</h3>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/ApiStatus.Experimental.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Experimental</a>
+</span><span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Unmodifiable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Unmodifiable</a> <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Set.html" title="class or interface in java.util" class="external-link">Set</a>&lt;<a href="../../../io/papermc/paper/datacomponent/DataComponentType.html" title="interface in io.papermc.paper.datacomponent">DataComponentType</a>&gt;</span>&nbsp;<span class="element-name">getDefaultDataTypes</span>()</div>
+<div class="block">Gets the default data component types for this item type.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>an immutable set of data component types</dd>
 </dl>
 </section>
 </li>

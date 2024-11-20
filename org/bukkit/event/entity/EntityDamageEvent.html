@@ -208,10 +208,10 @@ implements <a href="../Cancellable.html" title="interface in org.bukkit.event">C
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Gets the damage change for some modifier</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../../../../moe/caramel/daydream/world/DamageMata.html" title="interface in moe.caramel.daydream.world">DamageMata</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getDamageMeta()" class="member-name-link">getDamageMeta</a>()</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../../../../moe/caramel/daydream/world/DamageContext.html" title="interface in moe.caramel.daydream.world">DamageContext</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getDamageContext()" class="member-name-link">getDamageContext</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">대미지 메타데이터를 가져옵니다.</div>
+<div class="block">대미지 컨텍스트를 가져옵니다.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../damage/DamageSource.html" title="interface in org.bukkit.damage">DamageSource</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getDamageSource()" class="member-name-link">getDamageSource</a>()</code></div>
@@ -277,7 +277,7 @@ implements <a href="../Cancellable.html" title="interface in org.bukkit.event">C
 <code><a href="EntityEvent.html#getEntity()">getEntity</a>, <a href="EntityEvent.html#getEntityType()">getEntityType</a></code></div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-org.bukkit.event.Event">Methods inherited from class&nbsp;org.bukkit.event.<a href="../Event.html" title="class in org.bukkit.event">Event</a></h3>
-<code><a href="../Event.html#callEvent()">callEvent</a>, <a href="../Event.html#getEventMetadata()">getEventMetadata</a>, <a href="../Event.html#getEventName()">getEventName</a>, <a href="../Event.html#isAsynchronous()">isAsynchronous</a>, <a href="../Event.html#isSupportInterrupt()">isSupportInterrupt</a></code></div>
+<code><a href="../Event.html#callEvent()">callEvent</a>, <a href="../Event.html#getEventContext()">getEventContext</a>, <a href="../Event.html#getEventName()">getEventName</a>, <a href="../Event.html#isAsynchronous()">isAsynchronous</a>, <a href="../Event.html#isSupportInterrupt()">isSupportInterrupt</a></code></div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-java.lang.Object">Methods inherited from class&nbsp;java.lang.<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></h3>
 <code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#clone()" title="class or interface in java.lang" class="external-link">clone</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)" title="class or interface in java.lang" class="external-link">equals</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#finalize()" title="class or interface in java.lang" class="external-link">finalize</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#getClass()" title="class or interface in java.lang" class="external-link">getClass</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#hashCode()" title="class or interface in java.lang" class="external-link">hashCode</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#notify()" title="class or interface in java.lang" class="external-link">notify</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#notifyAll()" title="class or interface in java.lang" class="external-link">notifyAll</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#toString()" title="class or interface in java.lang" class="external-link">toString</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#wait()" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#wait(long)" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#wait(long,int)" title="class or interface in java.lang" class="external-link">wait</a></code></div>
@@ -355,14 +355,14 @@ implements <a href="../Cancellable.html" title="interface in org.bukkit.event">C
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="getDamageMeta()">
-<h3>getDamageMeta</h3>
+<section class="detail" id="getDamageContext()">
+<h3>getDamageContext</h3>
 <div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
-</span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../../../../moe/caramel/daydream/world/DamageMata.html" title="interface in moe.caramel.daydream.world">DamageMata</a></span>&nbsp;<span class="element-name">getDamageMeta</span>()</div>
-<div class="block">대미지 메타데이터를 가져옵니다.</div>
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../../../../moe/caramel/daydream/world/DamageContext.html" title="interface in moe.caramel.daydream.world">DamageContext</a></span>&nbsp;<span class="element-name">getDamageContext</span>()</div>
+<div class="block">대미지 컨텍스트를 가져옵니다.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>대미지 메타데이터</dd>
+<dd>대미지 컨텍스트</dd>
 </dl>
 </section>
 </li>

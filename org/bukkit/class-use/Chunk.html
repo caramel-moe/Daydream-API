@@ -178,7 +178,7 @@ loadScripts(document, 'script');</script>
  This method makes no guarantee on how fast the chunk will load,
  and will return the chunk to the callback at a later time.</div>
 </div>
-<div class="col-first even-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/CompletableFuture.html" title="class or interface in java.util.concurrent" class="external-link">CompletableFuture</a><wbr>&lt;<a href="../Chunk.html" title="interface in org.bukkit">Chunk</a>&gt;</code></div>
+<div class="col-first even-row-color"><code>default <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/CompletableFuture.html" title="class or interface in java.util.concurrent" class="external-link">CompletableFuture</a><wbr>&lt;<a href="../Chunk.html" title="interface in org.bukkit">Chunk</a>&gt;</code></div>
 <div class="col-second even-row-color"><span class="type-name-label">World.</span><code><a href="../World.html#getChunkAtAsync(int,int,boolean,boolean)" class="member-name-link">getChunkAtAsync</a><wbr>(int&nbsp;x,
  int&nbsp;z,
  boolean&nbsp;gen,
@@ -319,10 +319,11 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color"><code>default void</code></div>
-<div class="col-second even-row-color"><span class="type-name-label">World.</span><code><a href="../World.html#getChunkAtAsync(int,int,boolean,java.util.function.Consumer)" class="member-name-link">getChunkAtAsync</a><wbr>(int&nbsp;x,
+<div class="col-first even-row-color"><code>void</code></div>
+<div class="col-second even-row-color"><span class="type-name-label">World.</span><code><a href="../World.html#getChunkAtAsync(int,int,boolean,boolean,java.util.function.Consumer)" class="member-name-link">getChunkAtAsync</a><wbr>(int&nbsp;x,
  int&nbsp;z,
  boolean&nbsp;gen,
+ boolean&nbsp;urgent,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/Consumer.html" title="class or interface in java.util.function" class="external-link">Consumer</a>&lt;? super <a href="../Chunk.html" title="interface in org.bukkit">Chunk</a>&gt;&nbsp;cb)</code></div>
 <div class="col-last even-row-color">
 <div class="block">Requests a <a href="../Chunk.html" title="interface in org.bukkit"><code>Chunk</code></a> to be loaded at the given coordinates
@@ -331,8 +332,9 @@ loadScripts(document, 'script');</script>
  and will return the chunk to the callback at a later time.</div>
 </div>
 <div class="col-first odd-row-color"><code>default void</code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">World.</span><code><a href="../World.html#getChunkAtAsync(int,int,java.util.function.Consumer)" class="member-name-link">getChunkAtAsync</a><wbr>(int&nbsp;x,
+<div class="col-second odd-row-color"><span class="type-name-label">World.</span><code><a href="../World.html#getChunkAtAsync(int,int,boolean,java.util.function.Consumer)" class="member-name-link">getChunkAtAsync</a><wbr>(int&nbsp;x,
  int&nbsp;z,
+ boolean&nbsp;gen,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/Consumer.html" title="class or interface in java.util.function" class="external-link">Consumer</a>&lt;? super <a href="../Chunk.html" title="interface in org.bukkit">Chunk</a>&gt;&nbsp;cb)</code></div>
 <div class="col-last odd-row-color">
 <div class="block">Requests a <a href="../Chunk.html" title="interface in org.bukkit"><code>Chunk</code></a> to be loaded at the given coordinates
@@ -341,17 +343,18 @@ loadScripts(document, 'script');</script>
  and will return the chunk to the callback at a later time.</div>
 </div>
 <div class="col-first even-row-color"><code>default void</code></div>
-<div class="col-second even-row-color"><span class="type-name-label">World.</span><code><a href="../World.html#getChunkAtAsync(org.bukkit.Location,boolean,java.util.function.Consumer)" class="member-name-link">getChunkAtAsync</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;loc,
- boolean&nbsp;gen,
+<div class="col-second even-row-color"><span class="type-name-label">World.</span><code><a href="../World.html#getChunkAtAsync(int,int,java.util.function.Consumer)" class="member-name-link">getChunkAtAsync</a><wbr>(int&nbsp;x,
+ int&nbsp;z,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/Consumer.html" title="class or interface in java.util.function" class="external-link">Consumer</a>&lt;? super <a href="../Chunk.html" title="interface in org.bukkit">Chunk</a>&gt;&nbsp;cb)</code></div>
 <div class="col-last even-row-color">
-<div class="block">Requests a <a href="../Chunk.html" title="interface in org.bukkit"><code>Chunk</code></a> to be loaded at the given <a href="../Location.html" title="class in org.bukkit"><code>Location</code></a>
+<div class="block">Requests a <a href="../Chunk.html" title="interface in org.bukkit"><code>Chunk</code></a> to be loaded at the given coordinates
 
  This method makes no guarantee on how fast the chunk will load,
  and will return the chunk to the callback at a later time.</div>
 </div>
 <div class="col-first odd-row-color"><code>default void</code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">World.</span><code><a href="../World.html#getChunkAtAsync(org.bukkit.Location,java.util.function.Consumer)" class="member-name-link">getChunkAtAsync</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;loc,
+<div class="col-second odd-row-color"><span class="type-name-label">World.</span><code><a href="../World.html#getChunkAtAsync(org.bukkit.Location,boolean,java.util.function.Consumer)" class="member-name-link">getChunkAtAsync</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;loc,
+ boolean&nbsp;gen,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/Consumer.html" title="class or interface in java.util.function" class="external-link">Consumer</a>&lt;? super <a href="../Chunk.html" title="interface in org.bukkit">Chunk</a>&gt;&nbsp;cb)</code></div>
 <div class="col-last odd-row-color">
 <div class="block">Requests a <a href="../Chunk.html" title="interface in org.bukkit"><code>Chunk</code></a> to be loaded at the given <a href="../Location.html" title="class in org.bukkit"><code>Location</code></a>
@@ -360,19 +363,28 @@ loadScripts(document, 'script');</script>
  and will return the chunk to the callback at a later time.</div>
 </div>
 <div class="col-first even-row-color"><code>default void</code></div>
-<div class="col-second even-row-color"><span class="type-name-label">World.</span><code><a href="../World.html#getChunkAtAsync(org.bukkit.block.Block,boolean,java.util.function.Consumer)" class="member-name-link">getChunkAtAsync</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../block/Block.html" title="interface in org.bukkit.block">Block</a>&nbsp;block,
- boolean&nbsp;gen,
+<div class="col-second even-row-color"><span class="type-name-label">World.</span><code><a href="../World.html#getChunkAtAsync(org.bukkit.Location,java.util.function.Consumer)" class="member-name-link">getChunkAtAsync</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../Location.html" title="class in org.bukkit">Location</a>&nbsp;loc,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/Consumer.html" title="class or interface in java.util.function" class="external-link">Consumer</a>&lt;? super <a href="../Chunk.html" title="interface in org.bukkit">Chunk</a>&gt;&nbsp;cb)</code></div>
 <div class="col-last even-row-color">
+<div class="block">Requests a <a href="../Chunk.html" title="interface in org.bukkit"><code>Chunk</code></a> to be loaded at the given <a href="../Location.html" title="class in org.bukkit"><code>Location</code></a>
+
+ This method makes no guarantee on how fast the chunk will load,
+ and will return the chunk to the callback at a later time.</div>
+</div>
+<div class="col-first odd-row-color"><code>default void</code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">World.</span><code><a href="../World.html#getChunkAtAsync(org.bukkit.block.Block,boolean,java.util.function.Consumer)" class="member-name-link">getChunkAtAsync</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../block/Block.html" title="interface in org.bukkit.block">Block</a>&nbsp;block,
+ boolean&nbsp;gen,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/Consumer.html" title="class or interface in java.util.function" class="external-link">Consumer</a>&lt;? super <a href="../Chunk.html" title="interface in org.bukkit">Chunk</a>&gt;&nbsp;cb)</code></div>
+<div class="col-last odd-row-color">
 <div class="block">Requests <a href="../Chunk.html" title="interface in org.bukkit"><code>Chunk</code></a> to be loaded that contains the given <a href="../block/Block.html" title="interface in org.bukkit.block"><code>Block</code></a>
 
  This method makes no guarantee on how fast the chunk will load,
  and will return the chunk to the callback at a later time.</div>
 </div>
-<div class="col-first odd-row-color"><code>default void</code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">World.</span><code><a href="../World.html#getChunkAtAsync(org.bukkit.block.Block,java.util.function.Consumer)" class="member-name-link">getChunkAtAsync</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../block/Block.html" title="interface in org.bukkit.block">Block</a>&nbsp;block,
+<div class="col-first even-row-color"><code>default void</code></div>
+<div class="col-second even-row-color"><span class="type-name-label">World.</span><code><a href="../World.html#getChunkAtAsync(org.bukkit.block.Block,java.util.function.Consumer)" class="member-name-link">getChunkAtAsync</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../block/Block.html" title="interface in org.bukkit.block">Block</a>&nbsp;block,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/Consumer.html" title="class or interface in java.util.function" class="external-link">Consumer</a>&lt;? super <a href="../Chunk.html" title="interface in org.bukkit">Chunk</a>&gt;&nbsp;cb)</code></div>
-<div class="col-last odd-row-color">
+<div class="col-last even-row-color">
 <div class="block">Requests <a href="../Chunk.html" title="interface in org.bukkit"><code>Chunk</code></a> to be loaded that contains the given <a href="../block/Block.html" title="interface in org.bukkit.block"><code>Block</code></a>
 
  This method makes no guarantee on how fast the chunk will load,

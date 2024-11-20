@@ -118,7 +118,8 @@ extends <a href="../../../configuration/serialization/ConfigurationSerializable.
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>float</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getCooldownSeconds()" class="member-name-link">getCooldownSeconds</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Gets the time in seconds it will take for this item to be available for use again.</div>
+<div class="block">Gets the time in seconds it will take for an item in this cooldown group
+ to be available to use again.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#setCooldownGroup(org.bukkit.NamespacedKey)" class="member-name-link">setCooldownGroup</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../../../NamespacedKey.html" title="class in org.bukkit">NamespacedKey</a>&nbsp;group)</code></div>
@@ -126,9 +127,10 @@ extends <a href="../../../configuration/serialization/ConfigurationSerializable.
 <div class="block">Sets the custom cooldown group to be used for similar items.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#setCooldownSeconds(float)" class="member-name-link">setCooldownSeconds</a><wbr>(float&nbsp;cooldownSeconds)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#setCooldownSeconds(float)" class="member-name-link">setCooldownSeconds</a><wbr>(float&nbsp;cooldown)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Sets the time in seconds it will take for this item to be available for use again.</div>
+<div class="block">Sets the time in seconds it will take for an item in this cooldown group
+ to be available to use again.</div>
 </div>
 </div>
 </div>
@@ -151,7 +153,8 @@ extends <a href="../../../configuration/serialization/ConfigurationSerializable.
 <section class="detail" id="getCooldownSeconds()">
 <h3>getCooldownSeconds</h3>
 <div class="member-signature"><span class="return-type">float</span>&nbsp;<span class="element-name">getCooldownSeconds</span>()</div>
-<div class="block">Gets the time in seconds it will take for this item to be available for use again.</div>
+<div class="block">Gets the time in seconds it will take for an item in this cooldown group
+ to be available to use again.</div>
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>cooldown time</dd>
@@ -161,11 +164,12 @@ extends <a href="../../../configuration/serialization/ConfigurationSerializable.
 <li>
 <section class="detail" id="setCooldownSeconds(float)">
 <h3>setCooldownSeconds</h3>
-<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">setCooldownSeconds</span><wbr><span class="parameters">(float&nbsp;cooldownSeconds)</span></div>
-<div class="block">Sets the time in seconds it will take for this item to be available for use again.</div>
+<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">setCooldownSeconds</span><wbr><span class="parameters">(float&nbsp;cooldown)</span></div>
+<div class="block">Sets the time in seconds it will take for an item in this cooldown group
+ to be available to use again.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>cooldownSeconds</code> - new cooldown time, must be positive</dd>
+<dd><code>cooldown</code> - new eat time, must be greater than 0</dd>
 </dl>
 </section>
 </li>
