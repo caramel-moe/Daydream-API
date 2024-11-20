@@ -4,11 +4,11 @@ Date: Fri, 19 May 2023 20:56:45 +0900
 Subject: [PATCH] Add more Explosion API
 
 
-diff --git a/src/main/java/moe/caramel/daydream/world/DamageMata.java b/src/main/java/moe/caramel/daydream/world/DamageMata.java
-index 32b93d78b8a3f044b7ca4ddf6a71e06e3025d9f2..9290534dfc2803557f9a1c437aaba7e94adeab7a 100644
---- a/src/main/java/moe/caramel/daydream/world/DamageMata.java
-+++ b/src/main/java/moe/caramel/daydream/world/DamageMata.java
-@@ -66,4 +66,13 @@ public interface DamageMata {
+diff --git a/src/main/java/moe/caramel/daydream/world/DamageContext.java b/src/main/java/moe/caramel/daydream/world/DamageContext.java
+index 9716003537a76b3d0e40ca0bb4394047a4eed313..a098ef7493fd60cb368a38dc7b29d6a7546d5d17 100644
+--- a/src/main/java/moe/caramel/daydream/world/DamageContext.java
++++ b/src/main/java/moe/caramel/daydream/world/DamageContext.java
+@@ -66,4 +66,13 @@ public interface DamageContext {
       * @param disabled 넉백 비활성화 여부
       */
      void setKnockbackDisabled(final boolean disabled);
@@ -24,7 +24,7 @@ index 32b93d78b8a3f044b7ca4ddf6a71e06e3025d9f2..9290534dfc2803557f9a1c437aaba7e9
  }
 diff --git a/src/main/java/moe/caramel/daydream/world/Explosion.java b/src/main/java/moe/caramel/daydream/world/Explosion.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..1029e488a6b66c613749011a0207559cc4c567ff
+index 0000000000000000000000000000000000000000..99a387c5d743d07fc7f6c0e29a60477a1254c0ba
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/world/Explosion.java
 @@ -0,0 +1,128 @@
@@ -59,7 +59,7 @@ index 0000000000000000000000000000000000000000..1029e488a6b66c613749011a0207559c
 +
 +    /**
 +     * 폭발의 메타데이터를 가져옵니다.
-+     * ({@link DamageMata#getMetadata()}와 동일)
++     * ({@link DamageContext#getMetadata()}와 동일)
 +     *
 +     * @return 메타데이터
 +     */
@@ -67,7 +67,7 @@ index 0000000000000000000000000000000000000000..1029e488a6b66c613749011a0207559c
 +
 +    /**
 +     * 이 폭발의 넉백 제거 활성화 여부를 설정합니다.
-+     * ({@link DamageMata#setKnockbackDisabled(boolean)}와 동일)
++     * ({@link DamageContext#setKnockbackDisabled(boolean)}와 동일)
 +     *
 +     * @param mark 넉백 제거가 활성화 여부
 +     */
@@ -75,7 +75,7 @@ index 0000000000000000000000000000000000000000..1029e488a6b66c613749011a0207559c
 +
 +    /**
 +     * 이 폭발에 넉백 제거가 활성화 되어있는지 가져옵니다.
-+     * ({@link DamageMata#isKnockbackDisabled()}와 동일)
++     * ({@link DamageContext#isKnockbackDisabled()}와 동일)
 +     *
 +     * @return 넉백 제거 여부, {@link org.bukkit.damage.DamageType}에
 +     * {@link org.bukkit.Tag#DAMAGE_TYPE_CARAMEL$EXPLOSION_NO_KNOCKBACK}가
@@ -173,10 +173,10 @@ index 90afcca12f2e8d5811d6fa76ce0a6e3e8200936d..787f1df93499a6ebdfee9f0673bcd7ba
      /**
       * Returns whether or not this tag has an entry for the specified item.
 diff --git a/src/main/java/org/bukkit/World.java b/src/main/java/org/bukkit/World.java
-index 2bd97096e2b57a61455a6e8dc00cf11a833b6348..928fa5c3a3fcd5042d5dcf321cc845d56f4ea03a 100644
+index cd3e7d1542a346e24da75e41644066dfab95d6a9..7bef5dde0bde8091f2844b9db08382c1810546f7 100644
 --- a/src/main/java/org/bukkit/World.java
 +++ b/src/main/java/org/bukkit/World.java
-@@ -2168,6 +2168,246 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
+@@ -2205,6 +2205,246 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
       */
      public boolean createExplosion(double x, double y, double z, float power, boolean setFire, boolean breakBlocks, @Nullable Entity source);
  
@@ -459,12 +459,12 @@ index 254d549f956053af4264ca3a52d34a97ede4273d..dc922f606af580f361487afab4a88429
  
      @Override
 diff --git a/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java b/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java
-index e03a257fbd73035220e116e98bee492a00666b05..e97e007ab072cd68db5082b9a2d78bfcc0e1bce8 100644
+index d1cbae6759783f48ad34928abae8dc8facc6c5a4..894886eb2e1519789db78f93cf3b3fe6c216fe69 100644
 --- a/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java
 +++ b/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java
 @@ -69,6 +69,16 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
-     public moe.caramel.daydream.world.DamageMata getDamageMeta() {
-         return damageSource.getDamageMeta();
+     public moe.caramel.daydream.world.DamageContext getDamageContext() {
+         return damageSource.getDamageContext();
      }
 +
 +    /**
@@ -474,7 +474,7 @@ index e03a257fbd73035220e116e98bee492a00666b05..e97e007ab072cd68db5082b9a2d78bfc
 +     */
 +    @org.jetbrains.annotations.Nullable
 +    public moe.caramel.daydream.world.Explosion getExplosion() {
-+        return getDamageMeta().getExplosion();
++        return getDamageContext().getExplosion();
 +    }
      // Daydream end - Add more Damage API
  

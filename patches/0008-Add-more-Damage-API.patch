@@ -4,11 +4,11 @@ Date: Sun, 8 Aug 2021 03:05:54 +0900
 Subject: [PATCH] Add more Damage API
 
 
-diff --git a/src/main/java/moe/caramel/daydream/world/DamageMata.java b/src/main/java/moe/caramel/daydream/world/DamageMata.java
+diff --git a/src/main/java/moe/caramel/daydream/world/DamageContext.java b/src/main/java/moe/caramel/daydream/world/DamageContext.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..32b93d78b8a3f044b7ca4ddf6a71e06e3025d9f2
+index 0000000000000000000000000000000000000000..9716003537a76b3d0e40ca0bb4394047a4eed313
 --- /dev/null
-+++ b/src/main/java/moe/caramel/daydream/world/DamageMata.java
++++ b/src/main/java/moe/caramel/daydream/world/DamageContext.java
 @@ -0,0 +1,69 @@
 +package moe.caramel.daydream.world;
 +
@@ -17,10 +17,10 @@ index 0000000000000000000000000000000000000000..32b93d78b8a3f044b7ca4ddf6a71e06e
 +import java.util.Map;
 +
 +/**
-+ * 대미지 메타데이터
++ * 대미지 컨텍스트
 + */
 +@NullMarked
-+public interface DamageMata {
++public interface DamageContext {
 +
 +    /**
 +     * NMS DamageSource를 가져옵니다.
@@ -129,7 +129,7 @@ index 42f0501ae6a2d9297bdd9bb9ab2fbb02abb881f5..90afcca12f2e8d5811d6fa76ce0a6e3e
       * Returns whether or not this tag has an entry for the specified item.
       *
 diff --git a/src/main/java/org/bukkit/UnsafeValues.java b/src/main/java/org/bukkit/UnsafeValues.java
-index 79312bdda8ef0799e2d46decc52cfdac95b97d37..36df663e747c49326475f40ef23dae90890ee3b3 100644
+index 79312bdda8ef0799e2d46decc52cfdac95b97d37..cae22fe72403f41b7b6c87e857d582fc448c08cb 100644
 --- a/src/main/java/org/bukkit/UnsafeValues.java
 +++ b/src/main/java/org/bukkit/UnsafeValues.java
 @@ -314,4 +314,6 @@ public interface UnsafeValues {
@@ -137,10 +137,10 @@ index 79312bdda8ef0799e2d46decc52cfdac95b97d37..36df663e747c49326475f40ef23dae90
  
      ItemStack createEmptyStack(); // Paper - proxy ItemStack
 +
-+    @NotNull moe.caramel.daydream.world.DamageMata getDamageMeta(@NotNull Object damageSource); // Daydream - Add more Damage API
++    @NotNull moe.caramel.daydream.world.DamageContext getDamageContext(@NotNull Object damageSource); // Daydream - Add more Damage API
  }
 diff --git a/src/main/java/org/bukkit/damage/DamageSource.java b/src/main/java/org/bukkit/damage/DamageSource.java
-index 7635610e56c051ce3c8a876911ba5cd0a9248496..e08a7f64bfbd9116f8a4a814732939a7c0c7155a 100644
+index 7635610e56c051ce3c8a876911ba5cd0a9248496..8e88201e647a72407c157c92517002a58ae2a9df 100644
 --- a/src/main/java/org/bukkit/damage/DamageSource.java
 +++ b/src/main/java/org/bukkit/damage/DamageSource.java
 @@ -13,6 +13,44 @@ import org.jetbrains.annotations.Nullable;
@@ -149,12 +149,12 @@ index 7635610e56c051ce3c8a876911ba5cd0a9248496..e08a7f64bfbd9116f8a4a814732939a7
  
 +    // Daydream start - Add more Damage API
 +    /**
-+     * 대미지 메타데이터를 가져옵니다.
++     * 대미지 컨텍스트를 가져옵니다.
 +     *
-+     * @return 대미지 메타데이터
++     * @return 대미지 컨텍스트
 +     */
 +    @NotNull
-+    public moe.caramel.daydream.world.DamageMata getDamageMeta();
++    public moe.caramel.daydream.world.DamageContext getDamageContext();
 +
 +    /**
 +     * 크리티컬 대미지 여부를 가져옵니다.
@@ -189,7 +189,7 @@ index 7635610e56c051ce3c8a876911ba5cd0a9248496..e08a7f64bfbd9116f8a4a814732939a7
       * Get the {@link DamageType}.
       *
 diff --git a/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java b/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java
-index ef5b2a0f18c1c126db0b0c4a4d2a57483680665a..e03a257fbd73035220e116e98bee492a00666b05 100644
+index 73aa5dc079ecb1c38c55ae1916b12edf81b723f5..d1cbae6759783f48ad34928abae8dc8facc6c5a4 100644
 --- a/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java
 +++ b/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java
 @@ -59,6 +59,18 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
@@ -198,13 +198,13 @@ index ef5b2a0f18c1c126db0b0c4a4d2a57483680665a..e03a257fbd73035220e116e98bee492a
  
 +    // Daydream start - Add more Damage API
 +    /**
-+     * 대미지 메타데이터를 가져옵니다.
++     * 대미지 컨텍스트를 가져옵니다.
 +     *
-+     * @return 대미지 메타데이터
++     * @return 대미지 컨텍스트
 +     */
 +    @NotNull
-+    public moe.caramel.daydream.world.DamageMata getDamageMeta() {
-+        return damageSource.getDamageMeta();
++    public moe.caramel.daydream.world.DamageContext getDamageContext() {
++        return damageSource.getDamageContext();
 +    }
 +    // Daydream end - Add more Damage API
 +

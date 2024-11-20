@@ -5,13 +5,13 @@ Subject: [PATCH] Add ItemStack Utilities
 
 
 diff --git a/src/main/java/org/bukkit/UnsafeValues.java b/src/main/java/org/bukkit/UnsafeValues.java
-index 36df663e747c49326475f40ef23dae90890ee3b3..5f61047738deb9fe28aca63283cfe4b4ab97c1ae 100644
+index cae22fe72403f41b7b6c87e857d582fc448c08cb..4b6eb232a78d12d9d7759f6d46622e56b3ee5c76 100644
 --- a/src/main/java/org/bukkit/UnsafeValues.java
 +++ b/src/main/java/org/bukkit/UnsafeValues.java
 @@ -316,4 +316,25 @@ public interface UnsafeValues {
      ItemStack createEmptyStack(); // Paper - proxy ItemStack
  
-     @NotNull moe.caramel.daydream.world.DamageMata getDamageMeta(@NotNull Object damageSource); // Daydream - Add more Damage API
+     @NotNull moe.caramel.daydream.world.DamageContext getDamageContext(@NotNull Object damageSource); // Daydream - Add more Damage API
 +
 +    // Daydream start - Add ItemStack Utilities
 +    /**
@@ -35,7 +35,7 @@ index 36df663e747c49326475f40ef23dae90890ee3b3..5f61047738deb9fe28aca63283cfe4b4
 +    // Daydream end - Add ItemStack Utilities
  }
 diff --git a/src/main/java/org/bukkit/inventory/ItemStack.java b/src/main/java/org/bukkit/inventory/ItemStack.java
-index b59222b8c262545d100a9fd28b3bf1d2a4cf4eb0..045b57bb00a1e3d5c05dc265e6fe71f627ab8af6 100644
+index 6e4ca7d95953a25c0aaafd35e54ef9254a1b5f0b..c8d3909ca7469c7daaaef4c173b1ef203cf395c4 100644
 --- a/src/main/java/org/bukkit/inventory/ItemStack.java
 +++ b/src/main/java/org/bukkit/inventory/ItemStack.java
 @@ -71,6 +71,99 @@ public class ItemStack implements Cloneable, ConfigurationSerializable, Translat

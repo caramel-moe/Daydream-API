@@ -5,7 +5,7 @@ Subject: [PATCH] Add more Player API
 
 
 diff --git a/src/main/java/io/papermc/paper/event/player/AbstractChatEvent.java b/src/main/java/io/papermc/paper/event/player/AbstractChatEvent.java
-index 9a95d203151d2c91b0eec494e3674f0facfaa305..efe0088fb2b2e47e373e42e5e18a625f4b72fb30 100644
+index 9a95d203151d2c91b0eec494e3674f0facfaa305..09c423489d751a8482501a28e0904c91cdb65ab4 100644
 --- a/src/main/java/io/papermc/paper/event/player/AbstractChatEvent.java
 +++ b/src/main/java/io/papermc/paper/event/player/AbstractChatEvent.java
 @@ -27,6 +27,36 @@ public abstract class AbstractChatEvent extends PlayerEvent implements Cancellab
@@ -16,9 +16,9 @@ index 9a95d203151d2c91b0eec494e3674f0facfaa305..efe0088fb2b2e47e373e42e5e18a625f
 +    private net.kyori.adventure.chat.@org.jspecify.annotations.Nullable ChatType chatType = null;
 +
 +    /**
-+     * Get the player message wrapper.
++     * 플레이어 메시지 래퍼를 가져옵니다.
 +     *
-+     * @return player message wrapper
++     * @return 플레이어 메시지 래퍼
 +     */
 +    public moe.caramel.daydream.player.PlayerMessage playerMessage() {
 +        return (moe.caramel.daydream.player.PlayerMessage) signedMessage;
@@ -180,10 +180,33 @@ index 0000000000000000000000000000000000000000..18cd85f6c3a8eb7be560b5ca0b46dbfe
 +    //</editor-fold>
 +}
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index 95f0b3186e313c7fbd5c8531d52b82a69e525f94..95d6a30188fd0590e3c8b224d7de2fb4ec2dacff 100644
+index 95f0b3186e313c7fbd5c8531d52b82a69e525f94..3b524d8e37bf7b6f416d549ac517dfa0d833e330 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
-@@ -2038,6 +2038,22 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+@@ -1776,6 +1776,22 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+     @Nullable
+     public GameMode getPreviousGameMode();
+ 
++    // Daydream start - Add more Player API (World time update interval)
++    /**
++     * 플레이어의 월드 타임 업데이트 간격을 설정합니다.
++     *
++     * @param interval 월드 타임 업데이트 간격 (0 미만인 경우 비활성화)
++     */
++    public void setWorldTimeUpdateInterval(long interval);
++
++    /**
++     * 플레이어의 월드 타임 업데이트 간격을 가져옵니다.
++     *
++     * @return 월드 타임 업데이트 간격 (0 미만인 경우 비활성화)
++     */
++    public long getWorldTimeUpdateInterval();
++    // Daydream end - Add more Player API (World time update interval)
++
+     /**
+      * Sets the current time on the player's client. When relative is true the
+      * player's time will be kept synchronized to its world time with the
+@@ -2038,6 +2054,22 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
       */
      public void setAllowFlight(boolean flight);
  
@@ -206,7 +229,7 @@ index 95f0b3186e313c7fbd5c8531d52b82a69e525f94..95d6a30188fd0590e3c8b224d7de2fb4
      // Paper start - flying fall damage
      /**
       * Allows you to enable fall damage while {@link #getAllowFlight()} is {@code true}
-@@ -3499,6 +3515,16 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+@@ -3499,6 +3531,16 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      }
      // Paper end
  
