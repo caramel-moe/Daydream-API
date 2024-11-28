@@ -65,10 +65,10 @@ index 42a82ce2316a4aad2883d24c7e2ff95d95f5881a..5c3fc1707df4c921ddb01d3474e4f7db
          return HANDLER_LIST;
 diff --git a/src/main/java/moe/caramel/daydream/event/player/AsyncPlayerDataPreLoadEvent.java b/src/main/java/moe/caramel/daydream/event/player/AsyncPlayerDataPreLoadEvent.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..18cd85f6c3a8eb7be560b5ca0b46dbfef6e9e6c2
+index 0000000000000000000000000000000000000000..29995bdec5a0be63f6595e67d1d7b4963426e92d
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/event/player/AsyncPlayerDataPreLoadEvent.java
-@@ -0,0 +1,110 @@
+@@ -0,0 +1,117 @@
 +package moe.caramel.daydream.event.player;
 +
 +import com.destroystokyo.paper.profile.PlayerProfile;
@@ -105,6 +105,13 @@ index 0000000000000000000000000000000000000000..18cd85f6c3a8eb7be560b5ca0b46dbfe
 +    }
 +
 +    /**
++     * 플레이어의 원본 프로필을 가져옵니다.
++     *
++     * @return 플레이어의 원본 프로필
++     */
++    public abstract GameProfile getOriginalGameProfile();
++
++    /**
 +     * 플레이어의 프로필을 가져옵니다.
 +     *
 +     * @return 플레이어의 프로필
@@ -115,7 +122,7 @@ index 0000000000000000000000000000000000000000..18cd85f6c3a8eb7be560b5ca0b46dbfe
 +     * 플레이어의 프로필을 가져옵니다.
 +     *
 +     * @deprecated 메서드를 호출할 때마다 새로운 프로필 미러가 생성됩니다.
-+     * {@link #getGameProfile()}를 사용하세요.
++     * {@link #getOriginalGameProfile()}를 사용하세요.
 +     * @return 플레이어의 프로필
 +     */
 +    @Deprecated
@@ -127,7 +134,7 @@ index 0000000000000000000000000000000000000000..18cd85f6c3a8eb7be560b5ca0b46dbfe
 +     * @return 플레이어의 이름
 +     */
 +    public final String getName() {
-+        return getGameProfile().getName();
++        return getOriginalGameProfile().getName();
 +    }
 +
 +    /**
@@ -136,7 +143,7 @@ index 0000000000000000000000000000000000000000..18cd85f6c3a8eb7be560b5ca0b46dbfe
 +     * @return 플레이어의 UUID
 +     */
 +    public final UUID getUniqueId() {
-+        return getGameProfile().getId();
++        return getOriginalGameProfile().getId();
 +    }
 +
 +    /**

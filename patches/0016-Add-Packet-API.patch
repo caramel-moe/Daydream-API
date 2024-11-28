@@ -1052,10 +1052,10 @@ index 0000000000000000000000000000000000000000..d654fe8bfd2c79024f3bd937193708ab
 +    }
 +}
 diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
-index 68d31467248efceb4f53399541602666f57d6fbc..791563c4652953b649e608477a454a2ec9c29723 100644
+index 755f9c62a178626a31389cf8f0e6a56f8e294e1a..2e744e45a3138bb12133f58ec0c2a16002d9b2ad 100644
 --- a/src/main/java/org/bukkit/Bukkit.java
 +++ b/src/main/java/org/bukkit/Bukkit.java
-@@ -3047,6 +3047,20 @@ public final class Bukkit {
+@@ -3070,6 +3070,20 @@ public final class Bukkit {
      }
      // Paper end - Folia region threading API
  
@@ -1092,13 +1092,13 @@ index 918a045165cdcde264bc24082b7afebb407271de..0756634ad506aa81e8f3a789f5c28c84
      /**
       * Represents black
 diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
-index 07506b99725ce38f42bbae62fbd464b04cad142b..91ea9aac1347141e6387903788a57318495371b5 100644
+index ba78ce668dc6e7e605679eec7f9cb341c07c6363..8501380b480847b62dc369ba6431bde6e66d2ce8 100644
 --- a/src/main/java/org/bukkit/Server.java
 +++ b/src/main/java/org/bukkit/Server.java
-@@ -2668,4 +2668,16 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
+@@ -2703,4 +2703,16 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
       */
-     boolean isOwnedByCurrentRegion(@NotNull Entity entity);
-     // Paper end - Folia region threading API
+     void allowPausing(@NotNull org.bukkit.plugin.Plugin plugin, boolean value);
+     // Paper end - API to check if the server is sleeping
 +
 +    // Daydream start - Add Packet API
 +    /**
@@ -1159,7 +1159,7 @@ index d0ae8a94db20281d3664d74718c65234eb2e5f83..9727155852d73852330ad216a70ea9f9
       * Gets the amount of ticks this entity has lived for.
       * <p>
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index a7867822be6da5ce88fc44e6ac13c7f9ab6e9d3b..cc0c1718e2c63e4aad6da259d29719a4c9675e26 100644
+index be002e6b3784cdbef98609ad220915c6d3ccb8d3..e94e98c4c749afddba99b89ead7745150f29519d 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
 @@ -476,6 +476,16 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
