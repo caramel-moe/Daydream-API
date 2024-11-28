@@ -35,27 +35,6 @@ index 3c768d5ccf490e962d9638e92d4ea7c85670bad8..c7f9a96df7726bc0e5cc39a9eee9777f
      /**
       * Returns the phase of the server startup logic that the plugin should be loaded.
       *
-diff --git a/src/main/java/io/papermc/paper/plugin/loader/library/impl/MavenLibraryResolver.java b/src/main/java/io/papermc/paper/plugin/loader/library/impl/MavenLibraryResolver.java
-index 107705db2d82b7c191e5e625ec888e0bc3b03831..84d85a6d8a16050a41a44405cf8df6599ab84665 100644
---- a/src/main/java/io/papermc/paper/plugin/loader/library/impl/MavenLibraryResolver.java
-+++ b/src/main/java/io/papermc/paper/plugin/loader/library/impl/MavenLibraryResolver.java
-@@ -52,10 +52,12 @@ public class MavenLibraryResolver implements ClassPathLibrary {
- 
-     private static final Logger LOGGER = LoggerFactory.getLogger("MavenLibraryResolver");
- 
--    private final RepositorySystem repository;
--    private final DefaultRepositorySystemSession session;
--    private final List<RemoteRepository> repositories = new ArrayList<>();
--    private final List<Dependency> dependencies = new ArrayList<>();
-+    // Daydream start - Add Plugin Datapack System (Expose PluginLoader Fields)
-+    public final RepositorySystem repository;
-+    public final DefaultRepositorySystemSession session;
-+    public final List<RemoteRepository> repositories = new ArrayList<>();
-+    public final List<Dependency> dependencies = new ArrayList<>();
-+    // Daydream end - Add Plugin Datapack System (Expose PluginLoader Fields)
- 
-     /**
-      * Creates a new maven library resolver instance.
 diff --git a/src/main/java/moe/caramel/daydream/plugin/PluginDatapackLoader.java b/src/main/java/moe/caramel/daydream/plugin/PluginDatapackLoader.java
 new file mode 100644
 index 0000000000000000000000000000000000000000..778946665dfef224f766101e831b254efa3604af
