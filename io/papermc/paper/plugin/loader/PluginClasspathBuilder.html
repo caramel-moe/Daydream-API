@@ -113,9 +113,14 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Adds a new classpath library to this classpath builder.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="../bootstrap/PluginProviderContext.html" title="interface in io.papermc.paper.plugin.bootstrap">PluginProviderContext</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getContext()" class="member-name-link">getContext</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="PluginClasspathBuilder.html" title="interface in io.papermc.paper.plugin.loader">PluginClasspathBuilder</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#addLibraryBeforeCreateInstance(java.net.URL)" class="member-name-link">addLibraryBeforeCreateInstance</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/net/URL.html" title="class or interface in java.net" class="external-link">URL</a>&nbsp;url)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">플러그인 인스턴스를 생성하기 전에 등록할 클래스 경로를 추가합니다.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="../bootstrap/PluginProviderContext.html" title="interface in io.papermc.paper.plugin.bootstrap">PluginProviderContext</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getContext()" class="member-name-link">getContext</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
 </div>
 </div>
 </div>
@@ -154,6 +159,20 @@ loadScripts(document, 'script');</script>
 <li><a href="library/impl/MavenLibraryResolver.html" title="class in io.papermc.paper.plugin.loader.library.impl"><code>MavenLibraryResolver</code></a></li>
 </ul>
 </dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="addLibraryBeforeCreateInstance(java.net.URL)">
+<h3>addLibraryBeforeCreateInstance</h3>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Contract.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Contract</a>("_ -&gt; this")
+</span><span class="return-type"><a href="PluginClasspathBuilder.html" title="interface in io.papermc.paper.plugin.loader">PluginClasspathBuilder</a></span>&nbsp;<span class="element-name">addLibraryBeforeCreateInstance</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/net/URL.html" title="class or interface in java.net" class="external-link">URL</a>&nbsp;url)</span></div>
+<div class="block">플러그인 인스턴스를 생성하기 전에 등록할 클래스 경로를 추가합니다.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>url</code> - 클래스 경로</dd>
+<dt>Returns:</dt>
+<dd>self</dd>
 </dl>
 </section>
 </li>

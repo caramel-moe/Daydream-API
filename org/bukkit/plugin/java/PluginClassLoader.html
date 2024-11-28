@@ -90,7 +90,9 @@ loadScripts(document, 'script');</script>
 <div class="inheritance"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/ClassLoader.html" title="class or interface in java.lang" class="external-link">java.lang.ClassLoader</a>
 <div class="inheritance"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/security/SecureClassLoader.html" title="class or interface in java.security" class="external-link">java.security.SecureClassLoader</a>
 <div class="inheritance"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/net/URLClassLoader.html" title="class or interface in java.net" class="external-link">java.net.URLClassLoader</a>
+<div class="inheritance"><a href="../../../../moe/caramel/daydream/plugin/DynamicURLClassLoader.html" title="class in moe.caramel.daydream.plugin">moe.caramel.daydream.plugin.DynamicURLClassLoader</a>
 <div class="inheritance">org.bukkit.plugin.java.PluginClassLoader</div>
+</div>
 </div>
 </div>
 </div>
@@ -103,7 +105,7 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/ApiStatus.Internal.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Internal</a>
 </span><span class="modifiers">public final class </span><span class="element-name type-name-label">PluginClassLoader</span>
-<span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/net/URLClassLoader.html" title="class or interface in java.net" class="external-link">URLClassLoader</a>
+<span class="extends-implements">extends <a href="../../../../moe/caramel/daydream/plugin/DynamicURLClassLoader.html" title="class in moe.caramel.daydream.plugin">DynamicURLClassLoader</a>
 implements <a href="../../../../io/papermc/paper/plugin/provider/classloader/ConfiguredPluginClassLoader.html" title="interface in io.papermc.paper.plugin.provider.classloader">ConfiguredPluginClassLoader</a></span></div>
 <div class="block">A ClassLoader for plugins, to allow shared classes across multiple plugins</div>
 </section>
@@ -140,6 +142,15 @@ implements <a href="../../../../io/papermc/paper/plugin/provider/classloader/Con
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/jar/JarFile.html" title="class or interface in java.util.jar" class="external-link">JarFile</a>&nbsp;jarFile,
  <a href="../../../../io/papermc/paper/plugin/provider/entrypoint/DependencyContext.html" title="interface in io.papermc.paper.plugin.provider.entrypoint">DependencyContext</a>&nbsp;dependencyContext)</code></div>
 <div class="col-last even-row-color">&nbsp;</div>
+<div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(java.lang.ClassLoader,org.bukkit.plugin.PluginDescriptionFile,java.io.File,java.io.File,java.lang.ClassLoader,java.util.jar.JarFile,io.papermc.paper.plugin.provider.entrypoint.DependencyContext,java.util.List)" class="member-name-link">PluginClassLoader</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/ClassLoader.html" title="class or interface in java.lang" class="external-link">ClassLoader</a>&nbsp;parent,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../PluginDescriptionFile.html" title="class in org.bukkit.plugin">PluginDescriptionFile</a>&nbsp;description,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/io/File.html" title="class or interface in java.io" class="external-link">File</a>&nbsp;dataFolder,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/io/File.html" title="class or interface in java.io" class="external-link">File</a>&nbsp;file,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/ClassLoader.html" title="class or interface in java.lang" class="external-link">ClassLoader</a>&nbsp;libraryLoader,
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/jar/JarFile.html" title="class or interface in java.util.jar" class="external-link">JarFile</a>&nbsp;jarFile,
+ <a href="../../../../io/papermc/paper/plugin/provider/entrypoint/DependencyContext.html" title="interface in io.papermc.paper.plugin.provider.entrypoint">DependencyContext</a>&nbsp;dependencyContext,
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/net/URL.html" title="class or interface in java.net" class="external-link">URL</a>&gt;&nbsp;afterLibraries)</code></div>
+<div class="col-last odd-row-color">&nbsp;</div>
 </div>
 </section>
 </li>
@@ -209,6 +220,9 @@ implements <a href="../../../../io/papermc/paper/plugin/provider/classloader/Con
 </div>
 </div>
 <div class="inherited-list">
+<h3 id="methods-inherited-from-class-moe.caramel.daydream.plugin.DynamicURLClassLoader">Methods inherited from class&nbsp;moe.caramel.daydream.plugin.<a href="../../../../moe/caramel/daydream/plugin/DynamicURLClassLoader.html" title="class in moe.caramel.daydream.plugin">DynamicURLClassLoader</a></h3>
+<code><a href="../../../../moe/caramel/daydream/plugin/DynamicURLClassLoader.html#addURLIfYouKnowWhatYouAreDoing(java.net.URL)">addURLIfYouKnowWhatYouAreDoing</a></code></div>
+<div class="inherited-list">
 <h3 id="methods-inherited-from-class-java.net.URLClassLoader">Methods inherited from class&nbsp;java.net.<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/net/URLClassLoader.html" title="class or interface in java.net" class="external-link">URLClassLoader</a></h3>
 <code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/net/URLClassLoader.html#addURL(java.net.URL)" title="class or interface in java.net" class="external-link">addURL</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/net/URLClassLoader.html#definePackage(java.lang.String,java.util.jar.Manifest,java.net.URL)" title="class or interface in java.net" class="external-link">definePackage</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/net/URLClassLoader.html#findResource(java.lang.String)" title="class or interface in java.net" class="external-link">findResource</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/net/URLClassLoader.html#findResources(java.lang.String)" title="class or interface in java.net" class="external-link">findResources</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/net/URLClassLoader.html#getPermissions(java.security.CodeSource)" title="class or interface in java.net" class="external-link">getPermissions</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/net/URLClassLoader.html#getResourceAsStream(java.lang.String)" title="class or interface in java.net" class="external-link">getResourceAsStream</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/net/URLClassLoader.html#getURLs()" title="class or interface in java.net" class="external-link">getURLs</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/net/URLClassLoader.html#newInstance(java.net.URL%5B%5D)" title="class or interface in java.net" class="external-link">newInstance</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/net/URLClassLoader.html#newInstance(java.net.URL%5B%5D,java.lang.ClassLoader)" title="class or interface in java.net" class="external-link">newInstance</a></code></div>
 <div class="inherited-list">
@@ -261,6 +275,33 @@ implements <a href="../../../../io/papermc/paper/plugin/provider/classloader/Con
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/ClassLoader.html" title="class or interface in java.lang" class="external-link">ClassLoader</a>&nbsp;libraryLoader,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/jar/JarFile.html" title="class or interface in java.util.jar" class="external-link">JarFile</a>&nbsp;jarFile,
  <a href="../../../../io/papermc/paper/plugin/provider/entrypoint/DependencyContext.html" title="interface in io.papermc.paper.plugin.provider.entrypoint">DependencyContext</a>&nbsp;dependencyContext)</span>
+                  throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a>,
+<a href="../InvalidPluginException.html" title="class in org.bukkit.plugin">InvalidPluginException</a>,
+<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/net/MalformedURLException.html" title="class or interface in java.net" class="external-link">MalformedURLException</a></span></div>
+<dl class="notes">
+<dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a></code></dd>
+<dd><code><a href="../InvalidPluginException.html" title="class in org.bukkit.plugin">InvalidPluginException</a></code></dd>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/net/MalformedURLException.html" title="class or interface in java.net" class="external-link">MalformedURLException</a></code></dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="&lt;init&gt;(java.lang.ClassLoader,org.bukkit.plugin.PluginDescriptionFile,java.io.File,java.io.File,java.lang.ClassLoader,java.util.jar.JarFile,io.papermc.paper.plugin.provider.entrypoint.DependencyContext,java.util.List)">
+<h3>PluginClassLoader</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">PluginClassLoader</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/ClassLoader.html" title="class or interface in java.lang" class="external-link">ClassLoader</a>&nbsp;parent,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../PluginDescriptionFile.html" title="class in org.bukkit.plugin">PluginDescriptionFile</a>&nbsp;description,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/io/File.html" title="class or interface in java.io" class="external-link">File</a>&nbsp;dataFolder,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/io/File.html" title="class or interface in java.io" class="external-link">File</a>&nbsp;file,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a>
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/ClassLoader.html" title="class or interface in java.lang" class="external-link">ClassLoader</a>&nbsp;libraryLoader,
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/jar/JarFile.html" title="class or interface in java.util.jar" class="external-link">JarFile</a>&nbsp;jarFile,
+ <a href="../../../../io/papermc/paper/plugin/provider/entrypoint/DependencyContext.html" title="interface in io.papermc.paper.plugin.provider.entrypoint">DependencyContext</a>&nbsp;dependencyContext,
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/net/URL.html" title="class or interface in java.net" class="external-link">URL</a>&gt;&nbsp;afterLibraries)</span>
                   throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a>,
 <a href="../InvalidPluginException.html" title="class in org.bukkit.plugin">InvalidPluginException</a>,
 <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/net/MalformedURLException.html" title="class or interface in java.net" class="external-link">MalformedURLException</a></span></div>
