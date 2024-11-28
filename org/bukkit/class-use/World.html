@@ -743,37 +743,57 @@ loadScripts(document, 'script');</script>
  square radius.</div>
 </div>
 <div class="col-first even-row-color"><code>static boolean</code></div>
-<div class="col-second even-row-color"><span class="type-name-label">Bukkit.</span><code><a href="../Bukkit.html#isOwnedByCurrentRegion(org.bukkit.World,io.papermc.paper.math.Position)" class="member-name-link">isOwnedByCurrentRegion</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../World.html" title="interface in org.bukkit">World</a>&nbsp;world,
- <a href="../../../io/papermc/paper/math/Position.html" title="interface in io.papermc.paper.math">Position</a>&nbsp;position)</code></div>
+<div class="col-second even-row-color"><span class="type-name-label">Bukkit.</span><code><a href="../Bukkit.html#isOwnedByCurrentRegion(org.bukkit.World,int,int,int,int)" class="member-name-link">isOwnedByCurrentRegion</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../World.html" title="interface in org.bukkit">World</a>&nbsp;world,
+ int&nbsp;minChunkX,
+ int&nbsp;minChunkZ,
+ int&nbsp;maxChunkX,
+ int&nbsp;maxChunkZ)</code></div>
 <div class="col-last even-row-color">
+<div class="block">Returns whether the current thread is ticking a region and that the region being ticked
+ owns the chunks in the rectangle specified by the min and max parameters.</div>
+</div>
+<div class="col-first odd-row-color"><code>static boolean</code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">Bukkit.</span><code><a href="../Bukkit.html#isOwnedByCurrentRegion(org.bukkit.World,io.papermc.paper.math.Position)" class="member-name-link">isOwnedByCurrentRegion</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../World.html" title="interface in org.bukkit">World</a>&nbsp;world,
+ <a href="../../../io/papermc/paper/math/Position.html" title="interface in io.papermc.paper.math">Position</a>&nbsp;position)</code></div>
+<div class="col-last odd-row-color">
 <div class="block">Returns whether the current thread is ticking a region and that the region being ticked
  owns the chunk at the specified world and block position.</div>
 </div>
-<div class="col-first odd-row-color"><code>static boolean</code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">Bukkit.</span><code><a href="../Bukkit.html#isOwnedByCurrentRegion(org.bukkit.World,io.papermc.paper.math.Position,int)" class="member-name-link">isOwnedByCurrentRegion</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../World.html" title="interface in org.bukkit">World</a>&nbsp;world,
+<div class="col-first even-row-color"><code>static boolean</code></div>
+<div class="col-second even-row-color"><span class="type-name-label">Bukkit.</span><code><a href="../Bukkit.html#isOwnedByCurrentRegion(org.bukkit.World,io.papermc.paper.math.Position,int)" class="member-name-link">isOwnedByCurrentRegion</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../World.html" title="interface in org.bukkit">World</a>&nbsp;world,
  <a href="../../../io/papermc/paper/math/Position.html" title="interface in io.papermc.paper.math">Position</a>&nbsp;position,
  int&nbsp;squareRadiusChunks)</code></div>
-<div class="col-last odd-row-color">
+<div class="col-last even-row-color">
 <div class="block">Returns whether the current thread is ticking a region and that the region being ticked
  owns the chunks centered at the specified block position within the specified square radius.</div>
 </div>
-<div class="col-first even-row-color"><code>boolean</code></div>
-<div class="col-second even-row-color"><span class="type-name-label">Server.</span><code><a href="../Server.html#isOwnedByCurrentRegion(org.bukkit.World,int,int)" class="member-name-link">isOwnedByCurrentRegion</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../World.html" title="interface in org.bukkit">World</a>&nbsp;world,
+<div class="col-first odd-row-color"><code>boolean</code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">Server.</span><code><a href="../Server.html#isOwnedByCurrentRegion(org.bukkit.World,int,int)" class="member-name-link">isOwnedByCurrentRegion</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../World.html" title="interface in org.bukkit">World</a>&nbsp;world,
  int&nbsp;chunkX,
  int&nbsp;chunkZ)</code></div>
-<div class="col-last even-row-color">
+<div class="col-last odd-row-color">
 <div class="block">Returns whether the current thread is ticking a region and that the region being ticked
  owns the chunk at the specified world and chunk position.</div>
 </div>
-<div class="col-first odd-row-color"><code>boolean</code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">Server.</span><code><a href="../Server.html#isOwnedByCurrentRegion(org.bukkit.World,int,int,int)" class="member-name-link">isOwnedByCurrentRegion</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../World.html" title="interface in org.bukkit">World</a>&nbsp;world,
+<div class="col-first even-row-color"><code>boolean</code></div>
+<div class="col-second even-row-color"><span class="type-name-label">Server.</span><code><a href="../Server.html#isOwnedByCurrentRegion(org.bukkit.World,int,int,int)" class="member-name-link">isOwnedByCurrentRegion</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../World.html" title="interface in org.bukkit">World</a>&nbsp;world,
  int&nbsp;chunkX,
  int&nbsp;chunkZ,
  int&nbsp;squareRadiusChunks)</code></div>
-<div class="col-last odd-row-color">
+<div class="col-last even-row-color">
 <div class="block">Returns whether the current thread is ticking a region and that the region being ticked
  owns the chunks centered at the specified world and chunk position within the specified
  square radius.</div>
+</div>
+<div class="col-first odd-row-color"><code>boolean</code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">Server.</span><code><a href="../Server.html#isOwnedByCurrentRegion(org.bukkit.World,int,int,int,int)" class="member-name-link">isOwnedByCurrentRegion</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../World.html" title="interface in org.bukkit">World</a>&nbsp;world,
+ int&nbsp;minChunkX,
+ int&nbsp;minChunkZ,
+ int&nbsp;maxChunkX,
+ int&nbsp;maxChunkZ)</code></div>
+<div class="col-last odd-row-color">
+<div class="block">Returns whether the current thread is ticking a region and that the region being ticked
+ owns the chunks in the rectangle specified by the min and max parameters.</div>
 </div>
 <div class="col-first even-row-color"><code>boolean</code></div>
 <div class="col-second even-row-color"><span class="type-name-label">Server.</span><code><a href="../Server.html#isOwnedByCurrentRegion(org.bukkit.World,io.papermc.paper.math.Position)" class="member-name-link">isOwnedByCurrentRegion</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../World.html" title="interface in org.bukkit">World</a>&nbsp;world,
