@@ -4,8 +4,22 @@ Date: Sun, 2 Jul 2023 14:40:50 +0900
 Subject: [PATCH] Add more Entity API
 
 
+diff --git a/src/main/java/org/bukkit/entity/Display.java b/src/main/java/org/bukkit/entity/Display.java
+index 2b6f0c627a848f37bc5b3f1732d0e0b82d9f89ad..c9748731f27b8caf9533a8c236c49ef5d43f8de1 100644
+--- a/src/main/java/org/bukkit/entity/Display.java
++++ b/src/main/java/org/bukkit/entity/Display.java
+@@ -63,8 +63,7 @@ public interface Display extends Entity {
+     /**
+      * Sets the teleport duration of this display.
+      *
+-     * @param duration new duration
+-     * @throws IllegalArgumentException if duration is not between 0 and 59
++     * @param duration new duration (60 이상의 값을 설정하는 경우 {@link Entity#disableEntityUpdate()}를 사용하세요.)
+      * @see #getTeleportDuration()
+      */
+     public void setTeleportDuration(int duration);
 diff --git a/src/main/java/org/bukkit/entity/Entity.java b/src/main/java/org/bukkit/entity/Entity.java
-index 9727155852d73852330ad216a70ea9f9c2a3763d..2af29825b1a0241be923d0773ef037e6a206c5ca 100644
+index 9727155852d73852330ad216a70ea9f9c2a3763d..2b8c2770d4ab2c4ea92677b28a623395d4affc48 100644
 --- a/src/main/java/org/bukkit/entity/Entity.java
 +++ b/src/main/java/org/bukkit/entity/Entity.java
 @@ -111,6 +111,17 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
@@ -26,7 +40,7 @@ index 9727155852d73852330ad216a70ea9f9c2a3763d..2af29825b1a0241be923d0773ef037e6
      /**
       * Gets the current world this entity resides in
       *
-@@ -369,6 +380,33 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
+@@ -369,6 +380,30 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
      void lockFreezeTicks(boolean locked);
      // Paper end - Freeze Tick Lock API
  
@@ -35,7 +49,6 @@ index 9727155852d73852330ad216a70ea9f9c2a3763d..2af29825b1a0241be923d0773ef037e6
 +     * 엔티티 업데이트 비활성화를 예약합니다.
 +     * <p>엔티티 업데이트가 완료된 후에 다음 틱 시간부터 업데이트를 하지 않습니다.</p>
 +     */
-+    @ApiStatus.Experimental
 +    void scheduleDisableEntityUpdate();
 +
 +    /**
@@ -44,7 +57,6 @@ index 9727155852d73852330ad216a70ea9f9c2a3763d..2af29825b1a0241be923d0773ef037e6
 +     *
 +     * @return 엔티티 업데이트 중지 여부
 +     */
-+    @ApiStatus.Experimental
 +    boolean disableEntityUpdate();
 +
 +    /**
@@ -53,14 +65,13 @@ index 9727155852d73852330ad216a70ea9f9c2a3763d..2af29825b1a0241be923d0773ef037e6
 +     *
 +     * @param disable 엔티티 업데이트 중지 여부
 +     */
-+    @ApiStatus.Experimental
 +    void disableEntityUpdate(final boolean disable);
 +    // Daydream end - Add more Entity API (Disable Entity Update)
 +
      /**
       * Mark the entity's removal.
       *
-@@ -532,6 +570,16 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
+@@ -532,6 +567,16 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
      @NotNull
      public UUID getUniqueId();
  
