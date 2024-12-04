@@ -80,10 +80,10 @@ index 0000000000000000000000000000000000000000..9716003537a76b3d0e40ca0bb4394047
 +    void setKnockbackDisabled(final boolean disabled);
 +}
 diff --git a/src/main/java/org/bukkit/Tag.java b/src/main/java/org/bukkit/Tag.java
-index 42f0501ae6a2d9297bdd9bb9ab2fbb02abb881f5..90afcca12f2e8d5811d6fa76ce0a6e3e8200936d 100644
+index 961a36e03df968898590c95573cee04083988e32..7479e139f31741bb4761890e0757eb611fb903c9 100644
 --- a/src/main/java/org/bukkit/Tag.java
 +++ b/src/main/java/org/bukkit/Tag.java
-@@ -1430,6 +1430,44 @@ public interface Tag<T extends Keyed> extends Keyed {
+@@ -1446,6 +1446,44 @@ public interface Tag<T extends Keyed> extends Keyed {
      Tag<GameEvent> GAME_EVENT_ALLAY_CAN_LISTEN = Bukkit.getTag(REGISTRY_GAME_EVENTS, NamespacedKey.minecraft("allay_can_listen"), GameEvent.class);
      // Paper end
  
@@ -129,7 +129,7 @@ index 42f0501ae6a2d9297bdd9bb9ab2fbb02abb881f5..90afcca12f2e8d5811d6fa76ce0a6e3e
       * Returns whether or not this tag has an entry for the specified item.
       *
 diff --git a/src/main/java/org/bukkit/UnsafeValues.java b/src/main/java/org/bukkit/UnsafeValues.java
-index a491dc40093e19b8d1900443ad613223fd7f3119..6a22d2355122f22558b94924026f312df24f1b0a 100644
+index d0de7ce3c3a73863fada71d9e8d7b3ccee98ad8e..5171ab782175729ffa26031b764d83f81a924896 100644
 --- a/src/main/java/org/bukkit/UnsafeValues.java
 +++ b/src/main/java/org/bukkit/UnsafeValues.java
 @@ -312,4 +312,6 @@ public interface UnsafeValues {
@@ -189,7 +189,7 @@ index 7635610e56c051ce3c8a876911ba5cd0a9248496..8e88201e647a72407c157c92517002a5
       * Get the {@link DamageType}.
       *
 diff --git a/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java b/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java
-index 73aa5dc079ecb1c38c55ae1916b12edf81b723f5..d1cbae6759783f48ad34928abae8dc8facc6c5a4 100644
+index d1a5424ff3b289f1c82449ef6d88eb52665df41b..3de57873609f1dafcac671c4832ea0da7fa8f265 100644
 --- a/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java
 +++ b/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java
 @@ -59,6 +59,18 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {

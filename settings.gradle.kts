@@ -33,5 +33,6 @@ rootProject.name = "daydream"
 for (name in listOf("Daydream-API", "Daydream-Dummy")) {
     val projName = name.toLowerCase(Locale.ENGLISH)
     include(projName)
+    file(name).mkdirs()
     findProject(":$projName")!!.projectDir = file(name)
 }

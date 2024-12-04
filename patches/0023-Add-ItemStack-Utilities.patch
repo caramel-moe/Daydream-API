@@ -5,7 +5,7 @@ Subject: [PATCH] Add ItemStack Utilities
 
 
 diff --git a/src/main/java/org/bukkit/UnsafeValues.java b/src/main/java/org/bukkit/UnsafeValues.java
-index 6a22d2355122f22558b94924026f312df24f1b0a..8f3a6c8d136bed4d19c26a7e0e924d83f265bf50 100644
+index 5171ab782175729ffa26031b764d83f81a924896..f019be50073f3f7647384c7716bed040aca6b73b 100644
 --- a/src/main/java/org/bukkit/UnsafeValues.java
 +++ b/src/main/java/org/bukkit/UnsafeValues.java
 @@ -314,4 +314,25 @@ public interface UnsafeValues {
@@ -35,7 +35,7 @@ index 6a22d2355122f22558b94924026f312df24f1b0a..8f3a6c8d136bed4d19c26a7e0e924d83
 +    // Daydream end - Add ItemStack Utilities
  }
 diff --git a/src/main/java/org/bukkit/inventory/ItemStack.java b/src/main/java/org/bukkit/inventory/ItemStack.java
-index 6e4ca7d95953a25c0aaafd35e54ef9254a1b5f0b..c8d3909ca7469c7daaaef4c173b1ef203cf395c4 100644
+index 8c9654cd19af8b28fa276a55c5060eb389e60c1c..4fc16d74b72cfe46a63674345d17ed47731f0c7d 100644
 --- a/src/main/java/org/bukkit/inventory/ItemStack.java
 +++ b/src/main/java/org/bukkit/inventory/ItemStack.java
 @@ -71,6 +71,99 @@ public class ItemStack implements Cloneable, ConfigurationSerializable, Translat
@@ -139,10 +139,10 @@ index 6e4ca7d95953a25c0aaafd35e54ef9254a1b5f0b..c8d3909ca7469c7daaaef4c173b1ef20
       * Defaults stack size to 1, with no extra data.
       * <p>
 diff --git a/src/main/java/org/bukkit/inventory/meta/ItemMeta.java b/src/main/java/org/bukkit/inventory/meta/ItemMeta.java
-index 66219e3855aef885341132a7456af54cf315475f..59fd98992956fc94d23885bad81785f8f24f1631 100644
+index 2f0a775a6754554b00ad9140886da9b0101acaf5..6bb5c1ddf4d6f98197239a76589f1c12d8f10566 100644
 --- a/src/main/java/org/bukkit/inventory/meta/ItemMeta.java
 +++ b/src/main/java/org/bukkit/inventory/meta/ItemMeta.java
-@@ -232,6 +232,170 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
+@@ -233,6 +233,170 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
      void lore(final @Nullable List<? extends net.kyori.adventure.text.Component> lore);
      // Paper end
  
@@ -313,7 +313,7 @@ index 66219e3855aef885341132a7456af54cf315475f..59fd98992956fc94d23885bad81785f8
      /**
       * Gets the lore that is set.
       * <p>
-@@ -301,6 +465,18 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
+@@ -302,6 +466,18 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
       */
      int getCustomModelData();
  
@@ -330,5 +330,5 @@ index 66219e3855aef885341132a7456af54cf315475f..59fd98992956fc94d23885bad81785f8
 +    // Daydream end - Add ItemStack Utilities
 +
      /**
-      * Sets the custom model data.
-      * <p>
+      * Gets the custom model data set on this item, or creates an empty custom
+      * model data instance.

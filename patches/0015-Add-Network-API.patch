@@ -5,14 +5,14 @@ Subject: [PATCH] Add Network API
 
 
 diff --git a/build.gradle.kts b/build.gradle.kts
-index 215e8321091877f77e783b30c53105b18ce3a352..d1017a0b8429a47b94dcae3b4f3a0cf75adcc792 100644
+index e06f984425f503bc0c4402917e91a80770f275fd..5dcd0fbdef32381256b5b517f142fb3ec42ce39c 100644
 --- a/build.gradle.kts
 +++ b/build.gradle.kts
 @@ -69,6 +69,7 @@ dependencies {
      implementation("org.ow2.asm:asm-commons:9.7.1")
      // Paper end
-     api("com.mojang:authlib:6.0.55") // Daydream - Add Brigadier Command API (Mojang Authlib; keep in sync with major MC versions)
-+    api("io.netty:netty-handler:4.1.97.Final") // Daydream - Add Network API (keep in sync with major MC versions)
+     api("com.mojang:authlib:6.0.57") // Daydream - Add Brigadier Command API (Mojang Authlib; keep in sync with major MC versions)
++    api("io.netty:netty-handler:4.1.115.Final") // Daydream - Add Network API (keep in sync with major MC versions)
  
      api("org.apache.maven:maven-resolver-provider:3.9.6") // Paper - make API dependency for Paper Plugins
      compileOnly("org.apache.maven.resolver:maven-resolver-connector-basic:1.9.18")
@@ -36,7 +36,7 @@ index c84ce3fc874eea3d8f0b1cf5273996d9b4af6225..f3e044b5529d7aa470c46535c2304ef2
 +    // Daydream end - Add Network API
  }
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index 9d97e46c700240e6168c19a01bcd1b432e4c8bce..be002e6b3784cdbef98609ad220915c6d3ccb8d3 100644
+index 4bdb82e740c9b7f24c3f20be9174333e12dc6ce6..26fd11130544179f49cf5f684dcddbfe270dca20 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
 @@ -1076,6 +1076,24 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM

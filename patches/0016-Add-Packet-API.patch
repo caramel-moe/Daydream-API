@@ -6,10 +6,10 @@ Subject: [PATCH] Add Packet API
 
 diff --git a/src/main/java/moe/caramel/daydream/event/packet/PacketType.java b/src/main/java/moe/caramel/daydream/event/packet/PacketType.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..2243c218fc51d51862dd5e4722c8945bc118b776
+index 0000000000000000000000000000000000000000..360675e7abc45240925a983d21387bd4c8c0f114
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/event/packet/PacketType.java
-@@ -0,0 +1,21 @@
+@@ -0,0 +1,22 @@
 +package moe.caramel.daydream.event.packet;
 +
 +/**
@@ -21,7 +21,8 @@ index 0000000000000000000000000000000000000000..2243c218fc51d51862dd5e4722c8945b
 +     * [Client -> Server] Packets
 +     */
 +    enum Client {
-+        PONG
++        PONG,
++        PLAYER_LOADED
 +    }
 +
 +    /**
@@ -81,6 +82,34 @@ index 0000000000000000000000000000000000000000..a1f6ce66d317fc190021aa0b7fcb8c1b
 +        return HANDLER_LIST;
 +    }
 +    //</editor-fold>
++}
+diff --git a/src/main/java/moe/caramel/daydream/event/packet/ReceivePlayerLoadedPacketEvent.java b/src/main/java/moe/caramel/daydream/event/packet/ReceivePlayerLoadedPacketEvent.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..b783aafc2006adc054cf2c6126bcd3f2eac8852c
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/event/packet/ReceivePlayerLoadedPacketEvent.java
+@@ -0,0 +1,22 @@
++package moe.caramel.daydream.event.packet;
++
++import org.bukkit.entity.Player;
++import org.jetbrains.annotations.ApiStatus;
++import org.jspecify.annotations.NullMarked;
++
++/**
++ * 서버가 클라이언트로부터 {@link PacketType.Client#PLAYER_LOADED} 패킷을 전달받았을 때 호출됩니다.
++ */
++@NullMarked
++public final class ReceivePlayerLoadedPacketEvent extends ReceivePacketEvent {
++
++    @ApiStatus.Internal
++    public ReceivePlayerLoadedPacketEvent(final Player who) {
++        super(who, PacketType.Client.PLAYER_LOADED, false);
++    }
++
++    @Override
++    public String toString() {
++        return "ReceivePlayerLoadedPacketEvent";
++    }
 +}
 diff --git a/src/main/java/moe/caramel/daydream/event/packet/ReceivePongPacketEvent.java b/src/main/java/moe/caramel/daydream/event/packet/ReceivePongPacketEvent.java
 new file mode 100644
@@ -474,12 +503,13 @@ index 0000000000000000000000000000000000000000..78515358d7d62bf42e693f02323f16eb
 +}
 diff --git a/src/main/java/moe/caramel/daydream/packet/PlayerInfoUpdatePacket.java b/src/main/java/moe/caramel/daydream/packet/PlayerInfoUpdatePacket.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..35e7f3a812d58ff50f2e27bea6052270dc9caf85
+index 0000000000000000000000000000000000000000..22d7bbfd30beacaae491dfffbe3c2d8e9e79024c
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/packet/PlayerInfoUpdatePacket.java
-@@ -0,0 +1,193 @@
+@@ -0,0 +1,217 @@
 +package moe.caramel.daydream.packet;
 +
++import com.destroystokyo.paper.ClientOption;
 +import com.mojang.authlib.GameProfile;
 +import moe.caramel.daydream.player.ChatSession;
 +import net.kyori.adventure.text.Component;
@@ -534,13 +564,15 @@ index 0000000000000000000000000000000000000000..35e7f3a812d58ff50f2e27bea6052270
 +     * @param latency 플레이어의 지연 시간 (필수: {@link Action#UPDATE_LATENCY})
 +     * @param gameMode 플레이어의 게임 모드 (필수: {@link Action#UPDATE_GAME_MODE})
 +     * @param playerListName 플레이어의 표시 이름 (필수: {@link Action#UPDATE_DISPLAY_NAME})
++     * @param showHat 플레이어 스킨의 모자 레이어 표시 여부 (필수: {@link Action#UPDATE_HAT})
 +     * @param listOrder 플레이어 탭 리스트 순서 (필수: {@link Action#UPDATE_LIST_ORDER})
 +     * @param chatSession 플레이어의 채팅 세션 (선택: {@link Action#INITIALIZE_CHAT})
 +     */
 +    record PlayerData(
 +        UUID profileId, @Nullable GameProfile profile,
 +        boolean listed, int latency, @Nullable GameMode gameMode,
-+        @Nullable Component playerListName, int listOrder, @Nullable ChatSession chatSession
++        @Nullable Component playerListName, boolean showHat,
++        int listOrder, @Nullable ChatSession chatSession
 +    ) { }
 +
 +
@@ -553,6 +585,7 @@ index 0000000000000000000000000000000000000000..35e7f3a812d58ff50f2e27bea6052270
 +     * @param latency 플레이어의 지연 시간
 +     * @param gameMode 플레이어의 게임 모드
 +     * @param playerListName 플레이어의 표시 이름 (nullable)
++     * @param showHat 플레이어 스킨의 모자 레이어 표시 여부 (필수: {@link Action#UPDATE_HAT})
 +     * @param listOrder 플레이어의 탭 리스트 정렬 순서
 +     * @param chatSession 플레이어의 채팅 세션 (nullable)
 +     * @return 플레이어 데이터
@@ -560,10 +593,10 @@ index 0000000000000000000000000000000000000000..35e7f3a812d58ff50f2e27bea6052270
 +    static PlayerData addPlayer(
 +        final UUID profileId, final GameProfile profile,
 +        final boolean listed, final int latency, final GameMode gameMode,
-+        final @Nullable Component playerListName, final int listOrder,
-+        final @Nullable ChatSession chatSession
++        final @Nullable Component playerListName, final boolean showHat,
++        final int listOrder, final @Nullable ChatSession chatSession
 +    ) {
-+        return new PlayerData(profileId, profile, listed, latency, gameMode, playerListName, listOrder, chatSession);
++        return new PlayerData(profileId, profile, listed, latency, gameMode, playerListName, showHat, listOrder, chatSession);
 +    }
 +
 +    /**
@@ -574,9 +607,14 @@ index 0000000000000000000000000000000000000000..35e7f3a812d58ff50f2e27bea6052270
 +     */
 +    static PlayerData addPlayer(final Player player) {
 +        return PlayerInfoUpdatePacket.addPlayer(
-+            player.getUniqueId(), player.getProfile(),
-+            true, player.getPing(), player.getGameMode(),
-+            player.playerListName(), player.getPlayerListOrder(),
++            player.getUniqueId(),
++            player.getProfile(),
++            true,
++            player.getPing(),
++            player.getGameMode(),
++            player.playerListName(),
++            player.getClientOption(ClientOption.SKIN_PARTS).hasHatsEnabled(),
++            player.getPlayerListOrder(),
 +            player.getChatSession()
 +        );
 +    }
@@ -589,7 +627,7 @@ index 0000000000000000000000000000000000000000..35e7f3a812d58ff50f2e27bea6052270
 +     * @return 플레이어 데이터
 +     */
 +    static PlayerData updateGameMode(final UUID uuid, final GameMode gameMode) {
-+        return new PlayerData(uuid, null, false, 0, gameMode, null, 0, null);
++        return new PlayerData(uuid, null, false, 0, gameMode, null, false, 0, null);
 +    }
 +
 +    /**
@@ -600,7 +638,7 @@ index 0000000000000000000000000000000000000000..35e7f3a812d58ff50f2e27bea6052270
 +     * @return 플레이어 데이터
 +     */
 +    static PlayerData updateListed(final UUID uuid, final boolean listed) {
-+        return new PlayerData(uuid, null, listed, 0, null, null, 0, null);
++        return new PlayerData(uuid, null, listed, 0, null, null, false, 0, null);
 +    }
 +
 +    /**
@@ -611,7 +649,7 @@ index 0000000000000000000000000000000000000000..35e7f3a812d58ff50f2e27bea6052270
 +     * @return 플레이어 데이터
 +     */
 +    static PlayerData updateLatency(final UUID uuid, final int latency) {
-+        return new PlayerData(uuid, null, false, latency, null, null, 0, null);
++        return new PlayerData(uuid, null, false, latency, null, null, false, 0, null);
 +    }
 +
 +    /**
@@ -622,7 +660,7 @@ index 0000000000000000000000000000000000000000..35e7f3a812d58ff50f2e27bea6052270
 +     * @return 플레이어 데이터
 +     */
 +    static PlayerData updatePlayerListName(final UUID uuid, final @Nullable Component playerListName) {
-+        return new PlayerData(uuid, null, false, 0, null, playerListName, 0, null);
++        return new PlayerData(uuid, null, false, 0, null, playerListName, false, 0, null);
 +    }
 +
 +    /**
@@ -633,7 +671,18 @@ index 0000000000000000000000000000000000000000..35e7f3a812d58ff50f2e27bea6052270
 +     * @return 플레이어 데이터
 +     */
 +    static PlayerData updateListOrder(final UUID uuid, final int order) {
-+        return new PlayerData(uuid, null, false, 0, null, null, order, null);
++        return new PlayerData(uuid, null, false, 0, null, null, false, order, null);
++    }
++
++    /**
++     * for Update Hat Action
++     *
++     * @param uuid 플레이어의 UUID
++     * @param show 플레이어 스킨의 모자 레이어 표시 여부
++     * @return 플레이어 데이터
++     */
++    static PlayerData updateShowHat(final UUID uuid, final boolean show) {
++        return new PlayerData(uuid, null, false, 0, null, null, show, 0, null);
 +    }
 +
 +
@@ -668,7 +717,11 @@ index 0000000000000000000000000000000000000000..35e7f3a812d58ff50f2e27bea6052270
 +        /**
 +         * 플레이어의 탭 리스트 정렬 순서를 업데이트합니다.
 +         */
-+        UPDATE_LIST_ORDER;
++        UPDATE_LIST_ORDER,
++        /**
++         * 플레이어 스킨의 모자 레이어 활성화 여부를 업데이트합니다.
++         */
++        UPDATE_HAT;
 +    }
 +}
 diff --git a/src/main/java/moe/caramel/daydream/packet/SetChunkCacheRadiusPacket.java b/src/main/java/moe/caramel/daydream/packet/SetChunkCacheRadiusPacket.java
@@ -1052,7 +1105,7 @@ index 0000000000000000000000000000000000000000..d654fe8bfd2c79024f3bd937193708ab
 +    }
 +}
 diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
-index 755f9c62a178626a31389cf8f0e6a56f8e294e1a..2e744e45a3138bb12133f58ec0c2a16002d9b2ad 100644
+index 275f34d24d13e91a973efd443162407ddbb73891..0d7c40695f8783ccc40338043b765a423262662c 100644
 --- a/src/main/java/org/bukkit/Bukkit.java
 +++ b/src/main/java/org/bukkit/Bukkit.java
 @@ -3070,6 +3070,20 @@ public final class Bukkit {
@@ -1092,7 +1145,7 @@ index 918a045165cdcde264bc24082b7afebb407271de..0756634ad506aa81e8f3a789f5c28c84
      /**
       * Represents black
 diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
-index ba78ce668dc6e7e605679eec7f9cb341c07c6363..8501380b480847b62dc369ba6431bde6e66d2ce8 100644
+index 71a5b1bb8ad7b4b3fa1bed33b7570c85b55aaf8b..9ffd883ef360e405f7bb36ab2dadf75046b4b4b4 100644
 --- a/src/main/java/org/bukkit/Server.java
 +++ b/src/main/java/org/bukkit/Server.java
 @@ -2703,4 +2703,16 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
@@ -1113,7 +1166,7 @@ index ba78ce668dc6e7e605679eec7f9cb341c07c6363..8501380b480847b62dc369ba6431bde6
 +    // Daydream end - Add Packet API
  }
 diff --git a/src/main/java/org/bukkit/World.java b/src/main/java/org/bukkit/World.java
-index 499ce4f742e1dbf16b406d05131b67928fc3df3f..cd3e7d1542a346e24da75e41644066dfab95d6a9 100644
+index c679817a7311e0a5c1cafa14df81c8334445e987..f9e0abf4d6c40105b83f92cc761972bf4c65ef07 100644
 --- a/src/main/java/org/bukkit/World.java
 +++ b/src/main/java/org/bukkit/World.java
 @@ -1627,6 +1627,17 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
@@ -1135,7 +1188,7 @@ index 499ce4f742e1dbf16b406d05131b67928fc3df3f..cd3e7d1542a346e24da75e41644066df
       * Returns a list of entities within a bounding box centered around a
       * Location.
 diff --git a/src/main/java/org/bukkit/entity/Entity.java b/src/main/java/org/bukkit/entity/Entity.java
-index d0ae8a94db20281d3664d74718c65234eb2e5f83..9727155852d73852330ad216a70ea9f9c2a3763d 100644
+index 19272cff8d6d040e95b2644d70acdac606e06c16..8c36a3bf4cd4c9f286d9b9d06c192a20143f0955 100644
 --- a/src/main/java/org/bukkit/entity/Entity.java
 +++ b/src/main/java/org/bukkit/entity/Entity.java
 @@ -532,6 +532,19 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
@@ -1159,7 +1212,7 @@ index d0ae8a94db20281d3664d74718c65234eb2e5f83..9727155852d73852330ad216a70ea9f9
       * Gets the amount of ticks this entity has lived for.
       * <p>
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index be002e6b3784cdbef98609ad220915c6d3ccb8d3..e94e98c4c749afddba99b89ead7745150f29519d 100644
+index 26fd11130544179f49cf5f684dcddbfe270dca20..11c606b9514edc65a755471544a826ac893229d1 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
 @@ -476,6 +476,16 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM

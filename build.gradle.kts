@@ -4,10 +4,10 @@ import org.gradle.api.tasks.testing.logging.TestLogEvent
 
 plugins {
     java
-    id("io.papermc.paperweight.patcher") version "1.7.4"
+    id("io.papermc.paperweight.patcher") version "1.7.6"
 }
 
-val caramelMavenPublicUrl = "https://repo.caramel.moe/repository/maven-public";
+val caramelMavenPublicUrl = "https://repo.caramel.moe/repository/maven-public"
 val paperMavenPublicUrl = "https://papermc.io/repo/repository/maven-public/"
 repositories {
     mavenCentral()
@@ -30,12 +30,13 @@ subprojects {
 
     java {
         toolchain {
-            languageVersion.set(JavaLanguageVersion.of(21))
+            languageVersion = JavaLanguageVersion.of(21)
         }
     }
     tasks.withType<JavaCompile>().configureEach {
-        options.encoding = "UTF-8"
-        options.release.set(21)
+        options.encoding = Charsets.UTF_8.name()
+        options.release = 21
+        options.isFork = true
     }
     tasks.withType<Javadoc> {
         options.encoding = Charsets.UTF_8.name()

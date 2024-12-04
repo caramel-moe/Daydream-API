@@ -5,14 +5,14 @@ Subject: [PATCH] Add Brigadier Command API
 
 
 diff --git a/build.gradle.kts b/build.gradle.kts
-index d1409b5d60c50949a21ff97110c9420ec0c43be7..215e8321091877f77e783b30c53105b18ce3a352 100644
+index ab7fa63820837ea6c72e66bfaf5a65c7590f968b..e06f984425f503bc0c4402917e91a80770f275fd 100644
 --- a/build.gradle.kts
 +++ b/build.gradle.kts
 @@ -68,6 +68,7 @@ dependencies {
      implementation("org.ow2.asm:asm:9.7.1")
      implementation("org.ow2.asm:asm-commons:9.7.1")
      // Paper end
-+    api("com.mojang:authlib:6.0.55") // Daydream - Add Brigadier Command API (Mojang Authlib; keep in sync with major MC versions)
++    api("com.mojang:authlib:6.0.57") // Daydream - Add Brigadier Command API (Mojang Authlib; keep in sync with major MC versions)
  
      api("org.apache.maven:maven-resolver-provider:3.9.6") // Paper - make API dependency for Paper Plugins
      compileOnly("org.apache.maven.resolver:maven-resolver-connector-basic:1.9.18")
@@ -1210,7 +1210,7 @@ index 0000000000000000000000000000000000000000..b21df77a52d31e7e0c38b33a6d77808a
 +    }
 +}
 diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
-index 391a1e3e07657a404520c1462507a2c731f32b27..4692181b94d44af05b90134b76c02e7edae19989 100644
+index 8ab94f8189ebd9d4158231871abdebec399deb2c..f383ce19485439fb67862c088b22124dbb60c795 100644
 --- a/src/main/java/org/bukkit/Bukkit.java
 +++ b/src/main/java/org/bukkit/Bukkit.java
 @@ -1093,6 +1093,51 @@ public final class Bukkit {
@@ -1266,7 +1266,7 @@ index 391a1e3e07657a404520c1462507a2c731f32b27..4692181b94d44af05b90134b76c02e7e
       * Writes loaded players to disk.
       */
 diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
-index c6de3586438095eaa927e73df979ff50e472fa61..36b006dbf1213399b124260cc6c00cbe22093ee0 100644
+index 6455b54397f8d50a1e859b8d23a3b5d65a9ddd62..e3976e284121e57781309374d69ec7ca959b1499 100644
 --- a/src/main/java/org/bukkit/Server.java
 +++ b/src/main/java/org/bukkit/Server.java
 @@ -932,6 +932,43 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
@@ -1314,7 +1314,7 @@ index c6de3586438095eaa927e73df979ff50e472fa61..36b006dbf1213399b124260cc6c00cbe
       * Writes loaded players to disk.
       */
 diff --git a/src/main/java/org/bukkit/command/Command.java b/src/main/java/org/bukkit/command/Command.java
-index 54d22c80d56422acf515a4e8c72f0bde708c1e0d..a23600c3e1c0ca3e34dd304a792dda5da7610ad4 100644
+index cfde6aa1dbe9e1a5979d135f8bb72e2138d61cef..c87fcd24330449019096d378eff7906329738c41 100644
 --- a/src/main/java/org/bukkit/command/Command.java
 +++ b/src/main/java/org/bukkit/command/Command.java
 @@ -361,6 +361,22 @@ public abstract class Command {

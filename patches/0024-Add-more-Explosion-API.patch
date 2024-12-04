@@ -157,10 +157,10 @@ index 0000000000000000000000000000000000000000..99a387c5d743d07fc7f6c0e29a60477a
 +    boolean wasCancelled();
 +}
 diff --git a/src/main/java/org/bukkit/Tag.java b/src/main/java/org/bukkit/Tag.java
-index 90afcca12f2e8d5811d6fa76ce0a6e3e8200936d..787f1df93499a6ebdfee9f0673bcd7baccd9316c 100644
+index 7479e139f31741bb4761890e0757eb611fb903c9..8d0908e9ee9636c862a1a7b44219c0007f1ecf50 100644
 --- a/src/main/java/org/bukkit/Tag.java
 +++ b/src/main/java/org/bukkit/Tag.java
-@@ -1467,6 +1467,11 @@ public interface Tag<T extends Keyed> extends Keyed {
+@@ -1483,6 +1483,11 @@ public interface Tag<T extends Keyed> extends Keyed {
      Tag<org.bukkit.damage.DamageType> DAMAGE_TYPE_PANIC_ENVIRONMENTAL_CAUSES = Bukkit.getTag(REGISTRY_DAMAGE_TYPE, NamespacedKey.minecraft("panic_environmental_causes"), org.bukkit.damage.DamageType.class);
      Tag<org.bukkit.damage.DamageType> DAMAGE_TYPE_IS_MACE_SMASH = Bukkit.getTag(REGISTRY_DAMAGE_TYPE, NamespacedKey.minecraft("mace_smash"), org.bukkit.damage.DamageType.class);
      // Daydream end - Add more Damage API
@@ -173,7 +173,7 @@ index 90afcca12f2e8d5811d6fa76ce0a6e3e8200936d..787f1df93499a6ebdfee9f0673bcd7ba
      /**
       * Returns whether or not this tag has an entry for the specified item.
 diff --git a/src/main/java/org/bukkit/World.java b/src/main/java/org/bukkit/World.java
-index cd3e7d1542a346e24da75e41644066dfab95d6a9..7bef5dde0bde8091f2844b9db08382c1810546f7 100644
+index f9e0abf4d6c40105b83f92cc761972bf4c65ef07..6d78a38e4888efda58bb84ec9e89e7d6add7ad07 100644
 --- a/src/main/java/org/bukkit/World.java
 +++ b/src/main/java/org/bukkit/World.java
 @@ -2205,6 +2205,246 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
@@ -459,7 +459,7 @@ index 254d549f956053af4264ca3a52d34a97ede4273d..dc922f606af580f361487afab4a88429
  
      @Override
 diff --git a/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java b/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java
-index d1cbae6759783f48ad34928abae8dc8facc6c5a4..894886eb2e1519789db78f93cf3b3fe6c216fe69 100644
+index 3de57873609f1dafcac671c4832ea0da7fa8f265..dae4517955cd7f2c55286eb06048e8d37f54ca0b 100644
 --- a/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java
 +++ b/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java
 @@ -69,6 +69,16 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
