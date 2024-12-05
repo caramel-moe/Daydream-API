@@ -162,7 +162,7 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../../../../../org/bukkit/event/HandlerList.html" title="class in org.bukkit.event">HandlerList</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getHandlers()" class="member-name-link">getHandlers</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>@org.jetbrains.annotations.Range(from=0L, to=35L) int</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>@org.jetbrains.annotations.Range(from=-1L, to=35L) int</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getSourceSlot()" class="member-name-link">getSourceSlot</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Returns the slot in which the item that will be put into the players hotbar is located.</div>
@@ -183,7 +183,7 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <div class="block">Sets the cancellation state of this event.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setSourceSlot(int)" class="member-name-link">setSourceSlot</a><wbr>(@org.jetbrains.annotations.Range(from=0L, to=35L) int&nbsp;sourceSlot)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setSourceSlot(int)" class="member-name-link">setSourceSlot</a><wbr>(@org.jetbrains.annotations.Range(from=-1L, to=35L) int&nbsp;sourceSlot)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Change the source slot from which the item that will be put in the players hotbar will be taken.</div>
 </div>
@@ -257,22 +257,26 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <li>
 <section class="detail" id="getSourceSlot()">
 <h3>getSourceSlot</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">@org.jetbrains.annotations.Range(from=0L, to=35L) int</span>&nbsp;<span class="element-name">getSourceSlot</span>()</div>
-<div class="block">Returns the slot in which the item that will be put into the players hotbar is located.</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">@org.jetbrains.annotations.Range(from=-1L, to=35L) int</span>&nbsp;<span class="element-name">getSourceSlot</span>()</div>
+<div class="block">Returns the slot in which the item that will be put into the players hotbar is located.
+ <p>
+ Returns <code>-1</code> if the item is not in the player's inventory and should be spawned in if in creative mode.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>player inventory slot (0-35 inclusive)</dd>
+<dd>player inventory slot (0-35 inclusive, or <code>-1</code> not taken from the inventory)</dd>
 </dl>
 </section>
 </li>
 <li>
 <section class="detail" id="setSourceSlot(int)">
 <h3>setSourceSlot</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setSourceSlot</span><wbr><span class="parameters">(@org.jetbrains.annotations.Range(from=0L, to=35L) int&nbsp;sourceSlot)</span></div>
-<div class="block">Change the source slot from which the item that will be put in the players hotbar will be taken.</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setSourceSlot</span><wbr><span class="parameters">(@org.jetbrains.annotations.Range(from=-1L, to=35L) int&nbsp;sourceSlot)</span></div>
+<div class="block">Change the source slot from which the item that will be put in the players hotbar will be taken.
+ <p>
+ If set to <code>-1</code> and the player is in creative mode, the item will be spawned in.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>sourceSlot</code> - player inventory slot (0-35 inclusive)</dd>
+<dd><code>sourceSlot</code> - player inventory slot (0-35 inclusive, or <code>-1</code> not taken from the inventory)</dd>
 </dl>
 </section>
 </li>
