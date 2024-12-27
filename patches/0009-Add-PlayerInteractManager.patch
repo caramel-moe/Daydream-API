@@ -87,7 +87,7 @@ index 0000000000000000000000000000000000000000..64ef745afa02969c23b40f0bec4148cd
 +}
 diff --git a/src/main/java/moe/caramel/daydream/player/InteractManager.java b/src/main/java/moe/caramel/daydream/player/InteractManager.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..eba02dc2c6f830a116042a5ab3c61fe8f2623e6e
+index 0000000000000000000000000000000000000000..af8d728a2a8dc1ca0e853da5db6dbb51db55e09e
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/player/InteractManager.java
 @@ -0,0 +1,106 @@
@@ -121,7 +121,7 @@ index 0000000000000000000000000000000000000000..eba02dc2c6f830a116042a5ab3c61fe8
 +     * @param ignore {@code true}인 경우 플레이어가 {@link Key#LEFT_CLICK}
 +     * 상호작용 시에도 앞에 있는 엔티티를 통과하여 상호작용을 수행합니다.
 +     */
-+    void interactCanIgnoreEntityInAdventure(final boolean ignore);
++    void interactCanIgnoreEntityInAdventure(boolean ignore);
 +
 +
 +    /*
@@ -134,7 +134,7 @@ index 0000000000000000000000000000000000000000..eba02dc2c6f830a116042a5ab3c61fe8
 +     * @param key 제한할 {@link Key}
 +     * @param max 최대 횟수 (0 이하일 경우 비활성화)
 +     */
-+    void maxInteractsPerSecond(final Key key, final int max);
++    void maxInteractsPerSecond(Key key, int max);
 +
 +    /**
 +     * 초(second) 당 상호작용 횟수 제한을 가져옵니다.
@@ -142,7 +142,7 @@ index 0000000000000000000000000000000000000000..eba02dc2c6f830a116042a5ab3c61fe8
 +     * @param key 가져올 {@link Key}
 +     * @return 제한된 횟수 (0 이하일 경우 비활성화)
 +     */
-+    int maxInteractsPerSecond(final Key key);
++    int maxInteractsPerSecond(Key key);
 +
 +    /**
 +     * 기본 초(second) 당 상호작용 횟수 제한을 가져옵니다.
@@ -150,7 +150,7 @@ index 0000000000000000000000000000000000000000..eba02dc2c6f830a116042a5ab3c61fe8
 +     * @param key 가져올 {@link Key}
 +     * @return 기본 제한 횟수 (0 이하일 경우 비활성화)
 +     */
-+    int defaultMaxInteractsPerSecond(final Key key);
++    int defaultMaxInteractsPerSecond(Key key);
 +
 +
 +    /*
@@ -162,7 +162,7 @@ index 0000000000000000000000000000000000000000..eba02dc2c6f830a116042a5ab3c61fe8
 +     *
 +     * @param delay 딜레이 (0 이하일 경우 비활성화)
 +     */
-+    void swapKeyDelay(final int delay);
++    void swapKeyDelay(int delay);
 +
 +    /**
 +     * Swap Key(기본 F)의 딜레이를 가져옵니다.
@@ -198,7 +198,7 @@ index 0000000000000000000000000000000000000000..eba02dc2c6f830a116042a5ab3c61fe8
 +    }
 +}
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index 1395540afc51d5b5005dc289ea78a8708c0c57b1..558d83566b844d0105a746c2f0855d7fd09de461 100644
+index 4ab52842457e9f38bedd6c777bb0bb6d1b90d4ff..0b548b27c3b06f520e61fcabd45dc06917ac159c 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
 @@ -60,6 +60,16 @@ import org.jetbrains.annotations.Nullable;

@@ -19,7 +19,7 @@ index 2b6f0c627a848f37bc5b3f1732d0e0b82d9f89ad..c9748731f27b8caf9533a8c236c49ef5
       */
      public void setTeleportDuration(int duration);
 diff --git a/src/main/java/org/bukkit/entity/Entity.java b/src/main/java/org/bukkit/entity/Entity.java
-index 9727155852d73852330ad216a70ea9f9c2a3763d..2b8c2770d4ab2c4ea92677b28a623395d4affc48 100644
+index 8c36a3bf4cd4c9f286d9b9d06c192a20143f0955..683bcf56103e03c07d09a6821fcf067c939b3389 100644
 --- a/src/main/java/org/bukkit/entity/Entity.java
 +++ b/src/main/java/org/bukkit/entity/Entity.java
 @@ -111,6 +111,17 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
@@ -65,7 +65,7 @@ index 9727155852d73852330ad216a70ea9f9c2a3763d..2b8c2770d4ab2c4ea92677b28a623395
 +     *
 +     * @param disable 엔티티 업데이트 중지 여부
 +     */
-+    void disableEntityUpdate(final boolean disable);
++    void disableEntityUpdate(boolean disable);
 +    // Daydream end - Add more Entity API (Disable Entity Update)
 +
      /**
@@ -89,7 +89,7 @@ index 9727155852d73852330ad216a70ea9f9c2a3763d..2b8c2770d4ab2c4ea92677b28a623395
      /**
       * Gets the metadata of the entity.
 diff --git a/src/main/java/org/bukkit/entity/LivingEntity.java b/src/main/java/org/bukkit/entity/LivingEntity.java
-index 68c08e7a212bc3e3885f9b5a4d9aef85fcb3b029..4e52e6f754a6ccf9663cd296b704dfbe975c1403 100644
+index d21a228bbec0302e75c4db5aa1db54f321143587..8c9e49bc45eb9f399ed7ba48a5a55c2fe6dfbaa5 100644
 --- a/src/main/java/org/bukkit/entity/LivingEntity.java
 +++ b/src/main/java/org/bukkit/entity/LivingEntity.java
 @@ -696,6 +696,32 @@ public interface LivingEntity extends Attributable, Damageable, ProjectileSource
@@ -105,7 +105,7 @@ index 68c08e7a212bc3e3885f9b5a4d9aef85fcb3b029..4e52e6f754a6ccf9663cd296b704dfbe
 +     * @param instantReturn 즉시 반환 여부, 이 값이 {@code true}라면 이 엔티티가 조금이라도 보일 때 {@code 1.0f}를 즉시 반환합니다.
 +     * @return 엔티티가 보이는 정도
 +     */
-+    default float getSeenPercent(@NotNull Location location, double expand, boolean instantReturn) {
++    default float getSeenPercent(final @NotNull Location location, final double expand, final boolean instantReturn) {
 +        return getSeenPercent(location.x(), location.y(), location.z(), expand, instantReturn);
 +    }
 +

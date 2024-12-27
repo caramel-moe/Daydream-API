@@ -5,10 +5,10 @@ Subject: [PATCH] Add Brigadier Command API
 
 
 diff --git a/build.gradle.kts b/build.gradle.kts
-index ab7fa63820837ea6c72e66bfaf5a65c7590f968b..e06f984425f503bc0c4402917e91a80770f275fd 100644
+index d6d10bc7dfdbf3d6dd2edd02614f1d12100d6af9..9a11d0ae0dff16ae0c841ad2365162afb6bcfabd 100644
 --- a/build.gradle.kts
 +++ b/build.gradle.kts
-@@ -68,6 +68,7 @@ dependencies {
+@@ -70,6 +70,7 @@ dependencies {
      implementation("org.ow2.asm:asm:9.7.1")
      implementation("org.ow2.asm:asm-commons:9.7.1")
      // Paper end
@@ -334,10 +334,10 @@ index 0000000000000000000000000000000000000000..5a87750f392700333039d523a6a7be97
 +}
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/BrigadierCommand.java b/src/main/java/moe/caramel/daydream/brigadier/BrigadierCommand.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..0c63191d4d877b22d385b29233b064de69028e74
+index 0000000000000000000000000000000000000000..51c98ec852f6a6de3524c729cdf087053b3fd800
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/brigadier/BrigadierCommand.java
-@@ -0,0 +1,295 @@
+@@ -0,0 +1,297 @@
 +package moe.caramel.daydream.brigadier;
 +
 +import static net.kyori.adventure.text.Component.text;
@@ -376,6 +376,7 @@ index 0000000000000000000000000000000000000000..0c63191d4d877b22d385b29233b064de
 +@NullMarked
 +public abstract class BrigadierCommand extends Command {
 +
++    //<editor-fold desc="Commands" defaultstate="collapsed">
 +    protected final LiteralCommandNode<CommandSourceStack> command;
 +
 +    /**
@@ -392,14 +393,12 @@ index 0000000000000000000000000000000000000000..0c63191d4d877b22d385b29233b064de
 +        this.command = builder.build();
 +    }
 +
-+    // =========================== (Commands)
-+
 +    /**
 +     * Brigadier 명령어를 생성합니다.
 +     *
 +     * @param builder 명령어 빌더
 +     */
-+    public abstract void buildCommand(final LiteralArgumentBuilder<CommandSourceStack> builder);
++    public abstract void buildCommand(LiteralArgumentBuilder<CommandSourceStack> builder);
 +
 +    /**
 +     * 명령어 노드를 가져옵니다.
@@ -409,9 +408,9 @@ index 0000000000000000000000000000000000000000..0c63191d4d877b22d385b29233b064de
 +    public final LiteralCommandNode<CommandSourceStack> getCommand() {
 +        return command;
 +    }
++    //</editor-fold>
 +
-+    // =========================== (Utilities)
-+
++    //<editor-fold desc="Argument utility methods" defaultstate="collapsed">
 +    /**
 +     * 리터럴 인자를 생성합니다.
 +     *
@@ -433,7 +432,9 @@ index 0000000000000000000000000000000000000000..0c63191d4d877b22d385b29233b064de
 +    public static <T> RequiredArgumentBuilder<CommandSourceStack, T> argument(final String name, final ArgumentType<T> type) {
 +        return Commands.argument(name, type);
 +    }
++    //</editor-fold>
 +
++    //<editor-fold desc="Sender utility methods" defaultstate="collapsed">
 +    /**
 +     * 명령어 실행 주체를 가져옵니다.
 +     *
@@ -453,9 +454,9 @@ index 0000000000000000000000000000000000000000..0c63191d4d877b22d385b29233b064de
 +    public static CommandSender sender(final CommandSourceStack source) {
 +        return source.getSender();
 +    }
++    //</editor-fold>
 +
-+    // =========================== (Suggestion)
-+
++    //<editor-fold desc="Suggestion utility methods" defaultstate="collapsed">
 +    /**
 +     * (정적) 명령어 제안을 생성합니다.
 +     *
@@ -580,9 +581,9 @@ index 0000000000000000000000000000000000000000..0c63191d4d877b22d385b29233b064de
 +
 +        return builder.buildFuture();
 +    }
++    //</editor-fold>
 +
-+    // =========================== (Legacy)
-+
++    //<editor-fold desc="Legacy" defaultstate="collapsed">
 +    /**
 +     * 명령어 디스패처를 가져옵니다.
 +     * <p>
@@ -632,13 +633,14 @@ index 0000000000000000000000000000000000000000..0c63191d4d877b22d385b29233b064de
 +    private String commandLine(final String label, final String[] args) {
 +        return (label + ((args.length > 0) ? (" " + String.join(" ", args)) : ""));
 +    }
++    //</editor-fold>
 +}
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/BrigadierService.java b/src/main/java/moe/caramel/daydream/brigadier/BrigadierService.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..40496d529d28e0e964b64bab0b708bdfb2f4b0f1
+index 0000000000000000000000000000000000000000..2c173b01d33c37f5ad82c1e6815c4c4695f5bc35
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/brigadier/BrigadierService.java
-@@ -0,0 +1,55 @@
+@@ -0,0 +1,45 @@
 +package moe.caramel.daydream.brigadier;
 +
 +import com.mojang.brigadier.Message;
@@ -648,86 +650,48 @@ index 0000000000000000000000000000000000000000..40496d529d28e0e964b64bab0b708bdf
 +import java.util.ServiceLoader;
 +
 +/**
-+ * Argument Type Service
++ * Argument 서비스
 + */
 +@NullMarked
 +class BrigadierService {
 +
 +    /**
-+     * Brigadier Service
++     * Brigadier 서비스
 +     */
 +    static final Service SERVICE = ServiceLoader.load(Service.class)
 +        .findFirst().orElseThrow();
 +
-+
 +    /**
-+     * Service Interface
++     * 서비스 인터페이스
 +     */
-+    protected interface Service {
++    public interface Service {
 +
 +        /**
-+         * Get Argument.
++         * Argument 타입을 가져옵니다.
 +         *
-+         * @param type argument type name
-+         * @return Argument Type
-+         * @param <T> Argument Type Class
++         * @param type argument 타입 이름
++         * @return Argument 타입
++         * @param <T> Argument 타입 클래스
 +         */
-+        <T> T getArgument(final String type);
++        <T> T getArgument(String type);
 +
 +        /**
-+         * Get Suggestion.
++         * 툴팁 메시지를 생성합니다.
 +         *
-+         * @param type suggestion type name
-+         * @return Suggestion
-+         * @param <T> Suggestion Type Class
-+         */
-+        <T> T getSuggestion(final String type);
-+
-+        /**
-+         * Get Tooltip Message.
-+         *
-+         * @param component Tooltip component
-+         * @return Brigadier Tooltip Message
++         * @param component 툴팁 component
++         * @return Brigadier 툴팁 메시지
 +         */
 +        default Message getMessage(final Component component) {
 +            return MessageComponentSerializer.message().serialize(component);
 +        }
 +    }
 +}
-diff --git a/src/main/java/moe/caramel/daydream/brigadier/Suggestions.java b/src/main/java/moe/caramel/daydream/brigadier/Suggestions.java
-new file mode 100644
-index 0000000000000000000000000000000000000000..54fe61eefc82c0e208151d08275f7f26fd111838
---- /dev/null
-+++ b/src/main/java/moe/caramel/daydream/brigadier/Suggestions.java
-@@ -0,0 +1,22 @@
-+package moe.caramel.daydream.brigadier;
-+
-+import static moe.caramel.daydream.brigadier.BrigadierService.SERVICE;
-+import moe.caramel.daydream.brigadier.suggestion.SimpleSuggestion;
-+import org.jspecify.annotations.NullMarked;
-+
-+/**
-+ * Brigadier Vanilla Suggestions
-+ */
-+@NullMarked
-+public final class Suggestions {
-+
-+    /**
-+     * All Recipes
-+     */
-+    public static final SimpleSuggestion ALL_RECIPES = SERVICE.getSuggestion("all_recipes");
-+
-+    /**
-+     * Summonable Entities
-+     */
-+    public static final SimpleSuggestion SUMMONABLE_ENTITIES = SERVICE.getSuggestion("summonable_entities");
-+}
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/argument/ArgumentInf.java b/src/main/java/moe/caramel/daydream/brigadier/argument/ArgumentInf.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..5e90c25561c28fce460e139c86f15445b85c9843
+index 0000000000000000000000000000000000000000..387d7645bff6f73a90d1cd205f6c0b59286b736b
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/brigadier/argument/ArgumentInf.java
-@@ -0,0 +1,15 @@
+@@ -0,0 +1,10 @@
 +package moe.caramel.daydream.brigadier.argument;
 +
 +import com.mojang.brigadier.arguments.ArgumentType;
@@ -736,16 +700,11 @@ index 0000000000000000000000000000000000000000..5e90c25561c28fce460e139c86f15445
 +@NullMarked
 +public interface ArgumentInf {
 +
-+    /**
-+     * Get Argument Type.
-+     *
-+     * @return argument type
-+     */
 +    ArgumentType<?> get();
 +}
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/argument/BlockPosArgument.java b/src/main/java/moe/caramel/daydream/brigadier/argument/BlockPosArgument.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..525b1f323151e73930b9adf038707b5253cd8cdc
+index 0000000000000000000000000000000000000000..8f513e983d5c0985c7b216317932b4e20665efca
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/brigadier/argument/BlockPosArgument.java
 @@ -0,0 +1,15 @@
@@ -760,13 +719,13 @@ index 0000000000000000000000000000000000000000..525b1f323151e73930b9adf038707b52
 +@NullMarked
 +public interface BlockPosArgument extends ArgumentInf {
 +
-+    Block getLoadedBlockPos(final CommandContext<? extends CommandSourceStack> context, String name) throws CommandSyntaxException;
++    Block getLoadedBlockPos(CommandContext<? extends CommandSourceStack> context, String name) throws CommandSyntaxException;
 +
-+    Block getSpawnablePos(final CommandContext<? extends CommandSourceStack> context, String name) throws CommandSyntaxException;
++    Block getSpawnablePos(CommandContext<? extends CommandSourceStack> context, String name) throws CommandSyntaxException;
 +}
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/argument/BlockStateArgument.java b/src/main/java/moe/caramel/daydream/brigadier/argument/BlockStateArgument.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..71ab36146a54aa8ff9777362d3954b5b1e1993a7
+index 0000000000000000000000000000000000000000..9cb95ecf3426f8ef082244fe98df0e0283ef5dc2
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/brigadier/argument/BlockStateArgument.java
 @@ -0,0 +1,21 @@
@@ -785,15 +744,15 @@ index 0000000000000000000000000000000000000000..71ab36146a54aa8ff9777362d3954b5b
 +@NullMarked
 +public interface BlockStateArgument extends ArgumentInf {
 +
-+    BlockData getState(final CommandContext<? extends CommandSourceStack> context, final String name) throws CommandSyntaxException;
++    BlockData getState(CommandContext<? extends CommandSourceStack> context, String name) throws CommandSyntaxException;
 +
-+    boolean place(final CommandContext<? extends CommandSourceStack> context, final String name, final World world, final Location location, final int flags);
++    boolean place(CommandContext<? extends CommandSourceStack> context, String name, World world, Location location, int flags);
 +
-+    Predicate<Block> getPredicate(final CommandContext<? extends CommandSourceStack> context, final String name) throws CommandSyntaxException;
++    Predicate<Block> getPredicate(CommandContext<? extends CommandSourceStack> context, String name) throws CommandSyntaxException;
 +}
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/argument/EntityAnchorArgument.java b/src/main/java/moe/caramel/daydream/brigadier/argument/EntityAnchorArgument.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..970abdc29791eaa029f662a32d6f03c027157219
+index 0000000000000000000000000000000000000000..df75401485f5afe91abe044e378b907a478c6ee7
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/brigadier/argument/EntityAnchorArgument.java
 @@ -0,0 +1,11 @@
@@ -806,11 +765,11 @@ index 0000000000000000000000000000000000000000..970abdc29791eaa029f662a32d6f03c0
 +@NullMarked
 +public interface EntityAnchorArgument {
 +
-+    Vector apply(final Entity entity);
++    Vector apply(Entity entity);
 +}
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/argument/EntityArgument.java b/src/main/java/moe/caramel/daydream/brigadier/argument/EntityArgument.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..99348c902a1a4d76d0ab76ae384f48befb5b848b
+index 0000000000000000000000000000000000000000..2a4d26b247adedcf54a73e14c1fadaed89a14f21
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/brigadier/argument/EntityArgument.java
 @@ -0,0 +1,32 @@
@@ -836,19 +795,19 @@ index 0000000000000000000000000000000000000000..99348c902a1a4d76d0ab76ae384f48be
 +
 +    ArgumentType<?> players();
 +
-+    Entity getEntity(final CommandContext<? extends CommandSourceStack> context, final String name) throws CommandSyntaxException;
++    Entity getEntity(CommandContext<? extends CommandSourceStack> context, String name) throws CommandSyntaxException;
 +
-+    Collection<? extends Entity> getEntities(final CommandContext<? extends CommandSourceStack> context, final String name) throws CommandSyntaxException;
++    Collection<? extends Entity> getEntities(CommandContext<? extends CommandSourceStack> context, String name) throws CommandSyntaxException;
 +
-+    Collection<Player> getOptionalPlayers(final CommandContext<? extends CommandSourceStack> context, final String name) throws CommandSyntaxException;
++    Collection<Player> getOptionalPlayers(CommandContext<? extends CommandSourceStack> context, String name) throws CommandSyntaxException;
 +
-+    Player getPlayer(final CommandContext<? extends CommandSourceStack> context, final String name) throws CommandSyntaxException;
++    Player getPlayer(CommandContext<? extends CommandSourceStack> context, String name) throws CommandSyntaxException;
 +
-+    Collection<Player> getPlayers(final CommandContext<? extends CommandSourceStack> context, final String name) throws CommandSyntaxException;
++    Collection<Player> getPlayers(CommandContext<? extends CommandSourceStack> context, String name) throws CommandSyntaxException;
 +}
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/argument/ItemArgument.java b/src/main/java/moe/caramel/daydream/brigadier/argument/ItemArgument.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..e8c821a0806ef4569997b6eb24619cb9cc424821
+index 0000000000000000000000000000000000000000..ad307861c039024eeb2b87f95c683b68086e0532
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/brigadier/argument/ItemArgument.java
 @@ -0,0 +1,17 @@
@@ -867,14 +826,14 @@ index 0000000000000000000000000000000000000000..e8c821a0806ef4569997b6eb24619cb9
 +        return this.createItemStack(context, name, 1, false);
 +    }
 +
-+    ItemStack createItemStack(final CommandContext<? extends CommandSourceStack> context, final String name, final int amount, final boolean checkOverstack) throws CommandSyntaxException;
++    ItemStack createItemStack(CommandContext<? extends CommandSourceStack> context, String name, int amount, boolean checkOverstack) throws CommandSyntaxException;
 +}
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/argument/MessageArgument.java b/src/main/java/moe/caramel/daydream/brigadier/argument/MessageArgument.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..608959f26ae4ca5066408e1e96a036eb828ac488
+index 0000000000000000000000000000000000000000..cb10b51afd243c21bee8e044d1216e56806c604a
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/brigadier/argument/MessageArgument.java
-@@ -0,0 +1,22 @@
+@@ -0,0 +1,17 @@
 +package moe.caramel.daydream.brigadier.argument;
 +
 +import com.mojang.brigadier.context.CommandContext;
@@ -888,18 +847,13 @@ index 0000000000000000000000000000000000000000..608959f26ae4ca5066408e1e96a036eb
 +@NullMarked
 +public interface MessageArgument extends SimpleArgument<Component> {
 +
-+    /**
-+     * 서명된 메시지와 관련된 작업을 수행합니다.
-+     */
-+    void resolveMessage(
-+        final CommandContext<? extends CommandSourceStack> context,
-+        final String name,
-+        final Consumer<PlayerMessage> callback
-+    ) throws CommandSyntaxException;
++    void resolveMessage(CommandContext<? extends CommandSourceStack> context,
++                        String name,
++                        Consumer<PlayerMessage> callback) throws CommandSyntaxException;
 +}
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/argument/ScoreHolderArgument.java b/src/main/java/moe/caramel/daydream/brigadier/argument/ScoreHolderArgument.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..9a4f104a89b98c7e64e8ddfec45a73bc0c383ffa
+index 0000000000000000000000000000000000000000..af385dae3f80a939f9b9e31f8fe7432d389b0eaa
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/brigadier/argument/ScoreHolderArgument.java
 @@ -0,0 +1,29 @@
@@ -922,19 +876,19 @@ index 0000000000000000000000000000000000000000..9a4f104a89b98c7e64e8ddfec45a73bc
 +
 +    ArgumentType<?> getHolders();
 +
-+    ScoreHolder getName(final CommandContext<? extends CommandSourceStack> context, final String name) throws CommandSyntaxException;
++    ScoreHolder getName(CommandContext<? extends CommandSourceStack> context, String name) throws CommandSyntaxException;
 +
-+    Collection<ScoreHolder> getNames(final CommandContext<? extends CommandSourceStack> context, final String name) throws CommandSyntaxException;
++    Collection<ScoreHolder> getNames(CommandContext<? extends CommandSourceStack> context, String name) throws CommandSyntaxException;
 +
-+    Collection<ScoreHolder> getNamesWithDefaultWildcard(final CommandContext<? extends CommandSourceStack> context, final String name) throws CommandSyntaxException;
++    Collection<ScoreHolder> getNamesWithDefaultWildcard(CommandContext<? extends CommandSourceStack> context, String name) throws CommandSyntaxException;
 +
-+    Collection<ScoreHolder> getNamesSupplier(final CommandContext<? extends CommandSourceStack> context, final String name, final Supplier<Collection<String>> players) throws CommandSyntaxException;
++    Collection<ScoreHolder> getNamesSupplier(CommandContext<? extends CommandSourceStack> context, String name, Supplier<Collection<String>> players) throws CommandSyntaxException;
 +
 +    SuggestionProvider<CommandSourceStack> getSuggestion();
 +}
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/argument/SimpleArgument.java b/src/main/java/moe/caramel/daydream/brigadier/argument/SimpleArgument.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..181ab19fde1cb1cb2d62ce4841d0aa479b0f4deb
+index 0000000000000000000000000000000000000000..781566b633ecad9693b8aa304f85655eeac8c92a
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/brigadier/argument/SimpleArgument.java
 @@ -0,0 +1,12 @@
@@ -948,11 +902,11 @@ index 0000000000000000000000000000000000000000..181ab19fde1cb1cb2d62ce4841d0aa47
 +@NullMarked
 +public interface SimpleArgument<T> extends ArgumentInf {
 +
-+    T getData(final CommandContext<? extends CommandSourceStack> context, final String name) throws CommandSyntaxException;
++    T getData(CommandContext<? extends CommandSourceStack> context, String name) throws CommandSyntaxException;
 +}
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/argument/SimpleArgumentSuggestion.java b/src/main/java/moe/caramel/daydream/brigadier/argument/SimpleArgumentSuggestion.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..fc49c907007458c21ad13e7b9e1c55380647e4b7
+index 0000000000000000000000000000000000000000..2fbf6da23c6442104c78107f7bc2c3e3b2910d3c
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/brigadier/argument/SimpleArgumentSuggestion.java
 @@ -0,0 +1,5 @@
@@ -960,13 +914,13 @@ index 0000000000000000000000000000000000000000..fc49c907007458c21ad13e7b9e1c5538
 +
 +import moe.caramel.daydream.brigadier.suggestion.SimpleSuggestion;
 +
-+public interface SimpleArgumentSuggestion<T> extends SimpleArgument<T>, SimpleSuggestion {}
++public interface SimpleArgumentSuggestion<T> extends SimpleArgument<T>, SimpleSuggestion { }
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/argument/TimeArgument.java b/src/main/java/moe/caramel/daydream/brigadier/argument/TimeArgument.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..c19f335720e5cf7b5895c327c9dc7f57a7e81a35
+index 0000000000000000000000000000000000000000..c8e20c1b5579d0a74ff277a327ee658347046b74
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/brigadier/argument/TimeArgument.java
-@@ -0,0 +1,16 @@
+@@ -0,0 +1,10 @@
 +package moe.caramel.daydream.brigadier.argument;
 +
 +import com.mojang.brigadier.arguments.ArgumentType;
@@ -975,17 +929,11 @@ index 0000000000000000000000000000000000000000..c19f335720e5cf7b5895c327c9dc7f57
 +@NullMarked
 +public interface TimeArgument extends SimpleArgument<Integer> {
 +
-+    /**
-+     * 시간 인자를 가져옵니다.
-+     *
-+     * @param minimum 최소 값
-+     * @return TimeArgument
-+     */
-+    ArgumentType<?> get(final int minimum);
++    ArgumentType<?> get(int minimum);
 +}
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/argument/VecArgument.java b/src/main/java/moe/caramel/daydream/brigadier/argument/VecArgument.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..3b1847dc91b9d14db647af9f2d5ad60163cf95a7
+index 0000000000000000000000000000000000000000..4145ab07a00ba9dedd98ee0f5a689d95c15a339e
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/brigadier/argument/VecArgument.java
 @@ -0,0 +1,12 @@
@@ -999,11 +947,11 @@ index 0000000000000000000000000000000000000000..3b1847dc91b9d14db647af9f2d5ad601
 +@NullMarked
 +public interface VecArgument extends SimpleArgument<Position<CommandSourceStack>> {
 +
-+    ArgumentType<?> get(final boolean centerIntegers);
++    ArgumentType<?> get(boolean centerIntegers);
 +}
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/data/Operation.java b/src/main/java/moe/caramel/daydream/brigadier/data/Operation.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..81cfbf68a66bc9d790d4da9bee70912be70af572
+index 0000000000000000000000000000000000000000..2b11e6a5c9a841dabd5d91632a0945a1a128515c
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/brigadier/data/Operation.java
 @@ -0,0 +1,9 @@
@@ -1014,11 +962,11 @@ index 0000000000000000000000000000000000000000..81cfbf68a66bc9d790d4da9bee70912b
 +@FunctionalInterface
 +public interface Operation {
 +
-+    int apply(final int score, final int score2) throws CommandSyntaxException;
++    int apply(int score, int score2) throws CommandSyntaxException;
 +}
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/data/Position.java b/src/main/java/moe/caramel/daydream/brigadier/data/Position.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..057ad2dd962ae935f6627f4b85f6e3bfbc489892
+index 0000000000000000000000000000000000000000..7fd0e9e480e3b1bfea5439debde9856f7c25023d
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/brigadier/data/Position.java
 @@ -0,0 +1,24 @@
@@ -1032,13 +980,13 @@ index 0000000000000000000000000000000000000000..057ad2dd962ae935f6627f4b85f6e3bf
 +@NullMarked
 +public interface Position<C extends CommandSourceStack> {
 +
-+    Vector getPositionVector(final C source);
++    Vector getPositionVector(C source);
 +
-+    float getXRot(final C source);
++    float getXRot(C source);
 +
-+    float getYRot(final C source);
++    float getYRot(C source);
 +
-+    Location getLocation(final C source);
++    Location getLocation(C source);
 +
 +    boolean isXRelative();
 +
@@ -1086,10 +1034,10 @@ index 0000000000000000000000000000000000000000..6cc69a7f1ab34c66413df07528a80edf
 +}
 diff --git a/src/main/java/moe/caramel/daydream/player/PlayerMessage.java b/src/main/java/moe/caramel/daydream/player/PlayerMessage.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..00088cc1f0bbc2bf0dc8fb029203921fe79851b8
+index 0000000000000000000000000000000000000000..bd7af88d9169c58a98b3807ae450df31c0aba831
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/player/PlayerMessage.java
-@@ -0,0 +1,78 @@
+@@ -0,0 +1,81 @@
 +package moe.caramel.daydream.player;
 +
 +import net.kyori.adventure.chat.SignedMessage;
@@ -1098,6 +1046,9 @@ index 0000000000000000000000000000000000000000..00088cc1f0bbc2bf0dc8fb029203921f
 +import java.time.Instant;
 +import java.util.UUID;
 +
++/**
++ * 플레이어 메시지
++ */
 +@NullMarked
 +public interface PlayerMessage extends SignedMessage {
 +
@@ -1114,7 +1065,7 @@ index 0000000000000000000000000000000000000000..00088cc1f0bbc2bf0dc8fb029203921f
 +     * @param currentTime 현재 시간
 +     * @return 만료되었다면 {@code true}를 반환
 +     */
-+    boolean hasExpiredServer(final Instant currentTime);
++    boolean hasExpiredServer(Instant currentTime);
 +
 +    /**
 +     * 메시지가 클라이언트 시간 기준으로 만료되었는지 확인합니다.
@@ -1122,7 +1073,7 @@ index 0000000000000000000000000000000000000000..00088cc1f0bbc2bf0dc8fb029203921f
 +     * @param currentTime 현재 시간
 +     * @return 만료되었다면 {@code true}를 반환
 +     */
-+    boolean hasExpiredClient(final Instant currentTime);
++    boolean hasExpiredClient(Instant currentTime);
 +
 +    /**
 +     * 메시지가 서명을 가지고 있는지의 여부를 가져옵니다.
@@ -1137,7 +1088,7 @@ index 0000000000000000000000000000000000000000..00088cc1f0bbc2bf0dc8fb029203921f
 +     * @param uuid 대상
 +     * @return 대상의 서명이 맞다면 {@code true}를 반환
 +     */
-+    boolean hasSignatureFrom(final UUID uuid);
++    boolean hasSignatureFrom(UUID uuid);
 +
 +    /**
 +     * 꾸며진 메시지를 가져옵니다.
@@ -1152,7 +1103,7 @@ index 0000000000000000000000000000000000000000..00088cc1f0bbc2bf0dc8fb029203921f
 +     * @param message 서명되지 않은 메시지
 +     * @return 새 메시지 인스턴스
 +     */
-+    PlayerMessage unsignedContent(final Component message);
++    PlayerMessage unsignedContent(Component message);
 +
 +    /**
 +     * 서명되지 않은 메시지를 제거합니다. 받는 대상은 원본 메시지로 표시됩니다.

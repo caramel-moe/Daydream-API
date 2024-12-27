@@ -5,16 +5,14 @@ Subject: [PATCH] Add more Player API
 
 
 diff --git a/src/main/java/io/papermc/paper/event/player/AbstractChatEvent.java b/src/main/java/io/papermc/paper/event/player/AbstractChatEvent.java
-index 9a95d203151d2c91b0eec494e3674f0facfaa305..09c423489d751a8482501a28e0904c91cdb65ab4 100644
+index 9a95d203151d2c91b0eec494e3674f0facfaa305..4b3684aff817195642a7d2722b47d82b2f8cac79 100644
 --- a/src/main/java/io/papermc/paper/event/player/AbstractChatEvent.java
 +++ b/src/main/java/io/papermc/paper/event/player/AbstractChatEvent.java
-@@ -27,6 +27,36 @@ public abstract class AbstractChatEvent extends PlayerEvent implements Cancellab
-     private Component message;
+@@ -28,6 +28,17 @@ public abstract class AbstractChatEvent extends PlayerEvent implements Cancellab
  
      private boolean cancelled;
+ 
 +    // Daydream start - Add more Player API (Improve Chat System)
-+    private net.kyori.adventure.chat.@org.jspecify.annotations.Nullable ChatType chatType = null;
-+
 +    /**
 +     * 플레이어 메시지 래퍼를 가져옵니다.
 +     *
@@ -23,46 +21,11 @@ index 9a95d203151d2c91b0eec494e3674f0facfaa305..09c423489d751a8482501a28e0904c91
 +    public moe.caramel.daydream.player.PlayerMessage playerMessage() {
 +        return (moe.caramel.daydream.player.PlayerMessage) signedMessage;
 +    }
-+
-+    /**
-+     * 채팅 포맷을 가져옵니다.
-+     *
-+     * @return 채팅 포맷
-+     */
-+    public net.kyori.adventure.chat.@org.jspecify.annotations.Nullable ChatType chatType() {
-+        return chatType;
-+    }
-+
-+    /**
-+     * 채팅 포맷을 설정합니다.
-+     *
-+     * @param chatType 채팅 포맷
-+     */
-+    public void chatType(final net.kyori.adventure.chat.@org.jspecify.annotations.Nullable ChatType chatType) {
-+        this.chatType = chatType;
-+    }
 +    // Daydream end - Add more Player API (Improve Chat System)
- 
++
      AbstractChatEvent(final boolean async, final Player player, final Set<Audience> viewers, final ChatRenderer renderer, final Component message, final Component originalMessage, final SignedMessage signedMessage) {
          super(player, async);
-diff --git a/src/main/java/io/papermc/paper/event/player/ChatEvent.java b/src/main/java/io/papermc/paper/event/player/ChatEvent.java
-index 42a82ce2316a4aad2883d24c7e2ff95d95f5881a..5c3fc1707df4c921ddb01d3474e4f7dbf2a49c56 100644
---- a/src/main/java/io/papermc/paper/event/player/ChatEvent.java
-+++ b/src/main/java/io/papermc/paper/event/player/ChatEvent.java
-@@ -29,6 +29,13 @@ public final class ChatEvent extends AbstractChatEvent {
-         super(false, player, viewers, renderer, message, originalMessage, signedMessage);
-     }
- 
-+    // Daydream start - Add more Player API (Improve Chat System)
-+    @Override
-+    public moe.caramel.daydream.player.PlayerMessage playerMessage() {
-+        throw new UnsupportedOperationException("Async Only");
-+    }
-+    // Daydream end - Add more Player API (Improve Chat System)
-+
-     @Override
-     public HandlerList getHandlers() {
-         return HANDLER_LIST;
+         this.viewers = viewers;
 diff --git a/src/main/java/moe/caramel/daydream/event/player/AsyncPlayerDataPreLoadEvent.java b/src/main/java/moe/caramel/daydream/event/player/AsyncPlayerDataPreLoadEvent.java
 new file mode 100644
 index 0000000000000000000000000000000000000000..29995bdec5a0be63f6595e67d1d7b4963426e92d
@@ -187,7 +150,7 @@ index 0000000000000000000000000000000000000000..29995bdec5a0be63f6595e67d1d7b496
 +    //</editor-fold>
 +}
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index 95f0b3186e313c7fbd5c8531d52b82a69e525f94..3b524d8e37bf7b6f416d549ac517dfa0d833e330 100644
+index fac4aec289e07231d80a9890653432f688355afa..5317825b5f96c8c4d7912c9709eea26df1d04dea 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
 @@ -1776,6 +1776,22 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
@@ -254,7 +217,7 @@ index 95f0b3186e313c7fbd5c8531d52b82a69e525f94..3b524d8e37bf7b6f416d549ac517dfa0
      /**
       * Gets a copy of this players profile
 diff --git a/src/main/java/org/bukkit/event/player/AsyncPlayerPreLoginEvent.java b/src/main/java/org/bukkit/event/player/AsyncPlayerPreLoginEvent.java
-index ae02788536d0c6736aba4ccf812844df4f9789f1..6b900914f66b0adb6f1b30dadf9ef7cf95d703c7 100644
+index ff5cca4a7e75274b4b278a48ae1544ff42a9836a..600967581f5053800b2154c8fb2271b69ff819b5 100644
 --- a/src/main/java/org/bukkit/event/player/AsyncPlayerPreLoginEvent.java
 +++ b/src/main/java/org/bukkit/event/player/AsyncPlayerPreLoginEvent.java
 @@ -288,6 +288,29 @@ public class AsyncPlayerPreLoginEvent extends Event {

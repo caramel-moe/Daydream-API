@@ -307,7 +307,7 @@ index 0000000000000000000000000000000000000000..b26665ab19e09a9ea8f1e3d52cd6a555
 +}
 diff --git a/src/main/java/moe/caramel/daydream/packet/BundlePacket.java b/src/main/java/moe/caramel/daydream/packet/BundlePacket.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..939da87d9d7b686acb41ec2a9cc5d67f5c4936b4
+index 0000000000000000000000000000000000000000..8abe31c5e4d925111faffae36affd9657a564231
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/packet/BundlePacket.java
 @@ -0,0 +1,26 @@
@@ -335,11 +335,11 @@ index 0000000000000000000000000000000000000000..939da87d9d7b686acb41ec2a9cc5d67f
 +     * @param packets 동시에 처리할 패킷 목록
 +     * @return this
 +     */
-+    BundlePacket create(final List<Packet> packets);
++    BundlePacket create(List<Packet> packets);
 +}
 diff --git a/src/main/java/moe/caramel/daydream/packet/ContainerSetSlotPacket.java b/src/main/java/moe/caramel/daydream/packet/ContainerSetSlotPacket.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..bd1c05411028efb3d8d5308f58c3908e1fb80cb7
+index 0000000000000000000000000000000000000000..653a01aef06f20f5229bd08d36a3ebd68effbac4
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/packet/ContainerSetSlotPacket.java
 @@ -0,0 +1,19 @@
@@ -360,11 +360,11 @@ index 0000000000000000000000000000000000000000..bd1c05411028efb3d8d5308f58c3908e
 +     * @param stack 아이템
 +     * @return this
 +     */
-+    ContainerSetSlotPacket create(final int windowId, final int revision, final int slot, final ItemStack stack);
++    ContainerSetSlotPacket create(int windowId, int revision, int slot, ItemStack stack);
 +}
 diff --git a/src/main/java/moe/caramel/daydream/packet/GameEventPacket.java b/src/main/java/moe/caramel/daydream/packet/GameEventPacket.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..fc8bd0bd5282c838cc8c602aea7844fc90027bf9
+index 0000000000000000000000000000000000000000..278df2d2a00f92b0d50fb22175e5a25b0a791123
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/packet/GameEventPacket.java
 @@ -0,0 +1,32 @@
@@ -398,7 +398,7 @@ index 0000000000000000000000000000000000000000..fc8bd0bd5282c838cc8c602aea7844fc
 +     *              <a href="http://wiki.vg/Protocol#Game_Event">여기</a>를 참고하세요.
 +     * @return this
 +     */
-+    GameEventPacket create(final int event, final float value);
++    GameEventPacket create(int event, float value);
 +}
 diff --git a/src/main/java/moe/caramel/daydream/packet/Packet.java b/src/main/java/moe/caramel/daydream/packet/Packet.java
 new file mode 100644
@@ -435,7 +435,7 @@ index 0000000000000000000000000000000000000000..efc58af1c71f425d7195544b86ac3947
 +}
 diff --git a/src/main/java/moe/caramel/daydream/packet/PingPacket.java b/src/main/java/moe/caramel/daydream/packet/PingPacket.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..e107ede35337e27e84c3cbe1e09bbe06cc8e9792
+index 0000000000000000000000000000000000000000..636a1ee5ad6ba52fbde93adeab1e361afc58e236
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/packet/PingPacket.java
 @@ -0,0 +1,15 @@
@@ -452,11 +452,11 @@ index 0000000000000000000000000000000000000000..e107ede35337e27e84c3cbe1e09bbe06
 +     * @param id {@link moe.caramel.daydream.event.packet.PacketType.Client#PONG} 패킷으로 돌려받을 Id
 +     * @return this
 +     */
-+    PingPacket create(final int id);
++    PingPacket create(int id);
 +}
 diff --git a/src/main/java/moe/caramel/daydream/packet/PlayerInfoRemovePacket.java b/src/main/java/moe/caramel/daydream/packet/PlayerInfoRemovePacket.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..78515358d7d62bf42e693f02323f16ebedc710a3
+index 0000000000000000000000000000000000000000..42e151beaf87b91fa27aa3e40575d4569c096521
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/packet/PlayerInfoRemovePacket.java
 @@ -0,0 +1,41 @@
@@ -499,11 +499,11 @@ index 0000000000000000000000000000000000000000..78515358d7d62bf42e693f02323f16eb
 +     * @param uuids 플레이어 목록
 +     * @return this
 +     */
-+    PlayerInfoRemovePacket create(final List<UUID> uuids);
++    PlayerInfoRemovePacket create(List<UUID> uuids);
 +}
 diff --git a/src/main/java/moe/caramel/daydream/packet/PlayerInfoUpdatePacket.java b/src/main/java/moe/caramel/daydream/packet/PlayerInfoUpdatePacket.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..22d7bbfd30beacaae491dfffbe3c2d8e9e79024c
+index 0000000000000000000000000000000000000000..bacfdebf88cd54893fe964cebbab502c70b8ef0d
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/packet/PlayerInfoUpdatePacket.java
 @@ -0,0 +1,217 @@
@@ -532,7 +532,7 @@ index 0000000000000000000000000000000000000000..22d7bbfd30beacaae491dfffbe3c2d8e
 +     * @param players 플레이어 목록
 +     * @return this
 +     */
-+    PlayerInfoUpdatePacket create(final EnumSet<Action> actions, final Player... players);
++    PlayerInfoUpdatePacket create(EnumSet<Action> actions, Player... players);
 +
 +    /**
 +     * 패킷을 생성합니다.
@@ -552,7 +552,7 @@ index 0000000000000000000000000000000000000000..22d7bbfd30beacaae491dfffbe3c2d8e
 +     * @param data 플레이어 데이터
 +     * @return this
 +     */
-+    PlayerInfoUpdatePacket create(final EnumSet<Action> actions, final Collection<PlayerData> data);
++    PlayerInfoUpdatePacket create(EnumSet<Action> actions, Collection<PlayerData> data);
 +
 +
 +    /**
@@ -726,7 +726,7 @@ index 0000000000000000000000000000000000000000..22d7bbfd30beacaae491dfffbe3c2d8e
 +}
 diff --git a/src/main/java/moe/caramel/daydream/packet/SetChunkCacheRadiusPacket.java b/src/main/java/moe/caramel/daydream/packet/SetChunkCacheRadiusPacket.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..10eb869b90b715c19f71e4798a5e23bdb7b83135
+index 0000000000000000000000000000000000000000..c4aa750401061e6f38fa53f6334c041d3607857d
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/packet/SetChunkCacheRadiusPacket.java
 @@ -0,0 +1,15 @@
@@ -743,11 +743,11 @@ index 0000000000000000000000000000000000000000..10eb869b90b715c19f71e4798a5e23bd
 +     * @param distance 플레이어의 청크 렌더 거리
 +     * @return this
 +     */
-+    SetChunkCacheRadiusPacket create(final int distance);
++    SetChunkCacheRadiusPacket create(int distance);
 +}
 diff --git a/src/main/java/moe/caramel/daydream/packet/SetDisplayObjectivePacket.java b/src/main/java/moe/caramel/daydream/packet/SetDisplayObjectivePacket.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..88fb62d3eaa0ae94302eceab515076cbc164ee75
+index 0000000000000000000000000000000000000000..246d6f4d5976e68011307bdc961fbbdcc95c1dad
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/packet/SetDisplayObjectivePacket.java
 @@ -0,0 +1,30 @@
@@ -779,11 +779,11 @@ index 0000000000000000000000000000000000000000..88fb62d3eaa0ae94302eceab515076cb
 +     * @param scoreName {@link org.bukkit.scoreboard.Objective}의 이름
 +     * @return this
 +     */
-+    SetDisplayObjectivePacket create(final DisplaySlot slot, final @Nullable String scoreName);
++    SetDisplayObjectivePacket create(DisplaySlot slot, @Nullable String scoreName);
 +}
 diff --git a/src/main/java/moe/caramel/daydream/packet/SetEntityMotionPacket.java b/src/main/java/moe/caramel/daydream/packet/SetEntityMotionPacket.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..72b3baf16e5c8199bffabfbce4d3c733b7a1917c
+index 0000000000000000000000000000000000000000..8ea1d395d2297898a6bf852e63dd2611b50ef104
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/packet/SetEntityMotionPacket.java
 @@ -0,0 +1,29 @@
@@ -814,11 +814,11 @@ index 0000000000000000000000000000000000000000..72b3baf16e5c8199bffabfbce4d3c733
 +     * @param velocity 엔티티의 속도
 +     * @return this
 +     */
-+    SetEntityMotionPacket create(final int entityId, final Vector velocity);
++    SetEntityMotionPacket create(int entityId, Vector velocity);
 +}
 diff --git a/src/main/java/moe/caramel/daydream/packet/SetPlayerInventoryPacket.java b/src/main/java/moe/caramel/daydream/packet/SetPlayerInventoryPacket.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..9e428668451ac6ed72bcc00e80de3ca867b8ffe3
+index 0000000000000000000000000000000000000000..00ed11b535bf78e8ccfcf17768bdd9b6eb0f898d
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/packet/SetPlayerInventoryPacket.java
 @@ -0,0 +1,17 @@
@@ -837,11 +837,11 @@ index 0000000000000000000000000000000000000000..9e428668451ac6ed72bcc00e80de3ca8
 +     * @param stack 아이템
 +     * @return this
 +     */
-+    SetPlayerInventoryPacket create(final int slot, final ItemStack stack);
++    SetPlayerInventoryPacket create(int slot, ItemStack stack);
 +}
 diff --git a/src/main/java/moe/caramel/daydream/packet/SetPlayerTeamPacket.java b/src/main/java/moe/caramel/daydream/packet/SetPlayerTeamPacket.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..a5472453a4e1694c8d16b01fa3bd8edabbeae83b
+index 0000000000000000000000000000000000000000..257c535f5b0802f2289df1ee3eb2b2cffb601d9b
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/packet/SetPlayerTeamPacket.java
 @@ -0,0 +1,135 @@
@@ -868,7 +868,7 @@ index 0000000000000000000000000000000000000000..a5472453a4e1694c8d16b01fa3bd8eda
 +     * @param add 만약 {@code true}라면 추가, 아니라면 정보를 업데이트 합니다
 +     * @return this
 +     */
-+    SetPlayerTeamPacket createTeamAddOrUpdatePacket(final Team team, final boolean add);
++    SetPlayerTeamPacket createTeamAddOrUpdatePacket(Team team, boolean add);
 +
 +    /**
 +     * 팀 추가 또는 업데이트 패킷을 생성합니다.
@@ -945,7 +945,7 @@ index 0000000000000000000000000000000000000000..a5472453a4e1694c8d16b01fa3bd8eda
 +     * @param team 제거할 팀
 +     * @return this
 +     */
-+    SetPlayerTeamPacket createTeamRemovePacket(final Team team);
++    SetPlayerTeamPacket createTeamRemovePacket(Team team);
 +
 +    /**
 +     * 팀 제거 패킷을 생성합니다.
@@ -953,7 +953,7 @@ index 0000000000000000000000000000000000000000..a5472453a4e1694c8d16b01fa3bd8eda
 +     * @param teamName 제거할 팀의 이름
 +     * @return this
 +     */
-+    SetPlayerTeamPacket createTeamRemovePacket(final String teamName);
++    SetPlayerTeamPacket createTeamRemovePacket(String teamName);
 +
 +
 +    /*
@@ -968,7 +968,7 @@ index 0000000000000000000000000000000000000000..a5472453a4e1694c8d16b01fa3bd8eda
 +     * @param join 만약 {@code true}라면 가입, 아니라면 탈퇴
 +     * @return this
 +     */
-+    SetPlayerTeamPacket createTeamJoinOrLeavePacket(final Team team, final Collection<String> players, final boolean join);
++    SetPlayerTeamPacket createTeamJoinOrLeavePacket(Team team, Collection<String> players, boolean join);
 +
 +    /**
 +     * 팀 가입 또는 탈퇴 패킷을 생성합니다.
@@ -978,7 +978,7 @@ index 0000000000000000000000000000000000000000..a5472453a4e1694c8d16b01fa3bd8eda
 +     * @param join 만약 {@code true}라면 가입, 아니라면 탈퇴
 +     * @return this
 +     */
-+    SetPlayerTeamPacket createTeamJoinOrLeavePacket(final String teamName, final Collection<String> players, final boolean join);
++    SetPlayerTeamPacket createTeamJoinOrLeavePacket(String teamName, Collection<String> players, boolean join);
 +}
 diff --git a/src/main/java/moe/caramel/daydream/player/ChatSession.java b/src/main/java/moe/caramel/daydream/player/ChatSession.java
 new file mode 100644

@@ -18,47 +18,8 @@ index e72ad05abada04426e32a73d02b21cb69079d268..f15fa2abcc04d7d1b6f49a77a023dbd0
          )) {
              plugin = server.getPluginManager().getPlugin(pluginName);
          }
-diff --git a/src/main/java/moe/caramel/daydream/InternalDaydreamConfig.java b/src/main/java/moe/caramel/daydream/InternalDaydreamConfig.java
-new file mode 100644
-index 0000000000000000000000000000000000000000..3f102d84bd279d9adcad1e8bf1602b703aa25f58
---- /dev/null
-+++ b/src/main/java/moe/caramel/daydream/InternalDaydreamConfig.java
-@@ -0,0 +1,33 @@
-+package moe.caramel.daydream;
-+
-+import org.bukkit.Bukkit;
-+import org.bukkit.configuration.file.YamlConfiguration;
-+import org.jetbrains.annotations.ApiStatus;
-+import org.jspecify.annotations.NullMarked;
-+
-+/**
-+ * Internal Daydream Config
-+ */
-+@NullMarked
-+@ApiStatus.Internal
-+public interface InternalDaydreamConfig {
-+
-+    /**
-+     * Daydream 설정을 가져옵니다.
-+     * <p>이 메서드를 호출할 때마다 파일 읽기가 발생합니다.</p>
-+     *
-+     * @return Daydream 설정
-+     */
-+    static YamlConfiguration config() {
-+        return Bukkit.spigot().getDaydreamConfig();
-+    }
-+
-+    /**
-+     * 라이브러리 로더에 의해 종속성이 다운로드될 때 로그를 표시할지 여부를 결정합니다.
-+     *
-+     * @return {@code true}인 경우, 종속성 로드와 관련된 로그를 표시하지 않습니다.
-+     */
-+    static boolean logger$ignoreLibraryLoaderLog() {
-+        return config().getBoolean("logger.ignore-library-loader-log", false);
-+    }
-+}
 diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
-index 0b78564256ebc647ebac402e549d86ab6e307c8d..c6de3586438095eaa927e73df979ff50e472fa61 100644
+index ad816538b30079c62d5e1eb98c6f4b61e12e8d47..6455b54397f8d50a1e859b8d23a3b5d65a9ddd62 100644
 --- a/src/main/java/org/bukkit/Server.java
 +++ b/src/main/java/org/bukkit/Server.java
 @@ -2283,6 +2283,14 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
@@ -77,23 +38,14 @@ index 0b78564256ebc647ebac402e549d86ab6e307c8d..c6de3586438095eaa927e73df979ff50
           * Sends the component to the player
           *
 diff --git a/src/main/java/org/bukkit/plugin/java/LibraryLoader.java b/src/main/java/org/bukkit/plugin/java/LibraryLoader.java
-index c66252802c51174bc26f266cb5cdecdd856ff220..fe0a53ef77572256f0eeb6bb5c81bf6068fab08c 100644
+index c66252802c51174bc26f266cb5cdecdd856ff220..2a836bbf71601ef917e0d0c8829d3f1a99faf1bf 100644
 --- a/src/main/java/org/bukkit/plugin/java/LibraryLoader.java
 +++ b/src/main/java/org/bukkit/plugin/java/LibraryLoader.java
-@@ -78,7 +78,7 @@ public class LibraryLoader
-         session.setSystemProperties( System.getProperties() );
-         session.setReadOnly();
- 
--        this.repositories = repository.newResolutionRepositories( session, Arrays.asList( new RemoteRepository.Builder( "central", "default", "https://repo.maven.apache.org/maven2" ).build() ) );
-+        this.repositories = repository.newResolutionRepositories( session, Arrays.asList( new RemoteRepository.Builder( "central", "default", "https://repo.maven.apache.org/maven2" ).build(), new RemoteRepository.Builder( "caramel-repo", "default", "https://repo.caramel.moe/repository/maven-public" ).build() ) ); // Daydream - Add Daydream Config (Add caramel.moe repository to LibraryLoader)
-     }
- 
-     @Nullable
 @@ -144,6 +144,7 @@ public class LibraryLoader
              }
  
              jarFiles.add( url );
-+            if (!moe.caramel.daydream.InternalDaydreamConfig.logger$ignoreLibraryLoaderLog()) // Daydream - Add Daydream Config
++            if (!org.bukkit.Bukkit.spigot().getDaydreamConfig().getBoolean("logger.ignore-library-loader-log", false)) // Daydream - Add Daydream Config
              logger.log( Level.INFO, "[{0}] Loaded library {1}", new Object[]
              {
                  java.util.Objects.requireNonNullElseGet(desc.getPrefix(), desc::getName), file // Paper - use configured log prefix

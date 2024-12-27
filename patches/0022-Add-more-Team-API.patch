@@ -64,7 +64,7 @@ index 0000000000000000000000000000000000000000..6f695d6f2c82d7628ab2d0b64cf5acaa
 +    }
 +}
 diff --git a/src/main/java/org/bukkit/scoreboard/Score.java b/src/main/java/org/bukkit/scoreboard/Score.java
-index fba8e475c1f1a410c44a95fcc474cce19e0f515c..11519711bb99531f2ddca4f3533b10324e32d8cb 100644
+index 3600804874843975eb12b84b71b6848c68b2a244..2efb137953847eca0d4810da7247eb7405ec62c8 100644
 --- a/src/main/java/org/bukkit/scoreboard/Score.java
 +++ b/src/main/java/org/bukkit/scoreboard/Score.java
 @@ -151,4 +151,24 @@ public interface Score {
@@ -84,7 +84,7 @@ index fba8e475c1f1a410c44a95fcc474cce19e0f515c..11519711bb99531f2ddca4f3533b1032
 +     *
 +     * @param disable {@code true}인 경우 점수 업데이트 패킷을 전송하지 않습니다.
 +     */
-+    void updateDisable(final boolean disable);
++    void updateDisable(boolean disable);
 +
 +    /**
 +     * 강제로 점수 업데이트 패킷을 전송합니다.
@@ -93,7 +93,7 @@ index fba8e475c1f1a410c44a95fcc474cce19e0f515c..11519711bb99531f2ddca4f3533b1032
 +    // Daydream end - Add more Team API (Score)
  }
 diff --git a/src/main/java/org/bukkit/scoreboard/Team.java b/src/main/java/org/bukkit/scoreboard/Team.java
-index cacb58d25c249e2ecd6083ed0f30d5ffb345220a..5e7266df82dfe794342ca855fd3203c096e92ab4 100644
+index c34d9ab72928d5f58339025d717ec840a4d8cf2c..7dcdd7c132e9f1873a0f0fbaba0a80edad971e27 100644
 --- a/src/main/java/org/bukkit/scoreboard/Team.java
 +++ b/src/main/java/org/bukkit/scoreboard/Team.java
 @@ -514,6 +514,46 @@ public interface Team extends net.kyori.adventure.audience.ForwardingAudience {

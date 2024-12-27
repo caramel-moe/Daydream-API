@@ -5,13 +5,13 @@ Subject: [PATCH] Add more Explosion API
 
 
 diff --git a/src/main/java/moe/caramel/daydream/world/DamageContext.java b/src/main/java/moe/caramel/daydream/world/DamageContext.java
-index 9716003537a76b3d0e40ca0bb4394047a4eed313..a098ef7493fd60cb368a38dc7b29d6a7546d5d17 100644
+index 4c9ff039ae2ebe0b7d86e5a51d34850cd025a5ae..115e490366fca7d865da2c40e2ed354de3f3d819 100644
 --- a/src/main/java/moe/caramel/daydream/world/DamageContext.java
 +++ b/src/main/java/moe/caramel/daydream/world/DamageContext.java
 @@ -66,4 +66,13 @@ public interface DamageContext {
       * @param disabled 넉백 비활성화 여부
       */
-     void setKnockbackDisabled(final boolean disabled);
+     void setKnockbackDisabled(boolean disabled);
 +
 +    // ==============================================
 +
@@ -24,7 +24,7 @@ index 9716003537a76b3d0e40ca0bb4394047a4eed313..a098ef7493fd60cb368a38dc7b29d6a7
  }
 diff --git a/src/main/java/moe/caramel/daydream/world/Explosion.java b/src/main/java/moe/caramel/daydream/world/Explosion.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..99a387c5d743d07fc7f6c0e29a60477a1254c0ba
+index 0000000000000000000000000000000000000000..198f518cca0473cb77a7f8756cbd58acaa39c31e
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/world/Explosion.java
 @@ -0,0 +1,128 @@
@@ -71,7 +71,7 @@ index 0000000000000000000000000000000000000000..99a387c5d743d07fc7f6c0e29a60477a
 +     *
 +     * @param mark 넉백 제거가 활성화 여부
 +     */
-+    void markNoKnockback(final boolean mark);
++    void markNoKnockback(boolean mark);
 +
 +    /**
 +     * 이 폭발에 넉백 제거가 활성화 되어있는지 가져옵니다.
@@ -137,7 +137,7 @@ index 0000000000000000000000000000000000000000..99a387c5d743d07fc7f6c0e29a60477a
 +     *
 +     * @param map 플레이어 목록 및 벡터
 +     */
-+    void setHitPlayers(final Map<HumanEntity, Vector> map);
++    void setHitPlayers(Map<HumanEntity, Vector> map);
 +
 +    /**
 +     * 이 폭발에 영향을 받는 플레이어 목록을 비웁니다.

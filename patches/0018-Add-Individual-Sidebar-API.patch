@@ -130,7 +130,7 @@ index 0000000000000000000000000000000000000000..dedd724319d2e3c1258efc8717e136c5
 +}
 diff --git a/src/main/java/moe/caramel/daydream/sidebar/SidebarDecorator.java b/src/main/java/moe/caramel/daydream/sidebar/SidebarDecorator.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..db9df8d1d97e82934103e1ab5efca465e814e8df
+index 0000000000000000000000000000000000000000..09e6f76ceb13358362024a260e7b72738c8d8e36
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/sidebar/SidebarDecorator.java
 @@ -0,0 +1,41 @@
@@ -164,7 +164,7 @@ index 0000000000000000000000000000000000000000..db9df8d1d97e82934103e1ab5efca465
 +     * @param player 대상 플레이어
 +     * @return 사이드바에 표시할 제목
 +     */
-+    Component title(final Player player);
++    Component title(Player player);
 +
 +    /**
 +     * 플레이어별 사이드바에 표시할 항목 리스트를 가져옵니다.
@@ -173,11 +173,11 @@ index 0000000000000000000000000000000000000000..db9df8d1d97e82934103e1ab5efca465
 +     * @param player 대상 플레이어
 +     * @return 사이드바에 표시할 항목 리스트
 +     */
-+    @Nullable EntryBuilder entries(final Player player);
++    @Nullable EntryBuilder entries(Player player);
 +}
 diff --git a/src/main/java/moe/caramel/daydream/sidebar/SidebarProcessor.java b/src/main/java/moe/caramel/daydream/sidebar/SidebarProcessor.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..24918ce807ff99a4a0e287180dbcfdbb50820cab
+index 0000000000000000000000000000000000000000..1338a9f89eebbfc9bd03f8d2a12de026c9969466
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/sidebar/SidebarProcessor.java
 @@ -0,0 +1,85 @@
@@ -201,7 +201,7 @@ index 0000000000000000000000000000000000000000..24918ce807ff99a4a0e287180dbcfdbb
 +     * @param updateInterval 사이드바 업데이트 시간(Tick), 0 이하일 수 없습니다.
 +     * @return 이미 사용하고 있는 경우 {@code false}를 반환
 +     */
-+    boolean activate(final Plugin owner, final SidebarDecorator decorator, final Player holder, final long updateInterval);
++    boolean activate(Plugin owner, SidebarDecorator decorator, Player holder, long updateInterval);
 +
 +    /**
 +     * 특정 플레이어에게 개인 사이드바 기능을 비활성화합니다.
@@ -219,7 +219,7 @@ index 0000000000000000000000000000000000000000..24918ce807ff99a4a0e287180dbcfdbb
 +     * @param uuid 대상 플레이어의 UUID
 +     * @return 활성화되어있지 않은 경우 {@code false}를 반환
 +     */
-+    boolean deactivate(final UUID uuid);
++    boolean deactivate(UUID uuid);
 +
 +    /**
 +     * 특정 플레이어의 개인 사이드바 기능 사용 여부를 가져옵니다.
@@ -237,7 +237,7 @@ index 0000000000000000000000000000000000000000..24918ce807ff99a4a0e287180dbcfdbb
 +     * @param uuid 대상 플레이어의 UUID
 +     * @return 개인 사이드바 기능 사용 여부
 +     */
-+    boolean activated(final UUID uuid);
++    boolean activated(UUID uuid);
 +
 +    /**
 +     * 특정 플레이어의 개인 사이드바 업데이트 시간을 가져옵니다.
@@ -257,7 +257,7 @@ index 0000000000000000000000000000000000000000..24918ce807ff99a4a0e287180dbcfdbb
 +     * @return 개인 사이드바 업데이트 주기 (틱).
 +     * {@code -1}인 경우 비활성화 상태
 +     */
-+    long updateInterval(final UUID uuid);
++    long updateInterval(UUID uuid);
 +
 +    /**
 +     * 개인 사이드바가 활성화된 플레이어의 UUID 목록을 가져옵니다.
@@ -267,7 +267,7 @@ index 0000000000000000000000000000000000000000..24918ce807ff99a4a0e287180dbcfdbb
 +    Set<UUID> trackedPlayers();
 +}
 diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
-index 2e744e45a3138bb12133f58ec0c2a16002d9b2ad..11692e252ea4aaba96eb761adba210622b97c59a 100644
+index 0d7c40695f8783ccc40338043b765a423262662c..7cfff441ac049bf15113fc3b8dd98e0ce9249548 100644
 --- a/src/main/java/org/bukkit/Bukkit.java
 +++ b/src/main/java/org/bukkit/Bukkit.java
 @@ -3084,6 +3084,18 @@ public final class Bukkit {
@@ -290,7 +290,7 @@ index 2e744e45a3138bb12133f58ec0c2a16002d9b2ad..11692e252ea4aaba96eb761adba21062
      public static Server.Spigot spigot() {
          return server.spigot();
 diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
-index 8501380b480847b62dc369ba6431bde6e66d2ce8..a18bb863e55735669dc42146d6281fd5a9526505 100644
+index 9ffd883ef360e405f7bb36ab2dadf75046b4b4b4..5af36550053a9996e18e96183443aeca1261fc83 100644
 --- a/src/main/java/org/bukkit/Server.java
 +++ b/src/main/java/org/bukkit/Server.java
 @@ -2715,4 +2715,14 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
