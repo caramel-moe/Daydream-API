@@ -5,10 +5,10 @@ Subject: [PATCH] Add ItemStack Utilities
 
 
 diff --git a/src/main/java/org/bukkit/UnsafeValues.java b/src/main/java/org/bukkit/UnsafeValues.java
-index 594cfce8db4f702995de80ca85534dd0c770774a..a478c3e4f6c2d26e99432d26a8614c5f5ad6165f 100644
+index b9c97dfd0e3f3f9c13a45607ebf35ac3e0c62445..50c0d070f7d5a160038f0000f9e2fdde9ab0ae91 100644
 --- a/src/main/java/org/bukkit/UnsafeValues.java
 +++ b/src/main/java/org/bukkit/UnsafeValues.java
-@@ -318,4 +318,25 @@ public interface UnsafeValues {
+@@ -370,4 +370,25 @@ public interface UnsafeValues {
      ItemStack createEmptyStack(); // Paper - proxy ItemStack
  
      @NotNull moe.caramel.daydream.world.DamageContext getDamageContext(@NotNull Object damageSource); // Daydream - Add more Damage API
@@ -139,7 +139,7 @@ index b59222b8c262545d100a9fd28b3bf1d2a4cf4eb0..045b57bb00a1e3d5c05dc265e6fe71f6
       * Defaults stack size to 1, with no extra data.
       * <p>
 diff --git a/src/main/java/org/bukkit/inventory/meta/ItemMeta.java b/src/main/java/org/bukkit/inventory/meta/ItemMeta.java
-index f5541454ba5e508a72c83989c6feaef5406e2535..a5b76724f6aabe8ab69105f6ccaac4678e3a0bba 100644
+index f5541454ba5e508a72c83989c6feaef5406e2535..91156953935388d9c76d1ea4aef2529649ea9670 100644
 --- a/src/main/java/org/bukkit/inventory/meta/ItemMeta.java
 +++ b/src/main/java/org/bukkit/inventory/meta/ItemMeta.java
 @@ -225,6 +225,170 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
@@ -167,14 +167,14 @@ index f5541454ba5e508a72c83989c6feaef5406e2535..a5b76724f6aabe8ab69105f6ccaac467
 +     * @param style style for all lore
 +     * @param lore the lore to set
 +     */
-+    void lore(final @NotNull net.kyori.adventure.text.format.Style style, final @Nullable List<? extends net.kyori.adventure.text.Component> lore);
++    void lore(@NotNull net.kyori.adventure.text.format.Style style, @Nullable List<? extends net.kyori.adventure.text.Component> lore);
 +
 +    /**
 +     * Sets the lore excluding italic formatting.
 +     *
 +     * @param lore the lore to set
 +     */
-+    void loreNoItalic(final @Nullable List<? extends net.kyori.adventure.text.Component> lore);
++    void loreNoItalic(@Nullable List<? extends net.kyori.adventure.text.Component> lore);
 +
 +    /**
 +     * Sets the lore excluding italic formatting.
@@ -182,21 +182,21 @@ index f5541454ba5e508a72c83989c6feaef5406e2535..a5b76724f6aabe8ab69105f6ccaac467
 +     * @param color color for all lore
 +     * @param lore the lore to set
 +     */
-+    void loreNoItalic(final @Nullable net.kyori.adventure.text.format.TextColor color, final @Nullable List<? extends net.kyori.adventure.text.Component> lore);
++    void loreNoItalic(@Nullable net.kyori.adventure.text.format.TextColor color, @Nullable List<? extends net.kyori.adventure.text.Component> lore);
 +
 +    /**
 +     * Sets the lore excluding client style formatting.
 +     *
 +     * @param lore the lore to set
 +     */
-+    void loreDefault(final @Nullable List<? extends net.kyori.adventure.text.Component> lore);
++    void loreDefault(@Nullable List<? extends net.kyori.adventure.text.Component> lore);
 +
 +    /**
 +     * Sets the lore.
 +     *
 +     * @param lore the lore to set
 +     */
-+    void withLore(final @Nullable net.kyori.adventure.text.ComponentLike... lore);
++    void withLore(@Nullable net.kyori.adventure.text.ComponentLike... lore);
 +
 +    /**
 +     * Sets the lore.
@@ -204,14 +204,14 @@ index f5541454ba5e508a72c83989c6feaef5406e2535..a5b76724f6aabe8ab69105f6ccaac467
 +     * @param style style for all lore
 +     * @param lore the lore to set
 +     */
-+    void withLore(final @NotNull net.kyori.adventure.text.format.Style style, final @Nullable net.kyori.adventure.text.ComponentLike... lore);
++    void withLore(@NotNull net.kyori.adventure.text.format.Style style, @Nullable net.kyori.adventure.text.ComponentLike... lore);
 +
 +    /**
 +     * Sets the lore excluding italic formatting.
 +     *
 +     * @param lore the lore to set
 +     */
-+    void withLoreNoItalic(final @Nullable net.kyori.adventure.text.ComponentLike... lore);
++    void withLoreNoItalic(@Nullable net.kyori.adventure.text.ComponentLike... lore);
 +
 +    /**
 +     * Sets the lore excluding italic formatting.
@@ -219,21 +219,21 @@ index f5541454ba5e508a72c83989c6feaef5406e2535..a5b76724f6aabe8ab69105f6ccaac467
 +     * @param color color for all lore
 +     * @param lore the lore to set
 +     */
-+    void withLoreNoItalic(final @Nullable net.kyori.adventure.text.format.TextColor color, final @Nullable net.kyori.adventure.text.ComponentLike... lore);
++    void withLoreNoItalic(@Nullable net.kyori.adventure.text.format.TextColor color, @Nullable net.kyori.adventure.text.ComponentLike... lore);
 +
 +    /**
 +     * Sets the lore excluding client style formatting.
 +     *
 +     * @param lore the lore to set
 +     */
-+    void withLoreDefault(final @Nullable net.kyori.adventure.text.ComponentLike... lore);
++    void withLoreDefault(@Nullable net.kyori.adventure.text.ComponentLike... lore);
 +
 +    /**
 +     * 로어를 추가합니다.
 +     *
 +     * @param lore 추가할 로어 리스트
 +     */
-+    void appendLore(final @NotNull List<? extends net.kyori.adventure.text.ComponentLike> lore);
++    void appendLore(@NotNull List<? extends net.kyori.adventure.text.ComponentLike> lore);
 +
 +    /**
 +     * 로어를 추가합니다.
@@ -241,14 +241,14 @@ index f5541454ba5e508a72c83989c6feaef5406e2535..a5b76724f6aabe8ab69105f6ccaac467
 +     * @param style 모든 줄에 적용할 스타일
 +     * @param lore 추가할 로어 리스트
 +     */
-+    void appendLore(final @NotNull net.kyori.adventure.text.format.Style style, final @NotNull List<? extends net.kyori.adventure.text.ComponentLike> lore);
++    void appendLore(@NotNull net.kyori.adventure.text.format.Style style, @NotNull List<? extends net.kyori.adventure.text.ComponentLike> lore);
 +
 +    /**
 +     * 로어를 이탤릭체를 비활성화하고 추가합니다.
 +     *
 +     * @param lore 추가할 로어 리스트
 +     */
-+    void appendLoreNoItalic(final @NotNull List<? extends net.kyori.adventure.text.ComponentLike> lore);
++    void appendLoreNoItalic(@NotNull List<? extends net.kyori.adventure.text.ComponentLike> lore);
 +
 +    /**
 +     * 로어를 이탤릭체를 비활성화하고 추가합니다.
@@ -256,21 +256,21 @@ index f5541454ba5e508a72c83989c6feaef5406e2535..a5b76724f6aabe8ab69105f6ccaac467
 +     * @param color 모든 줄에 적용할 문자 색
 +     * @param lore 추가할 로어 리스트
 +     */
-+    void appendLoreNoItalic(final @Nullable net.kyori.adventure.text.format.TextColor color, final @NotNull List<? extends net.kyori.adventure.text.ComponentLike> lore);
++    void appendLoreNoItalic(@Nullable net.kyori.adventure.text.format.TextColor color, @NotNull List<? extends net.kyori.adventure.text.ComponentLike> lore);
 +
 +    /**
 +     * 로어를 추가하며 클라이언트의 로어 수정을 비활성화합니다.
 +     *
 +     * @param lore 추가할 로어 리스트
 +     */
-+    void appendLoreDefault(final @NotNull List<? extends net.kyori.adventure.text.ComponentLike> lore);
++    void appendLoreDefault(@NotNull List<? extends net.kyori.adventure.text.ComponentLike> lore);
 +
 +    /**
 +     * 로어를 추가합니다.
 +     *
 +     * @param lore 추가할 로어
 +     */
-+    void appendLore(final @NotNull net.kyori.adventure.text.ComponentLike... lore);
++    void appendLore(@NotNull net.kyori.adventure.text.ComponentLike... lore);
 +
 +    /**
 +     * 로어를 추가합니다.
@@ -278,14 +278,14 @@ index f5541454ba5e508a72c83989c6feaef5406e2535..a5b76724f6aabe8ab69105f6ccaac467
 +     * @param style 모든 줄에 적용할 스타일
 +     * @param lore 추가할 로어
 +     */
-+    void appendLore(final @NotNull net.kyori.adventure.text.format.Style style, final @NotNull net.kyori.adventure.text.ComponentLike... lore);
++    void appendLore(@NotNull net.kyori.adventure.text.format.Style style, @NotNull net.kyori.adventure.text.ComponentLike... lore);
 +
 +    /**
 +     * 로어를 이탤릭체를 비활성화하고 추가합니다.
 +     *
 +     * @param lore 추가할 로어
 +     */
-+    void appendLoreNoItalic(final @NotNull net.kyori.adventure.text.ComponentLike... lore);
++    void appendLoreNoItalic(@NotNull net.kyori.adventure.text.ComponentLike... lore);
 +
 +    /**
 +     * 로어를 이탤릭체를 비활성화하고 추가합니다.
@@ -293,21 +293,21 @@ index f5541454ba5e508a72c83989c6feaef5406e2535..a5b76724f6aabe8ab69105f6ccaac467
 +     * @param color 모든 줄에 적용할 문자 색
 +     * @param lore 추가할 로어
 +     */
-+    void appendLoreNoItalic(final @Nullable net.kyori.adventure.text.format.TextColor color, final @NotNull net.kyori.adventure.text.ComponentLike... lore);
++    void appendLoreNoItalic(@Nullable net.kyori.adventure.text.format.TextColor color, @NotNull net.kyori.adventure.text.ComponentLike... lore);
 +
 +    /**
 +     * 로어를 추가하며 클라이언트의 로어 수정을 비활성화합니다.
 +     *
 +     * @param lore 추가할 로어
 +     */
-+    void appendLoreDefault(final @NotNull net.kyori.adventure.text.ComponentLike... lore);
++    void appendLoreDefault(@NotNull net.kyori.adventure.text.ComponentLike... lore);
 +
 +    /**
 +     * 특정 위치의 로어를 제거합니다.
 +     *
 +     * @param index 로어 인덱스
 +     */
-+    void removeLore(final int index);
++    void removeLore(int index);
 +    // Daydream end - Add ItemStack Utilities
 +
      /**

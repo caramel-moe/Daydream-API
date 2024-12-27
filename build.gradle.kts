@@ -7,8 +7,8 @@ plugins {
     id("io.papermc.paperweight.patcher") version "1.7.3"
 }
 
-val caramelMavenPublicUrl = "https://repo.caramel.moe/repository/maven-public";
-val paperMavenPublicUrl = "https://papermc.io/repo/repository/maven-public/"
+val caramelMavenPublicUrl = "https://repo.caramel.moe/repository/maven-public/";
+val paperMavenPublicUrl = "https://repo.papermc.io/repository/maven-public/"
 repositories {
     mavenCentral()
     maven(paperMavenPublicUrl) {
@@ -78,6 +78,7 @@ paperweight {
     decompileRepo.set(paperMavenPublicUrl)
 
     usePaperUpstream(providers.gradleProperty("paperCommit")) {
+        url = github("PaperMC", "Paper-archive")
         withPaperPatcher {
             apiPatchDir.set(layout.projectDirectory.dir("patches"))
             apiOutputDir.set(layout.projectDirectory.dir("Daydream-API"))

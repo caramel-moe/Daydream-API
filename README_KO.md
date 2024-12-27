@@ -2,11 +2,11 @@
 
 ## Daydream (API Only)
 
-<p>Daydream은 Paper의 Fork로 다양한 API 사용을 목표로 제작되었습니다.</p>
+<p>Daydream은 성능 개선을 목표로 하는 포크가 아닙니다. 불안정하고 설계가 형편없는 API를 추가하기 위해 존재합니다.</p>
 
-[![caramel.moe](https://img.shields.io/badge/made%20by.-caramel.moe-red)](https://caramel.moe)
+[![caramel.moe](https://img.shields.io/badge/made%20by-caramel.moe-red)](https://caramel.moe)
 [![Build Status](https://img.shields.io/github/actions/workflow/status/LemonCaramel/Daydream-API/daydream-api-build-1.21.yml)](https://github.com/LemonCaramel/Daydream-API/actions/workflows/daydream-api-build-1.21.yml)
-[![Discord](https://img.shields.io/discord/534586842079821824.svg?label=use%20server&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/f9qGtYF)
+[![Discord](https://img.shields.io/discord/534586842079821824.svg?label=server%20using%20this%20fork&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/f9qGtYF)
 
 [ENGLISH](README.md), KOREAN
 
@@ -31,7 +31,7 @@ Maven
 </repository>
 <repository>
     <id>papermc</id>
-    <url>https://papermc.io/repo/repository/maven-public/</url>
+    <url>https://repo.papermc.io/repository/maven-public/</url>
 </repository>
 
 <dependency>
@@ -48,7 +48,7 @@ repositories {
     // caramel.moe Repository
     maven("https://repo.caramel.moe/repository/maven-public/")
     // PaperMC Repository
-    maven("https://papermc.io/repo/repository/maven-public/")
+    maven("https://repo.papermc.io/repository/maven-public/")
 }
 
 dependencies {
