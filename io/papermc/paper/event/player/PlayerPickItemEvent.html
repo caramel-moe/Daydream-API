@@ -103,12 +103,9 @@ loadScripts(document, 'script');</script>
 </span><span class="modifiers">public class </span><span class="element-name type-name-label">PlayerPickItemEvent</span>
 <span class="extends-implements">extends <a href="../../../../../org/bukkit/event/player/PlayerEvent.html" title="class in org.bukkit.event.player">PlayerEvent</a>
 implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="interface in org.bukkit.event">Cancellable</a></span></div>
-<div class="block">Event that is fired when a player uses the pick item functionality (middle-clicking a block to get the appropriate
- item). However, note that this event will only trigger if an item has to be moved from the inventory to the hotbar.
- After the handling of this event, the contents of the source and the target slot will be swapped and the currently
- selected hotbar slot of the player will be set to the target slot.
- <p>
- Note: This event will not be fired for players in creative mode.</div>
+<div class="block">Event that is fired when a player uses the pick item functionality (middle-clicking a block or entity to get the
+ appropriate item). After the handling of this event, the contents of the source and the target slot will be swapped
+ and the currently selected hotbar slot of the player will be set to the target slot.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -260,10 +257,11 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">@org.jetbrains.annotations.Range(from=-1L, to=35L) int</span>&nbsp;<span class="element-name">getSourceSlot</span>()</div>
 <div class="block">Returns the slot in which the item that will be put into the players hotbar is located.
  <p>
- Returns <code>-1</code> if the item is not in the player's inventory and should be spawned in if in creative mode.</div>
+ Returns <code>-1</code> if the item is not in the player's inventory.
+ If this is the case and the player is in creative mode, the item will be spawned in.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>player inventory slot (0-35 inclusive, or <code>-1</code> not taken from the inventory)</dd>
+<dd>player inventory slot (0-35 inclusive, or <code>-1</code> if not in the player inventory)</dd>
 </dl>
 </section>
 </li>
@@ -276,7 +274,7 @@ implements <a href="../../../../../org/bukkit/event/Cancellable.html" title="int
  If set to <code>-1</code> and the player is in creative mode, the item will be spawned in.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>sourceSlot</code> - player inventory slot (0-35 inclusive, or <code>-1</code> not taken from the inventory)</dd>
+<dd><code>sourceSlot</code> - player inventory slot (0-35 inclusive, or <code>-1</code> if not in the player inventory)</dd>
 </dl>
 </section>
 </li>

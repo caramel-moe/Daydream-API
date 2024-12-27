@@ -59,6 +59,10 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color">&nbsp;</div>
 <div class="col-first odd-row-color"><a href="#moe.caramel.daydream.event.player">moe.caramel.daydream.event.player</a></div>
 <div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-first even-row-color"><a href="#org.bukkit">org.bukkit</a></div>
+<div class="col-last even-row-color">
+<div class="block">The root package of the Bukkit API, contains generalized API classes.</div>
+</div>
 </div>
 <section class="class-uses">
 <ul class="block-list">
@@ -81,27 +85,34 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
+<div class="col-first even-row-color"><code>default <a href="../ProgressMap.html" title="interface in moe.caramel.daydream.advancement">ProgressMap</a></code></div>
+<div class="col-second even-row-color"><span class="type-name-label">ProgressMap.</span><code><a href="../ProgressMap.html#addProgress(org.bukkit.NamespacedKey,int,java.time.Instant)" class="member-name-link">addProgress</a><wbr>(<a href="../../../../../org/bukkit/NamespacedKey.html" title="class in org.bukkit">NamespacedKey</a>&nbsp;key,
+ int&nbsp;currentCount,
+ <a href="https://jspecify.dev/docs/api/org/jspecify/annotations/Nullable.html" title="class or interface in org.jspecify.annotations" class="external-link">@Nullable</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/Instant.html" title="class or interface in java.time" class="external-link">Instant</a>&nbsp;obtainedTime)</code></div>
+<div class="col-last even-row-color">
+<div class="block">주어진 발전 과제에 대하여 새로운 카운트 형식의 진행도를 생성하고 추가합니다.</div>
+</div>
+<div class="col-first odd-row-color"><code>default <a href="../ProgressMap.html" title="interface in moe.caramel.daydream.advancement">ProgressMap</a></code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">ProgressMap.</span><code><a href="../ProgressMap.html#addProgress(org.bukkit.NamespacedKey,java.util.Map)" class="member-name-link">addProgress</a><wbr>(<a href="../../../../../org/bukkit/NamespacedKey.html" title="class in org.bukkit">NamespacedKey</a>&nbsp;key,
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>,<wbr><a href="../progress/CriterionProgress.html" title="interface in moe.caramel.daydream.advancement.progress">CriterionProgress</a>&gt;&nbsp;criteria)</code></div>
+<div class="col-last odd-row-color">
+<div class="block">주어진 발전 과제에 대하여 새로운 진행도를 생성하고 추가합니다.</div>
+</div>
+<div class="col-first even-row-color"><code><a href="../ProgressMap.html" title="interface in moe.caramel.daydream.advancement">ProgressMap</a></code></div>
+<div class="col-second even-row-color"><span class="type-name-label">ProgressMap.</span><code><a href="../ProgressMap.html#addProgress(org.bukkit.NamespacedKey,moe.caramel.daydream.advancement.progress.AdvancementProgress)" class="member-name-link">addProgress</a><wbr>(<a href="../../../../../org/bukkit/NamespacedKey.html" title="class in org.bukkit">NamespacedKey</a>&nbsp;key,
+ <a href="../progress/AdvancementProgress.html" title="interface in moe.caramel.daydream.advancement.progress">AdvancementProgress</a>&nbsp;progress)</code></div>
+<div class="col-last even-row-color">
+<div class="block">주어진 발전 과제에 대하여 기준 진행도를 추가합니다.</div>
+</div>
+<div class="col-first odd-row-color"><code>default <a href="../ProgressMap.html" title="interface in moe.caramel.daydream.advancement">ProgressMap</a></code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">PlayerAdvancementData.</span><code><a href="../PlayerAdvancementData.html#asProgressMap()" class="member-name-link">asProgressMap</a>()</code></div>
+<div class="col-last odd-row-color">
+<div class="block">기본 저장 위치의 현재 진행도 맵을 가져옵니다.</div>
+</div>
 <div class="col-first even-row-color"><code><a href="../ProgressMap.html" title="interface in moe.caramel.daydream.advancement">ProgressMap</a></code></div>
 <div class="col-second even-row-color"><span class="type-name-label">PlayerAdvancementData.</span><code><a href="../PlayerAdvancementData.html#asProgressMap(org.bukkit.NamespacedKey)" class="member-name-link">asProgressMap</a><wbr>(<a href="../../../../../org/bukkit/NamespacedKey.html" title="class in org.bukkit">NamespacedKey</a>&nbsp;section)</code></div>
 <div class="col-last even-row-color">
 <div class="block">현재의 진행도 맵을 가져옵니다.</div>
-</div>
-<div class="col-first odd-row-color"><code><a href="../ProgressMap.html" title="interface in moe.caramel.daydream.advancement">ProgressMap</a></code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">PlayerAdvancementData.</span><code><a href="../PlayerAdvancementData.html#createProgressMap()" class="member-name-link">createProgressMap</a>()</code></div>
-<div class="col-last odd-row-color">
-<div class="block">새로운 진행도 맵을 생성합니다.</div>
-</div>
-</div>
-<div class="caption"><span>Methods in <a href="../package-summary.html">moe.caramel.daydream.advancement</a> with parameters of type <a href="../ProgressMap.html" title="interface in moe.caramel.daydream.advancement">ProgressMap</a></span></div>
-<div class="summary-table three-column-summary">
-<div class="table-header col-first">Modifier and Type</div>
-<div class="table-header col-second">Method</div>
-<div class="table-header col-last">Description</div>
-<div class="col-first even-row-color"><code>&lt;T&gt;&nbsp;T</code></div>
-<div class="col-second even-row-color"><span class="type-name-label">PlayerAdvancementData.</span><code><a href="../PlayerAdvancementData.html#saveToData(moe.caramel.daydream.advancement.AdvancementFormat,moe.caramel.daydream.advancement.ProgressMap)" class="member-name-link">saveToData</a><wbr>(<a href="../AdvancementFormat.html" title="class in moe.caramel.daydream.advancement">AdvancementFormat</a>&lt;T&gt;&nbsp;format,
- <a href="../ProgressMap.html" title="interface in moe.caramel.daydream.advancement">ProgressMap</a>&nbsp;progress)</code></div>
-<div class="col-last even-row-color">
-<div class="block">발전 과제 진행도를 직렬화된 데이터로 변환합니다.</div>
 </div>
 </div>
 </section>
@@ -115,26 +126,10 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color"><code><a href="../ProgressMap.html" title="interface in moe.caramel.daydream.advancement">ProgressMap</a></code></div>
-<div class="col-second even-row-color"><span class="type-name-label">PlayerAdvancementPreLoadEvent.</span><code><a href="../../event/player/PlayerAdvancementPreLoadEvent.html#asProgressMap(org.bukkit.NamespacedKey)" class="member-name-link">asProgressMap</a><wbr>(<a href="../../../../../org/bukkit/NamespacedKey.html" title="class in org.bukkit">NamespacedKey</a>&nbsp;section)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
-<div class="col-first odd-row-color"><code><a href="../ProgressMap.html" title="interface in moe.caramel.daydream.advancement">ProgressMap</a></code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">PlayerAdvancementPreLoadEvent.</span><code><a href="../../event/player/PlayerAdvancementPreLoadEvent.html#createProgressMap()" class="member-name-link">createProgressMap</a>()</code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
-<div class="col-first even-row-color"><code><a href="../ProgressMap.html" title="interface in moe.caramel.daydream.advancement">ProgressMap</a></code></div>
-<div class="col-second even-row-color"><span class="type-name-label">PlayerAdvancementSaveEvent.</span><code><a href="../../event/player/PlayerAdvancementSaveEvent.html#getData()" class="member-name-link">getData</a>()</code></div>
+<div class="col-second even-row-color"><span class="type-name-label">PlayerAdvancementSaveEvent.</span><code><a href="../../event/player/PlayerAdvancementSaveEvent.html#getProgress()" class="member-name-link">getProgress</a>()</code></div>
 <div class="col-last even-row-color">
 <div class="block">저장될 발전 과제 데이터를 가져옵니다.</div>
 </div>
-</div>
-<div class="caption"><span>Methods in <a href="../../event/player/package-summary.html">moe.caramel.daydream.event.player</a> with parameters of type <a href="../ProgressMap.html" title="interface in moe.caramel.daydream.advancement">ProgressMap</a></span></div>
-<div class="summary-table three-column-summary">
-<div class="table-header col-first">Modifier and Type</div>
-<div class="table-header col-second">Method</div>
-<div class="table-header col-last">Description</div>
-<div class="col-first even-row-color"><code>&lt;T&gt;&nbsp;T</code></div>
-<div class="col-second even-row-color"><span class="type-name-label">PlayerAdvancementPreLoadEvent.</span><code><a href="../../event/player/PlayerAdvancementPreLoadEvent.html#saveToData(moe.caramel.daydream.advancement.AdvancementFormat,moe.caramel.daydream.advancement.ProgressMap)" class="member-name-link">saveToData</a><wbr>(<a href="../AdvancementFormat.html" title="class in moe.caramel.daydream.advancement">AdvancementFormat</a>&lt;T&gt;&nbsp;format,
- <a href="../ProgressMap.html" title="interface in moe.caramel.daydream.advancement">ProgressMap</a>&nbsp;progress)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
 </div>
 <div class="caption"><span>Constructors in <a href="../../event/player/package-summary.html">moe.caramel.daydream.event.player</a> with parameters of type <a href="../ProgressMap.html" title="interface in moe.caramel.daydream.advancement">ProgressMap</a></span></div>
 <div class="summary-table three-column-summary">
@@ -147,6 +142,23 @@ loadScripts(document, 'script');</script>
  <a href="../ProgressMap.html" title="interface in moe.caramel.daydream.advancement">ProgressMap</a>&nbsp;progress,
  <a href="../../event/player/PlayerAdvancementSaveEvent.Reason.html" title="enum class in moe.caramel.daydream.event.player">PlayerAdvancementSaveEvent.Reason</a>&nbsp;reason)</code></div>
 <div class="col-last even-row-color">&nbsp;</div>
+</div>
+</section>
+</li>
+<li>
+<section class="detail" id="org.bukkit">
+<h2>Uses of <a href="../ProgressMap.html" title="interface in moe.caramel.daydream.advancement">ProgressMap</a> in <a href="../../../../../org/bukkit/package-summary.html">org.bukkit</a></h2>
+<div class="caption"><span>Methods in <a href="../../../../../org/bukkit/package-summary.html">org.bukkit</a> that return <a href="../ProgressMap.html" title="interface in moe.caramel.daydream.advancement">ProgressMap</a></span></div>
+<div class="summary-table three-column-summary">
+<div class="table-header col-first">Modifier and Type</div>
+<div class="table-header col-second">Method</div>
+<div class="table-header col-last">Description</div>
+<div class="col-first even-row-color"><code><a href="../ProgressMap.html" title="interface in moe.caramel.daydream.advancement">ProgressMap</a></code></div>
+<div class="col-second even-row-color"><span class="type-name-label">UnsafeValues.</span><code><a href="../../../../../org/bukkit/UnsafeValues.html#newAdvancementProgressMap()" class="member-name-link">newAdvancementProgressMap</a>()</code></div>
+<div class="col-last even-row-color">
+<div class="block"><span class="deprecated-label">Deprecated.</span></div>
+<div class="block">새로운 진행도 맵을 생성합니다.</div>
+</div>
 </div>
 </section>
 </li>
