@@ -1,0 +1,115 @@
+--- a/src/main/java/org/bukkit/entity/Player.java
++++ b/src/main/java/org/bukkit/entity/Player.java
+@@ -467,6 +_,23 @@
+      */
+     public boolean performCommand(@NotNull String command);
+ 
++    // Daydream start - Add more Chat API
++    /**
++     * 플레이어의 채팅 세션을 가져옵니다.
++     *
++     * @return 플레이어의 채팅 세션
++     */
++    @Nullable
++    public moe.caramel.daydream.player.chat.ChatSession getChatSession();
++
++    /**
++     * 플레이어의 채팅 세션을 설정합니다.
++     *
++     * @param session 플레이어의 채팅 세션
++     */
++    public void setChatSession(final @NotNull moe.caramel.daydream.player.chat.ChatSession session);
++    // Daydream end - Add more Chat API
++
+     /**
+      * Returns true if the entity is supported by a block.
+      *
+@@ -1777,6 +_,24 @@
+     @Nullable
+     public GameMode getPreviousGameMode();
+ 
++    // Daydream start - Optimize world time update packet
++    /**
++     * 플레이어의 월드 타임 업데이트 간격을 설정합니다.
++     *
++     * @param interval 월드 타임 업데이트 간격
++     *                 (0 이하인 경우 비활성화, -1 이하인 경우 time set 무시)
++     */
++    public void setWorldTimeUpdateInterval(long interval);
++
++    /**
++     * 플레이어의 월드 타임 업데이트 간격을 가져옵니다.
++     *
++     * @return 월드 타임 업데이트 간격
++     * (0 이하인 경우 비활성화, -1 이하인 경우 time set 무시)
++     */
++    public long getWorldTimeUpdateInterval();
++    // Daydream end - Optimize world time update packet
++
+     /**
+      * Sets the current time on the player's client. When relative is true the
+      * player's time will be kept synchronized to its world time with the
+@@ -2039,6 +_,22 @@
+      */
+     public void setAllowFlight(boolean flight);
+ 
++    // Daydream start - Add API for adjusting FOV scale
++    /**
++     * FOV 크기를 가져옵니다.
++     *
++     * @return FOV 크기 (기본 값: {@code 1.0f})
++     */
++    public float getFovScale();
++
++    /**
++     * FOV 크기를 설정합니다.
++     *
++     * @param fov FOV 크기
++     */
++    public void setFovScale(float fov);
++    // Daydream end - Add API for adjusting FOV scale
++
+     // Paper start - flying fall damage
+     /**
+      * Allows you to enable fall damage while {@link #getAllowFlight()} is {@code true}
+@@ -2817,6 +_,23 @@
+     }
+     // Paper end - more resource pack API
+ 
++    // Daydream start - Add more ResourcePack API
++    /**
++     * 적용된 리소스팩 목록을 가져옵니다.
++     *
++     * @return 리소스팩 목록
++     */
++    @NotNull Collection<? extends moe.caramel.daydream.player.ResourcePack> getAppliedResourcePacks();
++
++    /**
++     * 리소스팩 적용 상태를 가져옵니다.
++     *
++     * @param uuid 리소스팩의 고유 ID
++     * @return 적용을 하지 않았거나, 클라이언트에게 응답을 받지 않은 경우 {@code null}을 반환할 수도 있습니다.
++     */
++    @Nullable org.bukkit.event.player.PlayerResourcePackStatusEvent.Status getResourcePackStatus(@NotNull UUID uuid);
++    // Daydream end - Add more ResourcePack API
++
+     /**
+      * Request that the player's client download and include another resource pack.
+      * <p>
+@@ -3499,6 +_,16 @@
+         return net.kyori.adventure.text.event.HoverEvent.showEntity(op.apply(net.kyori.adventure.text.event.HoverEvent.ShowEntity.of(this.getType().getKey(), this.getUniqueId(), this.displayName())));
+     }
+     // Paper end
++
++    // Daydream start - Expose Player mojang profile
++    /**
++     * 플레이어의 Mojang 프로필을 가져옵니다.
++     *
++     * @return Mojang 프로필
++     */
++    @NotNull
++    com.mojang.authlib.GameProfile getProfile();
++    // Daydream end - Expose Player mojang profile
+ 
+     // Paper start - Player Profile API
+     /**

@@ -1,0 +1,40 @@
+--- a/src/main/java/org/bukkit/Bukkit.java
++++ b/src/main/java/org/bukkit/Bukkit.java
+@@ -1093,6 +_,18 @@
+         return server.getPluginCommand(name);
+     }
+ 
++    // Daydream start - Expose Brigadier command dispatcher
++    /**
++     * 명령어 디스패처를 가져옵니다.
++     *
++     * @return 명령어 디스패처
++     */
++    @NotNull
++    public static <S extends io.papermc.paper.command.brigadier.CommandSourceStack> com.mojang.brigadier.CommandDispatcher<S> getCommandDispatcher() {
++        return server.getCommandDispatcher();
++    }
++    // Daydream end - Expose Brigadier command dispatcher
++
+     /**
+      * Writes loaded players to disk.
+      */
+@@ -2960,6 +_,18 @@
+         return server.isGlobalTickThread();
+     }
+     // Paper end - Folia region threading API
++
++    // Daydream start - Add Individual Sidebar API
++    /**
++     * 개인 사이드바 처리기를 가져옵니다.
++     *
++     * @return 개인 사이드바 처리기
++     */
++    @NotNull
++    public static moe.caramel.daydream.sidebar.SidebarProcessor sidebarProcessor() {
++        return server.sidebarProcessor();
++    }
++    // Daydream end - Add Individual Sidebar API
+ 
+     @NotNull
+     public static Server.Spigot spigot() {

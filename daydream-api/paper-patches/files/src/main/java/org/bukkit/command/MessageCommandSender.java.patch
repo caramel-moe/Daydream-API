@@ -1,0 +1,16 @@
+--- a/src/main/java/org/bukkit/command/MessageCommandSender.java
++++ b/src/main/java/org/bukkit/command/MessageCommandSender.java
+@@ -46,6 +_,13 @@
+         return Bukkit.getServer();
+     }
+ 
++    // Daydream start - Expose Brigadier command source
++    @Override
++    default @NotNull <S extends io.papermc.paper.command.brigadier.CommandSourceStack> S getCommandSource() {
++        throw new UnsupportedOperationException();
++    }
++    // Daydream end - Expose Brigadier command source
++
+     // Paper start
+     @Override
+     default net.kyori.adventure.text.@org.jetbrains.annotations.NotNull Component name() {

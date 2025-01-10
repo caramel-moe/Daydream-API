@@ -1,0 +1,70 @@
+--- a/src/main/java/org/bukkit/entity/Entity.java
++++ b/src/main/java/org/bukkit/entity/Entity.java
+@@ -391,6 +_,33 @@
+     void lockFreezeTicks(boolean locked);
+     // Paper end - Freeze Tick Lock API
+ 
++    // Daydream start - Add method to disable entity updates
++    /**
++     * 엔티티 업데이트 비활성화를 예약합니다.
++     * <p>
++     * 엔티티 업데이트가 완료된 후에 다음 틱 시간부터 업데이트를 하지 않습니다.
++     */
++    void disableSubsequentEntityUpdate();
++
++    /**
++     * 엔티티 업데이트 중지 여부를 가져옵니다.
++     * <p>
++     * 활성화 시, 위치 보정 및 엔티티 데이터 업데이트가 중지됩니다.
++     *
++     * @return 엔티티 업데이트 중지 여부
++     */
++    boolean disableEntityUpdate();
++
++    /**
++     * 엔티티 업데이트 중지 여부를 설정합니다.
++     * <p>
++     * 활성화 시, 위치 보정 및 엔티티 데이터 업데이트가 중지됩니다.
++     *
++     * @param disable 엔티티 업데이트 중지 여부
++     */
++    void disableEntityUpdate(boolean disable);
++    // Daydream end - Add method to disable entity updates
++
+     /**
+      * Mark the entity's removal.
+      *
+@@ -554,6 +_,16 @@
+     @NotNull
+     public UUID getUniqueId();
+ 
++    // Daydream start - Add method to get string UUID
++    /**
++     * 이 엔티티의 문자열 UUID를 가져옵니다.
++     *
++     * @return 문자열 UUID
++     */
++    @NotNull
++    public String getStringUniqueId();
++    // Daydream end - Add method to get string UUID
++
+     /**
+      * Gets the amount of ticks this entity has lived for.
+      * <p>
+@@ -1051,6 +_,16 @@
+      * Check if entity is in lava
+      */
+     boolean isInLava();
++
++    // Daydream start - Add method to get fluid height
++    /**
++     * 플레이어 위치의 유체 높이를 가져옵니다.
++     *
++     * @param fluid 유체 타입
++     * @return 유체의 높이
++     */
++    double getFluidHeight(@NotNull org.bukkit.Fluid fluid);
++    // Daydream end - Add method to get fluid height
+ 
+     /**
+      * Check if entity is inside a ticking chunk

@@ -1,0 +1,96 @@
+--- a/src/main/java/org/bukkit/inventory/ItemStack.java
++++ b/src/main/java/org/bukkit/inventory/ItemStack.java
+@@ -69,6 +_,93 @@
+     }
+     // Paper end - pdc
+ 
++    // Daydream start - Add more static factory methods
++    /**
++     * 스택 크기가 1이고 추가 데이터가 없는 아이템을 생성합니다.
++     *
++     * @param type 아이템 타입
++     * @return 아이템 스택
++     */
++    @NotNull
++    public static ItemStack create(final @NotNull Material type) {
++        return ItemStack.of(type);
++    }
++
++    /**
++     * 아이템 스택을 생성합니다.
++     *
++     * @param type 아이템 타입
++     * @param consumer 메타 수정자
++     * @return 아이템 스택
++     */
++    @NotNull
++    public static ItemStack create(final @NotNull Material type, final @NotNull java.util.function.Consumer<? super ItemMeta> consumer) {
++        final ItemStack item = ItemStack.of(type);
++        item.editMeta(consumer);
++        return item;
++    }
++
++    /**
++     * 아이템 스택을 생성합니다.
++     *
++     * @param type 아이템 타입
++     * @param metaClass 메타 타입 클래스
++     * @param consumer 메타 수정자
++     * @param <M> 메타 타입
++     * @return 아이템 스택
++     */
++    @NotNull
++    public static <M extends ItemMeta> ItemStack create(final @NotNull Material type, final @NotNull Class<M> metaClass, final @NotNull java.util.function.Consumer<@NotNull ? super M> consumer) {
++        final ItemStack item = ItemStack.of(type);
++        item.editMeta(metaClass, consumer);
++        return item;
++    }
++
++    /**
++     * 추가 데이터가 없는 아이템을 생성합니다.
++     *
++     * @param type 아이템 타입
++     * @param amount 스택의 크기
++     * @return 아이템 스택
++     */
++    @NotNull
++    public static ItemStack create(final @NotNull Material type, final int amount) {
++        return ItemStack.of(type, amount);
++    }
++
++    /**
++     * 아이템 스택을 생성합니다.
++     *
++     * @param type 아이템 타입
++     * @param amount 스택의 크기
++     * @param consumer 메타 수정자
++     * @return 아이템 스택
++     */
++    @NotNull
++    public static ItemStack create(final @NotNull Material type, final int amount, final @NotNull java.util.function.Consumer<? super ItemMeta> consumer) {
++        final ItemStack item = ItemStack.of(type, amount);
++        item.editMeta(consumer);
++        return item;
++    }
++
++    /**
++     * 아이템 스택을 생성합니다.
++     *
++     * @param type 아이템 타입
++     * @param amount 스택의 크기
++     * @param metaClass 메타 타입 클래스
++     * @param consumer 메타 수정자
++     * @param <M> 메타 타입
++     * @return 아이템 스택
++     */
++    @NotNull
++    public static <M extends ItemMeta> ItemStack create(final @NotNull Material type, final int amount, final @NotNull Class<M> metaClass, final @NotNull java.util.function.Consumer<@NotNull ? super M> consumer) {
++        final ItemStack item = ItemStack.of(type, amount);
++        item.editMeta(metaClass, consumer);
++        return item;
++    }
++    // Daydream end - Add more static factory methods
++
+     @Utility
+     protected ItemStack() {}
+ 

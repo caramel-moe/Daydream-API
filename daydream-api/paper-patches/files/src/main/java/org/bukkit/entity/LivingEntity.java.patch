@@ -1,0 +1,35 @@
+--- a/src/main/java/org/bukkit/entity/LivingEntity.java
++++ b/src/main/java/org/bukkit/entity/LivingEntity.java
+@@ -696,6 +_,32 @@
+     public boolean hasLineOfSight(@NotNull Location location);
+     // Paper end
+ 
++    // Daydream start - Add method to calculate entity seen percent
++    /**
++     * 특정 위치에서 이 엔티티를 어느 정도 보고 있는지 가져옵니다.
++     *
++     * @param location 위치
++     * @param expand 확장할 히트박스의 크기
++     * @param instantReturn 즉시 반환 여부, 이 값이 {@code true}라면 이 엔티티가 조금이라도 보일 때 {@code 1.0f}를 즉시 반환합니다.
++     * @return 엔티티가 보이는 정도
++     */
++    default float getSeenPercent(final @NotNull Location location, final double expand, final boolean instantReturn) {
++        return getSeenPercent(location.getX(), location.getY(), location.getZ(), expand, instantReturn);
++    }
++
++    /**
++     * 특정 위치에서 이 엔티티를 어느 정도 보고 있는지 가져옵니다.
++     *
++     * @param x 이 엔티티를 바라볼 x 위치
++     * @param y 이 엔티티를 바라볼 y 위치
++     * @param z 이 엔티티를 바라볼 z 위치
++     * @param expand 확장할 히트박스의 크기
++     * @param instantReturn 즉시 반환 여부, 이 값이 {@code true}라면 이 엔티티가 조금이라도 보일 때 {@code 1.0f}를 즉시 반환합니다.
++     * @return 엔티티가 보이는 정도
++     */
++    public float getSeenPercent(double x, double y, double z, double expand, boolean instantReturn);
++    // Daydream end - Add method to calculate entity seen percent
++
+     /**
+      * Returns if the living entity despawns when away from players or not.
+      * <p>

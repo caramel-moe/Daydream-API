@@ -1,0 +1,17 @@
+--- a/src/main/java/com/destroystokyo/paper/network/NetworkClient.java
++++ b/src/main/java/com/destroystokyo/paper/network/NetworkClient.java
+@@ -36,4 +_,14 @@
+      */
+     @Nullable InetSocketAddress getVirtualHost();
+ 
++    // Daydream start - Add Network API
++    /**
++     * 이 클라이언트 연결의 netty 채널을 가져옵니다.
++     *
++     * @return netty 채널
++     */
++    default io.netty.channel.@Nullable Channel getChannel() {
++        return null;
++    }
++    // Daydream end - Add Network API
+ }

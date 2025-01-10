@@ -1,0 +1,23 @@
+--- a/src/main/java/org/bukkit/block/Block.java
++++ b/src/main/java/org/bukkit/block/Block.java
+@@ -594,6 +_,20 @@
+      */
+     boolean breakNaturally(@NotNull ItemStack tool, boolean triggerEffect, boolean dropExperience);
+ 
++    // Daydream start - Add block breaking method without item drops
++    /**
++     * Breaks the block and spawns items as if a player had digged it with a
++     * specific tool
++     *
++     * @param tool The tool or item in hand used for digging
++     * @param triggerEffect Play the block break particle effect and sound
++     * @param dropExperience drop exp if the block normally does so
++     * @param dropItem Item Drop
++     * @return true if the block was destroyed
++     */
++    boolean breakNaturally(@NotNull ItemStack tool, boolean triggerEffect, boolean dropExperience, boolean dropItem);
++    // Daydream end - Add block breaking method without item drops
++
+     /**
+      * Causes the block to be ticked, this is different from {@link Block#randomTick()},
+      * in that it is usually scheduled to occur, for example

@@ -1,0 +1,20 @@
+--- a/src/main/java/io/papermc/paper/event/player/AbstractChatEvent.java
++++ b/src/main/java/io/papermc/paper/event/player/AbstractChatEvent.java
+@@ -110,6 +_,17 @@
+         return this.signedMessage;
+     }
+ 
++    // Daydream start - Add more Chat API
++    /**
++     * 플레이어 메시지 래퍼를 가져옵니다.
++     *
++     * @return 플레이어 메시지 래퍼
++     */
++    public moe.caramel.daydream.player.chat.PlayerMessage playerMessage() {
++        return (moe.caramel.daydream.player.chat.PlayerMessage) signedMessage;
++    }
++    // Daydream end - Add more Chat API
++
+     @Override
+     public final boolean isCancelled() {
+         return this.cancelled;

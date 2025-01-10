@@ -1,0 +1,41 @@
+--- a/src/main/java/org/bukkit/World.java
++++ b/src/main/java/org/bukkit/World.java
+@@ -3443,6 +_,38 @@
+      */
+     void playSound(@NotNull Location location, @NotNull String sound, @NotNull SoundCategory category, float volume, float pitch);
+ 
++    // Daydream start - Add more play sound methods
++    /**
++     * Play a Sound at the provided Location in the World.
++     * <p>
++     * This function will fail silently if Location or Sound are null.
++     *
++     * @param except The except player
++     * @param location The location to play the sound
++     * @param sound The sound to play
++     * @param category the category of the sound
++     * @param volume The volume of the sound
++     * @param pitch The pitch of the sound
++     */
++    void playSound(@NotNull Player except, @NotNull Location location, @NotNull Sound sound, @NotNull SoundCategory category, float volume, float pitch);
++
++    /**
++     * Play a Sound at the provided Location in the World.
++     * <p>
++     * This function will fail silently if Location or Sound are null. No sound
++     * will be heard by the players if their clients do not have the respective
++     * sound for the value passed.
++     *
++     * @param except The except player
++     * @param location The location to play the sound
++     * @param sound The internal sound name to play
++     * @param category The category of the sound
++     * @param volume The volume of the sound
++     * @param pitch The pitch of the sound
++     */
++    void playSound(@NotNull Player except, @NotNull Location location, @NotNull String sound, @NotNull SoundCategory category, float volume, float pitch);
++    // Daydream end - Add more play sound methods
++
+     /**
+      * Play a Sound at the provided Location in the World. For sounds with multiple
+      * variations passing the same seed will always play the same variation.

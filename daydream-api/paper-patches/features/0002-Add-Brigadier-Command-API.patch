@@ -1,0 +1,1236 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: LemonCaramel <admin@caramel.moe>
+Date: Tue, 12 Oct 2021 20:40:48 +0900
+Subject: [PATCH] Add Brigadier Command API
+
+
+diff --git a/src/main/java/io/papermc/paper/command/brigadier/CommandRegistrationFlag.java b/src/main/java/io/papermc/paper/command/brigadier/CommandRegistrationFlag.java
+index 7e24babf746de474c8deec4b147e22031e8dadb2..5146498bc621d2e97fa63a6aaef8225807274dea 100644
+--- a/src/main/java/io/papermc/paper/command/brigadier/CommandRegistrationFlag.java
++++ b/src/main/java/io/papermc/paper/command/brigadier/CommandRegistrationFlag.java
+@@ -10,5 +10,6 @@ import org.jetbrains.annotations.ApiStatus;
+  */
+ @ApiStatus.Internal
+ public enum CommandRegistrationFlag {
+-    FLATTEN_ALIASES
++    FLATTEN_ALIASES,
++    RELOADABLE // Daydream - (feature) Add Brigadier Command API
+ }
+diff --git a/src/main/java/io/papermc/paper/command/brigadier/CommandSourceStack.java b/src/main/java/io/papermc/paper/command/brigadier/CommandSourceStack.java
+index ac6f5b754a15e85ce09de4ed4cdee2044b45022c..4606cd17f882f163e963979c20a18410c12ec0b7 100644
+--- a/src/main/java/io/papermc/paper/command/brigadier/CommandSourceStack.java
++++ b/src/main/java/io/papermc/paper/command/brigadier/CommandSourceStack.java
+@@ -19,7 +19,7 @@ import org.jspecify.annotations.Nullable;
+  * exist yet, or no specific sender is available. Methods on such a {@link CommandSender}
+  * will either have no effect or throw an {@link UnsupportedOperationException}.</p>
+  */
+-@ApiStatus.Experimental
++//@ApiStatus.Experimental // Daydream - (feature) Add Brigadier Command API
+ @NullMarked
+ @ApiStatus.NonExtendable
+ public interface CommandSourceStack {
+diff --git a/src/main/java/moe/caramel/daydream/brigadier/Arguments.java b/src/main/java/moe/caramel/daydream/brigadier/Arguments.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..9a0a1b848bc8f59df26cd9806db2840cac774d42
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/brigadier/Arguments.java
+@@ -0,0 +1,298 @@
++package moe.caramel.daydream.brigadier;
++
++import static moe.caramel.daydream.brigadier.BrigadierService.SERVICE;
++import com.mojang.authlib.GameProfile;
++import io.papermc.paper.command.brigadier.CommandSourceStack;
++import it.unimi.dsi.fastutil.ints.IntList;
++import moe.caramel.daydream.brigadier.argument.*;
++import moe.caramel.daydream.brigadier.data.*;
++import moe.caramel.daydream.util.NumberRange;
++import net.kyori.adventure.nbt.api.BinaryTagHolder;
++import net.kyori.adventure.text.Component;
++import net.kyori.adventure.text.format.Style;
++import net.kyori.adventure.text.format.TextColor;
++import org.bukkit.Axis;
++import org.bukkit.GameMode;
++import org.bukkit.HeightMap;
++import org.bukkit.NamespacedKey;
++import org.bukkit.Particle;
++import org.bukkit.World;
++import org.bukkit.block.Block;
++import org.bukkit.block.structure.Mirror;
++import org.bukkit.block.structure.StructureRotation;
++import org.bukkit.inventory.ItemStack;
++import org.bukkit.scoreboard.DisplaySlot;
++import org.bukkit.scoreboard.Objective;
++import org.bukkit.scoreboard.Team;
++import org.jspecify.annotations.NullMarked;
++import java.util.Collection;
++import java.util.EnumSet;
++import java.util.UUID;
++import java.util.function.Predicate;
++
++/**
++ * Brigadier Vanilla Arguments
++ */
++@NullMarked
++public final class Arguments {
++
++    /**
++     * It's a constant class.
++     * Don't create instances.
++     */
++    private Arguments() { throw new UnsupportedOperationException(); }
++
++    /**
++     * Example: "Player", "0123", "@e", "@e[type=foo]", "dd12be42-52a9-4a91-a8a1-11c01849e498"
++     */
++    public static final EntityArgument ENTITY = SERVICE.getArgument("entity");
++
++    /**
++     * Example: "Player", "0123", "dd12be42-52a9-4a91-a8a1-11c01849e498", "@e"
++     */
++    public static final SimpleArgument<Collection<GameProfile>> GAME_PROFILES = SERVICE.getArgument("game_profile");
++
++    /**
++     * Example: "0 0 0", "~ ~ ~", "^ ^ ^", "^1 ^ ^-5", "~0.5 ~1 ~-5"
++     */
++    public static final BlockPosArgument BLOCK_POS = SERVICE.getArgument("block_pos");
++
++    /**
++     * Example: "0 0", "~ ~", "~1 ~-2", "^ ^", "^-1 ^0"
++     */
++    public static final SimpleArgument<Position<CommandSourceStack>> COLUMN_POS = SERVICE.getArgument("column_pos");
++
++    /**
++     * Example: "0 0 0", "~ ~ ~", "^ ^ ^", "^1 ^ ^-5", "0.1 -0.5 .9", "~0.5 ~1 ~-5"
++     */
++    public static final VecArgument VEC3 = SERVICE.getArgument("vec3");
++
++    /**
++     * Example: "0 0", "~ ~", "0.1 -0.5", "~1 ~-2"
++     */
++    public static final VecArgument VEC2 = SERVICE.getArgument("vec2");
++
++    /**
++     * Example: "stone", "minecraft:stone", "stone[foo=bar]", "foo{bar=baz}"
++     */
++    public static final BlockStateArgument BLOCK_STATE = SERVICE.getArgument("block_state");
++
++    /**
++     * Example: "stone", "minecraft:stone", "stone[foo=bar]", "#stone", "#stone[foo=bar]{baz=nbt}"
++     */
++    public static final SimpleArgument<Predicate<Block>> BLOCK_PREDICATE = SERVICE.getArgument("block_predicate");
++
++    /**
++     * Example: "stick", "minecraft:stick", "stick{foo=bar}"
++     */
++    public static final ItemArgument ITEM = SERVICE.getArgument("item_stack");
++
++    /**
++     * Example: "stick", "minecraft:stick", "#stick", "#stick{foo=bar}"
++     */
++    public static final SimpleArgument<Predicate<ItemStack>> ITEM_PREDICATE = SERVICE.getArgument("item_predicate");
++
++    /**
++     * Example: "red", "green"
++     */
++    public static final SimpleArgument<TextColor> COLOR = SERVICE.getArgument("color");
++
++    /**
++     * Example: "\"hello world\"", "\"\"", "\"{\"text\":\"hello world\"}", "[\"\"]"
++     */
++    public static final SimpleArgument<Component> COMPONENT = SERVICE.getArgument("component");
++
++    /**
++     * Example: {"bold": true}
++     * @since Minecraft 1.20.3
++     */
++    public static final SimpleArgument<Style> STYLE = SERVICE.getArgument("style");
++
++    /**
++     * Example: "Hello world!", "foo", "@e", "Hello @p :)"
++     */
++    public static final MessageArgument MESSAGE = SERVICE.getArgument("message");
++
++    /**
++     * Example: "{}", "{foo=bar}"
++     */
++    public static final SimpleArgument<BinaryTagHolder> COMPOUND_TAG = SERVICE.getArgument("nbt_compound_tag");
++
++    /*
++     * Example: "0", "0b", "0l", "0.0", "\"foo\"", "{foo=bar}", "[0]"
++     * NBT_TAG
++     */
++
++    /*
++     * Example: "foo", "foo.bar", "foo[0]", "[0]", "[]", "{foo=bar}"
++     * NBT_PATH
++     */
++
++    /**
++     * Example: "foo", "*", "012"
++     */
++    public static final SimpleArgument<Objective> OBJECTIVE = SERVICE.getArgument("objective");
++
++    /**
++     * Example: "foo", "foo.bar.baz", "minecraft:foo"
++     */
++    public static final SimpleArgument<String> OBJECTIVE_CRITERIA = SERVICE.getArgument("objective_criteria");
++
++    /*
++     * Example: "=", "{@literal >}", "{@literal <}"
++     * @since Removed in Daydream 1.21.4
++     * OPERATION
++     */
++
++    /**
++     * Example: "foo", "foo:bar", "particle with options"
++     */
++    public static final SimpleArgument<Particle> PARTICLE = SERVICE.getArgument("particle");
++
++    /**
++     * Example: "0", "~", "~-5"
++     */
++    public static final SimpleArgument<Float> ANGLE = SERVICE.getArgument("angle");
++
++    /**
++     * Example: "0 0", "~ ~", "~-5 ~5"
++     */
++    public static final SimpleArgument<Position<CommandSourceStack>> ROTATION = SERVICE.getArgument("rotation");
++
++    /**
++     * Example: "sidebar", "sidebar.team.light_purple"
++     */
++    public static final SimpleArgument<DisplaySlot> SCOREBOARD_SLOT = SERVICE.getArgument("scoreboard_slot");
++
++    /**
++     * Example: "Player", "0123", "*", "@e"
++     */
++    public static final ScoreHolderArgument SCORE_HOLDER = SERVICE.getArgument("score_holder");
++
++    /**
++     * Example: "xyz", "x"
++     */
++    public static final SimpleArgument<EnumSet<Axis>> SWIZZLE = SERVICE.getArgument("swizzle");
++
++    /**
++     * Example: "foo", "123"
++     */
++    public static final SimpleArgument<Team> TEAM = SERVICE.getArgument("team");
++
++    /**
++     * Example: "container.5", "12", "weapon"
++     */
++    public static final SimpleArgument<Integer> SLOT = SERVICE.getArgument("item_slot");
++
++    /**
++     * Example: "container.*", "container.5", "weapon"
++     * @since Minecraft 1.20.5
++     */
++    public static final SimpleArgument<IntList> SLOTS = SERVICE.getArgument("item_slots");
++
++    /**
++     * Example: "foo", "foo:bar", "012"
++     */
++    public static final SimpleArgument<NamespacedKey> RESOURCE_LOCATION = SERVICE.getArgument("resource_location");
++
++    /*
++     * Example: "foo", "foo:bar", "#foo"
++     * FUNCTION
++     */
++
++    /**
++     * Example: "eyes", "feet"
++     */
++    public static final SimpleArgument<EntityAnchorArgument> ENTITY_ANCHOR = SERVICE.getArgument("entity_anchor");
++
++    /**
++     * Example: "0..5", "0", "-5", "-100..", "..100"
++     */
++    public static final SimpleArgument<NumberRange<Integer>> RANGE_INTEGER = SERVICE.getArgument("int_range");
++
++    /**
++     * Example: "0..5.2", "0", "-5.4", "-100.76..", "..100"
++     */
++    public static final SimpleArgument<NumberRange<Double>> RANGE_FLOATS = SERVICE.getArgument("float_range");
++
++    /**
++     * Example: "minecraft:overworld", "minecraft:the_nether"
++     * Please use this API's suggestion.
++     */
++    public static final SimpleArgumentSuggestion<World> DIMENSION = SERVICE.getArgument("dimension");
++
++    /**
++     * Example: "survival", "creative", "adventure", "spectator"
++     */
++    public static final SimpleArgument<GameMode> GAMEMODE = SERVICE.getArgument("gamemode");
++
++    /**
++     * Example: "0d", "0s", "0t", "0"
++     */
++    public static final TimeArgument TIME = SERVICE.getArgument("time");
++
++    /*
++     * Example: "foo", "foo:bar", "012", "#skeletons", "#minecraft:skeletons"
++     * @since Minecraft 1.18.2
++     * RESOURCE_OR_TAG
++     */
++
++    /*
++     * Example: "foo", "foo:bar", "012", "#skeletons", "#minecraft:skeletons"
++     * @since Minecraft 1.19.3
++     * RESOURCE_OR_TAG_KEY
++     */
++
++    /*
++     * Example: "foo", "foo:bar", "012"
++     * @since Minecraft 1.18.2
++     * RESOURCE_KEY
++     */
++
++    /*
++     * Example: "foo", "foo:bar", "012"
++     * @since Minecraft 1.19.3
++     * RESOURCE
++     */
++
++    /**
++     * Example: "template_mirror", "left_right", "none"
++     * @since Minecraft 1.19
++     */
++    public static final SimpleArgument<Mirror> TEMPLATE_MIRROR = SERVICE.getArgument("template_mirror");
++
++    /**
++     * Example: "180", "clockwise_90", "counterclockwise_90", "none"
++     * @since Minecraft 1.19
++     */
++    public static final SimpleArgument<StructureRotation> TEMPLATE_ROTATION = SERVICE.getArgument("template_rotation");
++
++    /**
++     * Example: "world_surface", "ocean_floor", "motion_blocking", "motion_blocking_no_leaves"
++     * @since Minecraft 1.19.4
++     */
++    public static final SimpleArgument<HeightMap> HEIGHT_MAP = SERVICE.getArgument("heightmap");
++
++    /**
++     * Example: "dd12be42-52a9-4a91-a8a1-11c01849e498"
++     */
++    public static final SimpleArgument<UUID> UUID = SERVICE.getArgument("uuid");
++
++    /*
++     * Example: "foo", "foo:bar", "012"
++     * @since Minecraft 1.20.5
++     * LOOT_TABLE
++     */
++
++    /*
++     * Example: "foo", "foo:bar", "012"
++     * @since Minecraft 1.20.5
++     * LOOT_PREDICATE
++     */
++
++    /*
++     * Example: "foo", "foo:bar", "012"
++     * @since Minecraft 1.20.5
++     * LOOT_MODIFIER
++     */
++}
+diff --git a/src/main/java/moe/caramel/daydream/brigadier/BrigadierCommand.java b/src/main/java/moe/caramel/daydream/brigadier/BrigadierCommand.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..53b5d6504586f88f52e58fb143786a6871eea944
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/brigadier/BrigadierCommand.java
+@@ -0,0 +1,301 @@
++package moe.caramel.daydream.brigadier;
++
++import static net.kyori.adventure.text.Component.text;
++import static net.kyori.adventure.text.format.NamedTextColor.RED;
++import com.mojang.brigadier.CommandDispatcher;
++import com.mojang.brigadier.ParseResults;
++import com.mojang.brigadier.arguments.ArgumentType;
++import com.mojang.brigadier.builder.LiteralArgumentBuilder;
++import com.mojang.brigadier.builder.RequiredArgumentBuilder;
++import com.mojang.brigadier.context.CommandContext;
++import com.mojang.brigadier.exceptions.CommandSyntaxException;
++import com.mojang.brigadier.suggestion.SuggestionProvider;
++import com.mojang.brigadier.suggestion.Suggestions;
++import com.mojang.brigadier.suggestion.SuggestionsBuilder;
++import com.mojang.brigadier.tree.LiteralCommandNode;
++import io.papermc.paper.command.brigadier.CommandSourceStack;
++import io.papermc.paper.command.brigadier.Commands;
++import net.kyori.adventure.text.Component;
++import org.bukkit.command.Command;
++import org.bukkit.command.CommandException;
++import org.bukkit.command.CommandSender;
++import org.jspecify.annotations.NullMarked;
++import java.util.ArrayList;
++import java.util.Collection;
++import java.util.HashMap;
++import java.util.List;
++import java.util.Map;
++import java.util.concurrent.CompletableFuture;
++import java.util.function.BiConsumer;
++import java.util.function.Consumer;
++import java.util.function.Supplier;
++
++/**
++ * Brigadier 명령어
++ */
++@NullMarked
++public abstract class BrigadierCommand extends Command {
++
++    public static final int SUCCESS = 0;
++    public static final int SINGLE_SUCCESS = 1;
++    public static final int FAILED = -1;
++
++    //<editor-fold desc="Commands" defaultstate="collapsed">
++    protected final LiteralCommandNode<CommandSourceStack> command;
++
++    /**
++     * Brigadier 기반 명령어를 생성합니다.
++     *
++     * @param name 명령어의 이름
++     */
++    protected BrigadierCommand(final String name) {
++        super(name);
++
++        // Create Brigadier command
++        final LiteralArgumentBuilder<CommandSourceStack> builder = literal(this.getName());
++        this.buildCommand(builder);
++        this.command = builder.build();
++    }
++
++    /**
++     * Brigadier 명령어를 생성합니다.
++     *
++     * @param builder 명령어 빌더
++     */
++    public abstract void buildCommand(LiteralArgumentBuilder<CommandSourceStack> builder);
++
++    /**
++     * 명령어 노드를 가져옵니다.
++     *
++     * @return 명령어 노드
++     */
++    public final LiteralCommandNode<CommandSourceStack> getCommand() {
++        return command;
++    }
++    //</editor-fold>
++
++    //<editor-fold desc="Argument utility methods" defaultstate="collapsed">
++    /**
++     * 리터럴 인자를 생성합니다.
++     *
++     * @param literal 리터럴 인자의 이름
++     * @return 리터럴 인자
++     */
++    public static LiteralArgumentBuilder<CommandSourceStack> literal(final String literal) {
++        return Commands.literal(literal);
++    }
++
++    /**
++     * 입력 인자를 생성합니다.
++     *
++     * @param name 입력 인자의 이름
++     * @param type 입력 인자의 타입 인스턴스
++     * @return 필수 입력
++     * @param <T> 인자의 타입
++     */
++    public static <T> RequiredArgumentBuilder<CommandSourceStack, T> argument(final String name, final ArgumentType<T> type) {
++        return Commands.argument(name, type);
++    }
++    //</editor-fold>
++
++    //<editor-fold desc="Sender utility methods" defaultstate="collapsed">
++    /**
++     * 명령어 실행 주체를 가져옵니다.
++     *
++     * @param context 명령 컨텍스트
++     * @return Bukkit 명령어 실행 주체
++     */
++    public static CommandSender sender(final CommandContext<CommandSourceStack> context) {
++        return sender(context.getSource());
++    }
++
++    /**
++     * 명령어 실행 주체를 가져옵니다.
++     *
++     * @param source 명령어 실행 주체
++     * @return Bukkit 명령어 실행 주체
++     */
++    public static CommandSender sender(final CommandSourceStack source) {
++        return source.getSender();
++    }
++    //</editor-fold>
++
++    //<editor-fold desc="Suggestion utility methods" defaultstate="collapsed">
++    /**
++     * (정적) 명령어 제안을 생성합니다.
++     *
++     * @param strings 제안 목록
++     * @return 생성된 제안 프로바이더
++     */
++    public static SuggestionProvider<CommandSourceStack> suggest(final String... strings) {
++        return suggest(List.of(strings));
++    }
++
++    /**
++     * (정적) 명령어 제안을 생성합니다.
++     *
++     * @param strings 제안 목록
++     * @return 생성된 제안 프로바이더
++     */
++    public static SuggestionProvider<CommandSourceStack> suggest(final Collection<String> strings) {
++        return (c, b) -> suggest(b, strings);
++    }
++
++    /**
++     * (동적) 명령어 제안을 생성합니다.
++     *
++     * @param strings 제안 목록
++     * @return 생성된 제안 프로바이더
++     */
++    public static SuggestionProvider<CommandSourceStack> suggest(final Supplier<String[]> strings) {
++        return suggest(list -> list.addAll(List.of(strings.get())));
++    }
++
++    /**
++     * (동적) 명령어 제안을 생성합니다.
++     *
++     * @param strings 제안 목록
++     * @return 생성된 제안 프로바이더
++     */
++    public static SuggestionProvider<CommandSourceStack> suggest(final Consumer<Collection<String>> strings) {
++        return suggest((source, list) -> strings.accept(list));
++    }
++
++    /**
++     * (동적) 명령어 제안을 생성합니다.
++     *
++     * @param strings 제안 목록
++     * @return 생성된 제안 프로바이더
++     */
++    public static SuggestionProvider<CommandSourceStack> suggest(final BiConsumer<CommandSourceStack, Collection<String>> strings) {
++        return (c, b) -> {
++            final List<String> list = new ArrayList<>();
++            strings.accept(c.getSource(), list);
++            return suggest(b, list);
++        };
++    }
++
++    /**
++     * (정적) 툴팁이 포함된 명령어 제안을 생성합니다.
++     *
++     * @param suggestions 툴팁이 포함된 제안 목록
++     * @return 생성된 제안 프로바이더
++     */
++    public static SuggestionProvider<CommandSourceStack> hoverSuggest(final Map<String, Component> suggestions) {
++        return (c, b) -> suggest(b, suggestions);
++    }
++
++    /**
++     * (동적) 툴팁이 포함된 명령어 제안을 생성합니다.
++     *
++     * @param suggestions 툴팁이 포함된 제안 목록
++     * @return 생성된 제안 프로바이더
++     */
++    public static SuggestionProvider<CommandSourceStack> hoverSuggest(final Consumer<Map<String, Component>> suggestions) {
++        return hoverSuggest((source, map) -> suggestions.accept(map));
++    }
++
++    /**
++     * (동적) 툴팁이 포함된 명령어 제안을 생성합니다.
++     *
++     * @param suggestions 툴팁이 포함된 제안 목록
++     * @return 생성된 제안 프로바이더
++     */
++    public static SuggestionProvider<CommandSourceStack> hoverSuggest(final BiConsumer<CommandSourceStack, Map<String, Component>> suggestions) {
++        return (c, b) -> {
++            final Map<String, Component> map = new HashMap<>();
++            suggestions.accept(c.getSource(), map);
++            return suggest(b, map);
++        };
++    }
++
++    /**
++     * 입력 내용에 기반하여 제안 빌더와 일치하는 제안을 가져옵니다.
++     *
++     * @param builder 제안 빌더
++     * @param suggestions 제안 목록
++     * @return 제안
++     */
++    public static CompletableFuture<Suggestions> suggest(final SuggestionsBuilder builder, final Iterable<String> suggestions) {
++        final String token = builder.getRemainingLowerCase();
++        for (final String suggestion : suggestions) {
++            if (suggestion.toLowerCase().startsWith(token)) {
++                builder.suggest(suggestion);
++            }
++        }
++
++        return builder.buildFuture();
++    }
++
++    /**
++     * 입력 내용에 기반하여 제안 빌더와 일치하는 툴팁이 포함된 제안을 가져옵니다.
++     *
++     * @param builder 제안 빌더
++     * @param suggestions 제안 목록
++     * @return 제안
++     */
++    public static CompletableFuture<Suggestions> suggest(final SuggestionsBuilder builder, final Map<String, Component> suggestions) {
++        final String token = builder.getRemainingLowerCase();
++        for (final Map.Entry<String, Component> entry : suggestions.entrySet()) {
++            final String suggestion = entry.getKey();
++            if (suggestion.toLowerCase().startsWith(token)) {
++                builder.suggest(suggestion, BrigadierService.SERVICE.getMessage(entry.getValue()));
++            }
++        }
++
++        return builder.buildFuture();
++    }
++    //</editor-fold>
++
++    //<editor-fold desc="Legacy" defaultstate="collapsed">
++    /**
++     * 명령어 디스패처를 가져옵니다.
++     * <p>
++     * 이 명령어가 레거시 기반으로 작동되는 경우 가상 디스패처가 필요합니다.
++     * </p>
++     *
++     * @return 명령어 디스패처
++     */
++    protected final CommandDispatcher<CommandSourceStack> getDispatcher() {
++        final CommandDispatcher<CommandSourceStack> dispatcher = new CommandDispatcher<>();
++        dispatcher.getRoot().addChild(this.command);
++        return dispatcher;
++    }
++
++    @Override
++    public final boolean execute(final CommandSender sender, final String label, final String[] args) {
++        if (!this.testPermission(sender)) {
++            return true;
++        }
++
++        try {
++            this.getDispatcher().execute(commandLine(label, args), sender.getCommandSource());
++            return true;
++        } catch (final CommandSyntaxException exception) {
++            sender.sendMessage(text("Usage: " + this.usageMessage, RED));
++            return false;
++        } catch (final Throwable exception) {
++            throw new CommandException("Unhandled exception executing '" + label + "' in " + this.getName(), exception);
++        }
++    }
++
++    @Override
++    public final List<String> tabComplete(final CommandSender sender, final String label, final String[] args) {
++        final List<String> results = new ArrayList<>();
++
++        final CommandDispatcher<CommandSourceStack> dispatcher = this.getDispatcher();
++        final ParseResults<CommandSourceStack> parsed = dispatcher.parse(commandLine(label, args), sender.getCommandSource());
++        dispatcher.getCompletionSuggestions(parsed).thenAccept((suggestions) -> {
++            suggestions.getList().forEach(suggestion -> {
++                results.add(suggestion.getText());
++            });
++        });
++
++        return results;
++    }
++
++    private String commandLine(final String label, final String[] args) {
++        return (label + ((args.length > 0) ? (" " + String.join(" ", args)) : ""));
++    }
++    //</editor-fold>
++}
+diff --git a/src/main/java/moe/caramel/daydream/brigadier/BrigadierService.java b/src/main/java/moe/caramel/daydream/brigadier/BrigadierService.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..2c173b01d33c37f5ad82c1e6815c4c4695f5bc35
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/brigadier/BrigadierService.java
+@@ -0,0 +1,45 @@
++package moe.caramel.daydream.brigadier;
++
++import com.mojang.brigadier.Message;
++import io.papermc.paper.command.brigadier.MessageComponentSerializer;
++import net.kyori.adventure.text.Component;
++import org.jspecify.annotations.NullMarked;
++import java.util.ServiceLoader;
++
++/**
++ * Argument 서비스
++ */
++@NullMarked
++class BrigadierService {
++
++    /**
++     * Brigadier 서비스
++     */
++    static final Service SERVICE = ServiceLoader.load(Service.class)
++        .findFirst().orElseThrow();
++
++    /**
++     * 서비스 인터페이스
++     */
++    public interface Service {
++
++        /**
++         * Argument 타입을 가져옵니다.
++         *
++         * @param type argument 타입 이름
++         * @return Argument 타입
++         * @param <T> Argument 타입 클래스
++         */
++        <T> T getArgument(String type);
++
++        /**
++         * 툴팁 메시지를 생성합니다.
++         *
++         * @param component 툴팁 component
++         * @return Brigadier 툴팁 메시지
++         */
++        default Message getMessage(final Component component) {
++            return MessageComponentSerializer.message().serialize(component);
++        }
++    }
++}
+diff --git a/src/main/java/moe/caramel/daydream/brigadier/argument/ArgumentInf.java b/src/main/java/moe/caramel/daydream/brigadier/argument/ArgumentInf.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..387d7645bff6f73a90d1cd205f6c0b59286b736b
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/brigadier/argument/ArgumentInf.java
+@@ -0,0 +1,10 @@
++package moe.caramel.daydream.brigadier.argument;
++
++import com.mojang.brigadier.arguments.ArgumentType;
++import org.jspecify.annotations.NullMarked;
++
++@NullMarked
++public interface ArgumentInf {
++
++    ArgumentType<?> get();
++}
+diff --git a/src/main/java/moe/caramel/daydream/brigadier/argument/BlockPosArgument.java b/src/main/java/moe/caramel/daydream/brigadier/argument/BlockPosArgument.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..8f513e983d5c0985c7b216317932b4e20665efca
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/brigadier/argument/BlockPosArgument.java
+@@ -0,0 +1,15 @@
++package moe.caramel.daydream.brigadier.argument;
++
++import com.mojang.brigadier.context.CommandContext;
++import com.mojang.brigadier.exceptions.CommandSyntaxException;
++import io.papermc.paper.command.brigadier.CommandSourceStack;
++import org.bukkit.block.Block;
++import org.jspecify.annotations.NullMarked;
++
++@NullMarked
++public interface BlockPosArgument extends ArgumentInf {
++
++    Block getLoadedBlockPos(CommandContext<? extends CommandSourceStack> context, String name) throws CommandSyntaxException;
++
++    Block getSpawnablePos(CommandContext<? extends CommandSourceStack> context, String name) throws CommandSyntaxException;
++}
+diff --git a/src/main/java/moe/caramel/daydream/brigadier/argument/BlockStateArgument.java b/src/main/java/moe/caramel/daydream/brigadier/argument/BlockStateArgument.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..9cb95ecf3426f8ef082244fe98df0e0283ef5dc2
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/brigadier/argument/BlockStateArgument.java
+@@ -0,0 +1,21 @@
++package moe.caramel.daydream.brigadier.argument;
++
++import com.mojang.brigadier.context.CommandContext;
++import com.mojang.brigadier.exceptions.CommandSyntaxException;
++import io.papermc.paper.command.brigadier.CommandSourceStack;
++import org.bukkit.Location;
++import org.bukkit.World;
++import org.bukkit.block.Block;
++import org.bukkit.block.data.BlockData;
++import org.jspecify.annotations.NullMarked;
++import java.util.function.Predicate;
++
++@NullMarked
++public interface BlockStateArgument extends ArgumentInf {
++
++    BlockData getState(CommandContext<? extends CommandSourceStack> context, String name) throws CommandSyntaxException;
++
++    boolean place(CommandContext<? extends CommandSourceStack> context, String name, World world, Location location, int flags);
++
++    Predicate<Block> getPredicate(CommandContext<? extends CommandSourceStack> context, String name) throws CommandSyntaxException;
++}
+diff --git a/src/main/java/moe/caramel/daydream/brigadier/argument/EntityAnchorArgument.java b/src/main/java/moe/caramel/daydream/brigadier/argument/EntityAnchorArgument.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..df75401485f5afe91abe044e378b907a478c6ee7
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/brigadier/argument/EntityAnchorArgument.java
+@@ -0,0 +1,11 @@
++package moe.caramel.daydream.brigadier.argument;
++
++import org.bukkit.entity.Entity;
++import org.bukkit.util.Vector;
++import org.jspecify.annotations.NullMarked;
++
++@NullMarked
++public interface EntityAnchorArgument {
++
++    Vector apply(Entity entity);
++}
+diff --git a/src/main/java/moe/caramel/daydream/brigadier/argument/EntityArgument.java b/src/main/java/moe/caramel/daydream/brigadier/argument/EntityArgument.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..2a4d26b247adedcf54a73e14c1fadaed89a14f21
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/brigadier/argument/EntityArgument.java
+@@ -0,0 +1,32 @@
++package moe.caramel.daydream.brigadier.argument;
++
++import com.mojang.brigadier.arguments.ArgumentType;
++import com.mojang.brigadier.context.CommandContext;
++import com.mojang.brigadier.exceptions.CommandSyntaxException;
++import io.papermc.paper.command.brigadier.CommandSourceStack;
++import org.bukkit.entity.Entity;
++import org.bukkit.entity.Player;
++import org.jspecify.annotations.NullMarked;
++import java.util.Collection;
++
++@NullMarked
++public interface EntityArgument {
++
++    ArgumentType<?> entity();
++
++    ArgumentType<?> entities();
++
++    ArgumentType<?> player();
++
++    ArgumentType<?> players();
++
++    Entity getEntity(CommandContext<? extends CommandSourceStack> context, String name) throws CommandSyntaxException;
++
++    Collection<? extends Entity> getEntities(CommandContext<? extends CommandSourceStack> context, String name) throws CommandSyntaxException;
++
++    Collection<Player> getOptionalPlayers(CommandContext<? extends CommandSourceStack> context, String name) throws CommandSyntaxException;
++
++    Player getPlayer(CommandContext<? extends CommandSourceStack> context, String name) throws CommandSyntaxException;
++
++    Collection<Player> getPlayers(CommandContext<? extends CommandSourceStack> context, String name) throws CommandSyntaxException;
++}
+diff --git a/src/main/java/moe/caramel/daydream/brigadier/argument/ItemArgument.java b/src/main/java/moe/caramel/daydream/brigadier/argument/ItemArgument.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..ad307861c039024eeb2b87f95c683b68086e0532
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/brigadier/argument/ItemArgument.java
+@@ -0,0 +1,17 @@
++package moe.caramel.daydream.brigadier.argument;
++
++import com.mojang.brigadier.context.CommandContext;
++import com.mojang.brigadier.exceptions.CommandSyntaxException;
++import io.papermc.paper.command.brigadier.CommandSourceStack;
++import org.bukkit.inventory.ItemStack;
++import org.jspecify.annotations.NullMarked;
++
++@NullMarked
++public interface ItemArgument extends ArgumentInf {
++
++    default ItemStack getItem(final CommandContext<? extends CommandSourceStack> context, final String name) throws CommandSyntaxException {
++        return this.createItemStack(context, name, 1, false);
++    }
++
++    ItemStack createItemStack(CommandContext<? extends CommandSourceStack> context, String name, int amount, boolean checkOverstack) throws CommandSyntaxException;
++}
+diff --git a/src/main/java/moe/caramel/daydream/brigadier/argument/MessageArgument.java b/src/main/java/moe/caramel/daydream/brigadier/argument/MessageArgument.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..f97d35132a6689cef64bc64bd84f08997a369e79
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/brigadier/argument/MessageArgument.java
+@@ -0,0 +1,17 @@
++package moe.caramel.daydream.brigadier.argument;
++
++import com.mojang.brigadier.context.CommandContext;
++import com.mojang.brigadier.exceptions.CommandSyntaxException;
++import io.papermc.paper.command.brigadier.CommandSourceStack;
++import moe.caramel.daydream.player.chat.PlayerMessage;
++import net.kyori.adventure.text.Component;
++import org.jspecify.annotations.NullMarked;
++import java.util.function.Consumer;
++
++@NullMarked
++public interface MessageArgument extends SimpleArgument<Component> {
++
++    void resolveMessage(CommandContext<? extends CommandSourceStack> context,
++                        String name,
++                        Consumer<PlayerMessage> callback) throws CommandSyntaxException;
++}
+diff --git a/src/main/java/moe/caramel/daydream/brigadier/argument/ScoreHolderArgument.java b/src/main/java/moe/caramel/daydream/brigadier/argument/ScoreHolderArgument.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..af385dae3f80a939f9b9e31f8fe7432d389b0eaa
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/brigadier/argument/ScoreHolderArgument.java
+@@ -0,0 +1,29 @@
++package moe.caramel.daydream.brigadier.argument;
++
++import com.mojang.brigadier.arguments.ArgumentType;
++import com.mojang.brigadier.context.CommandContext;
++import com.mojang.brigadier.exceptions.CommandSyntaxException;
++import com.mojang.brigadier.suggestion.SuggestionProvider;
++import io.papermc.paper.command.brigadier.CommandSourceStack;
++import moe.caramel.daydream.brigadier.data.ScoreHolder;
++import org.jspecify.annotations.NullMarked;
++import java.util.Collection;
++import java.util.function.Supplier;
++
++@NullMarked
++public interface ScoreHolderArgument {
++
++    ArgumentType<?> getHolder();
++
++    ArgumentType<?> getHolders();
++
++    ScoreHolder getName(CommandContext<? extends CommandSourceStack> context, String name) throws CommandSyntaxException;
++
++    Collection<ScoreHolder> getNames(CommandContext<? extends CommandSourceStack> context, String name) throws CommandSyntaxException;
++
++    Collection<ScoreHolder> getNamesWithDefaultWildcard(CommandContext<? extends CommandSourceStack> context, String name) throws CommandSyntaxException;
++
++    Collection<ScoreHolder> getNamesSupplier(CommandContext<? extends CommandSourceStack> context, String name, Supplier<Collection<String>> players) throws CommandSyntaxException;
++
++    SuggestionProvider<CommandSourceStack> getSuggestion();
++}
+diff --git a/src/main/java/moe/caramel/daydream/brigadier/argument/SimpleArgument.java b/src/main/java/moe/caramel/daydream/brigadier/argument/SimpleArgument.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..781566b633ecad9693b8aa304f85655eeac8c92a
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/brigadier/argument/SimpleArgument.java
+@@ -0,0 +1,12 @@
++package moe.caramel.daydream.brigadier.argument;
++
++import com.mojang.brigadier.context.CommandContext;
++import com.mojang.brigadier.exceptions.CommandSyntaxException;
++import io.papermc.paper.command.brigadier.CommandSourceStack;
++import org.jspecify.annotations.NullMarked;
++
++@NullMarked
++public interface SimpleArgument<T> extends ArgumentInf {
++
++    T getData(CommandContext<? extends CommandSourceStack> context, String name) throws CommandSyntaxException;
++}
+diff --git a/src/main/java/moe/caramel/daydream/brigadier/argument/SimpleArgumentSuggestion.java b/src/main/java/moe/caramel/daydream/brigadier/argument/SimpleArgumentSuggestion.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..2fbf6da23c6442104c78107f7bc2c3e3b2910d3c
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/brigadier/argument/SimpleArgumentSuggestion.java
+@@ -0,0 +1,5 @@
++package moe.caramel.daydream.brigadier.argument;
++
++import moe.caramel.daydream.brigadier.suggestion.SimpleSuggestion;
++
++public interface SimpleArgumentSuggestion<T> extends SimpleArgument<T>, SimpleSuggestion { }
+diff --git a/src/main/java/moe/caramel/daydream/brigadier/argument/TimeArgument.java b/src/main/java/moe/caramel/daydream/brigadier/argument/TimeArgument.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..c8e20c1b5579d0a74ff277a327ee658347046b74
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/brigadier/argument/TimeArgument.java
+@@ -0,0 +1,10 @@
++package moe.caramel.daydream.brigadier.argument;
++
++import com.mojang.brigadier.arguments.ArgumentType;
++import org.jspecify.annotations.NullMarked;
++
++@NullMarked
++public interface TimeArgument extends SimpleArgument<Integer> {
++
++    ArgumentType<?> get(int minimum);
++}
+diff --git a/src/main/java/moe/caramel/daydream/brigadier/argument/VecArgument.java b/src/main/java/moe/caramel/daydream/brigadier/argument/VecArgument.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..4145ab07a00ba9dedd98ee0f5a689d95c15a339e
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/brigadier/argument/VecArgument.java
+@@ -0,0 +1,12 @@
++package moe.caramel.daydream.brigadier.argument;
++
++import com.mojang.brigadier.arguments.ArgumentType;
++import io.papermc.paper.command.brigadier.CommandSourceStack;
++import moe.caramel.daydream.brigadier.data.Position;
++import org.jspecify.annotations.NullMarked;
++
++@NullMarked
++public interface VecArgument extends SimpleArgument<Position<CommandSourceStack>> {
++
++    ArgumentType<?> get(boolean centerIntegers);
++}
+diff --git a/src/main/java/moe/caramel/daydream/brigadier/data/Operation.java b/src/main/java/moe/caramel/daydream/brigadier/data/Operation.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..2b11e6a5c9a841dabd5d91632a0945a1a128515c
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/brigadier/data/Operation.java
+@@ -0,0 +1,9 @@
++package moe.caramel.daydream.brigadier.data;
++
++import com.mojang.brigadier.exceptions.CommandSyntaxException;
++
++@FunctionalInterface
++public interface Operation {
++
++    int apply(int score, int score2) throws CommandSyntaxException;
++}
+diff --git a/src/main/java/moe/caramel/daydream/brigadier/data/Position.java b/src/main/java/moe/caramel/daydream/brigadier/data/Position.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..7fd0e9e480e3b1bfea5439debde9856f7c25023d
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/brigadier/data/Position.java
+@@ -0,0 +1,24 @@
++package moe.caramel.daydream.brigadier.data;
++
++import io.papermc.paper.command.brigadier.CommandSourceStack;
++import org.bukkit.Location;
++import org.bukkit.util.Vector;
++import org.jspecify.annotations.NullMarked;
++
++@NullMarked
++public interface Position<C extends CommandSourceStack> {
++
++    Vector getPositionVector(C source);
++
++    float getXRot(C source);
++
++    float getYRot(C source);
++
++    Location getLocation(C source);
++
++    boolean isXRelative();
++
++    boolean isYRelative();
++
++    boolean isZRelative();
++}
+diff --git a/src/main/java/moe/caramel/daydream/brigadier/data/ScoreHolder.java b/src/main/java/moe/caramel/daydream/brigadier/data/ScoreHolder.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..5ff4a97da6672fffc2ed60ba066699abcca08009
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/brigadier/data/ScoreHolder.java
+@@ -0,0 +1,15 @@
++package moe.caramel.daydream.brigadier.data;
++
++import net.kyori.adventure.text.Component;
++import org.jspecify.annotations.NullMarked;
++import org.jspecify.annotations.Nullable;
++
++@NullMarked
++public interface ScoreHolder {
++
++    String scoreboardName();
++
++    @Nullable Component displayName();
++
++    Component feedbackDisplayName();
++}
+diff --git a/src/main/java/moe/caramel/daydream/brigadier/suggestion/SimpleSuggestion.java b/src/main/java/moe/caramel/daydream/brigadier/suggestion/SimpleSuggestion.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..6cc69a7f1ab34c66413df07528a80edfb00a7984
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/brigadier/suggestion/SimpleSuggestion.java
+@@ -0,0 +1,11 @@
++package moe.caramel.daydream.brigadier.suggestion;
++
++import com.mojang.brigadier.suggestion.SuggestionProvider;
++import io.papermc.paper.command.brigadier.CommandSourceStack;
++import org.jspecify.annotations.NullMarked;
++
++@NullMarked
++public interface SimpleSuggestion {
++
++    SuggestionProvider<CommandSourceStack> getSuggestion();
++}
+diff --git a/src/main/java/moe/caramel/daydream/util/NumberRange.java b/src/main/java/moe/caramel/daydream/util/NumberRange.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..b21df77a52d31e7e0c38b33a6d77808abf2d7341
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/util/NumberRange.java
+@@ -0,0 +1,35 @@
++package moe.caramel.daydream.util;
++
++import org.jspecify.annotations.NullMarked;
++import org.jspecify.annotations.Nullable;
++
++/**
++ * 숫자 범위를 지정합니다.
++ *
++ * @param <T> 숫자 타입 (Integer, Double ...)
++ */
++@NullMarked
++public record NumberRange<T extends Number>(@Nullable T min, @Nullable T max) {
++
++    /**
++     * 최솟값을 가져옵니다.
++     *
++     * @param def 기본값
++     * @return 최솟값
++     */
++    @Nullable
++    public T getMin(final @Nullable T def) {
++        return (min == null) ? def : min;
++    }
++
++    /**
++     * 최댓값을 가져옵니다.
++     *
++     * @param def 기본값
++     * @return 최댓값
++     */
++    @Nullable
++    public T getMax(final @Nullable T def) {
++        return (max == null) ? def : max;
++    }
++}
+diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
+index 633f4eca7b80336c86ae008655eae86cd742279b..48555195ef1a542216bd31161485fe0044bd506e 100644
+--- a/src/main/java/org/bukkit/Bukkit.java
++++ b/src/main/java/org/bukkit/Bukkit.java
+@@ -1105,6 +1105,41 @@ public final class Bukkit {
+     }
+     // Daydream end - Expose Brigadier command dispatcher
+ 
++    // Daydream start - (feature) Add Brigadier Command API
++    /**
++     * Brigadier 명령어를 등록합니다.
++     *
++     * @param plugin 대상 플러그인
++     * @param command 명령어 노드
++     */
++    public static void registerCommand(@NotNull org.bukkit.plugin.Plugin plugin, @NotNull moe.caramel.daydream.brigadier.BrigadierCommand command) {
++        server.registerCommand(plugin, command);
++    }
++
++    /**
++     * Brigadier 명령어를 등록 해제합니다.
++     *
++     * @param plugin 대상 플러그인
++     * @param commands 명령어 레이블 배열
++     * @return 제거에 성공한 명령어 목록
++     */
++    @NotNull
++    public static List<String> unregisterCommands(@NotNull org.bukkit.plugin.Plugin plugin, @NotNull String... commands) {
++        return server.unregisterCommands(plugin, commands);
++    }
++
++    /**
++     * 이 플러그인의 모든 Brigadier 명령어를 등록 해제합니다.
++     *
++     * @param plugin 대상 플러그인
++     * @return 제거에 성공한 명령어 목록
++     */
++    @NotNull
++    public static List<String> unregisterAllCommands(@NotNull org.bukkit.plugin.Plugin plugin) {
++        return server.unregisterAllCommands(plugin);
++    }
++    // Daydream end - (feature) Add Brigadier Command API
++
+     /**
+      * Writes loaded players to disk.
+      */
+diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
+index 79227f913133b74b6b17efb025224b0e5f106e46..41c00bb7e1d33f6fdb019ef9d90185d68107428b 100644
+--- a/src/main/java/org/bukkit/Server.java
++++ b/src/main/java/org/bukkit/Server.java
+@@ -979,6 +979,35 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
+     public <S extends io.papermc.paper.command.brigadier.CommandSourceStack> com.mojang.brigadier.CommandDispatcher<S> getCommandDispatcher();
+     // Daydream end - Expose Brigadier command dispatcher
+ 
++    // Daydream start - (feature) Add Brigadier Command API
++    /**
++     * Brigadier 명령어를 등록합니다.
++     *
++     * @param plugin 대상 플러그인
++     * @param command 명령어 노드
++     */
++    public void registerCommand(@NotNull org.bukkit.plugin.Plugin plugin, @NotNull moe.caramel.daydream.brigadier.BrigadierCommand command);
++
++    /**
++     * Brigadier 명령어를 등록 해제합니다.
++     *
++     * @param plugin 대상 플러그인
++     * @param commands 명령어 레이블 배열
++     * @return 제거에 성공한 명령어 목록
++     */
++    @NotNull
++    public List<String> unregisterCommands(@NotNull org.bukkit.plugin.Plugin plugin, @NotNull String... commands);
++
++    /**
++     * 이 플러그인의 모든 Brigadier 명령어를 등록 해제합니다.
++     *
++     * @param plugin 대상 플러그인
++     * @return 제거에 성공한 명령어 목록
++     */
++    @NotNull
++    public List<String> unregisterAllCommands(@NotNull org.bukkit.plugin.Plugin plugin);
++    // Daydream end - (feature) Add Brigadier Command API
++
+     /**
+      * Writes loaded players to disk.
+      */
+diff --git a/src/main/java/org/bukkit/command/Command.java b/src/main/java/org/bukkit/command/Command.java
+index 83193bfd215d9e0c6ed896480b2d4e35b0e4333d..faf4524f47a074c61962f62b948a0cf486f8cf15 100644
+--- a/src/main/java/org/bukkit/command/Command.java
++++ b/src/main/java/org/bukkit/command/Command.java
+@@ -361,6 +361,22 @@ public abstract class Command {
+         return usageMessage;
+     }
+ 
++    // Daydream start - (feature) Add Brigadier Command API (Command Utility)
++    /**
++     * Sets the list of aliases to request on registration for this command.
++     * This is not effective outside of defining aliases in the {@link
++     * PluginDescriptionFile#getCommands()} (under the
++     * `<code>aliases</code>' node) is equivalent to this method.
++     *
++     * @param aliases aliases to register to this command
++     * @return this command object, for chaining
++     */
++    @NotNull
++    public Command setAliases(@NotNull String... aliases) {
++        return setAliases(List.of(aliases));
++    }
++    // Daydream end - (feature) Add Brigadier Command API (Command Utility)
++
+     /**
+      * Sets the list of aliases to request on registration for this command.
+      * This is not effective outside of defining aliases in the {@link
+diff --git a/src/main/java/org/bukkit/plugin/java/JavaPlugin.java b/src/main/java/org/bukkit/plugin/java/JavaPlugin.java
+index 60a8a2cca72c7e1579db5ad9c31dfcc4c8090d40..ec2f06fa1ca72b62ce26a751299ea27505506faa 100644
+--- a/src/main/java/org/bukkit/plugin/java/JavaPlugin.java
++++ b/src/main/java/org/bukkit/plugin/java/JavaPlugin.java
+@@ -356,6 +356,38 @@ public abstract class JavaPlugin extends PluginBase {
+         }
+     }
+ 
++    // Daydream start - (feature) Add Brigadier Command API
++    /**
++     * Brigadier 명령어를 등록합니다.
++     *
++     * @param command 명령어 노드
++     */
++    public void registerCommand(@NotNull moe.caramel.daydream.brigadier.BrigadierCommand command) {
++        this.getServer().registerCommand(this, command);
++    }
++
++    /**
++     * Brigadier 명령어를 등록 해제합니다.
++     *
++     * @param commands 명령어 레이블 배열
++     * @return 제거에 성공한 명령어 목록
++     */
++    @NotNull
++    public List<String> unregisterCommands(@NotNull String... commands) {
++        return this.getServer().unregisterCommands(this, commands);
++    }
++
++    /**
++     * 이 플러그인의 모든 Brigadier 명령어를 등록 해제합니다.
++     *
++     * @return 제거에 성공한 명령어 목록
++     */
++    @NotNull
++    public List<String> unregisterAllCommands() {
++        return this.getServer().unregisterAllCommands(this);
++    }
++    // Daydream end - (feature) Add Brigadier Command API
++
+     @Override
+     public void onLoad() {}
+ 

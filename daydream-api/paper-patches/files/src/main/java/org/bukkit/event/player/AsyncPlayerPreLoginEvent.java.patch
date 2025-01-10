@@ -1,0 +1,32 @@
+--- a/src/main/java/org/bukkit/event/player/AsyncPlayerPreLoginEvent.java
++++ b/src/main/java/org/bukkit/event/player/AsyncPlayerPreLoginEvent.java
+@@ -288,6 +_,29 @@
+     }
+     // Paper end
+ 
++    // Daydream start - Add API for initial locale
++    private @org.jetbrains.annotations.Nullable java.util.Locale initialLocale;
++
++    /**
++     * 플레이어의 초기 로케일을 가져옵니다.
++     *
++     * @return 플레이어의 초기 로케일
++     */
++    @org.jetbrains.annotations.Nullable
++    public java.util.Locale initialLocale() {
++        return initialLocale;
++    }
++
++    /**
++     * 플레이어의 초기 로케일을 설정합니다.
++     *
++     * @param initialLocale 플레이어의 초기 로케일
++     */
++    public void initialLocale(final @org.jetbrains.annotations.Nullable java.util.Locale initialLocale) {
++        this.initialLocale = initialLocale;
++    }
++    // Daydream end - Add API for initial locale
++
+     /**
+      * Gets if this connection has been transferred from another server.
+      *

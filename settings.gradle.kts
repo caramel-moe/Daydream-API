@@ -1,4 +1,3 @@
-import java.util.Locale
 
 pluginManagement {
     repositories {
@@ -8,7 +7,7 @@ pluginManagement {
 }
 
 plugins {
-    id("org.gradle.toolchains.foojay-resolver-convention") version "0.7.0"
+    id("org.gradle.toolchains.foojay-resolver-convention") version "0.9.0"
 }
 
 if (!file(".git").exists()) {
@@ -30,9 +29,4 @@ if (!file(".git").exists()) {
 
 rootProject.name = "daydream"
 
-for (name in listOf("Daydream-API", "Daydream-Dummy")) {
-    val projName = name.toLowerCase(Locale.ENGLISH)
-    include(projName)
-    file(name).mkdirs()
-    findProject(":$projName")!!.projectDir = file(name)
-}
+include("daydream-api")

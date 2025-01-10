@@ -9,7 +9,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout Git Repository
+        uses: actions/checkout@v4
 
       - name: Set up JDK
         uses: actions/setup-java@v4
@@ -21,24 +22,24 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
 
-      - name: Setup git config
+      - name: Configure Git User Details
         run: |
-          git config --global user.email "no-reply@github.com"
-          git config --global user.name "Github Action"
+          git config --global user.email "actions@github.com"
+          git config --global user.name "Github Actions"
 
       - name : Build and Publish API with Gradle
         run: |
           echo "::group::Apply Patches"
-          ./gradlew applyGeneratedApiPatches applyApiPatches
+          ./gradlew applyPaperSingleFilePatches applyPaperApiGeneratorPatches applyPaperApiPatches --stacktrace
           echo "::endgroup::"
           echo "::group::Build API"
-          ./gradlew Daydream-API:build
+          ./gradlew build
           echo "::endgroup::"
           echo "::group::Generate Javadoc"
-          ./gradlew Daydream-API:javadoc
+          ./gradlew javadoc
           echo "::endgroup::"
           echo "::group::Publish API to Maven Repository"
-          ./gradlew Daydream-API:publishAllPublicationsToMavenRepository
+          ./gradlew publishAllPublicationsToMavenRepository
           echo "::endgroup::"
         env:
           DEPLOY_ID: ${{ secrets.DEPLOY_ID }}
@@ -48,4 +49,4 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
-          folder: Daydream-API/build/docs/javadoc
+          folder: daydream-api/build/docs/javadoc

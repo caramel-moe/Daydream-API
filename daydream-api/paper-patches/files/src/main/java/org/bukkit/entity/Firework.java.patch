@@ -1,0 +1,23 @@
+--- a/src/main/java/org/bukkit/entity/Firework.java
++++ b/src/main/java/org/bukkit/entity/Firework.java
+@@ -185,4 +_,20 @@
+      */
+     void setTicksToDetonate(int ticks);
+     // Paper end
++
++    // Daydream start - Add method to disable explosion deal from fireworks
++    /**
++     * 폭발 제거 여부를 가져옵니다.
++     *
++     * @return 폭발 제거 여부
++     */
++    boolean isDisableExplosionDeal();
++
++    /**
++     * 폭발 제거 여부를 설정합니다.
++     *
++     * @param disable 폭발 제거 여부
++     */
++    void setDisableExplosionDeal(boolean disable);
++    // Daydream end - Add method to disable explosion deal from fireworks
+ }

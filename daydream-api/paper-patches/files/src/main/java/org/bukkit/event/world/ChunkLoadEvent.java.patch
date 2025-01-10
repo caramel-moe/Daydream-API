@@ -1,0 +1,29 @@
+--- a/src/main/java/org/bukkit/event/world/ChunkLoadEvent.java
++++ b/src/main/java/org/bukkit/event/world/ChunkLoadEvent.java
+@@ -13,8 +_,26 @@
+     private final boolean newChunk;
+ 
+     public ChunkLoadEvent(@NotNull final Chunk chunk, final boolean newChunk) {
++        // Daydream start - Expose raw chunk
++        this(chunk, newChunk, null);
++    }
++    private final Object rawLevelChunk;
++
++    /**
++     * NMS 청크를 가져옵니다.
++     *
++     * @return NMS 청크
++     */
++    @NotNull
++    public Object getRawLevelChunk() {
++        return rawLevelChunk;
++    }
++
++    public ChunkLoadEvent(@NotNull final Chunk chunk, final boolean newChunk, @NotNull final Object rawLevelChunk) {
++        // Daydream end - Expose raw chunk
+         super(chunk);
+         this.newChunk = newChunk;
++        this.rawLevelChunk = rawLevelChunk; // Daydream - Expose raw chunk
+     }
+ 
+     /**

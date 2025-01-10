@@ -1,0 +1,19 @@
+--- a/src/main/java/org/bukkit/command/CommandSender.java
++++ b/src/main/java/org/bukkit/command/CommandSender.java
+@@ -63,6 +_,16 @@
+     @NotNull
+     public Server getServer();
+ 
++    // Daydream start - Expose Brigadier command source
++    /**
++     * Brigadier 명령어 실행 주체를 생성합니다.
++     *
++     * @return 명령어 실행 주체
++     */
++    @NotNull
++    public <S extends io.papermc.paper.command.brigadier.CommandSourceStack> S getCommandSource();
++    // Daydream end - Expose Brigadier command source
++
+     /**
+      * Gets the name of this command sender
+      *

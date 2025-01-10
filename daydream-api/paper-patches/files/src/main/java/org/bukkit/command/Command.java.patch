@@ -1,0 +1,14 @@
+--- a/src/main/java/org/bukkit/command/Command.java
++++ b/src/main/java/org/bukkit/command/Command.java
+@@ -305,6 +_,11 @@
+      * @return true if this command is currently registered false otherwise
+      */
+     public boolean isRegistered() {
++        // Daydream start - Add Daydream brigadier command base
++        return isRegistered0();
++    }
++    protected final boolean isRegistered0() {
++        // Daydream end - Add Daydream brigadier command base
+         return (null != this.commandMap);
+     }
+ 

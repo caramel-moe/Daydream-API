@@ -1,0 +1,12 @@
+--- a/src/main/java/co/aikar/timings/TimingsManager.java
++++ b/src/main/java/co/aikar/timings/TimingsManager.java
+@@ -155,7 +_,8 @@
+         final Server server = Bukkit.getServer();
+         if (!(  server == null || pluginName == null ||
+                 "minecraft".equals(pluginName) || "bukkit".equals(pluginName) ||
+-                "spigot".equalsIgnoreCase(pluginName) || "paper".equals(pluginName)
++                "spigot".equalsIgnoreCase(pluginName) || "paper".equals(pluginName) ||
++                "daydream".equals(pluginName) // Daydream - Rebrand to Daydream
+         )) {
+             plugin = server.getPluginManager().getPlugin(pluginName);
+         }

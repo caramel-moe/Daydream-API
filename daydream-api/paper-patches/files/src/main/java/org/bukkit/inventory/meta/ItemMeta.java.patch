@@ -1,0 +1,192 @@
+--- a/src/main/java/org/bukkit/inventory/meta/ItemMeta.java
++++ b/src/main/java/org/bukkit/inventory/meta/ItemMeta.java
+@@ -250,6 +_,170 @@
+      */
+     boolean hasLore();
+ 
++    // Daydream start - Add more item lore methods
++    /**
++     * 현재 로어의 크기를 가져옵니다.
++     *
++     * @return 로어의 크기
++     */
++    int loreSize();
++
++    /**
++     * 로어 목록을 가져옵니다.
++     *
++     * @return 로어 리스트
++     */
++    @NotNull List<net.kyori.adventure.text.Component> loreNonNull();
++
++    /**
++     * 로어를 설정합니다.
++     *
++     * @param style 모든 로어에 적용할 스타일
++     * @param lore 설정할 로어 리스트
++     */
++    void lore(@NotNull net.kyori.adventure.text.format.Style style, @Nullable List<? extends net.kyori.adventure.text.Component> lore);
++
++    /**
++     * 로어의 이탤릭체를 비활성화하고 설정합니다.
++     *
++     * @param lore 설정할 로어 리스트
++     */
++    void loreNoItalic(@Nullable List<? extends net.kyori.adventure.text.Component> lore);
++
++    /**
++     * 로어의 이탤릭체를 비활성화하고 설정합니다.
++     *
++     * @param color 모든 줄에 적용할 문자 색
++     * @param lore 설정할 로어 리스트
++     */
++    void loreNoItalic(@Nullable net.kyori.adventure.text.format.TextColor color, @Nullable List<? extends net.kyori.adventure.text.Component> lore);
++
++    /**
++     * 로어를 설정하며 클라이언트의 로어 수정을 비활성화합니다.
++     *
++     * @param lore 설정할 로어 리스트
++     */
++    void loreDefault(@Nullable List<? extends net.kyori.adventure.text.Component> lore);
++
++    /**
++     * 로어를 설정합니다.
++     *
++     * @param lore 설정할 로어 리스트
++     */
++    void withLore(@Nullable net.kyori.adventure.text.ComponentLike... lore);
++
++    /**
++     * 로어를 설정합니다.
++     *
++     * @param style 모든 줄에 적용할 스타일
++     * @param lore 설정할 로어 리스트
++     */
++    void withLore(@NotNull net.kyori.adventure.text.format.Style style, @Nullable net.kyori.adventure.text.ComponentLike... lore);
++
++    /**
++     * 로어의 이탤릭체를 비활성화하고 설정합니다.
++     *
++     * @param lore 설정할 로어 리스트
++     */
++    void withLoreNoItalic(@Nullable net.kyori.adventure.text.ComponentLike... lore);
++
++    /**
++     * 로어의 이탤릭체를 비활성화하고 설정합니다.
++     *
++     * @param color 모든 줄에 적용할 문자 색
++     * @param lore 설정할 로어 리스트
++     */
++    void withLoreNoItalic(@Nullable net.kyori.adventure.text.format.TextColor color, @Nullable net.kyori.adventure.text.ComponentLike... lore);
++
++    /**
++     * 스타일 포맷을 제외하고 로어를 설정합니다.
++     *
++     * @param lore 설정할 로어 리스트
++     */
++    void withLoreDefault(@Nullable net.kyori.adventure.text.ComponentLike... lore);
++
++    /**
++     * 로어를 추가합니다.
++     *
++     * @param lore 추가할 로어 리스트
++     */
++    void appendLore(@NotNull List<? extends net.kyori.adventure.text.ComponentLike> lore);
++
++    /**
++     * 로어를 추가합니다.
++     *
++     * @param style 모든 줄에 적용할 스타일
++     * @param lore 추가할 로어 리스트
++     */
++    void appendLore(@NotNull net.kyori.adventure.text.format.Style style, @NotNull List<? extends net.kyori.adventure.text.ComponentLike> lore);
++
++    /**
++     * 로어의 이탤릭체를 비활성화하고 추가합니다.
++     *
++     * @param lore 추가할 로어 리스트
++     */
++    void appendLoreNoItalic(@NotNull List<? extends net.kyori.adventure.text.ComponentLike> lore);
++
++    /**
++     * 로어의 이탤릭체를 비활성화하고 추가합니다.
++     *
++     * @param color 모든 줄에 적용할 문자 색
++     * @param lore 추가할 로어 리스트
++     */
++    void appendLoreNoItalic(@Nullable net.kyori.adventure.text.format.TextColor color, @NotNull List<? extends net.kyori.adventure.text.ComponentLike> lore);
++
++    /**
++     * 로어를 추가하며 클라이언트의 로어 수정을 비활성화합니다.
++     *
++     * @param lore 추가할 로어 리스트
++     */
++    void appendLoreDefault(@NotNull List<? extends net.kyori.adventure.text.ComponentLike> lore);
++
++    /**
++     * 로어를 추가합니다.
++     *
++     * @param lore 추가할 로어
++     */
++    void appendLore(@NotNull net.kyori.adventure.text.ComponentLike... lore);
++
++    /**
++     * 로어를 추가합니다.
++     *
++     * @param style 모든 줄에 적용할 스타일
++     * @param lore 추가할 로어
++     */
++    void appendLore(@NotNull net.kyori.adventure.text.format.Style style, @NotNull net.kyori.adventure.text.ComponentLike... lore);
++
++    /**
++     * 로어의 이탤릭체를 비활성화하고 추가합니다.
++     *
++     * @param lore 추가할 로어
++     */
++    void appendLoreNoItalic(@NotNull net.kyori.adventure.text.ComponentLike... lore);
++
++    /**
++     * 로어의 이탤릭체를 비활성화하고 추가합니다.
++     *
++     * @param color 모든 줄에 적용할 문자 색
++     * @param lore 추가할 로어
++     */
++    void appendLoreNoItalic(@Nullable net.kyori.adventure.text.format.TextColor color, @NotNull net.kyori.adventure.text.ComponentLike... lore);
++
++    /**
++     * 로어를 추가하며 클라이언트의 로어 수정을 비활성화합니다.
++     *
++     * @param lore 추가할 로어
++     */
++    void appendLoreDefault(@NotNull net.kyori.adventure.text.ComponentLike... lore);
++
++    /**
++     * 특정 위치의 로어를 제거합니다.
++     *
++     * @param index 로어 인덱스
++     */
++    void removeLore(int index);
++    // Daydream end - Add more item lore methods
++
+     // Paper start
+     /**
+      * Gets the lore.
+@@ -336,6 +_,18 @@
+      * @return the custom model data that is set
+      */
+     int getCustomModelData();
++
++    // Daydream start - Add method to get raw CustomModelData
++    /**
++     * Gets the custom model data that is set.
++     * <p>
++     * CustomModelData is an integer that may be associated client side with a
++     * custom item model.
++     *
++     * @return the custom model data that is set
++     */
++    @Nullable Integer customModelData();
++    // Daydream end - Add method to get raw CustomModelData
+ 
+     /**
+      * Gets the custom model data set on this item, or creates an empty custom

@@ -1,0 +1,30 @@
+--- a/src/main/java/org/bukkit/event/server/ServerListPingEvent.java
++++ b/src/main/java/org/bukkit/event/server/ServerListPingEvent.java
+@@ -256,4 +_,27 @@
+     public Iterator<Player> iterator() throws UnsupportedOperationException {
+         throw new UnsupportedOperationException();
+     }
++
++    // Daydream start - Add extra data to server ping
++    @org.jetbrains.annotations.Nullable private com.google.gson.JsonObject extra;
++
++    /**
++     * 추가 데이터를 가져옵니다.
++     *
++     * @return 추가 데이터
++     */
++    @org.jetbrains.annotations.Nullable
++    public com.google.gson.JsonObject getExtra() {
++        return extra;
++    }
++
++    /**
++     * 추가 데이터를 설정합니다.
++     *
++     * @param extra 추가 데이터
++     */
++    public void setExtra(final @org.jetbrains.annotations.Nullable com.google.gson.JsonObject extra) {
++        this.extra = extra;
++    }
++    // Daydream end - Add extra data to server ping
+ }

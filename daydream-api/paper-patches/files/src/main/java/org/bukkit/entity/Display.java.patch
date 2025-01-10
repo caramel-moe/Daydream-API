@@ -1,0 +1,12 @@
+--- a/src/main/java/org/bukkit/entity/Display.java
++++ b/src/main/java/org/bukkit/entity/Display.java
+@@ -63,8 +_,7 @@
+     /**
+      * Sets the teleport duration of this display.
+      *
+-     * @param duration new duration
+-     * @throws IllegalArgumentException if duration is not between 0 and 59
++     * @param duration new duration (60 이상의 값을 설정하는 경우 {@link Entity#disableSubsequentEntityUpdate()}를 사용하세요.)
+      * @see #getTeleportDuration()
+      */
+     public void setTeleportDuration(int duration);

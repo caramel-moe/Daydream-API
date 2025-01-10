@@ -1,0 +1,520 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: LemonCaramel <admin@caramel.moe>
+Date: Fri, 19 May 2023 20:56:45 +0900
+Subject: [PATCH] Add more Explosion API
+
+
+diff --git a/src/main/java/moe/caramel/daydream/world/DamageContext.java b/src/main/java/moe/caramel/daydream/world/DamageContext.java
+index d9bd2aa043606126514ec3e54f968d8e7f574943..ac6696df7b3db05231d62d1002a164791f836a63 100644
+--- a/src/main/java/moe/caramel/daydream/world/DamageContext.java
++++ b/src/main/java/moe/caramel/daydream/world/DamageContext.java
+@@ -68,4 +68,15 @@ public interface DamageContext {
+      */
+     void setKnockbackDisabled(boolean disabled);
+     //</editor-fold>
++
++    // Daydream start - (feature) Add more Explosion API
++    //<editor-fold desc="Explosion" defaultstate="collapsed">
++    /**
++     * 폭발 래퍼를 가져옵니다.
++     *
++     * @return 폭발 래퍼
++     */
++    @org.jspecify.annotations.Nullable Explosion getExplosion();
++    //</editor-fold>
++    // Daydream end - (feature) Add more Explosion API
+ }
+diff --git a/src/main/java/moe/caramel/daydream/world/Explosion.java b/src/main/java/moe/caramel/daydream/world/Explosion.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..198f518cca0473cb77a7f8756cbd58acaa39c31e
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/world/Explosion.java
+@@ -0,0 +1,128 @@
++package moe.caramel.daydream.world;
++
++import org.bukkit.World;
++import org.bukkit.damage.DamageSource;
++import org.bukkit.entity.HumanEntity;
++import org.bukkit.util.Vector;
++import org.jspecify.annotations.NullMarked;
++import java.util.Map;
++
++/**
++ * 폭발 래퍼
++ */
++@NullMarked
++public interface Explosion {
++
++    /**
++     * 폭발이 발생한 월드를 가져옵니다.
++     *
++     * @return 폭발이 발생한 월드
++     */
++    World getWorld();
++
++    /**
++     * {@link DamageSource}를 가져옵니다.
++     *
++     * @return {@link DamageSource}
++     */
++    DamageSource getDamageSource();
++
++    /**
++     * 폭발의 메타데이터를 가져옵니다.
++     * ({@link DamageContext#getMetadata()}와 동일)
++     *
++     * @return 메타데이터
++     */
++    Map<String, Object> getMetadata();
++
++    /**
++     * 이 폭발의 넉백 제거 활성화 여부를 설정합니다.
++     * ({@link DamageContext#setKnockbackDisabled(boolean)}와 동일)
++     *
++     * @param mark 넉백 제거가 활성화 여부
++     */
++    void markNoKnockback(boolean mark);
++
++    /**
++     * 이 폭발에 넉백 제거가 활성화 되어있는지 가져옵니다.
++     * ({@link DamageContext#isKnockbackDisabled()}와 동일)
++     *
++     * @return 넉백 제거 여부, {@link org.bukkit.damage.DamageType}에
++     * {@link org.bukkit.Tag#DAMAGE_TYPE_CARAMEL$EXPLOSION_NO_KNOCKBACK}가
++     * 있는 경우에도 {@code true}를 반환합니다.
++     */
++    boolean markedNoKnockback();
++
++    /**
++     * 폭발 시 방화 여부를 가져옵니다.
++     *
++     * @return 방화 여부
++     */
++    boolean isFire();
++
++    /**
++     * 폭발 발생 X 좌표를 가져옵니다.
++     *
++     * @return X 좌표
++     */
++    double getX();
++
++    /**
++     * 폭발 발생 Y 좌표를 가져옵니다.
++     *
++     * @return Y 좌표
++     */
++    double getY();
++
++    /**
++     * 폭발 발생 Z 좌표를 가져옵니다.
++     *
++     * @return Z 좌표
++     */
++    double getZ();
++
++    /**
++     * 폭발 범위를 가져옵니다.
++     *
++     * @return 폭발 범위
++     */
++    float getRadius();
++
++    /**
++     * 이 폭발에 블록이 영향받는지를 가져옵니다.
++     *
++     * @return 블록이 영향받는지 여부
++     */
++    boolean interactsWithBlocks();
++
++    /**
++     * 이 폭발에 영향을 받는 플레이어 목록을 가져옵니다.
++     *
++     * @return 플레이어 목록 및 벡터
++     */
++    Map<HumanEntity, Vector> getHitPlayers();
++
++    /**
++     * 이 폭발에 영향을 받는 플레이어 목록을 설정합니다.
++     *
++     * @param map 플레이어 목록 및 벡터
++     */
++    void setHitPlayers(Map<HumanEntity, Vector> map);
++
++    /**
++     * 이 폭발에 영향을 받는 플레이어 목록을 비웁니다.
++     */
++    void clearHitPlayers();
++
++    /**
++     * 폭발을 시작합니다.
++     */
++    void explode();
++
++    /**
++     * 폭발이 이벤트에 의해 취소되었는지 여부를 가져옵니다.
++     *
++     * @return 폭발 취소의 여부
++     */
++    boolean wasCancelled();
++}
+diff --git a/src/main/java/org/bukkit/Tag.java b/src/main/java/org/bukkit/Tag.java
+index de260586b1d92d943039b03777ff3667b7883a50..dbaf0d58ed60c308fd5822e559c224febdce2869 100644
+--- a/src/main/java/org/bukkit/Tag.java
++++ b/src/main/java/org/bukkit/Tag.java
+@@ -1490,6 +1490,11 @@ public interface Tag<T extends Keyed> extends Keyed {
+     Tag<org.bukkit.damage.DamageType> DAMAGE_TYPE_PANIC_ENVIRONMENTAL_CAUSES = Bukkit.getTag(REGISTRY_DAMAGE_TYPE, NamespacedKey.minecraft("panic_environmental_causes"), org.bukkit.damage.DamageType.class);
+     Tag<org.bukkit.damage.DamageType> DAMAGE_TYPE_IS_MACE_SMASH = Bukkit.getTag(REGISTRY_DAMAGE_TYPE, NamespacedKey.minecraft("mace_smash"), org.bukkit.damage.DamageType.class);
+     // Daydream end - (feature) Add more Damage API
++    // Daydream start - (feature) Add more Explosion API
++    Tag<org.bukkit.damage.DamageType> DAMAGE_TYPE_CARAMEL$EXPLOSION_NO_KNOCKBACK = Bukkit.getTag(REGISTRY_DAMAGE_TYPE, new NamespacedKey("caramel", "explosion_no_knockback"), org.bukkit.damage.DamageType.class);
++    Tag<org.bukkit.damage.DamageType> DAMAGE_TYPE_CARAMEL$EXPLOSION_NO_BLOCK_BREAK = Bukkit.getTag(REGISTRY_DAMAGE_TYPE, new NamespacedKey("caramel", "explosion_no_block_break"), org.bukkit.damage.DamageType.class);
++    Tag<org.bukkit.damage.DamageType> DAMAGE_TYPE_CARAMEL$EXPLOSION_NO_HURT_ENTTIY = Bukkit.getTag(REGISTRY_DAMAGE_TYPE, new NamespacedKey("caramel", "explosion_no_hurt_entity"), org.bukkit.damage.DamageType.class);
++    // Daydream end - (feature) Add more Explosion API
+ 
+     /**
+      * Returns whether or not this tag has an entry for the specified item.
+diff --git a/src/main/java/org/bukkit/World.java b/src/main/java/org/bukkit/World.java
+index 87acad5995f5fe9ef251b6273ea94616c9c9c59d..aa3fad33cd9c1a345373bd9e68cf6c1606226264 100644
+--- a/src/main/java/org/bukkit/World.java
++++ b/src/main/java/org/bukkit/World.java
+@@ -2145,6 +2145,246 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
+      */
+     public int getClearWeatherDuration();
+ 
++    // Daydream start - (feature) Add more Explosion API
++    /**
++     * Creates explosion at given coordinates with given power and optionally
++     * setting blocks on fire or breaking blocks.
++     *
++     * @param loc Location to blow up
++     * @param power The power of explosion, where 4F is TNT
++     * @param setFire Whether or not to set blocks on fire
++     * @param breakBlocks Whether or not to have blocks be destroyed
++     * @param source the source entity, used for tracking damage
++     * @return returns the Explosion wrapper. Explosion is not enabled,
++     * explode and finalize should be called.
++     */
++    @NotNull
++    default moe.caramel.daydream.world.Explosion explosion(@NotNull Location loc, float power, boolean setFire, boolean breakBlocks, @Nullable Entity source) {
++        return explosion(loc.getX(), loc.getY(), loc.getZ(), power, setFire, breakBlocks, source);
++    }
++
++    /**
++     * Creates explosion at given coordinates with given power and optionally
++     * setting blocks on fire or breaking blocks.
++     *
++     * @param x X coordinate
++     * @param y Y coordinate
++     * @param z Z coordinate
++     * @param power The power of explosion, where 4F is TNT
++     * @param setFire Whether or not to set blocks on fire
++     * @param breakBlocks Whether or not to have blocks be destroyed
++     * @param source the source entity, used for tracking damage
++     * @return returns the Explosion wrapper. Explosion is not enabled,
++     * explode and finalize should be called.
++     */
++    @NotNull
++    default moe.caramel.daydream.world.Explosion explosion(double x, double y, double z, float power, boolean setFire, boolean breakBlocks, @Nullable Entity source) {
++        return explosion(
++            x, y, z, power, setFire, (breakBlocks ? ExplosionAction.MOB : ExplosionAction.NONE),
++            Particle.EXPLOSION, null, Particle.EXPLOSION_EMITTER, null,
++            Sound.ENTITY_GENERIC_EXPLODE, source
++        );
++    }
++
++    /**
++     * Creates explosion at given coordinates with given power and optionally
++     * setting blocks on fire or breaking blocks.
++     *
++     * @param loc Location to blow up
++     * @param power The power of explosion, where 4F is TNT
++     * @param setFire Whether or not to set blocks on fire
++     * @param explosionAction Explosion action
++     * @param largeParticle Large particle
++     * @param largeData Large particle data
++     * @param smallParticle Small particle
++     * @param smallData Small particle data
++     * @param sound Explosion sound
++     * @param source the source entity, used for tracking damage
++     * @return returns the Explosion wrapper. Explosion is not enabled,
++     * explode and finalize should be called.
++     */
++    @NotNull
++    default  <T> moe.caramel.daydream.world.Explosion explosion(
++        @NotNull Location loc, float power, boolean setFire, @NotNull ExplosionAction explosionAction,
++        @NotNull Particle largeParticle, @Nullable T largeData,
++        @NotNull Particle smallParticle, @Nullable T smallData,
++        @NotNull String sound, @Nullable Entity source
++    ) {
++        return explosion(loc.getX(), loc.getY(), loc.getZ(), power, setFire, explosionAction, largeParticle, largeData, smallParticle, smallData, sound, source);
++    }
++
++    /**
++     * Creates explosion at given coordinates with given power and optionally
++     * setting blocks on fire or breaking blocks.
++     *
++     * @param loc Location to blow up
++     * @param power The power of explosion, where 4F is TNT
++     * @param setFire Whether or not to set blocks on fire
++     * @param explosionAction Explosion action
++     * @param largeParticle Large particle
++     * @param largeData Large particle data
++     * @param smallParticle Small particle
++     * @param smallData Small particle data
++     * @param sound Explosion sound
++     * @param source the source entity, used for tracking damage
++     * @return returns the Explosion wrapper. Explosion is not enabled,
++     * explode and finalize should be called.
++     */
++    @NotNull
++    default  <T> moe.caramel.daydream.world.Explosion explosion(
++        @NotNull Location loc, float power, boolean setFire, @NotNull ExplosionAction explosionAction,
++        @NotNull Particle largeParticle, @Nullable T largeData,
++        @NotNull Particle smallParticle, @Nullable T smallData,
++        @NotNull Sound sound, @Nullable Entity source
++    ) {
++        return explosion(loc.getX(), loc.getY(), loc.getZ(), power, setFire, explosionAction, largeParticle, largeData, smallParticle, smallData, sound, source);
++    }
++
++    /**
++     * Creates explosion at given coordinates with given power and optionally
++     * setting blocks on fire or breaking blocks.
++     *
++     * @param x X coordinate
++     * @param y Y coordinate
++     * @param z Z coordinate
++     * @param power The power of explosion, where 4F is TNT
++     * @param setFire Whether or not to set blocks on fire
++     * @param explosionAction Explosion action
++     * @param largeParticle Large particle
++     * @param largeData Large particle data
++     * @param smallParticle Small particle
++     * @param smallData Small particle data
++     * @param sound Explosion sound
++     * @param source the source entity, used for tracking damage
++     * @return returns the Explosion wrapper. Explosion is not enabled,
++     * explode and finalize should be called.
++     */
++    @NotNull
++    default <T> moe.caramel.daydream.world.Explosion explosion(
++        double x, double y, double z, float power, boolean setFire, @NotNull ExplosionAction explosionAction,
++        @NotNull Particle largeParticle, @Nullable T largeData,
++        @NotNull Particle smallParticle, @Nullable T smallData,
++        @NotNull String sound, @Nullable Entity source
++    ) {
++        return explosion(x, y, z, power, setFire, explosionAction, largeParticle, largeData, smallParticle, smallData, sound, null, source);
++    }
++
++    /**
++     * Creates explosion at given coordinates with given power and optionally
++     * setting blocks on fire or breaking blocks.
++     *
++     * @param x X coordinate
++     * @param y Y coordinate
++     * @param z Z coordinate
++     * @param power The power of explosion, where 4F is TNT
++     * @param setFire Whether or not to set blocks on fire
++     * @param explosionAction Explosion action
++     * @param largeParticle Large particle
++     * @param largeData Large particle data
++     * @param smallParticle Small particle
++     * @param smallData Small particle data
++     * @param sound Explosion sound
++     * @param source the source entity, used for tracking damage
++     * @return returns the Explosion wrapper. Explosion is not enabled,
++     * explode and finalize should be called.
++     */
++    @NotNull
++    default <T> moe.caramel.daydream.world.Explosion explosion(
++        double x, double y, double z, float power, boolean setFire, @NotNull ExplosionAction explosionAction,
++        @NotNull Particle largeParticle, @Nullable T largeData,
++        @NotNull Particle smallParticle, @Nullable T smallData,
++        @NotNull Sound sound, @Nullable Entity source
++    ) {
++        return explosion(x, y, z, power, setFire, explosionAction, largeParticle, largeData, smallParticle, smallData, sound, null, source);
++    };
++
++    /**
++     * Creates explosion at given coordinates with given power and optionally
++     * setting blocks on fire or breaking blocks.
++     *
++     * @param x X coordinate
++     * @param y Y coordinate
++     * @param z Z coordinate
++     * @param power The power of explosion, where 4F is TNT
++     * @param setFire Whether or not to set blocks on fire
++     * @param explosionAction Explosion action
++     * @param largeParticle Large particle
++     * @param largeData Large particle data
++     * @param smallParticle Small particle
++     * @param smallData Small particle data
++     * @param sound Explosion sound
++     * @param damageSource damageSource the damage source
++     * @param source the source entity, used for tracking damage
++     * @return returns the Explosion wrapper. Explosion is not enabled,
++     * explode and finalize should be called.
++     */
++    @NotNull
++    public <T> moe.caramel.daydream.world.Explosion explosion(
++        double x, double y, double z, float power, boolean setFire, @NotNull ExplosionAction explosionAction,
++        @NotNull Particle largeParticle, @Nullable T largeData,
++        @NotNull Particle smallParticle, @Nullable T smallData,
++        @NotNull String sound, @Nullable org.bukkit.damage.DamageSource damageSource, @Nullable Entity source
++    );
++
++    /**
++     * Creates explosion at given coordinates with given power and optionally
++     * setting blocks on fire or breaking blocks.
++     *
++     * @param x X coordinate
++     * @param y Y coordinate
++     * @param z Z coordinate
++     * @param power The power of explosion, where 4F is TNT
++     * @param setFire Whether or not to set blocks on fire
++     * @param explosionAction Explosion action
++     * @param largeParticle Large particle
++     * @param largeData Large particle data
++     * @param smallParticle Small particle
++     * @param smallData Small particle data
++     * @param sound Explosion sound
++     * @param damageSource damageSource the damage source
++     * @param source the source entity, used for tracking damage
++     * @return returns the Explosion wrapper. Explosion is not enabled,
++     * explode and finalize should be called.
++     */
++    @NotNull
++    public <T> moe.caramel.daydream.world.Explosion explosion(
++        double x, double y, double z, float power, boolean setFire, @NotNull ExplosionAction explosionAction,
++        @NotNull Particle largeParticle, @Nullable T largeData,
++        @NotNull Particle smallParticle, @Nullable T smallData,
++        @NotNull Sound sound, @Nullable org.bukkit.damage.DamageSource damageSource, @Nullable Entity source
++    );
++
++    /**
++     * 폭발 상호작용 목록
++     */
++    public enum ExplosionAction {
++        /**
++         * 아무 작업도 수행하지 않음
++         */
++        NONE,
++        /**
++         * 블록을 파괴함
++         */
++        BLOCK,
++        /**
++         * 몹이 파괴한 것으로 취급
++         */
++        MOB,
++        /**
++         * TNT 폭발로 취급
++         */
++        TNT,
++        /**
++         * 현재 {@link org.bukkit.entity.WindCharge}에서 취급
++         */
++        BLOW,
++        /**
++         * Spigot의 커스텀 동작
++         */
++        STANDARD
++    }
++    // Daydream end - (feature) Add more Explosion API
++
+     /**
+      * Creates explosion at given coordinates with given power
+      *
+diff --git a/src/main/java/org/bukkit/event/block/BlockExplodeEvent.java b/src/main/java/org/bukkit/event/block/BlockExplodeEvent.java
+index 254d549f956053af4264ca3a52d34a97ede4273d..eb5eddac4aa7b3a371dd2fb718cbe8c935796025 100644
+--- a/src/main/java/org/bukkit/event/block/BlockExplodeEvent.java
++++ b/src/main/java/org/bukkit/event/block/BlockExplodeEvent.java
+@@ -27,12 +27,30 @@ public class BlockExplodeEvent extends BlockEvent implements Cancellable {
+     private final ExplosionResult result;
+ 
+     public BlockExplodeEvent(@NotNull final Block what, @NotNull final BlockState blockState, @NotNull final List<Block> blocks, final float yield, @NotNull final ExplosionResult result) {
++        // Daydream start - (feature) Add more Explosion API
++        this(what, blockState, blocks, yield, result, null);
++    }
++    private final moe.caramel.daydream.world.Explosion explosion;
++
++    /**
++     * 폭발 래퍼를 가져옵니다.
++     *
++     * @return 폭발 래퍼
++     */
++    @NotNull
++    public moe.caramel.daydream.world.Explosion getExplosion() {
++        return explosion;
++    }
++
++    public BlockExplodeEvent(@NotNull final Block what, @NotNull final BlockState blockState, @NotNull final List<Block> blocks, final float yield, @NotNull final ExplosionResult result, @NotNull moe.caramel.daydream.world.Explosion explosion) {
++        // Daydream end - (feature) Add more Explosion API
+         super(what);
+         this.blockState = blockState;
+         this.blocks = blocks;
+         this.yield = yield;
+         this.cancel = false;
+         this.result = result;
++        this.explosion = explosion; // Daydream - (feature) Add more Explosion API
+     }
+ 
+     @Override
+diff --git a/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java b/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java
+index 8277269be6b189c04d9bbe3eb5e7dae3809176f5..31dd47f3a2170eb583ba386e5c843d265aa483d7 100644
+--- a/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java
++++ b/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java
+@@ -71,6 +71,18 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
+     }
+     // Daydream end - (feature) Add more Damage API
+ 
++    // Daydream start - (feature) Add more Explosion API
++    /**
++     * 폭발 래퍼를 가져옵니다.
++     *
++     * @return 폭발 래퍼
++     */
++    @org.jetbrains.annotations.Nullable
++    public moe.caramel.daydream.world.Explosion getExplosion() {
++        return getDamageContext().getExplosion();
++    }
++    // Daydream end - (feature) Add more Explosion API
++
+     @Override
+     public boolean isCancelled() {
+         return cancelled;
+diff --git a/src/main/java/org/bukkit/event/entity/EntityExplodeEvent.java b/src/main/java/org/bukkit/event/entity/EntityExplodeEvent.java
+index e468e55d426b8f81f87c0a08451d02b3866c226f..4d4e3b3d352aaf68d65730673557b8857f0b184f 100644
+--- a/src/main/java/org/bukkit/event/entity/EntityExplodeEvent.java
++++ b/src/main/java/org/bukkit/event/entity/EntityExplodeEvent.java
+@@ -23,12 +23,30 @@ public class EntityExplodeEvent extends EntityEvent implements Cancellable {
+     private final ExplosionResult result;
+ 
+     public EntityExplodeEvent(@NotNull final Entity what, @NotNull final Location location, @NotNull final List<Block> blocks, final float yield, @NotNull final ExplosionResult result) {
++        // Daydream start - (feature) Add more Explosion API
++        this(what, location, blocks, yield, result, null);
++    }
++    private final moe.caramel.daydream.world.Explosion explosion;
++
++    /**
++     * 폭발 래퍼를 가져옵니다.
++     *
++     * @return 폭발 래퍼
++     */
++    @NotNull
++    public moe.caramel.daydream.world.Explosion getExplosion() {
++        return explosion;
++    }
++
++    public EntityExplodeEvent(@NotNull final Entity what, @NotNull final Location location, @NotNull final List<Block> blocks, final float yield, @NotNull final ExplosionResult result, @NotNull moe.caramel.daydream.world.Explosion explosion) {
++        // Daydream end - (feature) Add more Explosion API
+         super(what);
+         this.location = location;
+         this.blocks = blocks;
+         this.yield = yield;
+         this.cancel = false;
+         this.result = result;
++        this.explosion = explosion; // Daydream - (feature) Add more Explosion API
+     }
+ 
+     @Override

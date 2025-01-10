@@ -1,0 +1,33 @@
+--- a/src/main/java/org/bukkit/UnsafeValues.java
++++ b/src/main/java/org/bukkit/UnsafeValues.java
+@@ -379,4 +_,30 @@
+     @NotNull java.util.List<net.kyori.adventure.text.Component> computeTooltipLines(@NotNull ItemStack itemStack, @NotNull io.papermc.paper.inventory.tooltip.TooltipContext tooltipContext, @Nullable org.bukkit.entity.Player player); // Paper - expose itemstack tooltip lines
+ 
+     ItemStack createEmptyStack(); // Paper - proxy ItemStack
++
++    // Daydream start - Add more Chat API
++    @NotNull moe.caramel.daydream.player.chat.ChatSession createChatSession(final @NotNull java.util.UUID uniqueId, final @NotNull moe.caramel.daydream.player.IdentifyKey identifyKey);
++    @NotNull moe.caramel.daydream.player.IdentifyKey createIdentifyKey(final @NotNull java.time.Instant expiresAt, final @NotNull java.security.PublicKey publicKey, final byte @NotNull [] signature);
++    // Daydream end - Add more Chat API
++
++    // Daydream start - Proxy InventoryIterator
++    /**
++     * Inventory Iterator를 생성합니다.
++     *
++     * @param inventory 대상 인벤토리
++     * @return Iterator
++     */
++    @NotNull
++    java.util.ListIterator<ItemStack> createInventoryIterator(@NotNull org.bukkit.inventory.Inventory inventory);
++
++    /**
++     * Inventory Iterator를 생성합니다.
++     *
++     * @param inventory 대상 인벤토리
++     * @param nextIndex 다음 인덱스
++     * @return Iterator
++     */
++    @NotNull
++    java.util.ListIterator<ItemStack> createInventoryIterator(@NotNull org.bukkit.inventory.Inventory inventory, int nextIndex);
++    // Daydream end - Proxy InventoryIterator
+ }

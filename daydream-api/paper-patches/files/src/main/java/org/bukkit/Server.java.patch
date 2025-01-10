@@ -1,0 +1,49 @@
+--- a/src/main/java/org/bukkit/Server.java
++++ b/src/main/java/org/bukkit/Server.java
+@@ -969,6 +_,16 @@
+     @Nullable
+     public PluginCommand getPluginCommand(@NotNull String name);
+ 
++    // Daydream start - Expose Brigadier command dispatcher
++    /**
++     * 명령어 디스패처를 가져옵니다.
++     *
++     * @return 명령어 디스패처
++     */
++    @NotNull
++    public <S extends io.papermc.paper.command.brigadier.CommandSourceStack> com.mojang.brigadier.CommandDispatcher<S> getCommandDispatcher();
++    // Daydream end - Expose Brigadier command dispatcher
++
+     /**
+      * Writes loaded players to disk.
+      */
+@@ -2317,6 +_,14 @@
+         }
+         // Paper end
+ 
++        // Daydream start - Add Daydream Config
++        @NotNull
++        public org.bukkit.configuration.file.YamlConfiguration getDaydreamConfig()
++        {
++            throw new UnsupportedOperationException("Not supported yet.");
++        }
++        // Daydream end - Add Daydream Config
++
+         /**
+          * Sends the component to the player
+          *
+@@ -2641,4 +_,14 @@
+      */
+     void allowPausing(@NotNull org.bukkit.plugin.Plugin plugin, boolean value);
+     // Paper end - API to check if the server is sleeping
++
++    // Daydream start - Add Individual Sidebar API
++    /**
++     * 개인 사이드바 처리기를 가져옵니다.
++     *
++     * @return 개인 사이드바 처리기
++     */
++    @NotNull
++    moe.caramel.daydream.sidebar.SidebarProcessor sidebarProcessor();
++    // Daydream end - Add Individual Sidebar API
+ }

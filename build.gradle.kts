@@ -1,39 +1,58 @@
-import io.papermc.paperweight.util.constants.PAPERCLIP_CONFIG
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.gradle.api.tasks.testing.logging.TestLogEvent
 
 plugins {
     java
-    id("io.papermc.paperweight.patcher") version "1.7.6"
+    id("io.papermc.paperweight.patcher") version "2.0.0-beta.12"
 }
 
 val caramelMavenPublicUrl = "https://repo.caramel.moe/repository/maven-public/"
 val paperMavenPublicUrl = "https://repo.papermc.io/repository/maven-public/"
-repositories {
-    mavenCentral()
-    maven(paperMavenPublicUrl) {
-        content {
-            onlyForConfigurations(PAPERCLIP_CONFIG)
+
+paperweight {
+    upstreams.paper {
+        ref = providers.gradleProperty("paperCommit")
+
+        patchFile {
+            path = "paper-api/build.gradle.kts"
+            outputFile = file("daydream-api/build.gradle.kts")
+            patchFile = file("daydream-api/build.gradle.kts.patch")
+        }
+        patchDir("paperApi") {
+            upstreamPath = "paper-api"
+            excludes = setOf("build.gradle.kts")
+            patchesDir = file("daydream-api/paper-patches")
+            outputDir = file("paper-api")
+        }
+        patchDir("paperApiGenerator") {
+            upstreamPath = "paper-api-generator"
+            patchesDir = file("daydream-api-generator/paper-patches")
+            outputDir = file("paper-api-generator")
         }
     }
 }
 
-dependencies {
-    remapper("net.fabricmc:tiny-remapper:0.10.3:fat")
-    decompiler("org.vineflower:vineflower:1.10.1")
-    paperclip("io.papermc:paperclip:3.0.3")
-}
-
 subprojects {
-    apply(plugin = "java")
+    apply(plugin = "java-library")
     apply(plugin = "maven-publish")
 
-    java {
+    extensions.configure<JavaPluginExtension> {
         toolchain {
             languageVersion = JavaLanguageVersion.of(21)
         }
     }
-    tasks.withType<JavaCompile>().configureEach {
+
+    repositories {
+        mavenCentral()
+        maven(caramelMavenPublicUrl)
+        maven(paperMavenPublicUrl)
+    }
+
+    dependencies {
+        "testRuntimeOnly"("org.junit.platform:junit-platform-launcher")
+    }
+
+    tasks.withType<JavaCompile> {
         options.encoding = Charsets.UTF_8.name()
         options.release = 21
         options.isFork = true
@@ -44,51 +63,25 @@ subprojects {
     tasks.withType<ProcessResources> {
         filteringCharset = Charsets.UTF_8.name()
     }
+    tasks.withType<AbstractArchiveTask>().configureEach {
+        isPreserveFileTimestamps = false
+        isReproducibleFileOrder = true
+    }
     tasks.withType<Test> {
         testLogging {
             showStackTraces = true
             exceptionFormat = TestExceptionFormat.FULL
             events(TestLogEvent.STANDARD_OUT)
         }
-        minHeapSize = "2g"
-        maxHeapSize = "4g"
     }
 
-    repositories {
-        mavenCentral()
-        maven(caramelMavenPublicUrl) // Daydream
-        maven(paperMavenPublicUrl)
-    }
-
-    configure<PublishingExtension> {
+    extensions.configure<PublishingExtension> {
         repositories.maven {
             name = "maven"
             url = uri("https://repo.caramel.moe/repository/maven-snapshots/")
             credentials {
                 username = System.getenv("DEPLOY_ID")
                 password = System.getenv("DEPLOY_PW")
-            }
-        }
-    }
-}
-
-paperweight {
-    serverProject.set(project(":daydream-dummy"))
-
-    remapRepo.set(paperMavenPublicUrl)
-    decompileRepo.set(paperMavenPublicUrl)
-
-    usePaperUpstream(providers.gradleProperty("paperCommit")) {
-        withPaperPatcher {
-            apiPatchDir.set(layout.projectDirectory.dir("patches"))
-            apiOutputDir.set(layout.projectDirectory.dir("Daydream-API"))
-        }
-
-        patchTasks {
-            register("generatedApi") {
-                isBareDirectory.set(true)
-                upstreamDirPath.set("paper-api-generator/generated")
-                outputDir.set(layout.projectDirectory.dir("paper-api-generator/generated"))
             }
         }
     }

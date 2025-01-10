@@ -1,0 +1,1090 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: LemonCaramel <admin@caramel.moe>
+Date: Sat, 16 Jul 2022 00:04:33 +0900
+Subject: [PATCH] Add Packet API
+
+
+diff --git a/src/main/java/moe/caramel/daydream/event/packet/PacketType.java b/src/main/java/moe/caramel/daydream/event/packet/PacketType.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..360675e7abc45240925a983d21387bd4c8c0f114
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/event/packet/PacketType.java
+@@ -0,0 +1,22 @@
++package moe.caramel.daydream.event.packet;
++
++/**
++ * Packet Lists
++ */
++public interface PacketType {
++
++    /**
++     * [Client -> Server] Packets
++     */
++    enum Client {
++        PONG,
++        PLAYER_LOADED
++    }
++
++    /**
++     * [Server -> Client] Packets
++     */
++    enum Server {
++        ENTITY_EQUIPMENT
++    }
++}
+diff --git a/src/main/java/moe/caramel/daydream/event/packet/ReceivePacketEvent.java b/src/main/java/moe/caramel/daydream/event/packet/ReceivePacketEvent.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..a1f6ce66d317fc190021aa0b7fcb8c1b3953e9d6
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/event/packet/ReceivePacketEvent.java
+@@ -0,0 +1,45 @@
++package moe.caramel.daydream.event.packet;
++
++import moe.caramel.daydream.event.packet.PacketType.Client;
++import org.bukkit.entity.Player;
++import org.bukkit.event.HandlerList;
++import org.bukkit.event.player.PlayerEvent;
++import org.jetbrains.annotations.ApiStatus;
++import org.jspecify.annotations.NullMarked;
++
++/**
++ * 서버가 클라이언트로부터 패킷을 전달받았을 때 호출됩니다.
++ */
++@NullMarked
++public class ReceivePacketEvent extends PlayerEvent {
++
++    private final Client packetType;
++
++    @ApiStatus.Internal
++    public ReceivePacketEvent(final Player who, final Client packetType, final boolean async) {
++        super(who, async);
++        this.packetType = packetType;
++    }
++
++    /**
++     * 클라이언트가 보낸 패킷의 종류를 가져옵니다.
++     *
++     * @return 클라이언트가 보낸 패킷의 종류
++     */
++    public Client getPacketType() {
++        return packetType;
++    }
++
++    //<editor-fold desc="Bukkit Event Handler (Internal)" defaultstate="collapsed">
++    private static final HandlerList HANDLER_LIST = new HandlerList();
++
++    @Override
++    public HandlerList getHandlers() {
++        return HANDLER_LIST;
++    }
++
++    public static HandlerList getHandlerList() {
++        return HANDLER_LIST;
++    }
++    //</editor-fold>
++}
+diff --git a/src/main/java/moe/caramel/daydream/event/packet/ReceivePlayerLoadedPacketEvent.java b/src/main/java/moe/caramel/daydream/event/packet/ReceivePlayerLoadedPacketEvent.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..b783aafc2006adc054cf2c6126bcd3f2eac8852c
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/event/packet/ReceivePlayerLoadedPacketEvent.java
+@@ -0,0 +1,22 @@
++package moe.caramel.daydream.event.packet;
++
++import org.bukkit.entity.Player;
++import org.jetbrains.annotations.ApiStatus;
++import org.jspecify.annotations.NullMarked;
++
++/**
++ * 서버가 클라이언트로부터 {@link PacketType.Client#PLAYER_LOADED} 패킷을 전달받았을 때 호출됩니다.
++ */
++@NullMarked
++public final class ReceivePlayerLoadedPacketEvent extends ReceivePacketEvent {
++
++    @ApiStatus.Internal
++    public ReceivePlayerLoadedPacketEvent(final Player who) {
++        super(who, PacketType.Client.PLAYER_LOADED, false);
++    }
++
++    @Override
++    public String toString() {
++        return "ReceivePlayerLoadedPacketEvent";
++    }
++}
+diff --git a/src/main/java/moe/caramel/daydream/event/packet/ReceivePongPacketEvent.java b/src/main/java/moe/caramel/daydream/event/packet/ReceivePongPacketEvent.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..d6b15abc74fbc9fd1c2470dabbe6f730ff3fc9d2
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/event/packet/ReceivePongPacketEvent.java
+@@ -0,0 +1,36 @@
++package moe.caramel.daydream.event.packet;
++
++import org.bukkit.entity.Player;
++import org.jetbrains.annotations.ApiStatus;
++import org.jspecify.annotations.NullMarked;
++
++/**
++ * 서버가 클라이언트로부터 {@link PacketType.Client#PONG} 패킷을 전달받았을 때 호출됩니다.
++ */
++@NullMarked
++public final class ReceivePongPacketEvent extends ReceivePacketEvent {
++
++    private final int id;
++
++    @ApiStatus.Internal
++    public ReceivePongPacketEvent(final Player who, final int id) {
++        super(who, PacketType.Client.PONG, true);
++        this.id = id;
++    }
++
++    /**
++     * Gets id.
++     *
++     * @return id
++     */
++    public int getId() {
++        return id;
++    }
++
++    @Override
++    public String toString() {
++        return "ReceivePongPacketEvent{" +
++               "id=" + id +
++               '}';
++    }
++}
+diff --git a/src/main/java/moe/caramel/daydream/event/packet/SendEntityEquipmentEvent.java b/src/main/java/moe/caramel/daydream/event/packet/SendEntityEquipmentEvent.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..95148773e843ab6f1d95d988f1b0fbcb242e997a
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/event/packet/SendEntityEquipmentEvent.java
+@@ -0,0 +1,95 @@
++package moe.caramel.daydream.event.packet;
++
++import org.bukkit.entity.Entity;
++import org.bukkit.entity.Player;
++import org.bukkit.event.Cancellable;
++import org.bukkit.event.HandlerList;
++import org.bukkit.inventory.EquipmentSlot;
++import org.bukkit.inventory.ItemStack;
++import org.jetbrains.annotations.ApiStatus;
++import org.jspecify.annotations.NullMarked;
++import java.util.Map;
++
++/**
++ * 서버가 클라이언트에게 {@link PacketType.Server#ENTITY_EQUIPMENT} 패킷을 전송할 때 호출됩니다.
++ */
++@NullMarked
++public final class SendEntityEquipmentEvent extends SendPacketEvent implements Cancellable {
++
++    private final Entity target;
++    private final Reason reason;
++    private final Map<EquipmentSlot, ItemStack> data;
++    private boolean cancelled;
++
++    @ApiStatus.Internal
++    public SendEntityEquipmentEvent(final Player player, final Entity target, final Reason reason, final Map<EquipmentSlot, ItemStack> data) {
++        super(player, PacketType.Server.ENTITY_EQUIPMENT, false);
++        this.reason = reason;
++        this.target = target;
++        this.data = data;
++    }
++
++    /**
++     * 이 패킷의 대상 엔티티를 가져옵니다.
++     *
++     * @return 패킷의 대상 엔티티
++     */
++    public Entity getTarget() {
++        return target;
++    }
++
++    /**
++     * 이벤트 호출 사유를 가져옵니다.
++     *
++     * @return 이벤트 호출 사유
++     */
++    public Reason getReason() {
++        return reason;
++    }
++
++    /**
++     * 전송 예정인 장비 목록을 반환하며, 목록을 수정할 수 있습니다.
++     *
++     * @return 장비 목록
++     */
++    public Map<EquipmentSlot, ItemStack> getData() {
++        return data;
++    }
++
++    @Override
++    public boolean isCancelled() {
++        return cancelled;
++    }
++
++    @Override
++    public void setCancelled(final boolean cancel) {
++        this.cancelled = cancel;
++    }
++
++    /**
++     * 이벤트 호출 사유
++     */
++    public enum Reason {
++        /**
++         * 대상 엔티티를 추적하기 시작했을 때
++         */
++        PAIRING,
++        /**
++         * 엔티티가 장비를 업데이트했을 때
++         */
++        UPDATE_EQUIPMENT
++    }
++
++    //<editor-fold desc="Bukkit Event Handler (Internal)" defaultstate="collapsed">
++    private static final HandlerList HANDLER_LIST = new HandlerList();
++
++    @Override
++    public HandlerList getHandlers() {
++        return HANDLER_LIST;
++    }
++
++    public static HandlerList getHandlerList() {
++        return HANDLER_LIST;
++    }
++    //</editor-fold>
++}
+diff --git a/src/main/java/moe/caramel/daydream/event/packet/SendPacketEvent.java b/src/main/java/moe/caramel/daydream/event/packet/SendPacketEvent.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..b26665ab19e09a9ea8f1e3d52cd6a55526bf6fa4
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/event/packet/SendPacketEvent.java
+@@ -0,0 +1,45 @@
++package moe.caramel.daydream.event.packet;
++
++import moe.caramel.daydream.event.packet.PacketType.Server;
++import org.bukkit.entity.Player;
++import org.bukkit.event.HandlerList;
++import org.bukkit.event.player.PlayerEvent;
++import org.jetbrains.annotations.ApiStatus;
++import org.jspecify.annotations.NullMarked;
++
++/**
++ * 서버가 클라이언트에게 패킷을 전송할 때 호출됩니다.
++ */
++@NullMarked
++public class SendPacketEvent extends PlayerEvent {
++
++    private final Server packetType;
++
++    @ApiStatus.Internal
++    public SendPacketEvent(final Player who, final Server packetType, final boolean async) {
++        super(who, async);
++        this.packetType = packetType;
++    }
++
++    /**
++     * 서버가 보낼 패킷의 종류를 가져옵니다.
++     *
++     * @return 서버가 보낼 패킷의 종류
++     */
++    public Server getPacketType() {
++        return packetType;
++    }
++
++    //<editor-fold desc="Bukkit Event Handler (Internal)" defaultstate="collapsed">
++    private static final HandlerList HANDLER_LIST = new HandlerList();
++
++    @Override
++    public HandlerList getHandlers() {
++        return HANDLER_LIST;
++    }
++
++    public static HandlerList getHandlerList() {
++        return HANDLER_LIST;
++    }
++    //</editor-fold>
++}
+diff --git a/src/main/java/moe/caramel/daydream/packet/BundlePacket.java b/src/main/java/moe/caramel/daydream/packet/BundlePacket.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..8abe31c5e4d925111faffae36affd9657a564231
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/packet/BundlePacket.java
+@@ -0,0 +1,26 @@
++package moe.caramel.daydream.packet;
++
++import org.jspecify.annotations.NullMarked;
++import java.util.List;
++
++@NullMarked
++public interface BundlePacket extends Packet {
++
++    /**
++     * 패킷을 생성합니다.
++     *
++     * @param packets 동시에 처리할 패킷 목록
++     * @return this
++     */
++    default BundlePacket create(final Packet... packets) {
++        return create(List.of(packets));
++    }
++
++    /**
++     * 패킷을 생성합니다.
++     *
++     * @param packets 동시에 처리할 패킷 목록
++     * @return this
++     */
++    BundlePacket create(List<Packet> packets);
++}
+diff --git a/src/main/java/moe/caramel/daydream/packet/ContainerSetSlotPacket.java b/src/main/java/moe/caramel/daydream/packet/ContainerSetSlotPacket.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..653a01aef06f20f5229bd08d36a3ebd68effbac4
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/packet/ContainerSetSlotPacket.java
+@@ -0,0 +1,19 @@
++package moe.caramel.daydream.packet;
++
++import org.bukkit.inventory.ItemStack;
++import org.jspecify.annotations.NullMarked;
++
++@NullMarked
++public interface ContainerSetSlotPacket extends Packet {
++
++    /**
++     * 패킷을 생성합니다.
++     *
++     * @param windowId 현재 업데이트 중인 창
++     * @param revision 상태 ID (플레이어가 아이템을 클릭했을 때 이 값을 돌려받습니다)
++     * @param slot 업데이트해야 하는 슬롯
++     * @param stack 아이템
++     * @return this
++     */
++    ContainerSetSlotPacket create(int windowId, int revision, int slot, ItemStack stack);
++}
+diff --git a/src/main/java/moe/caramel/daydream/packet/GameEventPacket.java b/src/main/java/moe/caramel/daydream/packet/GameEventPacket.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..278df2d2a00f92b0d50fb22175e5a25b0a791123
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/packet/GameEventPacket.java
+@@ -0,0 +1,32 @@
++package moe.caramel.daydream.packet;
++
++import org.jspecify.annotations.NullMarked;
++
++@NullMarked
++public interface GameEventPacket extends Packet {
++
++    int NO_RESPAWN_BLOCK_AVAILABLE = 0;
++    int START_RAINING = 1;
++    int STOP_RAINING = 2;
++    int CHANGE_GAME_MODE = 3;
++    int WIN_GAME = 4;
++    int DEMO_EVENT = 5;
++    int ARROW_HIT_PLAYER = 6;
++    int RAIN_LEVEL_CHANGE = 7;
++    int THUNDER_LEVEL_CHANGE = 8;
++    int PUFFER_FISH_STING = 9;
++    int GUARDIAN_ELDER_EFFECT = 10;
++    int IMMEDIATE_RESPAWN = 11;
++    int LIMITED_CRAFTING = 12;
++    int LEVEL_CHUNKS_LOAD_START = 13;
++
++    /**
++     * 패킷을 생성합니다.
++     *
++     * @param event 게임 이벤트
++     * @param value 이벤트에 따라 값이 다릅니다.
++     *              <a href="http://wiki.vg/Protocol#Game_Event">여기</a>를 참고하세요.
++     * @return this
++     */
++    GameEventPacket create(int event, float value);
++}
+diff --git a/src/main/java/moe/caramel/daydream/packet/Packet.java b/src/main/java/moe/caramel/daydream/packet/Packet.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..efc58af1c71f425d7195544b86ac3947bb8b4fd6
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/packet/Packet.java
+@@ -0,0 +1,27 @@
++package moe.caramel.daydream.packet;
++
++import org.jspecify.annotations.NullMarked;
++
++@NullMarked
++public interface Packet {
++
++    /**
++     * Packet API Version
++     */
++    int API_VERSION = 2;
++
++    /**
++     * 패킷을 가져옵니다.
++     *
++     * @return 패킷 인스턴스를 반환합니다.
++     * @throws RuntimeException 패킷 빌드가 불가능한 경우 던져집니다.
++     */
++    Object getPacket();
++
++    /**
++     * 패킷이 빌드 가능한지 확인합니다.
++     *
++     * @return 빌드가 가능하면 {@code true}를 반환합니다.
++     */
++    boolean canBuild();
++}
+diff --git a/src/main/java/moe/caramel/daydream/packet/PingPacket.java b/src/main/java/moe/caramel/daydream/packet/PingPacket.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..636a1ee5ad6ba52fbde93adeab1e361afc58e236
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/packet/PingPacket.java
+@@ -0,0 +1,15 @@
++package moe.caramel.daydream.packet;
++
++import org.jspecify.annotations.NullMarked;
++
++@NullMarked
++public interface PingPacket extends Packet {
++
++    /**
++     * 패킷을 생성합니다.
++     *
++     * @param id {@link moe.caramel.daydream.event.packet.PacketType.Client#PONG} 패킷으로 돌려받을 Id
++     * @return this
++     */
++    PingPacket create(int id);
++}
+diff --git a/src/main/java/moe/caramel/daydream/packet/PlayerInfoRemovePacket.java b/src/main/java/moe/caramel/daydream/packet/PlayerInfoRemovePacket.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..42e151beaf87b91fa27aa3e40575d4569c096521
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/packet/PlayerInfoRemovePacket.java
+@@ -0,0 +1,41 @@
++package moe.caramel.daydream.packet;
++
++import org.bukkit.entity.Player;
++import org.jspecify.annotations.NullMarked;
++import java.util.ArrayList;
++import java.util.List;
++import java.util.UUID;
++
++@NullMarked
++public interface PlayerInfoRemovePacket extends Packet {
++
++    /**
++     * 패킷을 생성합니다.
++     *
++     * @param players 플레이어 목록
++     * @return this
++     */
++    default PlayerInfoRemovePacket create(final Player... players) {
++        final List<UUID> list = new ArrayList<>();
++        for (Player player : players) list.add(player.getUniqueId());
++        return create(list);
++    }
++
++    /**
++     * 패킷을 생성합니다.
++     *
++     * @param uuids 플레이어 목록
++     * @return this
++     */
++    default PlayerInfoRemovePacket create(final UUID... uuids) {
++        return create(List.of(uuids));
++    }
++
++    /**
++     * 패킷을 생성합니다.
++     *
++     * @param uuids 플레이어 목록
++     * @return this
++     */
++    PlayerInfoRemovePacket create(List<UUID> uuids);
++}
+diff --git a/src/main/java/moe/caramel/daydream/packet/PlayerInfoUpdatePacket.java b/src/main/java/moe/caramel/daydream/packet/PlayerInfoUpdatePacket.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..4eeb8b47e07d414dab30f52acac8765b08b9a439
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/packet/PlayerInfoUpdatePacket.java
+@@ -0,0 +1,217 @@
++package moe.caramel.daydream.packet;
++
++import com.destroystokyo.paper.ClientOption;
++import com.mojang.authlib.GameProfile;
++import moe.caramel.daydream.player.chat.ChatSession;
++import net.kyori.adventure.text.Component;
++import org.bukkit.GameMode;
++import org.bukkit.entity.Player;
++import org.jspecify.annotations.NullMarked;
++import org.jspecify.annotations.Nullable;
++import java.util.Collection;
++import java.util.EnumSet;
++import java.util.List;
++import java.util.UUID;
++
++@NullMarked
++public interface PlayerInfoUpdatePacket extends Packet {
++
++    /**
++     * 패킷을 생성합니다.
++     *
++     * @param actions 패킷이 수행할 작업의 목록
++     * @param players 플레이어 목록
++     * @return this
++     */
++    PlayerInfoUpdatePacket create(EnumSet<Action> actions, Player... players);
++
++    /**
++     * 패킷을 생성합니다.
++     *
++     * @param actions 패킷이 수행할 작업의 목록
++     * @param data 플레이어 데이터
++     * @return this
++     */
++    default PlayerInfoUpdatePacket create(final EnumSet<Action> actions, final PlayerData... data) {
++        return create(actions, List.of(data));
++    }
++
++    /**
++     * 패킷을 생성합니다.
++     *
++     * @param actions 패킷이 수행할 작업의 목록
++     * @param data 플레이어 데이터
++     * @return this
++     */
++    PlayerInfoUpdatePacket create(EnumSet<Action> actions, Collection<PlayerData> data);
++
++
++    /**
++     * 플레이어 데이터
++     *
++     * @param profileId 플레이어의 게임 프로파일 UUID (필수: 모두)
++     * @param profile 플레이어의 게임 프로파일 (필수: {@link Action#ADD_PLAYER})
++     * @param listed 탭 리스트 표시 여부 (필수: {@link Action#UPDATE_LISTED})
++     * @param latency 플레이어의 지연 시간 (필수: {@link Action#UPDATE_LATENCY})
++     * @param gameMode 플레이어의 게임 모드 (필수: {@link Action#UPDATE_GAME_MODE})
++     * @param playerListName 플레이어의 표시 이름 (필수: {@link Action#UPDATE_DISPLAY_NAME})
++     * @param showHat 플레이어 스킨의 모자 레이어 표시 여부 (필수: {@link Action#UPDATE_HAT})
++     * @param listOrder 플레이어 탭 리스트 순서 (필수: {@link Action#UPDATE_LIST_ORDER})
++     * @param chatSession 플레이어의 채팅 세션 (선택: {@link Action#INITIALIZE_CHAT})
++     */
++    record PlayerData(
++        UUID profileId, @Nullable GameProfile profile,
++        boolean listed, int latency, @Nullable GameMode gameMode,
++        @Nullable Component playerListName, boolean showHat,
++        int listOrder, @Nullable ChatSession chatSession
++    ) { }
++
++
++    /**
++     * for Add Player Action
++     *
++     * @param profileId 플레이어의 프로파일 UUID
++     * @param profile 플레이어의 게임 프로파일
++     * @param listed 탭 리스트 표시 여부
++     * @param latency 플레이어의 지연 시간
++     * @param gameMode 플레이어의 게임 모드
++     * @param playerListName 플레이어의 표시 이름 (nullable)
++     * @param showHat 플레이어 스킨의 모자 레이어 표시 여부 (필수: {@link Action#UPDATE_HAT})
++     * @param listOrder 플레이어의 탭 리스트 정렬 순서
++     * @param chatSession 플레이어의 채팅 세션 (nullable)
++     * @return 플레이어 데이터
++     */
++    static PlayerData addPlayer(
++        final UUID profileId, final GameProfile profile,
++        final boolean listed, final int latency, final GameMode gameMode,
++        final @Nullable Component playerListName, final boolean showHat,
++        final int listOrder, final @Nullable ChatSession chatSession
++    ) {
++        return new PlayerData(profileId, profile, listed, latency, gameMode, playerListName, showHat, listOrder, chatSession);
++    }
++
++    /**
++     * for Add Player Action
++     *
++     * @param player 대상 플레이어
++     * @return 플레이어 데이터
++     */
++    static PlayerData addPlayer(final Player player) {
++        return PlayerInfoUpdatePacket.addPlayer(
++            player.getUniqueId(),
++            player.getProfile(),
++            true,
++            player.getPing(),
++            player.getGameMode(),
++            player.playerListName(),
++            player.getClientOption(ClientOption.SKIN_PARTS).hasHatsEnabled(),
++            player.getPlayerListOrder(),
++            player.getChatSession()
++        );
++    }
++
++    /**
++     * for Update GameMode Action
++     *
++     * @param uuid 플레이어의 UUID
++     * @param gameMode 플레이어의 게임 모드
++     * @return 플레이어 데이터
++     */
++    static PlayerData updateGameMode(final UUID uuid, final GameMode gameMode) {
++        return new PlayerData(uuid, null, false, 0, gameMode, null, false, 0, null);
++    }
++
++    /**
++     * for Update Listed Action
++     *
++     * @param uuid 플레이어의 UUID
++     * @param listed 플레이어가 탭 리스트에 표시될지의 여부
++     * @return 플레이어 데이터
++     */
++    static PlayerData updateListed(final UUID uuid, final boolean listed) {
++        return new PlayerData(uuid, null, listed, 0, null, null, false, 0, null);
++    }
++
++    /**
++     * for Update Latency Action
++     *
++     * @param uuid 플레이어의 UUID
++     * @param latency 플레이어의 지연 시간
++     * @return 플레이어 데이터
++     */
++    static PlayerData updateLatency(final UUID uuid, final int latency) {
++        return new PlayerData(uuid, null, false, latency, null, null, false, 0, null);
++    }
++
++    /**
++     * for Update PlayerListName Action
++     *
++     * @param uuid 플레이어의 UUID
++     * @param playerListName 플레이어의 표시 이름 (nullable)
++     * @return 플레이어 데이터
++     */
++    static PlayerData updatePlayerListName(final UUID uuid, final @Nullable Component playerListName) {
++        return new PlayerData(uuid, null, false, 0, null, playerListName, false, 0, null);
++    }
++
++    /**
++     * for Update ListOrder Action
++     *
++     * @param uuid 플레이어의 UUID
++     * @param order 플레이어의 탭 리스트 정렬 위치
++     * @return 플레이어 데이터
++     */
++    static PlayerData updateListOrder(final UUID uuid, final int order) {
++        return new PlayerData(uuid, null, false, 0, null, null, false, order, null);
++    }
++
++    /**
++     * for Update Hat Action
++     *
++     * @param uuid 플레이어의 UUID
++     * @param show 플레이어 스킨의 모자 레이어 표시 여부
++     * @return 플레이어 데이터
++     */
++    static PlayerData updateShowHat(final UUID uuid, final boolean show) {
++        return new PlayerData(uuid, null, false, 0, null, null, show, 0, null);
++    }
++
++
++    /**
++     * Player Info Update 패킷 액션
++     */
++    enum Action {
++        /**
++         * 플레이어를 추가합니다.
++         */
++        ADD_PLAYER,
++        /**
++         * 채팅 세션을 설정합니다.
++         */
++        INITIALIZE_CHAT,
++        /**
++         * 플레이어의 게임 모드를 업데이트합니다.
++         */
++        UPDATE_GAME_MODE,
++        /**
++         * 플레이어를 탭 리스트에 포함할지 결정합니다.
++         */
++        UPDATE_LISTED,
++        /**
++         * 플레이어의 지연 시간을 업데이트합니다.
++         */
++        UPDATE_LATENCY,
++        /**
++         * 플레이어의 표시 이름을 업데이트합니다.
++         */
++        UPDATE_DISPLAY_NAME,
++        /**
++         * 플레이어의 탭 리스트 정렬 순서를 업데이트합니다.
++         */
++        UPDATE_LIST_ORDER,
++        /**
++         * 플레이어 스킨의 모자 레이어 활성화 여부를 업데이트합니다.
++         */
++        UPDATE_HAT;
++    }
++}
+diff --git a/src/main/java/moe/caramel/daydream/packet/SetChunkCacheRadiusPacket.java b/src/main/java/moe/caramel/daydream/packet/SetChunkCacheRadiusPacket.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..c4aa750401061e6f38fa53f6334c041d3607857d
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/packet/SetChunkCacheRadiusPacket.java
+@@ -0,0 +1,15 @@
++package moe.caramel.daydream.packet;
++
++import org.jspecify.annotations.NullMarked;
++
++@NullMarked
++public interface SetChunkCacheRadiusPacket extends Packet {
++
++    /**
++     * 패킷을 생성합니다.
++     *
++     * @param distance 플레이어의 청크 렌더 거리
++     * @return this
++     */
++    SetChunkCacheRadiusPacket create(int distance);
++}
+diff --git a/src/main/java/moe/caramel/daydream/packet/SetDisplayObjectivePacket.java b/src/main/java/moe/caramel/daydream/packet/SetDisplayObjectivePacket.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..246d6f4d5976e68011307bdc961fbbdcc95c1dad
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/packet/SetDisplayObjectivePacket.java
+@@ -0,0 +1,30 @@
++package moe.caramel.daydream.packet;
++
++import org.bukkit.scoreboard.DisplaySlot;
++import org.bukkit.scoreboard.Objective;
++import org.jspecify.annotations.NullMarked;
++import org.jspecify.annotations.Nullable;
++
++@NullMarked
++public interface SetDisplayObjectivePacket extends Packet {
++
++    /**
++     * 패킷을 생성합니다.
++     *
++     * @param slot 목표의 위치
++     * @param objective {@link org.bukkit.scoreboard.Objective} 객체
++     * @return this
++     */
++    default SetDisplayObjectivePacket create(final DisplaySlot slot, final Objective objective) {
++        return this.create(slot, objective.getName());
++    }
++
++    /**
++     * 패킷을 생성합니다.
++     *
++     * @param slot 목표의 위치
++     * @param scoreName {@link org.bukkit.scoreboard.Objective}의 이름
++     * @return this
++     */
++    SetDisplayObjectivePacket create(DisplaySlot slot, @Nullable String scoreName);
++}
+diff --git a/src/main/java/moe/caramel/daydream/packet/SetPlayerInventoryPacket.java b/src/main/java/moe/caramel/daydream/packet/SetPlayerInventoryPacket.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..00ed11b535bf78e8ccfcf17768bdd9b6eb0f898d
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/packet/SetPlayerInventoryPacket.java
+@@ -0,0 +1,17 @@
++package moe.caramel.daydream.packet;
++
++import org.bukkit.inventory.ItemStack;
++import org.jspecify.annotations.NullMarked;
++
++@NullMarked
++public interface SetPlayerInventoryPacket extends Packet {
++
++    /**
++     * 패킷을 생성합니다.
++     *
++     * @param slot 업데이트해야 하는 슬롯
++     * @param stack 아이템
++     * @return this
++     */
++    SetPlayerInventoryPacket create(int slot, ItemStack stack);
++}
+diff --git a/src/main/java/moe/caramel/daydream/packet/SetPlayerTeamPacket.java b/src/main/java/moe/caramel/daydream/packet/SetPlayerTeamPacket.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..257c535f5b0802f2289df1ee3eb2b2cffb601d9b
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/packet/SetPlayerTeamPacket.java
+@@ -0,0 +1,135 @@
++package moe.caramel.daydream.packet;
++
++import net.kyori.adventure.text.Component;
++import org.bukkit.ChatColor;
++import org.bukkit.scoreboard.Team;
++import org.jspecify.annotations.NullMarked;
++import org.jspecify.annotations.Nullable;
++import java.util.Collection;
++
++@NullMarked
++public interface SetPlayerTeamPacket extends Packet {
++
++    /*
++        CREATE OR UPDATE
++     */
++
++    /**
++     * 팀 추가 또는 업데이트 패킷을 생성합니다.
++     *
++     * @param team 추가 또는 업데이트할 팀
++     * @param add 만약 {@code true}라면 추가, 아니라면 정보를 업데이트 합니다
++     * @return this
++     */
++    SetPlayerTeamPacket createTeamAddOrUpdatePacket(Team team, boolean add);
++
++    /**
++     * 팀 추가 또는 업데이트 패킷을 생성합니다.
++     *
++     * @param teamName 추가 또는 업데이트할 팀의 이름
++     * @param displayName 팀의 디스플레이 이름
++     * @param allowFriendlyFire 만약 {@code true}라면 아군 사격을 허용합니다
++     * @param canSeeFriendlyInvisibles 만약 {@code true}라면 보이지 않는 플레이어를 볼 수 있습니다
++     * @param nametagVisibility 팀의 이름 태그 가시성 규칙
++     * @param collisionRule 팀의 충돌 규칙
++     * @param color 팀의 색
++     * @param teamPrefix 팀의 접두사
++     * @param teamSuffix 팀의 접미사
++     * @param add 만약 {@code true}라면 추가, 아니라면 정보를 업데이트 합니다
++     * @return this
++     */
++    default SetPlayerTeamPacket createTeamAddOrUpdatePacket(
++        final String teamName,
++        final Component displayName,
++        final boolean allowFriendlyFire,
++        final boolean canSeeFriendlyInvisibles,
++        final Team.OptionStatus nametagVisibility,
++        final Team.OptionStatus collisionRule,
++        final ChatColor color,
++        final Component teamPrefix,
++        final Component teamSuffix,
++        boolean add
++    ) {
++        return createTeamAddOrUpdatePacket(
++            teamName, displayName, allowFriendlyFire, canSeeFriendlyInvisibles,
++            nametagVisibility, collisionRule, color, teamPrefix, teamSuffix,
++            add, null
++        );
++    }
++
++    /**
++     * 팀 추가 또는 업데이트 패킷을 생성합니다.
++     *
++     * @param teamName 추가 또는 업데이트할 팀의 이름
++     * @param displayName 팀의 디스플레이 이름
++     * @param allowFriendlyFire 만약 {@code true}라면 아군 사격을 허용합니다
++     * @param canSeeFriendlyInvisibles 만약 {@code true}라면 보이지 않는 플레이어를 볼 수 있습니다
++     * @param nametagVisibility 팀의 이름 태그 가시성 규칙
++     * @param collisionRule 팀의 충돌 규칙
++     * @param color 팀의 색
++     * @param teamPrefix 팀의 접두사
++     * @param teamSuffix 팀의 접미사
++     * @param add 만약 {@code true}라면 추가, 아니라면 정보를 업데이트 합니다
++     * @param players 팀의 초기 플레이어 목록
++     * @return this
++     */
++    SetPlayerTeamPacket createTeamAddOrUpdatePacket(
++        final String teamName,
++        final Component displayName,
++        final boolean allowFriendlyFire,
++        final boolean canSeeFriendlyInvisibles,
++        final Team.OptionStatus nametagVisibility,
++        final Team.OptionStatus collisionRule,
++        final ChatColor color,
++        final Component teamPrefix,
++        final Component teamSuffix,
++        final boolean add,
++        final @Nullable Collection<String> players
++    );
++
++
++    /*
++        REMOVE
++     */
++
++    /**
++     * 팀 제거 패킷을 생성합니다.
++     *
++     * @param team 제거할 팀
++     * @return this
++     */
++    SetPlayerTeamPacket createTeamRemovePacket(Team team);
++
++    /**
++     * 팀 제거 패킷을 생성합니다.
++     *
++     * @param teamName 제거할 팀의 이름
++     * @return this
++     */
++    SetPlayerTeamPacket createTeamRemovePacket(String teamName);
++
++
++    /*
++        JOIN OR LEAVE
++     */
++
++    /**
++     * 팀 가입 또는 탈퇴 패킷을 생성합니다.
++     *
++     * @param team 가입 또는 탈퇴할 팀
++     * @param players 가입 또는 탈퇴할 플레이어의 목록
++     * @param join 만약 {@code true}라면 가입, 아니라면 탈퇴
++     * @return this
++     */
++    SetPlayerTeamPacket createTeamJoinOrLeavePacket(Team team, Collection<String> players, boolean join);
++
++    /**
++     * 팀 가입 또는 탈퇴 패킷을 생성합니다.
++     *
++     * @param teamName 가입 또는 탈퇴할 팀의 이름
++     * @param players 가입 또는 탈퇴할 플레이어의 목록
++     * @param join 만약 {@code true}라면 가입, 아니라면 탈퇴
++     * @return this
++     */
++    SetPlayerTeamPacket createTeamJoinOrLeavePacket(String teamName, Collection<String> players, boolean join);
++}
+diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
+index 4a9dc47777fc0df79b18904bbb84dd15c5dda00c..ec70705448586723d9dc2e6b4ec8aaea66891a96 100644
+--- a/src/main/java/org/bukkit/Bukkit.java
++++ b/src/main/java/org/bukkit/Bukkit.java
+@@ -3081,6 +3081,20 @@ public final class Bukkit {
+     }
+     // Daydream end - Add Individual Sidebar API
+ 
++    // Daydream start - (feature) Add Packet API
++    /**
++     * 패킷 인스턴스를 생성합니다.
++     *
++     * @param packet 패킷 타입
++     * @return 패킷 인스턴스
++     * @param <T> 패킷 타입
++     */
++    @NotNull
++    public static <T extends moe.caramel.daydream.packet.Packet> T createPacket(@NotNull Class<T> packet) {
++        return server.createPacket(packet);
++    }
++    // Daydream end - (feature) Add Packet API
++
+     @NotNull
+     public static Server.Spigot spigot() {
+         return server.spigot();
+diff --git a/src/main/java/org/bukkit/ChatColor.java b/src/main/java/org/bukkit/ChatColor.java
+index 918a045165cdcde264bc24082b7afebb407271de..893f1e80871e67d427c379410a83ecd88bc2b8ac 100644
+--- a/src/main/java/org/bukkit/ChatColor.java
++++ b/src/main/java/org/bukkit/ChatColor.java
+@@ -10,9 +10,8 @@ import org.jetbrains.annotations.Nullable;
+ 
+ /**
+  * All supported color values for chat
+- * @deprecated ChatColor has been deprecated in favor of <a href="https://docs.advntr.dev/text.html">Adventure</a> API. See {@link net.kyori.adventure.text.format.NamedTextColor} for the adventure equivalent of pre-defined text colors
+  */
+-@Deprecated // Paper
++//@Deprecated // Paper // Daydream - (feature) Add Packet API
+ public enum ChatColor {
+     /**
+      * Represents black
+diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
+index 22e85d74a064f7b112f836729339e4b8c8ffe6e0..dde96f3dea902c3a4b841a4d793a3c20de020eff 100644
+--- a/src/main/java/org/bukkit/Server.java
++++ b/src/main/java/org/bukkit/Server.java
+@@ -2749,4 +2749,16 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
+     @NotNull
+     moe.caramel.daydream.sidebar.SidebarProcessor sidebarProcessor();
+     // Daydream end - Add Individual Sidebar API
++
++    // Daydream start - (feature) Add Packet API
++    /**
++     * 패킷 인스턴스를 생성합니다.
++     *
++     * @param packet 패킷 타입
++     * @return 패킷 인스턴스
++     * @param <T> 패킷 타입
++     */
++    @NotNull
++    <T extends moe.caramel.daydream.packet.Packet> T createPacket(@NotNull Class<T> packet);
++    // Daydream end - (feature) Add Packet API
+ }
+diff --git a/src/main/java/org/bukkit/World.java b/src/main/java/org/bukkit/World.java
+index 21675b7f8fab3ca1e6db0b1f2c5fba68993c10e9..87acad5995f5fe9ef251b6273ea94616c9c9c59d 100644
+--- a/src/main/java/org/bukkit/World.java
++++ b/src/main/java/org/bukkit/World.java
+@@ -1626,6 +1626,17 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
+     public Entity getEntity(@NotNull java.util.UUID uuid);
+     // Paper end
+ 
++    // Daydream start - (feature) Add Packet API (getEntityById)
++    /**
++     * 엔티티 ID로 이 월드의 엔티티를 가져옵니다.
++     *
++     * @param id 엔티티의 ID
++     * @return 지정된 ID를 가진 엔티티를 월드에서 찾을 수 없는 경우 {@code null}
++     */
++    @Nullable
++    public Entity getEntity(int id);
++    // Daydream end - (feature) Add Packet API
++
+     /**
+      * Returns a list of entities within a bounding box centered around a
+      * Location.
+diff --git a/src/main/java/org/bukkit/entity/Entity.java b/src/main/java/org/bukkit/entity/Entity.java
+index 6fba6948e937b079bedf3cc08d7659cf50c927d5..6e65ebccf9c037dba1179dfb697ce56580589d3d 100644
+--- a/src/main/java/org/bukkit/entity/Entity.java
++++ b/src/main/java/org/bukkit/entity/Entity.java
+@@ -591,6 +591,19 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
+     public String getStringUniqueId();
+     // Daydream end - Add method to get string UUID
+ 
++    // Daydream start - (feature) Add Packet API
++    /**
++     * 엔티티의 메타데이터 값을 가져옵니다.
++     *
++     * @param index 메타데이터 인덱스
++     * @return 가져오거나 {@code null}일 수 있음
++     * @see <a href="https://wiki.vg/Entity_metadata">here</a>
++     */
++    @Nullable
++    @org.jetbrains.annotations.ApiStatus.Experimental
++    public Object getMetadata(int index);
++    // Daydream end - (feature) Add Packet API
++
+     /**
+      * Gets the amount of ticks this entity has lived for.
+      * <p>
+diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
+index c7a5992442d087c5388d8bed03cb6ddb20c9c3f6..a675aad451521c148f459705748ae5137789a358 100644
+--- a/src/main/java/org/bukkit/entity/Player.java
++++ b/src/main/java/org/bukkit/entity/Player.java
+@@ -1094,6 +1094,31 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+      */
+     public void sendEquipmentChange(@NotNull LivingEntity entity, @NotNull Map<EquipmentSlot, ItemStack> items);
+ 
++    // Daydream start - (feature) Add Packet API
++    /**
++     * 플레이어에게 raw 패킷을 전송합니다.
++     *
++     * @param nmsPacket NMS 패킷 인스턴스
++     * @deprecated {@link Player#sendPacket(moe.caramel.daydream.packet.Packet)}를 사용해주세요
++     */
++    @Deprecated
++    public void sendRawPacket(@NotNull Object nmsPacket);
++
++    /**
++     * 플레이어에게 패킷을 전송합니다.
++     *
++     * @param packet 패킷 인스턴스
++     */
++    public void sendPacket(@NotNull moe.caramel.daydream.packet.Packet packet);
++
++    /**
++     * 플레이어 및 플레이어를 트래킹하고 있는 플레이어에게 패킷을 전송합니다.
++     *
++     * @param packet 패킷 인스턴스
++     */
++    public void sendAndBroadcastPacket(@NotNull moe.caramel.daydream.packet.Packet packet);
++    // Daydream end - (feature) Add Packet API
++
+     // Paper start
+     /**
+      * Send a sign change. This fakes a sign change packet for a user at

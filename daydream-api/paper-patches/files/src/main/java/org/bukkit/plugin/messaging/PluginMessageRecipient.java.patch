@@ -1,0 +1,25 @@
+--- a/src/main/java/org/bukkit/plugin/messaging/PluginMessageRecipient.java
++++ b/src/main/java/org/bukkit/plugin/messaging/PluginMessageRecipient.java
+@@ -38,4 +_,22 @@
+      */
+     @NotNull
+     public Set<String> getListeningPluginChannels();
++
++    // Daydream start - Add Network API
++    /**
++     * 이 대상에게 커스텀 페이로드를 채널 등록 없이 전송합니다.
++     *
++     * @param channel 채널 이름
++     * @param value 데이터
++     */
++    public void sendCustomPayload(@NotNull org.bukkit.NamespacedKey channel, byte @NotNull [] value);
++
++    /**
++     * 이 대상에게 커스텀 페이로드를 채널 등록 없이 전송합니다.
++     *
++     * @param channel 채널 이름
++     * @param buf netty bytebuf 오브젝트
++     */
++    public void sendCustomPayload(@NotNull org.bukkit.NamespacedKey channel, @NotNull io.netty.buffer.ByteBuf buf);
++    // Daydream end - Add Network API
+ }

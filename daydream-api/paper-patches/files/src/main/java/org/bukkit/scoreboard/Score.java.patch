@@ -1,0 +1,27 @@
+--- a/src/main/java/org/bukkit/scoreboard/Score.java
++++ b/src/main/java/org/bukkit/scoreboard/Score.java
+@@ -151,4 +_,24 @@
+     void numberFormat(@Nullable io.papermc.paper.scoreboard.numbers.NumberFormat format);
+     // Paper end - number format api
+ 
++    // Daydream start - Add more Score API
++    /**
++     * 점수 업데이트 패킷 비활성화 여부를 가져옵니다.
++     *
++     * @return 패킷 비활성화 여부
++     */
++    boolean updateDisabled();
++
++    /**
++     * 점수 업데이트 패킷 비활성화 여부를 설정합니다.
++     *
++     * @param disable {@code true}인 경우 점수 업데이트 패킷을 전송하지 않습니다.
++     */
++    void updateDisable(boolean disable);
++
++    /**
++     * 강제로 점수 업데이트 패킷을 전송합니다.
++     */
++    void forceSendScoreToPlayers();
++    // Daydream end - Add more Score API
+ }

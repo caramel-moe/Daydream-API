@@ -1,0 +1,49 @@
+--- a/src/main/java/org/bukkit/scoreboard/Team.java
++++ b/src/main/java/org/bukkit/scoreboard/Team.java
+@@ -514,6 +_,46 @@
+     boolean hasEntity(@NotNull org.bukkit.entity.Entity entity) throws IllegalStateException, IllegalArgumentException;
+     // Paper end - improve scoreboard entries
+ 
++    // Daydream start - Add more Team API
++    /**
++     * 팀 리스너를 가져옵니다.
++     *
++     * @return 팀 리스너
++     */
++    @Nullable
++    moe.caramel.daydream.scoreboard.team.TeamListener getListener();
++
++    /**
++     * 팀 리스너를 설정합니다.
++     *
++     * @param listener 팀 리스너
++     */
++    void setListener(@Nullable moe.caramel.daydream.scoreboard.team.TeamListener listener);
++
++    /**
++     * 팀에 오프라인 플레이어를 추가합니다.
++     * 이 방법으로 추가하면 엔티티당 패킷이 아닌 전체 업데이트 패킷 하나만 사용합니다.
++     * <p>
++     * 또한, 업데이트 시 다른 팀에 있을 경우 각자 팀에서 제외됩니다.
++     *
++     * @param players 추가할 플레이어
++     * @throws IllegalArgumentException 플레이어가 {@code null}인 경우
++     * @throws IllegalStateException 이 팀이 등록되지 않은 경우
++     */
++    void addPlayers(@NotNull java.util.Collection<? extends OfflinePlayer> players);
++
++    /**
++     * 팀에서 오프라인 플레이어를 제거합니다.
++     * 이 방법으로 추가하면 엔티티당 패킷이 아닌 전체 업데이트 패킷 하나만 사용합니다.
++     *
++     * @param players 제거할 플레이어
++     * @return 플레이어 목록 중 누구 하나라도 이 팀의 일원이라면 {@code true}
++     * @throws IllegalArgumentException 플레이어가 {@code null}인 경우
++     * @throws IllegalStateException 이 팀이 등록되지 않은 경우
++     */
++    boolean removePlayers(@NotNull java.util.Collection<? extends OfflinePlayer> players);
++    // Daydream end - Add more Team API
++
+     /**
+      * Represents an option which may be applied to this team.
+      */

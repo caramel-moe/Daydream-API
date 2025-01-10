@@ -1,0 +1,33 @@
+--- a/src/main/java/io/papermc/paper/ServerBuildInfo.java
++++ b/src/main/java/io/papermc/paper/ServerBuildInfo.java
+@@ -18,6 +_,12 @@
+      * The brand id for Paper.
+      */
+     Key BRAND_PAPER_ID = Key.key("papermc", "paper");
++    // Daydream start - Rebrand to Daydream
++    /**
++     * The brand id for Daydream.
++     */
++    Key BRAND_DAYDREAM_ID = Key.key("caramel", "daydream");
++    // Daydream end - Rebrand to Daydream
+ 
+     /**
+      * Gets the {@code ServerBuildInfo}.
+@@ -69,6 +_,17 @@
+      * @return the Minecraft version name (e.g. "1.20.4", "1.20.2 Pre-release 2", "23w31a")
+      */
+     String minecraftVersionName();
++
++    // Daydream start - Expose protocol version
++    /**
++     * Gets the Minecraft protocol version.
++     *
++     * @return the Minecraft protocol version
++     */
++    default int protocolVersion() {
++        throw new UnsupportedOperationException();
++    }
++    // Daydream end - Expose protocol version
+ 
+     /**
+      * Gets the build number.
