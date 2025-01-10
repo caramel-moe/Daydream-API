@@ -87,9 +87,15 @@ loadScripts(document, 'script');</script>
 <h1 title="Interface Datapack" class="title">Interface Datapack</h1>
 </div>
 <section class="class-description" id="class-description">
+<dl class="notes">
+<dt>All Superinterfaces:</dt>
+<dd><code><a href="DiscoveredDatapack.html" title="interface in io.papermc.paper.datapack">DiscoveredDatapack</a></code></dd>
+</dl>
 <hr>
 <div class="type-signature"><span class="annotations"><a href="https://jspecify.dev/docs/api/org/jspecify/annotations/NullMarked.html" title="class or interface in org.jspecify.annotations" class="external-link">@NullMarked</a>
-</span><span class="modifiers">public interface </span><span class="element-name type-name-label">Datapack</span></div>
+<a href="https://javadoc.io/doc/org.jetbrains/annotations/26.0.1/org/jetbrains/annotations/ApiStatus.NonExtendable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NonExtendable</a>
+</span><span class="modifiers">public interface </span><span class="element-name type-name-label">Datapack</span><span class="extends-implements">
+extends <a href="DiscoveredDatapack.html" title="interface in io.papermc.paper.datapack">DiscoveredDatapack</a></span></div>
 <div class="block">This is a snapshot of a datapack on the server. It
  won't be updated as datapacks are updated.</div>
 </section>
@@ -107,6 +113,11 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color"><code>static enum&nbsp;</code></div>
 <div class="col-second even-row-color"><code><a href="Datapack.Compatibility.html" class="type-name-link" title="enum class in io.papermc.paper.datapack">Datapack.Compatibility</a></code></div>
 <div class="col-last even-row-color">&nbsp;</div>
+<div class="col-first odd-row-color"><code>static enum&nbsp;</code></div>
+<div class="col-second odd-row-color"><code><a href="Datapack.Position.html" class="type-name-link" title="enum class in io.papermc.paper.datapack">Datapack.Position</a></code></div>
+<div class="col-last odd-row-color">
+<div class="block">Position of the pack in the load order.</div>
+</div>
 </div>
 </section>
 </li>
@@ -121,60 +132,28 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://jd.advntr.dev/api/4.17.0/net/kyori/adventure/text/Component.html" title="class or interface in net.kyori.adventure.text" class="external-link">Component</a></code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://jd.advntr.dev/api/4.18.0/net/kyori/adventure/text/Component.html" title="class or interface in net.kyori.adventure.text" class="external-link">Component</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#computeDisplayName()" class="member-name-link">computeDisplayName</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Computes the component vanilla Minecraft uses
  to display this datapack.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="Datapack.Compatibility.html" title="enum class in io.papermc.paper.datapack">Datapack.Compatibility</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getCompatibility()" class="member-name-link">getCompatibility</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Gets the compatibility status of this pack.</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://jd.advntr.dev/api/4.17.0/net/kyori/adventure/text/Component.html" title="class or interface in net.kyori.adventure.text" class="external-link">Component</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getDescription()" class="member-name-link">getDescription</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Gets the description component of this datapack.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getName()" class="member-name-link">getName</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Gets the name/id of this datapack.</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Unmodifiable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Unmodifiable</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Set.html" title="class or interface in java.util" class="external-link">Set</a><wbr>&lt;<a href="../../../../org/bukkit/FeatureFlag.html" title="interface in org.bukkit">FeatureFlag</a>&gt;</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getRequiredFeatures()" class="member-name-link">getRequiredFeatures</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Gets the set of required features for this datapack.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="DatapackSource.html" title="interface in io.papermc.paper.datapack">DatapackSource</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getSource()" class="member-name-link">getSource</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Gets the source for this datapack.</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://jd.advntr.dev/api/4.17.0/net/kyori/adventure/text/Component.html" title="class or interface in net.kyori.adventure.text" class="external-link">Component</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getTitle()" class="member-name-link">getTitle</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Gets the title component of this datapack.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#isEnabled()" class="member-name-link">isEnabled</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Gets the enabled state of this pack.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#isRequired()" class="member-name-link">isRequired</a>()</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#setEnabled(boolean)" class="member-name-link">setEnabled</a><wbr>(boolean&nbsp;enabled)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Gets if this datapack is required to be enabled.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#setEnabled(boolean)" class="member-name-link">setEnabled</a><wbr>(boolean&nbsp;enabled)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Changes the enabled state of this pack.</div>
 </div>
 </div>
 </div>
 </div>
+<div class="inherited-list">
+<h3 id="methods-inherited-from-class-io.papermc.paper.datapack.DiscoveredDatapack">Methods inherited from interface&nbsp;io.papermc.paper.datapack.<a href="DiscoveredDatapack.html" title="interface in io.papermc.paper.datapack">DiscoveredDatapack</a></h3>
+<code><a href="DiscoveredDatapack.html#getCompatibility()">getCompatibility</a>, <a href="DiscoveredDatapack.html#getDescription()">getDescription</a>, <a href="DiscoveredDatapack.html#getName()">getName</a>, <a href="DiscoveredDatapack.html#getRequiredFeatures()">getRequiredFeatures</a>, <a href="DiscoveredDatapack.html#getSource()">getSource</a>, <a href="DiscoveredDatapack.html#getTitle()">getTitle</a>, <a href="DiscoveredDatapack.html#isRequired()">isRequired</a></code></div>
 </section>
 </li>
 </ul>
@@ -186,73 +165,6 @@ loadScripts(document, 'script');</script>
 <section class="method-details" id="method-detail">
 <h2>Method Details</h2>
 <ul class="member-list">
-<li>
-<section class="detail" id="getName()">
-<h3>getName</h3>
-<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Contract.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Contract</a>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Contract.html#pure()" title="class or interface in org.jetbrains.annotations" class="external-link">pure</a>=true)
-</span><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">getName</span>()</div>
-<div class="block">Gets the name/id of this datapack.</div>
-<dl class="notes">
-<dt>Returns:</dt>
-<dd>the name of the pack</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="getTitle()">
-<h3>getTitle</h3>
-<div class="member-signature"><span class="return-type"><a href="https://jd.advntr.dev/api/4.17.0/net/kyori/adventure/text/Component.html" title="class or interface in net.kyori.adventure.text" class="external-link">Component</a></span>&nbsp;<span class="element-name">getTitle</span>()</div>
-<div class="block">Gets the title component of this datapack.</div>
-<dl class="notes">
-<dt>Returns:</dt>
-<dd>the title</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="getDescription()">
-<h3>getDescription</h3>
-<div class="member-signature"><span class="return-type"><a href="https://jd.advntr.dev/api/4.17.0/net/kyori/adventure/text/Component.html" title="class or interface in net.kyori.adventure.text" class="external-link">Component</a></span>&nbsp;<span class="element-name">getDescription</span>()</div>
-<div class="block">Gets the description component of this datapack.</div>
-<dl class="notes">
-<dt>Returns:</dt>
-<dd>the description</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="isRequired()">
-<h3>isRequired</h3>
-<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">isRequired</span>()</div>
-<div class="block">Gets if this datapack is required to be enabled.</div>
-<dl class="notes">
-<dt>Returns:</dt>
-<dd>true if the pack is required</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="getCompatibility()">
-<h3>getCompatibility</h3>
-<div class="member-signature"><span class="return-type"><a href="Datapack.Compatibility.html" title="enum class in io.papermc.paper.datapack">Datapack.Compatibility</a></span>&nbsp;<span class="element-name">getCompatibility</span>()</div>
-<div class="block">Gets the compatibility status of this pack.</div>
-<dl class="notes">
-<dt>Returns:</dt>
-<dd>the compatibility of the pack</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="getRequiredFeatures()">
-<h3>getRequiredFeatures</h3>
-<div class="member-signature"><span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Unmodifiable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Unmodifiable</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Set.html" title="class or interface in java.util" class="external-link">Set</a>&lt;<a href="../../../../org/bukkit/FeatureFlag.html" title="interface in org.bukkit">FeatureFlag</a>&gt;</span>&nbsp;<span class="element-name">getRequiredFeatures</span>()</div>
-<div class="block">Gets the set of required features for this datapack.</div>
-<dl class="notes">
-<dt>Returns:</dt>
-<dd>the set of required features</dd>
-</dl>
-</section>
-</li>
 <li>
 <section class="detail" id="isEnabled()">
 <h3>isEnabled</h3>
@@ -280,25 +192,14 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="getSource()">
-<h3>getSource</h3>
-<div class="member-signature"><span class="return-type"><a href="DatapackSource.html" title="interface in io.papermc.paper.datapack">DatapackSource</a></span>&nbsp;<span class="element-name">getSource</span>()</div>
-<div class="block">Gets the source for this datapack.</div>
-<dl class="notes">
-<dt>Returns:</dt>
-<dd>the pack source</dd>
-</dl>
-</section>
-</li>
-<li>
 <section class="detail" id="computeDisplayName()">
 <h3>computeDisplayName</h3>
-<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Contract.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Contract</a>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Contract.html#pure()" title="class or interface in org.jetbrains.annotations" class="external-link">pure</a>=true,
-          <a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/Contract.html#value()" title="class or interface in org.jetbrains.annotations" class="external-link">value</a>="-&gt; new")
-</span><span class="return-type"><a href="https://jd.advntr.dev/api/4.17.0/net/kyori/adventure/text/Component.html" title="class or interface in net.kyori.adventure.text" class="external-link">Component</a></span>&nbsp;<span class="element-name">computeDisplayName</span>()</div>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/26.0.1/org/jetbrains/annotations/Contract.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Contract</a>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/26.0.1/org/jetbrains/annotations/Contract.html#pure--" title="class or interface in org.jetbrains.annotations" class="external-link">pure</a>=true,
+          <a href="https://javadoc.io/doc/org.jetbrains/annotations/26.0.1/org/jetbrains/annotations/Contract.html#value--" title="class or interface in org.jetbrains.annotations" class="external-link">value</a>="-&gt; new")
+</span><span class="return-type"><a href="https://jd.advntr.dev/api/4.18.0/net/kyori/adventure/text/Component.html" title="class or interface in net.kyori.adventure.text" class="external-link">Component</a></span>&nbsp;<span class="element-name">computeDisplayName</span>()</div>
 <div class="block">Computes the component vanilla Minecraft uses
- to display this datapack. Includes the <a href="#getSource()"><code>getSource()</code></a>,
- <a href="#getDescription()"><code>getDescription()</code></a>, <a href="#getName()"><code>getName()</code></a>, and the enabled state.</div>
+ to display this datapack. Includes the <a href="DiscoveredDatapack.html#getSource()"><code>DiscoveredDatapack.getSource()</code></a>,
+ <a href="DiscoveredDatapack.html#getDescription()"><code>DiscoveredDatapack.getDescription()</code></a>, <a href="DiscoveredDatapack.html#getName()"><code>DiscoveredDatapack.getName()</code></a>, and the enabled state.</div>
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>a new component</dd>

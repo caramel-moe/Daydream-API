@@ -101,7 +101,7 @@ loadScripts(document, 'script');</script>
 <dd><code><a href="CustomArgumentType.html" title="interface in io.papermc.paper.command.brigadier.argument">CustomArgumentType</a>&lt;<a href="CustomArgumentType.html" title="type parameter in CustomArgumentType">T</a>,<wbr><a href="CustomArgumentType.html" title="type parameter in CustomArgumentType">N</a>&gt;</code></dd>
 </dl>
 <hr>
-<div class="type-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/ApiStatus.Experimental.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Experimental</a>
+<div class="type-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/26.0.1/org/jetbrains/annotations/ApiStatus.Experimental.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Experimental</a>
 </span><span class="modifiers">public static interface </span><span class="element-name type-name-label">CustomArgumentType.Converted&lt;T,<wbr>N&gt;</span><span class="extends-implements">
 extends <a href="CustomArgumentType.html" title="interface in io.papermc.paper.command.brigadier.argument">CustomArgumentType</a>&lt;T,<wbr>N&gt;</span></div>
 <div class="block">An argument type that wraps around a native-to-vanilla argument type.
@@ -138,17 +138,26 @@ extends <a href="CustomArgumentType.html" title="interface in io.papermc.paper.c
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Converts the value from the native type to the custom argument type.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code>default <a href="CustomArgumentType.Converted.html" title="type parameter in CustomArgumentType.Converted">T</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#parse(com.mojang.brigadier.StringReader)" class="member-name-link">parse</a><wbr>(com.mojang.brigadier.StringReader&nbsp;reader)</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code>default &lt;S&gt;&nbsp;<a href="CustomArgumentType.Converted.html" title="type parameter in CustomArgumentType.Converted">T</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#convert(N,S)" class="member-name-link">convert</a><wbr>(<a href="CustomArgumentType.Converted.html" title="type parameter in CustomArgumentType.Converted">N</a>&nbsp;nativeType,
+ S&nbsp;source)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5">
+<div class="block">Converts the value from the native type to the custom argument type.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code>default <a href="CustomArgumentType.Converted.html" title="type parameter in CustomArgumentType.Converted">T</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#parse(com.mojang.brigadier.StringReader)" class="member-name-link">parse</a><wbr>(com.mojang.brigadier.StringReader&nbsp;reader)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5">
+<div class="block">Parses the argument into the custom type (<code>T</code>).</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code>default &lt;S&gt;&nbsp;<a href="CustomArgumentType.Converted.html" title="type parameter in CustomArgumentType.Converted">T</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#parse(com.mojang.brigadier.StringReader,S)" class="member-name-link">parse</a><wbr>(com.mojang.brigadier.StringReader&nbsp;reader,
+ S&nbsp;source)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5">
 <div class="block">Parses the argument into the custom type (<code>T</code>).</div>
 </div>
 </div>
 </div>
 </div>
-<div class="inherited-list">
-<h3 id="methods-inherited-from-class-com.mojang.brigadier.arguments.ArgumentType">Methods inherited from interface&nbsp;com.mojang.brigadier.arguments.ArgumentType</h3>
-<code>parse</code></div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-io.papermc.paper.command.brigadier.argument.CustomArgumentType">Methods inherited from interface&nbsp;io.papermc.paper.command.brigadier.argument.<a href="CustomArgumentType.html" title="interface in io.papermc.paper.command.brigadier.argument">CustomArgumentType</a></h3>
 <code><a href="CustomArgumentType.html#getExamples()">getExamples</a>, <a href="CustomArgumentType.html#getNativeType()">getNativeType</a>, <a href="CustomArgumentType.html#listSuggestions(com.mojang.brigadier.context.CommandContext,com.mojang.brigadier.suggestion.SuggestionsBuilder)">listSuggestions</a></code></div>
@@ -166,7 +175,7 @@ extends <a href="CustomArgumentType.html" title="interface in io.papermc.paper.c
 <li>
 <section class="detail" id="parse(com.mojang.brigadier.StringReader)">
 <h3>parse</h3>
-<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/24.1.0/org/jetbrains/annotations/ApiStatus.NonExtendable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NonExtendable</a>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/26.0.1/org/jetbrains/annotations/ApiStatus.NonExtendable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NonExtendable</a>
 </span><span class="modifiers">default</span>&nbsp;<span class="return-type"><a href="CustomArgumentType.Converted.html" title="type parameter in CustomArgumentType.Converted">T</a></span>&nbsp;<span class="element-name">parse</span><wbr><span class="parameters">(com.mojang.brigadier.StringReader&nbsp;reader)</span>
          throws <span class="exceptions">com.mojang.brigadier.exceptions.CommandSyntaxException</span></div>
 <div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="CustomArgumentType.html#parse(com.mojang.brigadier.StringReader)">CustomArgumentType</a></code></span></div>
@@ -186,6 +195,43 @@ extends <a href="CustomArgumentType.html" title="interface in io.papermc.paper.c
 <dd>parsed value</dd>
 <dt>Throws:</dt>
 <dd><code>com.mojang.brigadier.exceptions.CommandSyntaxException</code> - if an error occurs while parsing</dd>
+<dt>See Also:</dt>
+<dd>
+<ul class="tag-list-long">
+<li><a href="CustomArgumentType.html#parse(com.mojang.brigadier.StringReader,S)"><code>CustomArgumentType.parse(StringReader, Object)</code></a></li>
+</ul>
+</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="parse(com.mojang.brigadier.StringReader,S)">
+<h3 id="parse(com.mojang.brigadier.StringReader,java.lang.Object)">parse</h3>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/26.0.1/org/jetbrains/annotations/ApiStatus.NonExtendable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NonExtendable</a>
+</span><span class="modifiers">default</span>&nbsp;<span class="type-parameters">&lt;S&gt;</span>&nbsp;<span class="return-type"><a href="CustomArgumentType.Converted.html" title="type parameter in CustomArgumentType.Converted">T</a></span>&nbsp;<span class="element-name">parse</span><wbr><span class="parameters">(com.mojang.brigadier.StringReader&nbsp;reader,
+ S&nbsp;source)</span>
+             throws <span class="exceptions">com.mojang.brigadier.exceptions.CommandSyntaxException</span></div>
+<div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="CustomArgumentType.html#parse(com.mojang.brigadier.StringReader,S)">CustomArgumentType</a></code></span></div>
+<div class="block">Parses the argument into the custom type (<code>T</code>). Keep in mind
+ that this parsing will be done on the server. This means that if
+ you throw a <code>CommandSyntaxException</code> during parsing, this
+ will only show up to the user after the user has executed the command
+ not while they are still entering it.
+ <p>
+ This method provides the command source for additional context when parsing. You
+ may have to do your own <code>instanceof</code> checks for <a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier"><code>CommandSourceStack</code></a>.</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code>parse</code>&nbsp;in interface&nbsp;<code>com.mojang.brigadier.arguments.ArgumentType&lt;<a href="CustomArgumentType.Converted.html" title="type parameter in CustomArgumentType.Converted">T</a>&gt;</code></dd>
+<dt>Specified by:</dt>
+<dd><code><a href="CustomArgumentType.html#parse(com.mojang.brigadier.StringReader,S)">parse</a></code>&nbsp;in interface&nbsp;<code><a href="CustomArgumentType.html" title="interface in io.papermc.paper.command.brigadier.argument">CustomArgumentType</a>&lt;<a href="CustomArgumentType.Converted.html" title="type parameter in CustomArgumentType.Converted">T</a>,<wbr><a href="CustomArgumentType.Converted.html" title="type parameter in CustomArgumentType.Converted">N</a>&gt;</code></dd>
+<dt>Parameters:</dt>
+<dd><code>reader</code> - string reader input</dd>
+<dd><code>source</code> - source of the command</dd>
+<dt>Returns:</dt>
+<dd>parsed value</dd>
+<dt>Throws:</dt>
+<dd><code>com.mojang.brigadier.exceptions.CommandSyntaxException</code> - if an error occurs while parsing</dd>
 </dl>
 </section>
 </li>
@@ -198,6 +244,33 @@ extends <a href="CustomArgumentType.html" title="interface in io.papermc.paper.c
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>nativeType</code> - native argument provided value</dd>
+<dt>Returns:</dt>
+<dd>converted value</dd>
+<dt>Throws:</dt>
+<dd><code>com.mojang.brigadier.exceptions.CommandSyntaxException</code> - if an exception occurs while parsing</dd>
+<dt>See Also:</dt>
+<dd>
+<ul class="tag-list-long">
+<li><a href="#convert(N,S)"><code>convert(Object, Object)</code></a></li>
+</ul>
+</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="convert(N,S)">
+<h3 id="convert(java.lang.Object,java.lang.Object)">convert</h3>
+<div class="member-signature"><span class="modifiers">default</span>&nbsp;<span class="type-parameters">&lt;S&gt;</span>&nbsp;<span class="return-type"><a href="CustomArgumentType.Converted.html" title="type parameter in CustomArgumentType.Converted">T</a></span>&nbsp;<span class="element-name">convert</span><wbr><span class="parameters">(<a href="CustomArgumentType.Converted.html" title="type parameter in CustomArgumentType.Converted">N</a>&nbsp;nativeType,
+ S&nbsp;source)</span>
+               throws <span class="exceptions">com.mojang.brigadier.exceptions.CommandSyntaxException</span></div>
+<div class="block">Converts the value from the native type to the custom argument type.
+ <p>
+ This method provides the command source for additional context when converting. You
+ may have to do your own <code>instanceof</code> checks for <a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier"><code>CommandSourceStack</code></a>.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>nativeType</code> - native argument provided value</dd>
+<dd><code>source</code> - source of the command</dd>
 <dt>Returns:</dt>
 <dd>converted value</dd>
 <dt>Throws:</dt>

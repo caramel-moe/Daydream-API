@@ -142,10 +142,22 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">특정 플레이어의 개인 사이드바 업데이트 시간을 가져옵니다.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code>default long</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#updateInterval(org.bukkit.entity.Player)" class="member-name-link">updateInterval</a><wbr>(<a href="../../../../org/bukkit/entity/Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;holder)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#updateInterval(java.util.UUID,long)" class="member-name-link">updateInterval</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;uuid,
+ long&nbsp;updateInterval)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">특정 플레이어의 개인 사이드바 업데이트 시간을 설정합니다.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code>default long</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#updateInterval(org.bukkit.entity.Player)" class="member-name-link">updateInterval</a><wbr>(<a href="../../../../org/bukkit/entity/Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;holder)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5">
 <div class="block">특정 플레이어의 개인 사이드바 업데이트 시간을 가져옵니다.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code>default boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#updateInterval(org.bukkit.entity.Player,long)" class="member-name-link">updateInterval</a><wbr>(<a href="../../../../org/bukkit/entity/Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;holder,
+ long&nbsp;updateInterval)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5">
+<div class="block">특정 플레이어의 개인 사이드바 업데이트 시간을 설정합니다.</div>
 </div>
 </div>
 </div>
@@ -241,8 +253,7 @@ loadScripts(document, 'script');</script>
 <dt>Parameters:</dt>
 <dd><code>holder</code> - 대상 플레이어</dd>
 <dt>Returns:</dt>
-<dd>개인 사이드바 업데이트 주기 (틱).
- <code>-1</code>인 경우 비활성화 상태</dd>
+<dd>개인 사이드바 업데이트 틱 주기 (<code>-1</code>인 경우 비활성화 상태)</dd>
 </dl>
 </section>
 </li>
@@ -255,8 +266,41 @@ loadScripts(document, 'script');</script>
 <dt>Parameters:</dt>
 <dd><code>uuid</code> - 대상 플레이어의 UUID</dd>
 <dt>Returns:</dt>
-<dd>개인 사이드바 업데이트 주기 (틱).
- <code>-1</code>인 경우 비활성화 상태</dd>
+<dd>개인 사이드바 업데이트 틱 주기 (<code>-1</code>인 경우 비활성화 상태)</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="updateInterval(org.bukkit.entity.Player,long)">
+<h3>updateInterval</h3>
+<div class="member-signature"><span class="modifiers">default</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">updateInterval</span><wbr><span class="parameters">(<a href="../../../../org/bukkit/entity/Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;holder,
+ long&nbsp;updateInterval)</span></div>
+<div class="block">특정 플레이어의 개인 사이드바 업데이트 시간을 설정합니다.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>holder</code> - 대상 플레이어</dd>
+<dd><code>updateInterval</code> - 개인 사이드바 업데이트 틱 주기</dd>
+<dt>Returns:</dt>
+<dd><code>true</code>인 경우 변경에 성공</dd>
+<dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - 업데이트 주기가 0틱 보다 작을 경우 예외를 던짐</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="updateInterval(java.util.UUID,long)">
+<h3>updateInterval</h3>
+<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">updateInterval</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;uuid,
+ long&nbsp;updateInterval)</span></div>
+<div class="block">특정 플레이어의 개인 사이드바 업데이트 시간을 설정합니다.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>uuid</code> - 대상 플레이어의 UUID</dd>
+<dd><code>updateInterval</code> - 개인 사이드바 업데이트 틱 주기</dd>
+<dt>Returns:</dt>
+<dd><code>true</code>인 경우 변경에 성공</dd>
+<dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - 업데이트 주기가 0틱 보다 작을 경우 예외를 던짐</dd>
 </dl>
 </section>
 </li>

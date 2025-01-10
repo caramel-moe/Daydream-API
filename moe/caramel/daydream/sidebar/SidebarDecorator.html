@@ -106,7 +106,8 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://jspecify.dev/docs/api/org/jspecify/annotations/Nullable.html" title="class or interface in org.jspecify.annotations" class="external-link">@Nullable</a> <a href="EntryBuilder.html" title="class in moe.caramel.daydream.sidebar">EntryBuilder</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#entries(org.bukkit.entity.Player)" class="member-name-link">entries</a><wbr>(<a href="../../../../org/bukkit/entity/Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;player)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#entries(moe.caramel.daydream.sidebar.SidebarRunnable,org.bukkit.entity.Player)" class="member-name-link">entries</a><wbr>(<a href="SidebarRunnable.html" title="interface in moe.caramel.daydream.sidebar">SidebarRunnable</a>&nbsp;context,
+ <a href="../../../../org/bukkit/entity/Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;player)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">플레이어별 사이드바에 표시할 항목 리스트를 가져옵니다.</div>
 </div>
@@ -115,8 +116,9 @@ loadScripts(document, 'script');</script>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5">
 <div class="block">사이드바 글로벌 포맷을 가져옵니다.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://jd.advntr.dev/api/4.17.0/net/kyori/adventure/text/Component.html" title="class or interface in net.kyori.adventure.text" class="external-link">Component</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#title(org.bukkit.entity.Player)" class="member-name-link">title</a><wbr>(<a href="../../../../org/bukkit/entity/Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;player)</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://jd.advntr.dev/api/4.18.0/net/kyori/adventure/text/Component.html" title="class or interface in net.kyori.adventure.text" class="external-link">Component</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#title(moe.caramel.daydream.sidebar.SidebarRunnable,org.bukkit.entity.Player)" class="member-name-link">title</a><wbr>(<a href="SidebarRunnable.html" title="interface in moe.caramel.daydream.sidebar">SidebarRunnable</a>&nbsp;context,
+ <a href="../../../../org/bukkit/entity/Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;player)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">플레이어별 사이드바에 표시할 제목을 가져옵니다.</div>
 </div>
@@ -148,12 +150,14 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="title(org.bukkit.entity.Player)">
+<section class="detail" id="title(moe.caramel.daydream.sidebar.SidebarRunnable,org.bukkit.entity.Player)">
 <h3>title</h3>
-<div class="member-signature"><span class="return-type"><a href="https://jd.advntr.dev/api/4.17.0/net/kyori/adventure/text/Component.html" title="class or interface in net.kyori.adventure.text" class="external-link">Component</a></span>&nbsp;<span class="element-name">title</span><wbr><span class="parameters">(<a href="../../../../org/bukkit/entity/Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;player)</span></div>
+<div class="member-signature"><span class="return-type"><a href="https://jd.advntr.dev/api/4.18.0/net/kyori/adventure/text/Component.html" title="class or interface in net.kyori.adventure.text" class="external-link">Component</a></span>&nbsp;<span class="element-name">title</span><wbr><span class="parameters">(<a href="SidebarRunnable.html" title="interface in moe.caramel.daydream.sidebar">SidebarRunnable</a>&nbsp;context,
+ <a href="../../../../org/bukkit/entity/Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;player)</span></div>
 <div class="block">플레이어별 사이드바에 표시할 제목을 가져옵니다.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
+<dd><code>context</code> - 사이드바 스케줄러 컨텍스트</dd>
 <dd><code>player</code> - 대상 플레이어</dd>
 <dt>Returns:</dt>
 <dd>사이드바에 표시할 제목</dd>
@@ -161,13 +165,16 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="entries(org.bukkit.entity.Player)">
+<section class="detail" id="entries(moe.caramel.daydream.sidebar.SidebarRunnable,org.bukkit.entity.Player)">
 <h3>entries</h3>
-<div class="member-signature"><span class="return-type"><a href="https://jspecify.dev/docs/api/org/jspecify/annotations/Nullable.html" title="class or interface in org.jspecify.annotations" class="external-link">@Nullable</a> <a href="EntryBuilder.html" title="class in moe.caramel.daydream.sidebar">EntryBuilder</a></span>&nbsp;<span class="element-name">entries</span><wbr><span class="parameters">(<a href="../../../../org/bukkit/entity/Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;player)</span></div>
+<div class="member-signature"><span class="return-type"><a href="https://jspecify.dev/docs/api/org/jspecify/annotations/Nullable.html" title="class or interface in org.jspecify.annotations" class="external-link">@Nullable</a> <a href="EntryBuilder.html" title="class in moe.caramel.daydream.sidebar">EntryBuilder</a></span>&nbsp;<span class="element-name">entries</span><wbr><span class="parameters">(<a href="SidebarRunnable.html" title="interface in moe.caramel.daydream.sidebar">SidebarRunnable</a>&nbsp;context,
+ <a href="../../../../org/bukkit/entity/Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;player)</span></div>
 <div class="block">플레이어별 사이드바에 표시할 항목 리스트를 가져옵니다.
- <p><code>null</code>을 반환하는 경우 리스트를 업데이트하지 않습니다.</p></div>
+ <p>
+ <code>null</code>을 반환하는 경우 리스트를 업데이트하지 않습니다.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
+<dd><code>context</code> - 사이드바 스케줄러 컨텍스트</dd>
 <dd><code>player</code> - 대상 플레이어</dd>
 <dt>Returns:</dt>
 <dd>사이드바에 표시할 항목 리스트</dd>
