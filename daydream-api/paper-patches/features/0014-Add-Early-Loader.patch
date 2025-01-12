@@ -47,10 +47,10 @@ index 0000000000000000000000000000000000000000..5282d9353d8629f025ae89518fa07960
 +    UnsafeValues getUnsafe();
 +}
 diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
-index ec70705448586723d9dc2e6b4ec8aaea66891a96..29aa2caa7a3bfb7eee4e7be7ce64b29ce9edd025 100644
+index c47c6fdfb17bff93d7b3041b5b4ec258fe9ac206..31c3c0c212a2c6438a5bccea6a759292ebbdd7a3 100644
 --- a/src/main/java/org/bukkit/Bukkit.java
 +++ b/src/main/java/org/bukkit/Bukkit.java
-@@ -2196,7 +2196,7 @@ public final class Bukkit {
+@@ -2211,7 +2211,7 @@ public final class Bukkit {
       */
      @NotNull
      public static ItemFactory getItemFactory() {
@@ -59,7 +59,7 @@ index ec70705448586723d9dc2e6b4ec8aaea66891a96..29aa2caa7a3bfb7eee4e7be7ce64b29c
      }
  
      /**
-@@ -2724,7 +2724,7 @@ public final class Bukkit {
+@@ -2739,7 +2739,7 @@ public final class Bukkit {
      @Deprecated(since = "1.7.2")
      @NotNull
      public static UnsafeValues getUnsafe() {
@@ -69,10 +69,10 @@ index ec70705448586723d9dc2e6b4ec8aaea66891a96..29aa2caa7a3bfb7eee4e7be7ce64b29c
  
  
 diff --git a/src/main/java/org/bukkit/inventory/ItemStack.java b/src/main/java/org/bukkit/inventory/ItemStack.java
-index 76408cdc0f7634fd7c447594c5079c3c2d981080..a5ec9efb903aa1f2b14ad6dad56273177e213ed5 100644
+index 325d74a4e5886e3af57ba7075541190a7bd813e6..31d23f5228e012661bd0f1b58f5b1f1c31011b53 100644
 --- a/src/main/java/org/bukkit/inventory/ItemStack.java
 +++ b/src/main/java/org/bukkit/inventory/ItemStack.java
-@@ -763,7 +763,7 @@ public class ItemStack implements Cloneable, ConfigurationSerializable, Translat
+@@ -764,7 +764,7 @@ public class ItemStack implements Cloneable, ConfigurationSerializable, Translat
       */
      @NotNull
      public ItemStack enchantWithLevels(final @org.jetbrains.annotations.Range(from = 1, to = 30) int levels, final boolean allowTreasure, final @NotNull java.util.Random random) {
@@ -81,7 +81,7 @@ index 76408cdc0f7634fd7c447594c5079c3c2d981080..a5ec9efb903aa1f2b14ad6dad5627317
      }
  
      /**
-@@ -786,7 +786,7 @@ public class ItemStack implements Cloneable, ConfigurationSerializable, Translat
+@@ -787,7 +787,7 @@ public class ItemStack implements Cloneable, ConfigurationSerializable, Translat
      @NotNull
      @Override
      public net.kyori.adventure.text.event.HoverEvent<net.kyori.adventure.text.event.HoverEvent.ShowItem> asHoverEvent(final @NotNull java.util.function.UnaryOperator<net.kyori.adventure.text.event.HoverEvent.ShowItem> op) {
@@ -90,7 +90,7 @@ index 76408cdc0f7634fd7c447594c5079c3c2d981080..a5ec9efb903aa1f2b14ad6dad5627317
      }
  
      /**
-@@ -795,7 +795,7 @@ public class ItemStack implements Cloneable, ConfigurationSerializable, Translat
+@@ -796,7 +796,7 @@ public class ItemStack implements Cloneable, ConfigurationSerializable, Translat
       * @return display name of the {@link ItemStack}
       */
      public net.kyori.adventure.text.@NotNull Component displayName() {
@@ -99,7 +99,7 @@ index 76408cdc0f7634fd7c447594c5079c3c2d981080..a5ec9efb903aa1f2b14ad6dad5627317
      }
  
      /**
-@@ -819,7 +819,7 @@ public class ItemStack implements Cloneable, ConfigurationSerializable, Translat
+@@ -820,7 +820,7 @@ public class ItemStack implements Cloneable, ConfigurationSerializable, Translat
       */
      @NotNull
      public ItemStack ensureServerConversions() {
@@ -108,7 +108,7 @@ index 76408cdc0f7634fd7c447594c5079c3c2d981080..a5ec9efb903aa1f2b14ad6dad5627317
      }
  
      /**
-@@ -943,7 +943,7 @@ public class ItemStack implements Cloneable, ConfigurationSerializable, Translat
+@@ -944,7 +944,7 @@ public class ItemStack implements Cloneable, ConfigurationSerializable, Translat
      @Nullable
      @Deprecated
      public String getI18NDisplayName() {

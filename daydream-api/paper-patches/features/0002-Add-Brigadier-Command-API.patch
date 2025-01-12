@@ -17,10 +17,10 @@ index 7e24babf746de474c8deec4b147e22031e8dadb2..5146498bc621d2e97fa63a6aaef82258
 +    RELOADABLE // Daydream - (feature) Add Brigadier Command API
  }
 diff --git a/src/main/java/io/papermc/paper/command/brigadier/CommandSourceStack.java b/src/main/java/io/papermc/paper/command/brigadier/CommandSourceStack.java
-index ac6f5b754a15e85ce09de4ed4cdee2044b45022c..4606cd17f882f163e963979c20a18410c12ec0b7 100644
+index 109c0a89e25284df5f0551b9205e75c6f0d700ca..1d3ca1a2cf872e41958c8e13e4135b96241a3d44 100644
 --- a/src/main/java/io/papermc/paper/command/brigadier/CommandSourceStack.java
 +++ b/src/main/java/io/papermc/paper/command/brigadier/CommandSourceStack.java
-@@ -19,7 +19,7 @@ import org.jspecify.annotations.Nullable;
+@@ -21,7 +21,7 @@ import org.jspecify.annotations.Nullable;
   * exist yet, or no specific sender is available. Methods on such a {@link CommandSender}
   * will either have no effect or throw an {@link UnsupportedOperationException}.</p>
   */
@@ -1079,10 +1079,10 @@ index 0000000000000000000000000000000000000000..b21df77a52d31e7e0c38b33a6d77808a
 +    }
 +}
 diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
-index 633f4eca7b80336c86ae008655eae86cd742279b..48555195ef1a542216bd31161485fe0044bd506e 100644
+index 79237fa43eb425a26d03724caff6af0f736ba9db..6429d23052cf44a5603008bb5054c1b805cb5826 100644
 --- a/src/main/java/org/bukkit/Bukkit.java
 +++ b/src/main/java/org/bukkit/Bukkit.java
-@@ -1105,6 +1105,41 @@ public final class Bukkit {
+@@ -1106,6 +1106,41 @@ public final class Bukkit {
      }
      // Daydream end - Expose Brigadier command dispatcher
  
@@ -1125,10 +1125,10 @@ index 633f4eca7b80336c86ae008655eae86cd742279b..48555195ef1a542216bd31161485fe00
       * Writes loaded players to disk.
       */
 diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
-index 79227f913133b74b6b17efb025224b0e5f106e46..41c00bb7e1d33f6fdb019ef9d90185d68107428b 100644
+index bc6f0a8f77d4d494bfec5f3e9c47fabe41037a6b..48118358de82f0f28a5968ff48e317f7eb1aea9a 100644
 --- a/src/main/java/org/bukkit/Server.java
 +++ b/src/main/java/org/bukkit/Server.java
-@@ -979,6 +979,35 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
+@@ -980,6 +980,35 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
      public <S extends io.papermc.paper.command.brigadier.CommandSourceStack> com.mojang.brigadier.CommandDispatcher<S> getCommandDispatcher();
      // Daydream end - Expose Brigadier command dispatcher
  
@@ -1192,10 +1192,10 @@ index 83193bfd215d9e0c6ed896480b2d4e35b0e4333d..faf4524f47a074c61962f62b948a0cf4
       * Sets the list of aliases to request on registration for this command.
       * This is not effective outside of defining aliases in the {@link
 diff --git a/src/main/java/org/bukkit/plugin/java/JavaPlugin.java b/src/main/java/org/bukkit/plugin/java/JavaPlugin.java
-index 60a8a2cca72c7e1579db5ad9c31dfcc4c8090d40..ec2f06fa1ca72b62ce26a751299ea27505506faa 100644
+index a04100646040c0342f219e489a0a6b8c46f219e5..97e2c3ad70a6d59ced5f9b7d358c0c95ae73b36e 100644
 --- a/src/main/java/org/bukkit/plugin/java/JavaPlugin.java
 +++ b/src/main/java/org/bukkit/plugin/java/JavaPlugin.java
-@@ -356,6 +356,38 @@ public abstract class JavaPlugin extends PluginBase {
+@@ -362,6 +362,38 @@ public abstract class JavaPlugin extends PluginBase {
          }
      }
  

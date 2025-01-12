@@ -82,7 +82,7 @@ index 0000000000000000000000000000000000000000..d9bd2aa043606126514ec3e54f968d8e
 +    //</editor-fold>
 +}
 diff --git a/src/main/java/org/bukkit/Tag.java b/src/main/java/org/bukkit/Tag.java
-index 193858a2815588dc6736a4b8d4cadd7262860757..76ffe5059f3026cb1a9eeac24ae91f6b83ddcd0a 100644
+index 193858a2815588dc6736a4b8d4cadd7262860757..de260586b1d92d943039b03777ff3667b7883a50 100644
 --- a/src/main/java/org/bukkit/Tag.java
 +++ b/src/main/java/org/bukkit/Tag.java
 @@ -1453,6 +1453,44 @@ public interface Tag<T extends Keyed> extends Keyed {
@@ -131,10 +131,10 @@ index 193858a2815588dc6736a4b8d4cadd7262860757..76ffe5059f3026cb1a9eeac24ae91f6b
       * Returns whether or not this tag has an entry for the specified item.
       *
 diff --git a/src/main/java/org/bukkit/UnsafeValues.java b/src/main/java/org/bukkit/UnsafeValues.java
-index 57b5425c90da00830f79478d99821270bf10ba3e..b957502954eedc554fba8ace860e128ff2517c33 100644
+index be9f1d41a184d49a1d0872f8c56599375112b099..4ef581256f99a9bb78f7ecf874146f512d9413d1 100644
 --- a/src/main/java/org/bukkit/UnsafeValues.java
 +++ b/src/main/java/org/bukkit/UnsafeValues.java
-@@ -405,4 +405,6 @@ public interface UnsafeValues {
+@@ -406,4 +406,6 @@ public interface UnsafeValues {
      @NotNull
      java.util.ListIterator<ItemStack> createInventoryIterator(@NotNull org.bukkit.inventory.Inventory inventory, int nextIndex);
      // Daydream end - Proxy InventoryIterator
@@ -142,7 +142,7 @@ index 57b5425c90da00830f79478d99821270bf10ba3e..b957502954eedc554fba8ace860e128f
 +    @NotNull moe.caramel.daydream.world.DamageContext getDamageContext(@NotNull Object damageSource); // Daydream - (feature) Add more Damage API
  }
 diff --git a/src/main/java/org/bukkit/damage/DamageSource.java b/src/main/java/org/bukkit/damage/DamageSource.java
-index 7635610e56c051ce3c8a876911ba5cd0a9248496..8e88201e647a72407c157c92517002a58ae2a9df 100644
+index 7635610e56c051ce3c8a876911ba5cd0a9248496..1ba69a8c73a58b53d23bcc395fb8c92c9041c8ae 100644
 --- a/src/main/java/org/bukkit/damage/DamageSource.java
 +++ b/src/main/java/org/bukkit/damage/DamageSource.java
 @@ -13,6 +13,44 @@ import org.jetbrains.annotations.Nullable;
@@ -191,7 +191,7 @@ index 7635610e56c051ce3c8a876911ba5cd0a9248496..8e88201e647a72407c157c92517002a5
       * Get the {@link DamageType}.
       *
 diff --git a/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java b/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java
-index d1a5424ff3b289f1c82449ef6d88eb52665df41b..3de57873609f1dafcac671c4832ea0da7fa8f265 100644
+index d1a5424ff3b289f1c82449ef6d88eb52665df41b..8277269be6b189c04d9bbe3eb5e7dae3809176f5 100644
 --- a/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java
 +++ b/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java
 @@ -59,6 +59,18 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
