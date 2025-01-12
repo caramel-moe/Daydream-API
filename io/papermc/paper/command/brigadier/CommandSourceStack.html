@@ -130,6 +130,16 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Gets the command sender that executed this command.</div>
 </div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#withExecutor(org.bukkit.entity.Entity)" class="member-name-link">withExecutor</a><wbr>(<a href="../../../../../org/bukkit/entity/Entity.html" title="interface in org.bukkit.entity">Entity</a>&nbsp;executor)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Creates a new CommandSourceStack object with a different executor for redirecting commands to other nodes.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#withLocation(org.bukkit.Location)" class="member-name-link">withLocation</a><wbr>(<a href="../../../../../org/bukkit/Location.html" title="class in org.bukkit">Location</a>&nbsp;location)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Creates a new CommandSourceStack object with a different location for redirecting commands to other nodes.</div>
+</div>
 </div>
 </div>
 </div>
@@ -178,6 +188,46 @@ loadScripts(document, 'script');</script>
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>entity that executes this command</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="withLocation(org.bukkit.Location)">
+<h3>withLocation</h3>
+<div class="member-signature"><span class="return-type"><a href="CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a></span>&nbsp;<span class="element-name">withLocation</span><wbr><span class="parameters">(<a href="../../../../../org/bukkit/Location.html" title="class in org.bukkit">Location</a>&nbsp;location)</span></div>
+<div class="block">Creates a new CommandSourceStack object with a different location for redirecting commands to other nodes.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>location</code> - The location to create a new CommandSourceStack object with</dd>
+<dt>Returns:</dt>
+<dd>The newly created CommandSourceStack</dd>
+<dt>See Also:</dt>
+<dd>
+<ul class="tag-list-long">
+<li><a href="#getLocation()"><code>getLocation()</code></a></li>
+<li><code>ArgumentBuilder.fork(CommandNode, RedirectModifier)</code></li>
+</ul>
+</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="withExecutor(org.bukkit.entity.Entity)">
+<h3>withExecutor</h3>
+<div class="member-signature"><span class="return-type"><a href="CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a></span>&nbsp;<span class="element-name">withExecutor</span><wbr><span class="parameters">(<a href="../../../../../org/bukkit/entity/Entity.html" title="interface in org.bukkit.entity">Entity</a>&nbsp;executor)</span></div>
+<div class="block">Creates a new CommandSourceStack object with a different executor for redirecting commands to other nodes.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>executor</code> - The executing entity to create a new CommandSourceStack object with</dd>
+<dt>Returns:</dt>
+<dd>The newly created CommandSourceStack</dd>
+<dt>See Also:</dt>
+<dd>
+<ul class="tag-list-long">
+<li><a href="#getExecutor()"><code>getExecutor()</code></a></li>
+<li><code>ArgumentBuilder.fork(CommandNode, RedirectModifier)</code></li>
+</ul>
+</dd>
 </dl>
 </section>
 </li>

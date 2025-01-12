@@ -167,6 +167,14 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color">
 <div class="block">All of the items on the clicked slot are moved to the cursor.</div>
 </div>
+<div class="col-first odd-row-color"><code><a href="#PICKUP_ALL_INTO_BUNDLE" class="member-name-link">PICKUP_ALL_INTO_BUNDLE</a></code></div>
+<div class="col-last odd-row-color">
+<div class="block">All of the items on the clicked slot are moved into the bundle on the cursor.</div>
+</div>
+<div class="col-first even-row-color"><code><a href="#PICKUP_FROM_BUNDLE" class="member-name-link">PICKUP_FROM_BUNDLE</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">The first stack of items in the clicked bundle is moved to the cursor.</div>
+</div>
 <div class="col-first odd-row-color"><code><a href="#PICKUP_HALF" class="member-name-link">PICKUP_HALF</a></code></div>
 <div class="col-last odd-row-color">
 <div class="block">Half of the items on the clicked slot are moved to the cursor.</div>
@@ -179,18 +187,34 @@ loadScripts(document, 'script');</script>
 <div class="col-last odd-row-color">
 <div class="block">Some of the items on the clicked slot are moved to the cursor.</div>
 </div>
-<div class="col-first even-row-color"><code><a href="#PLACE_ALL" class="member-name-link">PLACE_ALL</a></code></div>
+<div class="col-first even-row-color"><code><a href="#PICKUP_SOME_INTO_BUNDLE" class="member-name-link">PICKUP_SOME_INTO_BUNDLE</a></code></div>
 <div class="col-last even-row-color">
+<div class="block">Some of the items on the clicked slot are moved into the bundle on the cursor.</div>
+</div>
+<div class="col-first odd-row-color"><code><a href="#PLACE_ALL" class="member-name-link">PLACE_ALL</a></code></div>
+<div class="col-last odd-row-color">
 <div class="block">All of the items on the cursor are moved to the clicked slot.</div>
 </div>
-<div class="col-first odd-row-color"><code><a href="#PLACE_ONE" class="member-name-link">PLACE_ONE</a></code></div>
+<div class="col-first even-row-color"><code><a href="#PLACE_ALL_INTO_BUNDLE" class="member-name-link">PLACE_ALL_INTO_BUNDLE</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">All of the items on the cursor are moved into the bundle in the clicked slot.</div>
+</div>
+<div class="col-first odd-row-color"><code><a href="#PLACE_FROM_BUNDLE" class="member-name-link">PLACE_FROM_BUNDLE</a></code></div>
 <div class="col-last odd-row-color">
+<div class="block">The first stack of items is moved to the clicked slot.</div>
+</div>
+<div class="col-first even-row-color"><code><a href="#PLACE_ONE" class="member-name-link">PLACE_ONE</a></code></div>
+<div class="col-last even-row-color">
 <div class="block">A single item from the cursor is moved to the clicked slot.</div>
 </div>
-<div class="col-first even-row-color"><code><a href="#PLACE_SOME" class="member-name-link">PLACE_SOME</a></code></div>
-<div class="col-last even-row-color">
+<div class="col-first odd-row-color"><code><a href="#PLACE_SOME" class="member-name-link">PLACE_SOME</a></code></div>
+<div class="col-last odd-row-color">
 <div class="block">Some of the items from the cursor are moved to the clicked slot
  (usually up to the max stack size).</div>
+</div>
+<div class="col-first even-row-color"><code><a href="#PLACE_SOME_INTO_BUNDLE" class="member-name-link">PLACE_SOME_INTO_BUNDLE</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">Some of the items on the cursor are moved into the bundle in the clicked slot.</div>
 </div>
 <div class="col-first odd-row-color"><code><a href="#SWAP_WITH_CURSOR" class="member-name-link">SWAP_WITH_CURSOR</a></code></div>
 <div class="col-last odd-row-color">
@@ -390,6 +414,48 @@ the order they are declared.</div>
 <h3>UNKNOWN</h3>
 <div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="InventoryAction.html" title="enum class in org.bukkit.event.inventory">InventoryAction</a></span>&nbsp;<span class="element-name">UNKNOWN</span></div>
 <div class="block">An unrecognized ClickType.</div>
+</section>
+</li>
+<li>
+<section class="detail" id="PICKUP_FROM_BUNDLE">
+<h3>PICKUP_FROM_BUNDLE</h3>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="InventoryAction.html" title="enum class in org.bukkit.event.inventory">InventoryAction</a></span>&nbsp;<span class="element-name">PICKUP_FROM_BUNDLE</span></div>
+<div class="block">The first stack of items in the clicked bundle is moved to the cursor.</div>
+</section>
+</li>
+<li>
+<section class="detail" id="PICKUP_ALL_INTO_BUNDLE">
+<h3>PICKUP_ALL_INTO_BUNDLE</h3>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="InventoryAction.html" title="enum class in org.bukkit.event.inventory">InventoryAction</a></span>&nbsp;<span class="element-name">PICKUP_ALL_INTO_BUNDLE</span></div>
+<div class="block">All of the items on the clicked slot are moved into the bundle on the cursor.</div>
+</section>
+</li>
+<li>
+<section class="detail" id="PICKUP_SOME_INTO_BUNDLE">
+<h3>PICKUP_SOME_INTO_BUNDLE</h3>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="InventoryAction.html" title="enum class in org.bukkit.event.inventory">InventoryAction</a></span>&nbsp;<span class="element-name">PICKUP_SOME_INTO_BUNDLE</span></div>
+<div class="block">Some of the items on the clicked slot are moved into the bundle on the cursor.</div>
+</section>
+</li>
+<li>
+<section class="detail" id="PLACE_FROM_BUNDLE">
+<h3>PLACE_FROM_BUNDLE</h3>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="InventoryAction.html" title="enum class in org.bukkit.event.inventory">InventoryAction</a></span>&nbsp;<span class="element-name">PLACE_FROM_BUNDLE</span></div>
+<div class="block">The first stack of items is moved to the clicked slot.</div>
+</section>
+</li>
+<li>
+<section class="detail" id="PLACE_ALL_INTO_BUNDLE">
+<h3>PLACE_ALL_INTO_BUNDLE</h3>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="InventoryAction.html" title="enum class in org.bukkit.event.inventory">InventoryAction</a></span>&nbsp;<span class="element-name">PLACE_ALL_INTO_BUNDLE</span></div>
+<div class="block">All of the items on the cursor are moved into the bundle in the clicked slot.</div>
+</section>
+</li>
+<li>
+<section class="detail" id="PLACE_SOME_INTO_BUNDLE">
+<h3>PLACE_SOME_INTO_BUNDLE</h3>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="InventoryAction.html" title="enum class in org.bukkit.event.inventory">InventoryAction</a></span>&nbsp;<span class="element-name">PLACE_SOME_INTO_BUNDLE</span></div>
+<div class="block">Some of the items on the cursor are moved into the bundle in the clicked slot.</div>
 </section>
 </li>
 </ul>

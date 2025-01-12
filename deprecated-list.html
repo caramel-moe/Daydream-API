@@ -328,7 +328,7 @@ loadScripts(document, 'script');</script>
 </div>
 <div class="col-summary-item-name even-row-color"><a href="org/bukkit/block/banner/PatternType.html#getByIdentifier(java.lang.String)">org.bukkit.block.banner.PatternType.getByIdentifier<wbr>(String)</a></div>
 <div class="col-last even-row-color">
-<div class="block">magic value, use <a href="org/bukkit/Registry.html#get(org.bukkit.NamespacedKey)"><code>Registry.get(NamespacedKey)</code></a> instead</div>
+<div class="block">magic value, use <a href="org/bukkit/Registry.html#get(org.bukkit.NamespacedKey)"><code>Registry.get(NamespacedKey)</code></a> instead with <a href="io/papermc/paper/registry/RegistryAccess.html#getRegistry(io.papermc.paper.registry.RegistryKey)"><code>RegistryAccess.getRegistry(io.papermc.paper.registry.RegistryKey)</code></a> and <a href="io/papermc/paper/registry/RegistryKey.html#BANNER_PATTERN"><code>RegistryKey.BANNER_PATTERN</code></a></div>
 </div>
 <div class="col-summary-item-name odd-row-color"><a href="org/bukkit/block/banner/PatternType.html#getIdentifier()">org.bukkit.block.banner.PatternType.getIdentifier()</a></div>
 <div class="col-last odd-row-color">
@@ -2822,7 +2822,7 @@ loadScripts(document, 'script');</script>
 </div>
 <div class="col-summary-item-name even-row-color"><a href="org/bukkit/block/banner/PatternType.html#getByIdentifier(java.lang.String)">org.bukkit.block.banner.PatternType.getByIdentifier<wbr>(String)</a></div>
 <div class="col-last even-row-color">
-<div class="block">magic value, use <a href="org/bukkit/Registry.html#get(org.bukkit.NamespacedKey)"><code>Registry.get(NamespacedKey)</code></a> instead</div>
+<div class="block">magic value, use <a href="org/bukkit/Registry.html#get(org.bukkit.NamespacedKey)"><code>Registry.get(NamespacedKey)</code></a> instead with <a href="io/papermc/paper/registry/RegistryAccess.html#getRegistry(io.papermc.paper.registry.RegistryKey)"><code>RegistryAccess.getRegistry(io.papermc.paper.registry.RegistryKey)</code></a> and <a href="io/papermc/paper/registry/RegistryKey.html#BANNER_PATTERN"><code>RegistryKey.BANNER_PATTERN</code></a></div>
 </div>
 <div class="col-summary-item-name odd-row-color"><a href="org/bukkit/block/banner/PatternType.html#getIdentifier()">org.bukkit.block.banner.PatternType.getIdentifier()</a></div>
 <div class="col-last odd-row-color">
@@ -3105,129 +3105,135 @@ loadScripts(document, 'script');</script>
 </div>
 <div class="col-summary-item-name odd-row-color"><a href="org/bukkit/Bukkit.html#createMerchant(java.lang.String)">org.bukkit.Bukkit.createMerchant<wbr>(String)</a></div>
 <div class="col-last odd-row-color">
-<div class="block">in favour of <a href="org/bukkit/Bukkit.html#createMerchant(net.kyori.adventure.text.Component)"><code>Bukkit.createMerchant(net.kyori.adventure.text.Component)</code></a></div>
+<div class="block">in favour of <a href="org/bukkit/Bukkit.html#createMerchant(net.kyori.adventure.text.Component)"><code>Bukkit.createMerchant(net.kyori.adventure.text.Component)</code></a>. The title parameter is
+ no-longer needed when used with <a href="org/bukkit/inventory/MenuType.html#MERCHANT"><code>MenuType.MERCHANT</code></a> and <a href="org/bukkit/inventory/MenuType.Typed.html#builder()"><code>MenuType.Typed.builder()</code></a></div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/Bukkit.html#createPlayerProfile(java.lang.String)">org.bukkit.Bukkit.createPlayerProfile<wbr>(String)</a></div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/Bukkit.html#createMerchant(net.kyori.adventure.text.Component)">org.bukkit.Bukkit.createMerchant<wbr>(Component)</a></div>
 <div class="col-last even-row-color">
+<div class="block">The title parameter is no-longer needed when used with
+ <a href="org/bukkit/inventory/MenuType.html#MERCHANT"><code>MenuType.MERCHANT</code></a> and <a href="org/bukkit/inventory/MenuType.Typed.html#builder()"><code>MenuType.Typed.builder()</code></a>.</div>
+</div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/Bukkit.html#createPlayerProfile(java.lang.String)">org.bukkit.Bukkit.createPlayerProfile<wbr>(String)</a></div>
+<div class="col-last odd-row-color">
 <div class="block">use <a href="org/bukkit/Bukkit.html#createProfile(java.lang.String)"><code>Bukkit.createProfile(String)</code></a></div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/Bukkit.html#createPlayerProfile(java.util.UUID)">org.bukkit.Bukkit.createPlayerProfile<wbr>(UUID)</a></div>
-<div class="col-last odd-row-color">
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/Bukkit.html#createPlayerProfile(java.util.UUID)">org.bukkit.Bukkit.createPlayerProfile<wbr>(UUID)</a></div>
+<div class="col-last even-row-color">
 <div class="block">use <a href="org/bukkit/Bukkit.html#createProfile(java.util.UUID)"><code>Bukkit.createProfile(UUID)</code></a></div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/Bukkit.html#createPlayerProfile(java.util.UUID,java.lang.String)">org.bukkit.Bukkit.createPlayerProfile<wbr>(UUID, String)</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/Bukkit.html#createPlayerProfile(java.util.UUID,java.lang.String)">org.bukkit.Bukkit.createPlayerProfile<wbr>(UUID, String)</a></div>
+<div class="col-last odd-row-color">
 <div class="block">use <a href="org/bukkit/Bukkit.html#createProfile(java.util.UUID,java.lang.String)"><code>Bukkit.createProfile(UUID, String)</code></a></div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/Bukkit.html#getAmbientSpawnLimit()">org.bukkit.Bukkit.getAmbientSpawnLimit()</a></div>
-<div class="col-last odd-row-color">
-<div class="block">Deprecated in favor of <a href="org/bukkit/Bukkit.html#getSpawnLimit(org.bukkit.entity.SpawnCategory)"><code>Bukkit.getSpawnLimit(SpawnCategory)</code></a></div>
-</div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/Bukkit.html#getAnimalSpawnLimit()">org.bukkit.Bukkit.getAnimalSpawnLimit()</a></div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/Bukkit.html#getAmbientSpawnLimit()">org.bukkit.Bukkit.getAmbientSpawnLimit()</a></div>
 <div class="col-last even-row-color">
 <div class="block">Deprecated in favor of <a href="org/bukkit/Bukkit.html#getSpawnLimit(org.bukkit.entity.SpawnCategory)"><code>Bukkit.getSpawnLimit(SpawnCategory)</code></a></div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/Bukkit.html#getBanList(org.bukkit.BanList.Type)">org.bukkit.Bukkit.getBanList<wbr>(BanList.Type)</a></div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/Bukkit.html#getAnimalSpawnLimit()">org.bukkit.Bukkit.getAnimalSpawnLimit()</a></div>
 <div class="col-last odd-row-color">
+<div class="block">Deprecated in favor of <a href="org/bukkit/Bukkit.html#getSpawnLimit(org.bukkit.entity.SpawnCategory)"><code>Bukkit.getSpawnLimit(SpawnCategory)</code></a></div>
+</div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/Bukkit.html#getBanList(org.bukkit.BanList.Type)">org.bukkit.Bukkit.getBanList<wbr>(BanList.Type)</a></div>
+<div class="col-last even-row-color">
 <div class="block">use <a href="org/bukkit/Bukkit.html#getBanList(io.papermc.paper.ban.BanListType)"><code>Bukkit.getBanList(io.papermc.paper.ban.BanListType)</code></a> to enforce the correct return value at compile time.</div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/Bukkit.html#getDataPackManager()">org.bukkit.Bukkit.getDataPackManager()</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/Bukkit.html#getDataPackManager()">org.bukkit.Bukkit.getDataPackManager()</a></div>
+<div class="col-last odd-row-color">
 <div class="block">use <a href="org/bukkit/Bukkit.html#getDatapackManager()"><code>Bukkit.getDatapackManager()</code></a></div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/Bukkit.html#getMonsterSpawnLimit()">org.bukkit.Bukkit.getMonsterSpawnLimit()</a></div>
-<div class="col-last odd-row-color">
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/Bukkit.html#getMonsterSpawnLimit()">org.bukkit.Bukkit.getMonsterSpawnLimit()</a></div>
+<div class="col-last even-row-color">
 <div class="block">Deprecated in favor of <a href="org/bukkit/Bukkit.html#getSpawnLimit(org.bukkit.entity.SpawnCategory)"><code>Bukkit.getSpawnLimit(SpawnCategory)</code></a></div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/Bukkit.html#getMotd()">org.bukkit.Bukkit.getMotd()</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/Bukkit.html#getMotd()">org.bukkit.Bukkit.getMotd()</a></div>
+<div class="col-last odd-row-color">
 <div class="block">in favour of <a href="org/bukkit/Bukkit.html#motd()"><code>Bukkit.motd()</code></a></div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/Bukkit.html#getPermissionMessage()">org.bukkit.Bukkit.getPermissionMessage()</a></div>
-<div class="col-last odd-row-color">
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/Bukkit.html#getPermissionMessage()">org.bukkit.Bukkit.getPermissionMessage()</a></div>
+<div class="col-last even-row-color">
 <div class="block">use <a href="org/bukkit/Bukkit.html#permissionMessage()"><code>Bukkit.permissionMessage()</code></a></div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/Bukkit.html#getRegistry(java.lang.Class)">org.bukkit.Bukkit.getRegistry<wbr>(Class&lt;T&gt;)</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/Bukkit.html#getRegistry(java.lang.Class)">org.bukkit.Bukkit.getRegistry<wbr>(Class&lt;T&gt;)</a></div>
+<div class="col-last odd-row-color">
 <div class="block">use <a href="io/papermc/paper/registry/RegistryAccess.html#getRegistry(io.papermc.paper.registry.RegistryKey)"><code>RegistryAccess.getRegistry(io.papermc.paper.registry.RegistryKey)</code></a>
  with keys from <a href="io/papermc/paper/registry/RegistryKey.html" title="interface in io.papermc.paper.registry"><code>RegistryKey</code></a></div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/Bukkit.html#getShutdownMessage()">org.bukkit.Bukkit.getShutdownMessage()</a></div>
-<div class="col-last odd-row-color">
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/Bukkit.html#getShutdownMessage()">org.bukkit.Bukkit.getShutdownMessage()</a></div>
+<div class="col-last even-row-color">
 <div class="block">in favour of <a href="org/bukkit/Bukkit.html#shutdownMessage()"><code>Bukkit.shutdownMessage()</code></a></div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/Bukkit.html#getTicksPerAmbientSpawns()">org.bukkit.Bukkit.getTicksPerAmbientSpawns()</a></div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/Bukkit.html#getTicksPerAmbientSpawns()">org.bukkit.Bukkit.getTicksPerAmbientSpawns()</a></div>
+<div class="col-last odd-row-color">
+<div class="block">Deprecated in favor of <a href="org/bukkit/Bukkit.html#getTicksPerSpawns(org.bukkit.entity.SpawnCategory)"><code>Bukkit.getTicksPerSpawns(SpawnCategory)</code></a></div>
+</div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/Bukkit.html#getTicksPerAnimalSpawns()">org.bukkit.Bukkit.getTicksPerAnimalSpawns()</a></div>
 <div class="col-last even-row-color">
 <div class="block">Deprecated in favor of <a href="org/bukkit/Bukkit.html#getTicksPerSpawns(org.bukkit.entity.SpawnCategory)"><code>Bukkit.getTicksPerSpawns(SpawnCategory)</code></a></div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/Bukkit.html#getTicksPerAnimalSpawns()">org.bukkit.Bukkit.getTicksPerAnimalSpawns()</a></div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/Bukkit.html#getTicksPerMonsterSpawns()">org.bukkit.Bukkit.getTicksPerMonsterSpawns()</a></div>
 <div class="col-last odd-row-color">
 <div class="block">Deprecated in favor of <a href="org/bukkit/Bukkit.html#getTicksPerSpawns(org.bukkit.entity.SpawnCategory)"><code>Bukkit.getTicksPerSpawns(SpawnCategory)</code></a></div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/Bukkit.html#getTicksPerMonsterSpawns()">org.bukkit.Bukkit.getTicksPerMonsterSpawns()</a></div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/Bukkit.html#getTicksPerWaterAmbientSpawns()">org.bukkit.Bukkit.getTicksPerWaterAmbientSpawns()</a></div>
 <div class="col-last even-row-color">
 <div class="block">Deprecated in favor of <a href="org/bukkit/Bukkit.html#getTicksPerSpawns(org.bukkit.entity.SpawnCategory)"><code>Bukkit.getTicksPerSpawns(SpawnCategory)</code></a></div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/Bukkit.html#getTicksPerWaterAmbientSpawns()">org.bukkit.Bukkit.getTicksPerWaterAmbientSpawns()</a></div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/Bukkit.html#getTicksPerWaterSpawns()">org.bukkit.Bukkit.getTicksPerWaterSpawns()</a></div>
 <div class="col-last odd-row-color">
 <div class="block">Deprecated in favor of <a href="org/bukkit/Bukkit.html#getTicksPerSpawns(org.bukkit.entity.SpawnCategory)"><code>Bukkit.getTicksPerSpawns(SpawnCategory)</code></a></div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/Bukkit.html#getTicksPerWaterSpawns()">org.bukkit.Bukkit.getTicksPerWaterSpawns()</a></div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/Bukkit.html#getTicksPerWaterUndergroundCreatureSpawns()">org.bukkit.Bukkit.getTicksPerWaterUndergroundCreatureSpawns()</a></div>
 <div class="col-last even-row-color">
 <div class="block">Deprecated in favor of <a href="org/bukkit/Bukkit.html#getTicksPerSpawns(org.bukkit.entity.SpawnCategory)"><code>Bukkit.getTicksPerSpawns(SpawnCategory)</code></a></div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/Bukkit.html#getTicksPerWaterUndergroundCreatureSpawns()">org.bukkit.Bukkit.getTicksPerWaterUndergroundCreatureSpawns()</a></div>
-<div class="col-last odd-row-color">
-<div class="block">Deprecated in favor of <a href="org/bukkit/Bukkit.html#getTicksPerSpawns(org.bukkit.entity.SpawnCategory)"><code>Bukkit.getTicksPerSpawns(SpawnCategory)</code></a></div>
-</div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/Bukkit.html#getUnsafe()">org.bukkit.Bukkit.getUnsafe()</a></div>
-<div class="col-last even-row-color"></div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/Bukkit.html#getWaterAmbientSpawnLimit()">org.bukkit.Bukkit.getWaterAmbientSpawnLimit()</a></div>
-<div class="col-last odd-row-color">
-<div class="block">Deprecated in favor of <a href="org/bukkit/Bukkit.html#getSpawnLimit(org.bukkit.entity.SpawnCategory)"><code>Bukkit.getSpawnLimit(SpawnCategory)</code></a></div>
-</div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/Bukkit.html#getWaterAnimalSpawnLimit()">org.bukkit.Bukkit.getWaterAnimalSpawnLimit()</a></div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/Bukkit.html#getUnsafe()">org.bukkit.Bukkit.getUnsafe()</a></div>
+<div class="col-last odd-row-color"></div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/Bukkit.html#getWaterAmbientSpawnLimit()">org.bukkit.Bukkit.getWaterAmbientSpawnLimit()</a></div>
 <div class="col-last even-row-color">
 <div class="block">Deprecated in favor of <a href="org/bukkit/Bukkit.html#getSpawnLimit(org.bukkit.entity.SpawnCategory)"><code>Bukkit.getSpawnLimit(SpawnCategory)</code></a></div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/Bukkit.html#getWaterUndergroundCreatureSpawnLimit()">org.bukkit.Bukkit.getWaterUndergroundCreatureSpawnLimit()</a></div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/Bukkit.html#getWaterAnimalSpawnLimit()">org.bukkit.Bukkit.getWaterAnimalSpawnLimit()</a></div>
 <div class="col-last odd-row-color">
 <div class="block">Deprecated in favor of <a href="org/bukkit/Bukkit.html#getSpawnLimit(org.bukkit.entity.SpawnCategory)"><code>Bukkit.getSpawnLimit(SpawnCategory)</code></a></div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/Bukkit.html#setMotd(java.lang.String)">org.bukkit.Bukkit.setMotd<wbr>(String)</a></div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/Bukkit.html#getWaterUndergroundCreatureSpawnLimit()">org.bukkit.Bukkit.getWaterUndergroundCreatureSpawnLimit()</a></div>
 <div class="col-last even-row-color">
+<div class="block">Deprecated in favor of <a href="org/bukkit/Bukkit.html#getSpawnLimit(org.bukkit.entity.SpawnCategory)"><code>Bukkit.getSpawnLimit(SpawnCategory)</code></a></div>
+</div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/Bukkit.html#setMotd(java.lang.String)">org.bukkit.Bukkit.setMotd<wbr>(String)</a></div>
+<div class="col-last odd-row-color">
 <div class="block">in favour of <a href="org/bukkit/Bukkit.html#motd(net.kyori.adventure.text.Component)"><code>Bukkit.motd(net.kyori.adventure.text.Component)</code></a></div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/Bukkit.html#shouldSendChatPreviews()">org.bukkit.Bukkit.shouldSendChatPreviews()</a></div>
-<div class="col-last odd-row-color">
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/Bukkit.html#shouldSendChatPreviews()">org.bukkit.Bukkit.shouldSendChatPreviews()</a></div>
+<div class="col-last even-row-color">
 <div class="block">chat previews have been removed</div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/Bukkit.html#unbanIP(java.lang.String)">org.bukkit.Bukkit.unbanIP<wbr>(String)</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/Bukkit.html#unbanIP(java.lang.String)">org.bukkit.Bukkit.unbanIP<wbr>(String)</a></div>
+<div class="col-last odd-row-color">
 <div class="block">see <a href="org/bukkit/Bukkit.html#unbanIP(java.net.InetAddress)"><code>Bukkit.unbanIP(InetAddress)</code></a></div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/ChunkSnapshot.html#getBiome(int,int)">org.bukkit.ChunkSnapshot.getBiome<wbr>(int, int)</a></div>
-<div class="col-last odd-row-color">
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/ChunkSnapshot.html#getBiome(int,int)">org.bukkit.ChunkSnapshot.getBiome<wbr>(int, int)</a></div>
+<div class="col-last even-row-color">
 <div class="block">biomes are now 3-dimensional</div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/ChunkSnapshot.html#getData(int,int,int)">org.bukkit.ChunkSnapshot.getData<wbr>(int, int, int)</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/ChunkSnapshot.html#getData(int,int,int)">org.bukkit.ChunkSnapshot.getData<wbr>(int, int, int)</a></div>
+<div class="col-last odd-row-color">
 <div class="block">Magic value</div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/ChunkSnapshot.html#getRawBiomeTemperature(int,int)">org.bukkit.ChunkSnapshot.getRawBiomeTemperature<wbr>(int, int)</a></div>
-<div class="col-last odd-row-color">
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/ChunkSnapshot.html#getRawBiomeTemperature(int,int)">org.bukkit.ChunkSnapshot.getRawBiomeTemperature<wbr>(int, int)</a></div>
+<div class="col-last even-row-color">
 <div class="block">biomes are now 3-dimensional</div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/CoalType.html#getByData(byte)">org.bukkit.CoalType.getByData<wbr>(byte)</a></div>
-<div class="col-last even-row-color">
-<div class="block">Magic value</div>
-</div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/CoalType.html#getData()">org.bukkit.CoalType.getData()</a></div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/CoalType.html#getByData(byte)">org.bukkit.CoalType.getByData<wbr>(byte)</a></div>
 <div class="col-last odd-row-color">
 <div class="block">Magic value</div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/command/Command.html#getPermissionMessage()">org.bukkit.command.Command.getPermissionMessage()</a></div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/CoalType.html#getData()">org.bukkit.CoalType.getData()</a></div>
 <div class="col-last even-row-color">
+<div class="block">Magic value</div>
+</div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/command/Command.html#getPermissionMessage()">org.bukkit.command.Command.getPermissionMessage()</a></div>
+<div class="col-last odd-row-color">
 <div class="block">permission messages have not worked for player-executed
  commands since 1.13 as clients without permission to execute a command
  are unaware of its existence and therefore will not send an unknown
@@ -3235,20 +3241,11 @@ loadScripts(document, 'script');</script>
  consoles or when this command is executed with
  <a href="org/bukkit/Bukkit.html#dispatchCommand(org.bukkit.command.CommandSender,java.lang.String)"><code>Bukkit.dispatchCommand(CommandSender, String)</code></a>.</div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/command/Command.html#getTimingName()">org.bukkit.command.Command.getTimingName()</a></div>
-<div class="col-last odd-row-color">
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/command/Command.html#getTimingName()">org.bukkit.command.Command.getTimingName()</a></div>
+<div class="col-last even-row-color">
 <div class="block">Timings will be removed in the future</div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/command/Command.html#permissionMessage()">org.bukkit.command.Command.permissionMessage()</a></div>
-<div class="col-last even-row-color">
-<div class="block">permission messages have not worked for player-executed
- commands since 1.13 as clients without permission to execute a command
- are unaware of its existence and therefore will not send an unknown
- command execution to the server. This message will only ever be shown to
- consoles or when this command is executed with
- <a href="org/bukkit/Bukkit.html#dispatchCommand(org.bukkit.command.CommandSender,java.lang.String)"><code>Bukkit.dispatchCommand(CommandSender, String)</code></a>.</div>
-</div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/command/Command.html#permissionMessage(net.kyori.adventure.text.Component)">org.bukkit.command.Command.permissionMessage<wbr>(Component)</a></div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/command/Command.html#permissionMessage()">org.bukkit.command.Command.permissionMessage()</a></div>
 <div class="col-last odd-row-color">
 <div class="block">permission messages have not worked for player-executed
  commands since 1.13 as clients without permission to execute a command
@@ -3257,7 +3254,7 @@ loadScripts(document, 'script');</script>
  consoles or when this command is executed with
  <a href="org/bukkit/Bukkit.html#dispatchCommand(org.bukkit.command.CommandSender,java.lang.String)"><code>Bukkit.dispatchCommand(CommandSender, String)</code></a>.</div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/command/Command.html#setPermissionMessage(java.lang.String)">org.bukkit.command.Command.setPermissionMessage<wbr>(String)</a></div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/command/Command.html#permissionMessage(net.kyori.adventure.text.Component)">org.bukkit.command.Command.permissionMessage<wbr>(Component)</a></div>
 <div class="col-last even-row-color">
 <div class="block">permission messages have not worked for player-executed
  commands since 1.13 as clients without permission to execute a command
@@ -3266,473 +3263,487 @@ loadScripts(document, 'script');</script>
  consoles or when this command is executed with
  <a href="org/bukkit/Bukkit.html#dispatchCommand(org.bukkit.command.CommandSender,java.lang.String)"><code>Bukkit.dispatchCommand(CommandSender, String)</code></a>.</div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/command/CommandSender.html#sendMessage(java.util.UUID,java.lang.String)">org.bukkit.command.CommandSender.sendMessage<wbr>(UUID, String)</a></div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/command/Command.html#setPermissionMessage(java.lang.String)">org.bukkit.command.Command.setPermissionMessage<wbr>(String)</a></div>
 <div class="col-last odd-row-color">
-<div class="block">sender UUID is ignored</div>
+<div class="block">permission messages have not worked for player-executed
+ commands since 1.13 as clients without permission to execute a command
+ are unaware of its existence and therefore will not send an unknown
+ command execution to the server. This message will only ever be shown to
+ consoles or when this command is executed with
+ <a href="org/bukkit/Bukkit.html#dispatchCommand(org.bukkit.command.CommandSender,java.lang.String)"><code>Bukkit.dispatchCommand(CommandSender, String)</code></a>.</div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/command/CommandSender.html#sendMessage(java.util.UUID,java.lang.String...)">org.bukkit.command.CommandSender.sendMessage<wbr>(UUID, String...)</a></div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/command/CommandSender.html#sendMessage(java.util.UUID,java.lang.String)">org.bukkit.command.CommandSender.sendMessage<wbr>(UUID, String)</a></div>
 <div class="col-last even-row-color">
 <div class="block">sender UUID is ignored</div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/command/CommandSender.html#sendMessage(net.md_5.bungee.api.chat.BaseComponent)">org.bukkit.command.CommandSender.sendMessage<wbr>(BaseComponent)</a></div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/command/CommandSender.html#sendMessage(java.util.UUID,java.lang.String...)">org.bukkit.command.CommandSender.sendMessage<wbr>(UUID, String...)</a></div>
 <div class="col-last odd-row-color">
-<div class="block">use <a href="org/bukkit/command/CommandSender.html#sendMessage(net.kyori.adventure.identity.Identity,net.kyori.adventure.text.Component,net.kyori.adventure.audience.MessageType)"><code>CommandSender.sendMessage(Identity, Component, MessageType)</code></a> instead</div>
+<div class="block">sender UUID is ignored</div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/command/CommandSender.html#sendMessage(net.md_5.bungee.api.chat.BaseComponent...)">org.bukkit.command.CommandSender.sendMessage<wbr>(BaseComponent...)</a></div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/command/CommandSender.html#sendMessage(net.md_5.bungee.api.chat.BaseComponent)">org.bukkit.command.CommandSender.sendMessage<wbr>(BaseComponent)</a></div>
 <div class="col-last even-row-color">
 <div class="block">use <a href="org/bukkit/command/CommandSender.html#sendMessage(net.kyori.adventure.identity.Identity,net.kyori.adventure.text.Component,net.kyori.adventure.audience.MessageType)"><code>CommandSender.sendMessage(Identity, Component, MessageType)</code></a> instead</div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/command/CommandSender.Spigot.html#sendMessage(java.util.UUID,net.md_5.bungee.api.chat.BaseComponent)">org.bukkit.command.CommandSender.Spigot.sendMessage<wbr>(UUID, BaseComponent)</a></div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/command/CommandSender.html#sendMessage(net.md_5.bungee.api.chat.BaseComponent...)">org.bukkit.command.CommandSender.sendMessage<wbr>(BaseComponent...)</a></div>
 <div class="col-last odd-row-color">
-<div class="block">use <code>sendMessage</code> methods that accept <a href="https://jd.advntr.dev/api/4.18.0/net/kyori/adventure/text/Component.html" title="class or interface in net.kyori.adventure.text" class="external-link"><code>Component</code></a></div>
+<div class="block">use <a href="org/bukkit/command/CommandSender.html#sendMessage(net.kyori.adventure.identity.Identity,net.kyori.adventure.text.Component,net.kyori.adventure.audience.MessageType)"><code>CommandSender.sendMessage(Identity, Component, MessageType)</code></a> instead</div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/command/CommandSender.Spigot.html#sendMessage(java.util.UUID,net.md_5.bungee.api.chat.BaseComponent...)">org.bukkit.command.CommandSender.Spigot.sendMessage<wbr>(UUID, BaseComponent...)</a></div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/command/CommandSender.Spigot.html#sendMessage(java.util.UUID,net.md_5.bungee.api.chat.BaseComponent)">org.bukkit.command.CommandSender.Spigot.sendMessage<wbr>(UUID, BaseComponent)</a></div>
 <div class="col-last even-row-color">
 <div class="block">use <code>sendMessage</code> methods that accept <a href="https://jd.advntr.dev/api/4.18.0/net/kyori/adventure/text/Component.html" title="class or interface in net.kyori.adventure.text" class="external-link"><code>Component</code></a></div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/command/CommandSender.Spigot.html#sendMessage(net.md_5.bungee.api.chat.BaseComponent)">org.bukkit.command.CommandSender.Spigot.sendMessage<wbr>(BaseComponent)</a></div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/command/CommandSender.Spigot.html#sendMessage(java.util.UUID,net.md_5.bungee.api.chat.BaseComponent...)">org.bukkit.command.CommandSender.Spigot.sendMessage<wbr>(UUID, BaseComponent...)</a></div>
 <div class="col-last odd-row-color">
 <div class="block">use <code>sendMessage</code> methods that accept <a href="https://jd.advntr.dev/api/4.18.0/net/kyori/adventure/text/Component.html" title="class or interface in net.kyori.adventure.text" class="external-link"><code>Component</code></a></div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/command/CommandSender.Spigot.html#sendMessage(net.md_5.bungee.api.chat.BaseComponent...)">org.bukkit.command.CommandSender.Spigot.sendMessage<wbr>(BaseComponent...)</a></div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/command/CommandSender.Spigot.html#sendMessage(net.md_5.bungee.api.chat.BaseComponent)">org.bukkit.command.CommandSender.Spigot.sendMessage<wbr>(BaseComponent)</a></div>
 <div class="col-last even-row-color">
 <div class="block">use <code>sendMessage</code> methods that accept <a href="https://jd.advntr.dev/api/4.18.0/net/kyori/adventure/text/Component.html" title="class or interface in net.kyori.adventure.text" class="external-link"><code>Component</code></a></div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/configuration/file/FileConfiguration.html#buildHeader()">org.bukkit.configuration.file.FileConfiguration.buildHeader()</a></div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/command/CommandSender.Spigot.html#sendMessage(net.md_5.bungee.api.chat.BaseComponent...)">org.bukkit.command.CommandSender.Spigot.sendMessage<wbr>(BaseComponent...)</a></div>
 <div class="col-last odd-row-color">
+<div class="block">use <code>sendMessage</code> methods that accept <a href="https://jd.advntr.dev/api/4.18.0/net/kyori/adventure/text/Component.html" title="class or interface in net.kyori.adventure.text" class="external-link"><code>Component</code></a></div>
+</div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/configuration/file/FileConfiguration.html#buildHeader()">org.bukkit.configuration.file.FileConfiguration.buildHeader()</a></div>
+<div class="col-last even-row-color">
 <div class="block">This method only exists for backwards compatibility. It will
  do nothing and should not be used! Please use
  <a href="org/bukkit/configuration/file/FileConfigurationOptions.html#getHeader()"><code>FileConfigurationOptions.getHeader()</code></a> instead.</div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/configuration/file/FileConfigurationOptions.html#copyHeader()">org.bukkit.configuration.file.FileConfigurationOptions.copyHeader()</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/configuration/file/FileConfigurationOptions.html#copyHeader()">org.bukkit.configuration.file.FileConfigurationOptions.copyHeader()</a></div>
+<div class="col-last odd-row-color">
 <div class="block">Call <a href="org/bukkit/configuration/file/FileConfigurationOptions.html#parseComments()"><code>FileConfigurationOptions.parseComments()</code></a> instead.</div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/configuration/file/FileConfigurationOptions.html#copyHeader(boolean)">org.bukkit.configuration.file.FileConfigurationOptions.copyHeader<wbr>(boolean)</a></div>
-<div class="col-last odd-row-color">
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/configuration/file/FileConfigurationOptions.html#copyHeader(boolean)">org.bukkit.configuration.file.FileConfigurationOptions.copyHeader<wbr>(boolean)</a></div>
+<div class="col-last even-row-color">
 <div class="block">Call <a href="org/bukkit/configuration/file/FileConfigurationOptions.html#parseComments(boolean)"><code>FileConfigurationOptions.parseComments(boolean)</code></a> instead.</div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/configuration/file/FileConfigurationOptions.html#header()">org.bukkit.configuration.file.FileConfigurationOptions.header()</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/configuration/file/FileConfigurationOptions.html#header()">org.bukkit.configuration.file.FileConfigurationOptions.header()</a></div>
+<div class="col-last odd-row-color">
 <div class="block">use getHeader() instead.</div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/configuration/file/FileConfigurationOptions.html#header(java.lang.String)">org.bukkit.configuration.file.FileConfigurationOptions.header<wbr>(String)</a></div>
-<div class="col-last odd-row-color">
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/configuration/file/FileConfigurationOptions.html#header(java.lang.String)">org.bukkit.configuration.file.FileConfigurationOptions.header<wbr>(String)</a></div>
+<div class="col-last even-row-color">
 <div class="block">use setHeader() instead</div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/configuration/file/YamlConfigurationOptions.html#copyHeader(boolean)">org.bukkit.configuration.file.YamlConfigurationOptions.copyHeader<wbr>(boolean)</a></div>
-<div class="col-last even-row-color"></div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/configuration/file/YamlConfigurationOptions.html#header(java.lang.String)">org.bukkit.configuration.file.YamlConfigurationOptions.header<wbr>(String)</a></div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/configuration/file/YamlConfigurationOptions.html#copyHeader(boolean)">org.bukkit.configuration.file.YamlConfigurationOptions.copyHeader<wbr>(boolean)</a></div>
 <div class="col-last odd-row-color"></div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/conversations/Conversable.html#sendRawMessage(java.util.UUID,java.lang.String)">org.bukkit.conversations.Conversable.sendRawMessage<wbr>(UUID, String)</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/configuration/file/YamlConfigurationOptions.html#header(java.lang.String)">org.bukkit.configuration.file.YamlConfigurationOptions.header<wbr>(String)</a></div>
+<div class="col-last even-row-color"></div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/conversations/Conversable.html#sendRawMessage(java.util.UUID,java.lang.String)">org.bukkit.conversations.Conversable.sendRawMessage<wbr>(UUID, String)</a></div>
+<div class="col-last odd-row-color">
 <div class="block">sender UUID is ignored</div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/CropState.html#getByData(byte)">org.bukkit.CropState.getByData<wbr>(byte)</a></div>
-<div class="col-last odd-row-color">
-<div class="block">Magic value</div>
-</div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/CropState.html#getData()">org.bukkit.CropState.getData()</a></div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/CropState.html#getByData(byte)">org.bukkit.CropState.getByData<wbr>(byte)</a></div>
 <div class="col-last even-row-color">
 <div class="block">Magic value</div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/DyeColor.html#getByDyeData(byte)">org.bukkit.DyeColor.getByDyeData<wbr>(byte)</a></div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/CropState.html#getData()">org.bukkit.CropState.getData()</a></div>
 <div class="col-last odd-row-color">
 <div class="block">Magic value</div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/DyeColor.html#getDyeData()">org.bukkit.DyeColor.getDyeData()</a></div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/DyeColor.html#getByDyeData(byte)">org.bukkit.DyeColor.getByDyeData<wbr>(byte)</a></div>
 <div class="col-last even-row-color">
 <div class="block">Magic value</div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/Effect.html#getType()">org.bukkit.Effect.getType()</a></div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/DyeColor.html#getDyeData()">org.bukkit.DyeColor.getDyeData()</a></div>
 <div class="col-last odd-row-color">
+<div class="block">Magic value</div>
+</div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/Effect.html#getType()">org.bukkit.Effect.getType()</a></div>
+<div class="col-last even-row-color">
 <div class="block">some effects can be both or neither</div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/enchantments/Enchantment.html#getActiveSlots()">org.bukkit.enchantments.Enchantment.getActiveSlots()</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/enchantments/Enchantment.html#getActiveSlots()">org.bukkit.enchantments.Enchantment.getActiveSlots()</a></div>
+<div class="col-last odd-row-color">
 <div class="block">Use <a href="org/bukkit/enchantments/Enchantment.html#getActiveSlotGroups()"><code>Enchantment.getActiveSlotGroups()</code></a> instead as enchantments are now applicable to a group of equipment slots.</div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/enchantments/Enchantment.html#getByKey(org.bukkit.NamespacedKey)">org.bukkit.enchantments.Enchantment.getByKey<wbr>(NamespacedKey)</a></div>
-<div class="col-last odd-row-color">
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/enchantments/Enchantment.html#getByKey(org.bukkit.NamespacedKey)">org.bukkit.enchantments.Enchantment.getByKey<wbr>(NamespacedKey)</a></div>
+<div class="col-last even-row-color">
 <div class="block">only for backwards compatibility, use <a href="org/bukkit/Registry.html#get(org.bukkit.NamespacedKey)"><code>Registry.get(NamespacedKey)</code></a> instead</div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/enchantments/Enchantment.html#getByName(java.lang.String)">org.bukkit.enchantments.Enchantment.getByName<wbr>(String)</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/enchantments/Enchantment.html#getByName(java.lang.String)">org.bukkit.enchantments.Enchantment.getByName<wbr>(String)</a></div>
+<div class="col-last odd-row-color">
 <div class="block">enchantments are badly named, use <a href="org/bukkit/enchantments/Enchantment.html#getByKey(org.bukkit.NamespacedKey)"><code>Enchantment.getByKey(org.bukkit.NamespacedKey)</code></a>.</div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/enchantments/Enchantment.html#getDamageIncrease(int,org.bukkit.entity.EntityCategory)">org.bukkit.enchantments.Enchantment.getDamageIncrease<wbr>(int, EntityCategory)</a></div>
-<div class="col-last odd-row-color">
-<div class="block">Enchantments now have a complex effect systems that cannot be reduced to a simple damage increase.</div>
-</div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/enchantments/Enchantment.html#getDamageIncrease(int,org.bukkit.entity.EntityType)">org.bukkit.enchantments.Enchantment.getDamageIncrease<wbr>(int, EntityType)</a></div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/enchantments/Enchantment.html#getDamageIncrease(int,org.bukkit.entity.EntityCategory)">org.bukkit.enchantments.Enchantment.getDamageIncrease<wbr>(int, EntityCategory)</a></div>
 <div class="col-last even-row-color">
 <div class="block">Enchantments now have a complex effect systems that cannot be reduced to a simple damage increase.</div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/enchantments/Enchantment.html#getItemTarget()">org.bukkit.enchantments.Enchantment.getItemTarget()</a></div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/enchantments/Enchantment.html#getDamageIncrease(int,org.bukkit.entity.EntityType)">org.bukkit.enchantments.Enchantment.getDamageIncrease<wbr>(int, EntityType)</a></div>
 <div class="col-last odd-row-color">
+<div class="block">Enchantments now have a complex effect systems that cannot be reduced to a simple damage increase.</div>
+</div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/enchantments/Enchantment.html#getItemTarget()">org.bukkit.enchantments.Enchantment.getItemTarget()</a></div>
+<div class="col-last even-row-color">
 <div class="block">enchantment groupings are now managed by tags, not categories</div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/enchantments/Enchantment.html#getName()">org.bukkit.enchantments.Enchantment.getName()</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/enchantments/Enchantment.html#getName()">org.bukkit.enchantments.Enchantment.getName()</a></div>
+<div class="col-last odd-row-color">
 <div class="block">enchantments are badly named, use <a href="org/bukkit/Keyed.html#getKey()"><code>Keyed.getKey()</code></a>.</div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/enchantments/Enchantment.html#getRarity()">org.bukkit.enchantments.Enchantment.getRarity()</a></div>
-<div class="col-last odd-row-color">
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/enchantments/Enchantment.html#getRarity()">org.bukkit.enchantments.Enchantment.getRarity()</a></div>
+<div class="col-last even-row-color">
 <div class="block">As of 1.20.5 enchantments do not have a rarity.</div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/enchantments/Enchantment.html#isTreasure()">org.bukkit.enchantments.Enchantment.isTreasure()</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/enchantments/Enchantment.html#isTreasure()">org.bukkit.enchantments.Enchantment.isTreasure()</a></div>
+<div class="col-last odd-row-color">
 <div class="block">enchantment types are now managed by tags</div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/enchantments/Enchantment.html#translationKey()">org.bukkit.enchantments.Enchantment.translationKey()</a></div>
-<div class="col-last odd-row-color">
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/enchantments/Enchantment.html#translationKey()">org.bukkit.enchantments.Enchantment.translationKey()</a></div>
+<div class="col-last even-row-color">
 <div class="block">this method assumes that the enchantments description
  always be a translatable component which is not guaranteed.</div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/enchantments/Enchantment.html#values()">org.bukkit.enchantments.Enchantment.values()</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/enchantments/Enchantment.html#values()">org.bukkit.enchantments.Enchantment.values()</a></div>
+<div class="col-last odd-row-color">
 <div class="block">use <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Iterable.html#iterator()" title="class or interface in java.lang" class="external-link"><code>Registry.ENCHANTMENT.iterator()</code></a></div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/AbstractArrow.html#getItem()">org.bukkit.entity.AbstractArrow.getItem()</a></div>
-<div class="col-last odd-row-color">
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/AbstractArrow.html#getItem()">org.bukkit.entity.AbstractArrow.getItem()</a></div>
+<div class="col-last even-row-color">
 <div class="block">use <a href="org/bukkit/entity/AbstractArrow.html#getItemStack()"><code>AbstractArrow.getItemStack()</code></a></div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/AbstractArrow.html#getKnockbackStrength()">org.bukkit.entity.AbstractArrow.getKnockbackStrength()</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/AbstractArrow.html#getKnockbackStrength()">org.bukkit.entity.AbstractArrow.getKnockbackStrength()</a></div>
+<div class="col-last odd-row-color">
 <div class="block">a function of the firing weapon</div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/AbstractArrow.html#getPickupRule()">org.bukkit.entity.AbstractArrow.getPickupRule()</a></div>
-<div class="col-last odd-row-color">
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/AbstractArrow.html#getPickupRule()">org.bukkit.entity.AbstractArrow.getPickupRule()</a></div>
+<div class="col-last even-row-color">
 <div class="block">Use <a href="org/bukkit/entity/AbstractArrow.html#getPickupStatus()"><code>AbstractArrow.getPickupStatus()</code></a> as an upstream compatible replacement for this function</div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/AbstractArrow.html#setItem(org.bukkit.inventory.ItemStack)">org.bukkit.entity.AbstractArrow.setItem<wbr>(ItemStack)</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/AbstractArrow.html#setItem(org.bukkit.inventory.ItemStack)">org.bukkit.entity.AbstractArrow.setItem<wbr>(ItemStack)</a></div>
+<div class="col-last odd-row-color">
 <div class="block">use <a href="org/bukkit/entity/AbstractArrow.html#getItemStack()"><code>AbstractArrow.getItemStack()</code></a></div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/AbstractArrow.html#setKnockbackStrength(int)">org.bukkit.entity.AbstractArrow.setKnockbackStrength<wbr>(int)</a></div>
-<div class="col-last odd-row-color">
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/AbstractArrow.html#setKnockbackStrength(int)">org.bukkit.entity.AbstractArrow.setKnockbackStrength<wbr>(int)</a></div>
+<div class="col-last even-row-color">
 <div class="block">a function of the firing weapon</div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/AbstractArrow.html#setPickupRule(org.bukkit.entity.AbstractArrow.PickupRule)">org.bukkit.entity.AbstractArrow.setPickupRule<wbr>(AbstractArrow.PickupRule)</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/AbstractArrow.html#setPickupRule(org.bukkit.entity.AbstractArrow.PickupRule)">org.bukkit.entity.AbstractArrow.setPickupRule<wbr>(AbstractArrow.PickupRule)</a></div>
+<div class="col-last odd-row-color">
 <div class="block">Use <a href="org/bukkit/entity/AbstractArrow.html#setPickupStatus(org.bukkit.entity.AbstractArrow.PickupStatus)"><code>AbstractArrow.setPickupStatus(PickupStatus)</code></a> with <a href="org/bukkit/entity/AbstractArrow.PickupStatus.html" title="enum class in org.bukkit.entity"><code>AbstractArrow.PickupStatus</code></a> as an upstream compatible replacement for this function</div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/AbstractArrow.html#setShotFromCrossbow(boolean)">org.bukkit.entity.AbstractArrow.setShotFromCrossbow<wbr>(boolean)</a></div>
-<div class="col-last odd-row-color">
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/AbstractArrow.html#setShotFromCrossbow(boolean)">org.bukkit.entity.AbstractArrow.setShotFromCrossbow<wbr>(boolean)</a></div>
+<div class="col-last even-row-color">
 <div class="block">a function of the firing weapon instead</div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/AbstractHorse.html#getVariant()">org.bukkit.entity.AbstractHorse.getVariant()</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/AbstractHorse.html#getVariant()">org.bukkit.entity.AbstractHorse.getVariant()</a></div>
+<div class="col-last odd-row-color">
 <div class="block">different variants are different classes</div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/AbstractHorse.html#isEatingHaystack()">org.bukkit.entity.AbstractHorse.isEatingHaystack()</a></div>
-<div class="col-last odd-row-color">
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/AbstractHorse.html#isEatingHaystack()">org.bukkit.entity.AbstractHorse.isEatingHaystack()</a></div>
+<div class="col-last even-row-color">
 <div class="block">use <a href="org/bukkit/entity/AbstractHorse.html#isEatingGrass()"><code>AbstractHorse.isEatingGrass()</code></a>, this name is incorrect</div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/AbstractHorse.html#setEatingHaystack(boolean)">org.bukkit.entity.AbstractHorse.setEatingHaystack<wbr>(boolean)</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/AbstractHorse.html#setEatingHaystack(boolean)">org.bukkit.entity.AbstractHorse.setEatingHaystack<wbr>(boolean)</a></div>
+<div class="col-last odd-row-color">
 <div class="block">use <a href="org/bukkit/entity/AbstractHorse.html#setEatingGrass(boolean)"><code>AbstractHorse.setEatingGrass(boolean)</code></a>, this name is incorrect</div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/AbstractHorse.html#setVariant(org.bukkit.entity.Horse.Variant)">org.bukkit.entity.AbstractHorse.setVariant<wbr>(Horse.Variant)</a></div>
-<div class="col-last odd-row-color">
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/AbstractHorse.html#setVariant(org.bukkit.entity.Horse.Variant)">org.bukkit.entity.AbstractHorse.setVariant<wbr>(Horse.Variant)</a></div>
+<div class="col-last even-row-color">
 <div class="block">you are required to spawn a different entity</div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/AbstractSkeleton.html#getSkeletonType()">org.bukkit.entity.AbstractSkeleton.getSkeletonType()</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/AbstractSkeleton.html#getSkeletonType()">org.bukkit.entity.AbstractSkeleton.getSkeletonType()</a></div>
+<div class="col-last odd-row-color">
 <div class="block">should check what class instance this is.</div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/AbstractSkeleton.html#setSkeletonType(org.bukkit.entity.Skeleton.SkeletonType)">org.bukkit.entity.AbstractSkeleton.setSkeletonType<wbr>(Skeleton.SkeletonType)</a></div>
-<div class="col-last odd-row-color">
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/AbstractSkeleton.html#setSkeletonType(org.bukkit.entity.Skeleton.SkeletonType)">org.bukkit.entity.AbstractSkeleton.setSkeletonType<wbr>(Skeleton.SkeletonType)</a></div>
+<div class="col-last even-row-color">
 <div class="block">Must spawn a new subtype variant</div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/Ageable.html#canBreed()">org.bukkit.entity.Ageable.canBreed()</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/Ageable.html#canBreed()">org.bukkit.entity.Ageable.canBreed()</a></div>
+<div class="col-last odd-row-color">
 <div class="block">see <a href="org/bukkit/entity/Breedable.html#canBreed()"><code>Breedable.canBreed()</code></a></div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/Ageable.html#getAgeLock()">org.bukkit.entity.Ageable.getAgeLock()</a></div>
-<div class="col-last odd-row-color">
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/Ageable.html#getAgeLock()">org.bukkit.entity.Ageable.getAgeLock()</a></div>
+<div class="col-last even-row-color">
 <div class="block">see <a href="org/bukkit/entity/Breedable.html#getAgeLock()"><code>Breedable.getAgeLock()</code></a></div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/Ageable.html#setAgeLock(boolean)">org.bukkit.entity.Ageable.setAgeLock<wbr>(boolean)</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/Ageable.html#setAgeLock(boolean)">org.bukkit.entity.Ageable.setAgeLock<wbr>(boolean)</a></div>
+<div class="col-last odd-row-color">
 <div class="block">see <a href="org/bukkit/entity/Breedable.html#setAgeLock(boolean)"><code>Breedable.setAgeLock(boolean)</code></a></div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/Ageable.html#setBreed(boolean)">org.bukkit.entity.Ageable.setBreed<wbr>(boolean)</a></div>
-<div class="col-last odd-row-color">
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/Ageable.html#setBreed(boolean)">org.bukkit.entity.Ageable.setBreed<wbr>(boolean)</a></div>
+<div class="col-last even-row-color">
 <div class="block">see <a href="org/bukkit/entity/Breedable.html#setBreed(boolean)"><code>Breedable.setBreed(boolean)</code></a></div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/AreaEffectCloud.html#getBasePotionData()">org.bukkit.entity.AreaEffectCloud.getBasePotionData()</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/AreaEffectCloud.html#getBasePotionData()">org.bukkit.entity.AreaEffectCloud.getBasePotionData()</a></div>
+<div class="col-last odd-row-color">
 <div class="block">Upgraded / extended potions are now their own <a href="org/bukkit/potion/PotionType.html" title="enum class in org.bukkit.potion"><code>PotionType</code></a> use <a href="org/bukkit/entity/AreaEffectCloud.html#getBasePotionType()"><code>AreaEffectCloud.getBasePotionType()</code></a> instead.</div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/AreaEffectCloud.html#setBasePotionData(org.bukkit.potion.PotionData)">org.bukkit.entity.AreaEffectCloud.setBasePotionData<wbr>(PotionData)</a></div>
-<div class="col-last odd-row-color">
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/AreaEffectCloud.html#setBasePotionData(org.bukkit.potion.PotionData)">org.bukkit.entity.AreaEffectCloud.setBasePotionData<wbr>(PotionData)</a></div>
+<div class="col-last even-row-color">
 <div class="block">Upgraded / extended potions are now their own <a href="org/bukkit/potion/PotionType.html" title="enum class in org.bukkit.potion"><code>PotionType</code></a> use <a href="org/bukkit/entity/AreaEffectCloud.html#setBasePotionType(org.bukkit.potion.PotionType)"><code>AreaEffectCloud.setBasePotionType(org.bukkit.potion.PotionType)</code></a> instead.</div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/ArmorStand.html#getBoots()">org.bukkit.entity.ArmorStand.getBoots()</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/ArmorStand.html#getBoots()">org.bukkit.entity.ArmorStand.getBoots()</a></div>
+<div class="col-last odd-row-color">
 <div class="block">prefer <a href="org/bukkit/inventory/EntityEquipment.html#getBoots()"><code>EntityEquipment.getBoots()</code></a></div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/ArmorStand.html#getChestplate()">org.bukkit.entity.ArmorStand.getChestplate()</a></div>
-<div class="col-last odd-row-color">
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/ArmorStand.html#getChestplate()">org.bukkit.entity.ArmorStand.getChestplate()</a></div>
+<div class="col-last even-row-color">
 <div class="block">prefer <a href="org/bukkit/inventory/EntityEquipment.html#getChestplate()"><code>EntityEquipment.getChestplate()</code></a></div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/ArmorStand.html#getHelmet()">org.bukkit.entity.ArmorStand.getHelmet()</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/ArmorStand.html#getHelmet()">org.bukkit.entity.ArmorStand.getHelmet()</a></div>
+<div class="col-last odd-row-color">
 <div class="block">prefer <a href="org/bukkit/inventory/EntityEquipment.html#getHelmet()"><code>EntityEquipment.getHelmet()</code></a></div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/ArmorStand.html#getItemInHand()">org.bukkit.entity.ArmorStand.getItemInHand()</a></div>
-<div class="col-last odd-row-color">
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/ArmorStand.html#getItemInHand()">org.bukkit.entity.ArmorStand.getItemInHand()</a></div>
+<div class="col-last even-row-color">
 <div class="block">prefer <a href="org/bukkit/entity/ArmorStand.html#getItem(org.bukkit.inventory.EquipmentSlot)"><code>ArmorStand.getItem(EquipmentSlot)</code></a> // Paper</div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/ArmorStand.html#getLeggings()">org.bukkit.entity.ArmorStand.getLeggings()</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/ArmorStand.html#getLeggings()">org.bukkit.entity.ArmorStand.getLeggings()</a></div>
+<div class="col-last odd-row-color">
 <div class="block">prefer <a href="org/bukkit/inventory/EntityEquipment.html#getLeggings()"><code>EntityEquipment.getLeggings()</code></a></div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/ArmorStand.html#setBoots(org.bukkit.inventory.ItemStack)">org.bukkit.entity.ArmorStand.setBoots<wbr>(ItemStack)</a></div>
-<div class="col-last odd-row-color">
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/ArmorStand.html#setBoots(org.bukkit.inventory.ItemStack)">org.bukkit.entity.ArmorStand.setBoots<wbr>(ItemStack)</a></div>
+<div class="col-last even-row-color">
 <div class="block">prefer
  <a href="org/bukkit/inventory/EntityEquipment.html#setBoots(org.bukkit.inventory.ItemStack)"><code>EntityEquipment.setBoots(org.bukkit.inventory.ItemStack)</code></a></div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/ArmorStand.html#setChestplate(org.bukkit.inventory.ItemStack)">org.bukkit.entity.ArmorStand.setChestplate<wbr>(ItemStack)</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/ArmorStand.html#setChestplate(org.bukkit.inventory.ItemStack)">org.bukkit.entity.ArmorStand.setChestplate<wbr>(ItemStack)</a></div>
+<div class="col-last odd-row-color">
 <div class="block">prefer
  <a href="org/bukkit/inventory/EntityEquipment.html#setChestplate(org.bukkit.inventory.ItemStack)"><code>EntityEquipment.setChestplate(org.bukkit.inventory.ItemStack)</code></a></div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/ArmorStand.html#setHelmet(org.bukkit.inventory.ItemStack)">org.bukkit.entity.ArmorStand.setHelmet<wbr>(ItemStack)</a></div>
-<div class="col-last odd-row-color">
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/ArmorStand.html#setHelmet(org.bukkit.inventory.ItemStack)">org.bukkit.entity.ArmorStand.setHelmet<wbr>(ItemStack)</a></div>
+<div class="col-last even-row-color">
 <div class="block">prefer
  <a href="org/bukkit/inventory/EntityEquipment.html#setHelmet(org.bukkit.inventory.ItemStack)"><code>EntityEquipment.setHelmet(org.bukkit.inventory.ItemStack)</code></a></div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/ArmorStand.html#setItemInHand(org.bukkit.inventory.ItemStack)">org.bukkit.entity.ArmorStand.setItemInHand<wbr>(ItemStack)</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/ArmorStand.html#setItemInHand(org.bukkit.inventory.ItemStack)">org.bukkit.entity.ArmorStand.setItemInHand<wbr>(ItemStack)</a></div>
+<div class="col-last odd-row-color">
 <div class="block">prefer
  <a href="org/bukkit/entity/ArmorStand.html#setItem(org.bukkit.inventory.EquipmentSlot,org.bukkit.inventory.ItemStack)"><code>ArmorStand.setItem(EquipmentSlot, ItemStack)</code></a> // Paper</div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/ArmorStand.html#setLeggings(org.bukkit.inventory.ItemStack)">org.bukkit.entity.ArmorStand.setLeggings<wbr>(ItemStack)</a></div>
-<div class="col-last odd-row-color">
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/ArmorStand.html#setLeggings(org.bukkit.inventory.ItemStack)">org.bukkit.entity.ArmorStand.setLeggings<wbr>(ItemStack)</a></div>
+<div class="col-last even-row-color">
 <div class="block">prefer
  <a href="org/bukkit/inventory/EntityEquipment.html#setLeggings(org.bukkit.inventory.ItemStack)"><code>EntityEquipment.setLeggings(org.bukkit.inventory.ItemStack)</code></a></div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/Arrow.html#getBasePotionData()">org.bukkit.entity.Arrow.getBasePotionData()</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/Arrow.html#getBasePotionData()">org.bukkit.entity.Arrow.getBasePotionData()</a></div>
+<div class="col-last odd-row-color">
 <div class="block">Upgraded / extended potions are now their own <a href="org/bukkit/potion/PotionType.html" title="enum class in org.bukkit.potion"><code>PotionType</code></a> use <a href="org/bukkit/entity/Arrow.html#getBasePotionType()"><code>Arrow.getBasePotionType()</code></a> instead.</div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/Arrow.html#setBasePotionData(org.bukkit.potion.PotionData)">org.bukkit.entity.Arrow.setBasePotionData<wbr>(PotionData)</a></div>
-<div class="col-last odd-row-color">
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/Arrow.html#setBasePotionData(org.bukkit.potion.PotionData)">org.bukkit.entity.Arrow.setBasePotionData<wbr>(PotionData)</a></div>
+<div class="col-last even-row-color">
 <div class="block">Upgraded / extended potions are now their own <a href="org/bukkit/potion/PotionType.html" title="enum class in org.bukkit.potion"><code>PotionType</code></a> use <a href="org/bukkit/entity/Arrow.html#setBasePotionType(org.bukkit.potion.PotionType)"><code>Arrow.setBasePotionType(org.bukkit.potion.PotionType)</code></a> instead.</div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/Boat.html#getBoatType()">org.bukkit.entity.Boat.getBoatType()</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/Boat.html#getBoatType()">org.bukkit.entity.Boat.getBoatType()</a></div>
+<div class="col-last odd-row-color">
 <div class="block">different boats types are now different entity types</div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/Boat.html#getMaxSpeed()">org.bukkit.entity.Boat.getMaxSpeed()</a></div>
-<div class="col-last odd-row-color">
-<div class="block">boats are complex and many of these methods do not work correctly across multiple versions.</div>
-</div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/Boat.html#getOccupiedDeceleration()">org.bukkit.entity.Boat.getOccupiedDeceleration()</a></div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/Boat.html#getMaxSpeed()">org.bukkit.entity.Boat.getMaxSpeed()</a></div>
 <div class="col-last even-row-color">
 <div class="block">boats are complex and many of these methods do not work correctly across multiple versions.</div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/Boat.html#getUnoccupiedDeceleration()">org.bukkit.entity.Boat.getUnoccupiedDeceleration()</a></div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/Boat.html#getOccupiedDeceleration()">org.bukkit.entity.Boat.getOccupiedDeceleration()</a></div>
 <div class="col-last odd-row-color">
 <div class="block">boats are complex and many of these methods do not work correctly across multiple versions.</div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/Boat.html#getWoodType()">org.bukkit.entity.Boat.getWoodType()</a></div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/Boat.html#getUnoccupiedDeceleration()">org.bukkit.entity.Boat.getUnoccupiedDeceleration()</a></div>
 <div class="col-last even-row-color">
+<div class="block">boats are complex and many of these methods do not work correctly across multiple versions.</div>
+</div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/Boat.html#getWoodType()">org.bukkit.entity.Boat.getWoodType()</a></div>
+<div class="col-last odd-row-color">
 <div class="block">deprecated in favor of <a href="org/bukkit/entity/Boat.html#getBoatType()"><code>Boat.getBoatType()</code></a></div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/Boat.html#getWorkOnLand()">org.bukkit.entity.Boat.getWorkOnLand()</a></div>
-<div class="col-last odd-row-color">
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/Boat.html#getWorkOnLand()">org.bukkit.entity.Boat.getWorkOnLand()</a></div>
+<div class="col-last even-row-color">
 <div class="block">boats are complex and many of these methods do not work correctly across multiple versions.</div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/Boat.html#setBoatType(org.bukkit.entity.Boat.Type)">org.bukkit.entity.Boat.setBoatType<wbr>(Boat.Type)</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/Boat.html#setBoatType(org.bukkit.entity.Boat.Type)">org.bukkit.entity.Boat.setBoatType<wbr>(Boat.Type)</a></div>
+<div class="col-last odd-row-color">
 <div class="block">different boats types are now different entity types</div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/Boat.html#setMaxSpeed(double)">org.bukkit.entity.Boat.setMaxSpeed<wbr>(double)</a></div>
-<div class="col-last odd-row-color">
-<div class="block">boats are complex and many of these methods do not work correctly across multiple versions.</div>
-</div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/Boat.html#setOccupiedDeceleration(double)">org.bukkit.entity.Boat.setOccupiedDeceleration<wbr>(double)</a></div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/Boat.html#setMaxSpeed(double)">org.bukkit.entity.Boat.setMaxSpeed<wbr>(double)</a></div>
 <div class="col-last even-row-color">
 <div class="block">boats are complex and many of these methods do not work correctly across multiple versions.</div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/Boat.html#setUnoccupiedDeceleration(double)">org.bukkit.entity.Boat.setUnoccupiedDeceleration<wbr>(double)</a></div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/Boat.html#setOccupiedDeceleration(double)">org.bukkit.entity.Boat.setOccupiedDeceleration<wbr>(double)</a></div>
 <div class="col-last odd-row-color">
 <div class="block">boats are complex and many of these methods do not work correctly across multiple versions.</div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/Boat.html#setWoodType(org.bukkit.TreeSpecies)">org.bukkit.entity.Boat.setWoodType<wbr>(TreeSpecies)</a></div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/Boat.html#setUnoccupiedDeceleration(double)">org.bukkit.entity.Boat.setUnoccupiedDeceleration<wbr>(double)</a></div>
 <div class="col-last even-row-color">
+<div class="block">boats are complex and many of these methods do not work correctly across multiple versions.</div>
+</div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/Boat.html#setWoodType(org.bukkit.TreeSpecies)">org.bukkit.entity.Boat.setWoodType<wbr>(TreeSpecies)</a></div>
+<div class="col-last odd-row-color">
 <div class="block">deprecated in favor of <a href="org/bukkit/entity/Boat.html#setBoatType(org.bukkit.entity.Boat.Type)"><code>Boat.setBoatType(Type)</code></a></div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/Boat.html#setWorkOnLand(boolean)">org.bukkit.entity.Boat.setWorkOnLand<wbr>(boolean)</a></div>
-<div class="col-last odd-row-color">
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/Boat.html#setWorkOnLand(boolean)">org.bukkit.entity.Boat.setWorkOnLand<wbr>(boolean)</a></div>
+<div class="col-last even-row-color">
 <div class="block">boats are complex and many of these methods do not work correctly across multiple versions.</div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/Cat.Type.html#valueOf(java.lang.String)">org.bukkit.entity.Cat.Type.valueOf<wbr>(String)</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/Cat.Type.html#valueOf(java.lang.String)">org.bukkit.entity.Cat.Type.valueOf<wbr>(String)</a></div>
+<div class="col-last odd-row-color">
 <div class="block">only for backwards compatibility, use <a href="org/bukkit/Registry.html#get(org.bukkit.NamespacedKey)"><code>Registry.get(NamespacedKey)</code></a> instead.</div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/Cat.Type.html#values()">org.bukkit.entity.Cat.Type.values()</a></div>
-<div class="col-last odd-row-color">
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/Cat.Type.html#values()">org.bukkit.entity.Cat.Type.values()</a></div>
+<div class="col-last even-row-color">
 <div class="block">use <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Iterable.html#iterator()" title="class or interface in java.lang" class="external-link"><code>Iterable.iterator()</code></a>.</div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/Damageable.html#getMaxHealth()">org.bukkit.entity.Damageable.getMaxHealth()</a></div>
-<div class="col-last even-row-color">
-<div class="block">use <a href="org/bukkit/attribute/Attribute.html#MAX_HEALTH"><code>Attribute.MAX_HEALTH</code></a>.</div>
-</div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/Damageable.html#resetMaxHealth()">org.bukkit.entity.Damageable.resetMaxHealth()</a></div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/Damageable.html#getMaxHealth()">org.bukkit.entity.Damageable.getMaxHealth()</a></div>
 <div class="col-last odd-row-color">
 <div class="block">use <a href="org/bukkit/attribute/Attribute.html#MAX_HEALTH"><code>Attribute.MAX_HEALTH</code></a>.</div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/Damageable.html#setMaxHealth(double)">org.bukkit.entity.Damageable.setMaxHealth<wbr>(double)</a></div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/Damageable.html#resetMaxHealth()">org.bukkit.entity.Damageable.resetMaxHealth()</a></div>
 <div class="col-last even-row-color">
 <div class="block">use <a href="org/bukkit/attribute/Attribute.html#MAX_HEALTH"><code>Attribute.MAX_HEALTH</code></a>.</div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/Enderman.html#getCarriedMaterial()">org.bukkit.entity.Enderman.getCarriedMaterial()</a></div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/Damageable.html#setMaxHealth(double)">org.bukkit.entity.Damageable.setMaxHealth<wbr>(double)</a></div>
 <div class="col-last odd-row-color">
+<div class="block">use <a href="org/bukkit/attribute/Attribute.html#MAX_HEALTH"><code>Attribute.MAX_HEALTH</code></a>.</div>
+</div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/Enderman.html#getCarriedMaterial()">org.bukkit.entity.Enderman.getCarriedMaterial()</a></div>
+<div class="col-last even-row-color">
 <div class="block">use <a href="org/bukkit/entity/Enderman.html#getCarriedBlock()"><code>Enderman.getCarriedBlock()</code></a></div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/Enderman.html#setCarriedMaterial(org.bukkit.material.MaterialData)">org.bukkit.entity.Enderman.setCarriedMaterial<wbr>(MaterialData)</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/Enderman.html#setCarriedMaterial(org.bukkit.material.MaterialData)">org.bukkit.entity.Enderman.setCarriedMaterial<wbr>(MaterialData)</a></div>
+<div class="col-last odd-row-color">
 <div class="block">use <a href="org/bukkit/entity/Enderman.html#setCarriedBlock(org.bukkit.block.data.BlockData)"><code>Enderman.setCarriedBlock(BlockData)</code></a></div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/Endermite.html#isPlayerSpawned()">org.bukkit.entity.Endermite.isPlayerSpawned()</a></div>
-<div class="col-last odd-row-color">
-<div class="block">this functionality no longer exists</div>
-</div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/Endermite.html#setPlayerSpawned(boolean)">org.bukkit.entity.Endermite.setPlayerSpawned<wbr>(boolean)</a></div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/Endermite.html#isPlayerSpawned()">org.bukkit.entity.Endermite.isPlayerSpawned()</a></div>
 <div class="col-last even-row-color">
 <div class="block">this functionality no longer exists</div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/Entity.html#getPassenger()">org.bukkit.entity.Entity.getPassenger()</a></div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/Endermite.html#setPlayerSpawned(boolean)">org.bukkit.entity.Endermite.setPlayerSpawned<wbr>(boolean)</a></div>
 <div class="col-last odd-row-color">
+<div class="block">this functionality no longer exists</div>
+</div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/Entity.html#getPassenger()">org.bukkit.entity.Entity.getPassenger()</a></div>
+<div class="col-last even-row-color">
 <div class="block">entities may have multiple passengers, use
  <a href="org/bukkit/entity/Entity.html#getPassengers()"><code>Entity.getPassengers()</code></a></div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/Entity.html#getTrackedPlayers()">org.bukkit.entity.Entity.getTrackedPlayers()</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/Entity.html#getTrackedPlayers()">org.bukkit.entity.Entity.getTrackedPlayers()</a></div>
+<div class="col-last odd-row-color">
 <div class="block">slightly misleading name, use <a href="org/bukkit/entity/Entity.html#getTrackedBy()"><code>Entity.getTrackedBy()</code></a></div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/Entity.html#setLastDamageCause(org.bukkit.event.entity.EntityDamageEvent)">org.bukkit.entity.Entity.setLastDamageCause<wbr>(EntityDamageEvent)</a></div>
-<div class="col-last odd-row-color">
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/Entity.html#setLastDamageCause(org.bukkit.event.entity.EntityDamageEvent)">org.bukkit.entity.Entity.setLastDamageCause<wbr>(EntityDamageEvent)</a></div>
+<div class="col-last even-row-color">
 <div class="block">method is for internal use only and will be removed</div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/Entity.html#setPassenger(org.bukkit.entity.Entity)">org.bukkit.entity.Entity.setPassenger<wbr>(Entity)</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/Entity.html#setPassenger(org.bukkit.entity.Entity)">org.bukkit.entity.Entity.setPassenger<wbr>(Entity)</a></div>
+<div class="col-last odd-row-color">
 <div class="block">entities may have multiple passengers, use
  <a href="org/bukkit/entity/Entity.html#addPassenger(org.bukkit.entity.Entity)"><code>Entity.addPassenger(org.bukkit.entity.Entity)</code></a></div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/EntityType.html#fromId(int)">org.bukkit.entity.EntityType.fromId<wbr>(int)</a></div>
-<div class="col-last odd-row-color">
-<div class="block">Magic value</div>
-</div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/EntityType.html#getName()">org.bukkit.entity.EntityType.getName()</a></div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/EntityType.html#fromId(int)">org.bukkit.entity.EntityType.fromId<wbr>(int)</a></div>
 <div class="col-last even-row-color">
 <div class="block">Magic value</div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/EntityType.html#getTranslationKey()">org.bukkit.entity.EntityType.getTranslationKey()</a></div>
-<div class="col-last odd-row-color"></div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/EntityType.html#getTypeId()">org.bukkit.entity.EntityType.getTypeId()</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/EntityType.html#getName()">org.bukkit.entity.EntityType.getName()</a></div>
+<div class="col-last odd-row-color">
 <div class="block">Magic value</div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/EntityType.html#isEnabledByFeature(org.bukkit.World)">org.bukkit.entity.EntityType.isEnabledByFeature<wbr>(World)</a></div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/EntityType.html#getTranslationKey()">org.bukkit.entity.EntityType.getTranslationKey()</a></div>
+<div class="col-last even-row-color"></div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/EntityType.html#getTypeId()">org.bukkit.entity.EntityType.getTypeId()</a></div>
 <div class="col-last odd-row-color">
+<div class="block">Magic value</div>
+</div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/EntityType.html#isEnabledByFeature(org.bukkit.World)">org.bukkit.entity.EntityType.isEnabledByFeature<wbr>(World)</a></div>
+<div class="col-last even-row-color">
 <div class="block">use <a href="io/papermc/paper/world/flag/FeatureFlagSetHolder.html#isEnabled(io.papermc.paper.world.flag.FeatureDependant)"><code>FeatureFlagSetHolder.isEnabled(io.papermc.paper.world.flag.FeatureDependant)</code></a></div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/Evoker.html#getCurrentSpell()">org.bukkit.entity.Evoker.getCurrentSpell()</a></div>
-<div class="col-last even-row-color">
-<div class="block">future versions of Minecraft have additional spell casting
- entities.</div>
-</div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/Evoker.html#setCurrentSpell(org.bukkit.entity.Evoker.Spell)">org.bukkit.entity.Evoker.setCurrentSpell<wbr>(Evoker.Spell)</a></div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/Evoker.html#getCurrentSpell()">org.bukkit.entity.Evoker.getCurrentSpell()</a></div>
 <div class="col-last odd-row-color">
 <div class="block">future versions of Minecraft have additional spell casting
  entities.</div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/ExperienceOrb.html#isFromBottle()">org.bukkit.entity.ExperienceOrb.isFromBottle()</a></div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/Evoker.html#setCurrentSpell(org.bukkit.entity.Evoker.Spell)">org.bukkit.entity.Evoker.setCurrentSpell<wbr>(Evoker.Spell)</a></div>
 <div class="col-last even-row-color">
+<div class="block">future versions of Minecraft have additional spell casting
+ entities.</div>
+</div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/ExperienceOrb.html#isFromBottle()">org.bukkit.entity.ExperienceOrb.isFromBottle()</a></div>
+<div class="col-last odd-row-color">
 <div class="block">Use getSpawnReason() == EXP_BOTTLE</div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/FallingBlock.html#getMaterial()">org.bukkit.entity.FallingBlock.getMaterial()</a></div>
-<div class="col-last odd-row-color">
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/FallingBlock.html#getMaterial()">org.bukkit.entity.FallingBlock.getMaterial()</a></div>
+<div class="col-last even-row-color">
 <div class="block">use <a href="org/bukkit/entity/FallingBlock.html#getBlockData()"><code>FallingBlock.getBlockData()</code></a></div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/FallingBlock.html#getSourceLoc()">org.bukkit.entity.FallingBlock.getSourceLoc()</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/FallingBlock.html#getSourceLoc()">org.bukkit.entity.FallingBlock.getSourceLoc()</a></div>
+<div class="col-last odd-row-color">
 <div class="block">replaced by <a href="org/bukkit/entity/Entity.html#getOrigin()"><code>Entity.getOrigin()</code></a></div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/Fireball.html#getDirection()">org.bukkit.entity.Fireball.getDirection()</a></div>
-<div class="col-last odd-row-color">
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/Fireball.html#getDirection()">org.bukkit.entity.Fireball.getDirection()</a></div>
+<div class="col-last even-row-color">
 <div class="block">badly named method, returns the value of
  <a href="org/bukkit/entity/Fireball.html#getAcceleration()"><code>Fireball.getAcceleration()</code></a></div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/Fireball.html#getPower()">org.bukkit.entity.Fireball.getPower()</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/Fireball.html#getPower()">org.bukkit.entity.Fireball.getPower()</a></div>
+<div class="col-last odd-row-color">
 <div class="block">Use #getAcceleration instead.</div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/Fireball.html#setPower(org.bukkit.util.Vector)">org.bukkit.entity.Fireball.setPower<wbr>(Vector)</a></div>
-<div class="col-last odd-row-color">
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/Fireball.html#setPower(org.bukkit.util.Vector)">org.bukkit.entity.Fireball.setPower<wbr>(Vector)</a></div>
+<div class="col-last even-row-color">
 <div class="block">use #setAcceleration(Vector) instead.</div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/Firework.html#getBoostedEntity()">org.bukkit.entity.Firework.getBoostedEntity()</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/Firework.html#getBoostedEntity()">org.bukkit.entity.Firework.getBoostedEntity()</a></div>
+<div class="col-last odd-row-color">
 <div class="block">use <a href="org/bukkit/entity/Firework.html#getAttachedTo()"><code>Firework.getAttachedTo()</code></a></div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/Firework.html#getLife()">org.bukkit.entity.Firework.getLife()</a></div>
-<div class="col-last odd-row-color">
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/Firework.html#getLife()">org.bukkit.entity.Firework.getLife()</a></div>
+<div class="col-last even-row-color">
 <div class="block">use <a href="org/bukkit/entity/Firework.html#getTicksFlown()"><code>Firework.getTicksFlown()</code></a></div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/Firework.html#getMaxLife()">org.bukkit.entity.Firework.getMaxLife()</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/Firework.html#getMaxLife()">org.bukkit.entity.Firework.getMaxLife()</a></div>
+<div class="col-last odd-row-color">
 <div class="block">use <a href="org/bukkit/entity/Firework.html#getTicksToDetonate()"><code>Firework.getTicksToDetonate()</code></a></div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/Firework.html#setLife(int)">org.bukkit.entity.Firework.setLife<wbr>(int)</a></div>
-<div class="col-last odd-row-color">
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/Firework.html#setLife(int)">org.bukkit.entity.Firework.setLife<wbr>(int)</a></div>
+<div class="col-last even-row-color">
 <div class="block">use <a href="org/bukkit/entity/Firework.html#setTicksFlown(int)"><code>Firework.setTicksFlown(int)</code></a></div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/Firework.html#setMaxLife(int)">org.bukkit.entity.Firework.setMaxLife<wbr>(int)</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/Firework.html#setMaxLife(int)">org.bukkit.entity.Firework.setMaxLife<wbr>(int)</a></div>
+<div class="col-last odd-row-color">
 <div class="block">use <a href="org/bukkit/entity/Firework.html#setTicksToDetonate(int)"><code>Firework.setTicksToDetonate(int)</code></a></div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/FishHook.html#getBiteChance()">org.bukkit.entity.FishHook.getBiteChance()</a></div>
-<div class="col-last odd-row-color">
-<div class="block">has no effect in newer Minecraft versions</div>
-</div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/FishHook.html#setBiteChance(double)">org.bukkit.entity.FishHook.setBiteChance<wbr>(double)</a></div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/FishHook.html#getBiteChance()">org.bukkit.entity.FishHook.getBiteChance()</a></div>
 <div class="col-last even-row-color">
 <div class="block">has no effect in newer Minecraft versions</div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/Frog.Variant.html#valueOf(java.lang.String)">org.bukkit.entity.Frog.Variant.valueOf<wbr>(String)</a></div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/FishHook.html#setBiteChance(double)">org.bukkit.entity.FishHook.setBiteChance<wbr>(double)</a></div>
 <div class="col-last odd-row-color">
+<div class="block">has no effect in newer Minecraft versions</div>
+</div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/Frog.Variant.html#valueOf(java.lang.String)">org.bukkit.entity.Frog.Variant.valueOf<wbr>(String)</a></div>
+<div class="col-last even-row-color">
 <div class="block">only for backwards compatibility, use <a href="org/bukkit/Registry.html#get(org.bukkit.NamespacedKey)"><code>Registry.get(NamespacedKey)</code></a> instead.</div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/Frog.Variant.html#values()">org.bukkit.entity.Frog.Variant.values()</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/Frog.Variant.html#values()">org.bukkit.entity.Frog.Variant.values()</a></div>
+<div class="col-last odd-row-color">
 <div class="block">use <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Iterable.html#iterator()" title="class or interface in java.lang" class="external-link"><code>Iterable.iterator()</code></a>.</div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/Guardian.html#isElder()">org.bukkit.entity.Guardian.isElder()</a></div>
-<div class="col-last odd-row-color">
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/Guardian.html#isElder()">org.bukkit.entity.Guardian.isElder()</a></div>
+<div class="col-last even-row-color">
 <div class="block">should check if instance of <a href="org/bukkit/entity/ElderGuardian.html" title="interface in org.bukkit.entity"><code>ElderGuardian</code></a>.</div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/Guardian.html#setElder(boolean)">org.bukkit.entity.Guardian.setElder<wbr>(boolean)</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/Guardian.html#setElder(boolean)">org.bukkit.entity.Guardian.setElder<wbr>(boolean)</a></div>
+<div class="col-last odd-row-color">
 <div class="block">Must spawn a new <a href="org/bukkit/entity/ElderGuardian.html" title="interface in org.bukkit.entity"><code>ElderGuardian</code></a>.</div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/Horse.html#isCarryingChest()">org.bukkit.entity.Horse.isCarryingChest()</a></div>
-<div class="col-last odd-row-color">
-<div class="block">see <a href="org/bukkit/entity/ChestedHorse.html" title="interface in org.bukkit.entity"><code>ChestedHorse</code></a></div>
-</div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/Horse.html#setCarryingChest(boolean)">org.bukkit.entity.Horse.setCarryingChest<wbr>(boolean)</a></div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/Horse.html#isCarryingChest()">org.bukkit.entity.Horse.isCarryingChest()</a></div>
 <div class="col-last even-row-color">
 <div class="block">see <a href="org/bukkit/entity/ChestedHorse.html" title="interface in org.bukkit.entity"><code>ChestedHorse</code></a></div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/HumanEntity.html#getItemInHand()">org.bukkit.entity.HumanEntity.getItemInHand()</a></div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/Horse.html#setCarryingChest(boolean)">org.bukkit.entity.Horse.setCarryingChest<wbr>(boolean)</a></div>
 <div class="col-last odd-row-color">
+<div class="block">see <a href="org/bukkit/entity/ChestedHorse.html" title="interface in org.bukkit.entity"><code>ChestedHorse</code></a></div>
+</div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/HumanEntity.html#getItemInHand()">org.bukkit.entity.HumanEntity.getItemInHand()</a></div>
+<div class="col-last even-row-color">
 <div class="block">Humans may now dual wield in their off hand, use explicit
  methods in <a href="org/bukkit/inventory/PlayerInventory.html" title="interface in org.bukkit.inventory"><code>PlayerInventory</code></a>.</div>
+</div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/HumanEntity.html#getPotentialBedLocation()">org.bukkit.entity.HumanEntity.getPotentialBedLocation()</a></div>
+<div class="col-last odd-row-color">
+<div class="block">Misleading name. This method also returns the location of
+ respawn anchors.</div>
 </div>
 <div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/HumanEntity.html#getShoulderEntityLeft()">org.bukkit.entity.HumanEntity.getShoulderEntityLeft()</a></div>
 <div class="col-last even-row-color">
@@ -3744,9 +3755,59 @@ loadScripts(document, 'script');</script>
 <div class="block">There are currently no well defined semantics regarding
  serialized entities in Bukkit. Use with care.</div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/HumanEntity.html#openSign(org.bukkit.block.Sign)">org.bukkit.entity.HumanEntity.openSign<wbr>(Sign)</a></div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/HumanEntity.html#openAnvil(org.bukkit.Location,boolean)">org.bukkit.entity.HumanEntity.openAnvil<wbr>(Location, boolean)</a></div>
 <div class="col-last even-row-color">
+<div class="block">This method should be replaced by <a href="org/bukkit/inventory/MenuType.html#ANVIL"><code>MenuType.ANVIL</code></a>
+ see <a href="org/bukkit/inventory/MenuType.Typed.html#builder()"><code>MenuType.Typed.builder()</code></a> and its options for more information.</div>
+</div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/HumanEntity.html#openCartographyTable(org.bukkit.Location,boolean)">org.bukkit.entity.HumanEntity.openCartographyTable<wbr>(Location, boolean)</a></div>
+<div class="col-last odd-row-color">
+<div class="block">This method should be replaced by <a href="org/bukkit/inventory/MenuType.html#CARTOGRAPHY_TABLE"><code>MenuType.CARTOGRAPHY_TABLE</code></a>
+ see <a href="org/bukkit/inventory/MenuType.Typed.html#builder()"><code>MenuType.Typed.builder()</code></a> and its options for more information.</div>
+</div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/HumanEntity.html#openEnchanting(org.bukkit.Location,boolean)">org.bukkit.entity.HumanEntity.openEnchanting<wbr>(Location, boolean)</a></div>
+<div class="col-last even-row-color">
+<div class="block">This method should be replaced by <a href="org/bukkit/inventory/MenuType.html#ENCHANTMENT"><code>MenuType.ENCHANTMENT</code></a>
+ see <a href="org/bukkit/inventory/MenuType.Typed.html#builder()"><code>MenuType.Typed.builder()</code></a> and its options for more information.</div>
+</div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/HumanEntity.html#openGrindstone(org.bukkit.Location,boolean)">org.bukkit.entity.HumanEntity.openGrindstone<wbr>(Location, boolean)</a></div>
+<div class="col-last odd-row-color">
+<div class="block">This method should be replaced by <a href="org/bukkit/inventory/MenuType.html#GRINDSTONE"><code>MenuType.GRINDSTONE</code></a>
+ see <a href="org/bukkit/inventory/MenuType.Typed.html#builder()"><code>MenuType.Typed.builder()</code></a> and its options for more information.</div>
+</div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/HumanEntity.html#openLoom(org.bukkit.Location,boolean)">org.bukkit.entity.HumanEntity.openLoom<wbr>(Location, boolean)</a></div>
+<div class="col-last even-row-color">
+<div class="block">This method should be replaced by <a href="org/bukkit/inventory/MenuType.html#LOOM"><code>MenuType.LOOM</code></a>
+ see <a href="org/bukkit/inventory/MenuType.Typed.html#builder()"><code>MenuType.Typed.builder()</code></a> and its options for more information.</div>
+</div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/HumanEntity.html#openMerchant(org.bukkit.entity.Villager,boolean)">org.bukkit.entity.HumanEntity.openMerchant<wbr>(Villager, boolean)</a></div>
+<div class="col-last odd-row-color">
+<div class="block">This method can be replaced by using <a href="org/bukkit/inventory/MenuType.html#MERCHANT"><code>MenuType.MERCHANT</code></a>
+ in conjunction with <a href="org/bukkit/entity/HumanEntity.html#openInventory(org.bukkit.inventory.InventoryView)"><code>HumanEntity.openInventory(InventoryView)</code></a>.</div>
+</div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/HumanEntity.html#openMerchant(org.bukkit.inventory.Merchant,boolean)">org.bukkit.entity.HumanEntity.openMerchant<wbr>(Merchant, boolean)</a></div>
+<div class="col-last even-row-color">
+<div class="block">This method can be replaced by using <a href="org/bukkit/inventory/MenuType.html#MERCHANT"><code>MenuType.MERCHANT</code></a>
+ in conjunction with <a href="org/bukkit/entity/HumanEntity.html#openInventory(org.bukkit.inventory.InventoryView)"><code>HumanEntity.openInventory(InventoryView)</code></a>.</div>
+</div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/HumanEntity.html#openSign(org.bukkit.block.Sign)">org.bukkit.entity.HumanEntity.openSign<wbr>(Sign)</a></div>
+<div class="col-last odd-row-color">
 <div class="block">use <a href="org/bukkit/entity/HumanEntity.html#openSign(org.bukkit.block.Sign,org.bukkit.block.sign.Side)"><code>HumanEntity.openSign(org.bukkit.block.Sign, org.bukkit.block.sign.Side)</code></a></div>
+</div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/HumanEntity.html#openSmithingTable(org.bukkit.Location,boolean)">org.bukkit.entity.HumanEntity.openSmithingTable<wbr>(Location, boolean)</a></div>
+<div class="col-last even-row-color">
+<div class="block">This method should be replaced by <a href="org/bukkit/inventory/MenuType.html#SMITHING"><code>MenuType.SMITHING</code></a>
+ see <a href="org/bukkit/inventory/MenuType.Typed.html#builder()"><code>MenuType.Typed.builder()</code></a> and its options for more information.</div>
+</div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/HumanEntity.html#openStonecutter(org.bukkit.Location,boolean)">org.bukkit.entity.HumanEntity.openStonecutter<wbr>(Location, boolean)</a></div>
+<div class="col-last odd-row-color">
+<div class="block">This method should be replaced by <a href="org/bukkit/inventory/MenuType.html#STONECUTTER"><code>MenuType.STONECUTTER</code></a>
+ see <a href="org/bukkit/inventory/MenuType.Typed.html#builder()"><code>MenuType.Typed.builder()</code></a> and its options for more information.</div>
+</div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/HumanEntity.html#openWorkbench(org.bukkit.Location,boolean)">org.bukkit.entity.HumanEntity.openWorkbench<wbr>(Location, boolean)</a></div>
+<div class="col-last even-row-color">
+<div class="block">This method should be replaced by <a href="org/bukkit/inventory/MenuType.html#CRAFTING"><code>MenuType.CRAFTING</code></a>
+ see <a href="org/bukkit/inventory/MenuType.Typed.html#builder()"><code>MenuType.Typed.builder()</code></a> and its options for more information.</div>
 </div>
 <div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/HumanEntity.html#setItemInHand(org.bukkit.inventory.ItemStack)">org.bukkit.entity.HumanEntity.setItemInHand<wbr>(ItemStack)</a></div>
 <div class="col-last odd-row-color">
@@ -5824,428 +5885,434 @@ loadScripts(document, 'script');</script>
 </div>
 <div class="col-summary-item-name even-row-color"><a href="org/bukkit/Server.html#createMerchant(java.lang.String)">org.bukkit.Server.createMerchant<wbr>(String)</a></div>
 <div class="col-last even-row-color">
-<div class="block">in favour of <a href="org/bukkit/Server.html#createMerchant(net.kyori.adventure.text.Component)"><code>Server.createMerchant(net.kyori.adventure.text.Component)</code></a></div>
+<div class="block">in favour of <a href="org/bukkit/Server.html#createMerchant(net.kyori.adventure.text.Component)"><code>Server.createMerchant(net.kyori.adventure.text.Component)</code></a>, The title parameter is
+ no-longer needed when used with <a href="org/bukkit/inventory/MenuType.html#MERCHANT"><code>MenuType.MERCHANT</code></a> and <a href="org/bukkit/inventory/MenuType.Typed.html#builder()"><code>MenuType.Typed.builder()</code></a>.</div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/Server.html#createPlayerProfile(java.lang.String)">org.bukkit.Server.createPlayerProfile<wbr>(String)</a></div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/Server.html#createMerchant(net.kyori.adventure.text.Component)">org.bukkit.Server.createMerchant<wbr>(Component)</a></div>
 <div class="col-last odd-row-color">
+<div class="block">The title parameter is no-longer needed when used with
+ <a href="org/bukkit/inventory/MenuType.html#MERCHANT"><code>MenuType.MERCHANT</code></a> and <a href="org/bukkit/inventory/MenuType.Typed.html#builder()"><code>MenuType.Typed.builder()</code></a>.</div>
+</div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/Server.html#createPlayerProfile(java.lang.String)">org.bukkit.Server.createPlayerProfile<wbr>(String)</a></div>
+<div class="col-last even-row-color">
 <div class="block">use <a href="org/bukkit/Server.html#createProfile(java.lang.String)"><code>Server.createProfile(String)</code></a></div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/Server.html#createPlayerProfile(java.util.UUID)">org.bukkit.Server.createPlayerProfile<wbr>(UUID)</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/Server.html#createPlayerProfile(java.util.UUID)">org.bukkit.Server.createPlayerProfile<wbr>(UUID)</a></div>
+<div class="col-last odd-row-color">
 <div class="block">use <a href="org/bukkit/Server.html#createProfile(java.util.UUID)"><code>Server.createProfile(UUID)</code></a></div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/Server.html#createPlayerProfile(java.util.UUID,java.lang.String)">org.bukkit.Server.createPlayerProfile<wbr>(UUID, String)</a></div>
-<div class="col-last odd-row-color">
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/Server.html#createPlayerProfile(java.util.UUID,java.lang.String)">org.bukkit.Server.createPlayerProfile<wbr>(UUID, String)</a></div>
+<div class="col-last even-row-color">
 <div class="block">use <a href="org/bukkit/Server.html#createProfile(java.util.UUID,java.lang.String)"><code>Server.createProfile(UUID, String)</code></a></div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/Server.html#getAmbientSpawnLimit()">org.bukkit.Server.getAmbientSpawnLimit()</a></div>
-<div class="col-last even-row-color">
-<div class="block">Deprecated in favor of <a href="org/bukkit/Server.html#getSpawnLimit(org.bukkit.entity.SpawnCategory)"><code>Server.getSpawnLimit(SpawnCategory)</code></a></div>
-</div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/Server.html#getAnimalSpawnLimit()">org.bukkit.Server.getAnimalSpawnLimit()</a></div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/Server.html#getAmbientSpawnLimit()">org.bukkit.Server.getAmbientSpawnLimit()</a></div>
 <div class="col-last odd-row-color">
 <div class="block">Deprecated in favor of <a href="org/bukkit/Server.html#getSpawnLimit(org.bukkit.entity.SpawnCategory)"><code>Server.getSpawnLimit(SpawnCategory)</code></a></div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/Server.html#getBanList(org.bukkit.BanList.Type)">org.bukkit.Server.getBanList<wbr>(BanList.Type)</a></div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/Server.html#getAnimalSpawnLimit()">org.bukkit.Server.getAnimalSpawnLimit()</a></div>
 <div class="col-last even-row-color">
+<div class="block">Deprecated in favor of <a href="org/bukkit/Server.html#getSpawnLimit(org.bukkit.entity.SpawnCategory)"><code>Server.getSpawnLimit(SpawnCategory)</code></a></div>
+</div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/Server.html#getBanList(org.bukkit.BanList.Type)">org.bukkit.Server.getBanList<wbr>(BanList.Type)</a></div>
+<div class="col-last odd-row-color">
 <div class="block">use <a href="org/bukkit/Server.html#getBanList(io.papermc.paper.ban.BanListType)"><code>Server.getBanList(io.papermc.paper.ban.BanListType)</code></a> to enforce the correct return value at compile time.</div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/Server.html#getDataPackManager()">org.bukkit.Server.getDataPackManager()</a></div>
-<div class="col-last odd-row-color">
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/Server.html#getDataPackManager()">org.bukkit.Server.getDataPackManager()</a></div>
+<div class="col-last even-row-color">
 <div class="block">use <a href="org/bukkit/Server.html#getDatapackManager()"><code>Server.getDatapackManager()</code></a></div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/Server.html#getMonsterSpawnLimit()">org.bukkit.Server.getMonsterSpawnLimit()</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/Server.html#getMonsterSpawnLimit()">org.bukkit.Server.getMonsterSpawnLimit()</a></div>
+<div class="col-last odd-row-color">
 <div class="block">Deprecated in favor of <a href="org/bukkit/Server.html#getSpawnLimit(org.bukkit.entity.SpawnCategory)"><code>Server.getSpawnLimit(SpawnCategory)</code></a></div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/Server.html#getMotd()">org.bukkit.Server.getMotd()</a></div>
-<div class="col-last odd-row-color">
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/Server.html#getMotd()">org.bukkit.Server.getMotd()</a></div>
+<div class="col-last even-row-color">
 <div class="block">in favour of <a href="org/bukkit/Server.html#motd()"><code>Server.motd()</code></a></div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/Server.html#getPermissionMessage()">org.bukkit.Server.getPermissionMessage()</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/Server.html#getPermissionMessage()">org.bukkit.Server.getPermissionMessage()</a></div>
+<div class="col-last odd-row-color">
 <div class="block">use <a href="org/bukkit/Server.html#permissionMessage()"><code>Server.permissionMessage()</code></a></div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/Server.html#getRegistry(java.lang.Class)">org.bukkit.Server.getRegistry<wbr>(Class&lt;T&gt;)</a></div>
-<div class="col-last odd-row-color">
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/Server.html#getRegistry(java.lang.Class)">org.bukkit.Server.getRegistry<wbr>(Class&lt;T&gt;)</a></div>
+<div class="col-last even-row-color">
 <div class="block">use <a href="io/papermc/paper/registry/RegistryAccess.html#getRegistry(io.papermc.paper.registry.RegistryKey)"><code>RegistryAccess.getRegistry(io.papermc.paper.registry.RegistryKey)</code></a>
  with keys from <a href="io/papermc/paper/registry/RegistryKey.html" title="interface in io.papermc.paper.registry"><code>RegistryKey</code></a></div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/Server.html#getShutdownMessage()">org.bukkit.Server.getShutdownMessage()</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/Server.html#getShutdownMessage()">org.bukkit.Server.getShutdownMessage()</a></div>
+<div class="col-last odd-row-color">
 <div class="block">in favour of <a href="org/bukkit/Server.html#shutdownMessage()"><code>Server.shutdownMessage()</code></a></div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/Server.html#getTicksPerAmbientSpawns()">org.bukkit.Server.getTicksPerAmbientSpawns()</a></div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/Server.html#getTicksPerAmbientSpawns()">org.bukkit.Server.getTicksPerAmbientSpawns()</a></div>
+<div class="col-last even-row-color">
+<div class="block">Deprecated in favor of <a href="org/bukkit/Server.html#getTicksPerSpawns(org.bukkit.entity.SpawnCategory)"><code>Server.getTicksPerSpawns(SpawnCategory)</code></a></div>
+</div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/Server.html#getTicksPerAnimalSpawns()">org.bukkit.Server.getTicksPerAnimalSpawns()</a></div>
 <div class="col-last odd-row-color">
 <div class="block">Deprecated in favor of <a href="org/bukkit/Server.html#getTicksPerSpawns(org.bukkit.entity.SpawnCategory)"><code>Server.getTicksPerSpawns(SpawnCategory)</code></a></div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/Server.html#getTicksPerAnimalSpawns()">org.bukkit.Server.getTicksPerAnimalSpawns()</a></div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/Server.html#getTicksPerMonsterSpawns()">org.bukkit.Server.getTicksPerMonsterSpawns()</a></div>
 <div class="col-last even-row-color">
 <div class="block">Deprecated in favor of <a href="org/bukkit/Server.html#getTicksPerSpawns(org.bukkit.entity.SpawnCategory)"><code>Server.getTicksPerSpawns(SpawnCategory)</code></a></div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/Server.html#getTicksPerMonsterSpawns()">org.bukkit.Server.getTicksPerMonsterSpawns()</a></div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/Server.html#getTicksPerWaterAmbientSpawns()">org.bukkit.Server.getTicksPerWaterAmbientSpawns()</a></div>
 <div class="col-last odd-row-color">
 <div class="block">Deprecated in favor of <a href="org/bukkit/Server.html#getTicksPerSpawns(org.bukkit.entity.SpawnCategory)"><code>Server.getTicksPerSpawns(SpawnCategory)</code></a></div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/Server.html#getTicksPerWaterAmbientSpawns()">org.bukkit.Server.getTicksPerWaterAmbientSpawns()</a></div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/Server.html#getTicksPerWaterSpawns()">org.bukkit.Server.getTicksPerWaterSpawns()</a></div>
 <div class="col-last even-row-color">
 <div class="block">Deprecated in favor of <a href="org/bukkit/Server.html#getTicksPerSpawns(org.bukkit.entity.SpawnCategory)"><code>Server.getTicksPerSpawns(SpawnCategory)</code></a></div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/Server.html#getTicksPerWaterSpawns()">org.bukkit.Server.getTicksPerWaterSpawns()</a></div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/Server.html#getTicksPerWaterUndergroundCreatureSpawns()">org.bukkit.Server.getTicksPerWaterUndergroundCreatureSpawns()</a></div>
 <div class="col-last odd-row-color">
 <div class="block">Deprecated in favor of <a href="org/bukkit/Server.html#getTicksPerSpawns(org.bukkit.entity.SpawnCategory)"><code>Server.getTicksPerSpawns(SpawnCategory)</code></a></div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/Server.html#getTicksPerWaterUndergroundCreatureSpawns()">org.bukkit.Server.getTicksPerWaterUndergroundCreatureSpawns()</a></div>
-<div class="col-last even-row-color">
-<div class="block">Deprecated in favor of <a href="org/bukkit/Server.html#getTicksPerSpawns(org.bukkit.entity.SpawnCategory)"><code>Server.getTicksPerSpawns(SpawnCategory)</code></a></div>
-</div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/Server.html#getUnsafe()">org.bukkit.Server.getUnsafe()</a></div>
-<div class="col-last odd-row-color"></div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/Server.html#getWaterAmbientSpawnLimit()">org.bukkit.Server.getWaterAmbientSpawnLimit()</a></div>
-<div class="col-last even-row-color">
-<div class="block">Deprecated in favor of <a href="org/bukkit/Server.html#getSpawnLimit(org.bukkit.entity.SpawnCategory)"><code>Server.getSpawnLimit(SpawnCategory)</code></a></div>
-</div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/Server.html#getWaterAnimalSpawnLimit()">org.bukkit.Server.getWaterAnimalSpawnLimit()</a></div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/Server.html#getUnsafe()">org.bukkit.Server.getUnsafe()</a></div>
+<div class="col-last even-row-color"></div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/Server.html#getWaterAmbientSpawnLimit()">org.bukkit.Server.getWaterAmbientSpawnLimit()</a></div>
 <div class="col-last odd-row-color">
 <div class="block">Deprecated in favor of <a href="org/bukkit/Server.html#getSpawnLimit(org.bukkit.entity.SpawnCategory)"><code>Server.getSpawnLimit(SpawnCategory)</code></a></div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/Server.html#getWaterUndergroundCreatureSpawnLimit()">org.bukkit.Server.getWaterUndergroundCreatureSpawnLimit()</a></div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/Server.html#getWaterAnimalSpawnLimit()">org.bukkit.Server.getWaterAnimalSpawnLimit()</a></div>
 <div class="col-last even-row-color">
 <div class="block">Deprecated in favor of <a href="org/bukkit/Server.html#getSpawnLimit(org.bukkit.entity.SpawnCategory)"><code>Server.getSpawnLimit(SpawnCategory)</code></a></div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/Server.html#setMotd(java.lang.String)">org.bukkit.Server.setMotd<wbr>(String)</a></div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/Server.html#getWaterUndergroundCreatureSpawnLimit()">org.bukkit.Server.getWaterUndergroundCreatureSpawnLimit()</a></div>
 <div class="col-last odd-row-color">
+<div class="block">Deprecated in favor of <a href="org/bukkit/Server.html#getSpawnLimit(org.bukkit.entity.SpawnCategory)"><code>Server.getSpawnLimit(SpawnCategory)</code></a></div>
+</div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/Server.html#setMotd(java.lang.String)">org.bukkit.Server.setMotd<wbr>(String)</a></div>
+<div class="col-last even-row-color">
 <div class="block">in favour of <a href="org/bukkit/Server.html#motd(net.kyori.adventure.text.Component)"><code>Server.motd(net.kyori.adventure.text.Component)</code></a></div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/Server.html#shouldSendChatPreviews()">org.bukkit.Server.shouldSendChatPreviews()</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/Server.html#shouldSendChatPreviews()">org.bukkit.Server.shouldSendChatPreviews()</a></div>
+<div class="col-last odd-row-color">
 <div class="block">chat previews have been removed</div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/Server.Spigot.html#broadcast(net.md_5.bungee.api.chat.BaseComponent)">org.bukkit.Server.Spigot.broadcast<wbr>(BaseComponent)</a></div>
-<div class="col-last odd-row-color">
-<div class="block">use <a href="org/bukkit/Server.html#broadcast(net.kyori.adventure.text.Component)"><code>Server.broadcast(net.kyori.adventure.text.Component)</code></a></div>
-</div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/Server.Spigot.html#broadcast(net.md_5.bungee.api.chat.BaseComponent...)">org.bukkit.Server.Spigot.broadcast<wbr>(BaseComponent...)</a></div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/Server.Spigot.html#broadcast(net.md_5.bungee.api.chat.BaseComponent)">org.bukkit.Server.Spigot.broadcast<wbr>(BaseComponent)</a></div>
 <div class="col-last even-row-color">
 <div class="block">use <a href="org/bukkit/Server.html#broadcast(net.kyori.adventure.text.Component)"><code>Server.broadcast(net.kyori.adventure.text.Component)</code></a></div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/Server.html#unbanIP(java.lang.String)">org.bukkit.Server.unbanIP<wbr>(String)</a></div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/Server.Spigot.html#broadcast(net.md_5.bungee.api.chat.BaseComponent...)">org.bukkit.Server.Spigot.broadcast<wbr>(BaseComponent...)</a></div>
 <div class="col-last odd-row-color">
+<div class="block">use <a href="org/bukkit/Server.html#broadcast(net.kyori.adventure.text.Component)"><code>Server.broadcast(net.kyori.adventure.text.Component)</code></a></div>
+</div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/Server.html#unbanIP(java.lang.String)">org.bukkit.Server.unbanIP<wbr>(String)</a></div>
+<div class="col-last even-row-color">
 <div class="block">see <a href="org/bukkit/Server.html#unbanIP(java.net.InetAddress)"><code>Server.unbanIP(InetAddress)</code></a></div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/ServerLinks.html#addLink(java.lang.String,java.net.URI)">org.bukkit.ServerLinks.addLink<wbr>(String, URI)</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/ServerLinks.html#addLink(java.lang.String,java.net.URI)">org.bukkit.ServerLinks.addLink<wbr>(String, URI)</a></div>
+<div class="col-last odd-row-color">
 <div class="block">in favour of <a href="org/bukkit/ServerLinks.html#addLink(net.kyori.adventure.text.Component,java.net.URI)"><code>ServerLinks.addLink(net.kyori.adventure.text.Component, URI)</code></a></div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/ServerLinks.ServerLink.html#getDisplayName()">org.bukkit.ServerLinks.ServerLink.getDisplayName()</a></div>
-<div class="col-last odd-row-color">
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/ServerLinks.ServerLink.html#getDisplayName()">org.bukkit.ServerLinks.ServerLink.getDisplayName()</a></div>
+<div class="col-last even-row-color">
 <div class="block">in favour of <a href="org/bukkit/ServerLinks.ServerLink.html#displayName()"><code>ServerLinks.ServerLink.displayName()</code></a></div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/Sound.html#getKey()">org.bukkit.Sound.getKey()</a></div>
-<div class="col-last even-row-color">
-<div class="block">use <a href="org/bukkit/Registry.html#getKey(T)"><code>Registry.getKey(Keyed)</code></a> and <code>Registry.SOUNDS</code>. Sounds
- can exist without a key.</div>
-</div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/Sound.html#key()">org.bukkit.Sound.key()</a></div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/Sound.html#getKey()">org.bukkit.Sound.getKey()</a></div>
 <div class="col-last odd-row-color">
 <div class="block">use <a href="org/bukkit/Registry.html#getKey(T)"><code>Registry.getKey(Keyed)</code></a> and <code>Registry.SOUNDS</code>. Sounds
  can exist without a key.</div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/Sound.html#valueOf(java.lang.String)">org.bukkit.Sound.valueOf<wbr>(String)</a></div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/Sound.html#key()">org.bukkit.Sound.key()</a></div>
 <div class="col-last even-row-color">
+<div class="block">use <a href="org/bukkit/Registry.html#getKey(T)"><code>Registry.getKey(Keyed)</code></a> and <code>Registry.SOUNDS</code>. Sounds
+ can exist without a key.</div>
+</div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/Sound.html#valueOf(java.lang.String)">org.bukkit.Sound.valueOf<wbr>(String)</a></div>
+<div class="col-last odd-row-color">
 <div class="block">only for backwards compatibility, use <a href="org/bukkit/Registry.html#get(org.bukkit.NamespacedKey)"><code>Registry.get(NamespacedKey)</code></a> instead.</div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/Sound.html#values()">org.bukkit.Sound.values()</a></div>
-<div class="col-last odd-row-color">
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/Sound.html#values()">org.bukkit.Sound.values()</a></div>
+<div class="col-last even-row-color">
 <div class="block">use <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Iterable.html#iterator()" title="class or interface in java.lang" class="external-link"><code>Iterable.iterator()</code></a>.</div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/Translatable.html#getTranslationKey()">org.bukkit.Translatable.getTranslationKey()</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/Translatable.html#getTranslationKey()">org.bukkit.Translatable.getTranslationKey()</a></div>
+<div class="col-last odd-row-color">
 <div class="block">look for a <code>translationKey()</code> method instead</div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/TreeSpecies.html#getByData(byte)">org.bukkit.TreeSpecies.getByData<wbr>(byte)</a></div>
-<div class="col-last odd-row-color">
-<div class="block">Magic value</div>
-</div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/TreeSpecies.html#getData()">org.bukkit.TreeSpecies.getData()</a></div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/TreeSpecies.html#getByData(byte)">org.bukkit.TreeSpecies.getByData<wbr>(byte)</a></div>
 <div class="col-last even-row-color">
 <div class="block">Magic value</div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/UnsafeValues.html#colorDownsamplingGsonComponentSerializer()">org.bukkit.UnsafeValues.colorDownsamplingGsonComponentSerializer()</a></div>
-<div class="col-last odd-row-color"></div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/UnsafeValues.html#getBiomeKey(org.bukkit.RegionAccessor,int,int,int)">org.bukkit.UnsafeValues.getBiomeKey<wbr>(RegionAccessor, int, int, int)</a></div>
-<div class="col-last even-row-color">
-<div class="block">custom biomes are properly supported in API now</div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/TreeSpecies.html#getData()">org.bukkit.TreeSpecies.getData()</a></div>
+<div class="col-last odd-row-color">
+<div class="block">Magic value</div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/UnsafeValues.html#getBlockTranslationKey(org.bukkit.Material)">org.bukkit.UnsafeValues.getBlockTranslationKey<wbr>(Material)</a></div>
-<div class="col-last odd-row-color"></div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/UnsafeValues.html#getCreativeCategory(org.bukkit.Material)">org.bukkit.UnsafeValues.getCreativeCategory<wbr>(Material)</a></div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/UnsafeValues.html#colorDownsamplingGsonComponentSerializer()">org.bukkit.UnsafeValues.colorDownsamplingGsonComponentSerializer()</a></div>
 <div class="col-last even-row-color"></div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/UnsafeValues.html#getDefaultAttributeModifiers(org.bukkit.Material,org.bukkit.inventory.EquipmentSlot)">org.bukkit.UnsafeValues.getDefaultAttributeModifiers<wbr>(Material, EquipmentSlot)</a></div>
-<div class="col-last odd-row-color"></div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/UnsafeValues.html#getInternalPotionData(org.bukkit.NamespacedKey)">org.bukkit.UnsafeValues.getInternalPotionData<wbr>(NamespacedKey)</a></div>
-<div class="col-last even-row-color"></div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/UnsafeValues.html#getItemTranslationKey(org.bukkit.Material)">org.bukkit.UnsafeValues.getItemTranslationKey<wbr>(Material)</a></div>
-<div class="col-last odd-row-color"></div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/UnsafeValues.html#getTranslationKey(org.bukkit.attribute.Attribute)">org.bukkit.UnsafeValues.getTranslationKey<wbr>(Attribute)</a></div>
-<div class="col-last even-row-color"></div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/UnsafeValues.html#gsonComponentSerializer()">org.bukkit.UnsafeValues.gsonComponentSerializer()</a></div>
-<div class="col-last odd-row-color"></div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/UnsafeValues.html#isLegacyPlugin(org.bukkit.plugin.Plugin)">org.bukkit.UnsafeValues.isLegacyPlugin<wbr>(Plugin)</a></div>
-<div class="col-last even-row-color"></div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/UnsafeValues.html#isSupportedApiVersion(java.lang.String)">org.bukkit.UnsafeValues.isSupportedApiVersion<wbr>(String)</a></div>
-<div class="col-last odd-row-color"></div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/UnsafeValues.html#legacyComponentSerializer()">org.bukkit.UnsafeValues.legacyComponentSerializer()</a></div>
-<div class="col-last even-row-color"></div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/UnsafeValues.html#plainComponentSerializer()">org.bukkit.UnsafeValues.plainComponentSerializer()</a></div>
-<div class="col-last odd-row-color"></div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/UnsafeValues.html#plainTextSerializer()">org.bukkit.UnsafeValues.plainTextSerializer()</a></div>
-<div class="col-last even-row-color"></div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/UnsafeValues.html#setBiomeKey(org.bukkit.RegionAccessor,int,int,int,org.bukkit.NamespacedKey)">org.bukkit.UnsafeValues.setBiomeKey<wbr>(RegionAccessor, int, int, int, NamespacedKey)</a></div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/UnsafeValues.html#getBiomeKey(org.bukkit.RegionAccessor,int,int,int)">org.bukkit.UnsafeValues.getBiomeKey<wbr>(RegionAccessor, int, int, int)</a></div>
 <div class="col-last odd-row-color">
 <div class="block">custom biomes are properly supported in API now</div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/util/OldEnum.html#compareTo(T)">org.bukkit.util.OldEnum.compareTo<wbr>(T)</a></div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/UnsafeValues.html#getBlockTranslationKey(org.bukkit.Material)">org.bukkit.UnsafeValues.getBlockTranslationKey<wbr>(Material)</a></div>
+<div class="col-last even-row-color"></div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/UnsafeValues.html#getCreativeCategory(org.bukkit.Material)">org.bukkit.UnsafeValues.getCreativeCategory<wbr>(Material)</a></div>
+<div class="col-last odd-row-color"></div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/UnsafeValues.html#getDefaultAttributeModifiers(org.bukkit.Material,org.bukkit.inventory.EquipmentSlot)">org.bukkit.UnsafeValues.getDefaultAttributeModifiers<wbr>(Material, EquipmentSlot)</a></div>
+<div class="col-last even-row-color"></div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/UnsafeValues.html#getInternalPotionData(org.bukkit.NamespacedKey)">org.bukkit.UnsafeValues.getInternalPotionData<wbr>(NamespacedKey)</a></div>
+<div class="col-last odd-row-color"></div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/UnsafeValues.html#getItemTranslationKey(org.bukkit.Material)">org.bukkit.UnsafeValues.getItemTranslationKey<wbr>(Material)</a></div>
+<div class="col-last even-row-color"></div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/UnsafeValues.html#getTranslationKey(org.bukkit.attribute.Attribute)">org.bukkit.UnsafeValues.getTranslationKey<wbr>(Attribute)</a></div>
+<div class="col-last odd-row-color"></div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/UnsafeValues.html#gsonComponentSerializer()">org.bukkit.UnsafeValues.gsonComponentSerializer()</a></div>
+<div class="col-last even-row-color"></div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/UnsafeValues.html#isLegacyPlugin(org.bukkit.plugin.Plugin)">org.bukkit.UnsafeValues.isLegacyPlugin<wbr>(Plugin)</a></div>
+<div class="col-last odd-row-color"></div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/UnsafeValues.html#isSupportedApiVersion(java.lang.String)">org.bukkit.UnsafeValues.isSupportedApiVersion<wbr>(String)</a></div>
+<div class="col-last even-row-color"></div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/UnsafeValues.html#legacyComponentSerializer()">org.bukkit.UnsafeValues.legacyComponentSerializer()</a></div>
+<div class="col-last odd-row-color"></div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/UnsafeValues.html#plainComponentSerializer()">org.bukkit.UnsafeValues.plainComponentSerializer()</a></div>
+<div class="col-last even-row-color"></div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/UnsafeValues.html#plainTextSerializer()">org.bukkit.UnsafeValues.plainTextSerializer()</a></div>
+<div class="col-last odd-row-color"></div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/UnsafeValues.html#setBiomeKey(org.bukkit.RegionAccessor,int,int,int,org.bukkit.NamespacedKey)">org.bukkit.UnsafeValues.setBiomeKey<wbr>(RegionAccessor, int, int, int, NamespacedKey)</a></div>
 <div class="col-last even-row-color">
+<div class="block">custom biomes are properly supported in API now</div>
+</div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/util/OldEnum.html#compareTo(T)">org.bukkit.util.OldEnum.compareTo<wbr>(T)</a></div>
+<div class="col-last odd-row-color">
 <div class="block">only for backwards compatibility, old enums can not be
  compared.</div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/util/OldEnum.html#name()">org.bukkit.util.OldEnum.name()</a></div>
-<div class="col-last odd-row-color">
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/util/OldEnum.html#name()">org.bukkit.util.OldEnum.name()</a></div>
+<div class="col-last even-row-color">
 <div class="block">only for backwards compatibility.</div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/util/OldEnum.html#ordinal()">org.bukkit.util.OldEnum.ordinal()</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/util/OldEnum.html#ordinal()">org.bukkit.util.OldEnum.ordinal()</a></div>
+<div class="col-last odd-row-color">
 <div class="block">only for backwards compatibility, it is not guaranteed that
  an old enum always has the same ordinal.</div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/Vibration.html#getOrigin()">org.bukkit.Vibration.getOrigin()</a></div>
-<div class="col-last odd-row-color">
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/Vibration.html#getOrigin()">org.bukkit.Vibration.getOrigin()</a></div>
+<div class="col-last even-row-color">
 <div class="block">unused as of 1.19</div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/World.html#generateTree(org.bukkit.Location,org.bukkit.TreeType,org.bukkit.BlockChangeDelegate)">org.bukkit.World.generateTree<wbr>(Location, TreeType, BlockChangeDelegate)</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/World.html#generateTree(org.bukkit.Location,org.bukkit.TreeType,org.bukkit.BlockChangeDelegate)">org.bukkit.World.generateTree<wbr>(Location, TreeType, BlockChangeDelegate)</a></div>
+<div class="col-last odd-row-color">
 <div class="block">this method does not handle tile entities (bee nests)</div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/World.html#getAmbientSpawnLimit()">org.bukkit.World.getAmbientSpawnLimit()</a></div>
-<div class="col-last odd-row-color">
-<div class="block">Deprecated in favor of <a href="org/bukkit/World.html#getSpawnLimit(org.bukkit.entity.SpawnCategory)"><code>World.getSpawnLimit(SpawnCategory)</code></a></div>
-</div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/World.html#getAnimalSpawnLimit()">org.bukkit.World.getAnimalSpawnLimit()</a></div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/World.html#getAmbientSpawnLimit()">org.bukkit.World.getAmbientSpawnLimit()</a></div>
 <div class="col-last even-row-color">
 <div class="block">Deprecated in favor of <a href="org/bukkit/World.html#getSpawnLimit(org.bukkit.entity.SpawnCategory)"><code>World.getSpawnLimit(SpawnCategory)</code></a></div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/World.html#getBiome(int,int)">org.bukkit.World.getBiome<wbr>(int, int)</a></div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/World.html#getAnimalSpawnLimit()">org.bukkit.World.getAnimalSpawnLimit()</a></div>
 <div class="col-last odd-row-color">
+<div class="block">Deprecated in favor of <a href="org/bukkit/World.html#getSpawnLimit(org.bukkit.entity.SpawnCategory)"><code>World.getSpawnLimit(SpawnCategory)</code></a></div>
+</div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/World.html#getBiome(int,int)">org.bukkit.World.getBiome<wbr>(int, int)</a></div>
+<div class="col-last even-row-color">
 <div class="block">biomes are now 3-dimensional</div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/World.html#getBlockAtKey(long)">org.bukkit.World.getBlockAtKey<wbr>(long)</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/World.html#getBlockAtKey(long)">org.bukkit.World.getBlockAtKey<wbr>(long)</a></div>
+<div class="col-last odd-row-color">
 <div class="block">only encodes y block ranges from -512 to 511 and represents an already changed implementation detail</div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/World.html#getChunkAtAsync(int,int,org.bukkit.World.ChunkLoadCallback)">org.bukkit.World.getChunkAtAsync<wbr>(int, int, World.ChunkLoadCallback)</a></div>
-<div class="col-last odd-row-color">
-<div class="block">Use either the Future or the Consumer based methods</div>
-</div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/World.html#getChunkAtAsync(org.bukkit.Location,org.bukkit.World.ChunkLoadCallback)">org.bukkit.World.getChunkAtAsync<wbr>(Location, World.ChunkLoadCallback)</a></div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/World.html#getChunkAtAsync(int,int,org.bukkit.World.ChunkLoadCallback)">org.bukkit.World.getChunkAtAsync<wbr>(int, int, World.ChunkLoadCallback)</a></div>
 <div class="col-last even-row-color">
 <div class="block">Use either the Future or the Consumer based methods</div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/World.html#getChunkAtAsync(org.bukkit.block.Block,org.bukkit.World.ChunkLoadCallback)">org.bukkit.World.getChunkAtAsync<wbr>(Block, World.ChunkLoadCallback)</a></div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/World.html#getChunkAtAsync(org.bukkit.Location,org.bukkit.World.ChunkLoadCallback)">org.bukkit.World.getChunkAtAsync<wbr>(Location, World.ChunkLoadCallback)</a></div>
 <div class="col-last odd-row-color">
 <div class="block">Use either the Future or the Consumer based methods</div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/World.html#getEntitiesByClass(java.lang.Class...)">org.bukkit.World.getEntitiesByClass<wbr>(Class&lt;T&gt;...)</a></div>
-<div class="col-last even-row-color"></div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/World.html#getGameRuleValue(java.lang.String)">org.bukkit.World.getGameRuleValue<wbr>(String)</a></div>
-<div class="col-last odd-row-color">
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/World.html#getChunkAtAsync(org.bukkit.block.Block,org.bukkit.World.ChunkLoadCallback)">org.bukkit.World.getChunkAtAsync<wbr>(Block, World.ChunkLoadCallback)</a></div>
+<div class="col-last even-row-color">
+<div class="block">Use either the Future or the Consumer based methods</div>
+</div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/World.html#getEntitiesByClass(java.lang.Class...)">org.bukkit.World.getEntitiesByClass<wbr>(Class&lt;T&gt;...)</a></div>
+<div class="col-last odd-row-color"></div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/World.html#getGameRuleValue(java.lang.String)">org.bukkit.World.getGameRuleValue<wbr>(String)</a></div>
+<div class="col-last even-row-color">
 <div class="block">use <a href="org/bukkit/World.html#getGameRuleValue(org.bukkit.GameRule)"><code>World.getGameRuleValue(GameRule)</code></a> instead</div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/World.html#getHumidity(int,int)">org.bukkit.World.getHumidity<wbr>(int, int)</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/World.html#getHumidity(int,int)">org.bukkit.World.getHumidity<wbr>(int, int)</a></div>
+<div class="col-last odd-row-color">
 <div class="block">biomes are now 3-dimensional</div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/World.html#getKeepSpawnInMemory()">org.bukkit.World.getKeepSpawnInMemory()</a></div>
-<div class="col-last odd-row-color">
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/World.html#getKeepSpawnInMemory()">org.bukkit.World.getKeepSpawnInMemory()</a></div>
+<div class="col-last even-row-color">
 <div class="block">use <a href="org/bukkit/GameRule.html#SPAWN_CHUNK_RADIUS"><code>GameRule.SPAWN_CHUNK_RADIUS</code></a> for finer control</div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/World.html#getLocationAtKey(long)">org.bukkit.World.getLocationAtKey<wbr>(long)</a></div>
-<div class="col-last even-row-color"></div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/World.html#getMonsterSpawnLimit()">org.bukkit.World.getMonsterSpawnLimit()</a></div>
-<div class="col-last odd-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/World.html#getLocationAtKey(long)">org.bukkit.World.getLocationAtKey<wbr>(long)</a></div>
+<div class="col-last odd-row-color"></div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/World.html#getMonsterSpawnLimit()">org.bukkit.World.getMonsterSpawnLimit()</a></div>
+<div class="col-last even-row-color">
 <div class="block">Deprecated in favor of <a href="org/bukkit/World.html#getSpawnLimit(org.bukkit.entity.SpawnCategory)"><code>World.getSpawnLimit(SpawnCategory)</code></a></div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/World.html#getNoTickViewDistance()">org.bukkit.World.getNoTickViewDistance()</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/World.html#getNoTickViewDistance()">org.bukkit.World.getNoTickViewDistance()</a></div>
+<div class="col-last odd-row-color">
 <div class="block">Use <a href="org/bukkit/World.html#getViewDistance()"><code>World.getViewDistance()</code></a></div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/World.html#getTemperature(int,int)">org.bukkit.World.getTemperature<wbr>(int, int)</a></div>
-<div class="col-last odd-row-color">
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/World.html#getTemperature(int,int)">org.bukkit.World.getTemperature<wbr>(int, int)</a></div>
+<div class="col-last even-row-color">
 <div class="block">biomes are now 3-dimensional</div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/World.html#getTicksPerAmbientSpawns()">org.bukkit.World.getTicksPerAmbientSpawns()</a></div>
-<div class="col-last even-row-color">
-<div class="block">Deprecated in favor of <a href="org/bukkit/World.html#getTicksPerSpawns(org.bukkit.entity.SpawnCategory)"><code>World.getTicksPerSpawns(SpawnCategory)</code></a></div>
-</div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/World.html#getTicksPerAnimalSpawns()">org.bukkit.World.getTicksPerAnimalSpawns()</a></div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/World.html#getTicksPerAmbientSpawns()">org.bukkit.World.getTicksPerAmbientSpawns()</a></div>
 <div class="col-last odd-row-color">
 <div class="block">Deprecated in favor of <a href="org/bukkit/World.html#getTicksPerSpawns(org.bukkit.entity.SpawnCategory)"><code>World.getTicksPerSpawns(SpawnCategory)</code></a></div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/World.html#getTicksPerMonsterSpawns()">org.bukkit.World.getTicksPerMonsterSpawns()</a></div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/World.html#getTicksPerAnimalSpawns()">org.bukkit.World.getTicksPerAnimalSpawns()</a></div>
 <div class="col-last even-row-color">
 <div class="block">Deprecated in favor of <a href="org/bukkit/World.html#getTicksPerSpawns(org.bukkit.entity.SpawnCategory)"><code>World.getTicksPerSpawns(SpawnCategory)</code></a></div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/World.html#getTicksPerWaterAmbientSpawns()">org.bukkit.World.getTicksPerWaterAmbientSpawns()</a></div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/World.html#getTicksPerMonsterSpawns()">org.bukkit.World.getTicksPerMonsterSpawns()</a></div>
 <div class="col-last odd-row-color">
 <div class="block">Deprecated in favor of <a href="org/bukkit/World.html#getTicksPerSpawns(org.bukkit.entity.SpawnCategory)"><code>World.getTicksPerSpawns(SpawnCategory)</code></a></div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/World.html#getTicksPerWaterSpawns()">org.bukkit.World.getTicksPerWaterSpawns()</a></div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/World.html#getTicksPerWaterAmbientSpawns()">org.bukkit.World.getTicksPerWaterAmbientSpawns()</a></div>
 <div class="col-last even-row-color">
 <div class="block">Deprecated in favor of <a href="org/bukkit/World.html#getTicksPerSpawns(org.bukkit.entity.SpawnCategory)"><code>World.getTicksPerSpawns(SpawnCategory)</code></a></div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/World.html#getTicksPerWaterUndergroundCreatureSpawns()">org.bukkit.World.getTicksPerWaterUndergroundCreatureSpawns()</a></div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/World.html#getTicksPerWaterSpawns()">org.bukkit.World.getTicksPerWaterSpawns()</a></div>
 <div class="col-last odd-row-color">
 <div class="block">Deprecated in favor of <a href="org/bukkit/World.html#getTicksPerSpawns(org.bukkit.entity.SpawnCategory)"><code>World.getTicksPerSpawns(SpawnCategory)</code></a></div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/World.html#getWaterAmbientSpawnLimit()">org.bukkit.World.getWaterAmbientSpawnLimit()</a></div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/World.html#getTicksPerWaterUndergroundCreatureSpawns()">org.bukkit.World.getTicksPerWaterUndergroundCreatureSpawns()</a></div>
 <div class="col-last even-row-color">
-<div class="block">Deprecated in favor of <a href="org/bukkit/World.html#getSpawnLimit(org.bukkit.entity.SpawnCategory)"><code>World.getSpawnLimit(SpawnCategory)</code></a></div>
+<div class="block">Deprecated in favor of <a href="org/bukkit/World.html#getTicksPerSpawns(org.bukkit.entity.SpawnCategory)"><code>World.getTicksPerSpawns(SpawnCategory)</code></a></div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/World.html#getWaterAnimalSpawnLimit()">org.bukkit.World.getWaterAnimalSpawnLimit()</a></div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/World.html#getWaterAmbientSpawnLimit()">org.bukkit.World.getWaterAmbientSpawnLimit()</a></div>
 <div class="col-last odd-row-color">
 <div class="block">Deprecated in favor of <a href="org/bukkit/World.html#getSpawnLimit(org.bukkit.entity.SpawnCategory)"><code>World.getSpawnLimit(SpawnCategory)</code></a></div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/World.html#getWaterUndergroundCreatureSpawnLimit()">org.bukkit.World.getWaterUndergroundCreatureSpawnLimit()</a></div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/World.html#getWaterAnimalSpawnLimit()">org.bukkit.World.getWaterAnimalSpawnLimit()</a></div>
 <div class="col-last even-row-color">
 <div class="block">Deprecated in favor of <a href="org/bukkit/World.html#getSpawnLimit(org.bukkit.entity.SpawnCategory)"><code>World.getSpawnLimit(SpawnCategory)</code></a></div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/World.html#getWorldType()">org.bukkit.World.getWorldType()</a></div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/World.html#getWaterUndergroundCreatureSpawnLimit()">org.bukkit.World.getWaterUndergroundCreatureSpawnLimit()</a></div>
 <div class="col-last odd-row-color">
+<div class="block">Deprecated in favor of <a href="org/bukkit/World.html#getSpawnLimit(org.bukkit.entity.SpawnCategory)"><code>World.getSpawnLimit(SpawnCategory)</code></a></div>
+</div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/World.html#getWorldType()">org.bukkit.World.getWorldType()</a></div>
+<div class="col-last even-row-color">
 <div class="block">world type is only used to select the default word generation
  settings and is not stored in Vanilla worlds, making it impossible for
  this method to always return the correct value.</div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/World.html#isChunkInUse(int,int)">org.bukkit.World.isChunkInUse<wbr>(int, int)</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/World.html#isChunkInUse(int,int)">org.bukkit.World.isChunkInUse<wbr>(int, int)</a></div>
+<div class="col-last odd-row-color">
 <div class="block">This method was added to facilitate chunk garbage collection.
      As of the current Minecraft version chunks are now strictly managed and
      will not be loaded for more than 1 tick unless they are in use.</div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/World.html#locateNearestBiome(org.bukkit.Location,org.bukkit.block.Biome,int)">org.bukkit.World.locateNearestBiome<wbr>(Location, Biome, int)</a></div>
-<div class="col-last odd-row-color">
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/World.html#locateNearestBiome(org.bukkit.Location,org.bukkit.block.Biome,int)">org.bukkit.World.locateNearestBiome<wbr>(Location, Biome, int)</a></div>
+<div class="col-last even-row-color">
 <div class="block">use <a href="org/bukkit/World.html#locateNearestBiome(org.bukkit.Location,int,org.bukkit.block.Biome...)"><code>World.locateNearestBiome(Location, int, Biome...)</code></a></div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/World.html#locateNearestBiome(org.bukkit.Location,org.bukkit.block.Biome,int,int)">org.bukkit.World.locateNearestBiome<wbr>(Location, Biome, int, int)</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/World.html#locateNearestBiome(org.bukkit.Location,org.bukkit.block.Biome,int,int)">org.bukkit.World.locateNearestBiome<wbr>(Location, Biome, int, int)</a></div>
+<div class="col-last odd-row-color">
 <div class="block">use <a href="org/bukkit/World.html#locateNearestBiome(org.bukkit.Location,int,int,int,org.bukkit.block.Biome...)"><code>World.locateNearestBiome(Location, int, int, int, Biome...)</code></a></div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/World.html#locateNearestStructure(org.bukkit.Location,org.bukkit.StructureType,int,boolean)">org.bukkit.World.locateNearestStructure<wbr>(Location, StructureType, int, boolean)</a></div>
-<div class="col-last odd-row-color">
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/World.html#locateNearestStructure(org.bukkit.Location,org.bukkit.StructureType,int,boolean)">org.bukkit.World.locateNearestStructure<wbr>(Location, StructureType, int, boolean)</a></div>
+<div class="col-last even-row-color">
 <div class="block">Use
  <a href="org/bukkit/World.html#locateNearestStructure(org.bukkit.Location,org.bukkit.generator.structure.Structure,int,boolean)"><code>World.locateNearestStructure(Location, Structure, int, boolean)</code></a> or
  <a href="org/bukkit/World.html#locateNearestStructure(org.bukkit.Location,org.bukkit.generator.structure.StructureType,int,boolean)"><code>World.locateNearestStructure(Location, StructureType, int, boolean)</code></a>
  instead.</div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/World.html#regenerateChunk(int,int)">org.bukkit.World.regenerateChunk<wbr>(int, int)</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/World.html#regenerateChunk(int,int)">org.bukkit.World.regenerateChunk<wbr>(int, int)</a></div>
+<div class="col-last odd-row-color">
 <div class="block">regenerating a single chunk is not likely to produce the same
  chunk as before as terrain decoration may be spread across chunks. It may
  or may not change blocks in the adjacent chunks as well.</div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/World.html#setAmbientSpawnLimit(int)">org.bukkit.World.setAmbientSpawnLimit<wbr>(int)</a></div>
-<div class="col-last odd-row-color">
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/World.html#setAmbientSpawnLimit(int)">org.bukkit.World.setAmbientSpawnLimit<wbr>(int)</a></div>
+<div class="col-last even-row-color">
 <div class="block">Deprecated in favor of <a href="org/bukkit/World.html#setSpawnLimit(org.bukkit.entity.SpawnCategory,int)"><code>World.setSpawnLimit(SpawnCategory, int)</code></a></div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/World.html#setAnimalSpawnLimit(int)">org.bukkit.World.setAnimalSpawnLimit<wbr>(int)</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/World.html#setAnimalSpawnLimit(int)">org.bukkit.World.setAnimalSpawnLimit<wbr>(int)</a></div>
+<div class="col-last odd-row-color">
 <div class="block">Deprecated in favor of <a href="org/bukkit/World.html#getSpawnLimit(org.bukkit.entity.SpawnCategory)"><code>World.getSpawnLimit(SpawnCategory)</code></a></div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/World.html#setBiome(int,int,org.bukkit.block.Biome)">org.bukkit.World.setBiome<wbr>(int, int, Biome)</a></div>
-<div class="col-last odd-row-color">
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/World.html#setBiome(int,int,org.bukkit.block.Biome)">org.bukkit.World.setBiome<wbr>(int, int, Biome)</a></div>
+<div class="col-last even-row-color">
 <div class="block">biomes are now 3-dimensional</div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/World.html#setGameRuleValue(java.lang.String,java.lang.String)">org.bukkit.World.setGameRuleValue<wbr>(String, String)</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/World.html#setGameRuleValue(java.lang.String,java.lang.String)">org.bukkit.World.setGameRuleValue<wbr>(String, String)</a></div>
+<div class="col-last odd-row-color">
 <div class="block">use <a href="org/bukkit/World.html#setGameRule(org.bukkit.GameRule,T)"><code>World.setGameRule(GameRule, Object)</code></a> instead.</div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/World.html#setKeepSpawnInMemory(boolean)">org.bukkit.World.setKeepSpawnInMemory<wbr>(boolean)</a></div>
-<div class="col-last odd-row-color">
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/World.html#setKeepSpawnInMemory(boolean)">org.bukkit.World.setKeepSpawnInMemory<wbr>(boolean)</a></div>
+<div class="col-last even-row-color">
 <div class="block">use <a href="org/bukkit/GameRule.html#SPAWN_CHUNK_RADIUS"><code>GameRule.SPAWN_CHUNK_RADIUS</code></a> for finer control</div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/World.html#setMonsterSpawnLimit(int)">org.bukkit.World.setMonsterSpawnLimit<wbr>(int)</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/World.html#setMonsterSpawnLimit(int)">org.bukkit.World.setMonsterSpawnLimit<wbr>(int)</a></div>
+<div class="col-last odd-row-color">
 <div class="block">Deprecated in favor of <a href="org/bukkit/World.html#setSpawnLimit(org.bukkit.entity.SpawnCategory,int)"><code>World.setSpawnLimit(SpawnCategory, int)</code></a></div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/World.html#setNoTickViewDistance(int)">org.bukkit.World.setNoTickViewDistance<wbr>(int)</a></div>
-<div class="col-last odd-row-color">
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/World.html#setNoTickViewDistance(int)">org.bukkit.World.setNoTickViewDistance<wbr>(int)</a></div>
+<div class="col-last even-row-color">
 <div class="block">Use <a href="org/bukkit/World.html#setViewDistance(int)"><code>World.setViewDistance(int)</code></a></div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/World.html#setTicksPerAmbientSpawns(int)">org.bukkit.World.setTicksPerAmbientSpawns<wbr>(int)</a></div>
-<div class="col-last even-row-color">
-<div class="block">Deprecated in favor of <a href="org/bukkit/World.html#setTicksPerSpawns(org.bukkit.entity.SpawnCategory,int)"><code>World.setTicksPerSpawns(SpawnCategory, int)</code></a></div>
-</div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/World.html#setTicksPerAnimalSpawns(int)">org.bukkit.World.setTicksPerAnimalSpawns<wbr>(int)</a></div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/World.html#setTicksPerAmbientSpawns(int)">org.bukkit.World.setTicksPerAmbientSpawns<wbr>(int)</a></div>
 <div class="col-last odd-row-color">
 <div class="block">Deprecated in favor of <a href="org/bukkit/World.html#setTicksPerSpawns(org.bukkit.entity.SpawnCategory,int)"><code>World.setTicksPerSpawns(SpawnCategory, int)</code></a></div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/World.html#setTicksPerMonsterSpawns(int)">org.bukkit.World.setTicksPerMonsterSpawns<wbr>(int)</a></div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/World.html#setTicksPerAnimalSpawns(int)">org.bukkit.World.setTicksPerAnimalSpawns<wbr>(int)</a></div>
 <div class="col-last even-row-color">
 <div class="block">Deprecated in favor of <a href="org/bukkit/World.html#setTicksPerSpawns(org.bukkit.entity.SpawnCategory,int)"><code>World.setTicksPerSpawns(SpawnCategory, int)</code></a></div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/World.html#setTicksPerWaterAmbientSpawns(int)">org.bukkit.World.setTicksPerWaterAmbientSpawns<wbr>(int)</a></div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/World.html#setTicksPerMonsterSpawns(int)">org.bukkit.World.setTicksPerMonsterSpawns<wbr>(int)</a></div>
 <div class="col-last odd-row-color">
 <div class="block">Deprecated in favor of <a href="org/bukkit/World.html#setTicksPerSpawns(org.bukkit.entity.SpawnCategory,int)"><code>World.setTicksPerSpawns(SpawnCategory, int)</code></a></div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/World.html#setTicksPerWaterSpawns(int)">org.bukkit.World.setTicksPerWaterSpawns<wbr>(int)</a></div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/World.html#setTicksPerWaterAmbientSpawns(int)">org.bukkit.World.setTicksPerWaterAmbientSpawns<wbr>(int)</a></div>
 <div class="col-last even-row-color">
 <div class="block">Deprecated in favor of <a href="org/bukkit/World.html#setTicksPerSpawns(org.bukkit.entity.SpawnCategory,int)"><code>World.setTicksPerSpawns(SpawnCategory, int)</code></a></div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/World.html#setTicksPerWaterUndergroundCreatureSpawns(int)">org.bukkit.World.setTicksPerWaterUndergroundCreatureSpawns<wbr>(int)</a></div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/World.html#setTicksPerWaterSpawns(int)">org.bukkit.World.setTicksPerWaterSpawns<wbr>(int)</a></div>
 <div class="col-last odd-row-color">
 <div class="block">Deprecated in favor of <a href="org/bukkit/World.html#setTicksPerSpawns(org.bukkit.entity.SpawnCategory,int)"><code>World.setTicksPerSpawns(SpawnCategory, int)</code></a></div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/World.html#setWaterAmbientSpawnLimit(int)">org.bukkit.World.setWaterAmbientSpawnLimit<wbr>(int)</a></div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/World.html#setTicksPerWaterUndergroundCreatureSpawns(int)">org.bukkit.World.setTicksPerWaterUndergroundCreatureSpawns<wbr>(int)</a></div>
 <div class="col-last even-row-color">
-<div class="block">Deprecated in favor of <a href="org/bukkit/World.html#setSpawnLimit(org.bukkit.entity.SpawnCategory,int)"><code>World.setSpawnLimit(SpawnCategory, int)</code></a></div>
+<div class="block">Deprecated in favor of <a href="org/bukkit/World.html#setTicksPerSpawns(org.bukkit.entity.SpawnCategory,int)"><code>World.setTicksPerSpawns(SpawnCategory, int)</code></a></div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/World.html#setWaterAnimalSpawnLimit(int)">org.bukkit.World.setWaterAnimalSpawnLimit<wbr>(int)</a></div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/World.html#setWaterAmbientSpawnLimit(int)">org.bukkit.World.setWaterAmbientSpawnLimit<wbr>(int)</a></div>
 <div class="col-last odd-row-color">
 <div class="block">Deprecated in favor of <a href="org/bukkit/World.html#setSpawnLimit(org.bukkit.entity.SpawnCategory,int)"><code>World.setSpawnLimit(SpawnCategory, int)</code></a></div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/World.html#setWaterUndergroundCreatureSpawnLimit(int)">org.bukkit.World.setWaterUndergroundCreatureSpawnLimit<wbr>(int)</a></div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/World.html#setWaterAnimalSpawnLimit(int)">org.bukkit.World.setWaterAnimalSpawnLimit<wbr>(int)</a></div>
 <div class="col-last even-row-color">
 <div class="block">Deprecated in favor of <a href="org/bukkit/World.html#setSpawnLimit(org.bukkit.entity.SpawnCategory,int)"><code>World.setSpawnLimit(SpawnCategory, int)</code></a></div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/World.html#spawnFallingBlock(org.bukkit.Location,org.bukkit.Material,byte)">org.bukkit.World.spawnFallingBlock<wbr>(Location, Material, byte)</a></div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/World.html#setWaterUndergroundCreatureSpawnLimit(int)">org.bukkit.World.setWaterUndergroundCreatureSpawnLimit<wbr>(int)</a></div>
 <div class="col-last odd-row-color">
+<div class="block">Deprecated in favor of <a href="org/bukkit/World.html#setSpawnLimit(org.bukkit.entity.SpawnCategory,int)"><code>World.setSpawnLimit(SpawnCategory, int)</code></a></div>
+</div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/World.html#spawnFallingBlock(org.bukkit.Location,org.bukkit.Material,byte)">org.bukkit.World.spawnFallingBlock<wbr>(Location, Material, byte)</a></div>
+<div class="col-last even-row-color">
 <div class="block">Magic value. Use <a href="org/bukkit/RegionAccessor.html#spawn(org.bukkit.Location,java.lang.Class,java.util.function.Consumer)"><code>RegionAccessor.spawn(Location, Class, Consumer)</code></a> (or a variation thereof) in combination with <a href="org/bukkit/entity/FallingBlock.html#setBlockData(org.bukkit.block.data.BlockData)"><code>FallingBlock.setBlockData(BlockData)</code></a></div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/World.html#spawnFallingBlock(org.bukkit.Location,org.bukkit.block.data.BlockData)">org.bukkit.World.spawnFallingBlock<wbr>(Location, BlockData)</a></div>
-<div class="col-last even-row-color">
-<div class="block">Use <a href="org/bukkit/RegionAccessor.html#spawn(org.bukkit.Location,java.lang.Class,java.util.function.Consumer)"><code>RegionAccessor.spawn(Location, Class, Consumer)</code></a> (or a variation thereof) in combination with <a href="org/bukkit/entity/FallingBlock.html#setBlockData(org.bukkit.block.data.BlockData)"><code>FallingBlock.setBlockData(BlockData)</code></a></div>
-</div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/World.html#spawnFallingBlock(org.bukkit.Location,org.bukkit.material.MaterialData)">org.bukkit.World.spawnFallingBlock<wbr>(Location, MaterialData)</a></div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/World.html#spawnFallingBlock(org.bukkit.Location,org.bukkit.block.data.BlockData)">org.bukkit.World.spawnFallingBlock<wbr>(Location, BlockData)</a></div>
 <div class="col-last odd-row-color">
 <div class="block">Use <a href="org/bukkit/RegionAccessor.html#spawn(org.bukkit.Location,java.lang.Class,java.util.function.Consumer)"><code>RegionAccessor.spawn(Location, Class, Consumer)</code></a> (or a variation thereof) in combination with <a href="org/bukkit/entity/FallingBlock.html#setBlockData(org.bukkit.block.data.BlockData)"><code>FallingBlock.setBlockData(BlockData)</code></a></div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/World.html#spigot()">org.bukkit.World.spigot()</a></div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/World.html#spawnFallingBlock(org.bukkit.Location,org.bukkit.material.MaterialData)">org.bukkit.World.spawnFallingBlock<wbr>(Location, MaterialData)</a></div>
 <div class="col-last even-row-color">
+<div class="block">Use <a href="org/bukkit/RegionAccessor.html#spawn(org.bukkit.Location,java.lang.Class,java.util.function.Consumer)"><code>RegionAccessor.spawn(Location, Class, Consumer)</code></a> (or a variation thereof) in combination with <a href="org/bukkit/entity/FallingBlock.html#setBlockData(org.bukkit.block.data.BlockData)"><code>FallingBlock.setBlockData(BlockData)</code></a></div>
+</div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/World.html#spigot()">org.bukkit.World.spigot()</a></div>
+<div class="col-last odd-row-color">
 <div class="block">Unsupported api</div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/World.Spigot.html#strikeLightning(org.bukkit.Location,boolean)">org.bukkit.World.Spigot.strikeLightning<wbr>(Location, boolean)</a></div>
-<div class="col-last odd-row-color">
-<div class="block">sound is now client side and cannot be removed</div>
-</div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/World.Spigot.html#strikeLightningEffect(org.bukkit.Location,boolean)">org.bukkit.World.Spigot.strikeLightningEffect<wbr>(Location, boolean)</a></div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/World.Spigot.html#strikeLightning(org.bukkit.Location,boolean)">org.bukkit.World.Spigot.strikeLightning<wbr>(Location, boolean)</a></div>
 <div class="col-last even-row-color">
 <div class="block">sound is now client side and cannot be removed</div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/WorldCreator.html#keepSpawnInMemory()">org.bukkit.WorldCreator.keepSpawnInMemory()</a></div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/World.Spigot.html#strikeLightningEffect(org.bukkit.Location,boolean)">org.bukkit.World.Spigot.strikeLightningEffect<wbr>(Location, boolean)</a></div>
 <div class="col-last odd-row-color">
+<div class="block">sound is now client side and cannot be removed</div>
+</div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/WorldCreator.html#keepSpawnInMemory()">org.bukkit.WorldCreator.keepSpawnInMemory()</a></div>
+<div class="col-last even-row-color">
 <div class="block">use <a href="org/bukkit/WorldCreator.html#keepSpawnLoaded()"><code>WorldCreator.keepSpawnLoaded()</code></a></div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/WorldCreator.html#keepSpawnInMemory(boolean)">org.bukkit.WorldCreator.keepSpawnInMemory<wbr>(boolean)</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/WorldCreator.html#keepSpawnInMemory(boolean)">org.bukkit.WorldCreator.keepSpawnInMemory<wbr>(boolean)</a></div>
+<div class="col-last odd-row-color">
 <div class="block">use <a href="org/bukkit/WorldCreator.html#keepSpawnLoaded(net.kyori.adventure.util.TriState)"><code>WorldCreator.keepSpawnLoaded(net.kyori.adventure.util.TriState)</code></a></div>
 </div>
 </div>
