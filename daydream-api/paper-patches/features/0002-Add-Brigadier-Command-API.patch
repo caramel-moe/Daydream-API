@@ -4,18 +4,6 @@ Date: Tue, 12 Oct 2021 20:40:48 +0900
 Subject: [PATCH] Add Brigadier Command API
 
 
-diff --git a/src/main/java/io/papermc/paper/command/brigadier/CommandRegistrationFlag.java b/src/main/java/io/papermc/paper/command/brigadier/CommandRegistrationFlag.java
-index 7e24babf746de474c8deec4b147e22031e8dadb2..5146498bc621d2e97fa63a6aaef8225807274dea 100644
---- a/src/main/java/io/papermc/paper/command/brigadier/CommandRegistrationFlag.java
-+++ b/src/main/java/io/papermc/paper/command/brigadier/CommandRegistrationFlag.java
-@@ -10,5 +10,6 @@ import org.jetbrains.annotations.ApiStatus;
-  */
- @ApiStatus.Internal
- public enum CommandRegistrationFlag {
--    FLATTEN_ALIASES
-+    FLATTEN_ALIASES,
-+    RELOADABLE // Daydream - (feature) Add Brigadier Command API
- }
 diff --git a/src/main/java/io/papermc/paper/command/brigadier/CommandSourceStack.java b/src/main/java/io/papermc/paper/command/brigadier/CommandSourceStack.java
 index 109c0a89e25284df5f0551b9205e75c6f0d700ca..1d3ca1a2cf872e41958c8e13e4135b96241a3d44 100644
 --- a/src/main/java/io/papermc/paper/command/brigadier/CommandSourceStack.java
