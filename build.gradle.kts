@@ -3,7 +3,7 @@ import org.gradle.api.tasks.testing.logging.TestLogEvent
 
 plugins {
     java
-    id("io.papermc.paperweight.patcher") version "2.0.0-beta.13"
+    id("io.papermc.paperweight.patcher") version "2.0.0-beta.14"
 }
 
 val caramelMavenPublicUrl = "https://repo.caramel.moe/repository/maven-public/"
@@ -23,11 +23,6 @@ paperweight {
             excludes = setOf("build.gradle.kts")
             patchesDir = file("daydream-api/paper-patches")
             outputDir = file("paper-api")
-        }
-        patchDir("paperApiGenerator") {
-            upstreamPath = "paper-api-generator"
-            patchesDir = file("daydream-api-generator/paper-patches")
-            outputDir = file("paper-api-generator")
         }
     }
 }
