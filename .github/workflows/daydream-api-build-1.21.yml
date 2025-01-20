@@ -30,7 +30,7 @@ jobs:
       - name : Build and Publish API with Gradle
         run: |
           echo "::group::Apply Patches"
-          ./gradlew applyPaperSingleFilePatches applyPaperApiGeneratorPatches applyPaperApiPatches --stacktrace
+          ./gradlew applyPaperSingleFilePatches applyPaperApiPatches --stacktrace
           echo "::endgroup::"
           echo "::group::Build API"
           ./gradlew build
