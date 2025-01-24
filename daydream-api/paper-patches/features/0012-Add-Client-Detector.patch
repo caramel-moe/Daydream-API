@@ -4,13 +4,13 @@ Date: Sun, 10 Dec 2023 16:28:01 +0900
 Subject: [PATCH] Add Client Detector
 
 
-diff --git a/src/main/java/moe/caramel/daydream/event/configure/ConfigurationClientTypeDetectedEvent.java b/src/main/java/moe/caramel/daydream/event/configure/ConfigurationClientTypeDetectedEvent.java
+diff --git a/src/main/java/moe/caramel/daydream/event/configuration/ConfigurationClientTypeDetectedEvent.java b/src/main/java/moe/caramel/daydream/event/configuration/ConfigurationClientTypeDetectedEvent.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..f1ebef97a226f55be63fb3cd8c4062e3331db2d7
+index 0000000000000000000000000000000000000000..2785b263d3fc5dfe21f59559b5e27c5c522ba0ca
 --- /dev/null
-+++ b/src/main/java/moe/caramel/daydream/event/configure/ConfigurationClientTypeDetectedEvent.java
++++ b/src/main/java/moe/caramel/daydream/event/configuration/ConfigurationClientTypeDetectedEvent.java
 @@ -0,0 +1,72 @@
-+package moe.caramel.daydream.event.configure;
++package moe.caramel.daydream.event.configuration;
 +
 +import moe.caramel.daydream.player.ClientType;
 +import net.kyori.adventure.text.Component;
@@ -24,13 +24,13 @@ index 0000000000000000000000000000000000000000..f1ebef97a226f55be63fb3cd8c4062e3
 + * Configuration 페이즈에서 플레이어의 클라이언트 종류를 감지 완료하였을 때 호출됩니다.
 + */
 +@NullMarked
-+public final class ConfigurationClientTypeDetectedEvent extends ConfigurationPhaseEvent {
++public final class ConfigurationClientTypeDetectedEvent extends ConfigurationEvent {
 +
 +    private @Nullable Component disconnectReason;
 +
 +    @ApiStatus.Internal
 +    public ConfigurationClientTypeDetectedEvent(final Player who) {
-+        super(who, true);
++        super(who);
 +    }
 +
 +    /**

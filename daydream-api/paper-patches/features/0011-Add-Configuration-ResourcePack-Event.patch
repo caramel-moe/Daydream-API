@@ -1,40 +1,16 @@
 From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: LemonCaramel <admin@caramel.moe>
 Date: Tue, 9 Jan 2024 10:58:07 +0900
-Subject: [PATCH] Add Configuration Phase API
+Subject: [PATCH] Add Configuration ResourcePack Event
 
 
-diff --git a/src/main/java/moe/caramel/daydream/event/configure/ConfigurationPhaseEvent.java b/src/main/java/moe/caramel/daydream/event/configure/ConfigurationPhaseEvent.java
+diff --git a/src/main/java/moe/caramel/daydream/event/configuration/ConfigurationResourcePackRequestEvent.java b/src/main/java/moe/caramel/daydream/event/configuration/ConfigurationResourcePackRequestEvent.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..45026d1315ddfcc064ceb58b495db0d999e14db4
+index 0000000000000000000000000000000000000000..f742695e5d90b7b153cc8dd1e8d2851c5585660f
 --- /dev/null
-+++ b/src/main/java/moe/caramel/daydream/event/configure/ConfigurationPhaseEvent.java
-@@ -0,0 +1,18 @@
-+package moe.caramel.daydream.event.configure;
-+
-+import org.bukkit.entity.Player;
-+import org.bukkit.event.player.PlayerEvent;
-+import org.jetbrains.annotations.ApiStatus;
-+import org.jspecify.annotations.NullMarked;
-+
-+/**
-+ * Configuration 페이즈에서 호출되는 이벤트
-+ */
-+@NullMarked
-+public abstract class ConfigurationPhaseEvent extends PlayerEvent {
-+
-+    @ApiStatus.Internal
-+    public ConfigurationPhaseEvent(final Player who, final boolean async) {
-+        super(who, async);
-+    }
-+}
-diff --git a/src/main/java/moe/caramel/daydream/event/configure/ConfigurationResourcePackRequestEvent.java b/src/main/java/moe/caramel/daydream/event/configure/ConfigurationResourcePackRequestEvent.java
-new file mode 100644
-index 0000000000000000000000000000000000000000..935dec08ac4c9251ee90887b953dbfbe5e3ea017
---- /dev/null
-+++ b/src/main/java/moe/caramel/daydream/event/configure/ConfigurationResourcePackRequestEvent.java
++++ b/src/main/java/moe/caramel/daydream/event/configuration/ConfigurationResourcePackRequestEvent.java
 @@ -0,0 +1,179 @@
-+package moe.caramel.daydream.event.configure;
++package moe.caramel.daydream.event.configuration;
 +
 +import net.kyori.adventure.resource.ResourcePackCallback;
 +import net.kyori.adventure.resource.ResourcePackInfoLike;
@@ -55,7 +31,7 @@ index 0000000000000000000000000000000000000000..935dec08ac4c9251ee90887b953dbfbe
 + * <p>이 이벤트를 사용하여 리소스팩을 적용하는 경우, server.properties의 리소스팩 로직이 무시됩니다.</p>
 + */
 +@NullMarked
-+public final class ConfigurationResourcePackRequestEvent extends ConfigurationPhaseEvent {
++public final class ConfigurationResourcePackRequestEvent extends ConfigurationEvent {
 +
 +    private final List<ResourcePackInfoLike> packs;
 +    private final List<ResourcePackCallback> callbacks;
@@ -65,7 +41,7 @@ index 0000000000000000000000000000000000000000..935dec08ac4c9251ee90887b953dbfbe
 +
 +    @ApiStatus.Internal
 +    public ConfigurationResourcePackRequestEvent(final Player what) {
-+        super(what, !Bukkit.isPrimaryThread());
++        super(what);
 +        this.packs = new ArrayList<>();
 +        this.callbacks = new ArrayList<>();
 +    }

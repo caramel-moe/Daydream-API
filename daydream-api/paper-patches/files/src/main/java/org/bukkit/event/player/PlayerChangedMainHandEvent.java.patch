@@ -1,0 +1,29 @@
+--- a/src/main/java/org/bukkit/event/player/PlayerChangedMainHandEvent.java
++++ b/src/main/java/org/bukkit/event/player/PlayerChangedMainHandEvent.java
+@@ -12,7 +_,7 @@
+ 
+     private static final HandlerList handlers = new HandlerList();
+     //
+-    private final MainHand mainHand;
++    private MainHand mainHand; // Daydream - Settable Player Arm (remove final)
+ 
+     public PlayerChangedMainHandEvent(@NotNull Player who, @NotNull MainHand mainHand) {
+         super(who);
+@@ -29,6 +_,17 @@
+     public MainHand getMainHand() {
+         return mainHand;
+     }
++
++    // Daydream start - Settable Player Arm
++    /**
++     * 플레이어의 주로 사용하는 손을 변경합니다.
++     *
++     * @param mainHand 주로 사용하는 손
++     */
++    public void setMainHand(final @NotNull MainHand mainHand) {
++        this.mainHand = mainHand;
++    }
++    // Daydream end - Settable Player Arm
+ 
+     @NotNull
+     @Override
