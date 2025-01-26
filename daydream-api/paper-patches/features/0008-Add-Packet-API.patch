@@ -6,10 +6,10 @@ Subject: [PATCH] Add Packet API
 
 diff --git a/src/main/java/moe/caramel/daydream/event/packet/PacketType.java b/src/main/java/moe/caramel/daydream/event/packet/PacketType.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..360675e7abc45240925a983d21387bd4c8c0f114
+index 0000000000000000000000000000000000000000..2243c218fc51d51862dd5e4722c8945bc118b776
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/event/packet/PacketType.java
-@@ -0,0 +1,22 @@
+@@ -0,0 +1,21 @@
 +package moe.caramel.daydream.event.packet;
 +
 +/**
@@ -21,8 +21,7 @@ index 0000000000000000000000000000000000000000..360675e7abc45240925a983d21387bd4
 +     * [Client -> Server] Packets
 +     */
 +    enum Client {
-+        PONG,
-+        PLAYER_LOADED
++        PONG
 +    }
 +
 +    /**
@@ -82,34 +81,6 @@ index 0000000000000000000000000000000000000000..a1f6ce66d317fc190021aa0b7fcb8c1b
 +        return HANDLER_LIST;
 +    }
 +    //</editor-fold>
-+}
-diff --git a/src/main/java/moe/caramel/daydream/event/packet/ReceivePlayerLoadedPacketEvent.java b/src/main/java/moe/caramel/daydream/event/packet/ReceivePlayerLoadedPacketEvent.java
-new file mode 100644
-index 0000000000000000000000000000000000000000..b783aafc2006adc054cf2c6126bcd3f2eac8852c
---- /dev/null
-+++ b/src/main/java/moe/caramel/daydream/event/packet/ReceivePlayerLoadedPacketEvent.java
-@@ -0,0 +1,22 @@
-+package moe.caramel.daydream.event.packet;
-+
-+import org.bukkit.entity.Player;
-+import org.jetbrains.annotations.ApiStatus;
-+import org.jspecify.annotations.NullMarked;
-+
-+/**
-+ * 서버가 클라이언트로부터 {@link PacketType.Client#PLAYER_LOADED} 패킷을 전달받았을 때 호출됩니다.
-+ */
-+@NullMarked
-+public final class ReceivePlayerLoadedPacketEvent extends ReceivePacketEvent {
-+
-+    @ApiStatus.Internal
-+    public ReceivePlayerLoadedPacketEvent(final Player who) {
-+        super(who, PacketType.Client.PLAYER_LOADED, false);
-+    }
-+
-+    @Override
-+    public String toString() {
-+        return "ReceivePlayerLoadedPacketEvent";
-+    }
 +}
 diff --git a/src/main/java/moe/caramel/daydream/event/packet/ReceivePongPacketEvent.java b/src/main/java/moe/caramel/daydream/event/packet/ReceivePongPacketEvent.java
 new file mode 100644
@@ -1007,10 +978,10 @@ index ba5d2022c5ebec490b3ac36f5a651acb2cac8559..ea1b6f2b69a4e4c299eab857b68cc37f
 +    // Daydream end - (feature) Add Packet API
  }
 diff --git a/src/main/java/org/bukkit/World.java b/src/main/java/org/bukkit/World.java
-index 21675b7f8fab3ca1e6db0b1f2c5fba68993c10e9..87acad5995f5fe9ef251b6273ea94616c9c9c59d 100644
+index d95349839e47465826bab456d7fd414a2a96d40d..294aa555e0bc88390bbab070466abc70940cfd5f 100644
 --- a/src/main/java/org/bukkit/World.java
 +++ b/src/main/java/org/bukkit/World.java
-@@ -1626,6 +1626,17 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
+@@ -1627,6 +1627,17 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      public Entity getEntity(@NotNull java.util.UUID uuid);
      // Paper end
  
@@ -1053,7 +1024,7 @@ index 6fba6948e937b079bedf3cc08d7659cf50c927d5..6e65ebccf9c037dba1179dfb697ce565
       * Gets the amount of ticks this entity has lived for.
       * <p>
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index c7a5992442d087c5388d8bed03cb6ddb20c9c3f6..a675aad451521c148f459705748ae5137789a358 100644
+index 892e1703f951ccb6a2d970164529aa7b1f303710..367054cd58120eb795419f0f55d070a7f608f361 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
 @@ -1094,6 +1094,31 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM

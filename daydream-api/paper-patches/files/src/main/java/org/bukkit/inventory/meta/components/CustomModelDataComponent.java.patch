@@ -1,0 +1,97 @@
+--- a/src/main/java/org/bukkit/inventory/meta/components/CustomModelDataComponent.java
++++ b/src/main/java/org/bukkit/inventory/meta/components/CustomModelDataComponent.java
+@@ -71,4 +_,94 @@
+      * @param colors new list
+      */
+     void setColors(@NotNull List<Color> colors);
++
++    // Daydream start - Add CustomModelData utility methods
++    /**
++     * Sets a list of the custom floats.
++     *
++     * @param floats new list
++     * @return this
++     */
++    default CustomModelDataComponent floats(@NotNull List<Float> floats) {
++        this.setFloats(floats);
++        return this;
++    }
++
++    /**
++     * Sets a list of the custom floats.
++     *
++     * @param floats new list
++     * @return this
++     */
++    default CustomModelDataComponent floats(@NotNull Float @NotNull... floats) {
++        this.setFloats(List.of(floats));
++        return this;
++    }
++
++    /**
++     * Sets a list of the custom flags.
++     *
++     * @param flags new list
++     * @return this
++     */
++    default CustomModelDataComponent flags(@NotNull List<Boolean> flags) {
++        this.setFlags(flags);
++        return this;
++    }
++
++    /**
++     * Sets a list of the custom flags.
++     *
++     * @param flags new list
++     * @return this
++     */
++    default CustomModelDataComponent flags(@NotNull Boolean @NotNull... flags) {
++        this.setFlags(List.of(flags));
++        return this;
++    }
++
++    /**
++     * Sets a list of the custom strings.
++     *
++     * @param strings new list
++     * @return this
++     */
++    default CustomModelDataComponent strings(@NotNull List<String> strings) {
++        this.setStrings(strings);
++        return this;
++    }
++
++    /**
++     * Sets a list of the custom strings.
++     *
++     * @param strings new list
++     * @return this
++     */
++    default CustomModelDataComponent strings(@NotNull String @NotNull... strings) {
++        this.setStrings(List.of(strings));
++        return this;
++    }
++
++    /**
++     * Sets a list of the custom colors.
++     *
++     * @param colors new list
++     * @return this
++     */
++    default CustomModelDataComponent colors(@NotNull List<Color> colors) {
++        this.setColors(colors);
++        return this;
++    }
++
++    /**
++     * Sets a list of the custom colors.
++     *
++     * @param colors new list
++     * @return this
++     */
++    default CustomModelDataComponent colors(@NotNull Color @NotNull... colors) {
++        this.setColors(List.of(colors));
++        return this;
++    }
++    // Daydream end - Add CustomModelData utility methods
+ }

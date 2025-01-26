@@ -1,0 +1,115 @@
+--- a/src/main/java/io/papermc/paper/datacomponent/item/ItemLore.java
++++ b/src/main/java/io/papermc/paper/datacomponent/item/ItemLore.java
+@@ -80,5 +_,112 @@
+          */
+         @Contract(value = "_ -> this", mutates = "this")
+         Builder addLines(List<? extends ComponentLike> lines);
++
++        // Daydream start - Add more item lore methods
++
++        // No Italic
++
++        /**
++         * 로어의 이탤릭체를 비활성화하고 설정합니다.
++         *
++         * @param lines 설정할 로어 리스트
++         * @return the builder for chaining
++         * @see #lines()
++         */
++        @Contract(value = "_ -> this", mutates = "this")
++        Builder noItalicLines(List<? extends ComponentLike> lines);
++
++        /**
++         * 로어의 이탤릭체를 비활성화하고 설정합니다.
++         *
++         * @param lines 설정할 로어 리스트
++         * @return the builder for chaining
++         * @see #lines()
++         */
++        @Contract(value = "_ -> this", mutates = "this")
++        Builder noItalicLines(ComponentLike... lines);
++
++        /**
++         * 로어의 이탤릭체를 비활성화하고 추가합니다.
++         *
++         * @param line 추가할 로어
++         * @return the builder for chaining
++         * @see #lines()
++         */
++        @Contract(value = "_ -> this", mutates = "this")
++        Builder addNoItalicLine(ComponentLike line);
++
++        /**
++         * 로어의 이탤릭체를 비활성화하고 추가합니다.
++         *
++         * @param lines 추가할 로어 리스트
++         * @return the builder for chaining
++         * @see #lines()
++         */
++        @Contract(value = "_ -> this", mutates = "this")
++        Builder addNoItalicLines(List<? extends ComponentLike> lines);
++
++        /**
++         * 로어의 이탤릭체를 비활성화하고 추가합니다.
++         *
++         * @param lines 추가할 로어 리스트
++         * @return the builder for chaining
++         * @see #lines()
++         */
++        @Contract(value = "_ -> this", mutates = "this")
++        Builder addNoItalicLines(ComponentLike... lines);
++
++        // Default
++
++        /**
++         * 로어를 설정하며 클라이언트의 로어 수정을 비활성화합니다.
++         *
++         * @param lines 설정할 로어 리스트
++         * @return the builder for chaining
++         * @see #lines()
++         */
++        @Contract(value = "_ -> this", mutates = "this")
++        Builder defaultLines(List<? extends ComponentLike> lines);
++
++        /**
++         * 로어를 설정하며 클라이언트의 로어 수정을 비활성화합니다.
++         *
++         * @param lines 설정할 로어 리스트
++         * @return the builder for chaining
++         * @see #lines()
++         */
++        @Contract(value = "_ -> this", mutates = "this")
++        Builder defaultLines(ComponentLike... lines);
++
++        /**
++         * 로어를 추가하며 클라이언트의 로어 수정을 비활성화합니다.
++         *
++         * @param line 추가할 로어
++         * @return the builder for chaining
++         * @see #lines()
++         */
++        @Contract(value = "_ -> this", mutates = "this")
++        Builder addDefaultLine(ComponentLike line);
++
++        /**
++         * 로어를 추가하며 클라이언트의 로어 수정을 비활성화합니다.
++         *
++         * @param lines 추가할 로어 리스트
++         * @return the builder for chaining
++         * @see #lines()
++         */
++        @Contract(value = "_ -> this", mutates = "this")
++        Builder addDefaultLines(List<? extends ComponentLike> lines);
++
++        /**
++         * 로어를 추가하며 클라이언트의 로어 수정을 비활성화합니다.
++         *
++         * @param lines 추가할 로어 리스트
++         * @return the builder for chaining
++         * @see #lines()
++         */
++        @Contract(value = "_ -> this", mutates = "this")
++        Builder addDefaultLines(ComponentLike... lines);
++        // Daydream end - Add more item lore methods
+     }
+ }

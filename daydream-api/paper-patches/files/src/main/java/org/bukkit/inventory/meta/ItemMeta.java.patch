@@ -171,11 +171,10 @@
      // Paper start
      /**
       * Gets the lore.
-@@ -336,6 +_,18 @@
-      * @return the custom model data that is set
+@@ -337,6 +_,18 @@
       */
      int getCustomModelData();
-+
+ 
 +    // Daydream start - Add method to get raw CustomModelData
 +    /**
 +     * Gets the custom model data that is set.
@@ -187,6 +186,27 @@
 +     */
 +    @Nullable Integer customModelData();
 +    // Daydream end - Add method to get raw CustomModelData
- 
++
      /**
       * Gets the custom model data set on this item, or creates an empty custom
+      * model data instance.
+@@ -368,6 +_,19 @@
+      * @param customModelData new component
+      */
+     void setCustomModelDataComponent(@Nullable CustomModelDataComponent customModelData);
++
++    // Daydream start - Add CustomModelData utility methods
++    /**
++     * 커스텀 모델 데이터 컴포넌트를 설정합니다.
++     *
++     * @param consumer 컴포넌트 수정자
++     */
++    default void customModelData(final java.util.function.Consumer<CustomModelDataComponent> consumer) {
++        final CustomModelDataComponent component = this.getCustomModelDataComponent();
++        consumer.accept(component);
++        this.setCustomModelDataComponent(component);
++    }
++    // Daydream start - Add CustomModelData utility methods
+ 
+     /**
+      * Gets if the enchantable component is set.
