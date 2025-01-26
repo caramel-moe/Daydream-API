@@ -9,18 +9,30 @@
  
      public PlayerChangedMainHandEvent(@NotNull Player who, @NotNull MainHand mainHand) {
          super(who);
-@@ -29,6 +_,17 @@
+@@ -27,8 +_,29 @@
+      */
+     @NotNull
      public MainHand getMainHand() {
++        return mainHand == MainHand.LEFT ? MainHand.RIGHT : MainHand.LEFT; // Daydream - Fix method implementation
++    }
++
++    // Daydream start - Settable Player Arm
++    /**
++     * Gets the new main hand of the player.
++     *
++     * @return the new {@link MainHand} of the player
++     */
++    @NotNull
++    public MainHand getNewMainHand() {
          return mainHand;
      }
 +
-+    // Daydream start - Settable Player Arm
 +    /**
 +     * 플레이어의 주로 사용하는 손을 변경합니다.
 +     *
 +     * @param mainHand 주로 사용하는 손
 +     */
-+    public void setMainHand(final @NotNull MainHand mainHand) {
++    public void setNewMainHand(final @NotNull MainHand mainHand) {
 +        this.mainHand = mainHand;
 +    }
 +    // Daydream end - Settable Player Arm
