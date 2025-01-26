@@ -190,11 +190,10 @@
      /**
       * Gets the custom model data set on this item, or creates an empty custom
       * model data instance.
-@@ -368,6 +_,19 @@
-      * @param customModelData new component
+@@ -369,6 +_,19 @@
       */
      void setCustomModelDataComponent(@Nullable CustomModelDataComponent customModelData);
-+
+ 
 +    // Daydream start - Add CustomModelData utility methods
 +    /**
 +     * 커스텀 모델 데이터 컴포넌트를 설정합니다.
@@ -207,6 +206,37 @@
 +        this.setCustomModelDataComponent(component);
 +    }
 +    // Daydream start - Add CustomModelData utility methods
- 
++
      /**
       * Gets if the enchantable component is set.
+      *
+@@ -752,6 +_,29 @@
+      * @param cooldown new cooldown
+      */
+     void setUseCooldown(@Nullable UseCooldownComponent cooldown);
++
++    // Daydream start - Add Group cooldown utility methods
++    /**
++     * Gets the custom cooldown group to be used for similar items, if set.
++     *
++     * @return the cooldown group
++     */
++    @Nullable
++    default NamespacedKey getCooldownGroup() {
++        return getUseCooldown().getCooldownGroup();
++    }
++
++    /**
++     * Sets the custom cooldown group to be used for similar items.
++     *
++     * @param group the cooldown group
++     */
++    default void setCooldownGroup(@Nullable NamespacedKey group) {
++        final UseCooldownComponent component = this.getUseCooldown();
++        component.setCooldownGroup(group);
++        this.setUseCooldown(component);
++    }
++    // Daydream end - Add Group cooldown utility methods
+ 
+     /**
+      * Checks if the food is set.
