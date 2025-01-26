@@ -112,7 +112,7 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color"><code>static interface&nbsp;</code></div>
 <div class="col-second even-row-color"><code><a href="ConsumeEffect.ApplyStatusEffects.html" class="type-name-link" title="interface in io.papermc.paper.datacomponent.item.consumable">ConsumeEffect.ApplyStatusEffects</a></code></div>
 <div class="col-last even-row-color">
-<div class="block">Represents a consumable effect that applies effects based on a probability on consumption.</div>
+<div class="block">Represents a consumable effect that applies potion effects based on a probability on consumption.</div>
 </div>
 <div class="col-first odd-row-color"><code>static interface&nbsp;</code></div>
 <div class="col-second odd-row-color"><code><a href="ConsumeEffect.ClearAllStatusEffects.html" class="type-name-link" title="interface in io.papermc.paper.datacomponent.item.consumable">ConsumeEffect.ClearAllStatusEffects</a></code></div>
@@ -127,11 +127,13 @@ loadScripts(document, 'script');</script>
 <div class="col-first odd-row-color"><code>static interface&nbsp;</code></div>
 <div class="col-second odd-row-color"><code><a href="ConsumeEffect.RemoveStatusEffects.html" class="type-name-link" title="interface in io.papermc.paper.datacomponent.item.consumable">ConsumeEffect.RemoveStatusEffects</a></code></div>
 <div class="col-last odd-row-color">
-<div class="block">Represents a consumable effect that removes status effects on consumption</div>
+<div class="block">Represents a consumable effect that removes status effects on consumption.</div>
 </div>
 <div class="col-first even-row-color"><code>static interface&nbsp;</code></div>
 <div class="col-second even-row-color"><code><a href="ConsumeEffect.TeleportRandomly.html" class="type-name-link" title="interface in io.papermc.paper.datacomponent.item.consumable">ConsumeEffect.TeleportRandomly</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Represents a consumable effect that randomly teleports the entity on consumption.</div>
+</div>
 </div>
 </section>
 </li>
@@ -149,7 +151,7 @@ loadScripts(document, 'script');</script>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab1"><code><a href="#applyStatusEffects(java.util.List,float)" class="member-name-link">applyStatusEffects</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../../../../../../org/bukkit/potion/PotionEffect.html" title="class in org.bukkit.potion">PotionEffect</a>&gt;&nbsp;effects,
  float&nbsp;probability)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab1">
-<div class="block">Creates a consume effect that gives status effects on consumption.</div>
+<div class="block">Creates a consume effect that gives potion effects on consumption.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1"><code>static <a href="ConsumeEffect.ClearAllStatusEffects.html" title="interface in io.papermc.paper.datacomponent.item.consumable">ConsumeEffect.ClearAllStatusEffects</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab1"><code><a href="#clearAllStatusEffects()" class="member-name-link">clearAllStatusEffects</a>()</code></div>
@@ -162,9 +164,9 @@ loadScripts(document, 'script');</script>
 <div class="block">Creates a consume effect that plays a sound on consumption.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1"><code>static <a href="ConsumeEffect.RemoveStatusEffects.html" title="interface in io.papermc.paper.datacomponent.item.consumable">ConsumeEffect.RemoveStatusEffects</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab1"><code><a href="#removeEffects(io.papermc.paper.registry.set.RegistryKeySet)" class="member-name-link">removeEffects</a><wbr>(<a href="../../../registry/set/RegistryKeySet.html" title="interface in io.papermc.paper.registry.set">RegistryKeySet</a>&lt;<a href="../../../../../../org/bukkit/potion/PotionEffectType.html" title="class in org.bukkit.potion">PotionEffectType</a>&gt;&nbsp;key)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1"><code><a href="#removeEffects(io.papermc.paper.registry.set.RegistryKeySet)" class="member-name-link">removeEffects</a><wbr>(<a href="../../../registry/set/RegistryKeySet.html" title="interface in io.papermc.paper.registry.set">RegistryKeySet</a>&lt;<a href="../../../../../../org/bukkit/potion/PotionEffectType.html" title="class in org.bukkit.potion">PotionEffectType</a>&gt;&nbsp;effects)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab1">
-<div class="block">Creates a consume effect that gives status effects on consumption.</div>
+<div class="block">Creates a consume effect that removes status effects on consumption.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1"><code>static <a href="ConsumeEffect.TeleportRandomly.html" title="interface in io.papermc.paper.datacomponent.item.consumable">ConsumeEffect.TeleportRandomly</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab1"><code><a href="#teleportRandomlyEffect(float)" class="member-name-link">teleportRandomlyEffect</a><wbr>(float&nbsp;diameter)</code></div>
@@ -195,7 +197,7 @@ loadScripts(document, 'script');</script>
 <dt>Parameters:</dt>
 <dd><code>diameter</code> - diameter of random teleportation</dd>
 <dt>Returns:</dt>
-<dd>the effect</dd>
+<dd>the effect instance</dd>
 </dl>
 </section>
 </li>
@@ -204,13 +206,13 @@ loadScripts(document, 'script');</script>
 <h3>removeEffects</h3>
 <div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/26.0.1/org/jetbrains/annotations/Contract.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Contract</a>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/26.0.1/org/jetbrains/annotations/Contract.html#value--" title="class or interface in org.jetbrains.annotations" class="external-link">value</a>="_ -&gt; new",
           <a href="https://javadoc.io/doc/org.jetbrains/annotations/26.0.1/org/jetbrains/annotations/Contract.html#pure--" title="class or interface in org.jetbrains.annotations" class="external-link">pure</a>=true)
-</span><span class="modifiers">static</span>&nbsp;<span class="return-type"><a href="ConsumeEffect.RemoveStatusEffects.html" title="interface in io.papermc.paper.datacomponent.item.consumable">ConsumeEffect.RemoveStatusEffects</a></span>&nbsp;<span class="element-name">removeEffects</span><wbr><span class="parameters">(<a href="../../../registry/set/RegistryKeySet.html" title="interface in io.papermc.paper.registry.set">RegistryKeySet</a>&lt;<a href="../../../../../../org/bukkit/potion/PotionEffectType.html" title="class in org.bukkit.potion">PotionEffectType</a>&gt;&nbsp;key)</span></div>
-<div class="block">Creates a consume effect that gives status effects on consumption.</div>
+</span><span class="modifiers">static</span>&nbsp;<span class="return-type"><a href="ConsumeEffect.RemoveStatusEffects.html" title="interface in io.papermc.paper.datacomponent.item.consumable">ConsumeEffect.RemoveStatusEffects</a></span>&nbsp;<span class="element-name">removeEffects</span><wbr><span class="parameters">(<a href="../../../registry/set/RegistryKeySet.html" title="interface in io.papermc.paper.registry.set">RegistryKeySet</a>&lt;<a href="../../../../../../org/bukkit/potion/PotionEffectType.html" title="class in org.bukkit.potion">PotionEffectType</a>&gt;&nbsp;effects)</span></div>
+<div class="block">Creates a consume effect that removes status effects on consumption.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>key</code> - the sound effect to play</dd>
+<dd><code>effects</code> - the potion effects to remove</dd>
 <dt>Returns:</dt>
-<dd>the effect</dd>
+<dd>the effect instance</dd>
 </dl>
 </section>
 </li>
@@ -223,9 +225,9 @@ loadScripts(document, 'script');</script>
 <div class="block">Creates a consume effect that plays a sound on consumption.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>key</code> - the sound effect to play</dd>
+<dd><code>key</code> - the key sound effect to play</dd>
 <dt>Returns:</dt>
-<dd>the effect</dd>
+<dd>the effect instance</dd>
 </dl>
 </section>
 </li>
@@ -238,7 +240,7 @@ loadScripts(document, 'script');</script>
 <div class="block">Creates a consume effect that clears all status effects.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>effect instance</dd>
+<dd>the effect instance</dd>
 </dl>
 </section>
 </li>
@@ -249,13 +251,13 @@ loadScripts(document, 'script');</script>
           <a href="https://javadoc.io/doc/org.jetbrains/annotations/26.0.1/org/jetbrains/annotations/Contract.html#pure--" title="class or interface in org.jetbrains.annotations" class="external-link">pure</a>=true)
 </span><span class="modifiers">static</span>&nbsp;<span class="return-type"><a href="ConsumeEffect.ApplyStatusEffects.html" title="interface in io.papermc.paper.datacomponent.item.consumable">ConsumeEffect.ApplyStatusEffects</a></span>&nbsp;<span class="element-name">applyStatusEffects</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../../../../../../org/bukkit/potion/PotionEffect.html" title="class in org.bukkit.potion">PotionEffect</a>&gt;&nbsp;effects,
  float&nbsp;probability)</span></div>
-<div class="block">Creates a consume effect that gives status effects on consumption.</div>
+<div class="block">Creates a consume effect that gives potion effects on consumption.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>effects</code> - the potion effects to apply</dd>
-<dd><code>probability</code> - the probability of these effects being applied, between 0 and 1 inclusive.</dd>
+<dd><code>probability</code> - the probability of these effects being applied, between 0 and 1 inclusive</dd>
 <dt>Returns:</dt>
-<dd>the effect</dd>
+<dd>the effect instance</dd>
 </dl>
 </section>
 </li>
