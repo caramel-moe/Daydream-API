@@ -201,7 +201,7 @@
 +     *
 +     * @param consumer 컴포넌트 수정자
 +     */
-+    default void customModelData(final java.util.function.Consumer<CustomModelDataComponent> consumer) {
++    default void customModelData(final @NotNull java.util.function.Consumer<CustomModelDataComponent> consumer) {
 +        final CustomModelDataComponent component = this.getCustomModelDataComponent();
 +        consumer.accept(component);
 +        this.setCustomModelDataComponent(component);
