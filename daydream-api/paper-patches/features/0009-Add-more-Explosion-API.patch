@@ -175,7 +175,7 @@ index de260586b1d92d943039b03777ff3667b7883a50..dbaf0d58ed60c308fd5822e559c224fe
      /**
       * Returns whether or not this tag has an entry for the specified item.
 diff --git a/src/main/java/org/bukkit/World.java b/src/main/java/org/bukkit/World.java
-index 294aa555e0bc88390bbab070466abc70940cfd5f..ffe987fbad8b32c04293621ee3b1a6a520604066 100644
+index 294aa555e0bc88390bbab070466abc70940cfd5f..f697a1ed59a8c074ba4ee13db7204675783c0d59 100644
 --- a/src/main/java/org/bukkit/World.java
 +++ b/src/main/java/org/bukkit/World.java
 @@ -2160,6 +2160,246 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
@@ -218,7 +218,7 @@ index 294aa555e0bc88390bbab070466abc70940cfd5f..ffe987fbad8b32c04293621ee3b1a6a5
 +    default moe.caramel.daydream.world.Explosion explosion(double x, double y, double z, float power, boolean setFire, boolean breakBlocks, @Nullable Entity source) {
 +        return explosion(
 +            x, y, z, power, setFire, (breakBlocks ? ExplosionAction.MOB : ExplosionAction.NONE),
-+            Particle.EXPLOSION, null, Particle.EXPLOSION_EMITTER, null,
++            Particle.EXPLOSION_EMITTER, null, Particle.EXPLOSION, null,
 +            Sound.ENTITY_GENERIC_EXPLODE, source
 +        );
 +    }
@@ -268,7 +268,7 @@ index 294aa555e0bc88390bbab070466abc70940cfd5f..ffe987fbad8b32c04293621ee3b1a6a5
 +     * explode and finalize should be called.
 +     */
 +    @NotNull
-+    default  <T> moe.caramel.daydream.world.Explosion explosion(
++    default <T> moe.caramel.daydream.world.Explosion explosion(
 +        @NotNull Location loc, float power, boolean setFire, @NotNull ExplosionAction explosionAction,
 +        @NotNull Particle largeParticle, @Nullable T largeData,
 +        @NotNull Particle smallParticle, @Nullable T smallData,

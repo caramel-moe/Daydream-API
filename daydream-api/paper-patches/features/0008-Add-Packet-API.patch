@@ -333,6 +333,61 @@ index 0000000000000000000000000000000000000000..653a01aef06f20f5229bd08d36a3ebd6
 +     */
 +    ContainerSetSlotPacket create(int windowId, int revision, int slot, ItemStack stack);
 +}
+diff --git a/src/main/java/moe/caramel/daydream/packet/ExplodePacket.java b/src/main/java/moe/caramel/daydream/packet/ExplodePacket.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..7e3e60bfea4ebf860eb4aa939e7f56e37739cef2
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/packet/ExplodePacket.java
+@@ -0,0 +1,49 @@
++package moe.caramel.daydream.packet;
++
++import org.bukkit.NamespacedKey;
++import org.bukkit.Particle;
++import org.bukkit.Sound;
++import org.bukkit.util.Vector;
++import org.jspecify.annotations.NullMarked;
++import org.jspecify.annotations.Nullable;
++
++@NullMarked
++public interface ExplodePacket extends Packet {
++
++    /**
++     * 패킷을 생성합니다.
++     *
++     * @param center 폭발 위치
++     * @param knockback 플레이어에게 주어질 넉백
++     * @return this
++     */
++    default ExplodePacket create(final Vector center, final @Nullable Vector knockback) {
++        return create(center, knockback, Particle.EXPLOSION_EMITTER, null, Sound.ENTITY_GENERIC_EXPLODE);
++    }
++
++    /**
++     * 패킷을 생성합니다.
++     *
++     * @param center 폭발 위치
++     * @param knockback 플레이어에게 주어질 넉백
++     * @param particle 폭발 파티클
++     * @param particleData 파티클 데이터
++     * @param sound 폭발 소리
++     * @return this
++     * @param <T> 파티클 데이터 타입
++     */
++    <T> ExplodePacket create(Vector center, @Nullable Vector knockback, Particle particle, @Nullable T particleData, NamespacedKey sound);
++
++    /**
++     * 패킷을 생성합니다.
++     *
++     * @param center 폭발 위치
++     * @param knockback 플레이어에게 주어질 넉백
++     * @param particle 폭발 파티클
++     * @param particleData 파티클 데이터
++     * @param sound 폭발 소리
++     * @return this
++     * @param <T> 파티클 데이터 타입
++     */
++    <T> ExplodePacket create(Vector center, @Nullable Vector knockback, Particle particle, @Nullable T particleData, Sound sound);
++}
 diff --git a/src/main/java/moe/caramel/daydream/packet/GameEventPacket.java b/src/main/java/moe/caramel/daydream/packet/GameEventPacket.java
 new file mode 100644
 index 0000000000000000000000000000000000000000..278df2d2a00f92b0d50fb22175e5a25b0a791123
