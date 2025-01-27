@@ -26,17 +26,20 @@ index d9bd2aa043606126514ec3e54f968d8e7f574943..ac6696df7b3db05231d62d1002a16479
  }
 diff --git a/src/main/java/moe/caramel/daydream/world/Explosion.java b/src/main/java/moe/caramel/daydream/world/Explosion.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..198f518cca0473cb77a7f8756cbd58acaa39c31e
+index 0000000000000000000000000000000000000000..35d6f59e03abd35ccc26a02612a1306b4d45b040
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/world/Explosion.java
-@@ -0,0 +1,128 @@
+@@ -0,0 +1,147 @@
 +package moe.caramel.daydream.world;
 +
 +import org.bukkit.World;
 +import org.bukkit.damage.DamageSource;
 +import org.bukkit.entity.HumanEntity;
++import org.bukkit.entity.Player;
 +import org.bukkit.util.Vector;
 +import org.jspecify.annotations.NullMarked;
++import org.jspecify.annotations.Nullable;
++import java.util.Collection;
 +import java.util.Map;
 +
 +/**
@@ -149,7 +152,23 @@ index 0000000000000000000000000000000000000000..198f518cca0473cb77a7f8756cbd58ac
 +    /**
 +     * 폭발을 시작합니다.
 +     */
-+    void explode();
++    default void explode() {
++        this.explode(true);
++    }
++
++    /**
++     * 폭발을 시작합니다.
++     *
++     * @param send 폭발 결과 전송 여부
++     */
++    void explode(boolean send);
++
++    /**
++     * 폭발 결과를 대상 플레이어들에게 전송합니다.
++     *
++     * @param targets 대상 플레이어
++     */
++    void sendExplosion(@Nullable Collection<? extends Player> targets);
 +
 +    /**
 +     * 폭발이 이벤트에 의해 취소되었는지 여부를 가져옵니다.
