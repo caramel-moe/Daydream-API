@@ -1,0 +1,23 @@
+--- a/src/main/java/org/bukkit/entity/Interaction.java
++++ b/src/main/java/org/bukkit/entity/Interaction.java
+@@ -89,4 +_,20 @@
+          */
+         public long getTimestamp();
+     }
++
++    // Daydream start - Add option to enable projectile collision for interaction entity
++    /**
++     * 투사체가 이 엔티티를 타격할 수 있는지 여부를 가져옵니다.
++     *
++     * @return 타격 가능 여부
++     */
++    public boolean getCanBeHitByProjectile();
++
++    /**
++     * 투사체가 이 엔티티를 타격할 수 있는지 여부를 설정합니다.
++     *
++     * @param canBeHitByProjectile 타격 가능 여부
++     */
++    public void setCanBeHitByProjectile(boolean canBeHitByProjectile);
++    // Daydream end - Add option to enable projectile collision for interaction entity
+ }

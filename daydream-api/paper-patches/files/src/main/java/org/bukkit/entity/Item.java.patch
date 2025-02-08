@@ -1,0 +1,24 @@
+--- a/src/main/java/org/bukkit/entity/Item.java
++++ b/src/main/java/org/bukkit/entity/Item.java
+@@ -153,4 +_,21 @@
+      */
+     public void setHealth(int health);
+     // Paper end
++
++    // Daydream start - Add custom collision rule to Item entity
++    /**
++     * 사용자 지정 충돌 규칙을 가져옵니다.
++     *
++     * @return 사용자 지정 충돌 규칙
++     */
++    @Nullable
++    public java.util.function.Predicate<org.bukkit.entity.Entity> getCollideRule();
++
++    /**
++     * 사용자 지정 충돌 규칙을 설정합니다.
++     *
++     * @param entityPredicate 사용자 지정 충돌 규칙
++     */
++    public void setCollideRule(@Nullable java.util.function.Predicate<org.bukkit.entity.Entity> entityPredicate);
++    // Daydream end - Add custom collision rule to Item entity
+ }
