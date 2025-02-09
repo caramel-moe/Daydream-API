@@ -1,7 +1,7 @@
 --- a/src/main/java/org/bukkit/entity/HumanEntity.java
 +++ b/src/main/java/org/bukkit/entity/HumanEntity.java
-@@ -66,6 +_,15 @@
-     @NotNull
+@@ -63,6 +_,15 @@
+      */
      public MainHand getMainHand();
  
 +    // Daydream start - Settable Player Arm
@@ -10,16 +10,16 @@
 +     *
 +     * @param mainHand 주로 사용하는 손
 +     */
-+    public void setMainHand(@NotNull MainHand mainHand);
++    public void setMainHand(MainHand mainHand);
 +    // Daydream end - Settable Player Arm
 +
      /**
       * If the player currently has an inventory window open, this method will
       * set a property of that window, such as the state of a progress bar.
-@@ -387,6 +_,32 @@
+@@ -381,6 +_,32 @@
       * @throws IllegalArgumentException if the material is not an item
       */
-     public void setCooldown(@NotNull Material material, int ticks);
+     public void setCooldown(Material material, int ticks);
 +
 +    // Daydream start - Add Group cooldown methods
 +    /**
@@ -28,7 +28,7 @@
 +     * @param cooldownGroup 쿨다운 그룹
 +     * @return 쿨다운을 가지고 있다면 {@code true}
 +     */
-+    public boolean hasCooldown(@NotNull NamespacedKey cooldownGroup);
++    public boolean hasCooldown(NamespacedKey cooldownGroup);
 +
 +    /**
 +     * 이 그룹에 대한 쿨다운 틱을 가져옵니다.
@@ -36,7 +36,7 @@
 +     * @param cooldownGroup 쿨다운 그룹
 +     * @return 남은 쿨다운 틱 시간
 +     */
-+    public int getCooldown(@NotNull NamespacedKey cooldownGroup);
++    public int getCooldown(NamespacedKey cooldownGroup);
 +
 +    /**
 +     * 이 그룹에 대한 쿨다운 시간을 설정합니다.
@@ -44,7 +44,7 @@
 +     * @param cooldownGroup 쿨다운 그룹
 +     * @param ticks 쿨다운 틱 시간
 +     */
-+    public void setCooldown(@NotNull NamespacedKey cooldownGroup, int ticks);
++    public void setCooldown(NamespacedKey cooldownGroup, int ticks);
 +    // Daydream end - Add Group cooldown methods
  
      // Paper start

@@ -1101,10 +1101,10 @@ index 778946665dfef224f766101e831b254efa3604af..712d2548017f6f0aa484f028b2d43dc4
 +    // Daydream end - (feature) Add more Advancement API
  }
 diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
-index 6429d23052cf44a5603008bb5054c1b805cb5826..25a7f46a246367ce25126589fdfc4b354f297d0c 100644
+index 26d0eaa9edf49703db09442711db6763943de203..0a29c19cf8e04daed2c97323ae7cf7804a1970e7 100644
 --- a/src/main/java/org/bukkit/Bukkit.java
 +++ b/src/main/java/org/bukkit/Bukkit.java
-@@ -2510,6 +2510,67 @@ public final class Bukkit {
+@@ -2514,6 +2514,67 @@ public final class Bukkit {
          return server.advancementIterator();
      }
  
@@ -1173,10 +1173,10 @@ index 6429d23052cf44a5603008bb5054c1b805cb5826..25a7f46a246367ce25126589fdfc4b35
       * Creates a new {@link BlockData} instance for the specified Material, with
       * all properties initialized to unspecified defaults.
 diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
-index 48118358de82f0f28a5968ff48e317f7eb1aea9a..ba5d2022c5ebec490b3ac36f5a651acb2cac8559 100644
+index c032c142e6318af7f6cb19e6d59b90079b69b022..8bf8626624a63e996e620823e670a18b0413e340 100644
 --- a/src/main/java/org/bukkit/Server.java
 +++ b/src/main/java/org/bukkit/Server.java
-@@ -2189,6 +2189,57 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
+@@ -2193,6 +2193,57 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
      @NotNull
      Iterator<Advancement> advancementIterator();
  
@@ -1398,12 +1398,12 @@ index f9bc179da071e7bd57cefc50d6763317fb643b74..1da6a39e7decac009527a24e10b25ad1
 +    // Daydream end - (feature) Add more Advancement API
  }
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index 00ee81ed102fabc79d12e4c4971faa78f527ad61..e7805f763ae23971ceea36265502257fb0e0b45c 100644
+index 5950a6a9f06f06f8b019ef2319b8379279cdb194..1a760766bea817fd6b3046ceb00cd468c036c99e 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
-@@ -3380,6 +3380,46 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
-     @NotNull
-     public AdvancementProgress getAdvancementProgress(@NotNull Advancement advancement);
+@@ -3357,6 +3357,43 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+      */
+     public AdvancementProgress getAdvancementProgress(Advancement advancement);
  
 +    // Daydream start - (feature) Add more Advancement API
 +    /**
@@ -1411,7 +1411,6 @@ index 00ee81ed102fabc79d12e4c4971faa78f527ad61..e7805f763ae23971ceea36265502257f
 +     *
 +     * @return 발전 과제 데이터 인스턴스
 +     */
-+    @NotNull
 +    public moe.caramel.daydream.advancement.PlayerAdvancementData getAdvancementData();
 +
 +    /**
@@ -1421,8 +1420,7 @@ index 00ee81ed102fabc79d12e4c4971faa78f527ad61..e7805f763ae23971ceea36265502257f
 +     * @return 직렬화된 발전 과제 데이터
 +     * @param <T> 데이터 타입
 +     */
-+    @NotNull
-+    public <T> T serializeAdvancementProgress(@NotNull moe.caramel.daydream.advancement.AdvancementFormat<T> format);
++    public <T> T serializeAdvancementProgress(moe.caramel.daydream.advancement.AdvancementFormat<T> format);
 +
 +    /**
 +     * 플레이어의 직렬화된 발전 과제 데이터를 가져옵니다.
@@ -1432,8 +1430,7 @@ index 00ee81ed102fabc79d12e4c4971faa78f527ad61..e7805f763ae23971ceea36265502257f
 +     * @return 직렬화된 발전 과제 데이터
 +     * @param <T> 데이터 타입
 +     */
-+    @NotNull
-+    public <T> T serializeAdvancementProgress(@NotNull moe.caramel.daydream.advancement.AdvancementFormat<T> format, @NotNull org.bukkit.NamespacedKey saveSection);
++    public <T> T serializeAdvancementProgress(moe.caramel.daydream.advancement.AdvancementFormat<T> format, org.bukkit.NamespacedKey saveSection);
 +
 +    /**
 +     * 플레이어에게 발전 과제 알림을 전송합니다.
@@ -1442,7 +1439,7 @@ index 00ee81ed102fabc79d12e4c4971faa78f527ad61..e7805f763ae23971ceea36265502257f
 +     * @param title 표시할 제목
 +     * @param frame 표시할 프레임
 +     */
-+    public void sendAdvancementAlert(@NotNull ItemStack item, @NotNull net.kyori.adventure.text.Component title, @NotNull io.papermc.paper.advancement.AdvancementDisplay.Frame frame);
++    public void sendAdvancementAlert(ItemStack item, net.kyori.adventure.text.Component title, io.papermc.paper.advancement.AdvancementDisplay.Frame frame);
 +    // Daydream end - (feature) Add more Advancement API
 +
      /**

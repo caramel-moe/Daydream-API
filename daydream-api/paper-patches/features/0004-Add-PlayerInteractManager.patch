@@ -198,11 +198,11 @@ index 0000000000000000000000000000000000000000..af8d728a2a8dc1ca0e853da5db6dbb51
 +    }
 +}
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index f5d261c01c79b2f6bcbe69e590141a692cf7fae0..00ee81ed102fabc79d12e4c4971faa78f527ad61 100644
+index 01276cc6ba720d8ed593c3820ab26e910d1f3d37..5950a6a9f06f06f8b019ef2319b8379279cdb194 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
-@@ -63,6 +63,16 @@ import org.jetbrains.annotations.Nullable;
-  */
+@@ -64,6 +64,15 @@ import org.jspecify.annotations.Nullable;
+ @NullMarked
  public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginMessageRecipient, net.kyori.adventure.identity.Identified, net.kyori.adventure.bossbar.BossBarViewer, com.destroystokyo.paper.network.NetworkClient { // Paper
  
 +    // Daydream start- (feature) Add PlayerInteractManager
@@ -211,10 +211,9 @@ index f5d261c01c79b2f6bcbe69e590141a692cf7fae0..00ee81ed102fabc79d12e4c4971faa78
 +     *
 +     * @return 플레이어의 상호작용 관리자 인스턴스
 +     */
-+    @NotNull
 +    moe.caramel.daydream.player.InteractManager getInteractManager();
 +    // Daydream end- (feature) Add PlayerInteractManager
 +
      // Paper start
      @Override
-     default net.kyori.adventure.identity.@NotNull Identity identity() {
+     default net.kyori.adventure.identity.Identity identity() {
