@@ -142,10 +142,10 @@ index 4ab29ec24aeb31af9168cc158033d599693d7729..2f3937e00bf83de7467c391abe589d5a
 +    @NotNull moe.caramel.daydream.world.DamageContext getDamageContext(@NotNull Object damageSource); // Daydream - (feature) Add more Damage API
  }
 diff --git a/src/main/java/org/bukkit/damage/DamageSource.java b/src/main/java/org/bukkit/damage/DamageSource.java
-index 7635610e56c051ce3c8a876911ba5cd0a9248496..1ba69a8c73a58b53d23bcc395fb8c92c9041c8ae 100644
+index 54fa3ebe541aa45829c672ea1a96296b123da48e..66574f2ccb4b16332dcd9e235021a7fcf6cd60a8 100644
 --- a/src/main/java/org/bukkit/damage/DamageSource.java
 +++ b/src/main/java/org/bukkit/damage/DamageSource.java
-@@ -13,6 +13,44 @@ import org.jetbrains.annotations.Nullable;
+@@ -13,6 +13,23 @@ import org.jetbrains.annotations.Nullable;
  @ApiStatus.Experimental
  public interface DamageSource {
  
@@ -164,27 +164,6 @@ index 7635610e56c051ce3c8a876911ba5cd0a9248496..1ba69a8c73a58b53d23bcc395fb8c92c
 +     * @return 크리티컬 대미지 여부
 +     */
 +    boolean isCritical();
-+
-+    /**
-+     * 검에 의한 쓸기 공격 여부를 가져옵니다.
-+     *
-+     * @return 쓸기 공격 여부
-+     */
-+    boolean isSweep();
-+
-+    /**
-+     * 눈골렘이 녹아 발생한 대미지인지 확인합니다.
-+     *
-+     * @return 눈골렘이 녹아 발생한 대미지 여부
-+     */
-+    boolean isMelting();
-+
-+    /**
-+     * 독 포션에 의한 대미지인지 확인합니다.
-+     *
-+     * @return 독 포션에 의한 대미지 여부
-+     */
-+    boolean isPoison();
 +    // Daydream end - (feature) Add more Damage API
 +
      /**

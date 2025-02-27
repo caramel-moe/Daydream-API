@@ -972,7 +972,7 @@ index 0000000000000000000000000000000000000000..257c535f5b0802f2289df1ee3eb2b2cf
 +    SetPlayerTeamPacket createTeamJoinOrLeavePacket(String teamName, Collection<String> players, boolean join);
 +}
 diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
-index 0a29c19cf8e04daed2c97323ae7cf7804a1970e7..cad115a87bf3341dbe47cabf8c443f23c158f449 100644
+index 3ec6eff4eeac6df1ebb88799083606e5c7320332..ca8d342043359768d052d2ec0812cda426e0d65d 100644
 --- a/src/main/java/org/bukkit/Bukkit.java
 +++ b/src/main/java/org/bukkit/Bukkit.java
 @@ -3100,6 +3100,20 @@ public final class Bukkit {
@@ -993,9 +993,9 @@ index 0a29c19cf8e04daed2c97323ae7cf7804a1970e7..cad115a87bf3341dbe47cabf8c443f23
 +    }
 +    // Daydream end - (feature) Add Packet API
 +
-     @NotNull
-     public static Server.Spigot spigot() {
-         return server.spigot();
+     /**
+      * @deprecated All methods on this class have been deprecated, see the individual methods for replacements.
+      */
 diff --git a/src/main/java/org/bukkit/ChatColor.java b/src/main/java/org/bukkit/ChatColor.java
 index 918a045165cdcde264bc24082b7afebb407271de..893f1e80871e67d427c379410a83ecd88bc2b8ac 100644
 --- a/src/main/java/org/bukkit/ChatColor.java
@@ -1012,10 +1012,10 @@ index 918a045165cdcde264bc24082b7afebb407271de..893f1e80871e67d427c379410a83ecd8
      /**
       * Represents black
 diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
-index 8bf8626624a63e996e620823e670a18b0413e340..362af8763909b8a06017e246cbd725462faeeacb 100644
+index f2728d1405b51cc557a167076395c92e157f37a5..207901b74916f2c9d1de4f7007ec3e5a3fa8a370 100644
 --- a/src/main/java/org/bukkit/Server.java
 +++ b/src/main/java/org/bukkit/Server.java
-@@ -2766,4 +2766,16 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
+@@ -2806,4 +2806,16 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
      @NotNull
      moe.caramel.daydream.sidebar.SidebarProcessor sidebarProcessor();
      // Daydream end - Add Individual Sidebar API
@@ -1033,10 +1033,10 @@ index 8bf8626624a63e996e620823e670a18b0413e340..362af8763909b8a06017e246cbd72546
 +    // Daydream end - (feature) Add Packet API
  }
 diff --git a/src/main/java/org/bukkit/World.java b/src/main/java/org/bukkit/World.java
-index d95349839e47465826bab456d7fd414a2a96d40d..294aa555e0bc88390bbab070466abc70940cfd5f 100644
+index 9c733d81f5f45db6d85f3e4137b042a18b6a6c2c..8ca48edbef4c6a62eaf6c6f98854cfc7d6449a05 100644
 --- a/src/main/java/org/bukkit/World.java
 +++ b/src/main/java/org/bukkit/World.java
-@@ -1627,6 +1627,17 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
+@@ -1650,6 +1650,17 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      public Entity getEntity(@NotNull java.util.UUID uuid);
      // Paper end
  
@@ -1055,7 +1055,7 @@ index d95349839e47465826bab456d7fd414a2a96d40d..294aa555e0bc88390bbab070466abc70
       * Returns a list of entities within a bounding box centered around a
       * Location.
 diff --git a/src/main/java/org/bukkit/entity/Entity.java b/src/main/java/org/bukkit/entity/Entity.java
-index 6fba6948e937b079bedf3cc08d7659cf50c927d5..6e65ebccf9c037dba1179dfb697ce56580589d3d 100644
+index 3e79bed26e80cce9d6e8d3dc480d64d832dba330..44f29fec99f831c2f36c957c46256e622eb7fd15 100644
 --- a/src/main/java/org/bukkit/entity/Entity.java
 +++ b/src/main/java/org/bukkit/entity/Entity.java
 @@ -591,6 +591,19 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
@@ -1079,12 +1079,12 @@ index 6fba6948e937b079bedf3cc08d7659cf50c927d5..6e65ebccf9c037dba1179dfb697ce565
       * Gets the amount of ticks this entity has lived for.
       * <p>
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index 1a760766bea817fd6b3046ceb00cd468c036c99e..581082734f0741797086fe43921bea3d0fee845c 100644
+index d31af376315e7e495e92fb915758c4a4a4f07794..8b92924a193cffdf3a203683087cd960cc3693d9 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
 @@ -1088,6 +1088,31 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
       */
-     public void sendEquipmentChange(LivingEntity entity, Map<EquipmentSlot, ItemStack> items);
+     public void sendEquipmentChange(LivingEntity entity, Map<EquipmentSlot, @Nullable ItemStack> items);
  
 +    // Daydream start - (feature) Add Packet API
 +    /**

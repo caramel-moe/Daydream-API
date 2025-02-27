@@ -1067,7 +1067,7 @@ index 0000000000000000000000000000000000000000..b21df77a52d31e7e0c38b33a6d77808a
 +    }
 +}
 diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
-index 79237fa43eb425a26d03724caff6af0f736ba9db..6429d23052cf44a5603008bb5054c1b805cb5826 100644
+index 5677883497844477c50133d14ca0c95a2b281007..2f3edce4e3e17d4a17d817da563a442ede0a629d 100644
 --- a/src/main/java/org/bukkit/Bukkit.java
 +++ b/src/main/java/org/bukkit/Bukkit.java
 @@ -1106,6 +1106,41 @@ public final class Bukkit {
@@ -1113,7 +1113,7 @@ index 79237fa43eb425a26d03724caff6af0f736ba9db..6429d23052cf44a5603008bb5054c1b8
       * Writes loaded players to disk.
       */
 diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
-index bc6f0a8f77d4d494bfec5f3e9c47fabe41037a6b..48118358de82f0f28a5968ff48e317f7eb1aea9a 100644
+index 58e369a965001f118940372cbfed09d1753fce95..4f07da031693620534edfdfadf143cf0b867022d 100644
 --- a/src/main/java/org/bukkit/Server.java
 +++ b/src/main/java/org/bukkit/Server.java
 @@ -980,6 +980,35 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
@@ -1180,11 +1180,11 @@ index 83193bfd215d9e0c6ed896480b2d4e35b0e4333d..faf4524f47a074c61962f62b948a0cf4
       * Sets the list of aliases to request on registration for this command.
       * This is not effective outside of defining aliases in the {@link
 diff --git a/src/main/java/org/bukkit/plugin/java/JavaPlugin.java b/src/main/java/org/bukkit/plugin/java/JavaPlugin.java
-index a04100646040c0342f219e489a0a6b8c46f219e5..97e2c3ad70a6d59ced5f9b7d358c0c95ae73b36e 100644
+index fa65a03ec8fa3b57086aae3b9fa317c39d5bbba3..cd38488118444fc1fb3377656ad1b4e5bf1f5bae 100644
 --- a/src/main/java/org/bukkit/plugin/java/JavaPlugin.java
 +++ b/src/main/java/org/bukkit/plugin/java/JavaPlugin.java
-@@ -362,6 +362,38 @@ public abstract class JavaPlugin extends PluginBase {
-         }
+@@ -440,6 +440,36 @@ public abstract class JavaPlugin extends PluginBase {
+         });
      }
  
 +    // Daydream start - (feature) Add Brigadier Command API
@@ -1193,7 +1193,7 @@ index a04100646040c0342f219e489a0a6b8c46f219e5..97e2c3ad70a6d59ced5f9b7d358c0c95
 +     *
 +     * @param command 명령어 노드
 +     */
-+    public void registerCommand(@NotNull moe.caramel.daydream.brigadier.BrigadierCommand command) {
++    public void registerCommand(final moe.caramel.daydream.brigadier.BrigadierCommand command) {
 +        this.getServer().registerCommand(this, command);
 +    }
 +
@@ -1203,8 +1203,7 @@ index a04100646040c0342f219e489a0a6b8c46f219e5..97e2c3ad70a6d59ced5f9b7d358c0c95
 +     * @param commands 명령어 레이블 배열
 +     * @return 제거에 성공한 명령어 목록
 +     */
-+    @NotNull
-+    public List<String> unregisterCommands(@NotNull String... commands) {
++    public List<String> unregisterCommands(final String... commands) {
 +        return this.getServer().unregisterCommands(this, commands);
 +    }
 +
@@ -1213,7 +1212,6 @@ index a04100646040c0342f219e489a0a6b8c46f219e5..97e2c3ad70a6d59ced5f9b7d358c0c95
 +     *
 +     * @return 제거에 성공한 명령어 목록
 +     */
-+    @NotNull
 +    public List<String> unregisterAllCommands() {
 +        return this.getServer().unregisterAllCommands(this);
 +    }
