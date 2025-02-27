@@ -111,9 +111,11 @@ extends <a href="../plugin/lifecycle/event/registrar/Registrar.html" title="inte
  <pre><code>
  class YourBootstrapClass implements PluginBootstrap {
 
+     public static final TagKey&lt;ItemType&gt; AXE_PICKAXE = ItemTypeTagKeys.create(Key.key("papermc:axe_pickaxe"));
+
      @Override
      public void bootstrap(BootstrapContext context) {
-         LifecycleEventManager&lt;BootstrapContext&gt; manager = context.getLifecycleManager();
+         final LifecycleEventManager&lt;BootstrapContext&gt; manager = context.getLifecycleManager();
          manager.registerEventHandler(LifecycleEvents.TAGS.preFlatten(RegistryKey.ITEM), event -&gt; {
              final PreFlattenTagRegistrar&lt;ItemType&gt; registrar = event.registrar();
              registrar.setTag(AXE_PICKAXE, Set.of(

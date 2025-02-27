@@ -628,6 +628,21 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color">
 <div class="block">Gets the item being damaged.</div>
 </div>
+<div class="col-first odd-row-color"><code><a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a></code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">EntityAttemptSmashAttackEvent.</span><code><a href="../../../../io/papermc/paper/event/entity/EntityAttemptSmashAttackEvent.html#getWeapon()" class="member-name-link">getWeapon</a>()</code></div>
+<div class="col-last odd-row-color">
+<div class="block">Yields a copy of the itemstack used in the smash attack attempt.</div>
+</div>
+<div class="col-first even-row-color"><code><a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a></code></div>
+<div class="col-second even-row-color"><span class="type-name-label">EntityEquipmentChangedEvent.EquipmentChange.</span><code><a href="../../../../io/papermc/paper/event/entity/EntityEquipmentChangedEvent.EquipmentChange.html#newItem()" class="member-name-link">newItem</a>()</code></div>
+<div class="col-last even-row-color">
+<div class="block">Gets the new item that is replacing the existing item.</div>
+</div>
+<div class="col-first odd-row-color"><code><a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a></code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">EntityEquipmentChangedEvent.EquipmentChange.</span><code><a href="../../../../io/papermc/paper/event/entity/EntityEquipmentChangedEvent.EquipmentChange.html#oldItem()" class="member-name-link">oldItem</a>()</code></div>
+<div class="col-last odd-row-color">
+<div class="block">Gets the existing item that is being replaced.</div>
+</div>
 </div>
 <div class="caption"><span>Constructors in <a href="../../../../io/papermc/paper/event/entity/package-summary.html">io.papermc.paper.event.entity</a> with parameters of type <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a></span></div>
 <div class="summary-table three-column-summary">
@@ -635,28 +650,34 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-second">Constructor</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color"><code>&nbsp;</code></div>
-<div class="col-second even-row-color"><code><a href="../../../../io/papermc/paper/event/entity/EntityCompostItemEvent.html#%3Cinit%3E(org.bukkit.entity.Entity,org.bukkit.block.Block,org.bukkit.inventory.ItemStack,boolean)" class="member-name-link">EntityCompostItemEvent</a><wbr>(<a href="../../entity/Entity.html" title="interface in org.bukkit.entity">Entity</a>&nbsp;entity,
+<div class="col-second even-row-color"><code><a href="../../../../io/papermc/paper/event/entity/EntityAttemptSmashAttackEvent.html#%3Cinit%3E(org.bukkit.entity.LivingEntity,org.bukkit.entity.LivingEntity,org.bukkit.inventory.ItemStack,boolean)" class="member-name-link">EntityAttemptSmashAttackEvent</a><wbr>(<a href="../../entity/LivingEntity.html" title="interface in org.bukkit.entity">LivingEntity</a>&nbsp;attacker,
+ <a href="../../entity/LivingEntity.html" title="interface in org.bukkit.entity">LivingEntity</a>&nbsp;target,
+ <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;weapon,
+ boolean&nbsp;originalResult)</code></div>
+<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-first odd-row-color"><code>&nbsp;</code></div>
+<div class="col-second odd-row-color"><code><a href="../../../../io/papermc/paper/event/entity/EntityCompostItemEvent.html#%3Cinit%3E(org.bukkit.entity.Entity,org.bukkit.block.Block,org.bukkit.inventory.ItemStack,boolean)" class="member-name-link">EntityCompostItemEvent</a><wbr>(<a href="../../entity/Entity.html" title="interface in org.bukkit.entity">Entity</a>&nbsp;entity,
  <a href="../../block/Block.html" title="interface in org.bukkit.block">Block</a>&nbsp;composter,
  <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;item,
  boolean&nbsp;willRaiseLevel)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
-<div class="col-first odd-row-color"><code>&nbsp;</code></div>
-<div class="col-second odd-row-color"><code><a href="../../../../io/papermc/paper/event/entity/EntityDamageItemEvent.html#%3Cinit%3E(org.bukkit.entity.Entity,org.bukkit.inventory.ItemStack,int)" class="member-name-link">EntityDamageItemEvent</a><wbr>(<a href="../../entity/Entity.html" title="interface in org.bukkit.entity">Entity</a>&nbsp;entity,
- <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;item,
- int&nbsp;damage)</code></div>
 <div class="col-last odd-row-color">&nbsp;</div>
 <div class="col-first even-row-color"><code>&nbsp;</code></div>
-<div class="col-second even-row-color"><code><a href="../../../../io/papermc/paper/event/entity/EntityFertilizeEggEvent.html#%3Cinit%3E(org.bukkit.entity.LivingEntity,org.bukkit.entity.LivingEntity,org.bukkit.entity.Player,org.bukkit.inventory.ItemStack,int)" class="member-name-link">EntityFertilizeEggEvent</a><wbr>(<a href="../../entity/LivingEntity.html" title="interface in org.bukkit.entity">LivingEntity</a>&nbsp;mother,
+<div class="col-second even-row-color"><code><a href="../../../../io/papermc/paper/event/entity/EntityDamageItemEvent.html#%3Cinit%3E(org.bukkit.entity.Entity,org.bukkit.inventory.ItemStack,int)" class="member-name-link">EntityDamageItemEvent</a><wbr>(<a href="../../entity/Entity.html" title="interface in org.bukkit.entity">Entity</a>&nbsp;entity,
+ <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;item,
+ int&nbsp;damage)</code></div>
+<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-first odd-row-color"><code>&nbsp;</code></div>
+<div class="col-second odd-row-color"><code><a href="../../../../io/papermc/paper/event/entity/EntityFertilizeEggEvent.html#%3Cinit%3E(org.bukkit.entity.LivingEntity,org.bukkit.entity.LivingEntity,org.bukkit.entity.Player,org.bukkit.inventory.ItemStack,int)" class="member-name-link">EntityFertilizeEggEvent</a><wbr>(<a href="../../entity/LivingEntity.html" title="interface in org.bukkit.entity">LivingEntity</a>&nbsp;mother,
  <a href="../../entity/LivingEntity.html" title="interface in org.bukkit.entity">LivingEntity</a>&nbsp;father,
  <a href="https://jspecify.dev/docs/api/org/jspecify/annotations/Nullable.html" title="class or interface in org.jspecify.annotations" class="external-link">@Nullable</a> <a href="../../entity/Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;breeder,
  <a href="https://jspecify.dev/docs/api/org/jspecify/annotations/Nullable.html" title="class or interface in org.jspecify.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;bredWith,
  int&nbsp;experience)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
-<div class="col-first odd-row-color"><code>&nbsp;</code></div>
-<div class="col-second odd-row-color"><code><a href="../../../../io/papermc/paper/event/entity/EntityLoadCrossbowEvent.html#%3Cinit%3E(org.bukkit.entity.LivingEntity,org.bukkit.inventory.ItemStack,org.bukkit.inventory.EquipmentSlot)" class="member-name-link">EntityLoadCrossbowEvent</a><wbr>(<a href="../../entity/LivingEntity.html" title="interface in org.bukkit.entity">LivingEntity</a>&nbsp;entity,
+<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-first even-row-color"><code>&nbsp;</code></div>
+<div class="col-second even-row-color"><code><a href="../../../../io/papermc/paper/event/entity/EntityLoadCrossbowEvent.html#%3Cinit%3E(org.bukkit.entity.LivingEntity,org.bukkit.inventory.ItemStack,org.bukkit.inventory.EquipmentSlot)" class="member-name-link">EntityLoadCrossbowEvent</a><wbr>(<a href="../../entity/LivingEntity.html" title="interface in org.bukkit.entity">LivingEntity</a>&nbsp;entity,
  <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;crossbow,
  <a href="../EquipmentSlot.html" title="enum class in org.bukkit.inventory">EquipmentSlot</a>&nbsp;hand)</code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-last even-row-color">&nbsp;</div>
 </div>
 </section>
 </li>
@@ -1359,15 +1380,25 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/26.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a></code></div>
-<div class="col-second even-row-color"><span class="type-name-label">BrushableBlock.</span><code><a href="../../block/BrushableBlock.html#getItem()" class="member-name-link">getItem</a>()</code></div>
+<div class="col-first even-row-color"><code><a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a></code></div>
+<div class="col-second even-row-color"><span class="type-name-label">Vault.</span><code><a href="../../block/Vault.html#getDisplayedItem()" class="member-name-link">getDisplayedItem</a>()</code></div>
 <div class="col-last even-row-color">
+<div class="block">Gets the item currently being displayed inside this vault.</div>
+</div>
+<div class="col-first odd-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/26.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a></code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">BrushableBlock.</span><code><a href="../../block/BrushableBlock.html#getItem()" class="member-name-link">getItem</a>()</code></div>
+<div class="col-last odd-row-color">
 <div class="block">Get the item which will be revealed when the sand is fully brushed away
  and uncovered.</div>
 </div>
-<div class="col-first odd-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/26.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a></code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">Campfire.</span><code><a href="../../block/Campfire.html#getItem(int)" class="member-name-link">getItem</a><wbr>(int&nbsp;index)</code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-first even-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/26.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a></code></div>
+<div class="col-second even-row-color"><span class="type-name-label">Campfire.</span><code><a href="../../block/Campfire.html#getItem(int)" class="member-name-link">getItem</a><wbr>(int&nbsp;index)</code></div>
+<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-first odd-row-color"><code><a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a></code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">Vault.</span><code><a href="../../block/Vault.html#getKeyItem()" class="member-name-link">getKeyItem</a>()</code></div>
+<div class="col-last odd-row-color">
+<div class="block">Gets the <a href="../ItemStack.html" title="class in org.bukkit.inventory"><code>ItemStack</code></a> that players must use to unlock this vault.</div>
+</div>
 <div class="col-first even-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/26.0.1/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a></code></div>
 <div class="col-second even-row-color"><span class="type-name-label">Jukebox.</span><code><a href="../../block/Jukebox.html#getRecord()" class="member-name-link">getRecord</a>()</code></div>
 <div class="col-last even-row-color">
@@ -1501,15 +1532,25 @@ loadScripts(document, 'script');</script>
 </div>
 </div>
 <div class="col-first even-row-color"><code>void</code></div>
-<div class="col-second even-row-color"><span class="type-name-label">BrushableBlock.</span><code><a href="../../block/BrushableBlock.html#setItem(org.bukkit.inventory.ItemStack)" class="member-name-link">setItem</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/26.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;item)</code></div>
+<div class="col-second even-row-color"><span class="type-name-label">Vault.</span><code><a href="../../block/Vault.html#setDisplayedItem(org.bukkit.inventory.ItemStack)" class="member-name-link">setDisplayedItem</a><wbr>(<a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;displayedItem)</code></div>
 <div class="col-last even-row-color">
+<div class="block">Sets the item to display inside this vault until the next cycle.</div>
+</div>
+<div class="col-first odd-row-color"><code>void</code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">BrushableBlock.</span><code><a href="../../block/BrushableBlock.html#setItem(org.bukkit.inventory.ItemStack)" class="member-name-link">setItem</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/26.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;item)</code></div>
+<div class="col-last odd-row-color">
 <div class="block">Sets the item which will be revealed when the sand is fully brushed away
  and uncovered.</div>
 </div>
-<div class="col-first odd-row-color"><code>void</code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">Campfire.</span><code><a href="../../block/Campfire.html#setItem(int,org.bukkit.inventory.ItemStack)" class="member-name-link">setItem</a><wbr>(int&nbsp;index,
+<div class="col-first even-row-color"><code>void</code></div>
+<div class="col-second even-row-color"><span class="type-name-label">Campfire.</span><code><a href="../../block/Campfire.html#setItem(int,org.bukkit.inventory.ItemStack)" class="member-name-link">setItem</a><wbr>(int&nbsp;index,
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/26.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;item)</code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-first odd-row-color"><code>void</code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">Vault.</span><code><a href="../../block/Vault.html#setKeyItem(org.bukkit.inventory.ItemStack)" class="member-name-link">setKeyItem</a><wbr>(<a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;key)</code></div>
+<div class="col-last odd-row-color">
+<div class="block">Sets the <a href="../ItemStack.html" title="class in org.bukkit.inventory"><code>ItemStack</code></a> that players must use to unlock this vault.</div>
+</div>
 <div class="col-first even-row-color"><code>void</code></div>
 <div class="col-second even-row-color"><span class="type-name-label">Lockable.</span><code><a href="../../block/Lockable.html#setLockItem(org.bukkit.inventory.ItemStack)" class="member-name-link">setLockItem</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/26.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;key)</code></div>
 <div class="col-last even-row-color">
@@ -2027,7 +2068,7 @@ loadScripts(document, 'script');</script>
 </div>
 <div class="col-first even-row-color"><code>void</code></div>
 <div class="col-second even-row-color"><span class="type-name-label">Player.</span><code><a href="../../entity/Player.html#sendEquipmentChange(org.bukkit.entity.LivingEntity,java.util.Map)" class="member-name-link">sendEquipmentChange</a><wbr>(<a href="../../entity/LivingEntity.html" title="interface in org.bukkit.entity">LivingEntity</a>&nbsp;entity,
- <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="../EquipmentSlot.html" title="enum class in org.bukkit.inventory">EquipmentSlot</a>,<wbr><a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&gt;&nbsp;items)</code></div>
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="../EquipmentSlot.html" title="enum class in org.bukkit.inventory">EquipmentSlot</a>,<wbr><a href="https://jspecify.dev/docs/api/org/jspecify/annotations/Nullable.html" title="class or interface in org.jspecify.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&gt;&nbsp;items)</code></div>
 <div class="col-last even-row-color">
 <div class="block">Send multiple equipment changes for the target entity.</div>
 </div>

@@ -173,23 +173,8 @@ loadScripts(document, 'script');</script>
 <div class="block">Get if this damage is indirect.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#isMelting()" class="member-name-link">isMelting</a>()</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#scalesWithDifficulty()" class="member-name-link">scalesWithDifficulty</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">눈골렘이 녹아 발생한 대미지인지 확인합니다.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#isPoison()" class="member-name-link">isPoison</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">독 포션에 의한 대미지인지 확인합니다.</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#isSweep()" class="member-name-link">isSweep</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">검에 의한 쓸기 공격 여부를 가져옵니다.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#scalesWithDifficulty()" class="member-name-link">scalesWithDifficulty</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Gets if this source of damage scales with difficulty.</div>
 </div>
 </div>
@@ -226,39 +211,6 @@ loadScripts(document, 'script');</script>
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>크리티컬 대미지 여부</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="isSweep()">
-<h3>isSweep</h3>
-<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">isSweep</span>()</div>
-<div class="block">검에 의한 쓸기 공격 여부를 가져옵니다.</div>
-<dl class="notes">
-<dt>Returns:</dt>
-<dd>쓸기 공격 여부</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="isMelting()">
-<h3>isMelting</h3>
-<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">isMelting</span>()</div>
-<div class="block">눈골렘이 녹아 발생한 대미지인지 확인합니다.</div>
-<dl class="notes">
-<dt>Returns:</dt>
-<dd>눈골렘이 녹아 발생한 대미지 여부</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="isPoison()">
-<h3>isPoison</h3>
-<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">isPoison</span>()</div>
-<div class="block">독 포션에 의한 대미지인지 확인합니다.</div>
-<dl class="notes">
-<dt>Returns:</dt>
-<dd>독 포션에 의한 대미지 여부</dd>
 </dl>
 </section>
 </li>
@@ -317,6 +269,9 @@ loadScripts(document, 'script');</script>
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>the location, or null if none</dd>
+<dt>API Note:</dt>
+<dd>the world of the location might be null for positioned-only damage source
+ not caused by any entity</dd>
 </dl>
 </section>
 </li>
@@ -336,6 +291,9 @@ loadScripts(document, 'script');</script>
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>the source of the location or null.</dd>
+<dt>API Note:</dt>
+<dd>the world of the location might be null for positioned-only damage source
+ not caused by any entity</dd>
 </dl>
 </section>
 </li>

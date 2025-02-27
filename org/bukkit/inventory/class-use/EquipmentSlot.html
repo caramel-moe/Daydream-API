@@ -138,6 +138,11 @@ loadScripts(document, 'script');</script>
 <div class="col-last odd-row-color">
 <div class="block">Returns the hand used to perform this interaction.</div>
 </div>
+<div class="col-first even-row-color"><code><a href="../EquipmentSlot.html" title="enum class in org.bukkit.inventory">EquipmentSlot</a></code></div>
+<div class="col-second even-row-color"><span class="type-name-label">PlayerArmorChangeEvent.</span><code><a href="../../../../com/destroystokyo/paper/event/player/PlayerArmorChangeEvent.html#getSlot()" class="member-name-link">getSlot</a>()</code></div>
+<div class="col-last even-row-color">
+<div class="block">Gets the slot being altered.</div>
+</div>
 </div>
 <div class="caption"><span>Constructors in <a href="../../../../com/destroystokyo/paper/event/player/package-summary.html">com.destroystokyo.paper.event.player</a> with parameters of type <a href="../EquipmentSlot.html" title="enum class in org.bukkit.inventory">EquipmentSlot</a></span></div>
 <div class="summary-table three-column-summary">
@@ -230,6 +235,17 @@ loadScripts(document, 'script');</script>
 <div class="block">Gets the hand from which the crossbow was loaded.</div>
 </div>
 </div>
+<div class="caption"><span>Methods in <a href="../../../../io/papermc/paper/event/entity/package-summary.html">io.papermc.paper.event.entity</a> that return types with arguments of type <a href="../EquipmentSlot.html" title="enum class in org.bukkit.inventory">EquipmentSlot</a></span></div>
+<div class="summary-table three-column-summary">
+<div class="table-header col-first">Modifier and Type</div>
+<div class="table-header col-second">Method</div>
+<div class="table-header col-last">Description</div>
+<div class="col-first even-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/26.0.1/org/jetbrains/annotations/Unmodifiable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Unmodifiable</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a><wbr>&lt;<a href="../EquipmentSlot.html" title="enum class in org.bukkit.inventory">EquipmentSlot</a>,<wbr><a href="../../../../io/papermc/paper/event/entity/EntityEquipmentChangedEvent.EquipmentChange.html" title="interface in io.papermc.paper.event.entity">EntityEquipmentChangedEvent.EquipmentChange</a>&gt;</code></div>
+<div class="col-second even-row-color"><span class="type-name-label">EntityEquipmentChangedEvent.</span><code><a href="../../../../io/papermc/paper/event/entity/EntityEquipmentChangedEvent.html#getEquipmentChanges()" class="member-name-link">getEquipmentChanges</a>()</code></div>
+<div class="col-last even-row-color">
+<div class="block">Gets a map of changed slots to their respective equipment changes.</div>
+</div>
+</div>
 <div class="caption"><span>Constructors in <a href="../../../../io/papermc/paper/event/entity/package-summary.html">io.papermc.paper.event.entity</a> with parameters of type <a href="../EquipmentSlot.html" title="enum class in org.bukkit.inventory">EquipmentSlot</a></span></div>
 <div class="summary-table three-column-summary">
 <div class="table-header col-first">Modifier</div>
@@ -239,6 +255,16 @@ loadScripts(document, 'script');</script>
 <div class="col-second even-row-color"><code><a href="../../../../io/papermc/paper/event/entity/EntityLoadCrossbowEvent.html#%3Cinit%3E(org.bukkit.entity.LivingEntity,org.bukkit.inventory.ItemStack,org.bukkit.inventory.EquipmentSlot)" class="member-name-link">EntityLoadCrossbowEvent</a><wbr>(<a href="../../entity/LivingEntity.html" title="interface in org.bukkit.entity">LivingEntity</a>&nbsp;entity,
  <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&nbsp;crossbow,
  <a href="../EquipmentSlot.html" title="enum class in org.bukkit.inventory">EquipmentSlot</a>&nbsp;hand)</code></div>
+<div class="col-last even-row-color">&nbsp;</div>
+</div>
+<div class="caption"><span>Constructor parameters in <a href="../../../../io/papermc/paper/event/entity/package-summary.html">io.papermc.paper.event.entity</a> with type arguments of type <a href="../EquipmentSlot.html" title="enum class in org.bukkit.inventory">EquipmentSlot</a></span></div>
+<div class="summary-table three-column-summary">
+<div class="table-header col-first">Modifier</div>
+<div class="table-header col-second">Constructor</div>
+<div class="table-header col-last">Description</div>
+<div class="col-first even-row-color"><code>&nbsp;</code></div>
+<div class="col-second even-row-color"><code><a href="../../../../io/papermc/paper/event/entity/EntityEquipmentChangedEvent.html#%3Cinit%3E(org.bukkit.entity.LivingEntity,java.util.Map)" class="member-name-link">EntityEquipmentChangedEvent</a><wbr>(<a href="../../entity/LivingEntity.html" title="interface in org.bukkit.entity">LivingEntity</a>&nbsp;entity,
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="../EquipmentSlot.html" title="enum class in org.bukkit.inventory">EquipmentSlot</a>,<wbr><a href="../../../../io/papermc/paper/event/entity/EntityEquipmentChangedEvent.EquipmentChange.html" title="interface in io.papermc.paper.event.entity">EntityEquipmentChangedEvent.EquipmentChange</a>&gt;&nbsp;equipmentChanges)</code></div>
 <div class="col-last even-row-color">&nbsp;</div>
 </div>
 </section>
@@ -585,7 +611,7 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color"><code>void</code></div>
 <div class="col-second even-row-color"><span class="type-name-label">Player.</span><code><a href="../../entity/Player.html#sendEquipmentChange(org.bukkit.entity.LivingEntity,java.util.Map)" class="member-name-link">sendEquipmentChange</a><wbr>(<a href="../../entity/LivingEntity.html" title="interface in org.bukkit.entity">LivingEntity</a>&nbsp;entity,
- <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="../EquipmentSlot.html" title="enum class in org.bukkit.inventory">EquipmentSlot</a>,<wbr><a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&gt;&nbsp;items)</code></div>
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="../EquipmentSlot.html" title="enum class in org.bukkit.inventory">EquipmentSlot</a>,<wbr><a href="https://jspecify.dev/docs/api/org/jspecify/annotations/Nullable.html" title="class or interface in org.jspecify.annotations" class="external-link">@Nullable</a> <a href="../ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&gt;&nbsp;items)</code></div>
 <div class="col-last even-row-color">
 <div class="block">Send multiple equipment changes for the target entity.</div>
 </div>

@@ -96,11 +96,16 @@ loadScripts(document, 'script');</script>
 <section class="class-description" id="class-description">
 <hr>
 <div class="type-signature"><span class="annotations"><a href="https://jspecify.dev/docs/api/org/jspecify/annotations/NullMarked.html" title="class or interface in org.jspecify.annotations" class="external-link">@NullMarked</a>
+<a href="https://javadoc.io/doc/org.jetbrains/annotations/26.0.1/org/jetbrains/annotations/ApiStatus.Obsolete.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Obsolete</a>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/26.0.1/org/jetbrains/annotations/ApiStatus.Obsolete.html#since--" title="class or interface in org.jetbrains.annotations" class="external-link">since</a>="1.21.4")
 </span><span class="modifiers">public class </span><span class="element-name type-name-label">PlayerArmorChangeEvent</span>
 <span class="extends-implements">extends <a href="../../../../../org/bukkit/event/player/PlayerEvent.html" title="class in org.bukkit.event.player">PlayerEvent</a></span></div>
 <div class="block">Called when the player themselves change their armor items
  <p>
  Not currently called for environmental factors though it <strong>MAY BE IN THE FUTURE</strong></div>
+<dl class="notes">
+<dt>API Note:</dt>
+<dd>Use <a href="../../../../../io/papermc/paper/event/entity/EntityEquipmentChangedEvent.html" title="class in io.papermc.paper.event.entity"><code>EntityEquipmentChangedEvent</code></a> for all entity equipment changes</dd>
+</dl>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -115,7 +120,11 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color"><code>static enum&nbsp;</code></div>
 <div class="col-second even-row-color"><code><a href="PlayerArmorChangeEvent.SlotType.html" class="type-name-link" title="enum class in com.destroystokyo.paper.event.player">PlayerArmorChangeEvent.SlotType</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block"><span class="deprecated-label">Deprecated.</span>
+<div class="deprecation-comment"><a href="PlayerArmorChangeEvent.SlotType.html" title="enum class in com.destroystokyo.paper.event.player"><code>PlayerArmorChangeEvent.SlotType</code></a> does not accurately represent what item types are valid in each slot.</div>
+</div>
+</div>
 </div>
 <div class="inherited-list">
 <h2 id="nested-classes-inherited-from-class-org.bukkit.event.Event">Nested classes/interfaces inherited from class&nbsp;org.bukkit.event.<a href="../../../../../org/bukkit/event/Event.html" title="class in org.bukkit.event">Event</a></h2>
@@ -152,7 +161,7 @@ loadScripts(document, 'script');</script>
 <section class="method-summary" id="method-summary">
 <h2>Method Summary</h2>
 <div id="method-summary-table">
-<div class="table-tabs" role="tablist" aria-orientation="horizontal"><button id="method-summary-table-tab0" role="tab" aria-selected="true" aria-controls="method-summary-table.tabpanel" tabindex="0" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table', 3)" class="active-table-tab">All Methods</button><button id="method-summary-table-tab1" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab1', 3)" class="table-tab">Static Methods</button><button id="method-summary-table-tab2" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab2', 3)" class="table-tab">Instance Methods</button><button id="method-summary-table-tab4" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab4', 3)" class="table-tab">Concrete Methods</button></div>
+<div class="table-tabs" role="tablist" aria-orientation="horizontal"><button id="method-summary-table-tab0" role="tab" aria-selected="true" aria-controls="method-summary-table.tabpanel" tabindex="0" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table', 3)" class="active-table-tab">All Methods</button><button id="method-summary-table-tab1" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab1', 3)" class="table-tab">Static Methods</button><button id="method-summary-table-tab2" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab2', 3)" class="table-tab">Instance Methods</button><button id="method-summary-table-tab4" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab4', 3)" class="table-tab">Concrete Methods</button><button id="method-summary-table-tab6" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab6', 3)" class="table-tab">Deprecated Methods</button></div>
 <div id="method-summary-table.tabpanel" role="tabpanel" aria-labelledby="method-summary-table-tab0">
 <div class="summary-table three-column-summary">
 <div class="table-header col-first">Modifier and Type</div>
@@ -174,10 +183,17 @@ loadScripts(document, 'script');</script>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Gets the existing item that's being replaced</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="PlayerArmorChangeEvent.SlotType.html" title="enum class in com.destroystokyo.paper.event.player">PlayerArmorChangeEvent.SlotType</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getSlotType()" class="member-name-link">getSlotType</a>()</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../../../../../org/bukkit/inventory/EquipmentSlot.html" title="enum class in org.bukkit.inventory">EquipmentSlot</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getSlot()" class="member-name-link">getSlot</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Gets the type of slot being altered.</div>
+<div class="block">Gets the slot being altered.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4 method-summary-table-tab6"><code><a href="PlayerArmorChangeEvent.SlotType.html" title="enum class in com.destroystokyo.paper.event.player">PlayerArmorChangeEvent.SlotType</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4 method-summary-table-tab6"><code><a href="#getSlotType()" class="member-name-link">getSlotType</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4 method-summary-table-tab6">
+<div class="block"><span class="deprecated-label">Deprecated.</span>
+<div class="deprecation-comment"><a href="PlayerArmorChangeEvent.SlotType.html" title="enum class in com.destroystokyo.paper.event.player"><code>PlayerArmorChangeEvent.SlotType</code></a> does not accurately represent what item types are valid in each slot.</div>
+</div>
 </div>
 </div>
 </div>
@@ -223,11 +239,26 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="getSlotType()">
 <h3>getSlotType</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="PlayerArmorChangeEvent.SlotType.html" title="enum class in com.destroystokyo.paper.event.player">PlayerArmorChangeEvent.SlotType</a></span>&nbsp;<span class="element-name">getSlotType</span>()</div>
+<div class="member-signature"><span class="annotations"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Deprecated.html" title="class or interface in java.lang" class="external-link">@Deprecated</a>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Deprecated.html#since()" title="class or interface in java.lang" class="external-link">since</a>="1.21.4")
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="PlayerArmorChangeEvent.SlotType.html" title="enum class in com.destroystokyo.paper.event.player">PlayerArmorChangeEvent.SlotType</a></span>&nbsp;<span class="element-name">getSlotType</span>()</div>
+<div class="deprecation-block"><span class="deprecated-label">Deprecated.</span>
+<div class="deprecation-comment"><a href="PlayerArmorChangeEvent.SlotType.html" title="enum class in com.destroystokyo.paper.event.player"><code>PlayerArmorChangeEvent.SlotType</code></a> does not accurately represent what item types are valid in each slot. Use <a href="#getSlot()"><code>getSlot()</code></a> instead.</div>
+</div>
 <div class="block">Gets the type of slot being altered.</div>
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>type of slot being altered</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getSlot()">
+<h3>getSlot</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../../../../../org/bukkit/inventory/EquipmentSlot.html" title="enum class in org.bukkit.inventory">EquipmentSlot</a></span>&nbsp;<span class="element-name">getSlot</span>()</div>
+<div class="block">Gets the slot being altered.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>slot being altered</dd>
 </dl>
 </section>
 </li>
