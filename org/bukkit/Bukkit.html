@@ -1353,7 +1353,7 @@ E&gt;<br>B</code></div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6"><code>static boolean</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6"><code><a href="#shouldSendChatPreviews()" class="member-name-link">shouldSendChatPreviews</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6">
-<div class="block"><span class="deprecated-label">Deprecated.</span>
+<div class="block"><span class="deprecated-label">Deprecated, for removal: This API element is subject to removal in a future version.</span>
 <div class="deprecation-comment">chat previews have been removed</div>
 </div>
 </div>
@@ -2874,13 +2874,22 @@ E&gt;<br>B</code></div>
 <div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/26.0.1/org/jetbrains/annotations/Contract.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Contract</a>("null -&gt; false")
 </span><span class="modifiers">public static</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">addRecipe</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/26.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a>
  <a href="https://javadoc.io/doc/org.jetbrains/annotations/26.0.1/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="inventory/Recipe.html" title="interface in org.bukkit.inventory">Recipe</a>&nbsp;recipe)</span></div>
-<div class="block">Adds a recipe to the crafting manager.</div>
+<div class="block">Adds a recipe to the crafting manager.
+ Recipes added with this method won't be sent to the client automatically.
+ <p>
+ Players still have to discover recipes via <a href="entity/HumanEntity.html#discoverRecipe(org.bukkit.NamespacedKey)"><code>HumanEntity.discoverRecipe(NamespacedKey)</code></a>
+ before seeing them in their recipe book.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>recipe</code> - the recipe to add</dd>
 <dt>Returns:</dt>
-<dd>true if the recipe was added, false if it wasn't for some
-     reason</dd>
+<dd>true if the recipe was added, false if it wasn't for some reason</dd>
+<dt>See Also:</dt>
+<dd>
+<ul class="tag-list-long">
+<li><a href="#addRecipe(org.bukkit.inventory.Recipe,boolean)"><code>addRecipe(Recipe, boolean)</code></a></li>
+</ul>
+</dd>
 </dl>
 </section>
 </li>
@@ -2898,6 +2907,8 @@ E&gt;<br>B</code></div>
 <dd><code>resendRecipes</code> - true to update the client with the full set of recipes</dd>
 <dt>Returns:</dt>
 <dd>true if the recipe was added, false if it wasn't for some reason</dd>
+<dt>API Note:</dt>
+<dd>resendRecipes is ignored at the moment for stability reasons, recipes will always be updated</dd>
 </dl>
 </section>
 </li>
@@ -3204,9 +3215,10 @@ E&gt;<br>B</code></div>
 <li>
 <section class="detail" id="shouldSendChatPreviews()">
 <h3>shouldSendChatPreviews</h3>
-<div class="member-signature"><span class="annotations"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Deprecated.html" title="class or interface in java.lang" class="external-link">@Deprecated</a>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Deprecated.html#since()" title="class or interface in java.lang" class="external-link">since</a>="1.19.3")
+<div class="member-signature"><span class="annotations"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Deprecated.html" title="class or interface in java.lang" class="external-link">@Deprecated</a>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Deprecated.html#since()" title="class or interface in java.lang" class="external-link">since</a>="1.19.3",
+            <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Deprecated.html#forRemoval()" title="class or interface in java.lang" class="external-link">forRemoval</a>=true)
 </span><span class="modifiers">public static</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">shouldSendChatPreviews</span>()</div>
-<div class="deprecation-block"><span class="deprecated-label">Deprecated.</span>
+<div class="deprecation-block"><span class="deprecated-label">Deprecated, for removal: This API element is subject to removal in a future version.</span>
 <div class="deprecation-comment">chat previews have been removed</div>
 </div>
 <div class="block">Gets whether the server should send a preview of the player's chat
