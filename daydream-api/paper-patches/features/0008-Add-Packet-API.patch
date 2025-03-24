@@ -972,10 +972,10 @@ index 0000000000000000000000000000000000000000..257c535f5b0802f2289df1ee3eb2b2cf
 +    SetPlayerTeamPacket createTeamJoinOrLeavePacket(String teamName, Collection<String> players, boolean join);
 +}
 diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
-index 3ec6eff4eeac6df1ebb88799083606e5c7320332..ca8d342043359768d052d2ec0812cda426e0d65d 100644
+index cedaacdfa4dc4110a7c854c417f4ea8e2981e12b..795ca347c207e2edb044f527eb8c4d19ad48dd24 100644
 --- a/src/main/java/org/bukkit/Bukkit.java
 +++ b/src/main/java/org/bukkit/Bukkit.java
-@@ -3100,6 +3100,20 @@ public final class Bukkit {
+@@ -3101,6 +3101,20 @@ public final class Bukkit {
      }
      // Daydream end - Add Individual Sidebar API
  
@@ -1012,7 +1012,7 @@ index 918a045165cdcde264bc24082b7afebb407271de..893f1e80871e67d427c379410a83ecd8
      /**
       * Represents black
 diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
-index f2728d1405b51cc557a167076395c92e157f37a5..207901b74916f2c9d1de4f7007ec3e5a3fa8a370 100644
+index 5de7d163577f53556eddfab3725e60deb49c2aab..3295d14da9b902ab0d70d3351da60b6d105bec2d 100644
 --- a/src/main/java/org/bukkit/Server.java
 +++ b/src/main/java/org/bukkit/Server.java
 @@ -2806,4 +2806,16 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
@@ -1033,10 +1033,10 @@ index f2728d1405b51cc557a167076395c92e157f37a5..207901b74916f2c9d1de4f7007ec3e5a
 +    // Daydream end - (feature) Add Packet API
  }
 diff --git a/src/main/java/org/bukkit/World.java b/src/main/java/org/bukkit/World.java
-index 9c733d81f5f45db6d85f3e4137b042a18b6a6c2c..8ca48edbef4c6a62eaf6c6f98854cfc7d6449a05 100644
+index d22d43a12f1fb885faf9bb2b6695c2af70df759b..6a6714d412cdabb94eea2ea5fe2b5b45085f8eb2 100644
 --- a/src/main/java/org/bukkit/World.java
 +++ b/src/main/java/org/bukkit/World.java
-@@ -1650,6 +1650,17 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
+@@ -1647,6 +1647,17 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      public Entity getEntity(@NotNull java.util.UUID uuid);
      // Paper end
  
@@ -1079,7 +1079,7 @@ index 3e79bed26e80cce9d6e8d3dc480d64d832dba330..44f29fec99f831c2f36c957c46256e62
       * Gets the amount of ticks this entity has lived for.
       * <p>
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index d31af376315e7e495e92fb915758c4a4a4f07794..8b92924a193cffdf3a203683087cd960cc3693d9 100644
+index 09aeddcddf7561392597d87da5c1a16f895819aa..03bef3a8f45db0e8e513a15c7bf2b10f4a53f34f 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
 @@ -1088,6 +1088,31 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM

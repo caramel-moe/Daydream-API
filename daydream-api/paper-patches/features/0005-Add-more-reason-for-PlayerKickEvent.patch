@@ -5,26 +5,26 @@ Subject: [PATCH] Add more reason for PlayerKickEvent
 
 
 diff --git a/src/main/java/org/bukkit/event/player/PlayerKickEvent.java b/src/main/java/org/bukkit/event/player/PlayerKickEvent.java
-index b8bf61bea73086c61dce6230686e627dc324ebe0..07b486eb952eaf206be1deb3f2d791be67d706ca 100644
+index 09ea15c3d825616f19111203e30d9031cfa077be..db3bff05b9071ba3c26c717435ae5cad48958c7d 100644
 --- a/src/main/java/org/bukkit/event/player/PlayerKickEvent.java
 +++ b/src/main/java/org/bukkit/event/player/PlayerKickEvent.java
-@@ -22,6 +22,7 @@ public class PlayerKickEvent extends PlayerEvent implements Cancellable {
+@@ -23,6 +23,7 @@ public class PlayerKickEvent extends PlayerEvent implements Cancellable {
          this.leaveMessage = net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer.legacySection().deserialize(leaveMessage); // Paper
          this.cause  = Cause.UNKNOWN; // Paper
          this.cancel = false;
 +        this.value = null; // Daydream - (feature) Add more reason for PlayerKickEvent
      }
      // Paper start
-     @Deprecated
-@@ -31,6 +32,7 @@ public class PlayerKickEvent extends PlayerEvent implements Cancellable {
+     @Deprecated(forRemoval = true)
+@@ -32,6 +33,7 @@ public class PlayerKickEvent extends PlayerEvent implements Cancellable {
          this.leaveMessage = leaveMessage;
          this.cancel = false;
          this.cause = Cause.UNKNOWN;
 +        this.value = null; // Daydream - (feature) Add more reason for PlayerKickEvent
      }
  
-     @org.jetbrains.annotations.ApiStatus.Internal
-@@ -40,6 +42,7 @@ public class PlayerKickEvent extends PlayerEvent implements Cancellable {
+     @ApiStatus.Internal
+@@ -41,6 +43,7 @@ public class PlayerKickEvent extends PlayerEvent implements Cancellable {
          this.leaveMessage = leaveMessage;
          this.cancel = false;
          this.cause = cause;
@@ -32,7 +32,7 @@ index b8bf61bea73086c61dce6230686e627dc324ebe0..07b486eb952eaf206be1deb3f2d791be
      }
  
      /**
-@@ -79,6 +82,30 @@ public class PlayerKickEvent extends PlayerEvent implements Cancellable {
+@@ -80,6 +83,30 @@ public class PlayerKickEvent extends PlayerEvent implements Cancellable {
      }
      // Paper end
  
@@ -63,7 +63,7 @@ index b8bf61bea73086c61dce6230686e627dc324ebe0..07b486eb952eaf206be1deb3f2d791be
      /**
       * Gets the reason why the player is getting kicked
       *
-@@ -218,6 +245,23 @@ public class PlayerKickEvent extends PlayerEvent implements Cancellable {
+@@ -219,6 +246,23 @@ public class PlayerKickEvent extends PlayerEvent implements Cancellable {
           * Fallback cause
           */
          UNKNOWN,
