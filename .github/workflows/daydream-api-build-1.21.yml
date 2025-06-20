@@ -2,7 +2,7 @@ name: Build Daydream API (1.21)
 
 on:
   push:
-    branches: [ master ]
+    branches: [ ver/1.21.4 ]
 
 jobs:
   build:
@@ -44,9 +44,3 @@ jobs:
         env:
           DEPLOY_ID: ${{ secrets.DEPLOY_ID }}
           DEPLOY_PW: ${{ secrets.DEPLOY_PW }}
-
-      - name: Deploy Javadoc
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          branch: gh-pages
-          folder: daydream-api/build/docs/javadoc
