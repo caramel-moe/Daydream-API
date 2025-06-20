@@ -3,7 +3,7 @@ import org.gradle.api.tasks.testing.logging.TestLogEvent
 
 plugins {
     java
-    id("io.papermc.paperweight.patcher") version "2.0.0-beta.14"
+    id("io.papermc.paperweight.patcher") version "2.0.0-beta.17"
 }
 
 val caramelMavenPublicUrl = "https://repo.caramel.moe/repository/maven-public/"
@@ -51,6 +51,7 @@ subprojects {
         options.encoding = Charsets.UTF_8.name()
         options.release = 21
         options.isFork = true
+        options.compilerArgs.addAll(listOf("-Xlint:-deprecation", "-Xlint:-removal"))
     }
     tasks.withType<Javadoc> {
         options.encoding = Charsets.UTF_8.name()
