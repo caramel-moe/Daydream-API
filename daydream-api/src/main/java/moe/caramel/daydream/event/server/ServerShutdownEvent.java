@@ -4,13 +4,11 @@ import net.kyori.adventure.text.Component;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.server.ServerEvent;
 import org.jetbrains.annotations.ApiStatus;
-import org.jspecify.annotations.NullMarked;
 import org.jspecify.annotations.Nullable;
 
 /**
  * 서버가 종료될 때 호출됩니다.
  */
-@NullMarked
 public final class ServerShutdownEvent extends ServerEvent {
 
     private final boolean restarting;

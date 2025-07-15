@@ -55,6 +55,27 @@ index 59228f2e66e982feca77d9f962004ceacb648783..4a61171e09748282a06e7931815c0c15
      /**
       * Defines how the {@link #icon()} appears in the advancements screen and
       * the color used with the {@link #title() advancement name}.
+diff --git a/src/main/java/io/papermc/paper/connection/PlayerConfigurationConnection.java b/src/main/java/io/papermc/paper/connection/PlayerConfigurationConnection.java
+index 47715c4af6624facd31e924791c4d3ad1764d00c..816bbe6827400c0ce89a438c7d9ffb6e15121b09 100644
+--- a/src/main/java/io/papermc/paper/connection/PlayerConfigurationConnection.java
++++ b/src/main/java/io/papermc/paper/connection/PlayerConfigurationConnection.java
+@@ -50,4 +50,16 @@ public interface PlayerConfigurationConnection extends PlayerCommonConnection {
+     void finishCurrentTask();
+     // Daydream end - Add API for custom configuration task
+ 
++    // Daydream start - (feature) Add more Advancement API
++    /**
++     * 플레이어 발전 과제 데이터를 생성하고 가져옵니다.
++     * <p>
++     * 플레이어의 로그인이 완료되기 전에 생성되기에 중복 로그인으로 인한
++     * 데이터 증발 등 데이터 관리에 주의해주세요.
++     *
++     * @return 플레이어 발전 과제 데이터 (이미 생성된 경우 기존의 인스턴스를 가져옴)
++     */
++    moe.caramel.daydream.advancement.PlayerAdvancementData getOrCreateAdvancements();
++    // Daydream end - (feature) Add more Advancement API
++
+ }
 diff --git a/src/main/java/moe/caramel/daydream/advancement/AdvancementBuilder.java b/src/main/java/moe/caramel/daydream/advancement/AdvancementBuilder.java
 new file mode 100644
 index 0000000000000000000000000000000000000000..c7ac1468924c88480d86095b777ac3934ce5981e
@@ -1101,10 +1122,10 @@ index 778946665dfef224f766101e831b254efa3604af..712d2548017f6f0aa484f028b2d43dc4
 +    // Daydream end - (feature) Add more Advancement API
  }
 diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
-index e67bdee7811b69f395225b2a0ac6ae8c68893f00..cedaacdfa4dc4110a7c854c417f4ea8e2981e12b 100644
+index 2ebf84b7a500b2189d5291e0438b6b4305608389..4936b38e393f02ae5ee4c01951e458c5eecfdfb2 100644
 --- a/src/main/java/org/bukkit/Bukkit.java
 +++ b/src/main/java/org/bukkit/Bukkit.java
-@@ -2515,6 +2515,67 @@ public final class Bukkit {
+@@ -2535,6 +2535,67 @@ public final class Bukkit {
          return server.advancementIterator();
      }
  
@@ -1173,10 +1194,10 @@ index e67bdee7811b69f395225b2a0ac6ae8c68893f00..cedaacdfa4dc4110a7c854c417f4ea8e
       * Creates a new {@link BlockData} instance for the specified Material, with
       * all properties initialized to unspecified defaults.
 diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
-index 31d5403a1cd4585deaf61513511e5ded95c7b301..5de7d163577f53556eddfab3725e60deb49c2aab 100644
+index 8d7fa92d5347471682116dec47ae8ab49bd15711..695445638c24acfa962872b53b08bd97c183b2e4 100644
 --- a/src/main/java/org/bukkit/Server.java
 +++ b/src/main/java/org/bukkit/Server.java
-@@ -2193,6 +2193,57 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
+@@ -2214,6 +2214,57 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
      @NotNull
      Iterator<Advancement> advancementIterator();
  
@@ -1235,10 +1256,10 @@ index 31d5403a1cd4585deaf61513511e5ded95c7b301..5de7d163577f53556eddfab3725e60de
       * Creates a new {@link BlockData} instance for the specified Material, with
       * all properties initialized to unspecified defaults.
 diff --git a/src/main/java/org/bukkit/UnsafeValues.java b/src/main/java/org/bukkit/UnsafeValues.java
-index 2f3937e00bf83de7467c391abe589d5a4f4aea0f..fdd9bae85b791e344f9e5b6a647c0016c3f14fc9 100644
+index cccccc4e4d7c620e2acdc9662839b8da2e51f1e3..db3dd5169ac083ac33dd007a5acf092292b5d428 100644
 --- a/src/main/java/org/bukkit/UnsafeValues.java
 +++ b/src/main/java/org/bukkit/UnsafeValues.java
-@@ -95,6 +95,58 @@ public interface UnsafeValues {
+@@ -96,6 +96,58 @@ public interface UnsafeValues {
       */
      boolean removeAdvancement(NamespacedKey key);
  
@@ -1398,10 +1419,10 @@ index f9bc179da071e7bd57cefc50d6763317fb643b74..1da6a39e7decac009527a24e10b25ad1
 +    // Daydream end - (feature) Add more Advancement API
  }
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index 1766f53f2fee3a2a7007ce38c2e474e59d8595b9..09aeddcddf7561392597d87da5c1a16f895819aa 100644
+index 164f9211ff53da3a6594f7a43dd6137fc89e9067..543c3f7eef06563e9700f4706dc9488dc8d2501f 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
-@@ -3357,6 +3357,43 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+@@ -3348,6 +3348,43 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
       */
      public AdvancementProgress getAdvancementProgress(Advancement advancement);
  

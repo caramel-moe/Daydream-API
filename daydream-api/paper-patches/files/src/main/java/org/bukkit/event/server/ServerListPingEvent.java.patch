@@ -1,10 +1,9 @@
 --- a/src/main/java/org/bukkit/event/server/ServerListPingEvent.java
 +++ b/src/main/java/org/bukkit/event/server/ServerListPingEvent.java
-@@ -264,4 +_,27 @@
-     public Iterator<Player> iterator() throws UnsupportedOperationException {
+@@ -237,6 +_,29 @@
          throw new UnsupportedOperationException();
      }
-+
+ 
 +    // Daydream start - Add extra data to server ping
 +    @org.jetbrains.annotations.Nullable private com.google.gson.JsonObject extra;
 +
@@ -27,4 +26,7 @@
 +        this.extra = extra;
 +    }
 +    // Daydream end - Add extra data to server ping
- }
++
+     @NotNull
+     @Override
+     public HandlerList getHandlers() {

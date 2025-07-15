@@ -1,17 +1,17 @@
 --- a/src/main/java/org/bukkit/event/player/PlayerChangedMainHandEvent.java
 +++ b/src/main/java/org/bukkit/event/player/PlayerChangedMainHandEvent.java
-@@ -16,7 +_,7 @@
+@@ -17,7 +_,7 @@
  
-     private static final HandlerList handlers = new HandlerList();
-     //
+     private static final HandlerList HANDLER_LIST = new HandlerList();
+ 
 -    private final MainHand newMainHand;
 +    private MainHand newMainHand; // Daydream - Settable Player Arm (remove final)
  
-     public PlayerChangedMainHandEvent(@NotNull Player who, @NotNull MainHand newMainHand) {
-         super(who);
-@@ -47,6 +_,17 @@
+     @ApiStatus.Internal
+     public PlayerChangedMainHandEvent(@NotNull Player player, @NotNull MainHand newMainHand) {
+@@ -49,6 +_,17 @@
      public MainHand getNewMainHand() {
-         return newMainHand;
+         return this.newMainHand;
      }
 +
 +    // Daydream start - Settable Player Arm

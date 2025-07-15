@@ -5,13 +5,13 @@ Subject: [PATCH] Add EnhancedModelEngine Support
 
 
 diff --git a/src/main/java/org/bukkit/UnsafeValues.java b/src/main/java/org/bukkit/UnsafeValues.java
-index fdd9bae85b791e344f9e5b6a647c0016c3f14fc9..888c5dcb8adba307a81c8f18f697961d6e229d29 100644
+index db3dd5169ac083ac33dd007a5acf092292b5d428..da9b756e9fc316652702af06dba30dff1ffb530c 100644
 --- a/src/main/java/org/bukkit/UnsafeValues.java
 +++ b/src/main/java/org/bukkit/UnsafeValues.java
-@@ -462,4 +462,34 @@ public interface UnsafeValues {
+@@ -464,4 +464,34 @@ public interface UnsafeValues {
      // Daydream end - Proxy InventoryIterator
  
-     @NotNull moe.caramel.daydream.world.DamageContext getDamageContext(@NotNull Object damageSource); // Daydream - (feature) Add more Damage API
+     @NotNull org.bukkit.damage.DamageSource getCraftDamageSource(@NotNull Object nmsDamageSource); // Daydream - (feature) Add more Damage API
 +
 +    // Daydream start - (feature) Add EnhancedModelEngine Support
 +    /* Entity */

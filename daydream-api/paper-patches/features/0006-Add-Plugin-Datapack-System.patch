@@ -5,10 +5,10 @@ Subject: [PATCH] Add Plugin Datapack System
 
 
 diff --git a/src/main/java/io/papermc/paper/plugin/configuration/PluginMeta.java b/src/main/java/io/papermc/paper/plugin/configuration/PluginMeta.java
-index 3c768d5ccf490e962d9638e92d4ea7c85670bad8..285509bcccbd3d0f4561094038bc80b621e80ab1 100644
+index 2114651bd68c5eddc6e2ab7304d48643ee4b8916..710007b86f64293817e36d4ccd639d1379dd0272 100644
 --- a/src/main/java/io/papermc/paper/plugin/configuration/PluginMeta.java
 +++ b/src/main/java/io/papermc/paper/plugin/configuration/PluginMeta.java
-@@ -53,6 +53,26 @@ public interface PluginMeta {
+@@ -52,6 +52,26 @@ public interface PluginMeta {
       */
      String getMainClass();
  
@@ -54,7 +54,7 @@ index 0000000000000000000000000000000000000000..778946665dfef224f766101e831b254e
 +public interface PluginDatapackLoader {
 +}
 diff --git a/src/main/java/org/bukkit/plugin/PluginDescriptionFile.java b/src/main/java/org/bukkit/plugin/PluginDescriptionFile.java
-index 6dfd51996893ca82b11a540cc18234e0b504f7ba..f1f594cd33d88683ecea1c0d659830f4d292ca32 100644
+index 0324ec640d4dd6b1f6287fc2ce9e8a0b3b87d5bf..4c546da9cc44778f197158d520c3543af114287f 100644
 --- a/src/main/java/org/bukkit/plugin/PluginDescriptionFile.java
 +++ b/src/main/java/org/bukkit/plugin/PluginDescriptionFile.java
 @@ -273,6 +273,28 @@ public final class PluginDescriptionFile implements io.papermc.paper.plugin.conf

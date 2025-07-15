@@ -5,46 +5,21 @@ Subject: [PATCH] Add more reason for PlayerKickEvent
 
 
 diff --git a/src/main/java/org/bukkit/event/player/PlayerKickEvent.java b/src/main/java/org/bukkit/event/player/PlayerKickEvent.java
-index 09ea15c3d825616f19111203e30d9031cfa077be..db3bff05b9071ba3c26c717435ae5cad48958c7d 100644
+index 61f278a9748accd5496811beb4079d8af1895ae1..631fbeb3ed28ab228e3bf54c8d338b82ddd7bce6 100644
 --- a/src/main/java/org/bukkit/event/player/PlayerKickEvent.java
 +++ b/src/main/java/org/bukkit/event/player/PlayerKickEvent.java
-@@ -23,6 +23,7 @@ public class PlayerKickEvent extends PlayerEvent implements Cancellable {
-         this.leaveMessage = net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer.legacySection().deserialize(leaveMessage); // Paper
-         this.cause  = Cause.UNKNOWN; // Paper
-         this.cancel = false;
-+        this.value = null; // Daydream - (feature) Add more reason for PlayerKickEvent
-     }
-     // Paper start
-     @Deprecated(forRemoval = true)
-@@ -32,6 +33,7 @@ public class PlayerKickEvent extends PlayerEvent implements Cancellable {
-         this.leaveMessage = leaveMessage;
-         this.cancel = false;
-         this.cause = Cause.UNKNOWN;
-+        this.value = null; // Daydream - (feature) Add more reason for PlayerKickEvent
-     }
+@@ -21,30 +21,49 @@ public class PlayerKickEvent extends PlayerEvent implements Cancellable {
  
-     @ApiStatus.Internal
-@@ -41,6 +43,7 @@ public class PlayerKickEvent extends PlayerEvent implements Cancellable {
-         this.leaveMessage = leaveMessage;
-         this.cancel = false;
-         this.cause = cause;
-+        this.value = null; // Daydream - (feature) Add more reason for PlayerKickEvent
-     }
- 
-     /**
-@@ -80,6 +83,30 @@ public class PlayerKickEvent extends PlayerEvent implements Cancellable {
-     }
-     // Paper end
+     private boolean cancelled;
  
 +    // Daydream start - (feature) Add more reason for PlayerKickEvent
 +    private final Object value;
 +
-+    @org.jetbrains.annotations.ApiStatus.Internal
-+    public PlayerKickEvent(@NotNull final Player playerKicked, @NotNull final net.kyori.adventure.text.Component kickReason, @NotNull final net.kyori.adventure.text.Component leaveMessage, @NotNull final Cause cause, @org.jetbrains.annotations.Nullable final Object value) {
++    @ApiStatus.Internal
++    public PlayerKickEvent(@NotNull final Player playerKicked, @NotNull final Component kickReason, @NotNull final Component leaveMessage, @NotNull final Cause cause, @org.jetbrains.annotations.Nullable final Object value) {
 +        super(playerKicked);
 +        this.kickReason = kickReason;
 +        this.leaveMessage = leaveMessage;
-+        this.cancel = false;
 +        this.cause = cause;
 +        this.value = value;
 +    }
@@ -60,30 +35,51 @@ index 09ea15c3d825616f19111203e30d9031cfa077be..db3bff05b9071ba3c26c717435ae5cad
 +    }
 +    // Daydream end - (feature) Add more reason for PlayerKickEvent
 +
+     @ApiStatus.Internal
+     @Deprecated(forRemoval = true)
+     public PlayerKickEvent(@NotNull final Player playerKicked, @NotNull final String kickReason, @NotNull final String leaveMessage) {
+-        super(playerKicked);
+-        this.kickReason = LegacyComponentSerializer.legacySection().deserialize(kickReason);
+-        this.leaveMessage = LegacyComponentSerializer.legacySection().deserialize(leaveMessage);
+-        this.cause  = Cause.UNKNOWN;
++        // Daydream start - (feature) Add more reason for PlayerKickEvent
++        this(playerKicked,
++            LegacyComponentSerializer.legacySection().deserialize(kickReason),
++            LegacyComponentSerializer.legacySection().deserialize(leaveMessage),
++            Cause.UNKNOWN, null);
++        // Daydream end - (feature) Add more reason for PlayerKickEvent
+     }
+ 
+     @ApiStatus.Internal
+     @Deprecated(forRemoval = true)
+     public PlayerKickEvent(@NotNull final Player playerKicked, @NotNull final Component kickReason, @NotNull final Component leaveMessage) {
+-        super(playerKicked);
+-        this.kickReason = kickReason;
+-        this.leaveMessage = leaveMessage;
+-        this.cause = Cause.UNKNOWN;
++        this(playerKicked, kickReason, leaveMessage, Cause.UNKNOWN, null); // Daydream - (feature) Add more reason for PlayerKickEvent
+     }
+ 
+     @ApiStatus.Internal
+     public PlayerKickEvent(@NotNull final Player playerKicked, @NotNull final Component kickReason, @NotNull final Component leaveMessage, @NotNull final Cause cause) {
+-        super(playerKicked);
+-        this.kickReason = kickReason;
+-        this.leaveMessage = leaveMessage;
+-        this.cause = cause;
++        this(playerKicked, kickReason, leaveMessage, cause, null); // Daydream - (feature) Add more reason for PlayerKickEvent
+     }
+ 
      /**
-      * Gets the reason why the player is getting kicked
-      *
-@@ -219,6 +246,23 @@ public class PlayerKickEvent extends PlayerEvent implements Cancellable {
-          * Fallback cause
-          */
-         UNKNOWN,
-+
+@@ -177,6 +196,12 @@ public class PlayerKickEvent extends PlayerEvent implements Cancellable {
+         SPAM,
+         ILLEGAL_ACTION,
+         ILLEGAL_CHARACTERS,
 +        // Daydream start - (feature) Add more reason for PlayerKickEvent
 +        /**
 +         * 클라이언트가 탭 자동완성을 이용하여 서버의 플러그인 목록을 조회하려고 할 때
 +         */
 +        TAB_COMPLETE_EXPLOIT,
-+
-+        /**
-+         * 클라이언트가 서버의 월드 난이도를 변경하려고 할 때
-+         */
-+        DIFFICULTY_CHANGE,
-+
-+        /**
-+         * 클라이언트가 서버의 월드 난이도를 잠그려고 할 때
-+         */
-+        DIFFICULTY_LOCK;
 +        // Daydream end - (feature) Add more reason for PlayerKickEvent
-     }
-     // Paper end
- }
+         OUT_OF_ORDER_CHAT,
+         UNSIGNED_CHAT,
+         CHAT_VALIDATION_FAILED,

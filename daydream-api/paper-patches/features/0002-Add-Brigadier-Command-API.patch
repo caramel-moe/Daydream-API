@@ -4,51 +4,66 @@ Date: Tue, 12 Oct 2021 20:40:48 +0900
 Subject: [PATCH] Add Brigadier Command API
 
 
-diff --git a/src/main/java/io/papermc/paper/command/brigadier/CommandSourceStack.java b/src/main/java/io/papermc/paper/command/brigadier/CommandSourceStack.java
-index 109c0a89e25284df5f0551b9205e75c6f0d700ca..1d3ca1a2cf872e41958c8e13e4135b96241a3d44 100644
---- a/src/main/java/io/papermc/paper/command/brigadier/CommandSourceStack.java
-+++ b/src/main/java/io/papermc/paper/command/brigadier/CommandSourceStack.java
-@@ -21,7 +21,7 @@ import org.jspecify.annotations.Nullable;
-  * exist yet, or no specific sender is available. Methods on such a {@link CommandSender}
-  * will either have no effect or throw an {@link UnsupportedOperationException}.</p>
-  */
--@ApiStatus.Experimental
-+//@ApiStatus.Experimental // Daydream - (feature) Add Brigadier Command API
- @NullMarked
- @ApiStatus.NonExtendable
- public interface CommandSourceStack {
+diff --git a/src/main/java/io/papermc/paper/command/brigadier/CommandRegistrationFlag.java b/src/main/java/io/papermc/paper/command/brigadier/CommandRegistrationFlag.java
+index cfcf330bc91690e4e57cd7fefcee6bc104c98984..5f4f73f861ce56e9ce17c46c442a1f0b49506817 100644
+--- a/src/main/java/io/papermc/paper/command/brigadier/CommandRegistrationFlag.java
++++ b/src/main/java/io/papermc/paper/command/brigadier/CommandRegistrationFlag.java
+@@ -11,6 +11,13 @@ import org.jetbrains.annotations.ApiStatus;
+ @ApiStatus.Internal
+ public enum CommandRegistrationFlag {
+ 
++    // Daydream start - (feature) Add Brigadier Command API
++    /**
++     * Indicates that this command does not need to be re-registered during registry reloads.
++     * It is automatically preserved and copied to the new command dispatcher.
++     */
++    RELOADABLE,
++    // Daydream end - (feature) Add Brigadier Command API
+     /**
+      * @deprecated This is the default behavior now.
+      */
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/Arguments.java b/src/main/java/moe/caramel/daydream/brigadier/Arguments.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..9a0a1b848bc8f59df26cd9806db2840cac774d42
+index 0000000000000000000000000000000000000000..b575357f2269122aca51a9c79ce447c2a557b7bc
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/brigadier/Arguments.java
-@@ -0,0 +1,298 @@
+@@ -0,0 +1,378 @@
 +package moe.caramel.daydream.brigadier;
 +
-+import static moe.caramel.daydream.brigadier.BrigadierService.SERVICE;
++import static moe.caramel.daydream.brigadier.argument.SimpleArgument.create;
++import com.google.common.collect.Range;
 +import com.mojang.authlib.GameProfile;
 +import io.papermc.paper.command.brigadier.CommandSourceStack;
++import io.papermc.paper.command.brigadier.argument.ArgumentTypes;
++import io.papermc.paper.entity.LookAnchor;
++import io.papermc.paper.math.FinePosition;
++import io.papermc.paper.math.Rotation;
 +import it.unimi.dsi.fastutil.ints.IntList;
 +import moe.caramel.daydream.brigadier.argument.*;
 +import moe.caramel.daydream.brigadier.data.*;
 +import moe.caramel.daydream.util.NumberRange;
 +import net.kyori.adventure.nbt.api.BinaryTagHolder;
 +import net.kyori.adventure.text.Component;
++import net.kyori.adventure.text.format.NamedTextColor;
 +import net.kyori.adventure.text.format.Style;
 +import net.kyori.adventure.text.format.TextColor;
 +import org.bukkit.Axis;
 +import org.bukkit.GameMode;
 +import org.bukkit.HeightMap;
++import org.bukkit.Location;
 +import org.bukkit.NamespacedKey;
 +import org.bukkit.Particle;
 +import org.bukkit.World;
 +import org.bukkit.block.Block;
 +import org.bukkit.block.structure.Mirror;
 +import org.bukkit.block.structure.StructureRotation;
++import org.bukkit.entity.LivingEntity;
 +import org.bukkit.inventory.ItemStack;
++import org.bukkit.scoreboard.Criteria;
 +import org.bukkit.scoreboard.DisplaySlot;
 +import org.bukkit.scoreboard.Objective;
 +import org.bukkit.scoreboard.Team;
++import org.bukkit.util.Vector;
 +import org.jspecify.annotations.NullMarked;
 +import java.util.Collection;
 +import java.util.EnumSet;
@@ -57,8 +72,13 @@ index 0000000000000000000000000000000000000000..9a0a1b848bc8f59df26cd9806db2840c
 +
 +/**
 + * Brigadier Vanilla Arguments
++ *
++ * @deprecated 다음 메이저 업데이트에서 제거
++ * @see ArgumentTypes
++ * @see Resolvers
 + */
 +@NullMarked
++@Deprecated(since = "1.21.7", forRemoval = true)
 +public final class Arguments {
 +
 +    /**
@@ -70,78 +90,119 @@ index 0000000000000000000000000000000000000000..9a0a1b848bc8f59df26cd9806db2840c
 +    /**
 +     * Example: "Player", "0123", "@e", "@e[type=foo]", "dd12be42-52a9-4a91-a8a1-11c01849e498"
 +     */
-+    public static final EntityArgument ENTITY = SERVICE.getArgument("entity");
++    public static final EntityArgument ENTITY = new EntityArgument() { };
 +
 +    /**
 +     * Example: "Player", "0123", "dd12be42-52a9-4a91-a8a1-11c01849e498", "@e"
 +     */
-+    public static final SimpleArgument<Collection<GameProfile>> GAME_PROFILES = SERVICE.getArgument("game_profile");
++    public static final SimpleArgument<Collection<GameProfile>> GAME_PROFILES = create(ArgumentTypes.gameProfiles(), Resolvers::gameProfiles);
 +
 +    /**
 +     * Example: "0 0 0", "~ ~ ~", "^ ^ ^", "^1 ^ ^-5", "~0.5 ~1 ~-5"
 +     */
-+    public static final BlockPosArgument BLOCK_POS = SERVICE.getArgument("block_pos");
-+
-+    /**
-+     * Example: "0 0", "~ ~", "~1 ~-2", "^ ^", "^-1 ^0"
-+     */
-+    public static final SimpleArgument<Position<CommandSourceStack>> COLUMN_POS = SERVICE.getArgument("column_pos");
++    public static final BlockPosArgument BLOCK_POS = BlockPosArgument.create();
 +
 +    /**
 +     * Example: "0 0 0", "~ ~ ~", "^ ^ ^", "^1 ^ ^-5", "0.1 -0.5 .9", "~0.5 ~1 ~-5"
 +     */
-+    public static final VecArgument VEC3 = SERVICE.getArgument("vec3");
++    public static final VecArgument VEC3 = VecArgument.create(
++        ArgumentTypes.finePosition(),
++        ArgumentTypes::finePosition,
++        (context, name) -> {
++            final FinePosition position = Resolvers.finePosition(context, name);
++            return new Position<>() {
++                @Override
++                public Vector getPositionVector(final CommandSourceStack source) {
++                    return position.toVector();
++                }
++
++                @Override
++                public Location getLocation(final CommandSourceStack source) {
++                    return position.toLocation(source.getLocation().getWorld());
++                }
++            };
++        });
 +
 +    /**
 +     * Example: "0 0", "~ ~", "0.1 -0.5", "~1 ~-2"
 +     */
-+    public static final VecArgument VEC2 = SERVICE.getArgument("vec2");
++    public static final VecArgument VEC2 = VecArgument.create(
++        ArgumentTypes.rotation(),
++        b -> ArgumentTypes.rotation(),
++        (context, name) -> {
++            final Rotation rotation = Resolvers.rotation(context, name);
++            return new Position<>() {
++                @Override
++                public Vector getPositionVector(final CommandSourceStack source) {
++                    return new Vector(rotation.pitch(), 0, rotation.yaw());
++                }
++
++                @Override
++                public Location getLocation(final CommandSourceStack source) {
++                    final Location location = source.getLocation();
++                    location.setPitch(rotation.pitch());
++                    location.setYaw(rotation.yaw());
++                    return location;
++                }
++            };
++        });
++
++    /**
++     * Example: "0 0", "~ ~", "~1 ~-2", "^ ^", "^-1 ^0"
++     */
++    public static final SimpleArgument<Position<CommandSourceStack>> COLUMN_POS = VEC2;
 +
 +    /**
 +     * Example: "stone", "minecraft:stone", "stone[foo=bar]", "foo{bar=baz}"
 +     */
-+    public static final BlockStateArgument BLOCK_STATE = SERVICE.getArgument("block_state");
++    public static final BlockStateArgument BLOCK_STATE = BlockStateArgument.create();
 +
 +    /**
 +     * Example: "stone", "minecraft:stone", "stone[foo=bar]", "#stone", "#stone[foo=bar]{baz=nbt}"
 +     */
-+    public static final SimpleArgument<Predicate<Block>> BLOCK_PREDICATE = SERVICE.getArgument("block_predicate");
++    @Deprecated(forRemoval = true)
++    public static final SimpleArgument<Predicate<Block>> BLOCK_PREDICATE = create();
 +
 +    /**
 +     * Example: "stick", "minecraft:stick", "stick{foo=bar}"
 +     */
-+    public static final ItemArgument ITEM = SERVICE.getArgument("item_stack");
++    public static final ItemArgument ITEM = ItemArgument.create();
 +
 +    /**
 +     * Example: "stick", "minecraft:stick", "#stick", "#stick{foo=bar}"
 +     */
-+    public static final SimpleArgument<Predicate<ItemStack>> ITEM_PREDICATE = SERVICE.getArgument("item_predicate");
++    public static final SimpleArgument<Predicate<ItemStack>> ITEM_PREDICATE = create(ArgumentTypes.itemPredicate(), Resolvers::itemPredicate);
 +
 +    /**
 +     * Example: "red", "green"
 +     */
-+    public static final SimpleArgument<TextColor> COLOR = SERVICE.getArgument("color");
++    public static final SimpleArgument<NamedTextColor> COLOR = create(ArgumentTypes.namedColor(), Resolvers::namedColor);
++
++    /**
++     * Example: "F00", "FF0000"
++     */
++    public static final SimpleArgument<TextColor> HEX_COLOR = create(ArgumentTypes.hexColor(), Resolvers::hexColor);
 +
 +    /**
 +     * Example: "\"hello world\"", "\"\"", "\"{\"text\":\"hello world\"}", "[\"\"]"
 +     */
-+    public static final SimpleArgument<Component> COMPONENT = SERVICE.getArgument("component");
++    public static final SimpleArgument<Component> COMPONENT = create(ArgumentTypes.component(), Resolvers::component);
 +
 +    /**
 +     * Example: {"bold": true}
 +     * @since Minecraft 1.20.3
 +     */
-+    public static final SimpleArgument<Style> STYLE = SERVICE.getArgument("style");
++    public static final SimpleArgument<Style> STYLE = create(ArgumentTypes.style(), Resolvers::style);
 +
 +    /**
 +     * Example: "Hello world!", "foo", "@e", "Hello @p :)"
 +     */
-+    public static final MessageArgument MESSAGE = SERVICE.getArgument("message");
++    public static final MessageArgument MESSAGE = MessageArgument.create();
 +
 +    /**
 +     * Example: "{}", "{foo=bar}"
 +     */
-+    public static final SimpleArgument<BinaryTagHolder> COMPOUND_TAG = SERVICE.getArgument("nbt_compound_tag");
++    public static final SimpleArgument<BinaryTagHolder> COMPOUND_TAG = create(ArgumentTypes.compoundTag(), Resolvers::compoundTag);
 +
 +    /*
 +     * Example: "0", "0b", "0l", "0.0", "\"foo\"", "{foo=bar}", "[0]"
@@ -156,12 +217,16 @@ index 0000000000000000000000000000000000000000..9a0a1b848bc8f59df26cd9806db2840c
 +    /**
 +     * Example: "foo", "*", "012"
 +     */
-+    public static final SimpleArgument<Objective> OBJECTIVE = SERVICE.getArgument("objective");
++    @Deprecated(forRemoval = true)
++    public static final SimpleArgument<Objective> OBJECTIVE = create();
 +
 +    /**
 +     * Example: "foo", "foo.bar.baz", "minecraft:foo"
 +     */
-+    public static final SimpleArgument<String> OBJECTIVE_CRITERIA = SERVICE.getArgument("objective_criteria");
++    public static final SimpleArgument<String> OBJECTIVE_CRITERIA = create(ArgumentTypes.objectiveCriteria(), (context, name) -> {
++        final Criteria criteria = Resolvers.objectiveCriteria(context, name);
++        return criteria.getName();
++    });
 +
 +    /*
 +     * Example: "=", "{@literal >}", "{@literal <}"
@@ -172,53 +237,56 @@ index 0000000000000000000000000000000000000000..9a0a1b848bc8f59df26cd9806db2840c
 +    /**
 +     * Example: "foo", "foo:bar", "particle with options"
 +     */
-+    public static final SimpleArgument<Particle> PARTICLE = SERVICE.getArgument("particle");
++    @Deprecated(forRemoval = true)
++    public static final SimpleArgument<Particle> PARTICLE = create();
 +
 +    /**
 +     * Example: "0", "~", "~-5"
 +     */
-+    public static final SimpleArgument<Float> ANGLE = SERVICE.getArgument("angle");
++    public static final SimpleArgument<Float> ANGLE = create(); // TODO PaperMC/Paper#12665
 +
 +    /**
 +     * Example: "0 0", "~ ~", "~-5 ~5"
 +     */
-+    public static final SimpleArgument<Position<CommandSourceStack>> ROTATION = SERVICE.getArgument("rotation");
++    public static final SimpleArgument<Position<CommandSourceStack>> ROTATION = VEC2;
 +
 +    /**
 +     * Example: "sidebar", "sidebar.team.light_purple"
 +     */
-+    public static final SimpleArgument<DisplaySlot> SCOREBOARD_SLOT = SERVICE.getArgument("scoreboard_slot");
++    public static final SimpleArgument<DisplaySlot> SCOREBOARD_SLOT = create(ArgumentTypes.scoreboardDisplaySlot(), Resolvers::scoreboardDisplaySlot);
 +
 +    /**
 +     * Example: "Player", "0123", "*", "@e"
 +     */
-+    public static final ScoreHolderArgument SCORE_HOLDER = SERVICE.getArgument("score_holder");
++    @Deprecated(forRemoval = true)
++    public static final ScoreHolderArgument SCORE_HOLDER = new ScoreHolderArgument() { };
 +
 +    /**
 +     * Example: "xyz", "x"
 +     */
-+    public static final SimpleArgument<EnumSet<Axis>> SWIZZLE = SERVICE.getArgument("swizzle");
++    public static final SimpleArgument<EnumSet<Axis>> SWIZZLE = create(); // TODO PaperMC/Paper#12665
 +
 +    /**
 +     * Example: "foo", "123"
 +     */
-+    public static final SimpleArgument<Team> TEAM = SERVICE.getArgument("team");
++    @Deprecated(forRemoval = true)
++    public static final SimpleArgument<Team> TEAM = create();
 +
 +    /**
 +     * Example: "container.5", "12", "weapon"
 +     */
-+    public static final SimpleArgument<Integer> SLOT = SERVICE.getArgument("item_slot");
++    public static final SimpleArgument<Integer> SLOT = create(ArgumentTypes.slot(), Resolvers::slot);
 +
 +    /**
 +     * Example: "container.*", "container.5", "weapon"
 +     * @since Minecraft 1.20.5
 +     */
-+    public static final SimpleArgument<IntList> SLOTS = SERVICE.getArgument("item_slots");
++    public static final SimpleArgument<IntList> SLOTS = create(ArgumentTypes.slots(), Resolvers::slots);
 +
 +    /**
 +     * Example: "foo", "foo:bar", "012"
 +     */
-+    public static final SimpleArgument<NamespacedKey> RESOURCE_LOCATION = SERVICE.getArgument("resource_location");
++    public static final SimpleArgument<NamespacedKey> RESOURCE_LOCATION = create(ArgumentTypes.namespacedKey(), Resolvers::namespacedKey);
 +
 +    /*
 +     * Example: "foo", "foo:bar", "#foo"
@@ -228,33 +296,50 @@ index 0000000000000000000000000000000000000000..9a0a1b848bc8f59df26cd9806db2840c
 +    /**
 +     * Example: "eyes", "feet"
 +     */
-+    public static final SimpleArgument<EntityAnchorArgument> ENTITY_ANCHOR = SERVICE.getArgument("entity_anchor");
++    public static final SimpleArgument<EntityAnchorArgument> ENTITY_ANCHOR = create(
++        ArgumentTypes.entityAnchor(),
++        (context, name) -> {
++            final LookAnchor anchor = context.getArgument(name, LookAnchor.class);
++            return entity -> switch (anchor) {
++                case FEET -> entity.getLocation().toVector();
++                case EYES -> {
++                    final double eyeHeight = (entity instanceof LivingEntity l) ? l.getEyeHeight() : 0.0d; // ...
++                    yield entity.getLocation().add(0, eyeHeight, 0).toVector();
++                }
++            };
++        });
 +
 +    /**
 +     * Example: "0..5", "0", "-5", "-100..", "..100"
 +     */
-+    public static final SimpleArgument<NumberRange<Integer>> RANGE_INTEGER = SERVICE.getArgument("int_range");
++    public static final SimpleArgument<NumberRange<Integer>> RANGE_INTEGER = create(ArgumentTypes.integerRange(), (context, name) -> {
++        final Range<Integer> range = Resolvers.integerRange(context, name);
++        return new NumberRange<>(range.lowerEndpoint(), range.upperEndpoint());
++    });
 +
 +    /**
 +     * Example: "0..5.2", "0", "-5.4", "-100.76..", "..100"
 +     */
-+    public static final SimpleArgument<NumberRange<Double>> RANGE_FLOATS = SERVICE.getArgument("float_range");
++    public static final SimpleArgument<NumberRange<Double>> RANGE_FLOATS = create(ArgumentTypes.doubleRange(), (context, name) -> {
++        final Range<Double> range = Resolvers.doubleRange(context, name);
++        return new NumberRange<>(range.lowerEndpoint(), range.upperEndpoint());
++    });
 +
 +    /**
 +     * Example: "minecraft:overworld", "minecraft:the_nether"
 +     * Please use this API's suggestion.
 +     */
-+    public static final SimpleArgumentSuggestion<World> DIMENSION = SERVICE.getArgument("dimension");
++    public static final SimpleArgument<World> DIMENSION = create(ArgumentTypes.world(), Resolvers::world);
 +
 +    /**
 +     * Example: "survival", "creative", "adventure", "spectator"
 +     */
-+    public static final SimpleArgument<GameMode> GAMEMODE = SERVICE.getArgument("gamemode");
++    public static final SimpleArgument<GameMode> GAMEMODE = create(ArgumentTypes.gameMode(), Resolvers::gameMode);
 +
 +    /**
 +     * Example: "0d", "0s", "0t", "0"
 +     */
-+    public static final TimeArgument TIME = SERVICE.getArgument("time");
++    public static final TimeArgument TIME = TimeArgument.create();
 +
 +    /*
 +     * Example: "foo", "foo:bar", "012", "#skeletons", "#minecraft:skeletons"
@@ -284,24 +369,24 @@ index 0000000000000000000000000000000000000000..9a0a1b848bc8f59df26cd9806db2840c
 +     * Example: "template_mirror", "left_right", "none"
 +     * @since Minecraft 1.19
 +     */
-+    public static final SimpleArgument<Mirror> TEMPLATE_MIRROR = SERVICE.getArgument("template_mirror");
++    public static final SimpleArgument<Mirror> TEMPLATE_MIRROR = create(ArgumentTypes.templateMirror(), Resolvers::templateMirror);
 +
 +    /**
 +     * Example: "180", "clockwise_90", "counterclockwise_90", "none"
 +     * @since Minecraft 1.19
 +     */
-+    public static final SimpleArgument<StructureRotation> TEMPLATE_ROTATION = SERVICE.getArgument("template_rotation");
++    public static final SimpleArgument<StructureRotation> TEMPLATE_ROTATION = create(ArgumentTypes.templateRotation(), Resolvers::templateRotation);
 +
 +    /**
 +     * Example: "world_surface", "ocean_floor", "motion_blocking", "motion_blocking_no_leaves"
 +     * @since Minecraft 1.19.4
 +     */
-+    public static final SimpleArgument<HeightMap> HEIGHT_MAP = SERVICE.getArgument("heightmap");
++    public static final SimpleArgument<HeightMap> HEIGHT_MAP = create(ArgumentTypes.heightMap(), Resolvers::heightMap);
 +
 +    /**
 +     * Example: "dd12be42-52a9-4a91-a8a1-11c01849e498"
 +     */
-+    public static final SimpleArgument<UUID> UUID = SERVICE.getArgument("uuid");
++    public static final SimpleArgument<UUID> UUID = create(ArgumentTypes.uuid(), Resolvers::uuid);
 +
 +    /*
 +     * Example: "foo", "foo:bar", "012"
@@ -323,10 +408,10 @@ index 0000000000000000000000000000000000000000..9a0a1b848bc8f59df26cd9806db2840c
 +}
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/BrigadierCommand.java b/src/main/java/moe/caramel/daydream/brigadier/BrigadierCommand.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..53b5d6504586f88f52e58fb143786a6871eea944
+index 0000000000000000000000000000000000000000..f04d65d1286f2e3a8564781c93eb62461d6fddf3
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/brigadier/BrigadierCommand.java
-@@ -0,0 +1,301 @@
+@@ -0,0 +1,302 @@
 +package moe.caramel.daydream.brigadier;
 +
 +import static net.kyori.adventure.text.Component.text;
@@ -344,6 +429,7 @@ index 0000000000000000000000000000000000000000..53b5d6504586f88f52e58fb143786a68
 +import com.mojang.brigadier.tree.LiteralCommandNode;
 +import io.papermc.paper.command.brigadier.CommandSourceStack;
 +import io.papermc.paper.command.brigadier.Commands;
++import io.papermc.paper.command.brigadier.MessageComponentSerializer;
 +import net.kyori.adventure.text.Component;
 +import org.bukkit.command.Command;
 +import org.bukkit.command.CommandException;
@@ -568,7 +654,7 @@ index 0000000000000000000000000000000000000000..53b5d6504586f88f52e58fb143786a68
 +        for (final Map.Entry<String, Component> entry : suggestions.entrySet()) {
 +            final String suggestion = entry.getKey();
 +            if (suggestion.toLowerCase().startsWith(token)) {
-+                builder.suggest(suggestion, BrigadierService.SERVICE.getMessage(entry.getValue()));
++                builder.suggest(suggestion, MessageComponentSerializer.message().serialize(entry.getValue()));
 +            }
 +        }
 +
@@ -628,127 +714,169 @@ index 0000000000000000000000000000000000000000..53b5d6504586f88f52e58fb143786a68
 +    }
 +    //</editor-fold>
 +}
-diff --git a/src/main/java/moe/caramel/daydream/brigadier/BrigadierService.java b/src/main/java/moe/caramel/daydream/brigadier/BrigadierService.java
-new file mode 100644
-index 0000000000000000000000000000000000000000..2c173b01d33c37f5ad82c1e6815c4c4695f5bc35
---- /dev/null
-+++ b/src/main/java/moe/caramel/daydream/brigadier/BrigadierService.java
-@@ -0,0 +1,45 @@
-+package moe.caramel.daydream.brigadier;
-+
-+import com.mojang.brigadier.Message;
-+import io.papermc.paper.command.brigadier.MessageComponentSerializer;
-+import net.kyori.adventure.text.Component;
-+import org.jspecify.annotations.NullMarked;
-+import java.util.ServiceLoader;
-+
-+/**
-+ * Argument 서비스
-+ */
-+@NullMarked
-+class BrigadierService {
-+
-+    /**
-+     * Brigadier 서비스
-+     */
-+    static final Service SERVICE = ServiceLoader.load(Service.class)
-+        .findFirst().orElseThrow();
-+
-+    /**
-+     * 서비스 인터페이스
-+     */
-+    public interface Service {
-+
-+        /**
-+         * Argument 타입을 가져옵니다.
-+         *
-+         * @param type argument 타입 이름
-+         * @return Argument 타입
-+         * @param <T> Argument 타입 클래스
-+         */
-+        <T> T getArgument(String type);
-+
-+        /**
-+         * 툴팁 메시지를 생성합니다.
-+         *
-+         * @param component 툴팁 component
-+         * @return Brigadier 툴팁 메시지
-+         */
-+        default Message getMessage(final Component component) {
-+            return MessageComponentSerializer.message().serialize(component);
-+        }
-+    }
-+}
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/argument/ArgumentInf.java b/src/main/java/moe/caramel/daydream/brigadier/argument/ArgumentInf.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..387d7645bff6f73a90d1cd205f6c0b59286b736b
+index 0000000000000000000000000000000000000000..0c68279122bbb9be8c0f32e7c949f1164b0d21b3
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/brigadier/argument/ArgumentInf.java
-@@ -0,0 +1,10 @@
+@@ -0,0 +1,11 @@
 +package moe.caramel.daydream.brigadier.argument;
 +
 +import com.mojang.brigadier.arguments.ArgumentType;
 +import org.jspecify.annotations.NullMarked;
 +
 +@NullMarked
++@Deprecated(since = "1.21.7", forRemoval = true)
 +public interface ArgumentInf {
 +
 +    ArgumentType<?> get();
 +}
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/argument/BlockPosArgument.java b/src/main/java/moe/caramel/daydream/brigadier/argument/BlockPosArgument.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..8f513e983d5c0985c7b216317932b4e20665efca
+index 0000000000000000000000000000000000000000..905984202d20edbb2c7c996a16c02a9b668d4637
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/brigadier/argument/BlockPosArgument.java
-@@ -0,0 +1,15 @@
+@@ -0,0 +1,74 @@
 +package moe.caramel.daydream.brigadier.argument;
 +
++import static io.papermc.paper.command.brigadier.MessageComponentSerializer.message;
++import static net.kyori.adventure.text.Component.translatable;
++import com.mojang.brigadier.arguments.ArgumentType;
 +import com.mojang.brigadier.context.CommandContext;
 +import com.mojang.brigadier.exceptions.CommandSyntaxException;
++import com.mojang.brigadier.exceptions.SimpleCommandExceptionType;
 +import io.papermc.paper.command.brigadier.CommandSourceStack;
++import io.papermc.paper.command.brigadier.argument.ArgumentTypes;
++import io.papermc.paper.command.brigadier.argument.resolvers.BlockPositionResolver;
++import io.papermc.paper.math.BlockPosition;
++import org.bukkit.World;
 +import org.bukkit.block.Block;
++import org.jetbrains.annotations.ApiStatus;
 +import org.jspecify.annotations.NullMarked;
 +
 +@NullMarked
++@Deprecated(since = "1.21.7", forRemoval = true)
 +public interface BlockPosArgument extends ArgumentInf {
 +
-+    Block getLoadedBlockPos(CommandContext<? extends CommandSourceStack> context, String name) throws CommandSyntaxException;
++    Block getLoadedBlockPos(CommandContext<CommandSourceStack> context, String name) throws CommandSyntaxException;
 +
-+    Block getSpawnablePos(CommandContext<? extends CommandSourceStack> context, String name) throws CommandSyntaxException;
++    Block getSpawnablePos(CommandContext<CommandSourceStack> context, String name) throws CommandSyntaxException;
++
++    @ApiStatus.Internal
++    static BlockPosArgument create() {
++        return new BlockPosArgument() {
++
++            static final SimpleCommandExceptionType ERROR_NOT_LOADED = new SimpleCommandExceptionType(message().serialize(translatable("argument.pos.unloaded")));
++            static final SimpleCommandExceptionType ERROR_OUT_OF_WORLD = new SimpleCommandExceptionType(message().serialize(translatable("argument.pos.outofworld")));
++            static final SimpleCommandExceptionType ERROR_OUT_OF_BOUNDS = new SimpleCommandExceptionType(message().serialize(translatable("argument.pos.outofbounds")));
++
++            @Override
++            public ArgumentType<BlockPositionResolver> get() {
++                return ArgumentTypes.blockPosition();
++            }
++
++            @Override
++            public Block getLoadedBlockPos(final CommandContext<CommandSourceStack> context, final String name) throws CommandSyntaxException {
++                final World world = context.getSource().getLocation().getWorld();
++                final BlockPosition pos = this.getBlockPos(context, name);
++                if (!world.isChunkLoaded(pos.blockX() >> 4, pos.blockZ() >> 4)) {
++                    throw ERROR_NOT_LOADED.create();
++                } else if (pos.blockX() >= -30000000 && pos.blockZ() >= -30000000 &&
++                           pos.blockX() < 30000000 && pos.blockZ() < 30000000 &&
++                           pos.blockY() < world.getMinHeight() || pos.blockY() > world.getMaxHeight()) {
++                    throw ERROR_OUT_OF_WORLD.create();
++                } else {
++                    return world.getBlockAt(pos.blockX(), pos.blockY(), pos.blockZ());
++                }
++            }
++
++            @Override
++            public Block getSpawnablePos(final CommandContext<CommandSourceStack> context, final String name) throws CommandSyntaxException {
++                final World world = context.getSource().getLocation().getWorld();
++                final BlockPosition pos = this.getBlockPos(context, name);
++                if (pos.blockY() < -20000000 || pos.blockY() >= 20000000 ||
++                    pos.blockX() < -30000000 || pos.blockX() >= 30000000 ||
++                    pos.blockZ() < -30000000 || pos.blockZ() >= 30000000) {
++                    throw ERROR_OUT_OF_BOUNDS.create();
++                } else {
++                    return world.getBlockAt(pos.blockX(), pos.blockY(), pos.blockZ());
++                }
++            }
++
++            private BlockPosition getBlockPos(final CommandContext<CommandSourceStack> context, final String name) throws CommandSyntaxException {
++                return context
++                    .getArgument(name, BlockPositionResolver.class)
++                    .resolve(context.getSource());
++            }
++        };
++    }
 +}
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/argument/BlockStateArgument.java b/src/main/java/moe/caramel/daydream/brigadier/argument/BlockStateArgument.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..9cb95ecf3426f8ef082244fe98df0e0283ef5dc2
+index 0000000000000000000000000000000000000000..7badf888b7724af4a17d77ad4088952c4e3cd31b
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/brigadier/argument/BlockStateArgument.java
-@@ -0,0 +1,21 @@
+@@ -0,0 +1,54 @@
 +package moe.caramel.daydream.brigadier.argument;
 +
++import com.mojang.brigadier.arguments.ArgumentType;
 +import com.mojang.brigadier.context.CommandContext;
 +import com.mojang.brigadier.exceptions.CommandSyntaxException;
 +import io.papermc.paper.command.brigadier.CommandSourceStack;
++import io.papermc.paper.command.brigadier.argument.ArgumentTypes;
++import moe.caramel.daydream.brigadier.Resolvers;
 +import org.bukkit.Location;
 +import org.bukkit.World;
 +import org.bukkit.block.Block;
++import org.bukkit.block.BlockState;
 +import org.bukkit.block.data.BlockData;
++import org.jetbrains.annotations.ApiStatus;
 +import org.jspecify.annotations.NullMarked;
 +import java.util.function.Predicate;
 +
 +@NullMarked
++@Deprecated(since = "1.21.7", forRemoval = true)
 +public interface BlockStateArgument extends ArgumentInf {
 +
-+    BlockData getState(CommandContext<? extends CommandSourceStack> context, String name) throws CommandSyntaxException;
++    BlockData getState(CommandContext<CommandSourceStack> context, String name) throws CommandSyntaxException;
 +
-+    boolean place(CommandContext<? extends CommandSourceStack> context, String name, World world, Location location, int flags);
++    boolean place(CommandContext<CommandSourceStack> context, String name, World world, Location location, int flags);
 +
-+    Predicate<Block> getPredicate(CommandContext<? extends CommandSourceStack> context, String name) throws CommandSyntaxException;
++    Predicate<Block> getPredicate(CommandContext<CommandSourceStack> context, String name) throws CommandSyntaxException;
++
++    @ApiStatus.Internal
++    static BlockStateArgument create() {
++        return new BlockStateArgument() {
++            @Override
++            public ArgumentType<BlockState> get() {
++                return ArgumentTypes.blockState();
++            }
++
++            @Override
++            public BlockData getState(final CommandContext<CommandSourceStack> context, final String name) {
++                return Resolvers.blockState(context, name).getBlockData();
++            }
++
++            @Override
++            public boolean place(final CommandContext<CommandSourceStack> context, final String name, final World world, final Location location, final int flags) {
++                final BlockState state = Resolvers.blockState(context, name);
++                world.setBlockData(location, state.getBlockData()); // ...
++                return false;
++            }
++
++            @Override
++            public Predicate<Block> getPredicate(final CommandContext<CommandSourceStack> context, final String name) {
++                return block -> block.getState().equals(Resolvers.blockState(context, name)); // ...
++            }
++        };
++    }
 +}
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/argument/EntityAnchorArgument.java b/src/main/java/moe/caramel/daydream/brigadier/argument/EntityAnchorArgument.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..df75401485f5afe91abe044e378b907a478c6ee7
+index 0000000000000000000000000000000000000000..22441a2b6d92802ef881e278094352b16f7e4ccd
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/brigadier/argument/EntityAnchorArgument.java
-@@ -0,0 +1,11 @@
+@@ -0,0 +1,12 @@
 +package moe.caramel.daydream.brigadier.argument;
 +
 +import org.bukkit.entity.Entity;
@@ -756,100 +884,188 @@ index 0000000000000000000000000000000000000000..df75401485f5afe91abe044e378b907a
 +import org.jspecify.annotations.NullMarked;
 +
 +@NullMarked
++@Deprecated(since = "1.21.7", forRemoval = true)
 +public interface EntityAnchorArgument {
 +
 +    Vector apply(Entity entity);
 +}
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/argument/EntityArgument.java b/src/main/java/moe/caramel/daydream/brigadier/argument/EntityArgument.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..2a4d26b247adedcf54a73e14c1fadaed89a14f21
+index 0000000000000000000000000000000000000000..adef2206b70da031dab6ab9b4459593ce833cba8
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/brigadier/argument/EntityArgument.java
-@@ -0,0 +1,32 @@
+@@ -0,0 +1,55 @@
 +package moe.caramel.daydream.brigadier.argument;
 +
 +import com.mojang.brigadier.arguments.ArgumentType;
 +import com.mojang.brigadier.context.CommandContext;
 +import com.mojang.brigadier.exceptions.CommandSyntaxException;
 +import io.papermc.paper.command.brigadier.CommandSourceStack;
++import io.papermc.paper.command.brigadier.argument.ArgumentTypes;
++import io.papermc.paper.command.brigadier.argument.resolvers.selector.EntitySelectorArgumentResolver;
++import io.papermc.paper.command.brigadier.argument.resolvers.selector.PlayerSelectorArgumentResolver;
++import moe.caramel.daydream.brigadier.Resolvers;
 +import org.bukkit.entity.Entity;
 +import org.bukkit.entity.Player;
 +import org.jspecify.annotations.NullMarked;
 +import java.util.Collection;
 +
 +@NullMarked
++@Deprecated(since = "1.21.7", forRemoval = true)
 +public interface EntityArgument {
 +
-+    ArgumentType<?> entity();
++    default ArgumentType<EntitySelectorArgumentResolver> entity() {
++        return ArgumentTypes.entity();
++    }
 +
-+    ArgumentType<?> entities();
++    default ArgumentType<EntitySelectorArgumentResolver> entities() {
++        return ArgumentTypes.entities();
++    }
 +
-+    ArgumentType<?> player();
++    default ArgumentType<PlayerSelectorArgumentResolver> player() {
++        return ArgumentTypes.player();
++    }
 +
-+    ArgumentType<?> players();
++    default ArgumentType<PlayerSelectorArgumentResolver> players() {
++        return ArgumentTypes.players();
++    }
 +
-+    Entity getEntity(CommandContext<? extends CommandSourceStack> context, String name) throws CommandSyntaxException;
++    default Entity getEntity(final CommandContext<CommandSourceStack> context, final String name) throws CommandSyntaxException {
++        return Resolvers.entity(context, name);
++    }
 +
-+    Collection<? extends Entity> getEntities(CommandContext<? extends CommandSourceStack> context, String name) throws CommandSyntaxException;
++    default Collection<? extends Entity> getEntities(final CommandContext<CommandSourceStack> context, final String name) throws CommandSyntaxException {
++        return Resolvers.entities(context, name);
++    }
 +
-+    Collection<Player> getOptionalPlayers(CommandContext<? extends CommandSourceStack> context, String name) throws CommandSyntaxException;
++    default Collection<Player> getOptionalPlayers(final CommandContext<CommandSourceStack> context, final String name) throws CommandSyntaxException {
++        return Resolvers.optionalPlayers(context, name);
++    }
 +
-+    Player getPlayer(CommandContext<? extends CommandSourceStack> context, String name) throws CommandSyntaxException;
++    default Player getPlayer(final CommandContext<CommandSourceStack> context, final String name) throws CommandSyntaxException {
++        return Resolvers.player(context, name);
++    }
 +
-+    Collection<Player> getPlayers(CommandContext<? extends CommandSourceStack> context, String name) throws CommandSyntaxException;
++    default Collection<Player> getPlayers(final CommandContext<CommandSourceStack> context, final String name) throws CommandSyntaxException {
++        return Resolvers.players(context, name);
++    }
 +}
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/argument/ItemArgument.java b/src/main/java/moe/caramel/daydream/brigadier/argument/ItemArgument.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..ad307861c039024eeb2b87f95c683b68086e0532
+index 0000000000000000000000000000000000000000..f0ee6a9ffb4300c4e2933909d6696a47efdc5282
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/brigadier/argument/ItemArgument.java
-@@ -0,0 +1,17 @@
+@@ -0,0 +1,53 @@
 +package moe.caramel.daydream.brigadier.argument;
 +
++import static io.papermc.paper.command.brigadier.MessageComponentSerializer.message;
++import static net.kyori.adventure.text.Component.text;
++import static net.kyori.adventure.text.Component.translatable;
++import com.mojang.brigadier.arguments.ArgumentType;
 +import com.mojang.brigadier.context.CommandContext;
 +import com.mojang.brigadier.exceptions.CommandSyntaxException;
++import com.mojang.brigadier.exceptions.Dynamic2CommandExceptionType;
 +import io.papermc.paper.command.brigadier.CommandSourceStack;
++import io.papermc.paper.command.brigadier.argument.ArgumentTypes;
++import moe.caramel.daydream.brigadier.Resolvers;
 +import org.bukkit.inventory.ItemStack;
++import org.jetbrains.annotations.ApiStatus;
 +import org.jspecify.annotations.NullMarked;
 +
 +@NullMarked
++@Deprecated(since = "1.21.7", forRemoval = true)
 +public interface ItemArgument extends ArgumentInf {
 +
-+    default ItemStack getItem(final CommandContext<? extends CommandSourceStack> context, final String name) throws CommandSyntaxException {
++    default ItemStack getItem(final CommandContext<CommandSourceStack> context, final String name) throws CommandSyntaxException {
 +        return this.createItemStack(context, name, 1, false);
 +    }
 +
-+    ItemStack createItemStack(CommandContext<? extends CommandSourceStack> context, String name, int amount, boolean checkOverstack) throws CommandSyntaxException;
++    ItemStack createItemStack(CommandContext<CommandSourceStack> context, String name, int amount, boolean checkOverstack) throws CommandSyntaxException;
++
++    @ApiStatus.Internal
++    static ItemArgument create() {
++        return new ItemArgument() {
++
++            static final Dynamic2CommandExceptionType ERROR_STACK_TOO_BIG = new Dynamic2CommandExceptionType(
++                (item, quantity) -> message()
++                    .serialize(
++                        translatable("arguments.item.overstacked")
++                            .arguments(text(item.toString()), text(quantity.toString()))));
++
++            @Override
++            public ArgumentType<ItemStack> get() {
++                return ArgumentTypes.itemStack();
++            }
++
++            @Override
++            public ItemStack createItemStack(final CommandContext<CommandSourceStack> context, final String name, final int amount, final boolean checkOverstack) throws CommandSyntaxException {
++                final ItemStack itemStack = Resolvers.itemStack(context, name);
++                if (checkOverstack && amount > itemStack.getMaxStackSize()) {
++                    throw ERROR_STACK_TOO_BIG.create(itemStack.translationKey(), itemStack.getMaxStackSize());
++                }
++                itemStack.setAmount(amount);
++                return itemStack;
++            }
++        };
++    }
 +}
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/argument/MessageArgument.java b/src/main/java/moe/caramel/daydream/brigadier/argument/MessageArgument.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..f97d35132a6689cef64bc64bd84f08997a369e79
+index 0000000000000000000000000000000000000000..d4de3b8e6de835ce726d5b7423fa60f16dbe3014
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/brigadier/argument/MessageArgument.java
-@@ -0,0 +1,17 @@
+@@ -0,0 +1,45 @@
 +package moe.caramel.daydream.brigadier.argument;
 +
++import com.mojang.brigadier.arguments.ArgumentType;
 +import com.mojang.brigadier.context.CommandContext;
 +import com.mojang.brigadier.exceptions.CommandSyntaxException;
 +import io.papermc.paper.command.brigadier.CommandSourceStack;
++import io.papermc.paper.command.brigadier.argument.ArgumentTypes;
++import io.papermc.paper.command.brigadier.argument.SignedMessageResolver;
++import moe.caramel.daydream.brigadier.Resolvers;
 +import moe.caramel.daydream.player.chat.PlayerMessage;
 +import net.kyori.adventure.text.Component;
++import org.jetbrains.annotations.ApiStatus;
 +import org.jspecify.annotations.NullMarked;
 +import java.util.function.Consumer;
 +
 +@NullMarked
++@Deprecated(since = "1.21.7", forRemoval = true)
 +public interface MessageArgument extends SimpleArgument<Component> {
 +
-+    void resolveMessage(CommandContext<? extends CommandSourceStack> context,
++    void resolveMessage(CommandContext<CommandSourceStack> context,
 +                        String name,
 +                        Consumer<PlayerMessage> callback) throws CommandSyntaxException;
++
++    @ApiStatus.Internal
++    static MessageArgument create() {
++        return new MessageArgument() {
++            @Override
++            public ArgumentType<SignedMessageResolver> get() {
++                return ArgumentTypes.signedMessage();
++            }
++
++            @Override
++            public Component getData(final CommandContext<CommandSourceStack> context, final String name) {
++                return Component.text(Resolvers.signedMessage(context, name).content());
++            }
++
++            @Override
++            public void resolveMessage(final CommandContext<CommandSourceStack> context, final String name, final Consumer<PlayerMessage> callback) throws CommandSyntaxException {
++                Resolvers.signedMessage(context, name)
++                    .resolveSignedMessage(name, context)
++                    .thenAccept(signedMessage -> callback.accept((PlayerMessage) signedMessage));
++            }
++        };
++    }
 +}
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/argument/ScoreHolderArgument.java b/src/main/java/moe/caramel/daydream/brigadier/argument/ScoreHolderArgument.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..af385dae3f80a939f9b9e31f8fe7432d389b0eaa
+index 0000000000000000000000000000000000000000..e457315b967a10495b7a3c2ecb0fe6ab0074ffdf
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/brigadier/argument/ScoreHolderArgument.java
-@@ -0,0 +1,29 @@
+@@ -0,0 +1,44 @@
 +package moe.caramel.daydream.brigadier.argument;
 +
 +import com.mojang.brigadier.arguments.ArgumentType;
@@ -863,106 +1079,188 @@ index 0000000000000000000000000000000000000000..af385dae3f80a939f9b9e31f8fe7432d
 +import java.util.function.Supplier;
 +
 +@NullMarked
++@Deprecated(since = "1.21.7", forRemoval = true)
 +public interface ScoreHolderArgument {
 +
-+    ArgumentType<?> getHolder();
++    default ArgumentType<?> getHolder() {
++        throw new UnsupportedOperationException("This method is no longer supported.");
++    }
 +
-+    ArgumentType<?> getHolders();
++    default ArgumentType<?> getHolders() {
++        throw new UnsupportedOperationException("This method is no longer supported.");
++    }
 +
-+    ScoreHolder getName(CommandContext<? extends CommandSourceStack> context, String name) throws CommandSyntaxException;
++    default ScoreHolder getName(CommandContext<? extends CommandSourceStack> context, String name) throws CommandSyntaxException {
++        throw new UnsupportedOperationException("This method is no longer supported.");
++    }
 +
-+    Collection<ScoreHolder> getNames(CommandContext<? extends CommandSourceStack> context, String name) throws CommandSyntaxException;
++    default Collection<ScoreHolder> getNames(CommandContext<? extends CommandSourceStack> context, String name) throws CommandSyntaxException {
++        throw new UnsupportedOperationException("This method is no longer supported.");
++    }
 +
-+    Collection<ScoreHolder> getNamesWithDefaultWildcard(CommandContext<? extends CommandSourceStack> context, String name) throws CommandSyntaxException;
++    default Collection<ScoreHolder> getNamesWithDefaultWildcard(CommandContext<? extends CommandSourceStack> context, String name) throws CommandSyntaxException {
++        throw new UnsupportedOperationException("This method is no longer supported.");
++    }
 +
-+    Collection<ScoreHolder> getNamesSupplier(CommandContext<? extends CommandSourceStack> context, String name, Supplier<Collection<String>> players) throws CommandSyntaxException;
++    default Collection<ScoreHolder> getNamesSupplier(CommandContext<? extends CommandSourceStack> context, String name, Supplier<Collection<String>> players) throws CommandSyntaxException {
++        throw new UnsupportedOperationException("This method is no longer supported.");
++    }
 +
-+    SuggestionProvider<CommandSourceStack> getSuggestion();
++    default SuggestionProvider<CommandSourceStack> getSuggestion() {
++        throw new UnsupportedOperationException("This method is no longer supported.");
++    }
 +}
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/argument/SimpleArgument.java b/src/main/java/moe/caramel/daydream/brigadier/argument/SimpleArgument.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..781566b633ecad9693b8aa304f85655eeac8c92a
+index 0000000000000000000000000000000000000000..2f563ece8ef9d3599c5b10658cca340965f2b7f2
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/brigadier/argument/SimpleArgument.java
-@@ -0,0 +1,12 @@
+@@ -0,0 +1,46 @@
 +package moe.caramel.daydream.brigadier.argument;
 +
++import com.mojang.brigadier.arguments.ArgumentType;
 +import com.mojang.brigadier.context.CommandContext;
 +import com.mojang.brigadier.exceptions.CommandSyntaxException;
 +import io.papermc.paper.command.brigadier.CommandSourceStack;
++import org.jetbrains.annotations.ApiStatus;
 +import org.jspecify.annotations.NullMarked;
++import java.util.function.BiFunction;
 +
 +@NullMarked
++@Deprecated(since = "1.21.7", forRemoval = true)
 +public interface SimpleArgument<T> extends ArgumentInf {
 +
-+    T getData(CommandContext<? extends CommandSourceStack> context, String name) throws CommandSyntaxException;
++    T getData(CommandContext<CommandSourceStack> context, String name) throws CommandSyntaxException;
++
++    @ApiStatus.Internal
++    static <T> SimpleArgument<T> create() {
++        return new SimpleArgument<>() {
++            @Override
++            public ArgumentType<?> get() {
++                throw new UnsupportedOperationException("This method is no longer supported.");
++            }
++
++            @Override
++            public T getData(final CommandContext<CommandSourceStack> context, final String name) {
++                throw new UnsupportedOperationException("This method is no longer supported.");
++            }
++        };
++    }
++
++    @ApiStatus.Internal
++    static <T> SimpleArgument<T> create(final ArgumentType<?> type, final BiFunction<CommandContext<CommandSourceStack>, String, T> resolver) {
++        return new SimpleArgument<>() {
++            @Override
++            public ArgumentType<?> get() {
++                return type;
++            }
++
++            @Override
++            public T getData(final CommandContext<CommandSourceStack> context, final String name) {
++                return resolver.apply(context, name);
++            }
++        };
++    }
 +}
-diff --git a/src/main/java/moe/caramel/daydream/brigadier/argument/SimpleArgumentSuggestion.java b/src/main/java/moe/caramel/daydream/brigadier/argument/SimpleArgumentSuggestion.java
-new file mode 100644
-index 0000000000000000000000000000000000000000..2fbf6da23c6442104c78107f7bc2c3e3b2910d3c
---- /dev/null
-+++ b/src/main/java/moe/caramel/daydream/brigadier/argument/SimpleArgumentSuggestion.java
-@@ -0,0 +1,5 @@
-+package moe.caramel.daydream.brigadier.argument;
-+
-+import moe.caramel.daydream.brigadier.suggestion.SimpleSuggestion;
-+
-+public interface SimpleArgumentSuggestion<T> extends SimpleArgument<T>, SimpleSuggestion { }
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/argument/TimeArgument.java b/src/main/java/moe/caramel/daydream/brigadier/argument/TimeArgument.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..c8e20c1b5579d0a74ff277a327ee658347046b74
+index 0000000000000000000000000000000000000000..881fbdaac46b265d9cb62d8f255ce26d8443bb86
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/brigadier/argument/TimeArgument.java
-@@ -0,0 +1,10 @@
+@@ -0,0 +1,36 @@
 +package moe.caramel.daydream.brigadier.argument;
 +
 +import com.mojang.brigadier.arguments.ArgumentType;
++import com.mojang.brigadier.context.CommandContext;
++import io.papermc.paper.command.brigadier.CommandSourceStack;
++import io.papermc.paper.command.brigadier.argument.ArgumentTypes;
++import moe.caramel.daydream.brigadier.Resolvers;
++import org.jetbrains.annotations.ApiStatus;
 +import org.jspecify.annotations.NullMarked;
 +
 +@NullMarked
++@Deprecated(since = "1.21.7", forRemoval = true)
 +public interface TimeArgument extends SimpleArgument<Integer> {
 +
 +    ArgumentType<?> get(int minimum);
++
++    @ApiStatus.Internal
++    static TimeArgument create() {
++        return new TimeArgument() {
++            @Override
++            public ArgumentType<Integer> get() {
++                return ArgumentTypes.time();
++            }
++
++            @Override
++            public ArgumentType<Integer> get(final int minimum) {
++                return ArgumentTypes.time(minimum);
++            }
++
++            @Override
++            public Integer getData(final CommandContext<CommandSourceStack> context, final String name) {
++                return Resolvers.time(context, name);
++            }
++        };
++    }
 +}
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/argument/VecArgument.java b/src/main/java/moe/caramel/daydream/brigadier/argument/VecArgument.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..4145ab07a00ba9dedd98ee0f5a689d95c15a339e
+index 0000000000000000000000000000000000000000..d777bd7e246fd8be37977d22d6002fce5eb6eb38
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/brigadier/argument/VecArgument.java
-@@ -0,0 +1,12 @@
+@@ -0,0 +1,45 @@
 +package moe.caramel.daydream.brigadier.argument;
 +
++import com.google.common.base.Function;
 +import com.mojang.brigadier.arguments.ArgumentType;
++import com.mojang.brigadier.context.CommandContext;
++import com.mojang.brigadier.exceptions.CommandSyntaxException;
 +import io.papermc.paper.command.brigadier.CommandSourceStack;
 +import moe.caramel.daydream.brigadier.data.Position;
++import org.jetbrains.annotations.ApiStatus;
 +import org.jspecify.annotations.NullMarked;
 +
 +@NullMarked
++@Deprecated(since = "1.21.7", forRemoval = true)
 +public interface VecArgument extends SimpleArgument<Position<CommandSourceStack>> {
 +
 +    ArgumentType<?> get(boolean centerIntegers);
-+}
-diff --git a/src/main/java/moe/caramel/daydream/brigadier/data/Operation.java b/src/main/java/moe/caramel/daydream/brigadier/data/Operation.java
-new file mode 100644
-index 0000000000000000000000000000000000000000..2b11e6a5c9a841dabd5d91632a0945a1a128515c
---- /dev/null
-+++ b/src/main/java/moe/caramel/daydream/brigadier/data/Operation.java
-@@ -0,0 +1,9 @@
-+package moe.caramel.daydream.brigadier.data;
 +
-+import com.mojang.brigadier.exceptions.CommandSyntaxException;
++    @ApiStatus.Internal
++    static VecArgument create(final ArgumentType<?> type,
++                              final Function<Boolean, ArgumentType<?>> center,
++                              final PositionResolver resolver) {
++        return new VecArgument() {
++            @Override
++            public ArgumentType<?> get() {
++                return type;
++            }
 +
-+@FunctionalInterface
-+public interface Operation {
++            @Override
++            public ArgumentType<?> get(final boolean centerIntegers) {
++                return center.apply(centerIntegers);
++            }
 +
-+    int apply(int score, int score2) throws CommandSyntaxException;
++            @Override
++            public Position<CommandSourceStack> getData(final CommandContext<CommandSourceStack> context, final String name) throws CommandSyntaxException {
++                return resolver.resolve(context, name);
++            }
++        };
++    }
++
++    @ApiStatus.Internal
++    @FunctionalInterface
++    interface PositionResolver {
++        Position<CommandSourceStack> resolve(final CommandContext<CommandSourceStack> context, final String name) throws CommandSyntaxException;
++    }
 +}
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/data/Position.java b/src/main/java/moe/caramel/daydream/brigadier/data/Position.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..7fd0e9e480e3b1bfea5439debde9856f7c25023d
+index 0000000000000000000000000000000000000000..cad56ff56acce9bdb527d94a1b6ca35be0ba3094
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/brigadier/data/Position.java
-@@ -0,0 +1,24 @@
+@@ -0,0 +1,35 @@
 +package moe.caramel.daydream.brigadier.data;
 +
 +import io.papermc.paper.command.brigadier.CommandSourceStack;
@@ -971,28 +1269,39 @@ index 0000000000000000000000000000000000000000..7fd0e9e480e3b1bfea5439debde9856f
 +import org.jspecify.annotations.NullMarked;
 +
 +@NullMarked
++@Deprecated(since = "1.21.7", forRemoval = true)
 +public interface Position<C extends CommandSourceStack> {
 +
 +    Vector getPositionVector(C source);
 +
-+    float getXRot(C source);
++    default float getXRot(final C source) {
++        return source.getLocation().getPitch();
++    }
 +
-+    float getYRot(C source);
++    default float getYRot(final C source) {
++        return source.getLocation().getYaw();
++    }
 +
 +    Location getLocation(C source);
 +
-+    boolean isXRelative();
++    default boolean isXRelative() {
++        return false;
++    }
 +
-+    boolean isYRelative();
++    default boolean isYRelative() {
++        return false;
++    }
 +
-+    boolean isZRelative();
++    default boolean isZRelative() {
++        return false;
++    }
 +}
 diff --git a/src/main/java/moe/caramel/daydream/brigadier/data/ScoreHolder.java b/src/main/java/moe/caramel/daydream/brigadier/data/ScoreHolder.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..5ff4a97da6672fffc2ed60ba066699abcca08009
+index 0000000000000000000000000000000000000000..6557e5d19a279c6da5a5d69a7753196c0056e38a
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/brigadier/data/ScoreHolder.java
-@@ -0,0 +1,15 @@
+@@ -0,0 +1,16 @@
 +package moe.caramel.daydream.brigadier.data;
 +
 +import net.kyori.adventure.text.Component;
@@ -1000,6 +1309,7 @@ index 0000000000000000000000000000000000000000..5ff4a97da6672fffc2ed60ba066699ab
 +import org.jspecify.annotations.Nullable;
 +
 +@NullMarked
++@Deprecated(since = "1.21.7", forRemoval = true)
 +public interface ScoreHolder {
 +
 +    String scoreboardName();
@@ -1007,23 +1317,6 @@ index 0000000000000000000000000000000000000000..5ff4a97da6672fffc2ed60ba066699ab
 +    @Nullable Component displayName();
 +
 +    Component feedbackDisplayName();
-+}
-diff --git a/src/main/java/moe/caramel/daydream/brigadier/suggestion/SimpleSuggestion.java b/src/main/java/moe/caramel/daydream/brigadier/suggestion/SimpleSuggestion.java
-new file mode 100644
-index 0000000000000000000000000000000000000000..6cc69a7f1ab34c66413df07528a80edfb00a7984
---- /dev/null
-+++ b/src/main/java/moe/caramel/daydream/brigadier/suggestion/SimpleSuggestion.java
-@@ -0,0 +1,11 @@
-+package moe.caramel.daydream.brigadier.suggestion;
-+
-+import com.mojang.brigadier.suggestion.SuggestionProvider;
-+import io.papermc.paper.command.brigadier.CommandSourceStack;
-+import org.jspecify.annotations.NullMarked;
-+
-+@NullMarked
-+public interface SimpleSuggestion {
-+
-+    SuggestionProvider<CommandSourceStack> getSuggestion();
 +}
 diff --git a/src/main/java/moe/caramel/daydream/util/NumberRange.java b/src/main/java/moe/caramel/daydream/util/NumberRange.java
 new file mode 100644
@@ -1067,10 +1360,10 @@ index 0000000000000000000000000000000000000000..b21df77a52d31e7e0c38b33a6d77808a
 +    }
 +}
 diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
-index 80858f3204a5d8a73329b10c29b420ab923e9cc3..e67bdee7811b69f395225b2a0ac6ae8c68893f00 100644
+index 220ffe1eb8f1be13c446fab18c6710adae8c461d..2ebf84b7a500b2189d5291e0438b6b4305608389 100644
 --- a/src/main/java/org/bukkit/Bukkit.java
 +++ b/src/main/java/org/bukkit/Bukkit.java
-@@ -1105,6 +1105,41 @@ public final class Bukkit {
+@@ -1107,6 +1107,41 @@ public final class Bukkit {
      }
      // Daydream end - Expose Brigadier command dispatcher
  
@@ -1113,10 +1406,10 @@ index 80858f3204a5d8a73329b10c29b420ab923e9cc3..e67bdee7811b69f395225b2a0ac6ae8c
       * Writes loaded players to disk.
       */
 diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
-index 235e5da4e7204d7db29872456b82d57a03037d66..31d5403a1cd4585deaf61513511e5ded95c7b301 100644
+index 52783c96bf814741c8a84b3db135c71fac93b848..8d7fa92d5347471682116dec47ae8ab49bd15711 100644
 --- a/src/main/java/org/bukkit/Server.java
 +++ b/src/main/java/org/bukkit/Server.java
-@@ -980,6 +980,35 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
+@@ -982,6 +982,35 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
      public <S extends io.papermc.paper.command.brigadier.CommandSourceStack> com.mojang.brigadier.CommandDispatcher<S> getCommandDispatcher();
      // Daydream end - Expose Brigadier command dispatcher
  
@@ -1153,10 +1446,10 @@ index 235e5da4e7204d7db29872456b82d57a03037d66..31d5403a1cd4585deaf61513511e5ded
       * Writes loaded players to disk.
       */
 diff --git a/src/main/java/org/bukkit/command/Command.java b/src/main/java/org/bukkit/command/Command.java
-index 83193bfd215d9e0c6ed896480b2d4e35b0e4333d..faf4524f47a074c61962f62b948a0cf486f8cf15 100644
+index 27a7c69f23084e821d945d5e97e51a94ddd94e58..29154c3e60eaf8004b34d0f31485971391acb7b1 100644
 --- a/src/main/java/org/bukkit/command/Command.java
 +++ b/src/main/java/org/bukkit/command/Command.java
-@@ -361,6 +361,22 @@ public abstract class Command {
+@@ -355,6 +355,22 @@ public abstract class Command {
          return usageMessage;
      }
  
@@ -1180,10 +1473,10 @@ index 83193bfd215d9e0c6ed896480b2d4e35b0e4333d..faf4524f47a074c61962f62b948a0cf4
       * Sets the list of aliases to request on registration for this command.
       * This is not effective outside of defining aliases in the {@link
 diff --git a/src/main/java/org/bukkit/plugin/java/JavaPlugin.java b/src/main/java/org/bukkit/plugin/java/JavaPlugin.java
-index fa65a03ec8fa3b57086aae3b9fa317c39d5bbba3..cd38488118444fc1fb3377656ad1b4e5bf1f5bae 100644
+index 7bdbfbd48329ab0900e6428cc3d5e8aa7f1d26bb..b1929f59b498a4b66302ce629f06dba9b99dc8e0 100644
 --- a/src/main/java/org/bukkit/plugin/java/JavaPlugin.java
 +++ b/src/main/java/org/bukkit/plugin/java/JavaPlugin.java
-@@ -440,6 +440,36 @@ public abstract class JavaPlugin extends PluginBase {
+@@ -436,6 +436,36 @@ public abstract class JavaPlugin extends PluginBase {
          });
      }
  

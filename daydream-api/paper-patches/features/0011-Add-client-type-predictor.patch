@@ -1,0 +1,70 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: LemonCaramel <admin@caramel.moe>
+Date: Sun, 10 Dec 2023 16:28:01 +0900
+Subject: [PATCH] Add client type predictor
+
+
+diff --git a/src/main/java/io/papermc/paper/connection/PlayerCommonConnection.java b/src/main/java/io/papermc/paper/connection/PlayerCommonConnection.java
+index cae2e5ba5dd74b64bcd4f2041fa6b4e944f34c24..a68ebb77ba2cf5d2267fbe695b67dbabf62dbb9c 100644
+--- a/src/main/java/io/papermc/paper/connection/PlayerCommonConnection.java
++++ b/src/main/java/io/papermc/paper/connection/PlayerCommonConnection.java
+@@ -42,4 +42,24 @@ public interface PlayerCommonConnection extends WritablePlayerCookieConnection,
+      * @return the client option value of the player
+      */
+     <T> T getClientOption(ClientOption<T> type);
++
++    // Daydream start - (feature) Add client type predictor
++    /**
++     * 클라이언트 브랜드 이름을 가져옵니다.
++     *
++     * @return 클라이언트의 브랜드 이름
++     */
++    @org.jspecify.annotations.Nullable
++    String getClientBrandName();
++
++    /**
++     * 서버에서 감지한 클라이언트의 종류를 가져옵니다.
++     * <p>
++     * Daydream 설정에서 감지가 비활성화 되었거나, 아직 프로세스를
++     * 시작하지 않은 경우 {@link moe.caramel.daydream.player.ClientType#VANILLA}를 반환합니다.
++     *
++     * @return 클라이언트의 종류
++     */
++    moe.caramel.daydream.player.ClientType getClientType();
++    // Daydream end - (feature) Add client type predictor
+ }
+diff --git a/src/main/java/moe/caramel/daydream/player/ClientType.java b/src/main/java/moe/caramel/daydream/player/ClientType.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..85f089fad49ffeeedd972e3ce11c6bf2818aec9f
+--- /dev/null
++++ b/src/main/java/moe/caramel/daydream/player/ClientType.java
+@@ -0,0 +1,29 @@
++package moe.caramel.daydream.player;
++
++/**
++ * 클라이언트 타입
++ */
++public enum ClientType {
++
++    /**
++     * 바닐라 클라이언트 또는 알 수 없는 클라이언트
++     */
++    VANILLA,
++    /**
++     * 모드 로더이지만 자세히는 알 수 없음
++     */
++    UNKNOWN_CLIENT,
++
++    /**
++     * Fabric 모드 로더
++     */
++    FABRIC,
++    /**
++     * Forge 모드 로더
++     */
++    FORGE,
++    /**
++     * NeoForge 모드 로더
++     */
++    NEOFORGE,
++}

@@ -1,0 +1,10 @@
+--- a/src/main/java/org/bukkit/event/player/PlayerLinksSendEvent.java
++++ b/src/main/java/org/bukkit/event/player/PlayerLinksSendEvent.java
+@@ -21,6 +_,7 @@
+ 
+     @ApiStatus.Internal
+     public PlayerLinksSendEvent(@NotNull final PlayerConfigurationConnection connection, @NotNull final ServerLinks links) {
++        super(!org.bukkit.Bukkit.isPrimaryThread()); // Daydream - Support async state during configuration phase initialization
+         this.connection = connection;
+         this.links = links;
+     }

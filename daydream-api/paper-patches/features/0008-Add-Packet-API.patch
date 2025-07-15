@@ -972,10 +972,10 @@ index 0000000000000000000000000000000000000000..257c535f5b0802f2289df1ee3eb2b2cf
 +    SetPlayerTeamPacket createTeamJoinOrLeavePacket(String teamName, Collection<String> players, boolean join);
 +}
 diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
-index cedaacdfa4dc4110a7c854c417f4ea8e2981e12b..795ca347c207e2edb044f527eb8c4d19ad48dd24 100644
+index 4936b38e393f02ae5ee4c01951e458c5eecfdfb2..f8d9a39f264b248f670e03c731bb953f1aa63f8c 100644
 --- a/src/main/java/org/bukkit/Bukkit.java
 +++ b/src/main/java/org/bukkit/Bukkit.java
-@@ -3101,6 +3101,20 @@ public final class Bukkit {
+@@ -3121,6 +3121,20 @@ public final class Bukkit {
      }
      // Daydream end - Add Individual Sidebar API
  
@@ -1012,10 +1012,10 @@ index 918a045165cdcde264bc24082b7afebb407271de..893f1e80871e67d427c379410a83ecd8
      /**
       * Represents black
 diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
-index 5de7d163577f53556eddfab3725e60deb49c2aab..3295d14da9b902ab0d70d3351da60b6d105bec2d 100644
+index 695445638c24acfa962872b53b08bd97c183b2e4..557497d6868aa53d3e5f094d62a4934c91b4217e 100644
 --- a/src/main/java/org/bukkit/Server.java
 +++ b/src/main/java/org/bukkit/Server.java
-@@ -2806,4 +2806,16 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
+@@ -2823,4 +2823,16 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
      @NotNull
      moe.caramel.daydream.sidebar.SidebarProcessor sidebarProcessor();
      // Daydream end - Add Individual Sidebar API
@@ -1033,10 +1033,10 @@ index 5de7d163577f53556eddfab3725e60deb49c2aab..3295d14da9b902ab0d70d3351da60b6d
 +    // Daydream end - (feature) Add Packet API
  }
 diff --git a/src/main/java/org/bukkit/World.java b/src/main/java/org/bukkit/World.java
-index d22d43a12f1fb885faf9bb2b6695c2af70df759b..6a6714d412cdabb94eea2ea5fe2b5b45085f8eb2 100644
+index a836dd5eb7f9bcbf525e86e9538deed0c9f94c08..3ba6b828f8df5117159f3afd4f5d82e34c6e9960 100644
 --- a/src/main/java/org/bukkit/World.java
 +++ b/src/main/java/org/bukkit/World.java
-@@ -1647,6 +1647,17 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
+@@ -1665,6 +1665,17 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      public Entity getEntity(@NotNull java.util.UUID uuid);
      // Paper end
  
@@ -1055,10 +1055,10 @@ index d22d43a12f1fb885faf9bb2b6695c2af70df759b..6a6714d412cdabb94eea2ea5fe2b5b45
       * Returns a list of entities within a bounding box centered around a
       * Location.
 diff --git a/src/main/java/org/bukkit/entity/Entity.java b/src/main/java/org/bukkit/entity/Entity.java
-index 3e79bed26e80cce9d6e8d3dc480d64d832dba330..44f29fec99f831c2f36c957c46256e622eb7fd15 100644
+index 45228fac38d88cab5a7fc1d0178a30d18bd2cb28..f7bb65d359aff5d5670fb751e1762f558ede0ba5 100644
 --- a/src/main/java/org/bukkit/entity/Entity.java
 +++ b/src/main/java/org/bukkit/entity/Entity.java
-@@ -591,6 +591,19 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
+@@ -627,6 +627,19 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
      public String getStringUniqueId();
      // Daydream end - Add method to get string UUID
  
@@ -1079,10 +1079,10 @@ index 3e79bed26e80cce9d6e8d3dc480d64d832dba330..44f29fec99f831c2f36c957c46256e62
       * Gets the amount of ticks this entity has lived for.
       * <p>
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index 09aeddcddf7561392597d87da5c1a16f895819aa..03bef3a8f45db0e8e513a15c7bf2b10f4a53f34f 100644
+index 840d6465989cbd8e6285ec966eaa3de8db2a1849..b2ebdceb213dc9b710656acdeb4e97777e708951 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
-@@ -1088,6 +1088,31 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+@@ -1081,6 +1081,31 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
       */
      public void sendEquipmentChange(LivingEntity entity, Map<EquipmentSlot, @Nullable ItemStack> items);
  

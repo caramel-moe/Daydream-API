@@ -7,13 +7,11 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.player.PlayerEvent;
 import org.jetbrains.annotations.ApiStatus;
-import org.jspecify.annotations.NullMarked;
 import org.jspecify.annotations.Nullable;
 
 /**
  * 플레이어가 병에 무언가를 담았을 때 호출됩니다.
  */
-@NullMarked
 public final class PlayerBottleIntoItemEvent extends PlayerEvent implements Cancellable {
 
     private final ItemType type;

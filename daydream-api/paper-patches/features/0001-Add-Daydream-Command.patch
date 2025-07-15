@@ -5,18 +5,18 @@ Subject: [PATCH] Add Daydream Command
 
 
 diff --git a/src/main/java/org/bukkit/command/SimpleCommandMap.java b/src/main/java/org/bukkit/command/SimpleCommandMap.java
-index 5df19bd701c67506689fc7f49d91f99ebfbc83f0..8cf79bc1e720840e129ee3c2759f73ff40611768 100644
+index ad1330d87223dfcf3c9da40aa5ece8c21141f0d6..47dfe4c829efc6c8c9529e74a6d48d08ab7b06cb 100644
 --- a/src/main/java/org/bukkit/command/SimpleCommandMap.java
 +++ b/src/main/java/org/bukkit/command/SimpleCommandMap.java
-@@ -35,7 +35,7 @@ public class SimpleCommandMap implements CommandMap {
+@@ -30,7 +30,7 @@ public class SimpleCommandMap implements CommandMap {
          setDefaultCommands();
      }
  
 -    private void setDefaultCommands() {
 +    protected void setDefaultCommands() { // Daydream - (feature) Add Daydream Command (private -> protected)
-         register("bukkit", new VersionCommand("version"));
-         register("bukkit", new ReloadCommand("reload"));
-         //register("bukkit", new PluginsCommand("plugins")); // Paper
+         final ReloadCommand reload = new ReloadCommand("reload");
+         this.knownCommands.put("bukkit:reload", reload);
+         this.knownCommands.put("bukkit:rl", reload);
 diff --git a/src/main/java/org/bukkit/util/permissions/CommandPermissions.java b/src/main/java/org/bukkit/util/permissions/CommandPermissions.java
 index 7763d6101ac61900db1e2310966b99584539fd0e..58582a83ba1702c0f2d2832da464f33d579c6210 100644
 --- a/src/main/java/org/bukkit/util/permissions/CommandPermissions.java

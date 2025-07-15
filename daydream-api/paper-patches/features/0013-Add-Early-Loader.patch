@@ -28,7 +28,7 @@ index 0000000000000000000000000000000000000000..5282d9353d8629f025ae89518fa07960
 +    /**
 +     * Early Loader Instance
 +     */
-+    EarlyLoader LOADER = ServiceLoader.load(EarlyLoader.class)
++    EarlyLoader LOADER = ServiceLoader.load(EarlyLoader.class, EarlyLoader.class.getClassLoader())
 +        .findFirst().orElseThrow();
 +
 +    /**
@@ -47,10 +47,10 @@ index 0000000000000000000000000000000000000000..5282d9353d8629f025ae89518fa07960
 +    UnsafeValues getUnsafe();
 +}
 diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
-index 795ca347c207e2edb044f527eb8c4d19ad48dd24..776dbb2591f3a69528728fd2ff4a9a334b0c6822 100644
+index f8d9a39f264b248f670e03c731bb953f1aa63f8c..e5a8efe76b74888b67400ad5fb594d02d179ec7f 100644
 --- a/src/main/java/org/bukkit/Bukkit.java
 +++ b/src/main/java/org/bukkit/Bukkit.java
-@@ -2216,7 +2216,7 @@ public final class Bukkit {
+@@ -2236,7 +2236,7 @@ public final class Bukkit {
       */
      @NotNull
      public static ItemFactory getItemFactory() {
@@ -59,7 +59,7 @@ index 795ca347c207e2edb044f527eb8c4d19ad48dd24..776dbb2591f3a69528728fd2ff4a9a33
      }
  
      /**
-@@ -2744,7 +2744,7 @@ public final class Bukkit {
+@@ -2764,7 +2764,7 @@ public final class Bukkit {
      @Deprecated(since = "1.7.2")
      @NotNull
      public static UnsafeValues getUnsafe() {
@@ -69,10 +69,10 @@ index 795ca347c207e2edb044f527eb8c4d19ad48dd24..776dbb2591f3a69528728fd2ff4a9a33
  
  
 diff --git a/src/main/java/org/bukkit/inventory/ItemStack.java b/src/main/java/org/bukkit/inventory/ItemStack.java
-index bd288e33ec420fcb27429fd43be08ee29cc9a8f4..dd50a3339dbe733ea9aae8c94d96de57372eb944 100644
+index 5055a9d2bb2b2d91574dcc13fb6640ba6dc5c34a..6ea690b54f8b1dbbc326abd1a560536e0a4713b1 100644
 --- a/src/main/java/org/bukkit/inventory/ItemStack.java
 +++ b/src/main/java/org/bukkit/inventory/ItemStack.java
-@@ -781,7 +781,7 @@ public class ItemStack implements Cloneable, ConfigurationSerializable, Translat
+@@ -774,7 +774,7 @@ public class ItemStack implements Cloneable, ConfigurationSerializable, Translat
       */
      @NotNull
      public ItemStack enchantWithLevels(final int levels, final boolean allowTreasure, final @NotNull java.util.Random random) {
@@ -90,7 +90,7 @@ index bd288e33ec420fcb27429fd43be08ee29cc9a8f4..dd50a3339dbe733ea9aae8c94d96de57
      }
  
      /**
-@@ -813,7 +813,7 @@ public class ItemStack implements Cloneable, ConfigurationSerializable, Translat
+@@ -815,7 +815,7 @@ public class ItemStack implements Cloneable, ConfigurationSerializable, Translat
       * @return display name of the {@link ItemStack}
       */
      public net.kyori.adventure.text.@NotNull Component displayName() {
@@ -99,7 +99,7 @@ index bd288e33ec420fcb27429fd43be08ee29cc9a8f4..dd50a3339dbe733ea9aae8c94d96de57
      }
  
      /**
-@@ -837,7 +837,7 @@ public class ItemStack implements Cloneable, ConfigurationSerializable, Translat
+@@ -839,7 +839,7 @@ public class ItemStack implements Cloneable, ConfigurationSerializable, Translat
       */
      @NotNull
      public ItemStack ensureServerConversions() {
@@ -108,7 +108,7 @@ index bd288e33ec420fcb27429fd43be08ee29cc9a8f4..dd50a3339dbe733ea9aae8c94d96de57
      }
  
      /**
-@@ -961,7 +961,7 @@ public class ItemStack implements Cloneable, ConfigurationSerializable, Translat
+@@ -963,7 +963,7 @@ public class ItemStack implements Cloneable, ConfigurationSerializable, Translat
      @Nullable
      @Deprecated
      public String getI18NDisplayName() {

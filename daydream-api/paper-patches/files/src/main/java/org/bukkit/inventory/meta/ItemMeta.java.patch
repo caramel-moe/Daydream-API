@@ -1,6 +1,6 @@
 --- a/src/main/java/org/bukkit/inventory/meta/ItemMeta.java
 +++ b/src/main/java/org/bukkit/inventory/meta/ItemMeta.java
-@@ -250,6 +_,170 @@
+@@ -253,6 +_,170 @@
       */
      boolean hasLore();
  
@@ -171,8 +171,8 @@
      // Paper start
      /**
       * Gets the lore.
-@@ -337,6 +_,18 @@
-      */
+@@ -350,6 +_,19 @@
+     @Deprecated(since = "1.21.5")
      int getCustomModelData();
  
 +    // Daydream start - Add method to get raw CustomModelData
@@ -184,13 +184,14 @@
 +     *
 +     * @return the custom model data that is set
 +     */
++    @Deprecated(since = "1.21.5")
 +    @Nullable Integer customModelData();
 +    // Daydream end - Add method to get raw CustomModelData
 +
      /**
       * Gets the custom model data set on this item, or creates an empty custom
       * model data instance.
-@@ -369,6 +_,19 @@
+@@ -394,6 +_,19 @@
       */
      void setCustomModelDataComponent(@Nullable CustomModelDataComponent customModelData);
  
@@ -210,7 +211,7 @@
      /**
       * Gets if the enchantable component is set.
       *
-@@ -752,6 +_,29 @@
+@@ -777,6 +_,29 @@
       * @param cooldown new cooldown
       */
      void setUseCooldown(@Nullable UseCooldownComponent cooldown);

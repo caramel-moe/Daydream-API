@@ -5,7 +5,6 @@ import org.bukkit.event.inventory.InventoryInteractEvent;
 import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.ApiStatus;
-import org.jspecify.annotations.NullMarked;
 
 /**
  * 플레이어가 인벤토리를 클릭하여 {@link org.bukkit.event.inventory.InventoryAction#MOVE_TO_OTHER_INVENTORY}의
@@ -13,7 +12,6 @@ import org.jspecify.annotations.NullMarked;
  * 기존 로직을 그대로 수행하며, {@link Result#DEFAULT}인 경우 해당 슬롯의 처리를 건너뜁니다.
  * {@link Result#DENY}의 경우 해당 슬롯을 포함하여 다음 슬롯의 처리까지 모두 취소합니다.
  */
-@NullMarked
 public final class InventoryQuickMoveEvent extends InventoryInteractEvent {
 
     private final ItemStack from;

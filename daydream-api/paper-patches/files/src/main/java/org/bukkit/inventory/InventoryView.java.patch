@@ -1,10 +1,9 @@
 --- a/src/main/java/org/bukkit/inventory/InventoryView.java
 +++ b/src/main/java/org/bukkit/inventory/InventoryView.java
-@@ -321,4 +_,16 @@
-      */
+@@ -323,6 +_,18 @@
      @Deprecated(since = "1.21.1") // Paper
      public void setTitle(@NotNull String title);
-+
+ 
 +    // Daydream start - Add packet title update to inventory
 +    /**
 +     * 클라이언트에게 패킷을 보내 새 타이틀로 인벤토리를 다시 엽니다.
@@ -16,4 +15,7 @@
 +     */
 +    public void sendTitleUpdate(@NotNull net.kyori.adventure.text.Component title);
 +    // Daydream end - Add packet title update to inventory
- }
++
+     /**
+      * Gets the menu type of the inventory view if applicable.
+      * <p>

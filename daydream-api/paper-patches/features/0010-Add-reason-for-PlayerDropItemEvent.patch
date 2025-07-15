@@ -5,12 +5,12 @@ Subject: [PATCH] Add reason for PlayerDropItemEvent
 
 
 diff --git a/src/main/java/org/bukkit/event/player/PlayerDropItemEvent.java b/src/main/java/org/bukkit/event/player/PlayerDropItemEvent.java
-index aca500f32e2ae69095a1abce9f14a164df442638..1b2a274e8c5dd57cb0da2fefb9fbe05521b2da7a 100644
+index 02fa5fca403fe8480a491eac24c0b6371dc284d6..3c394294b1cf3b021114a093df0e1d273989fe69 100644
 --- a/src/main/java/org/bukkit/event/player/PlayerDropItemEvent.java
 +++ b/src/main/java/org/bukkit/event/player/PlayerDropItemEvent.java
-@@ -15,8 +15,15 @@ public class PlayerDropItemEvent extends PlayerEvent implements Cancellable {
-     private boolean cancel = false;
+@@ -19,8 +19,15 @@ public class PlayerDropItemEvent extends PlayerEvent implements Cancellable {
  
+     @ApiStatus.Internal
      public PlayerDropItemEvent(@NotNull final Player player, @NotNull final Item drop) {
 +        // Daydream start - (feature) Add reason for PlayerDropItemEvent
 +        this(player, drop, Reason.UNKNOWN);
@@ -24,9 +24,9 @@ index aca500f32e2ae69095a1abce9f14a164df442638..1b2a274e8c5dd57cb0da2fefb9fbe055
      }
  
      /**
-@@ -49,4 +56,44 @@ public class PlayerDropItemEvent extends PlayerEvent implements Cancellable {
+@@ -53,4 +60,44 @@ public class PlayerDropItemEvent extends PlayerEvent implements Cancellable {
      public static HandlerList getHandlerList() {
-         return handlers;
+         return HANDLER_LIST;
      }
 +
 +    // Daydream start - (feature) Add reason for PlayerDropItemEvent

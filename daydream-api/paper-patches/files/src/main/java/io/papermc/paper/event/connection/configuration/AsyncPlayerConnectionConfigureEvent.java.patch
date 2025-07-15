@@ -1,0 +1,16 @@
+--- a/src/main/java/io/papermc/paper/event/connection/configuration/AsyncPlayerConnectionConfigureEvent.java
++++ b/src/main/java/io/papermc/paper/event/connection/configuration/AsyncPlayerConnectionConfigureEvent.java
+@@ -28,6 +_,13 @@
+         return this.connection;
+     }
+ 
++    // Daydream start - Add Player data loader
++    @Override
++    public boolean isSupportInterrupt() {
++        return true;
++    }
++    // Daydream end - Add Player data loader
++
+     @Override
+     public HandlerList getHandlers() {
+         return HANDLER_LIST;

@@ -5,12 +5,10 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.player.PlayerEvent;
 import org.jetbrains.annotations.ApiStatus;
-import org.jspecify.annotations.NullMarked;
 
 /**
  * 플레이어가 통계 화면을 열기 위해 서버에게 통계 데이터를 요청한 경우 호출됩니다.
  */
-@NullMarked
 public final class PlayerStatisticScreenOpenEvent extends PlayerEvent implements Cancellable {
 
     private boolean cancelled;

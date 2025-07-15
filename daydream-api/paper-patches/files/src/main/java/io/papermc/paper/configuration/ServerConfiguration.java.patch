@@ -1,0 +1,17 @@
+--- a/src/main/java/io/papermc/paper/configuration/ServerConfiguration.java
++++ b/src/main/java/io/papermc/paper/configuration/ServerConfiguration.java
+@@ -30,4 +_,14 @@
+      * @return whether the server is configured to work behind a proxy
+      */
+     boolean isProxyEnabled();
++
++    // Daydream start - Suppress spam logs in LibraryLoader
++    /**
++     * Determines whether logging for the library loader should be ignored.
++     *
++     * @return true if library loader log messages should be ignored, false otherwise
++     */
++    @org.jetbrains.annotations.ApiStatus.Internal
++    boolean shouldIgnoreLibraryLoaderLog();
++    // Daydream end - Suppress spam logs in LibraryLoader
+ }

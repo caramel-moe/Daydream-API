@@ -1,0 +1,31 @@
+--- a/src/main/java/io/papermc/paper/connection/PlayerConfigurationConnection.java
++++ b/src/main/java/io/papermc/paper/connection/PlayerConfigurationConnection.java
+@@ -22,6 +_,15 @@
+      */
+     PlayerProfile getProfile();
+ 
++    // Daydream start - Expose Player mojang profile
++    /**
++     * 플레이어의 Mojang 프로필을 가져옵니다.
++     *
++     * @return Mojang 프로필
++     */
++    com.mojang.authlib.GameProfile getGameProfile();
++    // Daydream end - Expose Player mojang profile
++
+     /**
+      * Clears the players chat history and their local chat.
+      */
+@@ -33,5 +_,12 @@
+      * Note, this should be only be called if you are reconfiguring the player.
+      */
+     void completeReconfiguration();
++
++    // Daydream start - Add API for custom configuration task
++    /**
++     * 현재 진행 중인 작업을 종료합니다.
++     */
++    void finishCurrentTask();
++    // Daydream end - Add API for custom configuration task
+ 
+ }

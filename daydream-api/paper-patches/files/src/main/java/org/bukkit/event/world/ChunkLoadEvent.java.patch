@@ -1,8 +1,8 @@
 --- a/src/main/java/org/bukkit/event/world/ChunkLoadEvent.java
 +++ b/src/main/java/org/bukkit/event/world/ChunkLoadEvent.java
-@@ -13,8 +_,26 @@
-     private final boolean newChunk;
+@@ -17,8 +_,27 @@
  
+     @ApiStatus.Internal
      public ChunkLoadEvent(@NotNull final Chunk chunk, final boolean newChunk) {
 +        // Daydream start - Expose raw chunk
 +        this(chunk, newChunk, null);
@@ -19,6 +19,7 @@
 +        return rawLevelChunk;
 +    }
 +
++    @ApiStatus.Internal
 +    public ChunkLoadEvent(@NotNull final Chunk chunk, final boolean newChunk, @NotNull final Object rawLevelChunk) {
 +        // Daydream end - Expose raw chunk
          super(chunk);

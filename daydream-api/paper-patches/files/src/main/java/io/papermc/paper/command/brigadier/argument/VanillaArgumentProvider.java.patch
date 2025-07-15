@@ -1,0 +1,14 @@
+--- a/src/main/java/io/papermc/paper/command/brigadier/argument/VanillaArgumentProvider.java
++++ b/src/main/java/io/papermc/paper/command/brigadier/argument/VanillaArgumentProvider.java
+@@ -106,4 +_,11 @@
+     <T> ArgumentType<TypedKey<T>> resourceKey(RegistryKey<T> registryKey);
+ 
+     <T> ArgumentType<T> resource(RegistryKey<T> registryKey);
++
++    // Daydream start - Expose more brigadier argument types
++    ArgumentType<io.papermc.paper.command.brigadier.argument.resolvers.ArgumentResolver<java.util.Collection<com.mojang.authlib.GameProfile>>> gameProfiles();
++    ArgumentType<net.kyori.adventure.nbt.api.BinaryTagHolder> compoundTag();
++    ArgumentType<Integer> slot();
++    ArgumentType<it.unimi.dsi.fastutil.ints.IntList> slots();
++    // Daydream end - Expose more brigadier argument types
+ }

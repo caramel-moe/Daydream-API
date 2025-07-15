@@ -1,23 +1,23 @@
 --- a/src/main/java/org/bukkit/plugin/java/LibraryLoader.java
 +++ b/src/main/java/org/bukkit/plugin/java/LibraryLoader.java
-@@ -78,7 +_,7 @@
-         session.setSystemProperties( System.getProperties() );
-         session.setReadOnly();
+@@ -47,7 +_,7 @@
+     public static java.util.function.Function<List<java.nio.file.Path>, List<java.nio.file.Path>> REMAPPER; // Paper - remap libraries
  
--        this.repositories = repository.newResolutionRepositories( session, Arrays.asList( new RemoteRepository.Builder( "central", "default", "https://repo.maven.apache.org/maven2" ).build() ) );
-+        this.repositories = repository.newResolutionRepositories( session, Arrays.asList( new RemoteRepository.Builder( "central", "default", "https://repo.maven.apache.org/maven2" ).build(), new RemoteRepository.Builder( "caramel-repo", "default", "https://repo.caramel.moe/repository/maven-public/" ).build() ) ); // Daydream - Add caramel.moe repository to LibraryLoader
+     private static List<RemoteRepository> getRepositories() {
+-        return List.of(new RemoteRepository.Builder("central", "default", MavenLibraryResolver.MAVEN_CENTRAL_DEFAULT_MIRROR).build());
++        return List.of(new RemoteRepository.Builder("central", "default", MavenLibraryResolver.MAVEN_CENTRAL_DEFAULT_MIRROR).build(), new RemoteRepository.Builder("caramel-repo", "default", "https://repo.caramel.moe/repository/maven-public/").build()); // Daydream - Add caramel.moe repository to LibraryLoader
      }
  
-     @Nullable
-@@ -144,10 +_,12 @@
+     public LibraryLoader(@NotNull Logger logger) {
+@@ -143,10 +_,12 @@
              }
  
-             jarFiles.add( url );
-+            if (!org.bukkit.Bukkit.spigot().getDaydreamConfig().getBoolean("logger.ignore-library-loader-log", false)) { // Daydream start - Suppress spam logs in LibraryLoader
-             logger.log( Level.INFO, "[{0}] Loaded library {1}", new Object[]
-             {
-                 java.util.Objects.requireNonNullElseGet(desc.getPrefix(), desc::getName), file // Paper - use configured log prefix
-             } );
+             jarFiles.add(url);
++            if (!org.bukkit.Bukkit.getServerConfig().shouldIgnoreLibraryLoaderLog()) { // Daydream start - Suppress spam logs in LibraryLoader
+             logger.log(Level.INFO, "[{0}] Loaded library {1}", new Object[]
+                 {
+                     java.util.Objects.requireNonNullElseGet(desc.getPrefix(), desc::getName), file // Paper - use configured log prefix
+                 });
 +            } // Daydream end - Suppress spam logs in LibraryLoader
          }
  

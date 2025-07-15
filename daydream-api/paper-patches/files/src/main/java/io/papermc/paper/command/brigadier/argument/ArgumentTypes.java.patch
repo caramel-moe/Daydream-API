@@ -1,0 +1,48 @@
+--- a/src/main/java/io/papermc/paper/command/brigadier/argument/ArgumentTypes.java
++++ b/src/main/java/io/papermc/paper/command/brigadier/argument/ArgumentTypes.java
+@@ -382,6 +_,45 @@
+         return provider().resourceKey(registryKey);
+     }
+ 
++    // Daydream start - Expose more brigadier argument types
++    /**
++     * A selector argument that provides a list
++     * of player profiles.
++     *
++     * @return player profile argument
++     */
++    public static ArgumentType<io.papermc.paper.command.brigadier.argument.resolvers.ArgumentResolver<java.util.Collection<com.mojang.authlib.GameProfile>>> gameProfiles() {
++        return provider().gameProfiles();
++    }
++
++    /**
++     * An compound tag argument.
++     *
++     * @return argument
++     */
++    public static ArgumentType<net.kyori.adventure.nbt.api.BinaryTagHolder> compoundTag() {
++        return provider().compoundTag();
++    }
++
++    /**
++     * A slot argument.
++     *
++     * @return argument
++     */
++    public static ArgumentType<Integer> slot() {
++        return provider().slot();
++    }
++
++    /**
++     * A slots argument.
++     *
++     * @return argument
++     */
++    public static ArgumentType<it.unimi.dsi.fastutil.ints.IntList> slots() {
++        return provider().slots();
++    }
++    // Daydream end - Expose more brigadier argument types
++
+     private ArgumentTypes() {
+     }
+ }

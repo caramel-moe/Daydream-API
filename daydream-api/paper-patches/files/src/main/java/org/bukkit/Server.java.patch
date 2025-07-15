@@ -1,6 +1,6 @@
 --- a/src/main/java/org/bukkit/Server.java
 +++ b/src/main/java/org/bukkit/Server.java
-@@ -970,6 +_,16 @@
+@@ -972,6 +_,16 @@
      @Nullable
      public PluginCommand getPluginCommand(@NotNull String name);
  
@@ -17,22 +17,7 @@
      /**
       * Writes loaded players to disk.
       */
-@@ -2362,6 +_,14 @@
-         }
-         // Paper end
- 
-+        // Daydream start - Add Daydream Config
-+        @NotNull
-+        public org.bukkit.configuration.file.YamlConfiguration getDaydreamConfig()
-+        {
-+            throw new UnsupportedOperationException("Not supported yet.");
-+        }
-+        // Daydream end - Add Daydream Config
-+
-         /**
-          * Sends the component to the player
-          *
-@@ -2698,4 +_,14 @@
+@@ -2723,4 +_,14 @@
       */
      void allowPausing(@NotNull org.bukkit.plugin.Plugin plugin, boolean value);
      // Paper end - API to check if the server is sleeping
