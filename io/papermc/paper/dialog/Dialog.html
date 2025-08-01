@@ -89,12 +89,12 @@ loadScripts(document, 'script');</script>
 <section class="class-description" id="class-description">
 <dl class="notes">
 <dt>All Superinterfaces:</dt>
-<dd><code><a href="https://jd.advntr.dev/api/4.23.0/net/kyori/adventure/dialog/DialogLike.html" title="class or interface in net.kyori.adventure.dialog" class="external-link">DialogLike</a></code>, <code><a href="https://jd.advntr.dev/key/4.23.0/net/kyori/adventure/key/Keyed.html" title="class or interface in net.kyori.adventure.key" class="external-link">Keyed</a></code>, <code><a href="../../../../org/bukkit/Keyed.html" title="interface in org.bukkit">Keyed</a></code></dd>
+<dd><code><a href="https://jd.advntr.dev/api/4.24.0/net/kyori/adventure/dialog/DialogLike.html" title="class or interface in net.kyori.adventure.dialog" class="external-link">DialogLike</a></code>, <code><a href="https://jd.advntr.dev/key/4.24.0/net/kyori/adventure/key/Keyed.html" title="class or interface in net.kyori.adventure.key" class="external-link">Keyed</a></code>, <code><a href="../../../../org/bukkit/Keyed.html" title="interface in org.bukkit">Keyed</a></code></dd>
 </dl>
 <hr>
 <div class="type-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/26.0.2/org/jetbrains/annotations/ApiStatus.NonExtendable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NonExtendable</a>
 </span><span class="modifiers">public interface </span><span class="element-name type-name-label">Dialog</span><span class="extends-implements">
-extends <a href="../../../../org/bukkit/Keyed.html" title="interface in org.bukkit">Keyed</a>, <a href="https://jd.advntr.dev/api/4.23.0/net/kyori/adventure/dialog/DialogLike.html" title="class or interface in net.kyori.adventure.dialog" class="external-link">DialogLike</a></span></div>
+extends <a href="../../../../org/bukkit/Keyed.html" title="interface in org.bukkit">Keyed</a>, <a href="https://jd.advntr.dev/api/4.24.0/net/kyori/adventure/dialog/DialogLike.html" title="class or interface in net.kyori.adventure.dialog" class="external-link">DialogLike</a></span></div>
 <div class="block">Represents a dialog. Can be created during normal server operation via <a href="#create(java.util.function.Consumer)"><code>create(Consumer)</code></a>.
  Can also be created during bootstrap via <a href="../registry/event/RegistryEvents.html#DIALOG"><code>RegistryEvents.DIALOG</code></a>.</div>
 </section>
@@ -126,7 +126,8 @@ extends <a href="../../../../org/bukkit/Keyed.html" title="interface in org.bukk
 <section class="method-summary" id="method-summary">
 <h2>Method Summary</h2>
 <div id="method-summary-table">
-<div class="caption"><span>Static Methods</span></div>
+<div class="table-tabs" role="tablist" aria-orientation="horizontal"><button id="method-summary-table-tab0" role="tab" aria-selected="true" aria-controls="method-summary-table.tabpanel" tabindex="0" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table', 3)" class="active-table-tab">All Methods</button><button id="method-summary-table-tab1" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab1', 3)" class="table-tab">Static Methods</button><button id="method-summary-table-tab2" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab2', 3)" class="table-tab">Instance Methods</button><button id="method-summary-table-tab3" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab3', 3)" class="table-tab">Abstract Methods</button><button id="method-summary-table-tab5" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab5', 3)" class="table-tab">Default Methods</button><button id="method-summary-table-tab6" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab6', 3)" class="table-tab">Deprecated Methods</button></div>
+<div id="method-summary-table.tabpanel" role="tabpanel" aria-labelledby="method-summary-table-tab0">
 <div class="summary-table three-column-summary">
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
@@ -136,11 +137,25 @@ extends <a href="../../../../org/bukkit/Keyed.html" title="interface in org.bukk
 <div class="col-last even-row-color method-summary-table method-summary-table-tab1">
 <div class="block">Creates a new dialog using the provided builder.</div>
 </div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6"><code><a href="../../../../org/bukkit/NamespacedKey.html" title="class in org.bukkit">NamespacedKey</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6"><code><a href="#getKey()" class="member-name-link">getKey</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3 method-summary-table-tab6">
+<div class="block"><span class="deprecated-label">Deprecated, for removal: This API element is subject to removal in a future version.</span>
+<div class="deprecation-comment">use <a href="../../../../org/bukkit/Registry.html#getKey(T)"><code>Registry.getKey(Keyed)</code></a>, <a href="../registry/RegistryAccess.html#getRegistry(io.papermc.paper.registry.RegistryKey)"><code>RegistryAccess.getRegistry(io.papermc.paper.registry.RegistryKey)</code></a>,
+ and <a href="../registry/RegistryKey.html#DIALOG"><code>RegistryKey.DIALOG</code></a>.</div>
 </div>
 </div>
-<div class="inherited-list">
-<h3 id="methods-inherited-from-class-org.bukkit.Keyed">Methods inherited from interface&nbsp;org.bukkit.<a href="../../../../org/bukkit/Keyed.html" title="interface in org.bukkit">Keyed</a></h3>
-<code><a href="../../../../org/bukkit/Keyed.html#getKey()">getKey</a>, <a href="../../../../org/bukkit/Keyed.html#key()">key</a></code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5 method-summary-table-tab6"><code>default <a href="https://jd.advntr.dev/key/4.24.0/net/kyori/adventure/key/Key.html" title="class or interface in net.kyori.adventure.key" class="external-link">Key</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5 method-summary-table-tab6"><code><a href="#key()" class="member-name-link">key</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5 method-summary-table-tab6">
+<div class="block"><span class="deprecated-label">Deprecated, for removal: This API element is subject to removal in a future version.</span>
+<div class="deprecation-comment">use <a href="../../../../org/bukkit/Registry.html#getKey(T)"><code>Registry.getKey(Keyed)</code></a>, <a href="../registry/RegistryAccess.html#getRegistry(io.papermc.paper.registry.RegistryKey)"><code>RegistryAccess.getRegistry(io.papermc.paper.registry.RegistryKey)</code></a>,
+ and <a href="../registry/RegistryKey.html#DIALOG"><code>RegistryKey.DIALOG</code></a>.</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 </section>
 </li>
 </ul>
@@ -189,6 +204,48 @@ extends <a href="../../../../org/bukkit/Keyed.html" title="interface in org.bukk
 <dd><code>value</code> - the builder to use for creating the dialog</dd>
 <dt>Returns:</dt>
 <dd>a new dialog instance</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getKey()">
+<h3>getKey</h3>
+<div class="member-signature"><span class="annotations"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Deprecated.html" title="class or interface in java.lang" class="external-link">@Deprecated</a>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Deprecated.html#since()" title="class or interface in java.lang" class="external-link">since</a>="1.21.8",
+            <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Deprecated.html#forRemoval()" title="class or interface in java.lang" class="external-link">forRemoval</a>=true)
+</span><span class="return-type"><a href="../../../../org/bukkit/NamespacedKey.html" title="class in org.bukkit">NamespacedKey</a></span>&nbsp;<span class="element-name">getKey</span>()</div>
+<div class="deprecation-block"><span class="deprecated-label">Deprecated, for removal: This API element is subject to removal in a future version.</span>
+<div class="deprecation-comment">use <a href="../../../../org/bukkit/Registry.html#getKey(T)"><code>Registry.getKey(Keyed)</code></a>, <a href="../registry/RegistryAccess.html#getRegistry(io.papermc.paper.registry.RegistryKey)"><code>RegistryAccess.getRegistry(io.papermc.paper.registry.RegistryKey)</code></a>,
+ and <a href="../registry/RegistryKey.html#DIALOG"><code>RegistryKey.DIALOG</code></a>. Dialogs can exist without a key.</div>
+</div>
+<div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../../../../org/bukkit/Keyed.html#getKey()">Keyed</a></code></span></div>
+<div class="block">Return the namespaced identifier for this object.</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="../../../../org/bukkit/Keyed.html#getKey()">getKey</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../org/bukkit/Keyed.html" title="interface in org.bukkit">Keyed</a></code></dd>
+<dt>Returns:</dt>
+<dd>this object's key</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="key()">
+<h3>key</h3>
+<div class="member-signature"><span class="annotations"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Deprecated.html" title="class or interface in java.lang" class="external-link">@Deprecated</a>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Deprecated.html#since()" title="class or interface in java.lang" class="external-link">since</a>="1.21.8",
+            <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Deprecated.html#forRemoval()" title="class or interface in java.lang" class="external-link">forRemoval</a>=true)
+</span><span class="modifiers">default</span>&nbsp;<span class="return-type"><a href="https://jd.advntr.dev/key/4.24.0/net/kyori/adventure/key/Key.html" title="class or interface in net.kyori.adventure.key" class="external-link">Key</a></span>&nbsp;<span class="element-name">key</span>()</div>
+<div class="deprecation-block"><span class="deprecated-label">Deprecated, for removal: This API element is subject to removal in a future version.</span>
+<div class="deprecation-comment">use <a href="../../../../org/bukkit/Registry.html#getKey(T)"><code>Registry.getKey(Keyed)</code></a>, <a href="../registry/RegistryAccess.html#getRegistry(io.papermc.paper.registry.RegistryKey)"><code>RegistryAccess.getRegistry(io.papermc.paper.registry.RegistryKey)</code></a>,
+ and <a href="../registry/RegistryKey.html#DIALOG"><code>RegistryKey.DIALOG</code></a>. Dialogs can exist without a key.</div>
+</div>
+<div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../../../../org/bukkit/Keyed.html#key()">Keyed</a></code></span></div>
+<div class="block">Returns the unique identifier for this object.</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="https://jd.advntr.dev/key/4.24.0/net/kyori/adventure/key/Keyed.html#key()" title="class or interface in net.kyori.adventure.key" class="external-link">key</a></code>&nbsp;in interface&nbsp;<code><a href="https://jd.advntr.dev/key/4.24.0/net/kyori/adventure/key/Keyed.html" title="class or interface in net.kyori.adventure.key" class="external-link">Keyed</a></code></dd>
+<dt>Specified by:</dt>
+<dd><code><a href="../../../../org/bukkit/Keyed.html#key()">key</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../org/bukkit/Keyed.html" title="interface in org.bukkit">Keyed</a></code></dd>
+<dt>Returns:</dt>
+<dd>this object's key</dd>
 </dl>
 </section>
 </li>
