@@ -9,6 +9,17 @@
  
      // Deprecate bungeecord-chat in favor of adventure
      api("net.md-5:bungeecord-chat:$bungeeCordChatVersion") {
+@@ -66,8 +_,8 @@
+     apiAndDocs("net.kyori:adventure-text-logger-slf4j")
+ 
+     api("org.apache.maven:maven-resolver-provider:3.9.6") // make API dependency for Paper Plugins
+-    implementation("org.apache.maven.resolver:maven-resolver-connector-basic:1.9.18")
+-    implementation("org.apache.maven.resolver:maven-resolver-transport-http:1.9.18")
++    api("org.apache.maven.resolver:maven-resolver-connector-basic:1.9.18") // Daydream - Implement Daydream Plugin Updater
++    api("org.apache.maven.resolver:maven-resolver-transport-http:1.9.18") // Daydream - Implement Daydream Plugin Updater
+ 
+     // Annotations - Slowly migrate to jspecify
+     val annotations = "org.jetbrains:annotations:$annotationsVersion"
 @@ -90,7 +_,7 @@
      testRuntimeOnly("org.junit.platform:junit-platform-launcher")
  }

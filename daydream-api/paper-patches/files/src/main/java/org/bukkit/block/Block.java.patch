@@ -1,8 +1,8 @@
 --- a/src/main/java/org/bukkit/block/Block.java
 +++ b/src/main/java/org/bukkit/block/Block.java
-@@ -591,6 +_,20 @@
+@@ -603,6 +_,21 @@
       */
-     boolean breakNaturally(@NotNull ItemStack tool, boolean triggerEffect, boolean dropExperience);
+     boolean breakNaturally(@NotNull ItemStack tool, boolean triggerEffect, boolean dropExperience, boolean forceEffect);
  
 +    // Daydream start - Add block breaking method without item drops
 +    /**
@@ -12,10 +12,11 @@
 +     * @param tool The tool or item in hand used for digging
 +     * @param triggerEffect Play the block break particle effect and sound
 +     * @param dropExperience drop exp if the block normally does so
++     * @param forceEffect Forces the break effect to be triggered even if the tool is not the correct tool for the block
 +     * @param dropItem Item Drop
 +     * @return true if the block was destroyed
 +     */
-+    boolean breakNaturally(@NotNull ItemStack tool, boolean triggerEffect, boolean dropExperience, boolean dropItem);
++    boolean breakNaturally(@NotNull ItemStack tool, boolean triggerEffect, boolean dropExperience, boolean forceEffect, boolean dropItem);
 +    // Daydream end - Add block breaking method without item drops
 +
      /**
