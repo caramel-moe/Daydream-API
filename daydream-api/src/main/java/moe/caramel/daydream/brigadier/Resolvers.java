@@ -9,11 +9,18 @@ import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.exceptions.SimpleCommandExceptionType;
 import io.papermc.paper.command.brigadier.CommandSourceStack;
+import io.papermc.paper.command.brigadier.argument.AxisSet;
 import io.papermc.paper.command.brigadier.argument.SignedMessageResolver;
+import io.papermc.paper.command.brigadier.argument.position.ColumnBlockPosition;
+import io.papermc.paper.command.brigadier.argument.position.ColumnFinePosition;
+import io.papermc.paper.command.brigadier.argument.predicate.BlockInWorldPredicate;
 import io.papermc.paper.command.brigadier.argument.predicate.ItemStackPredicate;
 import io.papermc.paper.command.brigadier.argument.range.DoubleRangeProvider;
 import io.papermc.paper.command.brigadier.argument.range.IntegerRangeProvider;
+import io.papermc.paper.command.brigadier.argument.resolvers.AngleResolver;
 import io.papermc.paper.command.brigadier.argument.resolvers.BlockPositionResolver;
+import io.papermc.paper.command.brigadier.argument.resolvers.ColumnBlockPositionResolver;
+import io.papermc.paper.command.brigadier.argument.resolvers.ColumnFinePositionResolver;
 import io.papermc.paper.command.brigadier.argument.resolvers.FinePositionResolver;
 import io.papermc.paper.command.brigadier.argument.resolvers.PlayerProfileListResolver;
 import io.papermc.paper.command.brigadier.argument.resolvers.RotationResolver;
@@ -178,6 +185,30 @@ public final class Resolvers {
     }
 
     /**
+     * 명령어 컨텍스트와 주어진 인수 이름으로부터 2차원 정수형 위치를 해석합니다.
+     *
+     * @param context 명령어 컨텍스트
+     * @param name 인수의 이름
+     * @return 2차원 정수형 위치
+     */
+    public static ColumnBlockPosition columnBlockPosition(final CommandContext<CommandSourceStack> context, final String name) throws CommandSyntaxException {
+        return context
+            .getArgument(name, ColumnBlockPositionResolver.class)
+            .resolve(context.getSource());
+    }
+
+    /**
+     * 명령어 컨텍스트와 주어진 인수 이름으로부터 블록 예측을 가져옵니다.
+     *
+     * @param context 명령어 컨텍스트
+     * @param name 인수의 이름
+     * @return 블록 예측
+     */
+    public static BlockInWorldPredicate blockInWorldPredicate(final CommandContext<CommandSourceStack> context, final String name) {
+        return context.getArgument(name, BlockInWorldPredicate.class);
+    }
+
+    /**
      * 명령어 컨텍스트와 주어진 인수 이름으로부터 실수형 위치를 해석합니다.
      *
      * @param context 명령어 컨텍스트
@@ -187,6 +218,19 @@ public final class Resolvers {
     public static FinePosition finePosition(final CommandContext<CommandSourceStack> context, final String name) throws CommandSyntaxException {
         return context
             .getArgument(name, FinePositionResolver.class)
+            .resolve(context.getSource());
+    }
+
+    /**
+     * 명령어 컨텍스트와 주어진 인수 이름으로부터 2차원 실수형 위치를 해석합니다.
+     *
+     * @param context 명령어 컨텍스트
+     * @param name 인수의 이름
+     * @return 2차원 실수형 위치
+     */
+    public static ColumnFinePosition columnFinePosition(final CommandContext<CommandSourceStack> context, final String name) throws CommandSyntaxException {
+        return context
+            .getArgument(name, ColumnFinePositionResolver.class)
             .resolve(context.getSource());
     }
 
@@ -201,6 +245,30 @@ public final class Resolvers {
         return context
             .getArgument(name, RotationResolver.class)
             .resolve(context.getSource());
+    }
+
+    /**
+     * 명령어 컨텍스트와 주어진 인수 이름으로부터 실수형 각도를 해석합니다.
+     *
+     * @param context 명령어 컨텍스트
+     * @param name 인수의 이름
+     * @return 실수형 각도
+     */
+    public static float angle(final CommandContext<CommandSourceStack> context, final String name) throws CommandSyntaxException {
+        return context
+            .getArgument(name, AngleResolver.class)
+            .resolve(context.getSource());
+    }
+
+    /**
+     * 명령어 컨텍스트와 주어진 인수 이름으로부터 축 세트를 해석합니다.
+     *
+     * @param context 명령어 컨텍스트
+     * @param name 인수의 이름
+     * @return 축 세트
+     */
+    public static AxisSet axes(final CommandContext<CommandSourceStack> context, final String name) throws CommandSyntaxException {
+        return context.getArgument(name, AxisSet.class);
     }
 
     /**
