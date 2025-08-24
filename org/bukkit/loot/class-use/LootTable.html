@@ -74,16 +74,20 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color">
 <div class="block">Interfaces for non-voxel objects that can exist in a <a href="../../World.html" title="interface in org.bukkit"><code>world</code></a>, including all players, monsters, projectiles, etc.</div>
 </div>
-<div class="col-first odd-row-color"><a href="#org.bukkit.event.world">org.bukkit.event.world</a></div>
+<div class="col-first odd-row-color"><a href="#org.bukkit.event.block">org.bukkit.event.block</a></div>
 <div class="col-last odd-row-color">
+<div class="block"><a href="../../event/Event.html" title="class in org.bukkit.event"><code>Events</code></a> relating to when a <a href="../../block/Block.html" title="interface in org.bukkit.block"><code>block</code></a> is changed or interacts with the <a href="../../World.html" title="interface in org.bukkit"><code>world</code></a>.</div>
+</div>
+<div class="col-first even-row-color"><a href="#org.bukkit.event.world">org.bukkit.event.world</a></div>
+<div class="col-last even-row-color">
 <div class="block"><a href="../../event/Event.html" title="class in org.bukkit.event"><code>Events</code></a> triggered by various <a href="../../World.html" title="interface in org.bukkit"><code>world</code></a> states or changes.</div>
 </div>
-<div class="col-first even-row-color"><a href="#org.bukkit.loot">org.bukkit.loot</a></div>
-<div class="col-last even-row-color">
+<div class="col-first odd-row-color"><a href="#org.bukkit.loot">org.bukkit.loot</a></div>
+<div class="col-last odd-row-color">
 <div class="block">Classes relevant to loot table manipulation and generation.</div>
 </div>
-<div class="col-first odd-row-color"><a href="#org.bukkit.spawner">org.bukkit.spawner</a></div>
-<div class="col-last odd-row-color">
+<div class="col-first even-row-color"><a href="#org.bukkit.spawner">org.bukkit.spawner</a></div>
+<div class="col-last even-row-color">
 <div class="block">Classes related to entity spawners.</div>
 </div>
 </div>
@@ -211,6 +215,34 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color"><code>default void</code></div>
 <div class="col-second even-row-color"><span class="type-name-label">Mob.</span><code><a href="../../entity/Mob.html#setLootTable(org.bukkit.loot.LootTable,long)" class="member-name-link">setLootTable</a><wbr>(<a href="https://jspecify.dev/docs/api/org/jspecify/annotations/Nullable.html" title="class or interface in org.jspecify.annotations" class="external-link">@Nullable</a> <a href="../LootTable.html" title="interface in org.bukkit.loot">LootTable</a>&nbsp;table,
  long&nbsp;seed)</code></div>
+<div class="col-last even-row-color">&nbsp;</div>
+</div>
+</section>
+</li>
+<li>
+<section class="detail" id="org.bukkit.event.block">
+<h2>Uses of <a href="../LootTable.html" title="interface in org.bukkit.loot">LootTable</a> in <a href="../../event/block/package-summary.html">org.bukkit.event.block</a></h2>
+<div class="caption"><span>Methods in <a href="../../event/block/package-summary.html">org.bukkit.event.block</a> that return <a href="../LootTable.html" title="interface in org.bukkit.loot">LootTable</a></span></div>
+<div class="summary-table three-column-summary">
+<div class="table-header col-first">Modifier and Type</div>
+<div class="table-header col-second">Method</div>
+<div class="table-header col-last">Description</div>
+<div class="col-first even-row-color"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/26.0.2/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../LootTable.html" title="interface in org.bukkit.loot">LootTable</a></code></div>
+<div class="col-second even-row-color"><span class="type-name-label">BlockDispenseLootEvent.</span><code><a href="../../event/block/BlockDispenseLootEvent.html#getLootTable()" class="member-name-link">getLootTable</a>()</code></div>
+<div class="col-last even-row-color">
+<div class="block">Gets the loot table used to generate the initial loot to dispense.</div>
+</div>
+</div>
+<div class="caption"><span>Constructors in <a href="../../event/block/package-summary.html">org.bukkit.event.block</a> with parameters of type <a href="../LootTable.html" title="interface in org.bukkit.loot">LootTable</a></span></div>
+<div class="summary-table three-column-summary">
+<div class="table-header col-first">Modifier</div>
+<div class="table-header col-second">Constructor</div>
+<div class="table-header col-last">Description</div>
+<div class="col-first even-row-color"><code>&nbsp;</code></div>
+<div class="col-second even-row-color"><code><a href="../../event/block/BlockDispenseLootEvent.html#%3Cinit%3E(org.bukkit.entity.Player,org.bukkit.block.Block,java.util.List,org.bukkit.loot.LootTable)" class="member-name-link">BlockDispenseLootEvent</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/26.0.2/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="../../entity/Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;player,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/26.0.2/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../block/Block.html" title="interface in org.bukkit.block">Block</a>&nbsp;block,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/26.0.2/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../../inventory/ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a>&gt;&nbsp;dispensedLoot,
+ <a href="https://javadoc.io/doc/org.jetbrains/annotations/26.0.2/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../LootTable.html" title="interface in org.bukkit.loot">LootTable</a>&nbsp;lootTable)</code></div>
 <div class="col-last even-row-color">&nbsp;</div>
 </div>
 </section>

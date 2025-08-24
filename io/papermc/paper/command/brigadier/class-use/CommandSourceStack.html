@@ -276,9 +276,15 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color"><code><a href="../argument/resolvers/ArgumentResolver.html" title="type parameter in ArgumentResolver">T</a></code></div>
-<div class="col-second even-row-color"><span class="type-name-label">ArgumentResolver.</span><code><a href="../argument/resolvers/ArgumentResolver.html#resolve(io.papermc.paper.command.brigadier.CommandSourceStack)" class="member-name-link">resolve</a><wbr>(<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&nbsp;sourceStack)</code></div>
+<div class="col-first even-row-color"><code>float</code></div>
+<div class="col-second even-row-color"><span class="type-name-label">AngleResolver.</span><code><a href="../argument/resolvers/AngleResolver.html#resolve(io.papermc.paper.command.brigadier.CommandSourceStack)" class="member-name-link">resolve</a><wbr>(<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&nbsp;sourceStack)</code></div>
 <div class="col-last even-row-color">
+<div class="block">Resolves the argument with the given
+ command source stack.</div>
+</div>
+<div class="col-first odd-row-color"><code><a href="../argument/resolvers/ArgumentResolver.html" title="type parameter in ArgumentResolver">T</a></code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">ArgumentResolver.</span><code><a href="../argument/resolvers/ArgumentResolver.html#resolve(io.papermc.paper.command.brigadier.CommandSourceStack)" class="member-name-link">resolve</a><wbr>(<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&nbsp;sourceStack)</code></div>
+<div class="col-last odd-row-color">
 <div class="block">Resolves the argument with the given
  command source stack.</div>
 </div>
@@ -419,252 +425,282 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color"><code>static <a href="../../../math/BlockPosition.html" title="interface in io.papermc.paper.math">BlockPosition</a></code></div>
-<div class="col-second even-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#blockPosition(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">blockPosition</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
+<div class="col-first even-row-color"><code>static float</code></div>
+<div class="col-second even-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#angle(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">angle</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
 <div class="col-last even-row-color">
+<div class="block">명령어 컨텍스트와 주어진 인수 이름으로부터 실수형 각도를 해석합니다.</div>
+</div>
+<div class="col-first odd-row-color"><code>static <a href="../argument/AxisSet.html" title="interface in io.papermc.paper.command.brigadier.argument">AxisSet</a></code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#axes(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">axes</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
+<div class="col-last odd-row-color">
+<div class="block">명령어 컨텍스트와 주어진 인수 이름으로부터 축 세트를 해석합니다.</div>
+</div>
+<div class="col-first even-row-color"><code>static <a href="../argument/predicate/BlockInWorldPredicate.html" title="interface in io.papermc.paper.command.brigadier.argument.predicate">BlockInWorldPredicate</a></code></div>
+<div class="col-second even-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#blockInWorldPredicate(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">blockInWorldPredicate</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
+<div class="col-last even-row-color">
+<div class="block">명령어 컨텍스트와 주어진 인수 이름으로부터 블록 예측을 가져옵니다.</div>
+</div>
+<div class="col-first odd-row-color"><code>static <a href="../../../math/BlockPosition.html" title="interface in io.papermc.paper.math">BlockPosition</a></code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#blockPosition(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">blockPosition</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
+<div class="col-last odd-row-color">
 <div class="block">명령어 컨텍스트와 주어진 인수 이름으로부터 정수형 위치를 해석합니다.</div>
 </div>
-<div class="col-first odd-row-color"><code>static <a href="../../../../../../org/bukkit/block/BlockState.html" title="interface in org.bukkit.block">BlockState</a></code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#blockState(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">blockState</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
+<div class="col-first even-row-color"><code>static <a href="../../../../../../org/bukkit/block/BlockState.html" title="interface in org.bukkit.block">BlockState</a></code></div>
+<div class="col-second even-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#blockState(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">blockState</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
-<div class="col-last odd-row-color">
+<div class="col-last even-row-color">
 <div class="block">명령어 컨텍스트와 주어진 인수 이름으로부터 블록 상태를 해석합니다.</div>
 </div>
-<div class="col-first even-row-color"><code>abstract void</code></div>
-<div class="col-second even-row-color"><span class="type-name-label">BrigadierCommand.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/BrigadierCommand.html#buildCommand(com.mojang.brigadier.builder.LiteralArgumentBuilder)" class="member-name-link">buildCommand</a><wbr>(com.mojang.brigadier.builder.LiteralArgumentBuilder&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;builder)</code></div>
-<div class="col-last even-row-color">
+<div class="col-first odd-row-color"><code>abstract void</code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">BrigadierCommand.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/BrigadierCommand.html#buildCommand(com.mojang.brigadier.builder.LiteralArgumentBuilder)" class="member-name-link">buildCommand</a><wbr>(com.mojang.brigadier.builder.LiteralArgumentBuilder&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;builder)</code></div>
+<div class="col-last odd-row-color">
 <div class="block">Brigadier 명령어를 생성합니다.</div>
 </div>
-<div class="col-first odd-row-color"><code>static <a href="https://jd.advntr.dev/api/4.24.0/net/kyori/adventure/text/Component.html" title="class or interface in net.kyori.adventure.text" class="external-link">Component</a></code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#component(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">component</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
+<div class="col-first even-row-color"><code>static <a href="../argument/position/ColumnBlockPosition.html" title="interface in io.papermc.paper.command.brigadier.argument.position">ColumnBlockPosition</a></code></div>
+<div class="col-second even-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#columnBlockPosition(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">columnBlockPosition</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
+<div class="col-last even-row-color">
+<div class="block">명령어 컨텍스트와 주어진 인수 이름으로부터 2차원 정수형 위치를 해석합니다.</div>
+</div>
+<div class="col-first odd-row-color"><code>static <a href="../argument/position/ColumnFinePosition.html" title="interface in io.papermc.paper.command.brigadier.argument.position">ColumnFinePosition</a></code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#columnFinePosition(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">columnFinePosition</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
 <div class="col-last odd-row-color">
+<div class="block">명령어 컨텍스트와 주어진 인수 이름으로부터 2차원 실수형 위치를 해석합니다.</div>
+</div>
+<div class="col-first even-row-color"><code>static <a href="https://jd.advntr.dev/api/4.24.0/net/kyori/adventure/text/Component.html" title="class or interface in net.kyori.adventure.text" class="external-link">Component</a></code></div>
+<div class="col-second even-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#component(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">component</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
+<div class="col-last even-row-color">
 <div class="block">명령어 컨텍스트와 주어진 인수 이름으로부터 컴포넌트를 해석합니다.</div>
 </div>
-<div class="col-first even-row-color"><code>static <a href="https://jd.advntr.dev/api/4.24.0/net/kyori/adventure/nbt/api/BinaryTagHolder.html" title="class or interface in net.kyori.adventure.nbt.api" class="external-link">BinaryTagHolder</a></code></div>
-<div class="col-second even-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#compoundTag(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">compoundTag</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
+<div class="col-first odd-row-color"><code>static <a href="https://jd.advntr.dev/api/4.24.0/net/kyori/adventure/nbt/api/BinaryTagHolder.html" title="class or interface in net.kyori.adventure.nbt.api" class="external-link">BinaryTagHolder</a></code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#compoundTag(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">compoundTag</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
-<div class="col-last even-row-color">
+<div class="col-last odd-row-color">
 <div class="block">명령어 컨텍스트와 주어진 인수 이름으로부터 컴파운드 태그를 해석합니다.</div>
 </div>
-<div class="col-first odd-row-color"><code>static <a href="https://guava.dev/releases/33.3.1-jre/api/docs/com/google/common/collect/Range.html" title="class or interface in com.google.common.collect" class="external-link">Range</a><wbr>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Double.html" title="class or interface in java.lang" class="external-link">Double</a>&gt;</code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#doubleRange(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">doubleRange</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
+<div class="col-first even-row-color"><code>static <a href="https://guava.dev/releases/33.3.1-jre/api/docs/com/google/common/collect/Range.html" title="class or interface in com.google.common.collect" class="external-link">Range</a><wbr>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Double.html" title="class or interface in java.lang" class="external-link">Double</a>&gt;</code></div>
+<div class="col-second even-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#doubleRange(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">doubleRange</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
-<div class="col-last odd-row-color">
+<div class="col-last even-row-color">
 <div class="block">명령어 컨텍스트와 주어진 인수 이름으로부터 실수 범위를 해석합니다.</div>
 </div>
-<div class="col-first even-row-color"><code>static <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="../../../../../../org/bukkit/entity/Entity.html" title="interface in org.bukkit.entity">Entity</a>&gt;</code></div>
-<div class="col-second even-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#entities(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">entities</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
- <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
-<div class="col-last even-row-color">
-<div class="block">명령어 컨텍스트와 주어진 인수 이름으로부터 엔티티 목록을 해석합니다.</div>
-</div>
-<div class="col-first odd-row-color"><code>static <a href="../../../../../../org/bukkit/entity/Entity.html" title="interface in org.bukkit.entity">Entity</a></code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#entity(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">entity</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
+<div class="col-first odd-row-color"><code>static <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="../../../../../../org/bukkit/entity/Entity.html" title="interface in org.bukkit.entity">Entity</a>&gt;</code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#entities(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">entities</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
 <div class="col-last odd-row-color">
+<div class="block">명령어 컨텍스트와 주어진 인수 이름으로부터 엔티티 목록을 해석합니다.</div>
+</div>
+<div class="col-first even-row-color"><code>static <a href="../../../../../../org/bukkit/entity/Entity.html" title="interface in org.bukkit.entity">Entity</a></code></div>
+<div class="col-second even-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#entity(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">entity</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
+<div class="col-last even-row-color">
 <div class="block">명령어 컨텍스트와 주어진 인수 이름으로부터 단일 엔티티를 해석합니다.</div>
 </div>
-<div class="col-first even-row-color"><code>static <a href="../../../entity/LookAnchor.html" title="enum class in io.papermc.paper.entity">LookAnchor</a></code></div>
-<div class="col-second even-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#entityAnchor(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">entityAnchor</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
+<div class="col-first odd-row-color"><code>static <a href="../../../entity/LookAnchor.html" title="enum class in io.papermc.paper.entity">LookAnchor</a></code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#entityAnchor(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">entityAnchor</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
-<div class="col-last even-row-color">
+<div class="col-last odd-row-color">
 <div class="block">명령어 컨텍스트와 주어진 인수 이름으로부터 주목 지점을 해석합니다.</div>
 </div>
-<div class="col-first odd-row-color"><code>static <a href="../../../math/FinePosition.html" title="interface in io.papermc.paper.math">FinePosition</a></code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#finePosition(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">finePosition</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
+<div class="col-first even-row-color"><code>static <a href="../../../math/FinePosition.html" title="interface in io.papermc.paper.math">FinePosition</a></code></div>
+<div class="col-second even-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#finePosition(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">finePosition</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
-<div class="col-last odd-row-color">
+<div class="col-last even-row-color">
 <div class="block">명령어 컨텍스트와 주어진 인수 이름으로부터 실수형 위치를 해석합니다.</div>
 </div>
-<div class="col-first even-row-color"><code>static <a href="../../../../../../org/bukkit/GameMode.html" title="enum class in org.bukkit">GameMode</a></code></div>
-<div class="col-second even-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#gameMode(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">gameMode</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
+<div class="col-first odd-row-color"><code>static <a href="../../../../../../org/bukkit/GameMode.html" title="enum class in org.bukkit">GameMode</a></code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#gameMode(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">gameMode</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
-<div class="col-last even-row-color">
+<div class="col-last odd-row-color">
 <div class="block">명령어 컨텍스트와 주어진 인수 이름으로부터 게임모드를 해석합니다.</div>
 </div>
-<div class="col-first odd-row-color"><code>static <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Collection.html" title="class or interface in java.util" class="external-link">Collection</a><wbr>&lt;com.mojang.authlib.GameProfile&gt;</code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#gameProfiles(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">gameProfiles</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
- <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
-<div class="col-last odd-row-color">
-<div class="block">명령어 컨텍스트와 주어진 인수 이름으로부터 플레이어 프로필을 해석합니다.</div>
-</div>
-<div class="col-first even-row-color"><code>static <a href="../../../../../../org/bukkit/HeightMap.html" title="enum class in org.bukkit">HeightMap</a></code></div>
-<div class="col-second even-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#heightMap(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">heightMap</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
+<div class="col-first even-row-color"><code>static <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Collection.html" title="class or interface in java.util" class="external-link">Collection</a><wbr>&lt;com.mojang.authlib.GameProfile&gt;</code></div>
+<div class="col-second even-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#gameProfiles(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">gameProfiles</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
 <div class="col-last even-row-color">
+<div class="block">명령어 컨텍스트와 주어진 인수 이름으로부터 플레이어 프로필을 해석합니다.</div>
+</div>
+<div class="col-first odd-row-color"><code>static <a href="../../../../../../org/bukkit/HeightMap.html" title="enum class in org.bukkit">HeightMap</a></code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#heightMap(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">heightMap</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
+<div class="col-last odd-row-color">
 <div class="block">명령어 컨텍스트와 주어진 인수 이름으로부터 하이트 맵을 해석합니다.</div>
 </div>
-<div class="col-first odd-row-color"><code>static <a href="https://jd.advntr.dev/api/4.24.0/net/kyori/adventure/text/format/TextColor.html" title="class or interface in net.kyori.adventure.text.format" class="external-link">TextColor</a></code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#hexColor(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">hexColor</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
+<div class="col-first even-row-color"><code>static <a href="https://jd.advntr.dev/api/4.24.0/net/kyori/adventure/text/format/TextColor.html" title="class or interface in net.kyori.adventure.text.format" class="external-link">TextColor</a></code></div>
+<div class="col-second even-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#hexColor(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">hexColor</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
-<div class="col-last odd-row-color">
+<div class="col-last even-row-color">
 <div class="block">명령어 컨텍스트와 주어진 인수 이름으로부터 십육진 색을 해석합니다.</div>
 </div>
-<div class="col-first even-row-color"><code>static com.mojang.brigadier.suggestion.SuggestionProvider<wbr>&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;</code></div>
-<div class="col-second even-row-color"><span class="type-name-label">BrigadierCommand.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/BrigadierCommand.html#hoverSuggest(java.util.function.BiConsumer)" class="member-name-link">hoverSuggest</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/BiConsumer.html" title="class or interface in java.util.function" class="external-link">BiConsumer</a>&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>,<wbr><a href="https://jd.advntr.dev/api/4.24.0/net/kyori/adventure/text/Component.html" title="class or interface in net.kyori.adventure.text" class="external-link">Component</a>&gt;&gt;&nbsp;suggestions)</code></div>
-<div class="col-last even-row-color">
+<div class="col-first odd-row-color"><code>static com.mojang.brigadier.suggestion.SuggestionProvider<wbr>&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;</code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">BrigadierCommand.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/BrigadierCommand.html#hoverSuggest(java.util.function.BiConsumer)" class="member-name-link">hoverSuggest</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/BiConsumer.html" title="class or interface in java.util.function" class="external-link">BiConsumer</a>&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>,<wbr><a href="https://jd.advntr.dev/api/4.24.0/net/kyori/adventure/text/Component.html" title="class or interface in net.kyori.adventure.text" class="external-link">Component</a>&gt;&gt;&nbsp;suggestions)</code></div>
+<div class="col-last odd-row-color">
 <div class="block">(동적) 툴팁이 포함된 명령어 제안을 생성합니다.</div>
 </div>
-<div class="col-first odd-row-color"><code>static <a href="https://guava.dev/releases/33.3.1-jre/api/docs/com/google/common/collect/Range.html" title="class or interface in com.google.common.collect" class="external-link">Range</a><wbr>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&gt;</code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#integerRange(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">integerRange</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
+<div class="col-first even-row-color"><code>static <a href="https://guava.dev/releases/33.3.1-jre/api/docs/com/google/common/collect/Range.html" title="class or interface in com.google.common.collect" class="external-link">Range</a><wbr>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&gt;</code></div>
+<div class="col-second even-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#integerRange(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">integerRange</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
-<div class="col-last odd-row-color">
+<div class="col-last even-row-color">
 <div class="block">명령어 컨텍스트와 주어진 인수 이름으로부터 정수 범위를 해석합니다.</div>
 </div>
-<div class="col-first even-row-color"><code>static <a href="../argument/predicate/ItemStackPredicate.html" title="interface in io.papermc.paper.command.brigadier.argument.predicate">ItemStackPredicate</a></code></div>
-<div class="col-second even-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#itemPredicate(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">itemPredicate</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
+<div class="col-first odd-row-color"><code>static <a href="../argument/predicate/ItemStackPredicate.html" title="interface in io.papermc.paper.command.brigadier.argument.predicate">ItemStackPredicate</a></code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#itemPredicate(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">itemPredicate</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
-<div class="col-last even-row-color">
+<div class="col-last odd-row-color">
 <div class="block">명령어 컨텍스트와 주어진 인수 이름으로부터 아이템 예측을 가져옵니다.</div>
 </div>
-<div class="col-first odd-row-color"><code>static <a href="../../../../../../org/bukkit/inventory/ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a></code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#itemStack(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">itemStack</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
+<div class="col-first even-row-color"><code>static <a href="../../../../../../org/bukkit/inventory/ItemStack.html" title="class in org.bukkit.inventory">ItemStack</a></code></div>
+<div class="col-second even-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#itemStack(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">itemStack</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
-<div class="col-last odd-row-color">
+<div class="col-last even-row-color">
 <div class="block">명령어 컨텍스트와 주어진 인수 이름으로부터 아이템 스택을 해석합니다.</div>
 </div>
-<div class="col-first even-row-color"><code>static <a href="https://jd.advntr.dev/key/4.24.0/net/kyori/adventure/key/Key.html" title="class or interface in net.kyori.adventure.key" class="external-link">Key</a></code></div>
-<div class="col-second even-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#key(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">key</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
- <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
-<div class="col-last even-row-color">
-<div class="block">명령어 컨텍스트와 주어진 인수 이름으로부터 키를 해석합니다.</div>
-</div>
-<div class="col-first odd-row-color"><code>static <a href="https://jd.advntr.dev/api/4.24.0/net/kyori/adventure/text/format/NamedTextColor.html" title="class or interface in net.kyori.adventure.text.format" class="external-link">NamedTextColor</a></code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#namedColor(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">namedColor</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
+<div class="col-first odd-row-color"><code>static <a href="https://jd.advntr.dev/key/4.24.0/net/kyori/adventure/key/Key.html" title="class or interface in net.kyori.adventure.key" class="external-link">Key</a></code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#key(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">key</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
 <div class="col-last odd-row-color">
+<div class="block">명령어 컨텍스트와 주어진 인수 이름으로부터 키를 해석합니다.</div>
+</div>
+<div class="col-first even-row-color"><code>static <a href="https://jd.advntr.dev/api/4.24.0/net/kyori/adventure/text/format/NamedTextColor.html" title="class or interface in net.kyori.adventure.text.format" class="external-link">NamedTextColor</a></code></div>
+<div class="col-second even-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#namedColor(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">namedColor</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
+<div class="col-last even-row-color">
 <div class="block">명령어 컨텍스트와 주어진 인수 이름으로부터 지정된 색을 해석합니다.</div>
 </div>
-<div class="col-first even-row-color"><code>static <a href="../../../../../../org/bukkit/NamespacedKey.html" title="class in org.bukkit">NamespacedKey</a></code></div>
-<div class="col-second even-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#namespacedKey(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">namespacedKey</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
+<div class="col-first odd-row-color"><code>static <a href="../../../../../../org/bukkit/NamespacedKey.html" title="class in org.bukkit">NamespacedKey</a></code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#namespacedKey(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">namespacedKey</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
-<div class="col-last even-row-color">
+<div class="col-last odd-row-color">
 <div class="block">명령어 컨텍스트와 주어진 인수 이름으로부터 키를 해석합니다.</div>
 </div>
-<div class="col-first odd-row-color"><code>static <a href="../../../../../../org/bukkit/scoreboard/Criteria.html" title="interface in org.bukkit.scoreboard">Criteria</a></code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#objectiveCriteria(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">objectiveCriteria</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
+<div class="col-first even-row-color"><code>static <a href="../../../../../../org/bukkit/scoreboard/Criteria.html" title="interface in org.bukkit.scoreboard">Criteria</a></code></div>
+<div class="col-second even-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#objectiveCriteria(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">objectiveCriteria</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
-<div class="col-last odd-row-color">
+<div class="col-last even-row-color">
 <div class="block">명령어 컨텍스트와 주어진 인수 이름으로부터 목적 기준을 해석합니다.</div>
 </div>
-<div class="col-first even-row-color"><code>static <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="../../../../../../org/bukkit/entity/Entity.html" title="interface in org.bukkit.entity">Entity</a>&gt;</code></div>
-<div class="col-second even-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#optionalEntities(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">optionalEntities</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
+<div class="col-first odd-row-color"><code>static <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="../../../../../../org/bukkit/entity/Entity.html" title="interface in org.bukkit.entity">Entity</a>&gt;</code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#optionalEntities(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">optionalEntities</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
-<div class="col-last even-row-color">
+<div class="col-last odd-row-color">
 <div class="block">명령어 컨텍스트와 주어진 인수 이름으로부터 엔티티 목록을 해석합니다.</div>
 </div>
-<div class="col-first odd-row-color"><code>static <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="../../../../../../org/bukkit/entity/Player.html" title="interface in org.bukkit.entity">Player</a>&gt;</code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#optionalPlayers(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">optionalPlayers</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
- <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
-<div class="col-last odd-row-color">
-<div class="block">명령어 컨텍스트와 주어진 인수 이름으로부터 플레이어 목록을 해석합니다.</div>
-</div>
-<div class="col-first even-row-color"><code>static <a href="../../../../../../org/bukkit/entity/Player.html" title="interface in org.bukkit.entity">Player</a></code></div>
-<div class="col-second even-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#player(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">player</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
+<div class="col-first even-row-color"><code>static <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="../../../../../../org/bukkit/entity/Player.html" title="interface in org.bukkit.entity">Player</a>&gt;</code></div>
+<div class="col-second even-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#optionalPlayers(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">optionalPlayers</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
 <div class="col-last even-row-color">
+<div class="block">명령어 컨텍스트와 주어진 인수 이름으로부터 플레이어 목록을 해석합니다.</div>
+</div>
+<div class="col-first odd-row-color"><code>static <a href="../../../../../../org/bukkit/entity/Player.html" title="interface in org.bukkit.entity">Player</a></code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#player(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">player</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
+<div class="col-last odd-row-color">
 <div class="block">명령어 컨텍스트와 주어진 인수 이름으로부터 단일 플레이어를 해석합니다.</div>
 </div>
-<div class="col-first odd-row-color"><code>static <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Collection.html" title="class or interface in java.util" class="external-link">Collection</a><wbr>&lt;<a href="../../../../../../com/destroystokyo/paper/profile/PlayerProfile.html" title="interface in com.destroystokyo.paper.profile">PlayerProfile</a>&gt;</code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#playerProfiles(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">playerProfiles</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
+<div class="col-first even-row-color"><code>static <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Collection.html" title="class or interface in java.util" class="external-link">Collection</a><wbr>&lt;<a href="../../../../../../com/destroystokyo/paper/profile/PlayerProfile.html" title="interface in com.destroystokyo.paper.profile">PlayerProfile</a>&gt;</code></div>
+<div class="col-second even-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#playerProfiles(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">playerProfiles</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
-<div class="col-last odd-row-color">
+<div class="col-last even-row-color">
 <div class="block">명령어 컨텍스트와 주어진 인수 이름으로부터 플레이어 프로필을 해석합니다.</div>
 </div>
-<div class="col-first even-row-color"><code>static <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="../../../../../../org/bukkit/entity/Player.html" title="interface in org.bukkit.entity">Player</a>&gt;</code></div>
-<div class="col-second even-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#players(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">players</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
+<div class="col-first odd-row-color"><code>static <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="../../../../../../org/bukkit/entity/Player.html" title="interface in org.bukkit.entity">Player</a>&gt;</code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#players(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">players</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
-<div class="col-last even-row-color">
+<div class="col-last odd-row-color">
 <div class="block">명령어 컨텍스트와 주어진 인수 이름으로부터 플레이어 목록을 해석합니다.</div>
 </div>
-<div class="col-first odd-row-color"><code>static &lt;T&gt;&nbsp;T</code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#resource(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">resource</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
+<div class="col-first even-row-color"><code>static &lt;T&gt;&nbsp;T</code></div>
+<div class="col-second even-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#resource(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">resource</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
-<div class="col-last odd-row-color">
+<div class="col-last even-row-color">
 <div class="block">명령어 컨텍스트와 주어진 인수 이름으로부터 레지스트리 리소스를 해석합니다.</div>
 </div>
-<div class="col-first even-row-color"><code>static &lt;T&gt;&nbsp;<a href="../../../registry/TypedKey.html" title="interface in io.papermc.paper.registry">TypedKey</a><wbr>&lt;T&gt;</code></div>
-<div class="col-second even-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#resourceKey(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">resourceKey</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
+<div class="col-first odd-row-color"><code>static &lt;T&gt;&nbsp;<a href="../../../registry/TypedKey.html" title="interface in io.papermc.paper.registry">TypedKey</a><wbr>&lt;T&gt;</code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#resourceKey(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">resourceKey</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
-<div class="col-last even-row-color">
+<div class="col-last odd-row-color">
 <div class="block">명령어 컨텍스트와 주어진 인수 이름으로부터 레지스트리의 타입 키를 해석합니다.</div>
 </div>
-<div class="col-first odd-row-color"><code>static <a href="../../../math/Rotation.html" title="interface in io.papermc.paper.math">Rotation</a></code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#rotation(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">rotation</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
+<div class="col-first even-row-color"><code>static <a href="../../../math/Rotation.html" title="interface in io.papermc.paper.math">Rotation</a></code></div>
+<div class="col-second even-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#rotation(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">rotation</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
-<div class="col-last odd-row-color">
+<div class="col-last even-row-color">
 <div class="block">명령어 컨텍스트와 주어진 인수 이름으로부터 회전을 해석합니다.</div>
 </div>
-<div class="col-first even-row-color"><code>static <a href="../../../../../../org/bukkit/scoreboard/DisplaySlot.html" title="enum class in org.bukkit.scoreboard">DisplaySlot</a></code></div>
-<div class="col-second even-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#scoreboardDisplaySlot(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">scoreboardDisplaySlot</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
+<div class="col-first odd-row-color"><code>static <a href="../../../../../../org/bukkit/scoreboard/DisplaySlot.html" title="enum class in org.bukkit.scoreboard">DisplaySlot</a></code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#scoreboardDisplaySlot(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">scoreboardDisplaySlot</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
-<div class="col-last even-row-color">
+<div class="col-last odd-row-color">
 <div class="block">명령어 컨텍스트와 주어진 인수 이름으로부터 스코어보드 슬롯을 해석합니다.</div>
 </div>
-<div class="col-first odd-row-color"><code>static <a href="../../../../../../org/bukkit/command/CommandSender.html" title="interface in org.bukkit.command">CommandSender</a></code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">BrigadierCommand.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/BrigadierCommand.html#sender(com.mojang.brigadier.context.CommandContext)" class="member-name-link">sender</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context)</code></div>
-<div class="col-last odd-row-color">
+<div class="col-first even-row-color"><code>static <a href="../../../../../../org/bukkit/command/CommandSender.html" title="interface in org.bukkit.command">CommandSender</a></code></div>
+<div class="col-second even-row-color"><span class="type-name-label">BrigadierCommand.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/BrigadierCommand.html#sender(com.mojang.brigadier.context.CommandContext)" class="member-name-link">sender</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context)</code></div>
+<div class="col-last even-row-color">
 <div class="block">명령어 실행 주체를 가져옵니다.</div>
 </div>
-<div class="col-first even-row-color"><code>static <a href="../argument/SignedMessageResolver.html" title="interface in io.papermc.paper.command.brigadier.argument">SignedMessageResolver</a></code></div>
-<div class="col-second even-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#signedMessage(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">signedMessage</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
+<div class="col-first odd-row-color"><code>static <a href="../argument/SignedMessageResolver.html" title="interface in io.papermc.paper.command.brigadier.argument">SignedMessageResolver</a></code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#signedMessage(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">signedMessage</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
-<div class="col-last even-row-color">
+<div class="col-last odd-row-color">
 <div class="block">명령어 컨텍스트와 주어진 인수 이름으로부터 서명된 메시지를 해석합니다.</div>
 </div>
-<div class="col-first odd-row-color"><code>static int</code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#slot(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">slot</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
+<div class="col-first even-row-color"><code>static int</code></div>
+<div class="col-second even-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#slot(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">slot</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
-<div class="col-last odd-row-color">
+<div class="col-last even-row-color">
 <div class="block">명령어 컨텍스트와 주어진 인수 이름으로부터 슬롯을 해석합니다.</div>
 </div>
-<div class="col-first even-row-color"><code>static it.unimi.dsi.fastutil.ints.IntList</code></div>
-<div class="col-second even-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#slots(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">slots</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
+<div class="col-first odd-row-color"><code>static it.unimi.dsi.fastutil.ints.IntList</code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#slots(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">slots</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
-<div class="col-last even-row-color">
+<div class="col-last odd-row-color">
 <div class="block">명령어 컨텍스트와 주어진 인수 이름으로부터 슬롯 목록을 해석합니다.</div>
 </div>
-<div class="col-first odd-row-color"><code>static <a href="https://jd.advntr.dev/api/4.24.0/net/kyori/adventure/text/format/Style.html" title="class or interface in net.kyori.adventure.text.format" class="external-link">Style</a></code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#style(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">style</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
+<div class="col-first even-row-color"><code>static <a href="https://jd.advntr.dev/api/4.24.0/net/kyori/adventure/text/format/Style.html" title="class or interface in net.kyori.adventure.text.format" class="external-link">Style</a></code></div>
+<div class="col-second even-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#style(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">style</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
-<div class="col-last odd-row-color">
+<div class="col-last even-row-color">
 <div class="block">명령어 컨텍스트와 주어진 인수 이름으로부터 스타일을 해석합니다.</div>
 </div>
-<div class="col-first even-row-color"><code>static com.mojang.brigadier.suggestion.SuggestionProvider<wbr>&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;</code></div>
-<div class="col-second even-row-color"><span class="type-name-label">BrigadierCommand.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/BrigadierCommand.html#suggest(java.util.function.BiConsumer)" class="member-name-link">suggest</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/BiConsumer.html" title="class or interface in java.util.function" class="external-link">BiConsumer</a>&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Collection.html" title="class or interface in java.util" class="external-link">Collection</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;&gt;&nbsp;strings)</code></div>
-<div class="col-last even-row-color">
+<div class="col-first odd-row-color"><code>static com.mojang.brigadier.suggestion.SuggestionProvider<wbr>&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;</code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">BrigadierCommand.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/BrigadierCommand.html#suggest(java.util.function.BiConsumer)" class="member-name-link">suggest</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/BiConsumer.html" title="class or interface in java.util.function" class="external-link">BiConsumer</a>&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Collection.html" title="class or interface in java.util" class="external-link">Collection</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;&gt;&nbsp;strings)</code></div>
+<div class="col-last odd-row-color">
 <div class="block">(동적) 명령어 제안을 생성합니다.</div>
 </div>
-<div class="col-first odd-row-color"><code>static <a href="../../../../../../org/bukkit/block/structure/Mirror.html" title="enum class in org.bukkit.block.structure">Mirror</a></code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#templateMirror(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">templateMirror</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
+<div class="col-first even-row-color"><code>static <a href="../../../../../../org/bukkit/block/structure/Mirror.html" title="enum class in org.bukkit.block.structure">Mirror</a></code></div>
+<div class="col-second even-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#templateMirror(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">templateMirror</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
-<div class="col-last odd-row-color">
+<div class="col-last even-row-color">
 <div class="block">명령어 컨텍스트와 주어진 인수 이름으로부터 구조물 반전 타입을 해석합니다.</div>
 </div>
-<div class="col-first even-row-color"><code>static <a href="../../../../../../org/bukkit/block/structure/StructureRotation.html" title="enum class in org.bukkit.block.structure">StructureRotation</a></code></div>
-<div class="col-second even-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#templateRotation(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">templateRotation</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
+<div class="col-first odd-row-color"><code>static <a href="../../../../../../org/bukkit/block/structure/StructureRotation.html" title="enum class in org.bukkit.block.structure">StructureRotation</a></code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#templateRotation(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">templateRotation</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
-<div class="col-last even-row-color">
+<div class="col-last odd-row-color">
 <div class="block">명령어 컨텍스트와 주어진 인수 이름으로부터 구조물 회전 타입을 해석합니다.</div>
 </div>
-<div class="col-first odd-row-color"><code>static int</code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#time(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">time</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
- <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
-<div class="col-last odd-row-color">
-<div class="block">명령어 컨텍스트와 주어진 인수 이름으로부터 시간을 해석합니다.</div>
-</div>
-<div class="col-first even-row-color"><code>static <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a></code></div>
-<div class="col-second even-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#uuid(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">uuid</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
+<div class="col-first even-row-color"><code>static int</code></div>
+<div class="col-second even-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#time(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">time</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
 <div class="col-last even-row-color">
-<div class="block">명령어 컨텍스트와 주어진 인수 이름으로부터 UUID를 해석합니다.</div>
+<div class="block">명령어 컨텍스트와 주어진 인수 이름으로부터 시간을 해석합니다.</div>
 </div>
-<div class="col-first odd-row-color"><code>static <a href="../../../../../../org/bukkit/World.html" title="interface in org.bukkit">World</a></code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#world(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">world</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
+<div class="col-first odd-row-color"><code>static <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a></code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#uuid(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">uuid</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
 <div class="col-last odd-row-color">
+<div class="block">명령어 컨텍스트와 주어진 인수 이름으로부터 UUID를 해석합니다.</div>
+</div>
+<div class="col-first even-row-color"><code>static <a href="../../../../../../org/bukkit/World.html" title="interface in org.bukkit">World</a></code></div>
+<div class="col-second even-row-color"><span class="type-name-label">Resolvers.</span><code><a href="../../../../../../moe/caramel/daydream/brigadier/Resolvers.html#world(com.mojang.brigadier.context.CommandContext,java.lang.String)" class="member-name-link">world</a><wbr>(com.mojang.brigadier.context.CommandContext&lt;<a href="../CommandSourceStack.html" title="interface in io.papermc.paper.command.brigadier">CommandSourceStack</a>&gt;&nbsp;context,
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
+<div class="col-last even-row-color">
 <div class="block">명령어 컨텍스트와 주어진 인수 이름으로부터 월드를 해석합니다.</div>
 </div>
 </div>

@@ -99,7 +99,8 @@ loadScripts(document, 'script');</script>
 <dd><code><a href="../Cancellable.html" title="interface in org.bukkit.event">Cancellable</a></code></dd>
 </dl>
 <hr>
-<div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">PlayerRecipeDiscoverEvent</span>
+<div class="type-signature"><span class="annotations"><a href="https://jspecify.dev/docs/api/org/jspecify/annotations/NullMarked.html" title="class or interface in org.jspecify.annotations" class="external-link">@NullMarked</a>
+</span><span class="modifiers">public class </span><span class="element-name type-name-label">PlayerRecipeDiscoverEvent</span>
 <span class="extends-implements">extends <a href="PlayerEvent.html" title="class in org.bukkit.event.player">PlayerEvent</a>
 implements <a href="../Cancellable.html" title="interface in org.bukkit.event">Cancellable</a></span></div>
 <div class="block">Called when a player discovers a new recipe in the recipe book.</div>
@@ -132,8 +133,9 @@ implements <a href="../Cancellable.html" title="interface in org.bukkit.event">C
 <div class="summary-table two-column-summary">
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
-<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(org.bukkit.entity.Player,org.bukkit.NamespacedKey)" class="member-name-link">PlayerRecipeDiscoverEvent</a><wbr>(<a href="https://javadoc.io/doc/org.jetbrains/annotations/26.0.2/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../entity/Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;player,
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/26.0.2/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../NamespacedKey.html" title="class in org.bukkit">NamespacedKey</a>&nbsp;recipe)</code></div>
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(org.bukkit.entity.Player,org.bukkit.NamespacedKey,boolean)" class="member-name-link">PlayerRecipeDiscoverEvent</a><wbr>(<a href="../../entity/Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;player,
+ <a href="../../NamespacedKey.html" title="class in org.bukkit">NamespacedKey</a>&nbsp;recipe,
+ boolean&nbsp;showNotification)</code></div>
 <div class="col-last even-row-color">&nbsp;</div>
 </div>
 </section>
@@ -149,13 +151,13 @@ implements <a href="../Cancellable.html" title="interface in org.bukkit.event">C
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://javadoc.io/doc/org.jetbrains/annotations/26.0.2/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../HandlerList.html" title="class in org.bukkit.event">HandlerList</a></code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="../HandlerList.html" title="class in org.bukkit.event">HandlerList</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#getHandlerList()" class="member-name-link">getHandlerList</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/26.0.2/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../HandlerList.html" title="class in org.bukkit.event">HandlerList</a></code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../HandlerList.html" title="class in org.bukkit.event">HandlerList</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getHandlers()" class="member-name-link">getHandlers</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://javadoc.io/doc/org.jetbrains/annotations/26.0.2/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../NamespacedKey.html" title="class in org.bukkit">NamespacedKey</a></code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../../NamespacedKey.html" title="class in org.bukkit">NamespacedKey</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getRecipe()" class="member-name-link">getRecipe</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Get the namespaced key of the discovered recipe.</div>
@@ -169,6 +171,16 @@ implements <a href="../Cancellable.html" title="interface in org.bukkit.event">C
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setCancelled(boolean)" class="member-name-link">setCancelled</a><wbr>(boolean&nbsp;cancel)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Sets the cancellation state of this event.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#shouldShowNotification()" class="member-name-link">shouldShowNotification</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Get if the player should be notified (toast) of the discovery.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#shouldShowNotification(boolean)" class="member-name-link">shouldShowNotification</a><wbr>(boolean&nbsp;showNotification)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Set if the player should be notified (toast) of the discovery.</div>
 </div>
 </div>
 </div>
@@ -194,13 +206,12 @@ implements <a href="../Cancellable.html" title="interface in org.bukkit.event">C
 <h2>Constructor Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="&lt;init&gt;(org.bukkit.entity.Player,org.bukkit.NamespacedKey)">
+<section class="detail" id="&lt;init&gt;(org.bukkit.entity.Player,org.bukkit.NamespacedKey,boolean)">
 <h3>PlayerRecipeDiscoverEvent</h3>
 <div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/26.0.2/org/jetbrains/annotations/ApiStatus.Internal.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Internal</a>
-</span><span class="modifiers">public</span>&nbsp;<span class="element-name">PlayerRecipeDiscoverEvent</span><wbr><span class="parameters">(<a href="https://javadoc.io/doc/org.jetbrains/annotations/26.0.2/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/26.0.2/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../entity/Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;player,
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/26.0.2/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
- <a href="https://javadoc.io/doc/org.jetbrains/annotations/26.0.2/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../NamespacedKey.html" title="class in org.bukkit">NamespacedKey</a>&nbsp;recipe)</span></div>
+</span><span class="modifiers">public</span>&nbsp;<span class="element-name">PlayerRecipeDiscoverEvent</span><wbr><span class="parameters">(<a href="../../entity/Player.html" title="interface in org.bukkit.entity">Player</a>&nbsp;player,
+ <a href="../../NamespacedKey.html" title="class in org.bukkit">NamespacedKey</a>&nbsp;recipe,
+ boolean&nbsp;showNotification)</span></div>
 </section>
 </li>
 </ul>
@@ -214,12 +225,33 @@ implements <a href="../Cancellable.html" title="interface in org.bukkit.event">C
 <li>
 <section class="detail" id="getRecipe()">
 <h3>getRecipe</h3>
-<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/26.0.2/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
-</span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/26.0.2/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../../NamespacedKey.html" title="class in org.bukkit">NamespacedKey</a></span>&nbsp;<span class="element-name">getRecipe</span>()</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../../NamespacedKey.html" title="class in org.bukkit">NamespacedKey</a></span>&nbsp;<span class="element-name">getRecipe</span>()</div>
 <div class="block">Get the namespaced key of the discovered recipe.</div>
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>the discovered recipe</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="shouldShowNotification()">
+<h3>shouldShowNotification</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">shouldShowNotification</span>()</div>
+<div class="block">Get if the player should be notified (toast) of the discovery.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>true if the player should be notified</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="shouldShowNotification(boolean)">
+<h3>shouldShowNotification</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">shouldShowNotification</span><wbr><span class="parameters">(boolean&nbsp;showNotification)</span></div>
+<div class="block">Set if the player should be notified (toast) of the discovery.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>showNotification</code> - true if the player should be notified</dd>
 </dl>
 </section>
 </li>
@@ -256,8 +288,7 @@ implements <a href="../Cancellable.html" title="interface in org.bukkit.event">C
 <li>
 <section class="detail" id="getHandlers()">
 <h3>getHandlers</h3>
-<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/26.0.2/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
-</span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/26.0.2/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../HandlerList.html" title="class in org.bukkit.event">HandlerList</a></span>&nbsp;<span class="element-name">getHandlers</span>()</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../HandlerList.html" title="class in org.bukkit.event">HandlerList</a></span>&nbsp;<span class="element-name">getHandlers</span>()</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../Event.html#getHandlers()">getHandlers</a></code>&nbsp;in class&nbsp;<code><a href="../Event.html" title="class in org.bukkit.event">Event</a></code></dd>
@@ -267,8 +298,7 @@ implements <a href="../Cancellable.html" title="interface in org.bukkit.event">C
 <li>
 <section class="detail" id="getHandlerList()">
 <h3>getHandlerList</h3>
-<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations/26.0.2/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
-</span><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://javadoc.io/doc/org.jetbrains/annotations/26.0.2/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../HandlerList.html" title="class in org.bukkit.event">HandlerList</a></span>&nbsp;<span class="element-name">getHandlerList</span>()</div>
+<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="../HandlerList.html" title="class in org.bukkit.event">HandlerList</a></span>&nbsp;<span class="element-name">getHandlerList</span>()</div>
 </section>
 </li>
 </ul>
