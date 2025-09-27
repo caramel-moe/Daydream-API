@@ -5,10 +5,10 @@ Subject: [PATCH] Add EnhancedModelEngine Support
 
 
 diff --git a/src/main/java/org/bukkit/UnsafeValues.java b/src/main/java/org/bukkit/UnsafeValues.java
-index db3dd5169ac083ac33dd007a5acf092292b5d428..da9b756e9fc316652702af06dba30dff1ffb530c 100644
+index db3dd5169ac083ac33dd007a5acf092292b5d428..57d9a0a4ba2278314d809eafea9eacfdda69a7f1 100644
 --- a/src/main/java/org/bukkit/UnsafeValues.java
 +++ b/src/main/java/org/bukkit/UnsafeValues.java
-@@ -464,4 +464,34 @@ public interface UnsafeValues {
+@@ -464,4 +464,35 @@ public interface UnsafeValues {
      // Daydream end - Proxy InventoryIterator
  
      @NotNull org.bukkit.damage.DamageSource getCraftDamageSource(@NotNull Object nmsDamageSource); // Daydream - (feature) Add more Damage API
@@ -18,6 +18,7 @@ index db3dd5169ac083ac33dd007a5acf092292b5d428..da9b756e9fc316652702af06dba30dff
 +    void eme$setEntityDimensions(@NotNull Object nmsEntity, @NotNull Object entityDimensions);
 +    void eme$setEntityEyeHeight(@NotNull Object nmsEntity, float eyeHeight);
 +    void eme$setEntityBukkitEntity(@NotNull Object nmsEntity, @Nullable org.bukkit.entity.Entity entity);
++    @NotNull Object eme$getPassengerAttachmentPoint(@NotNull Object nmsEntity, @NotNull Object entity, @NotNull Object dimensions, float partialTick);
 +    void eme$setLivingEntityNoJumpDelay(@NotNull Object nmsLivingEntity, int noJumpDelay);
 +    void eme$setMobLookControl(@NotNull Object nmsMob, @NotNull Object lookControl);
 +    void eme$setMobMoveControl(@NotNull Object nmsMob, @NotNull Object moveControl);
