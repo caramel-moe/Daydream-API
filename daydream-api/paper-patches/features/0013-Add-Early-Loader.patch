@@ -6,7 +6,7 @@ Subject: [PATCH] Add Early Loader
 
 diff --git a/src/main/java/moe/caramel/daydream/EarlyLoader.java b/src/main/java/moe/caramel/daydream/EarlyLoader.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..5282d9353d8629f025ae89518fa07960e26db17f
+index 0000000000000000000000000000000000000000..cfb3652c6fa4d455aa47c7917a33f09df093db08
 --- /dev/null
 +++ b/src/main/java/moe/caramel/daydream/EarlyLoader.java
 @@ -0,0 +1,36 @@
@@ -47,10 +47,10 @@ index 0000000000000000000000000000000000000000..5282d9353d8629f025ae89518fa07960
 +    UnsafeValues getUnsafe();
 +}
 diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
-index f8d9a39f264b248f670e03c731bb953f1aa63f8c..e5a8efe76b74888b67400ad5fb594d02d179ec7f 100644
+index c45652b31a876d2bce28584254454e3b25598139..ca343d7055469e6afcff525245463df51121eb9b 100644
 --- a/src/main/java/org/bukkit/Bukkit.java
 +++ b/src/main/java/org/bukkit/Bukkit.java
-@@ -2236,7 +2236,7 @@ public final class Bukkit {
+@@ -2223,7 +2223,7 @@ public final class Bukkit {
       */
      @NotNull
      public static ItemFactory getItemFactory() {
@@ -59,7 +59,7 @@ index f8d9a39f264b248f670e03c731bb953f1aa63f8c..e5a8efe76b74888b67400ad5fb594d02
      }
  
      /**
-@@ -2764,7 +2764,7 @@ public final class Bukkit {
+@@ -2751,7 +2751,7 @@ public final class Bukkit {
      @Deprecated(since = "1.7.2")
      @NotNull
      public static UnsafeValues getUnsafe() {
@@ -69,7 +69,7 @@ index f8d9a39f264b248f670e03c731bb953f1aa63f8c..e5a8efe76b74888b67400ad5fb594d02
  
  
 diff --git a/src/main/java/org/bukkit/inventory/ItemStack.java b/src/main/java/org/bukkit/inventory/ItemStack.java
-index 5055a9d2bb2b2d91574dcc13fb6640ba6dc5c34a..6ea690b54f8b1dbbc326abd1a560536e0a4713b1 100644
+index 7d9a2f609bb43feb608cee68ffd4549c5b957d60..13a5f2ef94754f92ff94142c1b5d4eb99b2fa608 100644
 --- a/src/main/java/org/bukkit/inventory/ItemStack.java
 +++ b/src/main/java/org/bukkit/inventory/ItemStack.java
 @@ -774,7 +774,7 @@ public class ItemStack implements Cloneable, ConfigurationSerializable, Translat

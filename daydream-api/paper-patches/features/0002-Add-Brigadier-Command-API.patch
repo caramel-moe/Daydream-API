@@ -1360,10 +1360,10 @@ index 0000000000000000000000000000000000000000..b21df77a52d31e7e0c38b33a6d77808a
 +    }
 +}
 diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
-index 220ffe1eb8f1be13c446fab18c6710adae8c461d..2ebf84b7a500b2189d5291e0438b6b4305608389 100644
+index 62fe2567871bdd83ea4cd09e5dfb7da9df9acbdf..13792934baf027bf2b58c5ddd6a8b9536722b2a6 100644
 --- a/src/main/java/org/bukkit/Bukkit.java
 +++ b/src/main/java/org/bukkit/Bukkit.java
-@@ -1107,6 +1107,41 @@ public final class Bukkit {
+@@ -1094,6 +1094,41 @@ public final class Bukkit {
      }
      // Daydream end - Expose Brigadier command dispatcher
  
@@ -1406,10 +1406,10 @@ index 220ffe1eb8f1be13c446fab18c6710adae8c461d..2ebf84b7a500b2189d5291e0438b6b43
       * Writes loaded players to disk.
       */
 diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
-index 52783c96bf814741c8a84b3db135c71fac93b848..8d7fa92d5347471682116dec47ae8ab49bd15711 100644
+index 3203a158b3e7fd2733285e833170c730c7a53083..21caa3529826ee5e4f3c5356dbd150f4b3ade596 100644
 --- a/src/main/java/org/bukkit/Server.java
 +++ b/src/main/java/org/bukkit/Server.java
-@@ -982,6 +982,35 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
+@@ -1003,6 +1003,35 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
      public <S extends io.papermc.paper.command.brigadier.CommandSourceStack> com.mojang.brigadier.CommandDispatcher<S> getCommandDispatcher();
      // Daydream end - Expose Brigadier command dispatcher
  
@@ -1446,7 +1446,7 @@ index 52783c96bf814741c8a84b3db135c71fac93b848..8d7fa92d5347471682116dec47ae8ab4
       * Writes loaded players to disk.
       */
 diff --git a/src/main/java/org/bukkit/command/Command.java b/src/main/java/org/bukkit/command/Command.java
-index 27a7c69f23084e821d945d5e97e51a94ddd94e58..29154c3e60eaf8004b34d0f31485971391acb7b1 100644
+index e387ba67f0b6cde8ee2be7acba8f791792802ad4..81237d34ed70e45e4471d96811f2d6744036f8f2 100644
 --- a/src/main/java/org/bukkit/command/Command.java
 +++ b/src/main/java/org/bukkit/command/Command.java
 @@ -355,6 +355,22 @@ public abstract class Command {
@@ -1473,10 +1473,10 @@ index 27a7c69f23084e821d945d5e97e51a94ddd94e58..29154c3e60eaf8004b34d0f314859713
       * Sets the list of aliases to request on registration for this command.
       * This is not effective outside of defining aliases in the {@link
 diff --git a/src/main/java/org/bukkit/plugin/java/JavaPlugin.java b/src/main/java/org/bukkit/plugin/java/JavaPlugin.java
-index 7bdbfbd48329ab0900e6428cc3d5e8aa7f1d26bb..b1929f59b498a4b66302ce629f06dba9b99dc8e0 100644
+index 1b010fecadcce460959e8326c397b75f742b7fea..8f80fdc01603b7c23860a7f17d802de67ae530a6 100644
 --- a/src/main/java/org/bukkit/plugin/java/JavaPlugin.java
 +++ b/src/main/java/org/bukkit/plugin/java/JavaPlugin.java
-@@ -436,6 +436,36 @@ public abstract class JavaPlugin extends PluginBase {
+@@ -435,6 +435,36 @@ public abstract class JavaPlugin extends PluginBase {
          });
      }
  

@@ -972,10 +972,10 @@ index 0000000000000000000000000000000000000000..257c535f5b0802f2289df1ee3eb2b2cf
 +    SetPlayerTeamPacket createTeamJoinOrLeavePacket(String teamName, Collection<String> players, boolean join);
 +}
 diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
-index 4936b38e393f02ae5ee4c01951e458c5eecfdfb2..f8d9a39f264b248f670e03c731bb953f1aa63f8c 100644
+index bd753b982906c411cd0767844efdcb0d7481eb7b..c45652b31a876d2bce28584254454e3b25598139 100644
 --- a/src/main/java/org/bukkit/Bukkit.java
 +++ b/src/main/java/org/bukkit/Bukkit.java
-@@ -3121,6 +3121,20 @@ public final class Bukkit {
+@@ -3108,6 +3108,20 @@ public final class Bukkit {
      }
      // Daydream end - Add Individual Sidebar API
  
@@ -1012,10 +1012,10 @@ index 918a045165cdcde264bc24082b7afebb407271de..893f1e80871e67d427c379410a83ecd8
      /**
       * Represents black
 diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
-index 695445638c24acfa962872b53b08bd97c183b2e4..557497d6868aa53d3e5f094d62a4934c91b4217e 100644
+index d070c3e1096169e10ffbed8ebe6144de74cf47c2..1a4f4f587b962c23c2f51d647c14108647d2b86e 100644
 --- a/src/main/java/org/bukkit/Server.java
 +++ b/src/main/java/org/bukkit/Server.java
-@@ -2823,4 +2823,16 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
+@@ -2860,4 +2860,16 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
      @NotNull
      moe.caramel.daydream.sidebar.SidebarProcessor sidebarProcessor();
      // Daydream end - Add Individual Sidebar API
@@ -1033,10 +1033,10 @@ index 695445638c24acfa962872b53b08bd97c183b2e4..557497d6868aa53d3e5f094d62a4934c
 +    // Daydream end - (feature) Add Packet API
  }
 diff --git a/src/main/java/org/bukkit/World.java b/src/main/java/org/bukkit/World.java
-index 8a4ba35ea54fcbc38785a3d9cc64c3e36d513053..01af6d541581ce14c63a9f329d3024006963c22f 100644
+index c32df3db888ddc223d40f3aa5abf668dcab1a55d..6034b9b507c0d7a7c725d2b6a95f2425f9d07deb 100644
 --- a/src/main/java/org/bukkit/World.java
 +++ b/src/main/java/org/bukkit/World.java
-@@ -1666,6 +1666,17 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
+@@ -1692,6 +1692,17 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      public Entity getEntity(@NotNull java.util.UUID uuid);
      // Paper end
  
@@ -1055,7 +1055,7 @@ index 8a4ba35ea54fcbc38785a3d9cc64c3e36d513053..01af6d541581ce14c63a9f329d302400
       * Returns a list of entities within a bounding box centered around a
       * Location.
 diff --git a/src/main/java/org/bukkit/entity/Entity.java b/src/main/java/org/bukkit/entity/Entity.java
-index 45228fac38d88cab5a7fc1d0178a30d18bd2cb28..f7bb65d359aff5d5670fb751e1762f558ede0ba5 100644
+index 008f4baeb4a240a76471b34ff4cd56b760bb8557..e15c1f44b5d0daf1a2fe6a62059bed73bf7097c5 100644
 --- a/src/main/java/org/bukkit/entity/Entity.java
 +++ b/src/main/java/org/bukkit/entity/Entity.java
 @@ -627,6 +627,19 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
@@ -1079,10 +1079,10 @@ index 45228fac38d88cab5a7fc1d0178a30d18bd2cb28..f7bb65d359aff5d5670fb751e1762f55
       * Gets the amount of ticks this entity has lived for.
       * <p>
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index 543c3f7eef06563e9700f4706dc9488dc8d2501f..9cdfafe0ed1804634ab74e9ef2138a79e16fa4a5 100644
+index aefbd78f99f9f931c39ec9a06a72ee7f472d1869..03c2786f89d93515309857237de54b6bfa53c343 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
-@@ -1081,6 +1081,31 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+@@ -1111,6 +1111,31 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
       */
      public void sendEquipmentChange(LivingEntity entity, Map<EquipmentSlot, @Nullable ItemStack> items);
  

@@ -141,10 +141,10 @@ index 0000000000000000000000000000000000000000..0f3b4d814e3d2663b03510d3f3ae0c42
 +    boolean wasCancelled();
 +}
 diff --git a/src/main/java/org/bukkit/World.java b/src/main/java/org/bukkit/World.java
-index 01af6d541581ce14c63a9f329d3024006963c22f..49e0a4db856a6019ca1fdabd6d7a2a0351f0b8ec 100644
+index 6034b9b507c0d7a7c725d2b6a95f2425f9d07deb..84b6d6e5a7320239de51d38f8042e265f68d7632 100644
 --- a/src/main/java/org/bukkit/World.java
 +++ b/src/main/java/org/bukkit/World.java
-@@ -2199,6 +2199,246 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
+@@ -2249,6 +2249,246 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
       */
      public int getClearWeatherDuration();
  
@@ -447,7 +447,7 @@ index 96444dac986a2522107459477c4b67d99957121d..fa6eaffc36d10a3ed0590f1a22a9ae87
  
      /**
 diff --git a/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java b/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java
-index 7f4e2aa63869c7bd8e62fdfcb18dbf1d644736ec..6250fe2b983b14f337429ca27a2a4857384541c0 100644
+index 5681dfd6f43bb36424565c114dcf78b258f83e38..29a93e9a27d5616b667588b4da080a61bb0a9e25 100644
 --- a/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java
 +++ b/src/main/java/org/bukkit/event/entity/EntityDamageEvent.java
 @@ -270,6 +270,18 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
@@ -504,10 +504,10 @@ index 9a8f5f6dca26b79579f0cb9621002448554b96e1..0337c8295742d88afb36fd691850d9ff
  
      /**
 diff --git a/src/main/java/org/bukkit/tag/DamageTypeTags.java b/src/main/java/org/bukkit/tag/DamageTypeTags.java
-index 32ac1e1ecbf9e6f471180c4ef99d2e13a71d4d79..ab031fd9baf59ba38fd318a203e9fcaeb3b363f6 100644
+index d4dd2754057919e75d32b037ad479c2c656b386a..591902ffbef2bd724ffb5e5d51f377f8e1c5169b 100644
 --- a/src/main/java/org/bukkit/tag/DamageTypeTags.java
 +++ b/src/main/java/org/bukkit/tag/DamageTypeTags.java
-@@ -81,6 +81,13 @@ public final class DamageTypeTags {
+@@ -80,6 +80,13 @@ public final class DamageTypeTags {
  
      public static final Tag<DamageType> WITHER_IMMUNE_TO = getTag("wither_immune_to");
      // End generate - DamageTypeTags
@@ -521,7 +521,7 @@ index 32ac1e1ecbf9e6f471180c4ef99d2e13a71d4d79..ab031fd9baf59ba38fd318a203e9fcae
      /**
       * Vanilla tag representing damage types which originate from mace smashes.
       *
-@@ -96,7 +103,7 @@ public final class DamageTypeTags {
+@@ -95,7 +102,7 @@ public final class DamageTypeTags {
  
      @Nullable
      private static Tag<DamageType> getTag(String key) {
