@@ -1,15 +1,15 @@
 --- a/paper-api/build.gradle.kts
 +++ b/paper-api/build.gradle.kts
-@@ -51,6 +_,8 @@
+@@ -50,6 +_,8 @@
      api("org.apache.logging.log4j:log4j-api:$log4jVersion")
      api("org.slf4j:slf4j-api:$slf4jVersion")
      api("com.mojang:brigadier:1.3.10")
-+    api("com.mojang:authlib:7.0.60") // Daydream - Expose Player mojang profile (Mojang Authlib; keep in sync with major MC versions)
++    api("com.mojang:authlib:7.0.61") // Daydream - Expose Player mojang profile (Mojang Authlib; keep in sync with major MC versions)
 +    api("io.netty:netty-handler:4.1.118.Final") // Daydream - Add Network API (Netty; keep in sync with major MC versions)
  
      // Deprecate bungeecord-chat in favor of adventure
      api("net.md-5:bungeecord-chat:$bungeeCordChatVersion") {
-@@ -66,8 +_,8 @@
+@@ -65,8 +_,8 @@
      apiAndDocs("net.kyori:adventure-text-logger-slf4j")
  
      api("org.apache.maven:maven-resolver-provider:3.9.6") // make API dependency for Paper Plugins
@@ -20,7 +20,7 @@
  
      // Annotations - Slowly migrate to jspecify
      val annotations = "org.jetbrains:annotations:$annotationsVersion"
-@@ -90,7 +_,7 @@
+@@ -89,7 +_,7 @@
      testRuntimeOnly("org.junit.platform:junit-platform-launcher")
  }
  
@@ -29,7 +29,7 @@
  idea {
      module {
          generatedSourceDirs.add(generatedDir.toFile())
-@@ -100,6 +_,18 @@
+@@ -99,6 +_,18 @@
      main {
          java {
              srcDir(generatedDir)
@@ -48,7 +48,7 @@
          }
      }
  }
-@@ -166,7 +_,7 @@
+@@ -165,7 +_,7 @@
  
  tasks.withType<Javadoc>().configureEach {
      val options = options as StandardJavadocDocletOptions
@@ -57,7 +57,7 @@
      options.use()
      options.isDocFilesSubDirs = true
      options.links(
-@@ -201,11 +_,11 @@
+@@ -198,11 +_,11 @@
      }
  
      // workaround for https://github.com/gradle/gradle/issues/4046

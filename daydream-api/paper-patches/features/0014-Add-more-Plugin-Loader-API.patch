@@ -26,7 +26,7 @@ index ddb768057cdfd9202e4386494fd5f643692c73a1..b4bea9e04b213892fd84000cc3c491bc
      PluginProviderContext getContext();
  }
 diff --git a/src/main/java/io/papermc/paper/plugin/loader/library/impl/MavenLibraryResolver.java b/src/main/java/io/papermc/paper/plugin/loader/library/impl/MavenLibraryResolver.java
-index c1fccd64b1329e31ccf7e6a11853ce3a749b7ea4..4695ad683b79fd53cd0e36a28177fbbf57cbf2ee 100644
+index 298bb04c294a89ad783eb3dac73faf47fa5fb1ba..b73c751cbe6da48846b51316e1b904ce84160b11 100644
 --- a/src/main/java/io/papermc/paper/plugin/loader/library/impl/MavenLibraryResolver.java
 +++ b/src/main/java/io/papermc/paper/plugin/loader/library/impl/MavenLibraryResolver.java
 @@ -67,10 +67,12 @@ public class MavenLibraryResolver implements ClassPathLibrary {
@@ -95,7 +95,7 @@ index 0000000000000000000000000000000000000000..5fa46a53c0514aef606779a2f7a9128b
 +    }
 +}
 diff --git a/src/main/java/org/bukkit/plugin/java/PluginClassLoader.java b/src/main/java/org/bukkit/plugin/java/PluginClassLoader.java
-index 8c5a5043ad8b69d55fa1fc99864767238d435991..777103b2052929c26d7e439b706cedda29222e19 100644
+index c53cac5cbaa65a1c984043f69d159118c80fa6dd..bd2b770cdbd0a7ac2540869686d4a1700d69889e 100644
 --- a/src/main/java/org/bukkit/plugin/java/PluginClassLoader.java
 +++ b/src/main/java/org/bukkit/plugin/java/PluginClassLoader.java
 @@ -33,7 +33,7 @@ import org.jetbrains.annotations.Nullable;
@@ -107,8 +107,8 @@ index 8c5a5043ad8b69d55fa1fc99864767238d435991..777103b2052929c26d7e439b706cedda
      private final JavaPluginLoader loader;
      private final Map<String, Class<?>> classes = new ConcurrentHashMap<String, Class<?>>();
      private final PluginDescriptionFile description;
-@@ -57,6 +57,11 @@ public final class PluginClassLoader extends URLClassLoader implements io.paperm
- 
+@@ -60,6 +60,11 @@ public final class PluginClassLoader extends URLClassLoader implements io.paperm
+      */
      @org.jetbrains.annotations.ApiStatus.Internal // Paper
      public PluginClassLoader(@Nullable final ClassLoader parent, @NotNull final PluginDescriptionFile description, @NotNull final File dataFolder, @NotNull final File file, @Nullable ClassLoader libraryLoader, JarFile jarFile, io.papermc.paper.plugin.provider.entrypoint.DependencyContext dependencyContext) throws IOException, InvalidPluginException, MalformedURLException { // Paper - use JarFile provided by SpigotPluginProvider
 +        // Daydream start - (feature) Add more Plugin Loader API
@@ -119,7 +119,7 @@ index 8c5a5043ad8b69d55fa1fc99864767238d435991..777103b2052929c26d7e439b706cedda
          super(file.getName(), new URL[] {file.toURI().toURL()}, parent);
          this.loader = null; // Paper - pass null into loader field
  
-@@ -74,6 +79,8 @@ public final class PluginClassLoader extends URLClassLoader implements io.paperm
+@@ -77,6 +82,8 @@ public final class PluginClassLoader extends URLClassLoader implements io.paperm
          this.classLoaderGroup = io.papermc.paper.plugin.provider.classloader.PaperClassLoaderStorage.instance().registerSpigotGroup(this);
          // Paper end
  
