@@ -234,6 +234,25 @@ loadScripts(document, 'script');</script>
 <div class="col-last odd-row-color">
 <div class="block">Enchantments do not have a "rarity" since 1.20.5</div>
 </div>
+<div class="col-summary-item-name even-row-color"><a href="io/papermc/paper/entity/TeleportFlag.EntityState.html" title="enum class in io.papermc.paper.entity">io.papermc.paper.entity.TeleportFlag.EntityState</a></div>
+<div class="col-last even-row-color">
+<div class="block">As of 1.21.10, the default behavior for teleportation is now aligned with vanilla
+ behavior. This means all of these flags are functionally done by default.</div>
+</div>
+<div class="col-summary-item-name odd-row-color"><a href="io/papermc/paper/entity/TeleportFlag.EntityState.html#RETAIN_OPEN_INVENTORY">io.papermc.paper.entity.TeleportFlag.EntityState.RETAIN_OPEN_INVENTORY</a></div>
+<div class="col-last odd-row-color">
+<div class="block">No longer done on teleportation, use <a href="org/bukkit/entity/HumanEntity.html#closeInventory()"><code>HumanEntity.closeInventory()</code></a> to do this yourself.</div>
+</div>
+<div class="col-summary-item-name even-row-color"><a href="io/papermc/paper/entity/TeleportFlag.EntityState.html#RETAIN_PASSENGERS">io.papermc.paper.entity.TeleportFlag.EntityState.RETAIN_PASSENGERS</a></div>
+<div class="col-last even-row-color">
+<div class="block">This is now default behavior in teleportation. If you want to dismount all passengers,
+ remove them with <a href="org/bukkit/entity/Entity.html#removePassenger(org.bukkit.entity.Entity)"><code>Entity.removePassenger(Entity)</code></a>.</div>
+</div>
+<div class="col-summary-item-name odd-row-color"><a href="io/papermc/paper/entity/TeleportFlag.EntityState.html#RETAIN_VEHICLE">io.papermc.paper.entity.TeleportFlag.EntityState.RETAIN_VEHICLE</a></div>
+<div class="col-last odd-row-color">
+<div class="block">This behavior was highly technical and is not replicatable due to client limitations,
+ and has not functioned for many updates.</div>
+</div>
 <div class="col-summary-item-name even-row-color"><a href="io/papermc/paper/entity/TeleportFlag.Relative.html#PITCH">io.papermc.paper.entity.TeleportFlag.Relative.PITCH</a></div>
 <div class="col-last even-row-color">
 <div class="block">relative velocity flags now allow for the whole rotation to be relative, instead of the yaw and
@@ -4343,111 +4362,116 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color">
 <div class="block">Enchantments do not have a "rarity" since 1.20.5</div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="io/papermc/paper/inventory/ItemRarity.html" title="enum class in io.papermc.paper.inventory">io.papermc.paper.inventory.ItemRarity</a></div>
+<div class="col-summary-item-name odd-row-color"><a href="io/papermc/paper/entity/TeleportFlag.EntityState.html" title="enum class in io.papermc.paper.entity">io.papermc.paper.entity.TeleportFlag.EntityState</a></div>
 <div class="col-last odd-row-color">
+<div class="block">As of 1.21.10, the default behavior for teleportation is now aligned with vanilla
+ behavior. This means all of these flags are functionally done by default.</div>
+</div>
+<div class="col-summary-item-name even-row-color"><a href="io/papermc/paper/inventory/ItemRarity.html" title="enum class in io.papermc.paper.inventory">io.papermc.paper.inventory.ItemRarity</a></div>
+<div class="col-last even-row-color">
 <div class="block">use <a href="org/bukkit/inventory/ItemRarity.html" title="enum class in org.bukkit.inventory"><code>ItemRarity</code></a> with <a href="org/bukkit/inventory/meta/ItemMeta.html#getRarity()"><code>ItemMeta.getRarity()</code></a></div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/advancement/AdvancementDisplayType.html" title="enum class in org.bukkit.advancement">org.bukkit.advancement.AdvancementDisplayType</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/advancement/AdvancementDisplayType.html" title="enum class in org.bukkit.advancement">org.bukkit.advancement.AdvancementDisplayType</a></div>
+<div class="col-last odd-row-color">
 <div class="block">use <a href="io/papermc/paper/advancement/AdvancementDisplay.Frame.html" title="enum class in io.papermc.paper.advancement"><code>AdvancementDisplay.Frame</code></a></div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/BanList.Type.html" title="enum class in org.bukkit">org.bukkit.BanList.Type</a></div>
-<div class="col-last odd-row-color">
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/BanList.Type.html" title="enum class in org.bukkit">org.bukkit.BanList.Type</a></div>
+<div class="col-last even-row-color">
 <div class="block">use <a href="io/papermc/paper/ban/BanListType.html" title="interface in io.papermc.paper.ban"><code>BanListType</code></a> to enforce the correct return value at compile time.</div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/block/data/type/Crafter.Orientation.html" title="enum class in org.bukkit.block.data.type">org.bukkit.block.data.type.Crafter.Orientation</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/block/data/type/Crafter.Orientation.html" title="enum class in org.bukkit.block.data.type">org.bukkit.block.data.type.Crafter.Orientation</a></div>
+<div class="col-last odd-row-color">
 <div class="block">this property is not specific to the Crafter, use
  <a href="org/bukkit/block/Orientation.html" title="enum class in org.bukkit.block"><code>Orientation</code></a> instead. All references
  to this enum will be redirected to that enum at runtime.</div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/block/data/type/Jigsaw.Orientation.html" title="enum class in org.bukkit.block.data.type">org.bukkit.block.data.type.Jigsaw.Orientation</a></div>
-<div class="col-last odd-row-color">
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/block/data/type/Jigsaw.Orientation.html" title="enum class in org.bukkit.block.data.type">org.bukkit.block.data.type.Jigsaw.Orientation</a></div>
+<div class="col-last even-row-color">
 <div class="block">this property is not specific to the Jigsaw, use
  <a href="org/bukkit/block/Orientation.html" title="enum class in org.bukkit.block"><code>Orientation</code></a> instead. All references
  to this enum will be redirected to that enum at runtime.</div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/block/data/type/MossyCarpet.Height.html" title="enum class in org.bukkit.block.data.type">org.bukkit.block.data.type.MossyCarpet.Height</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/block/data/type/MossyCarpet.Height.html" title="enum class in org.bukkit.block.data.type">org.bukkit.block.data.type.MossyCarpet.Height</a></div>
+<div class="col-last odd-row-color">
 <div class="block">this property is not specific to the MossyCarpet, use
  <a href="org/bukkit/block/data/type/Wall.Height.html" title="enum class in org.bukkit.block.data.type"><code>Wall.Height</code></a> instead. All references
  to this enum will be redirected to that enum at runtime.</div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/block/data/type/Switch.Face.html" title="enum class in org.bukkit.block.data.type">org.bukkit.block.data.type.Switch.Face</a></div>
-<div class="col-last odd-row-color">
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/block/data/type/Switch.Face.html" title="enum class in org.bukkit.block.data.type">org.bukkit.block.data.type.Switch.Face</a></div>
+<div class="col-last even-row-color">
 <div class="block">use <a href="org/bukkit/block/data/FaceAttachable.AttachedFace.html" title="enum class in org.bukkit.block.data"><code>FaceAttachable.AttachedFace</code></a></div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/CoalType.html" title="enum class in org.bukkit">org.bukkit.CoalType</a></div>
-<div class="col-last even-row-color"></div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/CropState.html" title="enum class in org.bukkit">org.bukkit.CropState</a></div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/CoalType.html" title="enum class in org.bukkit">org.bukkit.CoalType</a></div>
 <div class="col-last odd-row-color"></div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/Effect.Type.html" title="enum class in org.bukkit">org.bukkit.Effect.Type</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/CropState.html" title="enum class in org.bukkit">org.bukkit.CropState</a></div>
+<div class="col-last even-row-color"></div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/Effect.Type.html" title="enum class in org.bukkit">org.bukkit.Effect.Type</a></div>
+<div class="col-last odd-row-color">
 <div class="block">not representative of what Effect does</div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/enchantments/EnchantmentTarget.html" title="enum class in org.bukkit.enchantments">org.bukkit.enchantments.EnchantmentTarget</a></div>
-<div class="col-last odd-row-color">
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/enchantments/EnchantmentTarget.html" title="enum class in org.bukkit.enchantments">org.bukkit.enchantments.EnchantmentTarget</a></div>
+<div class="col-last even-row-color">
 <div class="block">enchantment groupings are now managed by tags, not categories</div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/AbstractArrow.PickupRule.html" title="enum class in org.bukkit.entity">org.bukkit.entity.AbstractArrow.PickupRule</a></div>
-<div class="col-last even-row-color"></div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/Boat.Type.html" title="enum class in org.bukkit.entity">org.bukkit.entity.Boat.Type</a></div>
-<div class="col-last odd-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/AbstractArrow.PickupRule.html" title="enum class in org.bukkit.entity">org.bukkit.entity.AbstractArrow.PickupRule</a></div>
+<div class="col-last odd-row-color"></div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/Boat.Type.html" title="enum class in org.bukkit.entity">org.bukkit.entity.Boat.Type</a></div>
+<div class="col-last even-row-color">
 <div class="block">different boats types are now different entity types</div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/Evoker.Spell.html" title="enum class in org.bukkit.entity">org.bukkit.entity.Evoker.Spell</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/Evoker.Spell.html" title="enum class in org.bukkit.entity">org.bukkit.entity.Evoker.Spell</a></div>
+<div class="col-last odd-row-color">
 <div class="block">future versions of Minecraft have additional spell casting
  entities.</div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/Horse.Variant.html" title="enum class in org.bukkit.entity">org.bukkit.entity.Horse.Variant</a></div>
-<div class="col-last odd-row-color">
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/Horse.Variant.html" title="enum class in org.bukkit.entity">org.bukkit.entity.Horse.Variant</a></div>
+<div class="col-last even-row-color">
 <div class="block">different variants are differing classes</div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/Ocelot.Type.html" title="enum class in org.bukkit.entity">org.bukkit.entity.Ocelot.Type</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/Ocelot.Type.html" title="enum class in org.bukkit.entity">org.bukkit.entity.Ocelot.Type</a></div>
+<div class="col-last odd-row-color">
 <div class="block">Cats are now a separate entity.</div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/entity/Skeleton.SkeletonType.html" title="enum class in org.bukkit.entity">org.bukkit.entity.Skeleton.SkeletonType</a></div>
-<div class="col-last odd-row-color">
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/entity/Skeleton.SkeletonType.html" title="enum class in org.bukkit.entity">org.bukkit.entity.Skeleton.SkeletonType</a></div>
+<div class="col-last even-row-color">
 <div class="block">classes are different types. This interface only remains in
      the Skeleton interface to preserve backwards compatibility.</div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/event/entity/EntityDamageEvent.DamageModifier.html" title="enum class in org.bukkit.event.entity">org.bukkit.event.entity.EntityDamageEvent.DamageModifier</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/event/entity/EntityDamageEvent.DamageModifier.html" title="enum class in org.bukkit.event.entity">org.bukkit.event.entity.EntityDamageEvent.DamageModifier</a></div>
+<div class="col-last odd-row-color">
 <div class="block">This API is responsible for a large number of implementation
  problems and is in general unsustainable to maintain.</div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/GrassSpecies.html" title="enum class in org.bukkit">org.bukkit.GrassSpecies</a></div>
-<div class="col-last odd-row-color">
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/GrassSpecies.html" title="enum class in org.bukkit">org.bukkit.GrassSpecies</a></div>
+<div class="col-last even-row-color">
 <div class="block">use <a href="org/bukkit/block/data/BlockData.html" title="interface in org.bukkit.block.data"><code>BlockData</code></a></div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/inventory/InventoryView.Property.html" title="enum class in org.bukkit.inventory">org.bukkit.inventory.InventoryView.Property</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/inventory/InventoryView.Property.html" title="enum class in org.bukkit.inventory">org.bukkit.inventory.InventoryView.Property</a></div>
+<div class="col-last odd-row-color">
 <div class="block">use <a href="org/bukkit/inventory/InventoryView.html" title="interface in org.bukkit.inventory"><code>InventoryView</code></a> and its children</div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/material/types/MushroomBlockTexture.html" title="enum class in org.bukkit.material.types">org.bukkit.material.types.MushroomBlockTexture</a></div>
-<div class="col-last odd-row-color">
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/material/types/MushroomBlockTexture.html" title="enum class in org.bukkit.material.types">org.bukkit.material.types.MushroomBlockTexture</a></div>
+<div class="col-last even-row-color">
 <div class="block">use BlockData</div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/NetherWartsState.html" title="enum class in org.bukkit">org.bukkit.NetherWartsState</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/NetherWartsState.html" title="enum class in org.bukkit">org.bukkit.NetherWartsState</a></div>
+<div class="col-last odd-row-color">
 <div class="block">use <a href="org/bukkit/block/data/BlockData.html" title="interface in org.bukkit.block.data"><code>BlockData</code></a> and <a href="org/bukkit/block/data/Ageable.html" title="interface in org.bukkit.block.data"><code>Ageable</code></a></div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/SandstoneType.html" title="enum class in org.bukkit">org.bukkit.SandstoneType</a></div>
-<div class="col-last odd-row-color">
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/SandstoneType.html" title="enum class in org.bukkit">org.bukkit.SandstoneType</a></div>
+<div class="col-last even-row-color">
 <div class="block">use <a href="org/bukkit/block/data/BlockData.html" title="interface in org.bukkit.block.data"><code>BlockData</code></a></div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/scoreboard/NameTagVisibility.html" title="enum class in org.bukkit.scoreboard">org.bukkit.scoreboard.NameTagVisibility</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/scoreboard/NameTagVisibility.html" title="enum class in org.bukkit.scoreboard">org.bukkit.scoreboard.NameTagVisibility</a></div>
+<div class="col-last odd-row-color">
 <div class="block">replaced by <a href="org/bukkit/scoreboard/Team.OptionStatus.html" title="enum class in org.bukkit.scoreboard"><code>Team.OptionStatus</code></a></div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/SkullType.html" title="enum class in org.bukkit">org.bukkit.SkullType</a></div>
-<div class="col-last odd-row-color">
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/SkullType.html" title="enum class in org.bukkit">org.bukkit.SkullType</a></div>
+<div class="col-last even-row-color">
 <div class="block">check <a href="org/bukkit/Material.html" title="enum class in org.bukkit"><code>Material</code></a> instead</div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/TreeSpecies.html" title="enum class in org.bukkit">org.bukkit.TreeSpecies</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/TreeSpecies.html" title="enum class in org.bukkit">org.bukkit.TreeSpecies</a></div>
+<div class="col-last odd-row-color">
 <div class="block">Deprecated, see usage methods for replacement(s)</div>
 </div>
 </div>
@@ -9517,183 +9541,201 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color">
 <div class="block">Removed as it causes a warning to appear on the client now.</div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/BanList.Type.html#NAME">org.bukkit.BanList.Type.NAME</a></div>
+<div class="col-summary-item-name odd-row-color"><a href="io/papermc/paper/entity/TeleportFlag.EntityState.html#RETAIN_OPEN_INVENTORY">io.papermc.paper.entity.TeleportFlag.EntityState.RETAIN_OPEN_INVENTORY</a></div>
 <div class="col-last odd-row-color">
+<div class="block">No longer done on teleportation, use <a href="org/bukkit/entity/HumanEntity.html#closeInventory()"><code>HumanEntity.closeInventory()</code></a> to do this yourself.</div>
+</div>
+<div class="col-summary-item-name even-row-color"><a href="io/papermc/paper/entity/TeleportFlag.EntityState.html#RETAIN_PASSENGERS">io.papermc.paper.entity.TeleportFlag.EntityState.RETAIN_PASSENGERS</a></div>
+<div class="col-last even-row-color">
+<div class="block">This is now default behavior in teleportation. If you want to dismount all passengers,
+ remove them with <a href="org/bukkit/entity/Entity.html#removePassenger(org.bukkit.entity.Entity)"><code>Entity.removePassenger(Entity)</code></a>.</div>
+</div>
+<div class="col-summary-item-name odd-row-color"><a href="io/papermc/paper/entity/TeleportFlag.EntityState.html#RETAIN_VEHICLE">io.papermc.paper.entity.TeleportFlag.EntityState.RETAIN_VEHICLE</a></div>
+<div class="col-last odd-row-color">
+<div class="block">This behavior was highly technical and is not replicatable due to client limitations,
+ and has not functioned for many updates.</div>
+</div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/BanList.Type.html#NAME">org.bukkit.BanList.Type.NAME</a></div>
+<div class="col-last even-row-color">
 <div class="block">deprecated in favor of <a href="org/bukkit/BanList.Type.html#PROFILE"><code>BanList.Type.PROFILE</code></a></div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/Effect.html#DOOR_CLOSE">org.bukkit.Effect.DOOR_CLOSE</a></div>
-<div class="col-last even-row-color">
-<div class="block">no longer exists</div>
-</div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/Effect.html#DOOR_TOGGLE">org.bukkit.Effect.DOOR_TOGGLE</a></div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/Effect.html#DOOR_CLOSE">org.bukkit.Effect.DOOR_CLOSE</a></div>
 <div class="col-last odd-row-color">
 <div class="block">no longer exists</div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/Effect.html#ENDEREYE_LAUNCH">org.bukkit.Effect.ENDEREYE_LAUNCH</a></div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/Effect.html#DOOR_TOGGLE">org.bukkit.Effect.DOOR_TOGGLE</a></div>
 <div class="col-last even-row-color">
+<div class="block">no longer exists</div>
+</div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/Effect.html#ENDEREYE_LAUNCH">org.bukkit.Effect.ENDEREYE_LAUNCH</a></div>
+<div class="col-last odd-row-color">
 <div class="block">No longer exists</div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/Effect.html#FENCE_GATE_CLOSE">org.bukkit.Effect.FENCE_GATE_CLOSE</a></div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/Effect.html#FENCE_GATE_CLOSE">org.bukkit.Effect.FENCE_GATE_CLOSE</a></div>
+<div class="col-last even-row-color">
+<div class="block">no longer exists</div>
+</div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/Effect.html#FENCE_GATE_TOGGLE">org.bukkit.Effect.FENCE_GATE_TOGGLE</a></div>
 <div class="col-last odd-row-color">
 <div class="block">no longer exists</div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/Effect.html#FENCE_GATE_TOGGLE">org.bukkit.Effect.FENCE_GATE_TOGGLE</a></div>
-<div class="col-last even-row-color">
-<div class="block">no longer exists</div>
-</div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/Effect.html#GUST_DUST">org.bukkit.Effect.GUST_DUST</a></div>
-<div class="col-last odd-row-color"></div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/Effect.html#IRON_DOOR_CLOSE">org.bukkit.Effect.IRON_DOOR_CLOSE</a></div>
-<div class="col-last even-row-color">
-<div class="block">no longer exists</div>
-</div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/Effect.html#IRON_DOOR_TOGGLE">org.bukkit.Effect.IRON_DOOR_TOGGLE</a></div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/Effect.html#GUST_DUST">org.bukkit.Effect.GUST_DUST</a></div>
+<div class="col-last even-row-color"></div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/Effect.html#IRON_DOOR_CLOSE">org.bukkit.Effect.IRON_DOOR_CLOSE</a></div>
 <div class="col-last odd-row-color">
 <div class="block">no longer exists</div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/Effect.html#IRON_TRAPDOOR_CLOSE">org.bukkit.Effect.IRON_TRAPDOOR_CLOSE</a></div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/Effect.html#IRON_DOOR_TOGGLE">org.bukkit.Effect.IRON_DOOR_TOGGLE</a></div>
 <div class="col-last even-row-color">
 <div class="block">no longer exists</div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/Effect.html#IRON_TRAPDOOR_TOGGLE">org.bukkit.Effect.IRON_TRAPDOOR_TOGGLE</a></div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/Effect.html#IRON_TRAPDOOR_CLOSE">org.bukkit.Effect.IRON_TRAPDOOR_CLOSE</a></div>
 <div class="col-last odd-row-color">
 <div class="block">no longer exists</div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/Effect.html#TRAPDOOR_CLOSE">org.bukkit.Effect.TRAPDOOR_CLOSE</a></div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/Effect.html#IRON_TRAPDOOR_TOGGLE">org.bukkit.Effect.IRON_TRAPDOOR_TOGGLE</a></div>
 <div class="col-last even-row-color">
 <div class="block">no longer exists</div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/Effect.html#TRAPDOOR_TOGGLE">org.bukkit.Effect.TRAPDOOR_TOGGLE</a></div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/Effect.html#TRAPDOOR_CLOSE">org.bukkit.Effect.TRAPDOOR_CLOSE</a></div>
 <div class="col-last odd-row-color">
 <div class="block">no longer exists</div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/Effect.html#VILLAGER_PLANT_GROW">org.bukkit.Effect.VILLAGER_PLANT_GROW</a></div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/Effect.html#TRAPDOOR_TOGGLE">org.bukkit.Effect.TRAPDOOR_TOGGLE</a></div>
 <div class="col-last even-row-color">
+<div class="block">no longer exists</div>
+</div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/Effect.html#VILLAGER_PLANT_GROW">org.bukkit.Effect.VILLAGER_PLANT_GROW</a></div>
+<div class="col-last odd-row-color">
 <div class="block">partially replaced by <a href="org/bukkit/Effect.html#BEE_GROWTH"><code>Effect.BEE_GROWTH</code></a></div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/enchantments/EnchantmentTarget.html#ALL">org.bukkit.enchantments.EnchantmentTarget.ALL</a></div>
-<div class="col-last odd-row-color">
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/enchantments/EnchantmentTarget.html#ALL">org.bukkit.enchantments.EnchantmentTarget.ALL</a></div>
+<div class="col-last even-row-color">
 <div class="block">this target no longer exists in Vanilla</div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/EntityEffect.html#BODY_BREAK">org.bukkit.EntityEffect.BODY_BREAK</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/EntityEffect.html#BODY_BREAK">org.bukkit.EntityEffect.BODY_BREAK</a></div>
+<div class="col-last odd-row-color">
 <div class="block">use <a href="org/bukkit/EntityEffect.html#BREAK_EQUIPMENT_BODY"><code>EntityEffect.BREAK_EQUIPMENT_BODY</code></a></div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/EntityEffect.html#CAT_TAME_FAIL">org.bukkit.EntityEffect.CAT_TAME_FAIL</a></div>
-<div class="col-last odd-row-color">
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/EntityEffect.html#CAT_TAME_FAIL">org.bukkit.EntityEffect.CAT_TAME_FAIL</a></div>
+<div class="col-last even-row-color">
 <div class="block">use <a href="org/bukkit/EntityEffect.html#TRUSTING_FAILED"><code>EntityEffect.TRUSTING_FAILED</code></a></div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/EntityEffect.html#CAT_TAME_SUCCESS">org.bukkit.EntityEffect.CAT_TAME_SUCCESS</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/EntityEffect.html#CAT_TAME_SUCCESS">org.bukkit.EntityEffect.CAT_TAME_SUCCESS</a></div>
+<div class="col-last odd-row-color">
 <div class="block">use <a href="org/bukkit/EntityEffect.html#TRUSTING_SUCCEEDED"><code>EntityEffect.TRUSTING_SUCCEEDED</code></a></div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/EntityEffect.html#DEATH">org.bukkit.EntityEffect.DEATH</a></div>
-<div class="col-last odd-row-color">
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/EntityEffect.html#DEATH">org.bukkit.EntityEffect.DEATH</a></div>
+<div class="col-last even-row-color">
 <div class="block">split into individual effects</div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/EntityEffect.html#EGG_BREAK">org.bukkit.EntityEffect.EGG_BREAK</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/EntityEffect.html#EGG_BREAK">org.bukkit.EntityEffect.EGG_BREAK</a></div>
+<div class="col-last odd-row-color">
 <div class="block">use <a href="org/bukkit/EntityEffect.html#PROJECTILE_CRACK"><code>EntityEffect.PROJECTILE_CRACK</code></a></div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/EntityEffect.html#FANG_ATTACK">org.bukkit.EntityEffect.FANG_ATTACK</a></div>
-<div class="col-last odd-row-color">
-<div class="block">use <a href="org/bukkit/EntityEffect.html#ENTITY_ATTACK"><code>EntityEffect.ENTITY_ATTACK</code></a></div>
-</div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/EntityEffect.html#HOGLIN_ATTACK">org.bukkit.EntityEffect.HOGLIN_ATTACK</a></div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/EntityEffect.html#FANG_ATTACK">org.bukkit.EntityEffect.FANG_ATTACK</a></div>
 <div class="col-last even-row-color">
 <div class="block">use <a href="org/bukkit/EntityEffect.html#ENTITY_ATTACK"><code>EntityEffect.ENTITY_ATTACK</code></a></div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/EntityEffect.html#HURT">org.bukkit.EntityEffect.HURT</a></div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/EntityEffect.html#HOGLIN_ATTACK">org.bukkit.EntityEffect.HOGLIN_ATTACK</a></div>
 <div class="col-last odd-row-color">
+<div class="block">use <a href="org/bukkit/EntityEffect.html#ENTITY_ATTACK"><code>EntityEffect.ENTITY_ATTACK</code></a></div>
+</div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/EntityEffect.html#HURT">org.bukkit.EntityEffect.HURT</a></div>
+<div class="col-last even-row-color">
 <div class="block">use <a href="org/bukkit/entity/LivingEntity.html#playHurtAnimation(float)"><code>LivingEntity.playHurtAnimation(float)</code></a></div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/EntityEffect.html#HURT_BERRY_BUSH">org.bukkit.EntityEffect.HURT_BERRY_BUSH</a></div>
-<div class="col-last even-row-color">
-<div class="block">in favor of <a href="org/bukkit/entity/LivingEntity.html#playHurtAnimation(float)"><code>LivingEntity.playHurtAnimation(float)</code></a> or <a href="org/bukkit/entity/Entity.html#broadcastHurtAnimation(java.util.Collection)"><code>Entity.broadcastHurtAnimation(java.util.Collection)</code></a></div>
-</div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/EntityEffect.html#HURT_DROWN">org.bukkit.EntityEffect.HURT_DROWN</a></div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/EntityEffect.html#HURT_BERRY_BUSH">org.bukkit.EntityEffect.HURT_BERRY_BUSH</a></div>
 <div class="col-last odd-row-color">
 <div class="block">in favor of <a href="org/bukkit/entity/LivingEntity.html#playHurtAnimation(float)"><code>LivingEntity.playHurtAnimation(float)</code></a> or <a href="org/bukkit/entity/Entity.html#broadcastHurtAnimation(java.util.Collection)"><code>Entity.broadcastHurtAnimation(java.util.Collection)</code></a></div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/EntityEffect.html#HURT_EXPLOSION">org.bukkit.EntityEffect.HURT_EXPLOSION</a></div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/EntityEffect.html#HURT_DROWN">org.bukkit.EntityEffect.HURT_DROWN</a></div>
 <div class="col-last even-row-color">
 <div class="block">in favor of <a href="org/bukkit/entity/LivingEntity.html#playHurtAnimation(float)"><code>LivingEntity.playHurtAnimation(float)</code></a> or <a href="org/bukkit/entity/Entity.html#broadcastHurtAnimation(java.util.Collection)"><code>Entity.broadcastHurtAnimation(java.util.Collection)</code></a></div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/EntityEffect.html#IRON_GOLEN_ATTACK">org.bukkit.EntityEffect.IRON_GOLEN_ATTACK</a></div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/EntityEffect.html#HURT_EXPLOSION">org.bukkit.EntityEffect.HURT_EXPLOSION</a></div>
 <div class="col-last odd-row-color">
+<div class="block">in favor of <a href="org/bukkit/entity/LivingEntity.html#playHurtAnimation(float)"><code>LivingEntity.playHurtAnimation(float)</code></a> or <a href="org/bukkit/entity/Entity.html#broadcastHurtAnimation(java.util.Collection)"><code>Entity.broadcastHurtAnimation(java.util.Collection)</code></a></div>
+</div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/EntityEffect.html#IRON_GOLEN_ATTACK">org.bukkit.EntityEffect.IRON_GOLEN_ATTACK</a></div>
+<div class="col-last even-row-color">
 <div class="block">use <a href="org/bukkit/EntityEffect.html#ENTITY_ATTACK"><code>EntityEffect.ENTITY_ATTACK</code></a></div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/EntityEffect.html#PLAYER_BAD_OMEN_RAID">org.bukkit.EntityEffect.PLAYER_BAD_OMEN_RAID</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/EntityEffect.html#PLAYER_BAD_OMEN_RAID">org.bukkit.EntityEffect.PLAYER_BAD_OMEN_RAID</a></div>
+<div class="col-last odd-row-color">
 <div class="block">raid system was overhauled in 1.20.5</div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/EntityEffect.html#RAVAGER_ATTACK">org.bukkit.EntityEffect.RAVAGER_ATTACK</a></div>
-<div class="col-last odd-row-color">
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/EntityEffect.html#RAVAGER_ATTACK">org.bukkit.EntityEffect.RAVAGER_ATTACK</a></div>
+<div class="col-last even-row-color">
 <div class="block">use <a href="org/bukkit/EntityEffect.html#ENTITY_ATTACK"><code>EntityEffect.ENTITY_ATTACK</code></a></div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/EntityEffect.html#SHEEP_EAT">org.bukkit.EntityEffect.SHEEP_EAT</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/EntityEffect.html#SHEEP_EAT">org.bukkit.EntityEffect.SHEEP_EAT</a></div>
+<div class="col-last odd-row-color">
 <div class="block">split into individual effects</div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/EntityEffect.html#SHIELD_BLOCK">org.bukkit.EntityEffect.SHIELD_BLOCK</a></div>
-<div class="col-last odd-row-color">
-<div class="block">replaced by the <code>blocks_attacks</code> item data component</div>
-</div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/EntityEffect.html#SHIELD_BREAK">org.bukkit.EntityEffect.SHIELD_BREAK</a></div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/EntityEffect.html#SHIELD_BLOCK">org.bukkit.EntityEffect.SHIELD_BLOCK</a></div>
 <div class="col-last even-row-color">
 <div class="block">replaced by the <code>blocks_attacks</code> item data component</div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/EntityEffect.html#SNOWBALL_BREAK">org.bukkit.EntityEffect.SNOWBALL_BREAK</a></div>
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/EntityEffect.html#SHIELD_BREAK">org.bukkit.EntityEffect.SHIELD_BREAK</a></div>
 <div class="col-last odd-row-color">
+<div class="block">replaced by the <code>blocks_attacks</code> item data component</div>
+</div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/EntityEffect.html#SNOWBALL_BREAK">org.bukkit.EntityEffect.SNOWBALL_BREAK</a></div>
+<div class="col-last even-row-color">
 <div class="block">use <a href="org/bukkit/EntityEffect.html#PROJECTILE_CRACK"><code>EntityEffect.PROJECTILE_CRACK</code></a></div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/EntityEffect.html#THORNS_HURT">org.bukkit.EntityEffect.THORNS_HURT</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/EntityEffect.html#THORNS_HURT">org.bukkit.EntityEffect.THORNS_HURT</a></div>
+<div class="col-last odd-row-color">
 <div class="block">in favor of <a href="org/bukkit/entity/LivingEntity.html#playHurtAnimation(float)"><code>LivingEntity.playHurtAnimation(float)</code></a> or <a href="org/bukkit/entity/Entity.html#broadcastHurtAnimation(java.util.Collection)"><code>Entity.broadcastHurtAnimation(java.util.Collection)</code></a></div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/EntityEffect.html#TOTEM_RESURRECT">org.bukkit.EntityEffect.TOTEM_RESURRECT</a></div>
-<div class="col-last odd-row-color">
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/EntityEffect.html#TOTEM_RESURRECT">org.bukkit.EntityEffect.TOTEM_RESURRECT</a></div>
+<div class="col-last even-row-color">
 <div class="block">see <a href="org/bukkit/EntityEffect.html#PROTECTED_FROM_DEATH"><code>EntityEffect.PROTECTED_FROM_DEATH</code></a></div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/EntityEffect.html#WARDEN_ATTACK">org.bukkit.EntityEffect.WARDEN_ATTACK</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/EntityEffect.html#WARDEN_ATTACK">org.bukkit.EntityEffect.WARDEN_ATTACK</a></div>
+<div class="col-last odd-row-color">
 <div class="block">use <a href="org/bukkit/EntityEffect.html#ENTITY_ATTACK"><code>EntityEffect.ENTITY_ATTACK</code></a></div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/EntityEffect.html#WOLF_HEARTS">org.bukkit.EntityEffect.WOLF_HEARTS</a></div>
-<div class="col-last odd-row-color">
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/EntityEffect.html#WOLF_HEARTS">org.bukkit.EntityEffect.WOLF_HEARTS</a></div>
+<div class="col-last even-row-color">
 <div class="block">use <a href="org/bukkit/EntityEffect.html#TAMING_SUCCEEDED"><code>EntityEffect.TAMING_SUCCEEDED</code></a></div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/EntityEffect.html#WOLF_SMOKE">org.bukkit.EntityEffect.WOLF_SMOKE</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/EntityEffect.html#WOLF_SMOKE">org.bukkit.EntityEffect.WOLF_SMOKE</a></div>
+<div class="col-last odd-row-color">
 <div class="block">use <a href="org/bukkit/EntityEffect.html#TAMING_FAILED"><code>EntityEffect.TAMING_FAILED</code></a></div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/EntityEffect.html#ZOGLIN_ATTACK">org.bukkit.EntityEffect.ZOGLIN_ATTACK</a></div>
-<div class="col-last odd-row-color">
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/EntityEffect.html#ZOGLIN_ATTACK">org.bukkit.EntityEffect.ZOGLIN_ATTACK</a></div>
+<div class="col-last even-row-color">
 <div class="block">use <a href="org/bukkit/EntityEffect.html#ENTITY_ATTACK"><code>EntityEffect.ENTITY_ATTACK</code></a></div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/event/entity/CreatureSpawnEvent.SpawnReason.html#CHUNK_GEN">org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason.CHUNK_GEN</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/event/entity/CreatureSpawnEvent.SpawnReason.html#CHUNK_GEN">org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason.CHUNK_GEN</a></div>
+<div class="col-last odd-row-color">
 <div class="block">no longer called, chunks are generated with entities
  already existing. Consider using <a href="org/bukkit/event/world/ChunkLoadEvent.html" title="class in org.bukkit.event.world"><code>ChunkLoadEvent</code></a>,
  <a href="org/bukkit/event/world/ChunkLoadEvent.html#isNewChunk()"><code>ChunkLoadEvent.isNewChunk()</code></a> and <a href="org/bukkit/Chunk.html#getEntities()"><code>Chunk.getEntities()</code></a>
  for similar effect.</div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/event/entity/EntityDamageEvent.DamageCause.html#DRAGON_BREATH">org.bukkit.event.entity.EntityDamageEvent.DamageCause.DRAGON_BREATH</a></div>
-<div class="col-last odd-row-color">
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/event/entity/EntityDamageEvent.DamageCause.html#DRAGON_BREATH">org.bukkit.event.entity.EntityDamageEvent.DamageCause.DRAGON_BREATH</a></div>
+<div class="col-last even-row-color">
 <div class="block">never used without help of commands or plugins,
  <a href="org/bukkit/event/entity/EntityDamageEvent.DamageCause.html#ENTITY_ATTACK"><code>EntityDamageEvent.DamageCause.ENTITY_ATTACK</code></a> will be used instead</div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/event/entity/EntityPotionEffectEvent.Cause.html#PATROL_CAPTAIN">org.bukkit.event.entity.EntityPotionEffectEvent.Cause.PATROL_CAPTAIN</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/event/entity/EntityPotionEffectEvent.Cause.html#PATROL_CAPTAIN">org.bukkit.event.entity.EntityPotionEffectEvent.Cause.PATROL_CAPTAIN</a></div>
+<div class="col-last odd-row-color">
 <div class="block">no longer used, player now gets an ominous bottle instead</div>
 </div>
-<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/event/entity/EntityTargetEvent.TargetReason.html#PIG_ZOMBIE_TARGET">org.bukkit.event.entity.EntityTargetEvent.TargetReason.PIG_ZOMBIE_TARGET</a></div>
-<div class="col-last odd-row-color">
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/event/entity/EntityTargetEvent.TargetReason.html#PIG_ZOMBIE_TARGET">org.bukkit.event.entity.EntityTargetEvent.TargetReason.PIG_ZOMBIE_TARGET</a></div>
+<div class="col-last even-row-color">
 <div class="block">obsoleted by <a href="org/bukkit/event/entity/EntityTargetEvent.TargetReason.html#TARGET_ATTACKED_NEARBY_ENTITY"><code>EntityTargetEvent.TargetReason.TARGET_ATTACKED_NEARBY_ENTITY</code></a></div>
 </div>
-<div class="col-summary-item-name even-row-color"><a href="org/bukkit/event/inventory/InventoryAction.html#HOTBAR_MOVE_AND_READD">org.bukkit.event.inventory.InventoryAction.HOTBAR_MOVE_AND_READD</a></div>
-<div class="col-last even-row-color">
+<div class="col-summary-item-name odd-row-color"><a href="org/bukkit/event/inventory/InventoryAction.html#HOTBAR_MOVE_AND_READD">org.bukkit.event.inventory.InventoryAction.HOTBAR_MOVE_AND_READD</a></div>
+<div class="col-last odd-row-color">
 <div class="block">This action no longer happens, they are all <a href="org/bukkit/event/inventory/InventoryAction.html#HOTBAR_SWAP"><code>InventoryAction.HOTBAR_SWAP</code></a>s.</div>
+</div>
+<div class="col-summary-item-name even-row-color"><a href="org/bukkit/event/inventory/InventoryCloseEvent.Reason.html#TELEPORT">org.bukkit.event.inventory.InventoryCloseEvent.Reason.TELEPORT</a></div>
+<div class="col-last even-row-color">
+<div class="block">As of 1.21.10, this is not called anymore as inventories are not closed on teleportation.</div>
 </div>
 <div class="col-summary-item-name odd-row-color"><a href="org/bukkit/event/inventory/InventoryType.html#SMITHING_NEW">org.bukkit.event.inventory.InventoryType.SMITHING_NEW</a></div>
 <div class="col-last odd-row-color">

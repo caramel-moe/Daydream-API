@@ -101,9 +101,15 @@ loadScripts(document, 'script');</script>
 <dd><code><a href="TeleportFlag.html" title="interface in io.papermc.paper.entity">TeleportFlag</a></code></dd>
 </dl>
 <hr>
-<div class="type-signature"><span class="modifiers">public static enum </span><span class="element-name type-name-label">TeleportFlag.EntityState</span>
+<div class="type-signature"><span class="annotations"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Deprecated.html" title="class or interface in java.lang" class="external-link">@Deprecated</a>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Deprecated.html#since()" title="class or interface in java.lang" class="external-link">since</a>="1.21.10",
+            <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Deprecated.html#forRemoval()" title="class or interface in java.lang" class="external-link">forRemoval</a>=true)
+</span><span class="modifiers">public static enum </span><span class="element-name type-name-label">TeleportFlag.EntityState</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Enum.html" title="class or interface in java.lang" class="external-link">Enum</a>&lt;<a href="TeleportFlag.EntityState.html" title="enum class in io.papermc.paper.entity">TeleportFlag.EntityState</a>&gt;
 implements <a href="TeleportFlag.html" title="interface in io.papermc.paper.entity">TeleportFlag</a></span></div>
+<div class="deprecation-block"><span class="deprecated-label">Deprecated, for removal: This API element is subject to removal in a future version.</span>
+<div class="deprecation-comment">As of 1.21.10, the default behavior for teleportation is now aligned with vanilla
+ behavior. This means all of these flags are functionally done by default.</div>
+</div>
 <div class="block">Represents flags that effect the entity's state on
  teleportation.</div>
 </section>
@@ -131,15 +137,22 @@ implements <a href="TeleportFlag.html" title="interface in io.papermc.paper.enti
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color"><code><a href="#RETAIN_OPEN_INVENTORY" class="member-name-link">RETAIN_OPEN_INVENTORY</a></code></div>
 <div class="col-last even-row-color">
-<div class="block">Indicates that a player should not have their current open inventory closed when teleporting.</div>
+<div class="block"><span class="deprecated-label">Deprecated, for removal: This API element is subject to removal in a future version.</span>
+<div class="deprecation-comment">No longer done on teleportation, use <a href="../../../../org/bukkit/entity/HumanEntity.html#closeInventory()"><code>HumanEntity.closeInventory()</code></a> to do this yourself.</div>
+</div>
 </div>
 <div class="col-first odd-row-color"><code><a href="#RETAIN_PASSENGERS" class="member-name-link">RETAIN_PASSENGERS</a></code></div>
 <div class="col-last odd-row-color">
-<div class="block">If all passengers should not be required to be removed prior to teleportation.</div>
+<div class="block"><span class="deprecated-label">Deprecated, for removal: This API element is subject to removal in a future version.</span>
+<div class="deprecation-comment">This is now default behavior in teleportation.</div>
+</div>
 </div>
 <div class="col-first even-row-color"><code><a href="#RETAIN_VEHICLE" class="member-name-link">RETAIN_VEHICLE</a></code></div>
 <div class="col-last even-row-color">
-<div class="block">If the entity should not be dismounted if they are riding another entity.</div>
+<div class="block"><span class="deprecated-label">Deprecated, for removal: This API element is subject to removal in a future version.</span>
+<div class="deprecation-comment">This behavior was highly technical and is not replicatable due to client limitations,
+ and has not functioned for many updates.</div>
+</div>
 </div>
 </div>
 </section>
@@ -149,20 +162,22 @@ implements <a href="TeleportFlag.html" title="interface in io.papermc.paper.enti
 <section class="method-summary" id="method-summary">
 <h2>Method Summary</h2>
 <div id="method-summary-table">
-<div class="table-tabs" role="tablist" aria-orientation="horizontal"><button id="method-summary-table-tab0" role="tab" aria-selected="true" aria-controls="method-summary-table.tabpanel" tabindex="0" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table', 3)" class="active-table-tab">All Methods</button><button id="method-summary-table-tab1" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab1', 3)" class="table-tab">Static Methods</button><button id="method-summary-table-tab4" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab4', 3)" class="table-tab">Concrete Methods</button></div>
+<div class="table-tabs" role="tablist" aria-orientation="horizontal"><button id="method-summary-table-tab0" role="tab" aria-selected="true" aria-controls="method-summary-table.tabpanel" tabindex="0" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table', 3)" class="active-table-tab">All Methods</button><button id="method-summary-table-tab1" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab1', 3)" class="table-tab">Static Methods</button><button id="method-summary-table-tab4" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab4', 3)" class="table-tab">Concrete Methods</button><button id="method-summary-table-tab6" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab6', 3)" class="table-tab">Deprecated Methods</button></div>
 <div id="method-summary-table.tabpanel" role="tabpanel" aria-labelledby="method-summary-table-tab0">
 <div class="summary-table three-column-summary">
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="TeleportFlag.EntityState.html" title="enum class in io.papermc.paper.entity">TeleportFlag.EntityState</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#valueOf(java.lang.String)" class="member-name-link">valueOf</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6"><code>static <a href="TeleportFlag.EntityState.html" title="enum class in io.papermc.paper.entity">TeleportFlag.EntityState</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6"><code><a href="#valueOf(java.lang.String)" class="member-name-link">valueOf</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6">
+<div class="block"><span class="deprecated-label">Deprecated, for removal: This API element is subject to removal in a future version.</span></div>
 <div class="block">Returns the enum constant of this class with the specified name.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="TeleportFlag.EntityState.html" title="enum class in io.papermc.paper.entity">TeleportFlag.EntityState</a>[]</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#values()" class="member-name-link">values</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6"><code>static <a href="TeleportFlag.EntityState.html" title="enum class in io.papermc.paper.entity">TeleportFlag.EntityState</a>[]</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6"><code><a href="#values()" class="member-name-link">values</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6">
+<div class="block"><span class="deprecated-label">Deprecated, for removal: This API element is subject to removal in a future version.</span></div>
 <div class="block">Returns an array containing the constants of this enum class, in
 the order they are declared.</div>
 </div>
@@ -189,7 +204,13 @@ the order they are declared.</div>
 <li>
 <section class="detail" id="RETAIN_PASSENGERS">
 <h3>RETAIN_PASSENGERS</h3>
-<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="TeleportFlag.EntityState.html" title="enum class in io.papermc.paper.entity">TeleportFlag.EntityState</a></span>&nbsp;<span class="element-name">RETAIN_PASSENGERS</span></div>
+<div class="member-signature"><span class="annotations"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Deprecated.html" title="class or interface in java.lang" class="external-link">@Deprecated</a>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Deprecated.html#since()" title="class or interface in java.lang" class="external-link">since</a>="1.21.10",
+            <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Deprecated.html#forRemoval()" title="class or interface in java.lang" class="external-link">forRemoval</a>=true)
+</span><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="TeleportFlag.EntityState.html" title="enum class in io.papermc.paper.entity">TeleportFlag.EntityState</a></span>&nbsp;<span class="element-name">RETAIN_PASSENGERS</span></div>
+<div class="deprecation-block"><span class="deprecated-label">Deprecated, for removal: This API element is subject to removal in a future version.</span>
+<div class="deprecation-comment">This is now default behavior in teleportation. If you want to dismount all passengers,
+ remove them with <a href="../../../../org/bukkit/entity/Entity.html#removePassenger(org.bukkit.entity.Entity)"><code>Entity.removePassenger(Entity)</code></a>.</div>
+</div>
 <div class="block">If all passengers should not be required to be removed prior to teleportation.
  <p>
  Note:
@@ -200,7 +221,13 @@ the order they are declared.</div>
 <li>
 <section class="detail" id="RETAIN_VEHICLE">
 <h3>RETAIN_VEHICLE</h3>
-<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="TeleportFlag.EntityState.html" title="enum class in io.papermc.paper.entity">TeleportFlag.EntityState</a></span>&nbsp;<span class="element-name">RETAIN_VEHICLE</span></div>
+<div class="member-signature"><span class="annotations"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Deprecated.html" title="class or interface in java.lang" class="external-link">@Deprecated</a>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Deprecated.html#since()" title="class or interface in java.lang" class="external-link">since</a>="1.21.10",
+            <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Deprecated.html#forRemoval()" title="class or interface in java.lang" class="external-link">forRemoval</a>=true)
+</span><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="TeleportFlag.EntityState.html" title="enum class in io.papermc.paper.entity">TeleportFlag.EntityState</a></span>&nbsp;<span class="element-name">RETAIN_VEHICLE</span></div>
+<div class="deprecation-block"><span class="deprecated-label">Deprecated, for removal: This API element is subject to removal in a future version.</span>
+<div class="deprecation-comment">This behavior was highly technical and is not replicatable due to client limitations,
+ and has not functioned for many updates.</div>
+</div>
 <div class="block">If the entity should not be dismounted if they are riding another entity.
  <p>
  Note:
@@ -211,7 +238,12 @@ the order they are declared.</div>
 <li>
 <section class="detail" id="RETAIN_OPEN_INVENTORY">
 <h3>RETAIN_OPEN_INVENTORY</h3>
-<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="TeleportFlag.EntityState.html" title="enum class in io.papermc.paper.entity">TeleportFlag.EntityState</a></span>&nbsp;<span class="element-name">RETAIN_OPEN_INVENTORY</span></div>
+<div class="member-signature"><span class="annotations"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Deprecated.html" title="class or interface in java.lang" class="external-link">@Deprecated</a>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Deprecated.html#since()" title="class or interface in java.lang" class="external-link">since</a>="1.21.10",
+            <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Deprecated.html#forRemoval()" title="class or interface in java.lang" class="external-link">forRemoval</a>=true)
+</span><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="TeleportFlag.EntityState.html" title="enum class in io.papermc.paper.entity">TeleportFlag.EntityState</a></span>&nbsp;<span class="element-name">RETAIN_OPEN_INVENTORY</span></div>
+<div class="deprecation-block"><span class="deprecated-label">Deprecated, for removal: This API element is subject to removal in a future version.</span>
+<div class="deprecation-comment">No longer done on teleportation, use <a href="../../../../org/bukkit/entity/HumanEntity.html#closeInventory()"><code>HumanEntity.closeInventory()</code></a> to do this yourself.</div>
+</div>
 <div class="block">Indicates that a player should not have their current open inventory closed when teleporting.
  <p>
  Note:
@@ -230,6 +262,7 @@ the order they are declared.</div>
 <section class="detail" id="values()">
 <h3>values</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="TeleportFlag.EntityState.html" title="enum class in io.papermc.paper.entity">TeleportFlag.EntityState</a>[]</span>&nbsp;<span class="element-name">values</span>()</div>
+<div class="deprecation-block"><span class="deprecated-label">Deprecated, for removal: This API element is subject to removal in a future version.</span></div>
 <div class="block">Returns an array containing the constants of this enum class, in
 the order they are declared.</div>
 <dl class="notes">
@@ -242,6 +275,7 @@ the order they are declared.</div>
 <section class="detail" id="valueOf(java.lang.String)">
 <h3>valueOf</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="TeleportFlag.EntityState.html" title="enum class in io.papermc.paper.entity">TeleportFlag.EntityState</a></span>&nbsp;<span class="element-name">valueOf</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</span></div>
+<div class="deprecation-block"><span class="deprecated-label">Deprecated, for removal: This API element is subject to removal in a future version.</span></div>
 <div class="block">Returns the enum constant of this class with the specified name.
 The string must match <i>exactly</i> an identifier used to declare an
 enum constant in this class.  (Extraneous whitespace characters are 
