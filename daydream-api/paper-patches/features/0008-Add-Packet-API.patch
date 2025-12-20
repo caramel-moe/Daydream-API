@@ -1012,10 +1012,10 @@ index 918a045165cdcde264bc24082b7afebb407271de..893f1e80871e67d427c379410a83ecd8
      /**
       * Represents black
 diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
-index d070c3e1096169e10ffbed8ebe6144de74cf47c2..1a4f4f587b962c23c2f51d647c14108647d2b86e 100644
+index 1f1aec1c6e312f64a9654feaeff4700bbf93a473..d0f7f22c74da08d8773728d8ddbd7c0beb946105 100644
 --- a/src/main/java/org/bukkit/Server.java
 +++ b/src/main/java/org/bukkit/Server.java
-@@ -2860,4 +2860,16 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
+@@ -2861,4 +2861,16 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
      @NotNull
      moe.caramel.daydream.sidebar.SidebarProcessor sidebarProcessor();
      // Daydream end - Add Individual Sidebar API
@@ -1033,7 +1033,7 @@ index d070c3e1096169e10ffbed8ebe6144de74cf47c2..1a4f4f587b962c23c2f51d647c141086
 +    // Daydream end - (feature) Add Packet API
  }
 diff --git a/src/main/java/org/bukkit/World.java b/src/main/java/org/bukkit/World.java
-index c32df3db888ddc223d40f3aa5abf668dcab1a55d..6034b9b507c0d7a7c725d2b6a95f2425f9d07deb 100644
+index 045847ff27fb7d89c09231950b1c638e5fcb31be..2aa8225a34e290856253ca4992c8389a723662da 100644
 --- a/src/main/java/org/bukkit/World.java
 +++ b/src/main/java/org/bukkit/World.java
 @@ -1692,6 +1692,17 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
@@ -1055,10 +1055,10 @@ index c32df3db888ddc223d40f3aa5abf668dcab1a55d..6034b9b507c0d7a7c725d2b6a95f2425
       * Returns a list of entities within a bounding box centered around a
       * Location.
 diff --git a/src/main/java/org/bukkit/entity/Entity.java b/src/main/java/org/bukkit/entity/Entity.java
-index 252f2a74b4fc368fe73fdde95275ced0d4948ede..05fdcd818cc68bde451c7cd3309f016d815ed38d 100644
+index a18e8fbc3c427086e16cf475298a055a9ce286e2..c91475ecd4462e7e5aefa6e0545b9c052692f9c5 100644
 --- a/src/main/java/org/bukkit/entity/Entity.java
 +++ b/src/main/java/org/bukkit/entity/Entity.java
-@@ -672,6 +672,19 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
+@@ -688,6 +688,19 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
      public String getStringUniqueId();
      // Daydream end - Add method to get string UUID
  
@@ -1079,7 +1079,7 @@ index 252f2a74b4fc368fe73fdde95275ced0d4948ede..05fdcd818cc68bde451c7cd3309f016d
       * Gets the amount of ticks this entity has lived for.
       * <p>
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index aefbd78f99f9f931c39ec9a06a72ee7f472d1869..03c2786f89d93515309857237de54b6bfa53c343 100644
+index 90faadf93d2f3c5c862a3dc50409da20cf152bb2..dff19f890dce6b4ed9a7c31b20b6a64a559c1a55 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
 @@ -1111,6 +1111,31 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
