@@ -71,7 +71,7 @@
      // Paper start - flying fall damage
      /**
       * Allows you to enable fall damage while {@link #getAllowFlight()} is {@code true}
-@@ -2835,6 +_,23 @@
+@@ -2835,6 +_,27 @@
      }
      // Paper end - more resource pack API
  
@@ -81,7 +81,9 @@
 +     *
 +     * @return 리소스팩 목록
 +     */
-+    Collection<? extends moe.caramel.daydream.player.ResourcePack> getAppliedResourcePacks();
++    default Collection<? extends moe.caramel.daydream.player.ResourcePack> getAppliedResourcePacks() {
++        return getConnection().getAppliedResourcePacks();
++    }
 +
 +    /**
 +     * 리소스팩 적용 상태를 가져옵니다.
@@ -89,7 +91,9 @@
 +     * @param uuid 리소스팩의 고유 ID
 +     * @return 적용을 하지 않았거나, 클라이언트에게 응답을 받지 않은 경우 {@code null}을 반환할 수도 있습니다.
 +     */
-+    org.bukkit.event.player.PlayerResourcePackStatusEvent.@Nullable Status getResourcePackStatus(UUID uuid);
++    default org.bukkit.event.player.PlayerResourcePackStatusEvent.@Nullable Status getResourcePackStatus(final UUID uuid) {
++        return getConnection().getResourcePackStatus(uuid);
++    }
 +    // Daydream end - Add more ResourcePack API
 +
      /**
