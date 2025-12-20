@@ -1,0 +1,16 @@
+--- a/src/main/java/io/papermc/paper/connection/PlayerCommonConnection.java
++++ b/src/main/java/io/papermc/paper/connection/PlayerCommonConnection.java
+@@ -43,4 +_,13 @@
+      * @return the client option value of the player
+      */
+     <T> T getClientOption(ClientOption<T> type);
++
++    // Daydream start - Add Network API
++    /**
++     * 이 클라이언트 연결의 netty 채널을 가져옵니다.
++     *
++     * @return netty 채널
++     */
++    io.netty.channel.Channel getChannel();
++    // Daydream end - Add Network API
+ }

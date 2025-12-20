@@ -5,13 +5,13 @@ Subject: [PATCH] Add client type predictor
 
 
 diff --git a/src/main/java/io/papermc/paper/connection/PlayerCommonConnection.java b/src/main/java/io/papermc/paper/connection/PlayerCommonConnection.java
-index 7cba94e4916b64c20ea34ed6626cde7f697d9cd5..c66413f84532cd3a6f020a999b5fa93c63976950 100644
+index 6dc030bb537ada506f769010277f14b101909006..b7f33e30a359de12d8b3832a374ff4f1f69cb2dc 100644
 --- a/src/main/java/io/papermc/paper/connection/PlayerCommonConnection.java
 +++ b/src/main/java/io/papermc/paper/connection/PlayerCommonConnection.java
-@@ -43,4 +43,24 @@ public interface PlayerCommonConnection extends WritablePlayerCookieConnection,
-      * @return the client option value of the player
+@@ -52,4 +52,24 @@ public interface PlayerCommonConnection extends WritablePlayerCookieConnection,
       */
-     <T> T getClientOption(ClientOption<T> type);
+     io.netty.channel.Channel getChannel();
+     // Daydream end - Add Network API
 +
 +    // Daydream start - (feature) Add client type predictor
 +    /**
