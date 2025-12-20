@@ -164,9 +164,9 @@ implements <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="ParticleBuilder.html" title="class in com.destroystokyo.paper">ParticleBuilder</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#color(org.bukkit.Color,float)" class="member-name-link">color</a><wbr>(<a href="https://jspecify.dev/docs/api/org/jspecify/annotations/Nullable.html" title="class or interface in org.jspecify.annotations" class="external-link">@Nullable</a> <a href="../../../org/bukkit/Color.html" title="class in org.bukkit">Color</a>&nbsp;color,
- float&nbsp;size)</code></div>
+ float&nbsp;value)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Sets the particle Color and size.</div>
+<div class="block">Sets the particle Color and size or power.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="ParticleBuilder.html" title="class in com.destroystokyo.paper">ParticleBuilder</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#colorTransition(int,int)" class="member-name-link">colorTransition</a><wbr>(int&nbsp;fromRgb,
@@ -793,7 +793,7 @@ implements <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base
 <h3>color</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="ParticleBuilder.html" title="class in com.destroystokyo.paper">ParticleBuilder</a></span>&nbsp;<span class="element-name">color</span><wbr><span class="parameters">(<a href="https://jspecify.dev/docs/api/org/jspecify/annotations/Nullable.html" title="class or interface in org.jspecify.annotations" class="external-link">@Nullable</a> <a href="../../../org/bukkit/Color.html" title="class in org.bukkit">Color</a>&nbsp;color)</span></div>
 <div class="block">Sets the particle Color.
- Only valid for particles with a data type of <a href="../../../org/bukkit/Color.html" title="class in org.bukkit"><code>Color</code></a> or <a href="../../../org/bukkit/Particle.DustOptions.html" title="class in org.bukkit"><code>Particle.DustOptions</code></a>.</div>
+ Only valid for particles with a data type of <a href="../../../org/bukkit/Color.html" title="class in org.bukkit"><code>Color</code></a>, <a href="../../../org/bukkit/Particle.DustOptions.html" title="class in org.bukkit"><code>Particle.DustOptions</code></a> or <a href="../../../org/bukkit/Particle.Spell.html" title="class in org.bukkit"><code>Particle.Spell</code></a>.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>color</code> - the new particle color</dd>
@@ -806,13 +806,13 @@ implements <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base
 <section class="detail" id="color(org.bukkit.Color,float)">
 <h3>color</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="ParticleBuilder.html" title="class in com.destroystokyo.paper">ParticleBuilder</a></span>&nbsp;<span class="element-name">color</span><wbr><span class="parameters">(<a href="https://jspecify.dev/docs/api/org/jspecify/annotations/Nullable.html" title="class or interface in org.jspecify.annotations" class="external-link">@Nullable</a> <a href="../../../org/bukkit/Color.html" title="class in org.bukkit">Color</a>&nbsp;color,
- float&nbsp;size)</span></div>
-<div class="block">Sets the particle Color and size.
- Only valid for particles with a data type of <a href="../../../org/bukkit/Particle.DustOptions.html" title="class in org.bukkit"><code>Particle.DustOptions</code></a>.</div>
+ float&nbsp;value)</span></div>
+<div class="block">Sets the particle Color and size or power.
+ Only valid for particles with a data type of <a href="../../../org/bukkit/Particle.DustOptions.html" title="class in org.bukkit"><code>Particle.DustOptions</code></a> or <a href="../../../org/bukkit/Particle.Spell.html" title="class in org.bukkit"><code>Particle.Spell</code></a>.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>color</code> - the new particle color</dd>
-<dd><code>size</code> - the size of the particle</dd>
+<dd><code>value</code> - the size or power of the particle</dd>
 <dt>Returns:</dt>
 <dd>a reference to this object.</dd>
 </dl>
@@ -825,7 +825,7 @@ implements <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base
  int&nbsp;g,
  int&nbsp;b)</span></div>
 <div class="block">Sets the particle Color.
- Only valid for particles with a data type of <a href="../../../org/bukkit/Color.html" title="class in org.bukkit"><code>Color</code></a> or <a href="../../../org/bukkit/Particle.DustOptions.html" title="class in org.bukkit"><code>Particle.DustOptions</code></a>.</div>
+ Only valid for particles with a data type of <a href="../../../org/bukkit/Color.html" title="class in org.bukkit"><code>Color</code></a>, <a href="../../../org/bukkit/Particle.DustOptions.html" title="class in org.bukkit"><code>Particle.DustOptions</code></a> or <a href="../../../org/bukkit/Particle.Spell.html" title="class in org.bukkit"><code>Particle.Spell</code></a>.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>r</code> - red color component</dd>
@@ -841,7 +841,7 @@ implements <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base
 <h3>color</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="ParticleBuilder.html" title="class in com.destroystokyo.paper">ParticleBuilder</a></span>&nbsp;<span class="element-name">color</span><wbr><span class="parameters">(int&nbsp;color)</span></div>
 <div class="block">Sets the particle Color.
- Only valid for particles with a data type of <a href="../../../org/bukkit/Color.html" title="class in org.bukkit"><code>Color</code></a> or <a href="../../../org/bukkit/Particle.DustOptions.html" title="class in org.bukkit"><code>Particle.DustOptions</code></a>.
+ Only valid for particles with a data type of <a href="../../../org/bukkit/Color.html" title="class in org.bukkit"><code>Color</code></a>, <a href="../../../org/bukkit/Particle.DustOptions.html" title="class in org.bukkit"><code>Particle.DustOptions</code></a> or <a href="../../../org/bukkit/Particle.Spell.html" title="class in org.bukkit"><code>Particle.Spell</code></a>.
  <p>
  This method detects if the provided color integer is in RGB or ARGB format.
  If the alpha channel is zero, it treats the color as RGB. Otherwise, it treats it as ARGB.</div>
@@ -862,7 +862,7 @@ implements <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base
  int&nbsp;g,
  int&nbsp;b)</span></div>
 <div class="block">Sets the particle Color.
- Only valid for particles with a data type of <a href="../../../org/bukkit/Color.html" title="class in org.bukkit"><code>Color</code></a> or <a href="../../../org/bukkit/Particle.DustOptions.html" title="class in org.bukkit"><code>Particle.DustOptions</code></a>.</div>
+ Only valid for particles with a data type of <a href="../../../org/bukkit/Color.html" title="class in org.bukkit"><code>Color</code></a>, <a href="../../../org/bukkit/Particle.DustOptions.html" title="class in org.bukkit"><code>Particle.DustOptions</code></a> or <a href="../../../org/bukkit/Particle.Spell.html" title="class in org.bukkit"><code>Particle.Spell</code></a>.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>a</code> - alpha color component</dd>

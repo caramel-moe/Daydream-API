@@ -6779,13 +6779,16 @@ extends <a href="RegionAccessor.html" title="interface in org.bukkit">RegionAcce
 <h3>setSpawnFlags</h3>
 <div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">setSpawnFlags</span><wbr><span class="parameters">(boolean&nbsp;allowMonsters,
  boolean&nbsp;allowAnimals)</span></div>
-<div class="block">Sets the spawn flags for this.</div>
+<div class="block">Sets the spawn flags for this.
+ <p>Note that setting <code>false</code> for either only affects
+ natural spawning. It doesn't affect spawn eggs, summon command, mobs
+ spawned from structure generation, spawners, etc.</p></div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>allowMonsters</code> - - if true, monsters are allowed to spawn in this
-     world.</dd>
+     world via natural spawning mechanisms.</dd>
 <dd><code>allowAnimals</code> - - if true, animals are allowed to spawn in this
-     world.</dd>
+     world via natural spawning mechanisms.</dd>
 </dl>
 </section>
 </li>
