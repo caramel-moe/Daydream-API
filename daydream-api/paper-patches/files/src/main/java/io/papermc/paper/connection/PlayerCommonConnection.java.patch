@@ -1,6 +1,6 @@
 --- a/src/main/java/io/papermc/paper/connection/PlayerCommonConnection.java
 +++ b/src/main/java/io/papermc/paper/connection/PlayerCommonConnection.java
-@@ -43,4 +_,30 @@
+@@ -43,4 +_,39 @@
       * @return the client option value of the player
       */
      <T> T getClientOption(ClientOption<T> type);
@@ -23,6 +23,15 @@
 +    // Daydream end - Add more ResourcePack API
 +
 +    // Daydream start - Add Network API
++    /**
++     * Returns the protocol version of the client.
++     *
++     * @return The client's protocol version, or {@code -1} if unknown
++     * @see <a href="https://minecraft.wiki/w/Minecraft_Wiki:Projects/wiki.vg_merge/Protocol_version_numbers">List of protocol
++     *     version numbers</a>
++     */
++    int getProtocolVersion();
++
 +    /**
 +     * 이 클라이언트 연결의 netty 채널을 가져옵니다.
 +     *
