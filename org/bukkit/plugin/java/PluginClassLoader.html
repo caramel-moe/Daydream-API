@@ -41,7 +41,7 @@ loadScripts(document, 'script');</script>
 <ul>
 <li>Nested</li>
 <li><a href="#field-summary">Field</a></li>
-<li><a href="#constructor-summary">Constr</a></li>
+<li>Constr</li>
 <li><a href="#method-summary">Method</a></li>
 </ul>
 </li>
@@ -49,7 +49,7 @@ loadScripts(document, 'script');</script>
 <p>Detail:</p>
 <ul>
 <li><a href="#field-detail">Field</a></li>
-<li><a href="#constructor-detail">Constr</a></li>
+<li>Constr</li>
 <li><a href="#method-detail">Method</a></li>
 </ul>
 </li>
@@ -61,13 +61,13 @@ loadScripts(document, 'script');</script>
 <li>Summary:&nbsp;</li>
 <li>Nested&nbsp;|&nbsp;</li>
 <li><a href="#field-summary">Field</a>&nbsp;|&nbsp;</li>
-<li><a href="#constructor-summary">Constr</a>&nbsp;|&nbsp;</li>
+<li>Constr&nbsp;|&nbsp;</li>
 <li><a href="#method-summary">Method</a></li>
 </ul>
 <ul class="sub-nav-list">
 <li>Detail:&nbsp;</li>
 <li><a href="#field-detail">Field</a>&nbsp;|&nbsp;</li>
-<li><a href="#constructor-detail">Constr</a>&nbsp;|&nbsp;</li>
+<li>Constr&nbsp;|&nbsp;</li>
 <li><a href="#method-detail">Method</a></li>
 </ul>
 </div>
@@ -90,9 +90,7 @@ loadScripts(document, 'script');</script>
 <div class="inheritance"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/ClassLoader.html" title="class or interface in java.lang" class="external-link">java.lang.ClassLoader</a>
 <div class="inheritance"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/security/SecureClassLoader.html" title="class or interface in java.security" class="external-link">java.security.SecureClassLoader</a>
 <div class="inheritance"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/net/URLClassLoader.html" title="class or interface in java.net" class="external-link">java.net.URLClassLoader</a>
-<div class="inheritance"><a href="../../../../moe/caramel/daydream/plugin/DynamicURLClassLoader.html" title="class in moe.caramel.daydream.plugin">moe.caramel.daydream.plugin.DynamicURLClassLoader</a>
 <div class="inheritance">org.bukkit.plugin.java.PluginClassLoader</div>
-</div>
 </div>
 </div>
 </div>
@@ -105,7 +103,7 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="annotations"><a href="https://www.javadocs.dev/org.jetbrains/annotations/26.0.2/org/jetbrains/annotations/ApiStatus.Internal.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Internal</a>
 </span><span class="modifiers">public final class </span><span class="element-name type-name-label">PluginClassLoader</span>
-<span class="extends-implements">extends <a href="../../../../moe/caramel/daydream/plugin/DynamicURLClassLoader.html" title="class in moe.caramel.daydream.plugin">DynamicURLClassLoader</a>
+<span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/net/URLClassLoader.html" title="class or interface in java.net" class="external-link">URLClassLoader</a>
 implements <a href="../../../../io/papermc/paper/plugin/provider/classloader/ConfiguredPluginClassLoader.html" title="interface in io.papermc.paper.plugin.provider.classloader">ConfiguredPluginClassLoader</a></span></div>
 <div class="block">A ClassLoader for plugins, to allow shared classes across multiple plugins</div>
 </section>
@@ -126,26 +124,6 @@ implements <a href="../../../../io/papermc/paper/plugin/provider/classloader/Con
 </div>
 </section>
 </li>
-<!-- ======== CONSTRUCTOR SUMMARY ======== -->
-<li>
-<section class="constructor-summary" id="constructor-summary">
-<h2>Constructor Summary</h2>
-<div class="caption"><span>Constructors</span></div>
-<div class="summary-table two-column-summary">
-<div class="table-header col-first">Constructor</div>
-<div class="table-header col-last">Description</div>
-<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(java.lang.ClassLoader,org.bukkit.plugin.PluginDescriptionFile,java.io.File,java.io.File,java.lang.ClassLoader,java.util.jar.JarFile,io.papermc.paper.plugin.provider.entrypoint.DependencyContext,java.util.List)" class="member-name-link">PluginClassLoader</a><wbr>(<a href="https://www.javadocs.dev/org.jetbrains/annotations/26.0.2/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/ClassLoader.html" title="class or interface in java.lang" class="external-link">ClassLoader</a>&nbsp;parent,
- <a href="https://www.javadocs.dev/org.jetbrains/annotations/26.0.2/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../PluginDescriptionFile.html" title="class in org.bukkit.plugin">PluginDescriptionFile</a>&nbsp;description,
- <a href="https://www.javadocs.dev/org.jetbrains/annotations/26.0.2/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/io/File.html" title="class or interface in java.io" class="external-link">File</a>&nbsp;dataFolder,
- <a href="https://www.javadocs.dev/org.jetbrains/annotations/26.0.2/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/io/File.html" title="class or interface in java.io" class="external-link">File</a>&nbsp;file,
- <a href="https://www.javadocs.dev/org.jetbrains/annotations/26.0.2/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/ClassLoader.html" title="class or interface in java.lang" class="external-link">ClassLoader</a>&nbsp;libraryLoader,
- <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/jar/JarFile.html" title="class or interface in java.util.jar" class="external-link">JarFile</a>&nbsp;jarFile,
- <a href="../../../../io/papermc/paper/plugin/provider/entrypoint/DependencyContext.html" title="interface in io.papermc.paper.plugin.provider.entrypoint">DependencyContext</a>&nbsp;dependencyContext,
- <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/net/URL.html" title="class or interface in java.net" class="external-link">URL</a>&gt;&nbsp;afterLibraries)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
-</div>
-</section>
-</li>
 <!-- ========== METHOD SUMMARY =========== -->
 <li>
 <section class="method-summary" id="method-summary">
@@ -158,62 +136,64 @@ implements <a href="../../../../io/papermc/paper/plugin/provider/classloader/Con
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#close()" class="member-name-link">close</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Class.html" title="class or interface in java.lang" class="external-link">Class</a><wbr>&lt;?&gt;</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#findClass(java.lang.String)" class="member-name-link">findClass</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../../../../io/papermc/paper/plugin/configuration/PluginMeta.html" title="interface in io.papermc.paper.plugin.configuration">PluginMeta</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getConfiguration()" class="member-name-link">getConfiguration</a>()</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#addURLIfYouKnowWhatYouAreDoing(java.net.URL)" class="member-name-link">addURLIfYouKnowWhatYouAreDoing</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/net/URL.html" title="class or interface in java.net" class="external-link">URL</a>&nbsp;url)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">무엇을 하고 있는지 자세히 알고 있는 경우에만 사용하세요.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#close()" class="member-name-link">close</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Class.html" title="class or interface in java.lang" class="external-link">Class</a><wbr>&lt;?&gt;</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#findClass(java.lang.String)" class="member-name-link">findClass</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../../../../io/papermc/paper/plugin/configuration/PluginMeta.html" title="interface in io.papermc.paper.plugin.configuration">PluginMeta</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getConfiguration()" class="member-name-link">getConfiguration</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Provides the configuration of the plugin that this plugin classloader provides type access to.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../../../../io/papermc/paper/plugin/provider/classloader/PluginClassLoaderGroup.html" title="interface in io.papermc.paper.plugin.provider.classloader">PluginClassLoaderGroup</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getGroup()" class="member-name-link">getGroup</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../../../../io/papermc/paper/plugin/provider/classloader/PluginClassLoaderGroup.html" title="interface in io.papermc.paper.plugin.provider.classloader">PluginClassLoaderGroup</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getGroup()" class="member-name-link">getGroup</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Get the plugin classloader group
  that is used by the underlying classloader</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="JavaPlugin.html" title="class in org.bukkit.plugin.java">JavaPlugin</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getPlugin()" class="member-name-link">getPlugin</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="JavaPlugin.html" title="class in org.bukkit.plugin.java">JavaPlugin</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getPlugin()" class="member-name-link">getPlugin</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Gets the plugin held by this class loader.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/net/URL.html" title="class or interface in java.net" class="external-link">URL</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getResource(java.lang.String)" class="member-name-link">getResource</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Enumeration.html" title="class or interface in java.util" class="external-link">Enumeration</a><wbr>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/net/URL.html" title="class or interface in java.net" class="external-link">URL</a>&gt;</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getResources(java.lang.String)" class="member-name-link">getResources</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/net/URL.html" title="class or interface in java.net" class="external-link">URL</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getResource(java.lang.String)" class="member-name-link">getResource</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#init(org.bukkit.plugin.java.JavaPlugin)" class="member-name-link">init</a><wbr>(<a href="JavaPlugin.html" title="class in org.bukkit.plugin.java">JavaPlugin</a>&nbsp;plugin)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Enumeration.html" title="class or interface in java.util" class="external-link">Enumeration</a><wbr>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/net/URL.html" title="class or interface in java.net" class="external-link">URL</a>&gt;</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getResources(java.lang.String)" class="member-name-link">getResources</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#init(org.bukkit.plugin.java.JavaPlugin)" class="member-name-link">init</a><wbr>(<a href="JavaPlugin.html" title="class in org.bukkit.plugin.java">JavaPlugin</a>&nbsp;plugin)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Initializes both this configured plugin class loader and the java plugin passed to link to each other.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#initialize(org.bukkit.plugin.java.JavaPlugin)" class="member-name-link">initialize</a><wbr>(<a href="https://www.javadocs.dev/org.jetbrains/annotations/26.0.2/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="JavaPlugin.html" title="class in org.bukkit.plugin.java">JavaPlugin</a>&nbsp;javaPlugin)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Class.html" title="class or interface in java.lang" class="external-link">Class</a><wbr>&lt;?&gt;</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#loadClass(java.lang.String,boolean,boolean,boolean)" class="member-name-link">loadClass</a><wbr>(<a href="https://www.javadocs.dev/org.jetbrains/annotations/26.0.2/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name,
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#initialize(org.bukkit.plugin.java.JavaPlugin)" class="member-name-link">initialize</a><wbr>(<a href="https://www.javadocs.dev/org.jetbrains/annotations/26.0.2/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="JavaPlugin.html" title="class in org.bukkit.plugin.java">JavaPlugin</a>&nbsp;javaPlugin)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Class.html" title="class or interface in java.lang" class="external-link">Class</a><wbr>&lt;?&gt;</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#loadClass(java.lang.String,boolean,boolean,boolean)" class="member-name-link">loadClass</a><wbr>(<a href="https://www.javadocs.dev/org.jetbrains/annotations/26.0.2/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name,
  boolean&nbsp;resolve,
  boolean&nbsp;checkGlobal,
  boolean&nbsp;checkLibraries)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Attempts to load a class from this plugin class loader using the passed fully qualified name.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Class.html" title="class or interface in java.lang" class="external-link">Class</a><wbr>&lt;?&gt;</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#loadClass(java.lang.String,boolean)" class="member-name-link">loadClass</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name,
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Class.html" title="class or interface in java.lang" class="external-link">Class</a><wbr>&lt;?&gt;</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#loadClass(java.lang.String,boolean)" class="member-name-link">loadClass</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name,
  boolean&nbsp;resolve)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#toString()" class="member-name-link">toString</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#toString()" class="member-name-link">toString</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 </div>
 </div>
 </div>
-<div class="inherited-list">
-<h3 id="methods-inherited-from-class-moe.caramel.daydream.plugin.DynamicURLClassLoader">Methods inherited from class&nbsp;moe.caramel.daydream.plugin.<a href="../../../../moe/caramel/daydream/plugin/DynamicURLClassLoader.html" title="class in moe.caramel.daydream.plugin">DynamicURLClassLoader</a></h3>
-<code><a href="../../../../moe/caramel/daydream/plugin/DynamicURLClassLoader.html#addURLIfYouKnowWhatYouAreDoing(java.net.URL)">addURLIfYouKnowWhatYouAreDoing</a></code></div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-java.net.URLClassLoader">Methods inherited from class&nbsp;java.net.<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/net/URLClassLoader.html" title="class or interface in java.net" class="external-link">URLClassLoader</a></h3>
 <code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/net/URLClassLoader.html#addURL(java.net.URL)" title="class or interface in java.net" class="external-link">addURL</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/net/URLClassLoader.html#definePackage(java.lang.String,java.util.jar.Manifest,java.net.URL)" title="class or interface in java.net" class="external-link">definePackage</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/net/URLClassLoader.html#findResource(java.lang.String)" title="class or interface in java.net" class="external-link">findResource</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/net/URLClassLoader.html#findResources(java.lang.String)" title="class or interface in java.net" class="external-link">findResources</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/net/URLClassLoader.html#getPermissions(java.security.CodeSource)" title="class or interface in java.net" class="external-link">getPermissions</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/net/URLClassLoader.html#getResourceAsStream(java.lang.String)" title="class or interface in java.net" class="external-link">getResourceAsStream</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/net/URLClassLoader.html#getURLs()" title="class or interface in java.net" class="external-link">getURLs</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/net/URLClassLoader.html#newInstance(java.net.URL%5B%5D)" title="class or interface in java.net" class="external-link">newInstance</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/net/URLClassLoader.html#newInstance(java.net.URL%5B%5D,java.lang.ClassLoader)" title="class or interface in java.net" class="external-link">newInstance</a></code></div>
@@ -241,41 +221,6 @@ implements <a href="../../../../io/papermc/paper/plugin/provider/classloader/Con
 <section class="detail" id="dependencyContext">
 <h3>dependencyContext</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../../../../io/papermc/paper/plugin/provider/entrypoint/DependencyContext.html" title="interface in io.papermc.paper.plugin.provider.entrypoint">DependencyContext</a></span>&nbsp;<span class="element-name">dependencyContext</span></div>
-</section>
-</li>
-</ul>
-</section>
-</li>
-<!-- ========= CONSTRUCTOR DETAIL ======== -->
-<li>
-<section class="constructor-details" id="constructor-detail">
-<h2>Constructor Details</h2>
-<ul class="member-list">
-<li>
-<section class="detail" id="&lt;init&gt;(java.lang.ClassLoader,org.bukkit.plugin.PluginDescriptionFile,java.io.File,java.io.File,java.lang.ClassLoader,java.util.jar.JarFile,io.papermc.paper.plugin.provider.entrypoint.DependencyContext,java.util.List)">
-<h3>PluginClassLoader</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">PluginClassLoader</span><wbr><span class="parameters">(<a href="https://www.javadocs.dev/org.jetbrains/annotations/26.0.2/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a>
- <a href="https://www.javadocs.dev/org.jetbrains/annotations/26.0.2/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/ClassLoader.html" title="class or interface in java.lang" class="external-link">ClassLoader</a>&nbsp;parent,
- <a href="https://www.javadocs.dev/org.jetbrains/annotations/26.0.2/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
- <a href="https://www.javadocs.dev/org.jetbrains/annotations/26.0.2/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="../PluginDescriptionFile.html" title="class in org.bukkit.plugin">PluginDescriptionFile</a>&nbsp;description,
- <a href="https://www.javadocs.dev/org.jetbrains/annotations/26.0.2/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
- <a href="https://www.javadocs.dev/org.jetbrains/annotations/26.0.2/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/io/File.html" title="class or interface in java.io" class="external-link">File</a>&nbsp;dataFolder,
- <a href="https://www.javadocs.dev/org.jetbrains/annotations/26.0.2/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
- <a href="https://www.javadocs.dev/org.jetbrains/annotations/26.0.2/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/io/File.html" title="class or interface in java.io" class="external-link">File</a>&nbsp;file,
- <a href="https://www.javadocs.dev/org.jetbrains/annotations/26.0.2/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a>
- <a href="https://www.javadocs.dev/org.jetbrains/annotations/26.0.2/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a> <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/ClassLoader.html" title="class or interface in java.lang" class="external-link">ClassLoader</a>&nbsp;libraryLoader,
- <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/jar/JarFile.html" title="class or interface in java.util.jar" class="external-link">JarFile</a>&nbsp;jarFile,
- <a href="../../../../io/papermc/paper/plugin/provider/entrypoint/DependencyContext.html" title="interface in io.papermc.paper.plugin.provider.entrypoint">DependencyContext</a>&nbsp;dependencyContext,
- <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/net/URL.html" title="class or interface in java.net" class="external-link">URL</a>&gt;&nbsp;afterLibraries)</span>
-                  throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a>,
-<a href="../InvalidPluginException.html" title="class in org.bukkit.plugin">InvalidPluginException</a>,
-<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/net/MalformedURLException.html" title="class or interface in java.net" class="external-link">MalformedURLException</a></span></div>
-<dl class="notes">
-<dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a></code></dd>
-<dd><code><a href="../InvalidPluginException.html" title="class in org.bukkit.plugin">InvalidPluginException</a></code></dd>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/net/MalformedURLException.html" title="class or interface in java.net" class="external-link">MalformedURLException</a></code></dd>
-</dl>
 </section>
 </li>
 </ul>
@@ -400,6 +345,17 @@ implements <a href="../../../../io/papermc/paper/plugin/provider/classloader/Con
 <dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/ClassLoader.html#loadClass(java.lang.String,boolean)" title="class or interface in java.lang" class="external-link">loadClass</a></code>&nbsp;in class&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/ClassLoader.html" title="class or interface in java.lang" class="external-link">ClassLoader</a></code></dd>
 <dt>Throws:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/ClassNotFoundException.html" title="class or interface in java.lang" class="external-link">ClassNotFoundException</a></code></dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="addURLIfYouKnowWhatYouAreDoing(java.net.URL)">
+<h3>addURLIfYouKnowWhatYouAreDoing</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">addURLIfYouKnowWhatYouAreDoing</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/net/URL.html" title="class or interface in java.net" class="external-link">URL</a>&nbsp;url)</span></div>
+<div class="block">무엇을 하고 있는지 자세히 알고 있는 경우에만 사용하세요.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>url</code> - the URL to be added to the search path of URLs</dd>
 </dl>
 </section>
 </li>
