@@ -1,0 +1,59 @@
+--- a/src/main/java/org/bukkit/plugin/java/PluginClassLoader.java
++++ b/src/main/java/org/bukkit/plugin/java/PluginClassLoader.java
+@@ -77,6 +_,11 @@
+         this.classLoaderGroup = io.papermc.paper.plugin.provider.classloader.PaperClassLoaderStorage.instance().registerSpigotGroup(this);
+         // Paper end
+ 
++    // Daydream start - Add cursed Plugin Loader API
++        this.plugin = createInstance();
++    }
++    private JavaPlugin createInstance() throws InvalidPluginException {
++    // Daydream end - Add cursed Plugin Loader API
+         Class<?> jarClass;
+         try {
+             jarClass = Class.forName(description.getMain(), true, this);
+@@ -91,6 +_,17 @@
+             throw new InvalidPluginException("main class `" + description.getMain() + "' must extend JavaPlugin", ex);
+         }
+ 
++        // Daydream start - Add cursed Plugin Loader API
++        try {
++            final java.lang.reflect.Method method = pluginClass.getDeclaredMethod("createPluginInstanceUnsafe");
++            method.setAccessible(true);
++            return (JavaPlugin) method.invoke(null);
++        } catch (final NoSuchMethodException ignored) {
++        } catch (final Throwable throwable) {
++            throw new InvalidPluginException("Failed to invoke createPluginInstanceUnsafe()", throwable);
++        }
++        // Daydream end - Add cursed Plugin Loader API
++
+         Constructor<? extends JavaPlugin> pluginConstructor;
+         try {
+             pluginConstructor = pluginClass.getDeclaredConstructor();
+@@ -106,7 +_,7 @@
+         }
+ 
+         try {
+-            plugin = pluginConstructor.newInstance();
++            return pluginConstructor.newInstance(); // Daydream - Add cursed Plugin Loader API
+         } catch (IllegalAccessException ex) {
+             throw new InvalidPluginException("main class `" + description.getMain() + "' constructor inaccessible", ex);
+         } catch (InstantiationException ex) {
+@@ -207,6 +_,17 @@
+ 
+         throw new ClassNotFoundException(name);
+     }
++
++    // Daydream start - Add cursed Plugin Loader API
++    /**
++     * 무엇을 하고 있는지 자세히 알고 있는 경우에만 사용하세요.
++     *
++     * @param url the URL to be added to the search path of URLs
++     */
++    public void addURLIfYouKnowWhatYouAreDoing(final URL url) {
++        super.addURL(url);
++    }
++    // Daydream end - Add cursed Plugin Loader API
+ 
+     @Override
+     protected Class<?> findClass(String name) throws ClassNotFoundException {
